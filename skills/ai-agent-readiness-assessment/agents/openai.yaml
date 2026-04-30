@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Agent Readiness Assessment"
+  short_description: "Score whether a workflow is ready for an agent."
+  default_prompt: "Use this skill to assess if a workflow is build-ready for an AI agent."

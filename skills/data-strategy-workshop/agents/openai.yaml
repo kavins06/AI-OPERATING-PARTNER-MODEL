@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Strategy Workshop"
+  short_description: "Turn goals into data and AI priorities."
+  default_prompt: "Use this skill to run a data strategy workshop and produce a roadmap."

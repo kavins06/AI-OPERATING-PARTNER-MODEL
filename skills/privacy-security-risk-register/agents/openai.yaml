@@ -1,0 +1,4 @@
+interface:
+  display_name: "Privacy Security Risk Register"
+  short_description: "Document privacy, security, and operational risks."
+  default_prompt: "Use this skill to create a risk register for data or AI work."

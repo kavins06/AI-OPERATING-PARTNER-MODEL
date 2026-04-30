@@ -1,0 +1,4 @@
+interface:
+  display_name: "Managed Agent Lifecycle"
+  short_description: "Operate agents as governed living systems."
+  default_prompt: "Use this skill to plan intake, build, validation, deployment, monitoring, and improvement."

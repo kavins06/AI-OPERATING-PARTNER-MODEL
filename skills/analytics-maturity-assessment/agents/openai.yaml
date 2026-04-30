@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analytics Maturity Assessment"
+  short_description: "Assess analytics readiness and upgrade path."
+  default_prompt: "Use this skill to score analytics maturity for a team or workflow."

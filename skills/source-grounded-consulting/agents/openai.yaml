@@ -1,0 +1,4 @@
+interface:
+  display_name: "Source Grounded Consulting"
+  short_description: "Keep recommendations traceable and evidence-based."
+  default_prompt: "Use this skill to make consulting recommendations traceable to evidence."

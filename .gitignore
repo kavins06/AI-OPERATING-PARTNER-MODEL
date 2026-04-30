@@ -1,0 +1,26 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+
+*.tmp
+*.log
+*.pid
+*.bak
+*.pyc
+__pycache__/
+
+.env
+.env.*
+
+# Original source documents are intentionally kept out of this repo unless
+# you explicitly decide to version them in a private document vault.
+source-documents/
+mastery-reference/source-documents/
+mastery-reference/**/chunks/
+mastery-reference/**/source_text/
+mastery-reference/**/cache/
+mastery-reference/**/data/
+mastery-reference/**/source-notes/
+mastery-reference/**/real-estate-application/
+mastery-reference/**/*real_estate*
+mastery-reference/**/*real-estate*

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Map Capture"
+  short_description: "Map critical knowledge, owners, sources, and gaps."
+  default_prompt: "Use this skill to build a knowledge map for a workflow."

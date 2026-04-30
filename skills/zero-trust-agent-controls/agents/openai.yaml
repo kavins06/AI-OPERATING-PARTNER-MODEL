@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zero Trust Agent Controls"
+  short_description: "Define least-privilege controls for agents."
+  default_prompt: "Use this skill to design zero-trust controls for agent access and actions."

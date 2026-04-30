@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tacit To Explicit Capture"
+  short_description: "Convert expert judgment into reusable rules and examples."
+  default_prompt: "Use this skill to turn expert know-how into agent-ready knowledge."

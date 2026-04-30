@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workflow Mapping"
+  short_description: "Map work from trigger to outcome."
+  default_prompt: "Use this skill to convert discovery notes into a workflow map."

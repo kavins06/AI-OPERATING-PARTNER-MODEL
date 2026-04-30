@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Governance Discovery"
+  short_description: "Identify ownership, definitions, access, and quality rules."
+  default_prompt: "Use this skill to capture governance requirements for a workflow."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Voice Interview Discovery"
+  short_description: "Discover real workflows through interviews."
+  default_prompt: "Use this skill to plan and synthesize workflow discovery interviews."

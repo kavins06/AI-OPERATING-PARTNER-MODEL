@@ -1,0 +1,362 @@
+[
+  {
+    "concept": "Information management",
+    "domain": "foundations",
+    "definition": "The disciplined handling of information resources so an organization can scan, interpret, decide, learn, and act.",
+    "why_it_matters": "AI agents are only useful when the underlying information environment has trusted sources, clear meaning, and operating rules.",
+    "business_use": "Use it to diagnose where a business firm loses time, trust, or decision quality because information is fragmented.",
+    "related": [
+      "Information ecology",
+      "Data governance",
+      "Knowledge management"
+    ],
+    "source_references": [
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 17)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 2)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 68)",
+      "The Knowing Organization.pdf (page 34)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 1)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 18)"
+    ]
+  },
+  {
+    "concept": "Information ecology",
+    "domain": "foundations",
+    "definition": "A view of information work as a human, organizational, process, and technology ecosystem rather than a technology-only problem.",
+    "why_it_matters": "It keeps AI-agent projects from becoming narrow software installs disconnected from incentives and workflows.",
+    "business_use": "Map people, processes, politics, data flows, tools, and decisions before designing an agent.",
+    "related": [
+      "Information behavior",
+      "Governance",
+      "Operating model"
+    ],
+    "source_references": [
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 68)",
+      "data strategy challenges_2025.docx (paragraph-block 1)",
+      "The Knowing Organization.pdf (page 71)",
+      "Information Ecology ch3 - Davenport.pdf (page 1)",
+      "The Knowing Organization.pdf (page 85)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 91)"
+    ]
+  },
+  {
+    "concept": "Environmental scanning",
+    "domain": "foundations",
+    "definition": "The systematic collection and interpretation of external signals that affect strategy and operations.",
+    "why_it_matters": "Business firms depend on market, tenant, lender, regulatory, and competitor signals.",
+    "business_use": "Design market-intelligence agents that collect and summarize listings, comps, permits, rent trends, and policy changes.",
+    "related": [
+      "Competitive intelligence",
+      "Sensemaking",
+      "Decision support"
+    ],
+    "source_references": [
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 10)",
+      "Elements of IM.docx (paragraph-block 1)",
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 96)",
+      "The Knowing Organization.pdf (page 104)",
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 102)",
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 213)"
+    ]
+  },
+  {
+    "concept": "Tacit knowledge",
+    "domain": "knowledge_management",
+    "definition": "Know-how embedded in experience, judgment, context, and practice that is hard to write down completely.",
+    "why_it_matters": "Many brokerage, leasing, maintenance, and asset-management decisions rely on expert judgment not captured in systems.",
+    "business_use": "Interview top performers and convert patterns into playbooks, prompts, checklists, and review workflows.",
+    "related": [
+      "Explicit knowledge",
+      "Knowledge capture",
+      "Expertise mapping"
+    ],
+    "source_references": [
+      "The Knowing Organization.pdf (page 23)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 6)",
+      "The Knowing Organization.pdf (page 24)",
+      "The Knowing Organization.pdf (page 153)",
+      "The Knowing Organization.pdf (page 156)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 12)"
+    ]
+  },
+  {
+    "concept": "Explicit knowledge",
+    "domain": "knowledge_management",
+    "definition": "Knowledge that can be documented, stored, searched, taught, reused, and governed.",
+    "why_it_matters": "AI agents need explicit procedures, source policies, and examples to act consistently.",
+    "business_use": "Turn leasing SOPs, compliance rules, reporting standards, and objection handling into controlled knowledge assets.",
+    "related": [
+      "Tacit knowledge",
+      "Knowledge base",
+      "SOP"
+    ],
+    "source_references": [
+      "The Knowing Organization.pdf (page 24)",
+      "The Knowing Organization.pdf (page 23)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 6)",
+      "The Knowing Organization.pdf (page 153)",
+      "The Knowing Organization.pdf (page 156)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 12)"
+    ]
+  },
+  {
+    "concept": "Knowledge map",
+    "domain": "knowledge_management",
+    "definition": "A representation of where critical knowledge lives, who owns it, how it flows, and where gaps exist.",
+    "why_it_matters": "It reveals which workflows an AI agent can automate safely and which require human expertise capture first.",
+    "business_use": "Build a knowledge map before automating maintenance triage, buyer lead routing, underwriting diligence, or investor reporting.",
+    "related": [
+      "Expertise map",
+      "Process map",
+      "Capability gap"
+    ],
+    "source_references": [
+      "APQC_Knowlege Map Templates_2023.pdf (page 1)",
+      "APQC_Knowlege Map Templates_2023.pdf (page 3)",
+      "APQC_Knowlege Map Templates_2023.pdf (page 4)",
+      "APQC_Knowlege Map Templates_2023.pdf (page 2)",
+      "APQC_Knowlege Map Templates_2023.pdf (page 5)",
+      "APQC_Knowlege Map Templates_2023.pdf (page 11)"
+    ]
+  },
+  {
+    "concept": "Data strategy",
+    "domain": "data_strategy_governance",
+    "definition": "A business-aligned plan for what data is needed, how it is governed, how it is used, and how it creates value.",
+    "why_it_matters": "Without data strategy, agent projects drift into disconnected tools and unreliable outputs.",
+    "business_use": "Use a data-strategy workshop to prioritize agent use cases by business value, data readiness, risk, and change effort.",
+    "related": [
+      "Data governance",
+      "Data architecture",
+      "Data monetization"
+    ],
+    "source_references": [
+      "The Chief Data Officer in Government_ A CDO Playbook3629.pdf (page 5)",
+      "How to create a data strategy.pdf (page 2)",
+      "The Chief Data Officer in Government_ A CDO Playbook3629.pdf (page 4)",
+      "The Chief Data Officer in Government_ A CDO Playbook3629.pdf (page 3)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 68)",
+      "Notional DRA.V2_Review.pdf (page 19)"
+    ]
+  },
+  {
+    "concept": "Data governance",
+    "domain": "data_strategy_governance",
+    "definition": "Decision rights, accountabilities, policies, standards, and controls for managing data as an asset.",
+    "why_it_matters": "AI agents require clear ownership of sources, definitions, access, retention, and exception handling.",
+    "business_use": "Create stewardship roles for CRM, property-management, lease, accounting, listing, and document data.",
+    "related": [
+      "Data quality",
+      "Privacy",
+      "CDO"
+    ],
+    "source_references": [
+      "Data Protection COMPLETE.pdf (page 21)",
+      "Data Protection COMPLETE.pdf (page 5)",
+      "Data Protection COMPLETE.pdf (page 78)",
+      "The Chief Data Officer in Government_ A CDO Playbook3629.pdf (page 6)",
+      "Data Protection COMPLETE.pdf (page 93)",
+      "Data protection laws.pdf (page 7)"
+    ]
+  },
+  {
+    "concept": "Chief Data Officer",
+    "domain": "data_strategy_governance",
+    "definition": "An executive or senior role accountable for data strategy, governance, value creation, risk, and organizational enablement.",
+    "why_it_matters": "Even small business firms need CDO-like responsibilities when deploying AI across sensitive workflows.",
+    "business_use": "Translate CDO playbook ideas into fractional data-leadership services for clients without a formal CDO.",
+    "related": [
+      "Data governance",
+      "Operating model",
+      "Data stewardship"
+    ],
+    "source_references": [
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 68)",
+      "Big-Data-Executive-Survey-2019-Findings-Updated-010219-1.pdf (page 15)",
+      "Big-Data-Executive-Survey-2019-Findings-Updated-010219-1.pdf (page 14)",
+      "Notional DRA.V2_Review.pdf (page 34)",
+      "The Chief Data Officer in Government_ A CDO Playbook8247.pdf (page 5)",
+      "The Chief Data Officer in Government_ A CDO Playbook8971.pdf (page 3)"
+    ]
+  },
+  {
+    "concept": "Five Vs of data",
+    "domain": "data_strategy_governance",
+    "definition": "A big-data lens covering volume, velocity, variety, veracity, and value.",
+    "why_it_matters": "It helps diagnose why a data or agent workflow is hard: too much data, too fast, too diverse, too untrusted, or not valuable.",
+    "business_use": "Assess CRM notes, listing feeds, lease docs, maintenance tickets, emails, and financial reports before automation.",
+    "related": [
+      "Data quality",
+      "Unstructured data",
+      "Data value"
+    ],
+    "source_references": [
+      "Harnessing the power of unstructured data - EnterpriseTalk.pdf (page 4)",
+      "Harnessing the power of unstructured data - EnterpriseTalk.pdf (page 2)",
+      "Harnessing the power of unstructured data - EnterpriseTalk.pdf (page 3)",
+      "Harnessing the power of unstructured data - EnterpriseTalk.pdf (page 1)",
+      "Mod 1 and  2 Class Slides_Week_Mendoza_2025 Fall.pptx (slide 11)",
+      "data strategy challenges_2025.docx (paragraph-block 1)"
+    ]
+  },
+  {
+    "concept": "Unstructured data",
+    "domain": "data_strategy_governance",
+    "definition": "Information that does not fit neatly into fixed tables, such as PDFs, emails, notes, contracts, photos, and call transcripts.",
+    "why_it_matters": "Business firms have large stores of unstructured data where AI agents can create value if governance is strong.",
+    "business_use": "Create document-intelligence agents for leases, diligence rooms, email triage, work orders, and investor updates.",
+    "related": [
+      "Document AI",
+      "Knowledge base",
+      "Data extraction"
+    ],
+    "source_references": [
+      "Harnessing the power of unstructured data - EnterpriseTalk.pdf (page 4)",
+      "Harnessing the power of unstructured data - EnterpriseTalk.pdf (page 2)",
+      "Harnessing the power of unstructured data - EnterpriseTalk.pdf (page 3)",
+      "Harnessing the power of unstructured data - EnterpriseTalk.pdf (page 1)",
+      "Mod 1 and  2 Class Slides_Week_Mendoza_2025 Fall.pptx (slide 11)",
+      "Harnessing the power of unstructured data - EnterpriseTalk.pdf (page 5)"
+    ]
+  },
+  {
+    "concept": "Data monetization",
+    "domain": "data_monetization",
+    "definition": "Creating measurable value from data through internal improvement, external products, partnerships, or revenue models.",
+    "why_it_matters": "The best agent opportunities often monetize data indirectly through faster decisions, lower leakage, or better client service.",
+    "business_use": "Frame AI-agent ROI around saved labor, higher conversion, lower vacancy, better diligence, faster reporting, and risk reduction.",
+    "related": [
+      "Data product",
+      "Analytics",
+      "Value creation"
+    ],
+    "source_references": [
+      "fueling-growth-through-data-monetization.pdf (page 6)",
+      "fueling-growth-through-data-monetization.pdf (page 3)",
+      "fueling-growth-through-data-monetization.pdf (page 5)",
+      "fueling-growth-through-data-monetization.pdf (page 7)",
+      "fueling-growth-through-data-monetization.pdf (page 9)",
+      "Demystifying Data Monetization-1.pdf (page 6)"
+    ]
+  },
+  {
+    "concept": "Data product",
+    "domain": "data_monetization",
+    "definition": "A reusable, governed data asset or service designed around a user need, quality contract, and value outcome.",
+    "why_it_matters": "Agents should consume stable data products rather than improvised spreadsheet exports.",
+    "business_use": "Create data products for property profiles, tenant history, lead status, deal pipeline, lease abstracts, or investor KPIs.",
+    "related": [
+      "Data governance",
+      "Data monetization",
+      "Semantic layer"
+    ],
+    "source_references": [
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 68)",
+      "Demystifying Data Monetization-1.pdf (page 6)",
+      "Demystifying Data Monetization-1.pdf (page 11)",
+      "fueling-growth-through-data-monetization.pdf (page 5)",
+      "fueling-growth-through-data-monetization.pdf (page 8)",
+      "fueling-growth-through-data-monetization.pdf (page 3)"
+    ]
+  },
+  {
+    "concept": "Data protection",
+    "domain": "privacy_security",
+    "definition": "Policies, practices, and controls that protect personal or sensitive data across collection, use, sharing, retention, and deletion.",
+    "why_it_matters": "Business workflows contain tenant, buyer, seller, employee, investor, and financial data.",
+    "business_use": "Define privacy requirements before connecting AI agents to CRM, email, documents, accounting, or property systems.",
+    "related": [
+      "Privacy",
+      "Security",
+      "Compliance"
+    ],
+    "source_references": [
+      "Data protection laws.pdf (page 10)",
+      "Data Protection COMPLETE.pdf (page 95)",
+      "Data Protection COMPLETE.pdf (page 18)",
+      "Data Protection COMPLETE.pdf (page 5)",
+      "Data Protection COMPLETE.pdf (page 21)",
+      "Data protection laws.pdf (page 18)"
+    ]
+  },
+  {
+    "concept": "Zero trust",
+    "domain": "privacy_security",
+    "definition": "A security model that assumes no implicit trust and continuously verifies identities, devices, access, and activity.",
+    "why_it_matters": "AI agents expand access paths into business systems, so least privilege and continuous verification become essential.",
+    "business_use": "Design agent permissions around scoped roles, source-specific access, audit logs, approval gates, and revocation.",
+    "related": [
+      "Least privilege",
+      "Identity",
+      "Audit logging"
+    ],
+    "source_references": [
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 79)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 91)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 90)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 81)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 32)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 67)"
+    ]
+  },
+  {
+    "concept": "Cybersecurity framework",
+    "domain": "privacy_security",
+    "definition": "A structured way to identify, protect, detect, respond, and recover from cybersecurity risks.",
+    "why_it_matters": "Client-facing AI systems need operational resilience and incident readiness.",
+    "business_use": "Use framework categories to scope agent security requirements, monitoring, vendor risk, and response procedures.",
+    "related": [
+      "Risk management",
+      "NIST",
+      "Resilience"
+    ],
+    "source_references": [
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 104)",
+      "cybersecurity_framework_v1-1_presentation.pptx (slide 12)",
+      "cybersecurity_framework_v1-1_presentation.pptx (slide 7)",
+      "HBR - A Guide to Building a More Resilient Business.pdf (page 3)",
+      "DOD new framework.pdf (page 2)",
+      "EO14306_2025.pdf (page 2)"
+    ]
+  },
+  {
+    "concept": "Information sharing failure",
+    "domain": "knowledge_management",
+    "definition": "A breakdown in moving relevant information to the people or systems that need it at the right time and context.",
+    "why_it_matters": "Many business service failures are not knowledge absence; they are routing, trust, incentive, or context failures.",
+    "business_use": "Design agents that route the right maintenance, leasing, compliance, or diligence context to the right reviewer.",
+    "related": [
+      "Knowledge management",
+      "Incentives",
+      "Information flow"
+    ],
+    "source_references": [
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 17)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 2)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 1)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 18)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 8)",
+      "By Sanchez Tacit vs Explicit Knowledge.pdf (page 19)"
+    ]
+  },
+  {
+    "concept": "AI-agent readiness",
+    "domain": "business_ai_agents",
+    "definition": "The degree to which a workflow has clear goals, trusted data, documented decisions, safe access, human oversight, and measurable ROI.",
+    "why_it_matters": "It prevents selling automation into workflows that are not ready for reliable agent behavior.",
+    "business_use": "Score each candidate workflow before implementation and choose the first pilot by readiness plus value.",
+    "related": [
+      "Data readiness",
+      "Governance",
+      "Human-in-the-loop"
+    ],
+    "source_references": [
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 68)",
+      "data strategy challenges_2025.docx (paragraph-block 1)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 91)",
+      "Harnessing the power of unstructured data - EnterpriseTalk.pdf (page 6)",
+      "Bernard Marr Data Strategy.pdf (page 13)",
+      "Public Health as a model for cyber info sharing Sedenberg.pdf (page 27)"
+    ]
+  }
+]

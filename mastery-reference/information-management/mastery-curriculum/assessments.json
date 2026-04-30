@@ -1,0 +1,138 @@
+[
+  {
+    "module": "Foundations: Information as an Organizational Capability",
+    "domain": "foundations",
+    "difficulty": "medium",
+    "question": "What decisions or controls does foundations of information management and organizational intelligence require before deploying an AI agent?",
+    "answer": "Define the business outcome, source systems, ownership, quality expectations, access rules, risk controls, human oversight, and success metrics before automation.",
+    "business_scenario_link": "Apply to property management, residential brokerage, and CRE by naming the specific workflow and sensitive data involved."
+  },
+  {
+    "module": "Foundations: Information as an Organizational Capability",
+    "domain": "foundations",
+    "difficulty": "hard",
+    "question": "How would you turn this module into an operator-grade client deliverable?",
+    "answer": "Convert concepts into a discovery checklist, risk register, data/source inventory, governance decisions, implementation SOP, and measurement plan with source-backed rationale.",
+    "business_scenario_link": "Use the same structure for leasing, maintenance, lead routing, transaction coordination, lease abstraction, market intelligence, or investor reporting."
+  },
+  {
+    "module": "Data Strategy and Governance",
+    "domain": "data_strategy_governance",
+    "difficulty": "medium",
+    "question": "What decisions or controls does data strategy, governance, cdo role, architecture, and five vs require before deploying an AI agent?",
+    "answer": "Define the business outcome, source systems, ownership, quality expectations, access rules, risk controls, human oversight, and success metrics before automation.",
+    "business_scenario_link": "Apply to property management, residential brokerage, and CRE by naming the specific workflow and sensitive data involved."
+  },
+  {
+    "module": "Data Strategy and Governance",
+    "domain": "data_strategy_governance",
+    "difficulty": "hard",
+    "question": "How would you turn this module into an operator-grade client deliverable?",
+    "answer": "Convert concepts into a discovery checklist, risk register, data/source inventory, governance decisions, implementation SOP, and measurement plan with source-backed rationale.",
+    "business_scenario_link": "Use the same structure for leasing, maintenance, lead routing, transaction coordination, lease abstraction, market intelligence, or investor reporting."
+  },
+  {
+    "module": "Knowledge Management and Information Sharing",
+    "domain": "knowledge_management",
+    "difficulty": "medium",
+    "question": "What decisions or controls does knowledge management, tacit/explicit knowledge, and information sharing require before deploying an AI agent?",
+    "answer": "Define the business outcome, source systems, ownership, quality expectations, access rules, risk controls, human oversight, and success metrics before automation.",
+    "business_scenario_link": "Apply to property management, residential brokerage, and CRE by naming the specific workflow and sensitive data involved."
+  },
+  {
+    "module": "Knowledge Management and Information Sharing",
+    "domain": "knowledge_management",
+    "difficulty": "hard",
+    "question": "How would you turn this module into an operator-grade client deliverable?",
+    "answer": "Convert concepts into a discovery checklist, risk register, data/source inventory, governance decisions, implementation SOP, and measurement plan with source-backed rationale.",
+    "business_scenario_link": "Use the same structure for leasing, maintenance, lead routing, transaction coordination, lease abstraction, market intelligence, or investor reporting."
+  },
+  {
+    "module": "Privacy, Security, Zero Trust, and Risk",
+    "domain": "privacy_security",
+    "difficulty": "medium",
+    "question": "What decisions or controls does privacy, data protection, cybersecurity, zero trust, and regulatory risk require before deploying an AI agent?",
+    "answer": "Define the business outcome, source systems, ownership, quality expectations, access rules, risk controls, human oversight, and success metrics before automation.",
+    "business_scenario_link": "Apply to property management, residential brokerage, and CRE by naming the specific workflow and sensitive data involved."
+  },
+  {
+    "module": "Privacy, Security, Zero Trust, and Risk",
+    "domain": "privacy_security",
+    "difficulty": "hard",
+    "question": "How would you turn this module into an operator-grade client deliverable?",
+    "answer": "Convert concepts into a discovery checklist, risk register, data/source inventory, governance decisions, implementation SOP, and measurement plan with source-backed rationale.",
+    "business_scenario_link": "Use the same structure for leasing, maintenance, lead routing, transaction coordination, lease abstraction, market intelligence, or investor reporting."
+  },
+  {
+    "module": "Data Monetization and Information Value",
+    "domain": "data_monetization",
+    "difficulty": "medium",
+    "question": "What decisions or controls does data monetization, data products, and information value creation require before deploying an AI agent?",
+    "answer": "Define the business outcome, source systems, ownership, quality expectations, access rules, risk controls, human oversight, and success metrics before automation.",
+    "business_scenario_link": "Apply to property management, residential brokerage, and CRE by naming the specific workflow and sensitive data involved."
+  },
+  {
+    "module": "Data Monetization and Information Value",
+    "domain": "data_monetization",
+    "difficulty": "hard",
+    "question": "How would you turn this module into an operator-grade client deliverable?",
+    "answer": "Convert concepts into a discovery checklist, risk register, data/source inventory, governance decisions, implementation SOP, and measurement plan with source-backed rationale.",
+    "business_scenario_link": "Use the same structure for leasing, maintenance, lead routing, transaction coordination, lease abstraction, market intelligence, or investor reporting."
+  },
+  {
+    "module": "Cases and Operating Lessons",
+    "domain": "case_studies",
+    "difficulty": "medium",
+    "question": "What decisions or controls does case studies and operating lessons require before deploying an AI agent?",
+    "answer": "Define the business outcome, source systems, ownership, quality expectations, access rules, risk controls, human oversight, and success metrics before automation.",
+    "business_scenario_link": "Apply to property management, residential brokerage, and CRE by naming the specific workflow and sensitive data involved."
+  },
+  {
+    "module": "Cases and Operating Lessons",
+    "domain": "case_studies",
+    "difficulty": "hard",
+    "question": "How would you turn this module into an operator-grade client deliverable?",
+    "answer": "Convert concepts into a discovery checklist, risk register, data/source inventory, governance decisions, implementation SOP, and measurement plan with source-backed rationale.",
+    "business_scenario_link": "Use the same structure for leasing, maintenance, lead routing, transaction coordination, lease abstraction, market intelligence, or investor reporting."
+  },
+  {
+    "module": "Business AI-Agent Delivery System",
+    "domain": "business_ai_agents",
+    "difficulty": "medium",
+    "question": "What decisions or controls does business ai-agent business applications require before deploying an AI agent?",
+    "answer": "Define the business outcome, source systems, ownership, quality expectations, access rules, risk controls, human oversight, and success metrics before automation.",
+    "business_scenario_link": "Apply to property management, residential brokerage, and CRE by naming the specific workflow and sensitive data involved."
+  },
+  {
+    "module": "Business AI-Agent Delivery System",
+    "domain": "data_strategy_governance",
+    "difficulty": "medium",
+    "question": "What decisions or controls does data strategy, governance, cdo role, architecture, and five vs require before deploying an AI agent?",
+    "answer": "Define the business outcome, source systems, ownership, quality expectations, access rules, risk controls, human oversight, and success metrics before automation.",
+    "business_scenario_link": "Apply to property management, residential brokerage, and CRE by naming the specific workflow and sensitive data involved."
+  },
+  {
+    "module": "Business AI-Agent Delivery System",
+    "domain": "privacy_security",
+    "difficulty": "medium",
+    "question": "What decisions or controls does privacy, data protection, cybersecurity, zero trust, and regulatory risk require before deploying an AI agent?",
+    "answer": "Define the business outcome, source systems, ownership, quality expectations, access rules, risk controls, human oversight, and success metrics before automation.",
+    "business_scenario_link": "Apply to property management, residential brokerage, and CRE by naming the specific workflow and sensitive data involved."
+  },
+  {
+    "module": "Business AI-Agent Delivery System",
+    "domain": "knowledge_management",
+    "difficulty": "medium",
+    "question": "What decisions or controls does knowledge management, tacit/explicit knowledge, and information sharing require before deploying an AI agent?",
+    "answer": "Define the business outcome, source systems, ownership, quality expectations, access rules, risk controls, human oversight, and success metrics before automation.",
+    "business_scenario_link": "Apply to property management, residential brokerage, and CRE by naming the specific workflow and sensitive data involved."
+  },
+  {
+    "module": "Business AI-Agent Delivery System",
+    "domain": "business_ai_agents+data_strategy_governance+privacy_security+knowledge_management",
+    "difficulty": "hard",
+    "question": "How would you turn this module into an operator-grade client deliverable?",
+    "answer": "Convert concepts into a discovery checklist, risk register, data/source inventory, governance decisions, implementation SOP, and measurement plan with source-backed rationale.",
+    "business_scenario_link": "Use the same structure for leasing, maintenance, lead routing, transaction coordination, lease abstraction, market intelligence, or investor reporting."
+  }
+]

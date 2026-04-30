@@ -1,0 +1,25 @@
+{
+  "sources_inventoried": 49,
+  "total_units": 1554,
+  "extracted_units": 1548,
+  "empty_units": 6,
+  "visual_review_units": 6,
+  "unreviewed_units": 0,
+  "extracted_words": 544565,
+  "status_counts": {
+    "complete": 49
+  },
+  "method_counts": {
+    "pypdf": 1256,
+    "pypdf+rapidocr-no-text": 23,
+    "rapidocr": 118,
+    "rapidocr-no-text": 6,
+    "python-docx": 19,
+    "pptx-xml": 106,
+    "pptx-xml+pptx-image-rapidocr": 13,
+    "pypdf+rapidocr": 11,
+    "pypdf+pymupdf-text+rapidocr": 2
+  },
+  "passes_corpus_completeness": true,
+  "notes": "DOCX files use paragraph-block units because page layout is not available without a rendering engine."
+}

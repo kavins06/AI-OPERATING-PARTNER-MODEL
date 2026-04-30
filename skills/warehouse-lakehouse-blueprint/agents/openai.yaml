@@ -1,0 +1,4 @@
+interface:
+  display_name: "Warehouse Lakehouse Blueprint"
+  short_description: "Design governed data foundations for analytics and agents."
+  default_prompt: "Use this skill to create a warehouse or lakehouse blueprint."

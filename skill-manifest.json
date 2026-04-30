@@ -1,0 +1,26 @@
+{
+  "name": "ai-operating-partner-system",
+  "description": "A Codex skill system for AI operating partner discovery, assessment, data readiness, agent readiness, and managed lifecycle work.",
+  "skills": [
+    "information-ecology-diagnostic",
+    "source-grounded-consulting",
+    "voice-interview-discovery",
+    "workflow-mapping",
+    "ai-agent-readiness-assessment",
+    "data-strategy-workshop",
+    "data-governance-discovery",
+    "knowledge-map-capture",
+    "tacit-to-explicit-knowledge-capture",
+    "privacy-security-risk-register",
+    "zero-trust-agent-controls",
+    "data-monetization-canvas",
+    "analytics-maturity-assessment",
+    "warehouse-lakehouse-blueprint",
+    "dashboard-kpi-design",
+    "managed-agent-lifecycle",
+    "ai-operating-partner-engagement"
+  ],
+  "master_skill": "ai-operating-partner-engagement",
+  "source_documents_included": false
+}
+

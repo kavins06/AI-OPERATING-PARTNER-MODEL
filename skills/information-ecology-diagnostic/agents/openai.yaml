@@ -1,0 +1,4 @@
+interface:
+  display_name: "Information Ecology Diagnostic"
+  short_description: "Diagnose people, process, tools, and information flow."
+  default_prompt: "Use this skill to diagnose an information environment before automation."
