@@ -1,0 +1,292 @@
+readiness_object_id: "readiness_<opportunity_id>_v1"
+version: "0.1"
+status: "draft"
+opportunity_id: ""
+workflow_ids: []
+value_case_id: ""
+technical_blueprint_id: ""
+risk_control_model_id: ""
+
+source_inputs:
+  workflow_spec_ids: []
+  diagnostic_ids: []
+  validation_event_ids: []
+  knowledge_requirement_ids: []
+  guidance_pack_ids: []
+  measurement_intelligence_ids: []
+  business_value_case_ids: []
+  technical_blueprint_ids: []
+  risk_control_model_ids: []
+  evidence_refs: []
+  missing_or_partial_inputs: []
+
+candidate_ai_behavior:
+  proposed_first_behavior_level: "draft_and_flag"
+  proposed_users: []
+  business_outcome: ""
+  decision_or_action_supported: ""
+  human_accountable_owner: ""
+  human_review_owner: ""
+  scope_boundary: ""
+
+hard_gates:
+  - gate_id: "business_value_gate"
+    status: "unknown" # pass | conditional | fail | blocked | unknown
+    gate_question: "Is there credible value, an accountable owner, and a decision/workflow worth improving?"
+    evidence_refs: []
+    confidence: "unknown" # high | medium | low | unknown
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "workflow_clarity_gate"
+    status: "unknown"
+    gate_question: "Are workflow steps, roles, decisions, handoffs, edge cases, and variation patterns clear enough for the proposed AI behavior?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "source_access_gate"
+    status: "unknown"
+    gate_question: "Are required sources, source-of-record decisions, access paths, owners, lookup keys, and failure modes known or explicitly scoped out?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "data_quality_gate"
+    status: "unknown"
+    gate_question: "Is data quality adequate for the proposed behavior level, with known quality checks and uncertainty handling?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "knowledge_guidance_gate"
+    status: "unknown"
+    gate_question: "Are guidance, examples, source hierarchy, forbidden behaviors, escalation rules, and output contract sufficient?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "measurement_gate"
+    status: "unknown"
+    gate_question: "Are baseline and success measurements trusted or conditionally trusted for this use?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "technical_feasibility_gate"
+    status: "unknown"
+    gate_question: "Are future architecture, runtime/orchestration requirements, hosting/environment requirements, access paths, identity resolution, normalization, tool contracts, test strategy, credentials/secrets, audit/logging, and blocked paths known?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "risk_control_gate"
+    status: "unknown"
+    gate_question: "Are data handling, tool permissions, output controls, approval gates, monitoring, incident response, and revocation defined?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "human_oversight_gate"
+    status: "unknown"
+    gate_question: "Are accountable owner, reviewer, escalation path, and approval authority defined?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "lifecycle_gate"
+    status: "unknown"
+    gate_question: "Can future validation, rollout, monitoring, improvement, and decommission ownership be assigned?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+
+dimension_scores:
+  - dimension: "business_value"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown" # none | conditional | blocking | unknown
+    owner: ""
+    next_step: ""
+  - dimension: "workflow_clarity"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "source_access_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "data_quality"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "knowledge_guidance_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "measurement_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "architecture_feasibility"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "risk_control_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "human_oversight_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "change_lifecycle_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+
+behavior_level_readiness:
+  read_only_summary:
+    status: "unknown" # ready | conditional | not_ready | prohibited | unknown
+    required_conditions: []
+    prohibited_reasons: []
+  draft_and_flag:
+    status: "unknown"
+    required_conditions: []
+    prohibited_reasons: []
+  recommendation_support:
+    status: "unknown"
+    required_conditions: []
+    prohibited_reasons: []
+  human_approved_action:
+    status: "unknown"
+    required_conditions: []
+    prohibited_reasons: []
+  autonomous_action:
+    status: "unknown"
+    required_conditions: []
+    prohibited_reasons: []
+
+dependency_map:
+  systems_and_sources:
+    - system_or_source_id: ""
+      role_in_ai_behavior: ""
+      access_path_status: "unknown"
+      data_quality_status: "unknown"
+      owner: ""
+      blocking: false
+  guidance_dependencies:
+    - guidance_pack_id: ""
+      behavior_or_decision_supported: ""
+      validation_status: "unknown"
+      blocking: false
+  metric_dependencies:
+    - metric_id: ""
+      trust_status: "unknown"
+      agent_safe_usage: ""
+      blocking: false
+  technical_dependencies:
+    - dependency_id: ""
+      type: "tool_contract" # tool_contract | connector | mcp | normalization | identity_resolution | test_data | credentials | logging | sandbox | vendor
+      status: "unknown"
+      owner: ""
+      blocking: false
+  control_dependencies:
+    - control_id: ""
+      control_type: ""
+      status: "unknown"
+      owner: ""
+      blocking: false
+
+blockers:
+  - blocker_id: ""
+    blocker_type: "" # source_access | data_quality | knowledge | measurement | technical | risk_control | ownership | lifecycle | value
+    description: ""
+    linked_gate_id: ""
+    linked_dimension: ""
+    owner: ""
+    required_fix: ""
+    evidence_refs: []
+    blocks_behavior_levels: []
+    changes_step_15_path: true
+
+minimum_safe_first_behavior:
+  behavior_level: ""
+  allowed_actions: []
+  required_inputs: []
+  required_human_review: []
+  required_controls: []
+  required_tests: []
+  explicit_limitations: []
+
+not_ready_or_prohibited_behaviors:
+  - behavior_or_action: ""
+    status: "not_ready" # not_ready | prohibited
+    reason: ""
+    required_condition_to_reconsider: ""
+
+readiness_decision:
+  overall_score: null
+  overall_readiness: "unknown" # high | medium | low | not_ready | unknown
+  evidence_confidence: "unknown"
+  decision: "discovery_incomplete" # ready_for_step_15_build_brief | fix_gaps_first | governance_or_data_readiness_first | knowledge_capture_first | technical_feasibility_first | risk_control_first | deprioritize | do_not_automate_yet | discovery_incomplete
+  recommended_step_15_path: "gap_remediation_plan" # build_ready_implementation_brief | gap_remediation_plan | governance_data_readiness_plan | knowledge_capture_plan | technical_feasibility_plan | risk_control_plan | do_not_automate_recommendation
+  rationale: ""
+  owner_confirmations_required: []
+  operating_partner_judgment: ""
+  client_priority_status: "unknown"
+
+stop_boundary:
+  no_agent_build_started: true
+  no_mcp_or_connector_build_started: true
+  no_normalization_pipeline_build_started: true
+  no_credentials_or_live_access_requested: true
+  implementation_requires_step_16_approval: true

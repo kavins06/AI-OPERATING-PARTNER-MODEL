@@ -1,0 +1,153 @@
+guidance_id: "guidance.workflow.decision.v1"
+workflow_id: ""
+version: "0.1"
+status: "draft" # draft | expert_validated | risk_validated | implementation_ready | blocked
+source_step8_requirement_ids: []
+
+scope:
+  workflow:
+  decision_or_task:
+  exception_family:
+  future_ai_behavior:
+  out_of_scope: []
+
+owners:
+  business_owner_role:
+  expert_owner_role:
+  reviewer_roles: []
+  risk_or_compliance_reviewer_role:
+  update_cadence:
+  validation_status: "not_validated"
+
+purpose:
+  business_reason:
+  ai_use_boundary:
+  human_accountability:
+
+required_inputs:
+  - input_id:
+    name:
+    information_object_id:
+    source_access_profile_id:
+    required: true
+    acceptable_formats: []
+    missing_input_behavior:
+    quality_checks: []
+
+source_hierarchy:
+  preferred_sources:
+    - source_id:
+      when_to_use:
+      trust_reason:
+  fallback_sources:
+    - source_id:
+      when_allowed:
+      limitations:
+  prohibited_sources: []
+  conflict_handling:
+    rule:
+    escalation_required_when: []
+
+explicit_rules:
+  - rule_id:
+    rule:
+    applies_when:
+    does_not_apply_when:
+    evidence_refs: []
+    confidence: "unknown"
+
+tacit_cues:
+  - cue_id:
+    cue:
+    what_experts_notice:
+    novice_miss:
+    interpretation:
+    confidence: "unknown"
+
+examples:
+  good:
+    - example_id:
+      situation:
+      inputs_summary:
+      expected_reasoning:
+      expected_output:
+      evidence_refs: []
+  bad:
+    - example_id:
+      situation:
+      wrong_behavior:
+      why_wrong:
+      corrected_behavior:
+  edge:
+    - example_id:
+      situation:
+      complication:
+      expected_behavior:
+      escalation:
+  low_confidence:
+    - example_id:
+      situation:
+      uncertainty_signal:
+      expected_behavior:
+  source_conflict:
+    - example_id:
+      situation:
+      conflicting_sources: []
+      expected_behavior:
+
+allowed_ai_behaviors:
+  - behavior:
+    conditions:
+    required_human_review: false
+
+forbidden_ai_behaviors:
+  - behavior:
+    reason:
+    escalation_or_safe_alternative:
+
+escalation_triggers:
+  - trigger_id:
+    condition:
+    escalate_to_role:
+    urgency:
+    required_context:
+
+human_approval_gates:
+  - gate_id:
+    approval_needed_for:
+    approver_role:
+    before_ai_action:
+
+sensitive_field_handling:
+  sensitive_fields_or_classes: []
+  handling_rules: []
+  retention_or_export_constraints: []
+
+output_contract:
+  output_type:
+  required_fields: []
+  evidence_or_citation_required: true
+  confidence_required: true
+  uncertainty_language:
+  human_review_flags: []
+  prohibited_output_content: []
+
+validation:
+  expert_validation:
+    status: "not_started"
+    validator_roles: []
+    date:
+    notes:
+  risk_validation:
+    status: "not_started"
+    validator_roles: []
+    date:
+    notes:
+  unresolved_gaps: []
+
+implementation_notes:
+  prompt_view_needed: true
+  tool_policy_view_needed: false
+  product_control_needed: false
+  future_test_data_needed: true
+  do_not_build_before_step16_approval: true

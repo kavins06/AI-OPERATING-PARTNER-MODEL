@@ -1,0 +1,109 @@
+# Validation and Governance Event
+
+validation_event:
+  workflow_id:
+  date:
+  validation_method: "mixed_session | role_specific_sessions | async_views"
+  governance_resolution_method: "same_session | targeted_follow_up | async_decision_log"
+  organizational_intelligence_object_shared: false
+  broad_org_reinterview_required: false
+  views_shared:
+    - view_id:
+      audience_role:
+      included_object_ids:
+        -
+      excluded_sensitive_objects:
+        -
+  participants:
+    - participant_id:
+      role:
+      validation_scope:
+      governance_resolution_scope:
+  validation_status: "validated | corrected | disputed | incomplete"
+  governance_resolution_status: "resolved | partially_resolved | disputed | blocking"
+
+confirmed_objects:
+  - object_id:
+    object_type:
+    confirmed_by_role:
+    confidence:
+
+corrections:
+  - object_id:
+    object_type:
+    issue:
+    corrected_value:
+    corrected_by_role:
+    evidence_or_rationale:
+    confidence:
+
+disputed_items:
+  - object_id:
+    object_type:
+    dispute:
+    participants_or_roles_disagreeing:
+      -
+    follow_up_needed:
+
+governance_resolutions:
+  - object_id:
+    object_type: "information_object | source_access_profile | source | system | field | decision | approval_gate | output"
+    linked_workflow_object_ids:
+      -
+    linked_information_object_ids:
+      -
+    practical_access_path:
+    module_report_view_or_path:
+    lookup_keys:
+      -
+    required_fields_or_attributes:
+      -
+    current_access_roles:
+      -
+    alternate_locations:
+      -
+    source_of_record_status: "authoritative | not_authoritative | disputed | not_applicable"
+    owner_role_or_person:
+    steward_role_or_person:
+    sensitive_fields_or_content:
+      -
+    data_quality_notes:
+      -
+    retention_or_handling_rule:
+    access_constraints:
+      -
+    allowed_ai_actions:
+      - "read"
+      - "summarize"
+      - "compare"
+      - "draft"
+    prohibited_ai_actions:
+      - "send_external"
+      - "write_back"
+    decided_by_role:
+    decision_evidence_refs:
+      -
+    confidence:
+
+unresolved_governance_items:
+  - item_id:
+    object_id:
+    object_type: "information_object | source_access_profile | source | system | field | decision | approval_gate | output"
+    decision_needed:
+    why_unresolved:
+    authorized_resolver_needed:
+    blocks_readiness:
+    later_route_if_unresolved: "formal_data_governance_project | risk_register | zero_trust_controls | architecture_blueprint"
+
+new_unknowns:
+  - unknown_id:
+    question:
+    blocks_next_step:
+    owner_candidate:
+    later_step_required:
+
+next_enrichment_routes:
+  - route:
+    reason:
+    owner_candidate:
+    priority:

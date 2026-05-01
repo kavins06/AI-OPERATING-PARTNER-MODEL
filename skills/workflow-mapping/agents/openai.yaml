@@ -1,4 +1,4 @@
 interface:
-  display_name: "Workflow Mapping"
-  short_description: "Map work from trigger to outcome."
-  default_prompt: "Use this skill to convert discovery notes into a workflow map."
+  display_name: "AI Workflow Specification"
+  short_description: "Create AI-native workflow intelligence from discovery evidence."
+  default_prompt: "Use this skill to convert discovery notes into an organizational_workflow_intelligence object."

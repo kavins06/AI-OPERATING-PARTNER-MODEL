@@ -1,13 +1,13 @@
 ---
 name: workflow-mapping
-description: "Convert interviews, notes, transcripts, SOPs, reports, or observed work into clear trigger-to-outcome workflow maps. Use when Codex needs to identify steps, decisions, handoffs, exceptions, inputs, outputs, controls, pain points, and automation candidates for any business process."
+description: "Convert interviews, notes, transcripts, SOPs, reports, or observed work into AI-native workflow specifications. Use when Codex needs structured organizational workflow intelligence: roles, hierarchy, actors, steps, decisions, handoffs, exceptions, information objects, source access profiles, inputs, outputs, controls, evidence, confidence, unknowns, and automation candidates."
 ---
 
 # Workflow Mapping
 
 ## Core Rule
 
-Map what people actually do, not what the org chart or system diagram claims happens. Keep the map factual, validated, and separate from recommendations.
+Model what people actually do, not what the org chart or system diagram claims happens. Keep the AI workflow specification factual, evidence-referenced, confidence-scored, validated where possible, and separate from recommendations.
 
 Useful references:
 
@@ -20,10 +20,12 @@ Useful references:
 Use any available:
 
 - Interview transcript or notes.
+- Relevant org structure, roles, reporting lines, and interview coverage.
 - Screen-share walkthrough notes.
 - SOPs, checklists, forms, policies.
 - System exports or screenshots.
 - Reports, dashboards, tickets, emails, or handoff examples.
+- Information object and source access profiles for workflow-relevant data points, documents, reports, dashboards, trackers, emails, system records, policies, approvals, and messages.
 
 If evidence conflicts, preserve the conflict instead of smoothing it away.
 
@@ -31,52 +33,47 @@ If evidence conflicts, preserve the conflict instead of smoothing it away.
 
 As an AI operating partner, collect inputs through a staged process:
 
-1. Intake form for goals, systems, painful workflows, sensitive areas, and success definition.
-2. AI-led adaptive interviews across organizational layers.
-3. Screen-share walkthroughs of real work.
-4. Example artifacts: reports, forms, spreadsheets, templates, tickets, messages, policies.
-5. Systems inventory with owners, users, data held, export/API access, and known issues.
-6. Validation call to ask, "What did we misunderstand?"
+1. Executive opportunity terrain map for strategy, leverage areas, trust boundaries, candidate discovery zones, and success definition.
+2. Operating partner synthesis to map the full terrain and sequence discovery zones.
+3. AI-led adaptive interviews across organizational layers.
+4. Evidence need consolidation and curated planning-evidence follow-up. Request only the smallest useful set of redacted examples, screenshots, reports, trackers, templates, walkthroughs, sample exports, schema/field lists, API/vendor documentation, access-control screenshots, or data dictionaries needed to validate the AI workflow specification.
+5. Client-led read-only screen-share walkthroughs of real work when approved and scoped.
+6. Systems inventory with owners, users, data held, export/API access, and known issues.
+7. Controlled validation and object-driven governance resolution using role-specific validation views and targeted source/owner/permission decision views to ask, "What did we misunderstand?" and "What is authoritative and allowed?"
 
 Do not rely only on executives. Leaders often describe what should happen; operators reveal what actually happens.
 
-## Mapping Workflow
+No direct company data access is required to start mapping. During the 16-step engagement, do not request production credentials, employee credentials, broad live system access, unapproved API tokens, all-email ingestion, write access, live MCP/connector access, or bulk unredacted data. If future implementation needs those, capture them as blueprint requirements for Step 12-16.
 
-1. Name the workflow in plain language.
-2. Define the trigger, outcome, owner, users, and success measure.
-3. List the normal-path steps from trigger to outcome.
-4. Add decision points and approval gates.
-5. Add inputs and outputs for every step.
-6. Add systems, documents, spreadsheets, messages, and people used at each step.
-7. Add handoffs and queues.
-8. Add exceptions, rework loops, delays, and failure points.
-9. Add trust problems and source-of-truth conflicts.
-10. Mark sensitive data and risky actions.
-11. Mark candidate assists as hypotheses only.
-12. Identify validation questions.
+## AI-Native Workflow Specification
 
-## Map Template
+Step 5 produces an `organizational_workflow_intelligence` object, not a human-readable report. Human summaries are views generated from this object.
 
-Use this structure:
+Build the spec by:
 
-| Step | Actor | Action | Inputs | Systems/Sources | Decision | Output | Risk/Issue |
-|---|---|---|---|---|---|---|---|
-| 1 | | | | | | | |
+1. Naming the workflow and defining business purpose, trigger, outcome, validation status, and confidence.
+2. Encoding lightweight org context: teams, roles, reporting structure, relevant people, and interview coverage.
+3. Creating stable IDs for roles, people, actors, steps, decisions, edge cases, information objects, source access profiles, sources, systems, approval gates, evidence, unknowns, and candidate assists.
+4. Listing normal-path steps from trigger to outcome.
+5. Adding decision points, approval gates, handoffs, inputs, outputs, information object references, and source references for every step.
+6. Adding source access profiles for important workflow information objects: system/location, module/report/path, lookup keys, required fields, access roles, alternate locations, compared-against sources, and known access failure modes.
+7. Adding source trust signals and source-of-truth conflicts.
+8. Adding edge cases, exceptions, rework loops, delays, and failure points.
+9. Adding role variation analysis: shared patterns, observed variations, conflicts, best-practice candidates, and standardization opportunities.
+10. Marking sensitive data signals and human boundaries.
+11. Marking candidate assists as hypotheses only.
+12. Separating facts, assumptions, inferences, unknowns, validation needs, and later-step enrichment routes.
+13. Adding evidence references, validation status, and confidence to every important object.
 
-Then summarize:
+## Stop Boundary
 
-- Trigger:
-- Desired outcome:
-- Workflow owner:
-- Users:
-- Source-of-truth candidates:
-- Key decisions:
-- Approval gates:
-- Exceptions:
-- Pain points:
-- Sensitive data:
-- Success metric:
-- Open validation questions:
+Step 5 should complete:
+
+- Workflow identity, business purpose, trigger, outcome.
+- Known org context, roles, people, hierarchy, and interview coverage.
+- Known actors, steps, handoffs, decisions, approval gates, edge cases, information objects, source access profiles, sources/systems mentioned, source trust signals, sensitive data signals, human boundaries, operating strain/value signals, candidate assist hypotheses, evidence, confidence, validation status, unknowns, and enrichment routes.
+
+Step 5 should not complete official source of record, data owner/steward, full data dictionary, metric formulas, data quality rules, retention rules, access matrix, agent permissions, risk scores, zero-trust controls, architecture design, readiness score, or build recommendation. Route source/owner/sensitivity/access/permission fields to Step 7 controlled validation and governance resolution, and route risk, metric, architecture, and readiness fields to later enrichment steps.
 
 ## Automation Readiness Signals
 
@@ -103,12 +100,13 @@ Bad signs:
 
 Deliver:
 
-- A workflow map.
-- A short narrative of how work flows.
-- Evidence behind the map.
+- An AI-native workflow specification.
+- Stable IDs and relationships across workflow, roles, people, actors, steps, decisions, information objects, source access profiles, sources, edge cases, approvals, evidence, unknowns, and candidate assists.
+- Evidence, validation status, and confidence for every important object.
+- Known role variations and coverage gaps.
 - Known disagreements or uncertainty.
 - A list of questions for validation.
-- A next-step recommendation: keep discovering, fix data/knowledge/governance gaps, or move to readiness scoring.
+- A next-step routing list: controlled validation/governance resolution, knowledge mapping, analytics/KPI design, architecture, risk register, zero-trust controls, or readiness scoring.
 
 ## Shared Engagement Resources
 

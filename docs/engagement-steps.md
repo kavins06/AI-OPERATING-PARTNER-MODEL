@@ -1,29 +1,26 @@
 # Engagement Steps
 
-This is the practical operating sequence for an AI operating partner engagement.
+This is the practical operating sequence for a pre-build AI operating partner engagement. The engagement produces organizational intelligence and an implementation blueprint. It does not build agents, MCPs, connectors, live integrations, normalization pipelines, email ingestion, or production automations.
 
-1. `source-grounded-consulting` - keep facts, assumptions, inferences, and recommendations separate.
-2. `data-strategy-workshop` - define business goals, operating constraints, decisions, and value targets.
-3. `voice-interview-discovery` - let AI interview different organizational layers with an adaptive but structured interview persona.
-4. `workflow-mapping` - turn interviews and documents into trigger-to-outcome workflow maps.
-5. `information-ecology-diagnostic` - diagnose people, process, culture, incentives, tools, and data flows.
-6. Validation call - confirm the mapped reality with the client before deeper design.
-7. `data-governance-discovery` - identify owners, definitions, source of record, lineage, access, retention, and quality rules.
-8. `knowledge-map-capture` - map documents, experts, knowledge areas, gaps, and risk points.
-9. `tacit-to-explicit-knowledge-capture` - convert expert judgment into rules, examples, SOPs, prompts, and escalation criteria.
-10. `analytics-maturity-assessment` - score reporting, integration, governance, semantic consistency, predictive capability, and agent-readiness.
-11. `dashboard-kpi-design` - define decision-ready KPIs, metric logic, grains, audiences, thresholds, and source checks.
-12. `data-monetization-canvas` - identify measurable value through efficiency, decision quality, customer experience, risk reduction, and data products.
-13. `warehouse-lakehouse-blueprint` - design the governed data, document, semantic, and retrieval architecture.
-14. Agent data preparation and knowledge structuring - structure the knowledge base, tool inputs, retrieval corpus, semantic layer, examples, and evaluation cases for the future agent.
-15. `privacy-security-risk-register` - document privacy, security, compliance, vendor, operational, and output-quality risks.
-16. `zero-trust-agent-controls` - design least privilege, scoped credentials, approval gates, monitoring, and kill switches.
-17. `ai-agent-readiness-assessment` - decide whether the workflow is ready to build, needs remediation, or should be deferred.
-18. `managed-agent-lifecycle` - govern build, validation, launch, monitoring, incident handling, improvement, and expansion.
+1. Executive opportunity terrain mapping - understand strategy, leverage areas, operating context, trust boundaries, and who can explain the real work.
+2. Opportunity terrain synthesis and discovery-zone sequencing - turn the executive terrain into a full opportunity map, discovery tiers, interview plan, and preliminary evidence plan.
+3. Role-aware AI-led interviews - capture work episodes, decisions, edge cases, source trust, source access intelligence, approvals, and silent evidence needs without live uploads.
+4. Planning-evidence follow-up - request only minimal, approved, preferably redacted planning evidence tied to specific workflow objects.
+5. AI-native workflow intelligence object / `workflow-mapping` - produce structured organizational workflow intelligence, not a human report.
+6. Organizational intelligence diagnostic / `information-ecology-diagnostic` - attach findings to workflow objects, separate symptoms from root causes, and route interventions.
+7. Controlled validation and governance/source access resolution / `data-governance-discovery` - use controlled views to resolve sources, owners, access paths, sensitive fields, retention, and permitted AI actions.
+8. AI knowledge and guideline requirements map / `knowledge-map-capture` - identify what knowledge and guidelines the future AI will need, who likely owns it, and what requires targeted confirmation.
+9. AI guidance pack / `tacit-to-explicit-knowledge-capture` - convert prioritized requirements into a canonical machine-readable guidance spec, Markdown skill-style view, and test/evaluation cases.
+10. Measurement intelligence and analytics readiness / `analytics-maturity-assessment` and `dashboard-kpi-design` - map decision-linked metrics, classify metric trust, define KPI gaps, and specify agent-safe metric usage without building dashboards or pipelines.
+11. Business value case / `data-monetization-canvas` - decide whether the opportunity is economically credible enough to carry forward, using evidence-linked value hypotheses, metric trust, assumptions, and client-confirmed business reality.
+12. Technical implementation blueprint / `warehouse-lakehouse-blueprint` - define the future architecture, runtime/orchestration requirements, hosting/environment requirements, access paths, MCP/tool contracts, email scope, identity resolution, normalization, test strategy, credentials/secrets approach, blocked paths, and build sequence without building anything.
+13. Risk and control model / `privacy-security-risk-register` and `zero-trust-agent-controls` - define data classification, risk register, tool-level permissions, output controls, approval gates, logging, monitoring, incident response, revocation, and stop conditions.
+14. AI-agent readiness score / `ai-agent-readiness-assessment` - produce an implementation-grade readiness object for each candidate opportunity, including hard gates, behavior-level readiness, dependency map, evidence confidence, blockers, minimum safe first behavior, and the exact Step 15 path.
+15. Machine-readable implementation decision packet - convert the Step 14 path into a canonical YAML/JSON packet that specifies the future build-ready brief, remediation plan, or do-not-automate recommendation, including runtime pattern, hosting pattern, agents, MCPs, connectors, normalization, access requests, tests, controls, owners, audience views, and sequence, still as a plan.
+16. Managed lifecycle / `managed-agent-lifecycle` - create a machine-readable operating contract for the future AI capability, including ownership, launch gates, validation, monitoring, feedback, incidents, revocation, guidance updates, access review, expansion, and retirement.
 
 ## Responsibility Split
 
-- Client owns truth: goals, examples, systems, source documents, access, constraints, and approvals.
+- Client owns truth: goals, examples, systems, planning evidence, access constraints, ownership decisions, and approvals.
 - AI owns heavy processing: interviewing, extraction, mapping, synthesis, scoring, draft deliverables, and cross-checking.
 - You own judgment: engagement scope, interpretation, trust, prioritization, risk decisions, client relationship, and final recommendations.
-

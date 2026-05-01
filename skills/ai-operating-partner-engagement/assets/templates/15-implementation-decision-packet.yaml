@@ -1,0 +1,444 @@
+step_15_packet_id: "step15_<opportunity_id>_v1"
+version: "0.1"
+status: "draft"
+packet_type: "build_ready_implementation_brief" # build_ready_implementation_brief | gap_remediation_plan | governance_data_readiness_plan | knowledge_capture_plan | technical_feasibility_plan | risk_control_plan | do_not_automate_recommendation
+source_of_truth: true
+
+source_inputs:
+  opportunity_id: ""
+  workflow_ids: []
+  readiness_object_id: ""
+  value_case_id: ""
+  technical_blueprint_id: ""
+  risk_control_model_id: ""
+  guidance_pack_ids: []
+  measurement_intelligence_ids: []
+  validation_event_ids: []
+  evidence_refs: []
+  missing_or_partial_inputs: []
+
+decision_summary:
+  recommended_path: ""
+  readiness_decision: ""
+  implementation_recommendation: "" # build_after_step_16_approval | fix_gaps_first | do_not_automate
+  rationale: ""
+  minimum_safe_behavior_level: ""
+  client_decision_needed: ""
+  approval_boundary: "Implementation may start only after Step 16 is complete and the client approves a separate implementation phase."
+
+audience_views:
+  - view_id: "sponsor_view"
+    audience: "client_sponsor"
+    purpose: "Approve priority, funding appetite, owner commitment, and future implementation path."
+    include_sections:
+      - decision_summary
+      - business_case
+      - first_build_scope
+      - major_risks
+      - required_owner_commitments
+      - future_approval_needed
+    exclude_sections:
+      - credential_details
+      - sensitive_field_detail
+      - internal_diagnostic_notes
+  - view_id: "business_owner_view"
+    audience: "business_owner"
+    purpose: "Confirm workflow fit, human review, success criteria, and operating ownership."
+    include_sections:
+      - workflow_scope
+      - behavior_contract
+      - edge_cases
+      - success_metrics
+      - operating_owner_responsibilities
+    exclude_sections:
+      - detailed_security_controls
+      - unrelated_system_details
+  - view_id: "it_data_security_view"
+    audience: "it_data_security"
+    purpose: "Confirm future system access, permission scope, data handling, logging, controls, and blocked paths."
+    include_sections:
+      - systems_and_sources
+      - runtime_design_requirements
+      - hosting_environment_requirements
+      - future_access_requests
+      - future_component_contracts
+      - normalization_plan
+      - risk_and_controls
+      - test_and_sandbox_plan
+    exclude_sections:
+      - broad_employee_validation_views
+  - view_id: "build_team_view"
+    audience: "future_build_team"
+    purpose: "Build later without rediscovering the organization."
+    include_sections:
+      - full_packet
+    exclude_sections: []
+  - view_id: "remediation_owner_view"
+    audience: "remediation_owner"
+    purpose: "Show only the assigned blocker, evidence needed, completion criteria, and dependency."
+    include_sections:
+      - assigned_required_fixes
+    exclude_sections:
+      - unrelated_blockers
+      - full_implementation_packet
+
+business_case:
+  business_outcome: ""
+  value_case_summary: ""
+  value_confidence: "unknown" # high | medium | low | unknown
+  baseline_metrics:
+    - metric_id: ""
+      trust_status: ""
+      baseline_value: ""
+      caveat: ""
+  expected_value_range:
+    conservative: ""
+    base: ""
+    upside: ""
+  value_dependencies: []
+  value_risks: []
+
+first_build_scope:
+  agent_or_workflow_name: ""
+  behavior_level: "" # read_only_summary | draft_and_flag | recommendation_support | human_approved_action | autonomous_action
+  target_users: []
+  workflow_scope:
+    included_workflows: []
+    included_steps: []
+    excluded_steps: []
+    included_roles: []
+    excluded_roles: []
+    included_edge_cases: []
+    excluded_edge_cases: []
+  phase_1_success_definition: ""
+  explicit_non_goals: []
+
+behavior_contract:
+  allowed_actions:
+    - action: ""
+      conditions: []
+      required_inputs: []
+      required_evidence: []
+  prohibited_actions:
+    - action: ""
+      reason: ""
+      reconsideration_condition: ""
+  human_approval_gates:
+    - gate_id: ""
+      action_or_output: ""
+      approver_role: ""
+      trigger: ""
+      evidence_required: []
+  output_contract:
+    output_type: ""
+    required_fields: []
+    citations_required: true
+    confidence_required: true
+    uncertainty_language_required: true
+    human_review_flag_required: true
+  failure_behavior:
+    missing_input: ""
+    source_conflict: ""
+    low_confidence: ""
+    tool_failure: ""
+    policy_or_permission_conflict: ""
+
+systems_and_sources:
+  - system_or_source_id: ""
+    system_name: ""
+    business_owner: ""
+    technical_owner: ""
+    vendor_owner: ""
+    source_of_record_status: "unknown" # confirmed | conditional | disputed | unknown | not_applicable
+    role_in_workflow: ""
+    data_needed: []
+    required_fields: []
+    sensitive_fields_or_content: []
+    source_access_profile_ids: []
+    future_access_path: "" # api | export | report_view | database_view | document_store | email_scope | manual_staging | vendor_integration | rpa | none
+    fallback_access_path: ""
+    prohibited_access_paths: []
+    refresh_or_freshness_need: ""
+    data_quality_issues: []
+    retention_or_export_constraints: []
+    readiness_status: "unknown" # ready | conditional | blocked | unknown
+
+runtime_design_requirements:
+  runtime_pattern: "" # simple_assistant | rag_assistant | tool_using_agent | workflow_automation_with_ai | decision_support_copilot | monitoring_exception_agent | multi_agent_system | dashboard_or_reporting_fix | do_not_automate
+  minimum_viable_runtime_pattern: ""
+  rationale: ""
+  multi_agent_required: false
+  multi_agent_roles:
+    - role_name: ""
+      responsibility: ""
+      required: false
+  rag_required: "unknown" # yes | no | conditional | unknown
+  retrieval_requirements:
+    approved_sources: []
+    prohibited_sources: []
+    metadata_required: []
+    permission_filtering_required: true
+    citation_required: true
+    retrieval_eval_cases: []
+  model_capability_requirements:
+    structured_output_required: true
+    tool_calling_required: false
+    long_context_need: "unknown"
+    reasoning_complexity: "unknown"
+    latency_tolerance: "unknown"
+    cost_sensitivity: "unknown"
+    privacy_or_data_residency_constraints: []
+    fallback_or_routing_needed: false
+    final_model_selection_deferred_to_implementation: true
+  orchestration_requirements:
+    durable_state_required: false
+    workflow_queue_required: false
+    scheduled_jobs_required: false
+    background_workers_required: false
+    human_approval_gate_required: true
+    retry_policy_required: false
+    idempotency_required: false
+    audit_trace_required: true
+    state_objects_to_track: []
+    final_framework_selection_deferred_to_implementation: true
+  overengineering_guardrail:
+    default_to_minimum_safe_runtime: true
+    multi_agent_is_escalation_not_default: true
+    vendor_or_framework_choice_requires_client_stack_or_build_phase_decision: true
+
+hosting_environment_requirements:
+  client_preferred_cloud_or_environment: "" # azure | aws | gcp | private_cloud | on_prem | vendor_managed_isolated | unknown
+  client_mandated_stack: []
+  identity_provider: ""
+  data_residency_requirements: []
+  network_requirements:
+    vpc_or_private_network_required: "unknown"
+    private_connection_to_internal_systems_required: "unknown"
+    allowed_network_paths: []
+    prohibited_network_paths: []
+  compute_requirements:
+    workload_pattern: ""
+    serverless_or_scale_to_zero_suitable: "unknown"
+    long_running_workflows_required: false
+    background_queues_required: false
+    scheduled_jobs_required: false
+  storage_requirements:
+    relational_store_required: false
+    vector_store_required: "unknown"
+    object_storage_required: false
+    graph_store_required: "unknown"
+    cache_required: "unknown"
+    audit_log_store_required: true
+  security_requirements:
+    rbac_required: true
+    row_or_record_level_permissions_required: false
+    field_level_permissions_required: false
+    secrets_manager_required: true
+    encryption_requirements: []
+    vendor_security_review_required: "unknown"
+  observability_requirements:
+    model_call_tracing_required: true
+    tool_call_tracing_required: true
+    retrieval_tracing_required: false
+    cost_monitoring_required: true
+    latency_monitoring_required: true
+    alerting_required: true
+  hosting_pattern_options:
+    preferred_pattern:
+      pattern: ""
+      rationale: ""
+      confirmation_needed_from: []
+    fallback_pattern:
+      pattern: ""
+      rationale: ""
+      tradeoffs: []
+    blocked_patterns:
+      - pattern: ""
+        reason: ""
+        confirmed_by_role: ""
+  final_hosting_vendor_selection_deferred_to_implementation: true
+
+future_component_contracts:
+  - component_id: ""
+    component_type: "" # tool | mcp_server | connector | retrieval_index | normalization_job | workflow_queue | eval_runner
+    build_phase: "" # offline_prototype | sandbox_integration | limited_pilot | controlled_expansion
+    purpose: ""
+    input_contract:
+      required_inputs: []
+      optional_inputs: []
+      validation_rules: []
+    output_contract:
+      required_outputs: []
+      evidence_or_citation_fields: []
+      error_outputs: []
+    allowed_actions: []
+    prohibited_actions: []
+    data_touched: []
+    permission_scope: ""
+    human_review_required: true
+    logging_required: true
+    failure_behavior: ""
+    dependencies: []
+
+normalization_plan:
+  required: false
+  canonical_entities:
+    - entity: ""
+      canonical_id_rule: ""
+      owner: ""
+  mappings:
+    - source_system: ""
+      source_field: ""
+      canonical_field: ""
+      transform_rule: ""
+      quality_check: ""
+      owner: ""
+      blocker: false
+  identity_resolution_rules:
+    - match_type: ""
+      source_fields: []
+      confidence_rule: ""
+      human_review_trigger: ""
+  freshness_requirements: []
+
+guidance_and_eval_package:
+  guidance_pack_ids: []
+  rule_refs: []
+  examples_required:
+    - example_type: "" # good | bad | edge | low_confidence | source_conflict | escalation
+      description: ""
+      evidence_ref: ""
+  eval_cases:
+    - eval_id: ""
+      scenario: ""
+      expected_behavior: ""
+      pass_criteria: []
+      linked_guidance_id: ""
+      linked_risk_control_id: ""
+  minimum_eval_exit_criteria: []
+
+risk_and_controls:
+  risk_control_model_id: ""
+  risk_posture: ""
+  sensitive_data_summary: []
+  controls:
+    - control_id: ""
+      control_type: "" # data_access | tool_permission | output_control | approval_gate | monitoring | incident_response | revocation
+      requirement: ""
+      owner: ""
+      verification_method: ""
+      blocks_build_if_missing: true
+  audit_logging:
+    required: true
+    events_to_log: []
+    log_owner: ""
+    retention_rule: ""
+  monitoring:
+    required: true
+    metrics: []
+    cadence: ""
+    owner: ""
+  incident_response:
+    incident_owner: ""
+    severity_levels: []
+    escalation_path: []
+  revocation:
+    revocation_owner: ""
+    triggers: []
+    expected_time_to_revoke: ""
+
+future_access_requests:
+  - request_id: ""
+    system_or_source_id: ""
+    access_needed_after_step_16: ""
+    purpose: ""
+    permission_scope: ""
+    prohibited_permissions: []
+    provisioning_owner: ""
+    approval_dependencies: []
+    credential_or_secret_type: ""
+    storage_requirement: ""
+    rotation_requirement: ""
+    revocation_requirement: ""
+    audit_logging_requirement: ""
+    test_or_sandbox_preference: ""
+    status: "not_requested" # not_requested | drafted_for_future | approved_for_future_phase | blocked
+
+build_sequence:
+  - phase_id: "phase_1"
+    phase_name: "offline_prototype"
+    build_boundary: "May start only after Step 16 approval and separate implementation approval."
+    prerequisites: []
+    inputs: []
+    outputs: []
+    tests: []
+    exit_criteria: []
+    stop_conditions: []
+  - phase_id: "phase_2"
+    phase_name: "sandbox_integration"
+    build_boundary: "May start only after prior phase exit criteria pass and required access approvals are complete."
+    prerequisites: []
+    inputs: []
+    outputs: []
+    tests: []
+    exit_criteria: []
+    stop_conditions: []
+  - phase_id: "phase_3"
+    phase_name: "limited_pilot"
+    build_boundary: "May start only after sandbox validation, owner approval, controls, monitoring, and revocation path are ready."
+    prerequisites: []
+    inputs: []
+    outputs: []
+    tests: []
+    exit_criteria: []
+    stop_conditions: []
+
+owner_matrix:
+  business_owner: ""
+  day_to_day_owner: ""
+  technical_owner: ""
+  data_owner: ""
+  security_owner: ""
+  risk_or_compliance_owner: ""
+  build_owner_future_phase: ""
+  approvers:
+    - approval_type: ""
+      approver_role: ""
+      required_before: ""
+
+remediation_plan:
+  applies_when_packet_type:
+    - "gap_remediation_plan"
+    - "governance_data_readiness_plan"
+    - "knowledge_capture_plan"
+    - "technical_feasibility_plan"
+    - "risk_control_plan"
+  reason_not_build_ready: []
+  required_fixes:
+    - fix_id: ""
+      blocker_type: "" # source_access | data_quality | knowledge | measurement | technical | risk_control | ownership | lifecycle | value
+      linked_readiness_gate: ""
+      description: ""
+      owner: ""
+      evidence_needed: []
+      completion_criteria: []
+      dependencies: []
+      target_resolution_path: ""
+      reassess_step: 14
+      blocks_step_15_build_brief: true
+  reassessment_trigger: ""
+
+do_not_automate_recommendation:
+  applies_when_packet_type: "do_not_automate_recommendation"
+  reasons: []
+  unacceptable_risks: []
+  alternative_recommendation: ""
+  revisit_conditions: []
+
+stop_boundary:
+  no_agent_build_started: true
+  no_mcp_or_connector_build_started: true
+  no_normalization_pipeline_build_started: true
+  no_credentials_or_live_access_requested: true
+  no_email_ingestion_started: true
+  implementation_requires_step_16_approval: true

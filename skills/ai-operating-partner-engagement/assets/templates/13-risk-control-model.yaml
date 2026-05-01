@@ -1,0 +1,151 @@
+risk_control_model_id: "rcm.workflow.opportunity.v1"
+opportunity_id:
+workflow_ids: []
+technical_blueprint_id:
+value_case_id:
+version: "0.1"
+status: "draft" # draft | owner_validated | partially_validated | blocked
+
+source_inputs:
+  workflow_spec_ids: []
+  diagnostic_ids: []
+  governance_event_ids: []
+  guidance_pack_ids: []
+  measurement_intelligence_ids: []
+  value_case_ids: []
+  technical_blueprint_ids: []
+  policy_or_contract_refs: []
+  targeted_confirmation_refs: []
+
+risk_posture:
+  overall_risk_level: "unknown" # low | medium | high | critical | unknown
+  implementation_allowed_if_controls_met: false
+  blocking_risks: []
+  residual_risk_summary:
+  not_build_authorization: true
+
+data_classification:
+  sensitive_fields_or_content_classes:
+    - item_id:
+      field_or_content_class:
+      source_id:
+      classification: "" # public | internal | confidential | restricted | regulated | unknown
+      handling_rule:
+      redaction_required: false
+      allowed_ai_use: [] # read | retrieve | summarize | compare | calculate | draft | cite | none
+      prohibited_ai_use: []
+      retention_or_export_constraints: []
+      owner_confirmation:
+        owner_role:
+        status: "not_started" # not_started | confirmed | corrected | disputed | blocked
+        notes:
+
+risk_register:
+  - risk_id:
+    category: "" # privacy | security | compliance | operational | vendor | output_quality | data_quality | access | external_communication | financial | reputational
+    linked_workflow_object_ids: []
+    linked_system_ids: []
+    linked_source_ids: []
+    linked_tool_ids: []
+    linked_output_types: []
+    risk_description:
+    cause:
+    impact:
+    likelihood: "unknown" # low | medium | high | unknown
+    severity: "unknown" # low | medium | high | critical | unknown
+    control:
+    owner_role:
+    status: "control_required" # control_required | owner_confirmed | blocked | accepted_residual | not_applicable
+    verification_needed:
+    residual_risk:
+    blocks_readiness: false
+
+zero_trust_controls:
+  identity:
+    allowed_users: []
+    allowed_roles: []
+    prohibited_users_or_roles: []
+    future_service_account_needed: false
+    provisioning_owner_role:
+    authentication_or_sso_requirements: []
+  data_access:
+    allowed_sources: []
+    allowed_records_or_scopes: []
+    field_level_restrictions: []
+    document_level_restrictions: []
+    prohibited_sources: []
+    source_access_profile_ids: []
+  tool_permissions:
+    - tool_id:
+      allowed_actions: [] # read | retrieve | summarize | compare | calculate | draft | route | write | send
+      prohibited_actions: []
+      human_approval_required_for: []
+      approval_gate_ids: []
+      logging_required:
+        tool_call: true
+        inputs: true
+        outputs: true
+        source_refs: true
+        fields_accessed: true
+        human_approval: true
+      failure_behavior:
+      owner_role:
+  output_controls:
+    allowed_outputs: []
+    prohibited_outputs: []
+    external_send_requires_approval: true
+    citation_or_evidence_required: true
+    confidence_required: true
+    uncertainty_language_required_when: []
+    prohibited_claims: []
+  approval_gates:
+    - gate_id:
+      action_or_output:
+      trigger_condition:
+      approver_role:
+      evidence_required: []
+      timeout_or_sla:
+      override_or_exception_path:
+  monitoring:
+    logs_required: []
+    alert_conditions: []
+    review_cadence:
+    monitoring_owner_role:
+    quality_or_risk_metrics: []
+  incident_response:
+    incident_owner_role:
+    severity_levels: []
+    escalation_path: []
+    containment_actions: []
+    notification_requirements: []
+    evidence_preservation_requirements: []
+    post_incident_review_required: true
+  revocation:
+    who_can_revoke_roles: []
+    revocation_triggers: []
+    expected_time_to_revoke:
+    access_or_tool_scope_revoked: []
+    restoration_conditions: []
+
+targeted_confirmation_questions:
+  - question_id:
+    question:
+    resolver_role:
+    linked_risk_ids: []
+    linked_tool_ids: []
+    required_before_readiness: true
+
+stop_conditions:
+  - condition_id:
+    condition:
+    reason:
+    required_fix:
+    owner_role:
+    blocks_step14_readiness: true
+
+stop_boundary:
+  does_not_provision_credentials: true
+  does_not_grant_access: true
+  does_not_connect_tools: true
+  does_not_deploy_monitoring: true
+  does_not_implement_automations: true

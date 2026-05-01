@@ -1,0 +1,128 @@
+# Organizational Intelligence Diagnostic
+
+spec_version: "0.1"
+object_type: "organizational_intelligence_diagnostic"
+diagnostic_status: "draft | initial | updated | validated"
+
+input_context:
+  workflow_id:
+  workflow_spec_ref:
+  discovery_zones:
+    - 
+  evidence_refs:
+    - 
+  diagnostic_scope: "single_workflow | multi_workflow | enterprise_scan"
+  scale_mode: "downsized | standard | upscaled"
+  scale_rationale:
+
+diagnostic_summary:
+  workflow_stability: "low | medium | high"
+  main_fragility_points:
+    - 
+  strongest_leverage_points:
+    - 
+  automation_blockers:
+    - 
+  likely_next_steps:
+    - 
+
+findings:
+  - finding_id:
+    linked_objects:
+      workflow_ids:
+        - 
+      role_ids:
+        - 
+      actor_ids:
+        - 
+      step_ids:
+        - 
+      decision_ids:
+        - 
+      source_ids:
+        - 
+      information_object_ids:
+        - 
+      source_access_profile_ids:
+        - 
+      system_ids:
+        - 
+      edge_case_ids:
+        - 
+      approval_gate_ids:
+        - 
+      signal_ids:
+        - 
+    lens: "people | process | data | knowledge | governance | systems | incentives | politics | behavior | risk | measurement | architecture"
+    symptom:
+    likely_root_cause:
+    evidence_refs:
+      - 
+    confidence: "low | medium | high"
+    implication:
+    severity: "low | medium | high"
+    recurrence: "unknown | isolated | repeated | systemic"
+    affects_ai_fit:
+    automation_blocker:
+    intervention_route:
+      primary: "controlled_validation_governance_resolution | knowledge_mapping | tacit_knowledge_capture | analytics_maturity_assessment | kpi_design | architecture_blueprint | risk_register | zero_trust_controls | workflow_standardization | training_role_clarity | candidate_ai_assist | do_not_automate_yet"
+      secondary:
+        - 
+    recommended_next_step:
+    owner_candidate:
+    validation_needed:
+
+cross_workflow_patterns:
+  - pattern_id:
+    description:
+    affected_workflows:
+      - 
+    evidence_refs:
+      - 
+    implication:
+    intervention_route:
+    confidence:
+
+standardization_opportunities:
+  - opportunity_id:
+    linked_findings:
+      - 
+    description:
+    target_roles:
+      - 
+    target_steps_or_decisions:
+      - 
+    expected_value:
+    risk_if_ignored:
+    next_step:
+
+candidate_ai_assist_refinements:
+  - assist_id:
+    linked_finding_ids:
+      - 
+    updated_assist_type: "draft | retrieve | summarize | monitor | route | check | explain | recommend | act"
+    why_this_assist_may_fit:
+    why_this_assist_may_not_fit_yet:
+    required_enrichment_before_build:
+      - 
+    first_safe_behavior_hypothesis:
+
+do_not_automate_yet:
+  - reason_id:
+    linked_objects:
+      - 
+    reason:
+    blocking_condition:
+    required_fix_or_enrichment:
+    later_step_required:
+
+step_6_stop_status:
+  status: "diagnostic_complete | incomplete"
+  complete_when:
+    - "Findings are linked to workflow-spec objects."
+    - "Symptoms are separated from likely root causes."
+    - "Evidence and confidence are recorded."
+    - "Each finding has an intervention route."
+    - "Scale mode is appropriate for workflow size and engagement scope."
+  next_required_steps:
+    - 

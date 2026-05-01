@@ -1,4 +1,4 @@
 interface:
-  display_name: "Analytics Maturity Assessment"
-  short_description: "Assess analytics readiness and upgrade path."
-  default_prompt: "Use this skill to score analytics maturity for a team or workflow."
+  display_name: "Measurement Intelligence"
+  short_description: "Assess analytics readiness, metric trust, and agent-safe measurement usage."
+  default_prompt: "Use this skill to create Step 10 measurement intelligence: decision-linked metrics, trust classifications, analytics maturity, and agent-safe metric usage."

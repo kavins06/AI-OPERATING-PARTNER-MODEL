@@ -1,0 +1,137 @@
+business_value_case_id: "bvc.workflow.opportunity.v1"
+opportunity_id:
+workflow_ids: []
+version: "0.1"
+status: "draft" # draft | client_confirmed | partially_confirmed | blocked | deprioritized
+
+source_inputs:
+  executive_terrain_ids: []
+  workflow_spec_ids: []
+  diagnostic_ids: []
+  source_governance_event_ids: []
+  knowledge_requirement_ids: []
+  guidance_pack_ids: []
+  measurement_intelligence_ids: []
+  planning_evidence_refs: []
+
+role_split:
+  ai_work:
+    - "Draft value hypotheses from workflow, knowledge, source, risk, and measurement evidence."
+    - "Link value claims to evidence and metric trust status."
+    - "Estimate conservative/base/upside ranges only where evidence supports them."
+    - "Flag weak assumptions and missing baselines."
+  operating_partner_work:
+    - "Judge credibility, priority, strategic fit, and whether the opportunity is worth carrying forward."
+    - "Challenge vague value claims and over-precise ROI."
+    - "Route unresolved value blockers."
+  client_work:
+    - "Confirm volumes, costs, priorities, acceptable assumptions, risk tolerance, and leadership value preference."
+
+opportunity:
+  name:
+  business_outcome:
+  user_roles: []
+  decision_or_workflow:
+  current_state_summary:
+  future_ai_assist_hypothesis:
+
+value_lenses:
+  internal_efficiency:
+    value_hypothesis:
+    baseline_metric_ids: []
+    metric_trust_status:
+    evidence_refs: []
+    estimate:
+      conservative:
+      base:
+      upside:
+      unit:
+    assumptions: []
+    confidence: "unknown"
+  decision_quality:
+    value_hypothesis:
+    baseline_metric_ids: []
+    metric_trust_status:
+    evidence_refs: []
+    estimate:
+      conservative:
+      base:
+      upside:
+      unit:
+    assumptions: []
+    confidence: "unknown"
+  risk_reduction:
+    value_hypothesis:
+    baseline_metric_ids: []
+    metric_trust_status:
+    evidence_refs: []
+    estimate:
+      conservative:
+      base:
+      upside:
+      unit:
+    assumptions: []
+    confidence: "unknown"
+  revenue_or_leakage:
+    value_hypothesis:
+    baseline_metric_ids: []
+    metric_trust_status:
+    evidence_refs: []
+    estimate:
+      conservative:
+      base:
+      upside:
+      unit:
+    assumptions: []
+    confidence: "unknown"
+  experience:
+    value_hypothesis:
+    affected_group:
+    baseline_metric_ids: []
+    metric_trust_status:
+    evidence_refs: []
+    confidence: "unknown"
+  reusable_data_product:
+    value_hypothesis:
+    reusable_asset:
+    future_uses: []
+    prerequisites: []
+    confidence: "unknown"
+
+overall_value_assessment:
+  value_confidence: "unknown" # high | medium | low | unknown
+  strategic_fit: "unknown" # high | medium | low | unknown
+  measurement_strength: "unknown" # strong | partial | weak | unknown
+  value_capture_complexity: "unknown" # low | medium | high | unknown
+  strongest_value_lens:
+  weakest_assumption:
+
+dependencies:
+  measurement_dependencies: []
+  governance_dependencies: []
+  source_access_dependencies: []
+  knowledge_or_guidance_dependencies: []
+  architecture_dependencies: []
+  risk_or_control_dependencies: []
+  change_management_dependencies: []
+
+client_confirmation_needs:
+  - question_id:
+    question:
+    resolver_role:
+    related_assumption:
+    required_before_carry_forward: true
+
+recommendation:
+  decision: "" # carry_forward_to_architecture_and_readiness | fix_measurement_first | fix_governance_or_knowledge_first | deprioritize | do_not_pursue
+  rationale:
+  next_route:
+  not_build_authorization: true
+
+stop_boundary:
+  does_not_authorize_build: true
+  does_not_build_agents: true
+  does_not_build_dashboards: true
+  does_not_build_pipelines: true
+  does_not_build_mcp_or_connectors: true
+  does_not_create_live_integrations: true

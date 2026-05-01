@@ -1,0 +1,11 @@
+opportunity_id,dimension,score_1_to_5,evidence_confidence,evidence_refs,gap_or_fix,blocking_status,owner,next_step
+,business_value,,,,,,,
+,workflow_clarity,,,,,,,
+,source_access_readiness,,,,,,,
+,data_quality,,,,,,,
+,knowledge_guidance_readiness,,,,,,,
+,measurement_readiness,,,,,,,
+,architecture_feasibility,,,,,,,
+,risk_control_readiness,,,,,,,
+,human_oversight_readiness,,,,,,,
+,change_lifecycle_readiness,,,,,,,

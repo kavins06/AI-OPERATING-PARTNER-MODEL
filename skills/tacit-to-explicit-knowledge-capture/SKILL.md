@@ -9,6 +9,14 @@ description: "Convert expert tacit knowledge into explicit, reusable rules, exam
 
 Capture judgment through examples and decision criteria, not vague labels. Experts often know more than they can state directly.
 
+Inside the AI operating partner engagement, this is Step 9. Start from the Step 8 AI knowledge and guideline requirements map. Step 8 identifies what guidance is needed; Step 9 writes the actual AI guidance pack.
+
+The canonical Step 9 artifact is a machine-readable guidance spec, not a prose memo and not only a `SKILL.md`. A Markdown skill-style guide is a readable view of the same guidance. Test/evaluation cases are a separate view used later to verify whether a future AI follows the guidance. Keep all three aligned:
+
+- Structured guidance spec: source of truth.
+- Markdown skill-style guide: human-readable view.
+- Test/evaluation cases: behavior verification view.
+
 Useful references:
 
 - `../../mastery-reference/information-management/operator-toolkit/information-architecture-and-knowledge-map-template.md`
@@ -34,15 +42,17 @@ Stop only when the answer can be converted into rules, examples, edge cases, and
 
 ## Capture Workflow
 
-1. Identify the decision or task where expertise matters.
-2. Identify top performers, reviewers, and exception handlers.
-3. Ask for recent concrete examples.
-4. Compare good, bad, and edge-case outcomes.
-5. Extract cues, rules of thumb, thresholds, and red flags.
-6. Identify exceptions and escalation triggers.
-7. Translate judgment into explicit rules, checklists, examples, or review criteria.
-8. Validate with experts and users.
-9. Define ownership and update cadence.
+1. Start from a Step 8 knowledge or guideline requirement.
+2. Confirm the decision or task where expertise matters.
+3. Identify top performers, reviewers, and exception handlers.
+4. Ask for recent concrete examples.
+5. Compare good, bad, and edge-case outcomes.
+6. Extract cues, rules of thumb, thresholds, and red flags.
+7. Identify exceptions and escalation triggers.
+8. Translate judgment into a structured guidance spec with explicit rules, source hierarchy, tacit cues, examples, allowed behaviors, forbidden behaviors, escalation logic, and output contract.
+9. Generate a Markdown skill-style view and test/evaluation cases from the structured spec.
+10. Validate with experts, reviewers, and risk owners where needed.
+11. Define ownership, update cadence, and validation status.
 
 ## Elicitation Prompts
 
@@ -62,6 +72,9 @@ Ask:
 
 Choose the lightest useful format:
 
+- Machine-readable guidance spec.
+- Markdown skill-style guide.
+- Test/evaluation case file.
 - Checklist.
 - Decision tree.
 - Example library.
@@ -76,21 +89,39 @@ Choose the lightest useful format:
 
 Produce:
 
-- Decision/task:
-- Experts consulted:
-- Tacit cues:
-- Explicit rules:
-- Examples:
-- Edge cases:
-- Escalation triggers:
-- Do-not-automate areas:
-- Review criteria:
-- Owner:
-- Update cadence:
+- Structured guidance spec:
+  - Guidance ID, workflow ID, version, status, and linked Step 8 requirement IDs.
+  - Purpose, scope, and out-of-scope areas.
+  - Owner roles, reviewers, update cadence, and validation status.
+  - Required inputs and missing-input behavior.
+  - Source hierarchy, fallback sources, prohibited sources, and source-conflict handling.
+  - Explicit rules.
+  - Tacit cues and judgment signals.
+  - Examples: good, bad, edge, low-confidence, and source-conflict.
+  - Allowed AI behaviors.
+  - Forbidden AI behaviors.
+  - Escalation triggers and human approval gates.
+  - Sensitive-field handling.
+  - Output contract.
+  - Evidence references and unresolved gaps.
+- Markdown skill-style guide:
+  - When to use it.
+  - Inputs.
+  - Rules.
+  - Examples.
+  - Escalations.
+  - Forbidden behaviors.
+  - Output format.
+- Test/evaluation cases:
+  - Scenario.
+  - Inputs.
+  - Expected AI behavior.
+  - Expected escalation or human review.
+  - Pass criteria.
 
 ## Quality Bar
 
-Do not call knowledge captured until experts can recognize their judgment in the output and a novice can use it to improve performance under review.
+Do not call knowledge captured until experts can recognize their judgment in the structured guidance, a novice can use the readable view to improve performance under review, and the test/evaluation cases can detect common wrong AI behaviors.
 
 ## Shared Engagement Resources
 

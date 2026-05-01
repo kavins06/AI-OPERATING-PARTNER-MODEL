@@ -1,4 +1,6 @@
-# Example Build-Ready Agent Brief
+# Example Build-Ready Implementation Brief
+
+This is a blueprint example, not an implementation artifact.
 
 Agent / workflow: Monthly report drafting assistant
 Business owner: Operations manager
@@ -21,10 +23,16 @@ Read approved metrics, retrieve source-linked exception notes, and draft an inte
 - Human approval before sending.
 - Log retrieved sources, generated draft, edits, and approval.
 
+## Future Access Package
+
+- Provision after Step 16 approval.
+- No employee credentials.
+- Use scoped service account or approved connector.
+- No write-back or external send permission in first implementation phase.
+
 ## Success Metrics
 
 - Report cycle time.
 - Correction rate.
 - Manager edit rate.
 - User satisfaction.
-

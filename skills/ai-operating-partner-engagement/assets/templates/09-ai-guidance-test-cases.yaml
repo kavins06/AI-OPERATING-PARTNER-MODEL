@@ -1,0 +1,90 @@
+guidance_id: "guidance.workflow.decision.v1"
+workflow_id: ""
+version: "0.1"
+status: "draft"
+
+test_cases:
+  - test_id: "tc.good.001"
+    scenario_type: "good"
+    linked_rule_ids: []
+    linked_example_ids: []
+    inputs:
+      summary:
+      source_states: []
+      sensitive_fields_present: []
+    expected_ai_behavior:
+    expected_output:
+      required_fields: []
+      confidence:
+      evidence_refs_required: true
+    expected_human_review: false
+    pass_criteria: []
+
+  - test_id: "tc.bad.001"
+    scenario_type: "bad"
+    linked_rule_ids: []
+    linked_example_ids: []
+    inputs:
+      summary:
+      source_states: []
+      sensitive_fields_present: []
+    disallowed_behavior:
+    expected_ai_behavior:
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.edge.001"
+    scenario_type: "edge"
+    linked_rule_ids: []
+    linked_example_ids: []
+    inputs:
+      summary:
+      complication:
+      source_states: []
+      sensitive_fields_present: []
+    expected_ai_behavior:
+    expected_escalation:
+      required: true
+      escalate_to_role:
+      reason:
+    pass_criteria: []
+
+  - test_id: "tc.low_confidence.001"
+    scenario_type: "low_confidence"
+    linked_rule_ids: []
+    linked_example_ids: []
+    inputs:
+      summary:
+      uncertainty_signals: []
+      source_states: []
+    expected_ai_behavior:
+    expected_uncertainty_language:
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.source_conflict.001"
+    scenario_type: "source_conflict"
+    linked_rule_ids: []
+    linked_example_ids: []
+    inputs:
+      summary:
+      conflicting_sources: []
+      source_hierarchy_expected_to_apply:
+    expected_ai_behavior:
+    expected_escalation:
+      required: false
+      escalate_to_role:
+      reason:
+    pass_criteria: []
+
+coverage_requirements:
+  must_cover:
+    - good_outcome
+    - bad_or_forbidden_behavior
+    - edge_case
+    - low_confidence_case
+    - source_conflict_case
+    - escalation_trigger
+    - sensitive_field_handling_when_relevant
+  minimum_cases_before_implementation: 5
+  do_not_run_against_live_client_systems_before_step16_approval: true

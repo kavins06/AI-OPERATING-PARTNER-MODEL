@@ -1,0 +1,295 @@
+technical_implementation_blueprint_id: "tib.workflow.opportunity.v1"
+opportunity_id:
+workflow_ids: []
+value_case_id:
+version: "0.1"
+status: "draft" # draft | technically_feasible | feasible_with_conditions | blocked | not_ready
+
+implementation_posture:
+  decision: "" # technically_feasible | technically_feasible_with_conditions | blocked | not_ready_for_blueprint
+  reason:
+  not_build_authorization: true
+
+source_inputs:
+  workflow_spec_ids: []
+  source_inventory_ids: []
+  source_access_profile_ids: []
+  governance_event_ids: []
+  guidance_pack_ids: []
+  measurement_intelligence_ids: []
+  value_case_ids: []
+  planning_evidence_refs: []
+
+systems_and_sources:
+  - system_id:
+    system_name:
+    business_owner_role:
+    technical_owner_role:
+    vendor_owner_role:
+    current_role_in_workflow:
+    source_access_profile_ids: []
+    data_needed: []
+    sensitive_fields_or_classes: []
+    quality_issues: []
+    practical_constraints: []
+
+access_options:
+  - access_option_id:
+    source_or_system_id:
+    preferred_path:
+      method: "" # api | export | report_view | database_view | document_store | email_scope | manual_staging | vendor_integration | rpa | other
+      description:
+      feasibility_status: "unknown" # confirmed | likely | disputed | blocked | unknown
+      feasibility_confirmed_by_role:
+      license_or_vendor_constraints: []
+      security_constraints: []
+      audit_logging_available: "unknown"
+      sandbox_available: "unknown"
+      data_freshness_supported:
+      future_access_request:
+    fallback_path:
+      method:
+      description:
+      tradeoffs: []
+    blocked_paths:
+      - method:
+        reason_blocked:
+        confirmed_by_role:
+
+canonical_entities:
+  - entity_name:
+    description:
+    source_systems: []
+    source_fields: []
+    normalized_fields: []
+    identity_resolution_rule:
+    quality_checks: []
+
+identity_resolution:
+  - resolution_id:
+    entity_name:
+    sources_to_match: []
+    primary_key_candidate:
+    fallback_match_keys: []
+    match_confidence_rule:
+    manual_review_required_when: []
+    unresolved_risks: []
+
+normalization_requirements:
+  - requirement_id:
+    source_system:
+    source_field:
+    target_entity:
+    target_field:
+    rule:
+    owner_role:
+    quality_check:
+    freshness_requirement:
+    blocker:
+
+runtime_design_requirements:
+  runtime_pattern: "" # simple_assistant | rag_assistant | tool_using_agent | workflow_automation_with_ai | decision_support_copilot | monitoring_exception_agent | multi_agent_system | dashboard_or_reporting_fix | do_not_automate
+  rationale: ""
+  minimum_viable_runtime_pattern: ""
+  multi_agent_required: false
+  multi_agent_rationale: ""
+  multi_agent_roles:
+    - role_name: "" # planner | retriever | tool_executor | reviewer | risk_checker | router | other
+      responsibility: ""
+      required: false
+  rag_required: "unknown" # yes | no | conditional | unknown
+  rag_rationale: ""
+  retrieval_requirements:
+    approved_sources: []
+    prohibited_sources: []
+    document_types: []
+    metadata_required: []
+    citation_required: true
+    permission_filtering_required: true
+    source_freshness_requirement: ""
+    retrieval_quality_tests: []
+  model_capability_requirements:
+    structured_output_required: true
+    tool_calling_required: false
+    long_context_need: "unknown" # low | medium | high | unknown
+    reasoning_complexity: "unknown" # low | medium | high | unknown
+    latency_tolerance: "unknown" # low | medium | high | unknown
+    cost_sensitivity: "unknown" # low | medium | high | unknown
+    privacy_or_data_residency_constraints: []
+    fallback_or_routing_needed: false
+    final_model_not_selected_in_step12: true
+  orchestration_requirements:
+    durable_state_required: false
+    workflow_queue_required: false
+    scheduled_jobs_required: false
+    background_workers_required: false
+    human_approval_gate_required: true
+    retry_policy_required: false
+    idempotency_required: false
+    audit_trace_required: true
+    state_objects_to_track: []
+    framework_not_selected_in_step12: true
+  overengineering_guardrail:
+    default_to_minimum_safe_runtime: true
+    multi_agent_is_escalation_not_default: true
+    vendor_or_framework_choice_requires_client_stack_or_build_phase_decision: true
+
+future_tools_or_mcps:
+  - tool_id:
+    tool_name:
+    tool_type: "" # mcp | api_connector | retrieval_tool | document_extractor | calculation_tool | workflow_tool | manual_staging_tool
+    purpose:
+    input_contract:
+      required_inputs: []
+      optional_inputs: []
+      validation_rules: []
+    output_contract:
+      required_outputs: []
+      evidence_or_citation_required: true
+      confidence_required: true
+      prohibited_outputs: []
+    allowed_actions: [] # read | retrieve | summarize | compare | calculate | draft | route | write | send
+    prohibited_actions: []
+    data_touched: []
+    permission_scope:
+    human_review_required_when: []
+    logging_required:
+      log_tool_call: true
+      log_inputs: true
+      log_outputs: true
+      log_source_refs: true
+      log_human_approval: true
+    build_phase: "future_implementation_only"
+
+hosting_environment_requirements:
+  client_preferred_cloud_or_environment: "" # azure | aws | gcp | private_cloud | on_prem | vendor_managed_isolated | unknown
+  client_mandated_stack: []
+  identity_provider: "" # microsoft_entra_id | okta | google_workspace | active_directory | other | unknown
+  data_residency_requirements: []
+  network_requirements:
+    vpc_or_private_network_required: "unknown" # yes | no | conditional | unknown
+    private_connection_to_internal_systems_required: "unknown"
+    allowed_network_paths: []
+    prohibited_network_paths: []
+  compute_requirements:
+    workload_pattern: "" # bursty | steady | scheduled | event_driven | long_running | unknown
+    serverless_or_scale_to_zero_suitable: "unknown"
+    long_running_workflows_required: false
+    background_queues_required: false
+    scheduled_jobs_required: false
+    gpu_or_specialized_compute_required: false
+  storage_requirements:
+    relational_store_required: false
+    vector_store_required: "unknown" # yes | no | conditional | unknown
+    object_storage_required: false
+    graph_store_required: "unknown"
+    cache_required: "unknown"
+    audit_log_store_required: true
+  security_requirements:
+    rbac_required: true
+    row_or_record_level_permissions_required: false
+    field_level_permissions_required: false
+    secrets_manager_required: true
+    encryption_requirements: []
+    vendor_security_review_required: "unknown"
+  observability_requirements:
+    model_call_tracing_required: true
+    tool_call_tracing_required: true
+    retrieval_tracing_required: false
+    cost_monitoring_required: true
+    latency_monitoring_required: true
+    alerting_required: true
+  hosting_pattern_options:
+    preferred_pattern:
+      pattern: "" # client_cloud_deployment | client_vpc_private_deployment | vendor_managed_isolated_environment | hybrid | on_prem | undecided
+      rationale: ""
+      confirmation_needed_from: []
+    fallback_pattern:
+      pattern: ""
+      rationale: ""
+      tradeoffs: []
+    blocked_patterns:
+      - pattern: ""
+        reason: ""
+        confirmed_by_role: ""
+  final_vendor_selection_not_made_in_step12: true
+
+document_and_email_scope:
+  document_scope:
+    approved_repositories_or_folders: []
+    prohibited_repositories_or_folders: []
+    file_types: []
+    retention_constraints: []
+    manual_staging_alternative:
+  email_scope:
+    needed: false
+    allowed_mailboxes_or_folders: []
+    allowed_labels_or_senders: []
+    prohibited_email_access:
+      - "all_email_ingestion"
+      - "personal_mailbox_broad_access"
+    retention_constraints: []
+    manual_staging_alternative:
+
+test_and_validation_plan:
+  redacted_examples_needed: []
+  synthetic_data_needed: []
+  sample_exports_needed: []
+  sandbox_needed: false
+  linked_step9_eval_case_ids: []
+  success_criteria: []
+  failure_cases_to_test: []
+  production_data_not_required_before_step16: true
+
+credential_and_secrets_plan:
+  future_credential_type:
+  provisioning_owner_role:
+  permission_scope:
+  storage_requirement:
+  rotation_requirement:
+  revocation_plan:
+  audit_requirement:
+  approval_dependencies: []
+  credentials_not_requested_in_step12: true
+
+future_access_request_package:
+  - request_id:
+    access_needed_after_step16:
+    purpose:
+    permission_scope:
+    prohibited_permissions: []
+    provisioning_owner_role:
+    approval_dependencies: []
+    test_or_sandbox_first: true
+
+build_sequence:
+  - phase_id:
+    phase_name:
+    objective:
+    prerequisites: []
+    outputs: []
+    exit_criteria: []
+    do_not_start_before_step16_approval: true
+
+open_decisions:
+  - decision_id:
+    question:
+    owner_role:
+    blocks_implementation: false
+    route_to_step:
+    due_before:
+
+blocked_or_prohibited_paths:
+  - path:
+    reason:
+    confirmed_by_role:
+    safe_alternative:
+
+stop_boundary:
+  does_not_authorize_build: true
+  does_not_request_credentials: true
+  does_not_build_agents: true
+  does_not_build_mcp_or_connectors: true
+  does_not_build_normalization_pipeline: true
+  does_not_ingest_email: true
+  does_not_connect_to_live_systems: true

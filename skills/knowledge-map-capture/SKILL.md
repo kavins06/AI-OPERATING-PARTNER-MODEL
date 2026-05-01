@@ -1,13 +1,13 @@
 ---
 name: knowledge-map-capture
-description: "Create knowledge maps that identify critical knowledge areas, experts, documents, tacit and explicit knowledge, workflows, gaps, risks, and action plans. Use when Codex needs to locate what an organization knows before training, automation, analytics, or AI-agent design."
+description: "Create AI knowledge and guideline requirements maps that identify decision-linked knowledge areas, likely experts, documents, tacit and explicit knowledge, guideline needs, gaps, risks, and next capture routes before training, automation, analytics, or AI-agent design."
 ---
 
 # Knowledge Map Capture
 
 ## Core Rule
 
-Map knowledge to decisions and workflows. Do not merely inventory documents.
+Map knowledge to decisions and workflows. Do not merely inventory documents. In the AI operating partner engagement, Step 8 identifies what knowledge and future AI guidelines are required; Step 9 codifies the actual rules, examples, checklists, prompts, review criteria, escalation logic, and forbidden behaviors.
 
 Useful references:
 
@@ -18,7 +18,21 @@ Useful references:
 
 ## How To Get Inputs
 
-Use AI-led adaptive interviews and document collection:
+In the AI operating partner engagement, use prior outputs first:
+
+- AI workflow specification.
+- Organizational intelligence diagnostic.
+- Edge cases.
+- Decisions and approval gates.
+- Source access profiles.
+- Planning evidence.
+- Validation/governance events.
+- Role ownership, escalation paths, and disputed/unknown items.
+- Candidate AI assists.
+
+Do not run another broad interview cycle by default. Synthesize a draft knowledge requirements map, then use targeted follow-up only for high-value, high-risk, disputed, or low-confidence items.
+
+Outside the operating partner engagement, inputs may also come from AI-led adaptive interviews and document collection:
 
 - Ask executives which knowledge is mission-critical.
 - Ask managers where expertise bottlenecks and review loops happen.
@@ -27,7 +41,7 @@ Use AI-led adaptive interviews and document collection:
 - Ask IT/data/security where knowledge assets are stored and controlled.
 - Request examples of good, bad, and edge-case decisions.
 
-The strongest input is not a list of documents; it is a set of decisions with the knowledge required to make them well.
+The strongest input is not a list of documents; it is a set of decisions, exceptions, approval gates, manual checks, and escalations with the knowledge required to handle them well.
 
 ## Knowledge Map Scope
 
@@ -37,6 +51,7 @@ Define:
 - Workflow.
 - Decision supported.
 - Knowledge areas.
+- AI guideline requirements.
 - Knowledge owners and experts.
 - Documents and systems.
 - Tacit versus explicit knowledge.
@@ -48,6 +63,7 @@ Define:
 Ask:
 
 - What decision depends on this knowledge?
+- What future AI guideline would need to exist for this decision?
 - Who knows how to make the decision well?
 - Where is the knowledge written down?
 - What does an expert notice that a novice misses?
@@ -57,17 +73,33 @@ Ask:
 - What language should be used or avoided?
 - How does this knowledge get updated?
 
+## Inference Rules
+
+Use evidence-backed inference:
+
+- A decision implies required decision knowledge.
+- An edge case implies exception-handling knowledge.
+- An approval gate implies approval criteria and authority knowledge.
+- A manual check implies hidden quality or trust knowledge.
+- An escalation path implies likely expertise ownership.
+- A repeated correction implies a knowledge or training gap.
+- A source conflict implies source-trust guidance.
+- A candidate AI assist implies future AI guideline requirements.
+
+Mark each conclusion with evidence, confidence, and validation need. Do not treat inferred experts or requirements as fact until validated.
+
 ## Knowledge Inventory Template
 
-| Knowledge Area | Tacit/Explicit | Where It Lives | Owner/Expert | Format | Gap/Risk | Use |
-|---|---|---|---|---|---|---|
-| | | | | | | |
+| Knowledge Area | Tacit/Explicit | Where It Lives | Owner/Expert | Evidence | Confidence | Gap/Risk | AI Guideline Needed | Next Route |
+|---|---|---|---|---|---|---|---|---|
+| | | | | | | | | |
 
 ## Outputs
 
 Deliver:
 
 - Knowledge map.
+- AI guideline requirements map.
 - Expert map.
 - Document/source map.
 - Gap analysis.

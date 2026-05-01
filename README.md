@@ -37,28 +37,26 @@ The 79 original source documents, raw OCR cache, extracted source-text dumps, an
 
 ## Practical Order
 
-Use `ai-operating-partner-engagement` first when you want the full process. It coordinates the other skills in this order:
+Use `ai-operating-partner-engagement` first when you want the full process. The engagement is a pre-build organizational intelligence and implementation-blueprint process. It does not build agents, MCPs, connectors, live integrations, normalization pipelines, email ingestion, or production automations during the 16-step engagement.
 
-1. Source-grounded consulting
-2. Data strategy workshop
-3. AI-led interview discovery
-4. Workflow mapping
-5. Information ecology diagnostic
-6. Validation call
-7. Data governance discovery
-8. Knowledge map capture
-9. Tacit-to-explicit knowledge capture
-10. Analytics maturity assessment
-11. Dashboard and KPI design
-12. Data monetization canvas
-13. Warehouse/lakehouse blueprint
-14. Agent data preparation and knowledge structuring
-15. Privacy/security risk register
-16. Zero-trust agent controls
-17. AI-agent readiness assessment
-18. Managed agent lifecycle
+1. Executive opportunity terrain mapping
+2. Opportunity terrain synthesis and discovery-zone sequencing
+3. Role-aware AI-led interviews
+4. Planning-evidence follow-up
+5. AI-native workflow intelligence object
+6. Organizational intelligence diagnostic
+7. Controlled validation and governance/source access resolution
+8. AI knowledge and guideline requirements map
+9. AI guidance pack: structured spec, skill-style view, and test cases
+10. Measurement intelligence and analytics readiness
+11. Business value case
+12. Technical implementation blueprint: architecture, runtime/orchestration, hosting/environment, access, tools, normalization, and build sequence
+13. Risk and control model
+14. AI-agent readiness score: implementation-grade gates, behavior-level readiness, dependencies, blockers, and Step 15 path
+15. Machine-readable implementation decision packet: build-ready brief, remediation plan, runtime/hosting plan, or do-not-automate recommendation
+16. Machine-readable managed lifecycle object for future validation, launch, monitoring, incident response, improvement, expansion, and retirement
 
-Step 14 is handled through the orchestration skill and the knowledge, governance, architecture, KPI, and readiness skills rather than as a separate standalone skill.
+Implementation starts only after Step 16 is complete, the blueprint is approved, and the client starts a separate build phase.
 
 ## Install Into Codex
 

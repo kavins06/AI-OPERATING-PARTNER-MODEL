@@ -1,4 +1,4 @@
 interface:
-  display_name: "Warehouse Lakehouse Blueprint"
-  short_description: "Design governed data foundations for analytics and agents."
-  default_prompt: "Use this skill to create a warehouse or lakehouse blueprint."
+  display_name: "Technical Implementation Blueprint"
+  short_description: "Design future architecture, runtime, hosting, access, normalization, tools, and build sequence without building."
+  default_prompt: "Use this skill to create a Step 12 technical implementation blueprint with access paths, runtime/orchestration requirements, hosting/environment requirements, identity resolution, normalization, tool contracts, test strategy, credentials/secrets plan, blocked paths, and future build sequence. Define requirements and acceptable patterns; do not prematurely select vendors, models, vector stores, or frameworks unless the client stack requires it."

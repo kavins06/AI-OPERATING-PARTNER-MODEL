@@ -1,0 +1,403 @@
+# AI Workflow Specification
+
+spec_version: "0.1"
+object_type: "organizational_workflow_intelligence"
+status: "initial_workflow_spec"
+build_ready: false
+
+workflow:
+  workflow_id:
+  name:
+  business_purpose:
+  trigger:
+  outcome:
+  validation_status: "draft | partially_validated | validated"
+  confidence: "low | medium | high"
+
+organization_context:
+  company_type:
+  business_unit:
+  org_structure_source:
+  org_structure_status: "unknown | provided | inferred | partially_validated | validated"
+  teams:
+    - team_id:
+      name:
+      parent_team_id:
+      scope:
+      confidence:
+  roles:
+    - role_id:
+      name:
+      layer:
+      team_id:
+      responsibilities:
+        - 
+      decision_rights:
+        - 
+      approval_authority:
+      confidence:
+  reporting_structure:
+    - parent_role_id:
+      child_role_id:
+      relationship_type: "reports_to | dotted_line | escalation | approval"
+      confidence:
+  people:
+    - person_id:
+      display_label:
+      role_ids:
+        - 
+      team_id:
+      portfolio_or_function_scope:
+      status: "known_not_interviewed | interviewed | inferred"
+      evidence_refs:
+        - 
+      pii_policy: "minimal"
+      confidence:
+
+interview_coverage:
+  intended_population_by_role:
+    - role_id:
+      count:
+  completed_by_role:
+    - role_id:
+      count:
+      interview_refs:
+        - 
+  coverage_strategy:
+  saturation_status: "not_started | partial | strong | saturated"
+  expansion_needed:
+  expansion_reason:
+    - 
+  known_coverage_gaps:
+    - 
+
+role_involvement:
+  - role_id:
+    involvement_type: "strategy | approval | escalation | decision | preparation | execution | coordination | support | system_owner | data_owner"
+    responsibilities_in_workflow:
+      - 
+    observed_importance: "low | medium | high"
+    evidence_refs:
+      - 
+    confidence:
+
+actors:
+  - actor_id:
+    person_id:
+    role_id:
+    workflow_id:
+    involvement:
+    decision_rights:
+      - 
+    approval_authority:
+    knowledge_domains:
+      - 
+    evidence_refs:
+      - 
+    confidence:
+
+steps:
+  - step_id:
+    sequence:
+    primary_actor_id:
+    primary_role_id:
+    action:
+    trigger:
+    inputs:
+      - 
+    information_object_ids:
+      - 
+    systems_or_sources_mentioned:
+      - 
+    outputs:
+      - 
+    handoff_to_actor_id:
+    handoff_to_role_id:
+    decision_ids:
+      - 
+    approval_gate_ids:
+      - 
+    risk_signal_ids:
+      - 
+    sensitive_data_signal_ids:
+      - 
+    evidence_refs:
+      - 
+    validation_status: "unknown | interview_claim | artifact_supported | validated"
+    confidence: "low | medium | high"
+
+decisions:
+  - decision_id:
+    name:
+    owner_actor_id:
+    owner_role_id:
+    inputs_required:
+      - 
+    information_object_ids:
+      - 
+    explicit_rules:
+      - 
+    tacit_judgment:
+      - 
+    confidence_signals:
+      - 
+    escalation_triggers:
+      - 
+    human_required:
+    ai_support_allowed:
+      - 
+    ai_support_forbidden:
+      - 
+    evidence_refs:
+      - 
+    validation_status:
+    confidence:
+
+edge_cases:
+  - edge_case_id:
+    description:
+    normal_rule_broken:
+    trigger:
+    detected_by_actor_id:
+    detected_by_role_id:
+    detection_method:
+    handler_actor_id:
+    handler_role_id:
+    escalation_actor_id:
+    escalation_role_id:
+    systems_or_sources:
+      - 
+    information_object_ids:
+      - 
+    decision_required:
+    current_resolution:
+    risk_if_mishandled:
+    frequency: "unknown | rare | occasional | frequent"
+    severity: "low | medium | high"
+    automation_implication:
+    validation_needed:
+    evidence_refs:
+      - 
+    confidence:
+
+information_objects:
+  - information_object_id:
+    name:
+    object_type: "data_point | document | report | dashboard | spreadsheet | email | system_record | image | approval | policy | metric | message | person_knowledge | other"
+    business_use:
+    used_in_step_ids:
+      - 
+    used_in_decision_ids:
+      - 
+    used_in_edge_case_ids:
+      - 
+    required_for_outcome:
+    required_fields_or_attributes:
+      - 
+    lookup_keys:
+      - 
+    freshness_requirement:
+    source_access_profile_ids:
+      - 
+    compared_against_information_object_ids:
+      - 
+    related_source_ids:
+      - 
+    known_quality_or_access_issues:
+      - 
+    sensitivity:
+    validation_status: "mentioned | access_path_captured | artifact_supported | needs_governance_resolution | validated"
+    evidence_refs:
+      - 
+    confidence:
+
+sources_mentioned:
+  - source_id:
+    name:
+    source_type: "system | report | dashboard | tracker | document | email | spreadsheet | walkthrough | interview_claim | other"
+    system_id:
+    information_object_ids:
+      - 
+    trusted_for:
+      - 
+    not_trusted_for:
+      - 
+    known_quality_issues:
+      - 
+    sensitivity:
+    likely_owner:
+    validation_status: "mentioned | artifact_supported | needs_governance_resolution | validated"
+    evidence_refs:
+      - 
+    confidence:
+
+systems_mentioned:
+  - system_id:
+    name:
+    purpose:
+    likely_owner:
+    data_held:
+      - 
+    source_access_profile_ids:
+      - 
+    access_constraints_known:
+    validation_status: "mentioned | needs_governance_resolution | validated"
+    evidence_refs:
+      - 
+    confidence:
+
+source_access_profiles:
+  - source_access_profile_id:
+    information_object_id:
+    source_id:
+    system_id:
+    system_or_location:
+    module_report_view_or_path:
+    access_method: "system_ui | report_export | dashboard | shared_drive | email_search | portal | API | person_request | walkthrough | other"
+    practical_access_path:
+    lookup_keys:
+      - 
+    required_fields_or_attributes:
+      - 
+    current_access_roles:
+      - 
+    alternate_locations:
+      - 
+    compared_against_source_ids:
+      - 
+    access_failure_modes:
+      - "missing | stale | duplicate | conflicting | permission_denied | not_exportable | manual_request_required | unknown"
+    screenshot_walkthrough_or_export_needed:
+    source_of_record_status: "unknown | practical_source | authoritative | disputed | not_authoritative"
+    validation_status: "mentioned | access_path_captured | artifact_supported | needs_governance_resolution | validated"
+    evidence_refs:
+      - 
+    confidence:
+
+approval_gates:
+  - approval_gate_id:
+    condition:
+    approver_actor_id:
+    approver_role_id:
+    required_before:
+    audit_required:
+    ai_boundary:
+    validation_status:
+    evidence_refs:
+      - 
+    confidence:
+
+sensitive_data_signals:
+  - sensitive_data_signal_id:
+    description:
+    field_or_content_type:
+    where_seen_or_mentioned:
+    handling_notes:
+    later_step_required: "controlled_validation_governance_resolution | risk_register | zero_trust_controls"
+    evidence_refs:
+      - 
+    confidence:
+
+operating_strain_and_value_signals:
+  - signal_id:
+    type: "delay | rework | manual_reconciliation | source_conflict | visibility_gap | quality_review | capacity_constraint | risk_reduction | revenue | cost | service_quality"
+    description:
+    affected_roles:
+      - 
+    value_hypothesis:
+    metric_candidate:
+    evidence_refs:
+      - 
+    confidence:
+
+role_variation_analysis:
+  - role_id:
+    shared_patterns:
+      - 
+    observed_variations:
+      - variation_id:
+        description:
+        implication:
+        evidence_refs:
+          - 
+        confidence:
+    conflicts:
+      - 
+    best_practice_candidates:
+      - 
+    standardization_opportunities:
+      - 
+    saturation_status: "unknown | partial | strong | saturated"
+
+candidate_ai_assists:
+  - assist_id:
+    assist_type: "draft | retrieve | summarize | monitor | route | check | explain | recommend | act"
+    target_step_or_decision_id:
+    allowed_behavior:
+    forbidden_behavior:
+    required_sources:
+      - 
+    required_information_object_ids:
+      - 
+    required_source_access_profile_ids:
+      - 
+    human_review_required:
+    readiness_dependencies:
+      - 
+    evidence_refs:
+      - 
+    confidence:
+
+evidence:
+  - evidence_id:
+    source_type: "interview | artifact | system_export | screenshot | walkthrough | assumption | inference"
+    description:
+    participant_or_owner:
+    date:
+    sensitivity:
+    supports_objects:
+      - 
+    confidence:
+
+facts:
+  - fact_id:
+    statement:
+    evidence_refs:
+      - 
+    confidence:
+
+assumptions:
+  - assumption_id:
+    statement:
+    why_assumed:
+    validation_needed:
+    later_step_required:
+
+inferences:
+  - inference_id:
+    statement:
+    based_on:
+      - 
+    confidence:
+
+unknowns_and_enrichment_routes:
+  - unknown_id:
+    question:
+    blocks_readiness:
+    likely_owner:
+    later_step_required: "controlled_validation_governance_resolution | knowledge_mapping | analytics_maturity_assessment | kpi_design | architecture_blueprint | risk_register | zero_trust_controls | readiness_assessment"
+    priority: "low | medium | high"
+
+step_5_stop_status:
+  status: "initial_ai_workflow_spec_complete | incomplete"
+  build_ready: false
+  known:
+    - 
+  partial:
+    - 
+  unknown:
+    - 
+  reason_not_build_ready:
+    - 
+  next_required_steps:
+    - 

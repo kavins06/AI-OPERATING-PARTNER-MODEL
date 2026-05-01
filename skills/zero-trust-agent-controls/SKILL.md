@@ -9,6 +9,8 @@ description: "Design zero-trust control models for AI agents, automation, analyt
 
 Do not let agents inherit broad human access by default. Grant scoped, task-specific, observable, revocable permissions.
 
+Inside the AI operating partner engagement, this skill designs the Step 13 zero-trust portion of the future risk and control model only. Do not provision credentials, service accounts, live API tokens, MCP access, connectors, email ingestion, monitoring, or write access during the 16-step engagement.
+
 Useful references:
 
 - `../../mastery-reference/information-management/concept-library/frameworks.md`
@@ -32,12 +34,17 @@ Design controls across:
 Collect:
 
 - Proposed agent capabilities and tool calls.
+- Proposed MCPs, connectors, normalization jobs, email connectors, and integration paths from the architecture blueprint.
 - Users, roles, and approval authority.
 - Source systems, APIs, documents, and data classifications.
 - Allowed and forbidden actions from workflow owners.
 - Sensitive-data handling from risk/security stakeholders.
 - Logging, monitoring, retention, and incident requirements.
 - Validation-call decisions about what should never be automated.
+- Planning evidence access boundaries and future implementation access requests.
+- Step 9 guidance packs with forbidden behaviors and output contracts.
+- Step 10 metric trust and agent-safe metric usage.
+- Step 13 risk register and data classification.
 
 Derive controls from actual agent behavior, not generic access roles.
 
@@ -48,11 +55,14 @@ Define for each agent:
 - Allowed users.
 - Allowed sources.
 - Allowed records or scopes.
+- Field-level restrictions.
+- Document-level restrictions.
 - Allowed actions: read, summarize, draft, calculate, route, write, send.
 - Forbidden actions.
 - Human approval thresholds.
 - Credential owner.
 - Audit fields.
+- Monitoring and alert conditions.
 - Revocation process.
 - Incident path.
 
@@ -68,6 +78,31 @@ Define for each agent:
 | Write to system | | | | | |
 | Trigger workflow | | | | | |
 
+## Output Controls
+
+Define:
+
+- Allowed outputs.
+- Prohibited outputs.
+- Citation or evidence requirements.
+- Confidence requirements.
+- Uncertainty language.
+- External-send approval requirements.
+- Prohibited claims, instructions, or recommendations.
+
+## Revocation And Incident Controls
+
+Define:
+
+- Who can revoke access.
+- Revocation triggers.
+- Expected time to revoke.
+- Scope revoked: user, role, source, tool, service account, connector, or workflow.
+- Incident owner.
+- Escalation path.
+- Containment actions.
+- Restoration conditions.
+
 ## Stop Conditions
 
 Stop or redesign when:
@@ -78,6 +113,7 @@ Stop or redesign when:
 - Writes are silent.
 - Logs omit source, tool, action, or approval.
 - There is no revocation or incident path.
+- Output controls do not prevent prohibited claims, sends, approvals, or write actions.
 
 ## Output
 
@@ -85,11 +121,17 @@ Deliver:
 
 - Permission boundary.
 - Control matrix.
+- Data-access and field/document restrictions.
+- Tool-level permission matrix.
+- Output controls.
 - Approval model.
 - Audit-log requirements.
+- Monitoring and alert requirements.
+- Incident response path.
 - Revocation plan.
 - Monitoring plan.
 - Open security decisions.
+- Future provisioning prerequisites.
 
 ## Shared Engagement Resources
 

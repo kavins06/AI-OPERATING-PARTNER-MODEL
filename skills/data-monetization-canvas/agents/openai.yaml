@@ -1,4 +1,4 @@
 interface:
-  display_name: "Data Monetization Canvas"
-  short_description: "Identify measurable value from data and AI."
-  default_prompt: "Use this skill to evaluate data monetization opportunities."
+  display_name: "Business Value Case"
+  short_description: "Create evidence-linked value cases for data and AI opportunities."
+  default_prompt: "Use this skill to create a Step 11 business value case with value hypotheses, metric trust, assumptions, confidence, and carry-forward recommendation."

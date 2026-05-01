@@ -9,6 +9,8 @@ description: "Design decision-ready dashboards and KPI standards with audience, 
 
 Start with the audience and decision. A KPI is useful only if it supports action, comparison, accountability, or learning.
 
+Inside the AI operating partner engagement, KPI design supports Step 10 measurement intelligence. It defines decision-linked metrics and agent-safe usage; it does not build dashboards or analytics pipelines.
+
 Useful references:
 
 - `../../mastery-reference/analytics/artifacts/dashboard_kpi_standards.md`
@@ -24,14 +26,17 @@ Useful references:
 4. Select KPIs that drive action.
 5. Define formulas and grain.
 6. Identify sources and refresh cadence.
-7. Add context: target, prior period, benchmark, trend, threshold.
-8. Define allowed filters and drilldowns.
-9. Define owners and quality checks.
-10. Define how an agent may explain or use the KPI.
+7. Classify metric trust: trusted, conditionally trusted, disputed, untrusted, or unknown.
+8. Add context: target, prior period, benchmark, trend, threshold.
+9. Define allowed filters and drilldowns.
+10. Define owners and quality checks.
+11. Define how an agent may calculate, cite, compare, summarize, flag, or escalate the KPI.
 
 ## How To Get Inputs
 
-Interview and collect from:
+In the AI operating partner engagement, prefill from the workflow intelligence object, source access profiles, validation events, Step 8 knowledge requirements, Step 9 guidance packs, and planning evidence before asking new questions.
+
+Interview and collect targeted confirmation from:
 
 - Executives: target outcomes and accountability metrics.
 - Managers: operational decisions and thresholds.
@@ -42,6 +47,8 @@ Interview and collect from:
 
 Use adaptive AI interviews to ask "What decision does this number change?" for every proposed KPI.
 
+Do not ask for live system access, credentials, or build access. Use approved planning evidence such as redacted dashboards, board reports, KPI lists, budget variance reports, accounting exports, property management reports, Excel trackers, and data dictionaries.
+
 ## KPI Definition Template
 
 | Field | Definition |
@@ -50,14 +57,25 @@ Use adaptive AI interviews to ask "What decision does this number change?" for e
 | Business question | |
 | Formula | |
 | Grain | |
-| Source system | |
+| Unit | |
+| Source of record | |
+| Operational working source | |
+| Source access profile | |
 | Refresh cadence | |
+| Freshness required | |
 | Owner | |
+| Steward | |
 | Quality checks | |
 | Allowed filters | |
+| Drilldowns | |
 | Thresholds | |
+| Trust status | |
+| Trust evidence | |
 | Decision/action | |
-| Agent permissions | |
+| Agent allowed uses | |
+| Agent prohibited uses | |
+| Human review triggers | |
+| Owner confirmation status | |
 
 ## Dashboard Rules
 
@@ -90,6 +108,8 @@ Deliver:
 - Layout sections.
 - Filters and drilldowns.
 - Data sources.
+- Metric trust status.
+- Agent-safe metric usage.
 - Quality checks.
 - Agent role.
 - Open governance questions.
