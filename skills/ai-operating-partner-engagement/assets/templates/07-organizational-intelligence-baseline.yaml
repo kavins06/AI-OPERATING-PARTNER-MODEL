@@ -1,0 +1,404 @@
+baseline_id: "oib.<client>.<scope>.v1"
+object_type: "organizational_intelligence_baseline"
+contract_version: "0.1"
+status: "draft" # draft | generated | partially_validated | validated | blocked
+created_at:
+generated_after_step: 8
+build_ready: false
+client_product_ready: false
+
+baseline_purpose:
+  description: "Structured data substrate for a separate client-facing Organizational Intelligence product."
+  not_a_report: true
+  not_a_build_plan: true
+  no_credentials_or_live_access_included: true
+  no_raw_transcript_or_unredacted_sensitive_content_required: true
+
+source_inputs:
+  engagement_tiering_id:
+  regulated_domain_extension_ids: []
+  executive_terrain_ids: []
+  candidate_use_case_shortlist_ids: []
+  interview_batch_ids: []
+  variation_map_ids: []
+  evidence_follow_up_ids: []
+  workflow_spec_ids: []
+  diagnostic_ids: []
+  validation_event_ids: []
+  source_inventory_ids: []
+  planning_evidence_refs: []
+
+scope:
+  client:
+  business_units: []
+  functions_or_portfolios: []
+  workflows_included: []
+  candidate_use_cases_included: []
+  roles_included: []
+  variants_included: []
+  excluded_scope: []
+  engagement_tier:
+  vertical_domain:
+
+identity_and_privacy:
+  stable_id_policy: "Use stable non-secret IDs for roles, people, workflows, systems, sources, decisions, and evidence."
+  people_identity_mode: "role_only | pseudonymized_person_ids | named_people_allowed_by_client"
+  sensitive_content_policy: "Store sensitive content classes and handling rules; avoid unnecessary raw sensitive values."
+  transcript_policy: "Reference transcripts or summaries; do not require raw transcripts in the product payload."
+  evidence_policy: "Reference approved planning evidence and redaction status."
+
+graph_nodes:
+  organization_units:
+    - org_unit_id:
+      name:
+      parent_org_unit_id:
+      scope:
+      validation_status:
+      evidence_refs: []
+  teams:
+    - team_id:
+      name:
+      parent_team_id:
+      org_unit_id:
+      scope:
+      validation_status:
+      evidence_refs: []
+  roles:
+    - role_id:
+      name:
+      layer:
+      team_id:
+      responsibilities: []
+      decision_rights: []
+      approval_authority: []
+      validation_status:
+      evidence_refs: []
+      confidence:
+  people:
+    - person_id:
+      display_label:
+      role_ids: []
+      team_id:
+      status: "interviewed | known_not_interviewed | inferred | not_captured"
+      identity_visibility: "internal_only | client_view_allowed | redacted"
+      evidence_refs: []
+      confidence:
+  workflows:
+    - workflow_id:
+      name:
+      business_purpose:
+      trigger:
+      outcome:
+      linked_candidate_use_case_ids: []
+      validation_status:
+      evidence_refs: []
+      confidence:
+  workflow_variants:
+    - variant_id:
+      workflow_id:
+      variation_dimension: "region | portfolio | property_type | role_seniority | system | contractor_franchise | local_practice | other"
+      description:
+      where_observed: []
+      official_preferred_pattern:
+      de_facto_pattern:
+      adoption_implication:
+      risk_or_truth_implication:
+      separate_modeling_required: false
+      validation_status:
+      evidence_refs: []
+  workflow_steps:
+    - step_id:
+      workflow_id:
+      sequence:
+      primary_role_id:
+      action:
+      input_information_object_ids: []
+      output_information_object_ids: []
+      source_ids: []
+      decision_ids: []
+      approval_gate_ids: []
+      handoff_to_role_ids: []
+      validation_status:
+      evidence_refs: []
+      confidence:
+  decisions:
+    - decision_id:
+      workflow_id:
+      name:
+      owner_role_id:
+      inputs_required: []
+      information_object_ids: []
+      explicit_rules_known: []
+      tacit_judgment_signals: []
+      escalation_triggers: []
+      ai_support_allowed: []
+      ai_support_forbidden: []
+      validation_status:
+      evidence_refs: []
+      confidence:
+  approval_gates:
+    - approval_gate_id:
+      workflow_id:
+      condition:
+      approver_role_id:
+      required_before:
+      audit_required:
+      ai_boundary:
+      validation_status:
+      evidence_refs: []
+  edge_cases:
+    - edge_case_id:
+      workflow_id:
+      description:
+      normal_rule_broken:
+      trigger:
+      detection_method:
+      handler_role_id:
+      escalation_role_id:
+      risk_if_mishandled:
+      frequency:
+      severity:
+      automation_implication:
+      validation_status:
+      evidence_refs: []
+  systems:
+    - system_id:
+      name:
+      purpose:
+      business_owner_role:
+      technical_owner_role:
+      vendor_owner_role:
+      data_held: []
+      access_constraints_known:
+      validation_status:
+      evidence_refs: []
+  sources:
+    - source_id:
+      name:
+      source_type: "system | report | dashboard | tracker | document | email | spreadsheet | spreadsheet_macro | manual_adjustment | expert_memory | walkthrough | interview_claim | other"
+      system_id:
+      trusted_for: []
+      not_trusted_for: []
+      known_quality_issues: []
+      sensitivity:
+      owner_role:
+      validation_status:
+      evidence_refs: []
+  information_objects:
+    - information_object_id:
+      name:
+      object_type:
+      business_use:
+      used_in_workflow_ids: []
+      used_in_step_ids: []
+      used_in_decision_ids: []
+      source_access_profile_ids: []
+      truth_production_profile_ids: []
+      required_fields_or_attributes: []
+      lookup_keys: []
+      freshness_requirement:
+      sensitivity:
+      validation_status:
+      evidence_refs: []
+      confidence:
+  source_access_profiles:
+    - source_access_profile_id:
+      information_object_id:
+      source_id:
+      system_id:
+      practical_access_path:
+      module_report_view_or_path:
+      access_method:
+      lookup_keys: []
+      required_fields_or_attributes: []
+      current_access_roles: []
+      alternate_locations: []
+      access_failure_modes: []
+      validation_status:
+      evidence_refs: []
+      confidence:
+  truth_production_profiles:
+    - truth_profile_id:
+      name:
+      linked_information_object_ids: []
+      linked_metric_ids: []
+      linked_decision_ids: []
+      linked_report_or_output_ids: []
+      official_source:
+      official_source_status:
+      de_facto_trusted_source:
+      de_facto_source_status:
+      truth_status: "authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown"
+      production_chain_summary:
+      embedded_rules_or_macros: []
+      manual_adjustments_or_reconciliations: []
+      owner_role:
+      steward_or_knower_role:
+      reproducibility: "high | medium | low | unknown"
+      auditability: "high | medium | low | unknown"
+      ai_safe_usage:
+        allowed_uses: []
+        prohibited_uses: []
+        required_human_review_when: []
+      required_fix_before_ai_use:
+      validation_status:
+      evidence_refs: []
+      confidence:
+
+graph_edges:
+  reporting_relationships:
+    - from_role_id:
+      to_role_id:
+      relationship_type: "reports_to | dotted_line | escalation | approval"
+      validation_status:
+  workflow_handoffs:
+    - from_step_id:
+      to_step_id:
+      from_role_id:
+      to_role_id:
+      handoff_object_ids: []
+      failure_modes: []
+  information_dependencies:
+    - from_information_object_id:
+      to_decision_or_step_id:
+      dependency_type: "input | output | evidence | approval_support | metric | truth_source"
+  source_truth_links:
+    - source_id:
+      truth_profile_id:
+      role: "official_source | de_facto_source | input_to_chain | reconciliation_source | disputed_source"
+
+candidate_ai_portfolio:
+  - candidate_use_case_id:
+    name:
+    status: "alive | alive_with_conditions | blocked | disqualified | deprioritized | needs_more_discovery"
+    hypothesis:
+    target_users: []
+    linked_workflow_ids: []
+    linked_variant_ids: []
+    value_hypothesis:
+    confidence:
+    evidence_refs: []
+    disqualification_criteria: []
+    current_blockers:
+      - blocker_id:
+        blocker_type: "truth_production | source_access | governance | knowledge | adoption | regulated_domain | value | variation | other"
+        blocker_classification: "fatal_for_use_case | requires_remediation_before_build | acceptable_with_controls | informational"
+        description:
+        owner_candidate:
+        next_route:
+    ai_fit_boundary:
+      safe_now: []
+      unsafe_now: []
+      safe_only_if: []
+      fix_first: []
+      prohibited: []
+    next_recommended_step:
+
+validated_intelligence_summary:
+  executive_intelligence:
+    top_operating_insights: []
+    candidate_ai_portfolio_summary: []
+    major_truth_production_risks: []
+    major_readiness_blockers: []
+    safe_vs_unsafe_ai_patterns: []
+    strategic_follow_up_questions: []
+  operating_intelligence:
+    validated_workflows: []
+    material_variations: []
+    handoff_or_owner_gaps: []
+    edge_case_patterns: []
+    hidden_dependency_patterns: []
+    workflow_standardization_opportunities: []
+  data_governance_intelligence:
+    systems_and_sources_involved: []
+    source_access_gaps: []
+    official_vs_de_facto_source_conflicts: []
+    truth_production_registry_summary: []
+    sensitive_field_or_retention_gaps: []
+    owner_or_steward_gaps: []
+  ai_fit_intelligence:
+    safe_limited_ai_behaviors_available_now: []
+    non_safe_behaviors_blocked_now: []
+    candidates_to_continue_to_step9: []
+    candidates_to_disqualify_or_pause: []
+
+validation_state:
+  object_counts:
+    workflows:
+    variants:
+    roles:
+    people:
+    systems:
+    sources:
+    information_objects:
+    source_access_profiles:
+    truth_production_profiles:
+    decisions:
+    edge_cases:
+    candidate_use_cases:
+  validation_status_counts:
+    validated:
+    partially_validated:
+    interview_supported:
+    artifact_supported:
+    disputed:
+    unknown:
+    blocked:
+  unresolved_critical_items:
+    - item_id:
+      object_id:
+      object_type:
+      question:
+      owner_candidate:
+      blocks_next_step:
+      next_route:
+  back_edge_required:
+    update_step6_workflow_object: false
+    rerun_step7_diagnostic: false
+    update_step2_candidate_shortlist: false
+    expand_step3_or_step4_discovery: false
+
+product_view_contract:
+  full_raw_object_shared_with_client: false
+  supported_views:
+    - view_id: "executive_intelligence_view"
+      audience: "sponsor | executive"
+      include_object_types: ["summary", "candidate_ai_portfolio", "major_blockers", "truth_risk_summary", "next_routes"]
+      exclude_object_types: ["raw_transcripts", "unredacted_sensitive_content", "internal_inference_notes"]
+    - view_id: "operating_intelligence_view"
+      audience: "business_owner | operator_manager"
+      include_object_types: ["workflows", "variants", "handoffs", "edge_cases", "owner_gaps", "knowledge_gaps"]
+      exclude_object_types: ["unrelated_sensitive_objects", "organization_wide_raw_model"]
+    - view_id: "data_governance_view"
+      audience: "it | data | security | system_owner"
+      include_object_types: ["systems", "sources", "source_access_profiles", "truth_production_profiles", "sensitive_fields", "retention_gaps"]
+      exclude_object_types: ["unrelated_workflow_views", "raw_interview_notes"]
+    - view_id: "ai_fit_boundary_view"
+      audience: "sponsor | operating_partner | build_strategy"
+      include_object_types: ["candidate_ai_portfolio", "safe_now", "unsafe_now", "fix_first", "prohibited", "next_routes"]
+      exclude_object_types: ["credentials", "implementation_secrets", "raw_sensitive_values"]
+
+downstream_payloads_for_steps_9_to_18:
+  step9_knowledge_requirement_seeds: []
+  step10_guidance_pack_seeds: []
+  step11_measurement_intelligence_seeds: []
+  step12_value_case_seeds: []
+  step13_solution_adoption_seeds: []
+  step14_technical_blueprint_seeds: []
+  step15_risk_control_seeds: []
+  step16_readiness_seeds: []
+  step17_decision_packet_seeds: []
+  step18_lifecycle_seeds: []
+
+baseline_release_gate:
+  ready_to_use_for_client_product_views: false
+  minimum_conditions:
+    - "Candidate use cases have explicit status and AI-fit boundary."
+    - "Material workflows have validation status and evidence references."
+    - "Material information objects have source access profiles or unresolved route."
+    - "Material numbers, statuses, reports, and decision inputs have truth production profiles or unresolved route."
+    - "Material variations are mapped or explicitly not applicable."
+    - "Critical unresolved items are named with owner candidate and next route."
+    - "Sensitive content is classified or excluded from product views."
+  release_notes:
+  operating_partner_judgment:

@@ -47,7 +47,7 @@ Use `ai-operating-partner-engagement` first when you want the full process. V2 i
 5. Planning-evidence follow-up
 6. AI-native workflow intelligence object
 7. Organizational intelligence diagnostic
-8. Controlled validation and governance/source access/truth production resolution
+8. Controlled validation, governance/source access/truth production resolution, and Organizational Intelligence Baseline v1
 9. AI knowledge and guideline requirements map
 10. AI guidance pack: structured spec, skill-style view, and test/eval cases
 11. Measurement intelligence and AI-capability metric design

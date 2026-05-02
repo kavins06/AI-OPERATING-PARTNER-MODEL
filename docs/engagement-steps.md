@@ -34,9 +34,9 @@ Produce structured organizational workflow intelligence with roles, actors, hier
 
 Attach findings to workflow objects, separate symptoms from root causes, classify blockers as fatal-for-use-case, requires-remediation-before-build, acceptable-with-controls, or informational, and route intervention paths.
 
-## Step 8: Controlled Validation And Governance Resolution
+## Step 8: Controlled Validation, Governance Resolution, And Baseline Release
 
-Use controlled views to resolve official sources, de facto trusted sources, truth production chains, owners, access paths, sensitive fields, retention, permitted AI actions, and disputed objects. Material validation changes loop back into Step 6 and Step 7 for object update and diagnostic re-score.
+Use controlled views to resolve official sources, de facto trusted sources, truth production chains, owners, access paths, sensitive fields, retention, permitted AI actions, and disputed objects. Material validation changes loop back into Step 6 and Step 7 for object update and diagnostic re-score. Then generate Organizational Intelligence Baseline v1: the structured data substrate for a separate client-facing product, including graph nodes, graph edges, candidate AI portfolio, AI-fit boundaries, truth production registry, validation state, product-view contract, and downstream seeds for Steps 9-18.
 
 ## Step 9: AI Knowledge And Guideline Requirements Map
 

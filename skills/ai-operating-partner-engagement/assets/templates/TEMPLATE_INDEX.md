@@ -12,7 +12,7 @@ Use this index to keep artifacts aligned to the V2 engagement. Machine-readable 
 | 5. Planning-evidence follow-up | `04-artifact-follow-up-request.md`, `04-artifact-follow-up-request.csv` |  |
 | 6. AI-native workflow intelligence object | `05-ai-workflow-spec.yaml` |  |
 | 7. Organizational intelligence diagnostic | `06-organizational-intelligence-diagnostic.yaml` |  |
-| 8. Controlled validation and governance resolution | `07-source-inventory.csv`, `07-validation-event.yaml` | `07-controlled-validation-call-view.md` |
+| 8. Controlled validation, governance resolution, and organizational intelligence baseline | `07-source-inventory.csv`, `07-validation-event.yaml`, `07-organizational-intelligence-baseline.yaml` | `07-controlled-validation-call-view.md` |
 | 9. AI knowledge and guideline requirements map | `08-knowledge-map.md` |  |
 | 10. AI guidance pack | `09-ai-guidance-spec.yaml`, `09-ai-guidance-test-cases.yaml` | `09-ai-guidance-skill.md` |
 | 11. Measurement intelligence and AI-capability metric design | `10-measurement-intelligence.yaml`, `10-kpi-dictionary.csv` |  |

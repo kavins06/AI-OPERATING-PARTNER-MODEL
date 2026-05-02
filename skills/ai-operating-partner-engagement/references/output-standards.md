@@ -201,7 +201,7 @@ Step 7 enriches the workflow object with structured diagnostic findings. Each fi
 
 Fatal-for-use-case findings should update the Step 2 shortlist immediately instead of passively continuing through later steps.
 
-## Step 8 Controlled Validation And Governance Resolution
+## Step 8 Controlled Validation, Governance Resolution, And Baseline Release
 
 Step 8 validates the workflow object and diagnostic without handing over the full organizational intelligence object. Use Step 6 and Step 7 to prefill what is known, then route only unresolved or high-risk objects to the smallest authorized resolver group.
 
@@ -217,8 +217,23 @@ Step 8 must produce:
 - Sensitive field, retention, export, and handling constraints.
 - Permitted AI actions and AI-safe truth usage.
 - Back-edge decision: whether Step 6 must update, Step 7 must re-score, Step 2 shortlist must change, or the flow can continue.
+- Organizational Intelligence Baseline v1: a machine-readable product data contract generated from Steps 0-8.
 
 Material changes to workflow objects, truth profiles, source access paths, candidate use-case viability, or blocker classification loop back to Step 6 and Step 7 before continuing.
+
+The Organizational Intelligence Baseline v1 must be structured enough for a separate client-facing product to render useful controlled views without scraping interviews, notes, or reports. It must include:
+
+- Source-input trace from Steps 0-8.
+- Scope, identity/privacy policy, evidence policy, and sensitivity policy.
+- Graph nodes: organization units, teams, roles, people or pseudonymized people, workflows, workflow variants, workflow steps, decisions, approval gates, edge cases, systems, sources, information objects, source access profiles, and truth production profiles.
+- Graph edges: reporting relationships, handoffs, information dependencies, and source/truth links.
+- Candidate AI portfolio: status, hypothesis, target users, evidence, blockers, AI-fit boundary, safe-now behavior, unsafe-now behavior, fix-first items, prohibited behavior, and next route.
+- Validated intelligence summary for executive, operating, data/governance, and AI-fit views.
+- Validation state: object counts, validation-status counts, unresolved critical items, back-edge requirements, and confidence.
+- Product-view contract: what views can be generated, what each audience can see, and what must remain excluded.
+- Downstream seeds for Steps 9-18 so the later process can continue from the same structured object.
+
+Do not make the full raw internal object the client product. The baseline is a controlled data payload from which client-facing views can be generated.
 
 ## Step 9 Knowledge And Guideline Requirements
 

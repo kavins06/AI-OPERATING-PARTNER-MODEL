@@ -49,7 +49,7 @@ This skill orchestrates the supporting skills and engagement gates:
 5. Consolidate evidence needs after interviews and create a curated planning-evidence follow-up request with SLA, escalation, and acceptable substitutes. Ask only for the smallest useful set of redacted examples, screenshots, walkthroughs, formulas, macro walkthroughs, sample exports, schema/field lists, vendor docs, or data dictionaries. Do not request build access or credentials.
 6. Generate the initial AI-native organizational workflow intelligence object: structured roles, org context, actors, steps, decisions, edge cases, information objects, source access profiles, truth production profiles, sources, systems, approvals, variation patterns, evidence, confidence, unknowns, completeness checks, and enrichment routes.
 7. Run the organizational intelligence diagnostic: attach findings to workflow objects, separate symptoms from likely root causes, score confidence, identify automation blockers, classify each blocker as fatal-for-use-case, requires-remediation-before-build, acceptable-with-controls, or informational, and route accordingly.
-8. Validate through controlled role-specific views and object-specific governance resolution. Step 8 explicitly loops back to Step 6 and Step 7 when validation changes material workflow objects, truth profiles, source access paths, or blocker classifications.
+8. Validate through controlled role-specific views and object-specific governance resolution, then generate the Organizational Intelligence Baseline v1 data contract. Step 8 explicitly loops back to Step 6 and Step 7 when validation changes material workflow objects, truth profiles, source access paths, or blocker classifications. The baseline is the structured data substrate for a separate client-facing product; it is not the full raw internal object and not a report.
 9. Produce the AI knowledge and guideline requirements map for decisions, exceptions, escalation paths, truth production chains, expertise gaps, adoption knowledge, and regulated-domain knowledge. This maps requirements; it does not write final rules yet.
 10. Convert prioritized requirements into an AI guidance pack: canonical machine-readable guidance spec, readable view, behavioral evals, output-quality evals, regulated-domain evals where applicable, truth-production handling, explicit rules, examples, output contract, owners, update cadence, and validation status.
 11. Produce measurement intelligence and AI-capability metric design. Classify existing metric trust and truth status, then define future AI success metrics, leading indicators, lagging indicators, override/error/drift signals, cost metrics, and kill criteria.
@@ -93,6 +93,7 @@ Use these templates:
 - `assets/templates/07-source-inventory.csv`
 - `assets/templates/07-controlled-validation-call-view.md`
 - `assets/templates/07-validation-event.yaml`
+- `assets/templates/07-organizational-intelligence-baseline.yaml`
 - `assets/templates/08-knowledge-map.md`
 - `assets/templates/09-ai-guidance-spec.yaml`
 - `assets/templates/09-ai-guidance-skill.md`
@@ -200,6 +201,18 @@ If the user asks to validate a model, produce:
 - Official source, de facto trusted source, truth production, owner/steward, sensitive-field, retention, access, and permitted-AI-action decisions where available.
 - Confirmed, corrected, disputed, unknown, and not-reviewed objects.
 - Remaining unresolved items, limited to issues that could not be decided by the authorized resolver group.
+- Organizational Intelligence Baseline v1 payload: graph nodes, graph edges, candidate AI portfolio, AI-fit boundaries, truth production registry, validation state, product-view contract, and downstream seeds for Steps 9-18.
+
+If the user asks for Step 8, produce:
+
+- Controlled validation and governance resolution event.
+- Confirmed, corrected, disputed, unresolved, unknown, and not-reviewed critical objects.
+- Source access confirmations and unresolved access-path questions.
+- Truth production confirmations: official source, de facto trusted source, chain, embedded rules, manual adjustments, owner/knower, reproducibility, auditability, and AI-safe usage.
+- Governance decisions: owner/steward, sensitive fields, retention/export/handling constraints, permitted AI actions, and prohibited AI actions.
+- Back-edge decision: continue, update Step 6, re-score Step 7, update Step 2 shortlist, expand interviews/variation mapping, or pause.
+- Organizational Intelligence Baseline v1 as the product data substrate: scope, identity/privacy policy, graph nodes, graph edges, candidate AI portfolio, AI-fit boundaries, validated intelligence summary, validation state, product-view contract, and downstream seeds for Steps 9-18.
+- Release status for client product views: ready, partial, or blocked, with required updates before release.
 
 If the user gives interview outputs, edge case registers, or silent evidence need logs, produce:
 

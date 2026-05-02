@@ -150,3 +150,23 @@ back_edge_decisions:
     allowed: true
     conditions:
       -
+
+organizational_intelligence_baseline_release:
+  baseline_id:
+  generate_baseline_v1: false
+  ready_for_client_product_views: false
+  required_updates_before_release:
+    - object_id:
+      object_type:
+      required_update:
+      owner_candidate:
+  view_readiness:
+    executive_intelligence_view: "ready | partial | blocked"
+    operating_intelligence_view: "ready | partial | blocked"
+    data_governance_view: "ready | partial | blocked"
+    ai_fit_boundary_view: "ready | partial | blocked"
+  excluded_from_product_payload:
+    - "raw_transcripts"
+    - "unredacted_sensitive_content"
+    - "credentials_or_secrets"
+    - "internal_unvalidated_inference_notes"
