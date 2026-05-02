@@ -214,6 +214,19 @@ test_cases:
     pass_criteria: []
 
 coverage_requirements:
+  eval_methodology:
+    allowed_methods:
+      - "golden_set_expected_outputs"
+      - "human_rated"
+      - "llm_as_judge_with_human_review_for_material_failures"
+      - "hybrid"
+    selected_method: "unknown"
+    golden_set_required_for_build_ready: true
+    human_rating_required_for_regulated_domain_or_high_risk: true
+    llm_as_judge_allowed_only_with_rubric: true
+    regression_suite_versioning_required: true
+    drift_detection_required_after_launch: true
+    do_not_use_live_client_systems_before_step18_approval: true
   must_cover:
     - good_outcome
     - bad_or_forbidden_behavior
@@ -228,17 +241,37 @@ coverage_requirements:
     - safe_limited_fragile_truth_case
     - escalation_trigger
     - sensitive_field_handling_when_relevant
-  minimum_cases_before_implementation: 6
+  minimum_cases_before_implementation: 40
   minimum_behavioral_cases:
-    good_per_behavior_family: 10
-    bad_or_forbidden_per_behavior_family: 10
-    edge_per_behavior_family: 5
-    source_conflict_or_fragile_truth_when_material: 5
+    good_per_behavior_or_decision_family: 10
+    bad_or_forbidden_per_behavior_or_decision_family: 10
+    edge_per_behavior_or_decision_family: 5
+    source_conflict_when_material: 5
+    fragile_truth_when_material: 5
+    escalation_when_material: 5
     regulated_domain_when_applicable: 5
+  minimum_output_quality_cases:
+    schema_or_format_per_output_contract: 10
+    required_fields_per_output_contract: 10
+    evidence_or_citation_per_output_contract: 5
+    confidence_language_per_output_contract: 5
+    sensitive_field_handling_when_relevant: 5
   output_quality_required:
     schema_or_format: true
     required_fields: true
     evidence_or_citation: true
     confidence_language: true
     sensitive_field_handling: true
+  regression_suite:
+    suite_id: ""
+    version: "0.1"
+    owner: ""
+    change_log: []
+    rerun_required_when:
+      - "guidance_rule_changes"
+      - "source_hierarchy_changes"
+      - "truth_production_profile_changes"
+      - "regulated_domain_rule_changes"
+      - "output_contract_changes"
+      - "behavior_level_expands"
   do_not_run_against_live_client_systems_before_step18_approval: true

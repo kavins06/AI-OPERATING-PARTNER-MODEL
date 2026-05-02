@@ -9,6 +9,8 @@ description: "Plan, run, and synthesize data strategy workshops that translate b
 
 Start with business outcomes and decisions, not tools, models, dashboards, or agents.
 
+Inside the AI operating partner engagement, this skill produces inputs for Step 1 (executive opportunity terrain) and Step 2 (candidate use-case shortlist). The workshop's outputs must conform to the canonical V3 artifacts: opportunity terrain capture and a `candidate_use_case_shortlist` whose `candidates[]` items conform to the canonical `candidate_use_case` schema. Do not produce generic strategy outputs that cannot route to a Step 2 candidate.
+
 Useful references:
 
 - `../../mastery-reference/information-management/operator-toolkit/client-data-strategy-workshop-sop.md`
@@ -69,22 +71,23 @@ Do not ask for everything. Ask for examples that explain decisions, repeated wor
 
 ## Outputs
 
-Produce:
+Produce, in canonical V3 artifact form where applicable:
 
-- Data strategy one-pager.
-- Prioritized roadmap.
-- Source inventory draft.
-- Governance decision list.
-- Analytics/dashboard needs.
-- Candidate AI-agent backlog.
-- Pilot recommendation.
-- Success metrics.
+- Executive opportunity terrain capture (Step 1 artifact).
+- Candidate use-case shortlist conforming to `candidate_use_case_shortlist` and `candidate_use_case` schemas, with each candidate carrying `one_line_hypothesis`, `target_user_groups`, `workflow_boundary`, `value_hypothesis`, `trust_dependencies` (truth_production / source_access / data_quality / regulated_domain), `adoption_dependencies`, `disqualification_criteria`, `current_status`, and `evidence_refs`.
+- Source inventory draft (links to Step 7/8 canonical templates).
+- Governance decision list (routes into Step 8 controlled validation).
+- Analytics/dashboard needs (routes into Step 11 measurement intelligence).
+- Pilot recommendation with proposed minimum-safe `behavior_level` per candidate.
+- Success metrics with linked AI-capability metrics: success, override_rate, error_rate, drift signals, adoption metrics, cost metrics, and kill criteria.
 
 ## Quality Bar
 
 Every proposed initiative must link:
 
 Business outcome -> decision/workflow -> data/knowledge needed -> governance/risk controls -> measurement.
+
+Each candidate must produce a record that conforms to the canonical `candidate_use_case` schema; initiatives that cannot fill `value_hypothesis`, `trust_dependencies`, `adoption_dependencies`, `disqualification_criteria`, `current_status`, and `evidence_refs` are not yet candidates and should be returned to discovery.
 
 Reject tool-first ideas until they can pass that chain.
 

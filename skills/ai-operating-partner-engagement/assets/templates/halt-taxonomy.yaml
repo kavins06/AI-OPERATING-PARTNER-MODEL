@@ -1,0 +1,106 @@
+halt_taxonomy_id: "halt_taxonomy.v3"
+spec_version: "0.1"
+object_type: "halt_taxonomy"
+status: "published_reference"
+purpose: "Reconcile stop, pause, revise, disqualify, kill, revoke, retire, and revisit semantics across the engagement and future lifecycle."
+
+halt_events:
+  pause:
+    definition: "Temporary stop because required evidence, owner confirmation, or decision authority is missing."
+    typical_steps: [5, 8, 13, 14, 15, 16]
+    required_fields:
+      - "reason"
+      - "owner"
+      - "evidence_needed"
+      - "resume_condition"
+      - "deadline_or_sla"
+    next_routes:
+      - "resume_same_step"
+      - "expand_discovery"
+      - "route_to_remediation"
+
+  revise:
+    definition: "Change scope, candidate boundary, solution shape, guidance, controls, or lifecycle because new evidence changes the plan."
+    typical_steps: [7, 8, 12, 13, 15, 16, 17, 18]
+    required_fields:
+      - "changed_artifact"
+      - "reason"
+      - "affected_downstream_artifacts"
+      - "back_edge_required"
+    next_routes:
+      - "update_step2_candidate_shortlist"
+      - "update_step6_workflow_object"
+      - "rerun_step7_diagnostic"
+      - "revise_step13_solution_shape"
+      - "revise_step15_controls"
+
+  disqualify:
+    definition: "Remove a candidate use case from the active opportunity portfolio before build approval."
+    typical_steps: [7, 12, 16]
+    event_types:
+      discovery_disqualification: "Step 7 evidence shows the use case fails structurally or cannot be safely narrowed."
+      economic_disqualification: "Step 12 value, cost, or portfolio comparison shows the candidate should not advance."
+      readiness_disqualification: "Step 16 hard gates fail and no viable remediation or safe-limited behavior remains."
+    required_fields:
+      - "candidate_use_case_id"
+      - "event_type"
+      - "evidence_refs"
+      - "reason"
+      - "revisit_conditions"
+
+  kill:
+    definition: "Stop a future build, pilot, or active capability because defined kill criteria are breached."
+    typical_steps: [11, 18]
+    required_fields:
+      - "metric_or_condition"
+      - "threshold"
+      - "owner"
+      - "action"
+      - "reassessment_path"
+    examples:
+      - "override_rate_exceeds_threshold"
+      - "source_drift_unresolved"
+      - "risk_event_severity_high"
+      - "cost_budget_exceeded"
+
+  revoke:
+    definition: "Remove access, tool permission, user permission, or action capability."
+    typical_steps: [15, 18]
+    required_fields:
+      - "scope_revoked"
+      - "trigger"
+      - "revocation_owner"
+      - "expected_time_to_revoke"
+      - "restoration_condition"
+
+  retire:
+    definition: "End a future AI capability, workflow path, shadow artifact, or remediation track because it no longer creates value or is replaced."
+    typical_steps: [18]
+    required_fields:
+      - "retirement_subject"
+      - "trigger"
+      - "owner"
+      - "notice_required"
+      - "access_revocation_required"
+      - "data_retention_or_deletion_rule"
+      - "documentation_update_required"
+
+  revisit:
+    definition: "Schedule a later review after a no-automation, paused, or remediation decision."
+    typical_steps: [17, 18]
+    required_fields:
+      - "reason"
+      - "owner"
+      - "cadence_or_date"
+      - "conditions_that_would_change_decision"
+
+cross_step_mapping:
+  step2: "Candidate disqualification criteria are hypotheses; actual disqualification events occur at Step 7, Step 12, or Step 16."
+  step7: "Fatal diagnostic blockers create discovery_disqualification or revise events."
+  step11: "Kill criteria are metrics for future operation, not engagement stop conditions."
+  step12: "Portfolio comparison creates economic_disqualification or prioritization revise events."
+  step13: "Adoption-failure triggers become future kill, revise, or retire conditions in Step 18."
+  step15: "Stop conditions and revocation triggers become risk-control and lifecycle obligations."
+  step16: "Hard-gate failures create readiness_disqualification or remediation routing."
+  step17: "Packet type determines whether the halt event becomes build-ready, remediation, or do-not-automate."
+  step18: "Lifecycle object owns kill, revoke, retire, revisit, and future re-entry rules."

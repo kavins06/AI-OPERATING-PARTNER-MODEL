@@ -1,0 +1,273 @@
+decision_packet_contracts_id: "decision_packet_contracts.v3"
+spec_version: "0.1"
+object_type: "decision_packet_contracts"
+status: "published_reference"
+applies_to_step: 17
+purpose: "Define the required sections for each Step 17 packet type."
+
+shared_core_sections:
+  required_for_all_packet_types:
+    - "packet_id"
+    - "packet_type"
+    - "source_input_trace"
+    - "decision_summary"
+    - "recommendation_confidence"
+    - "conditional_revision_triggers"
+    - "scope"
+    - "owner_matrix"
+    - "audience_views"
+    - "stop_boundary"
+  decision_summary_required_fields:
+    - "recommended_path"
+    - "rationale"
+    - "minimum_safe_behavior_level"
+    - "client_decision_needed"
+    - "implementation_approval_boundary"
+  confidence_required_fields:
+    - "confidence_level"
+    - "strongest_evidence"
+    - "weakest_evidence"
+    - "assumptions_that_could_change_recommendation"
+
+packet_types:
+  build_ready_implementation_brief:
+    use_when:
+      - "Step 16 hard gates pass or are conditional only for explicit implementation-phase checks."
+      - "A minimum safe first behavior is ready for separate implementation approval."
+    required_body_sections:
+      - "business_case_summary"
+      - "first_build_scope"
+      - "behavior_contract"
+      - "systems_and_sources"
+      - "truth_production_readiness"
+      - "runtime_design_requirements"
+      - "hosting_environment_requirements"
+      - "future_component_contracts"
+      - "normalization_and_truth_remediation_plan"
+      - "guidance_and_eval_package"
+      - "risk_and_controls"
+      - "future_access_request_package"
+      - "build_sequence"
+      - "launch_prerequisites_for_step18_lifecycle"
+    must_not_include:
+      - "actual_credentials"
+      - "live tokens"
+      - "production secrets"
+      - "instruction to start build before Step 18 approval"
+
+  gap_remediation_plan:
+    use_when:
+      - "Opportunity remains valuable but specific gaps block build-ready status."
+      - "Gaps span multiple categories or do not fit a narrower remediation packet."
+    required_body_sections:
+      - "reason_not_build_ready"
+      - "required_fixes"
+      - "fix_sequence"
+      - "owners"
+      - "evidence_needed"
+      - "completion_criteria"
+      - "dependencies"
+      - "reassessment_trigger"
+      - "return_to_step16_rule"
+    must_answer:
+      - "What exact gap blocks build readiness?"
+      - "Who owns the fix?"
+      - "What evidence proves the fix is done?"
+      - "When does the process return to readiness scoring?"
+
+  governance_data_readiness_plan:
+    use_when:
+      - "Source ownership, access path, data quality, truth production, sensitive fields, retention, or metric trust blocks readiness."
+    required_body_sections:
+      - "source_and_owner_gaps"
+      - "truth_production_gaps"
+      - "data_quality_or_normalization_gaps"
+      - "sensitivity_retention_or_permission_gaps"
+      - "governance_decisions_needed"
+      - "remediation_sequence"
+      - "owner_and_steward_assignment"
+      - "evidence_needed"
+      - "return_to_step8_or_step16_rule"
+    must_answer:
+      - "What official and de facto sources must be resolved?"
+      - "What truth chains must be documented or controlled?"
+      - "What AI behaviors remain safe-limited during remediation?"
+
+  knowledge_capture_plan:
+    use_when:
+      - "Tacit expert judgment, examples, policy interpretation, regulated-domain knowledge, or source hierarchy is missing."
+    required_body_sections:
+      - "knowledge_gaps"
+      - "expert_or_owner_map"
+      - "capture_questions"
+      - "examples_needed"
+      - "validation_method"
+      - "guidance_update_plan"
+      - "eval_case_update_plan"
+      - "return_to_step9_or_step10_rule"
+    must_answer:
+      - "Which knowledge is missing?"
+      - "Who likely knows it?"
+      - "What examples prove it?"
+      - "How does captured knowledge become guidance and evals?"
+
+  technical_feasibility_plan:
+    use_when:
+      - "APIs, exports, vendor limits, identity resolution, normalization, hosting, sandbox, future tool contracts, or test data are unresolved."
+    required_body_sections:
+      - "technical_unknowns"
+      - "systems_and_vendor_questions"
+      - "future_access_options"
+      - "blocked_paths"
+      - "fallback_paths"
+      - "normalization_or_identity_resolution_questions"
+      - "sandbox_or_test_data_needs"
+      - "owner_confirmations_needed"
+      - "return_to_step14_or_step16_rule"
+    must_answer:
+      - "What must be confirmed before a build-ready brief?"
+      - "What future component contracts are blocked?"
+      - "Which technical path is preferred, fallback, or prohibited?"
+
+  risk_control_plan:
+    use_when:
+      - "Material privacy, security, regulated-domain, output, tool permission, approval, monitoring, incident, or revocation control is missing."
+    required_body_sections:
+      - "risk_gap_summary"
+      - "named_risks"
+      - "missing_controls"
+      - "required_control_design"
+      - "owner_confirmations_needed"
+      - "test_or_verification_method"
+      - "stop_conditions"
+      - "return_to_step15_or_step16_rule"
+    must_answer:
+      - "Which control is missing?"
+      - "Who owns it?"
+      - "How is the control tested?"
+      - "What behavior levels are blocked until control exists?"
+
+  do_not_automate_recommendation:
+    use_when:
+      - "Risk, value, adoption, truth, legality, ownership, or feasibility makes automation inappropriate."
+      - "No valuable safe-limited behavior remains."
+    required_body_sections:
+      - "do_not_automate_rationale"
+      - "unacceptable_risks_or_blockers"
+      - "evidence_refs"
+      - "alternative_operating_recommendation"
+      - "what_not_to_build"
+      - "revisit_conditions"
+      - "owner_for_revisit"
+      - "review_cadence"
+    must_answer:
+      - "Why should this not be automated?"
+      - "What should the client do instead?"
+      - "What would need to change for reconsideration?"
+
+audience_view_rules:
+  sponsor_view:
+    include:
+      - "decision_summary"
+      - "business_case_summary"
+      - "major_blockers_or_risks"
+      - "required_owner_commitments"
+      - "investment_or_remediation_choice"
+    exclude:
+      - "credentials"
+      - "sensitive_field_detail"
+      - "internal inference notes"
+  technical_view:
+    include:
+      - "systems_and_sources"
+      - "future_access_requests"
+      - "component_contracts"
+      - "normalization"
+      - "hosting_environment"
+      - "test_strategy"
+      - "logging_and_observability"
+  risk_view:
+    include:
+      - "named_risks"
+      - "regulated_domain_constraints"
+      - "controls"
+      - "approval_gates"
+      - "stop_conditions"
+      - "revocation"
+  remediation_owner_view:
+    include:
+      - "assigned_fix"
+      - "evidence_needed"
+      - "completion_criteria"
+      - "deadline_or_review_cadence"
+    exclude:
+      - "unrelated blockers"
+
+packet_validation:
+  required_checks:
+    - "Packet type matches Step 16 recommended path."
+    - "All required body sections for packet type are present."
+    - "All blockers have owners or explicit unresolved owner route."
+    - "All future access requests are marked not_requested or drafted_for_future."
+    - "Stop boundary confirms no build has started."
+
+packet_set:
+  rationale: "A single workflow can produce more than one Step 17 packet when one part of the workflow is build-ready at a safe-limited behavior level while another part requires remediation, governance work, knowledge capture, technical feasibility work, or risk-control work, or must not automate. The packet_set contract preserves the single-packet shape when only one packet applies and adds explicit cross-packet relationships when more apply."
+  use_when:
+    - "A workflow has both a build-ready safe-limited behavior and an unsafe behavior that requires a separate plan (e.g., draft-and-flag is build-ready but autonomous nurture requires risk_control_plan)."
+    - "Step 16 readiness recommends separate paths for separate behavior levels of the same workflow."
+    - "Multiple packets must be approved together for the engagement to advance."
+  required_fields:
+    - "packet_set_id"
+    - "workflow_id"
+    - "packets"
+    - "cross_packet_relationships"
+    - "packet_set_validation"
+  packets_field:
+    description: "Array of 1..N implementation_decision_packet objects. Each packet still conforms to its own packet_type contract. Single-packet engagements have packets[] of length 1 and no cross_packet_relationships."
+    minimum_count: 1
+  cross_packet_relationships_field:
+    description: "Array describing how packets relate to one another. Used by Step 18 lifecycle_set to determine variant relationships and by client review to understand approval ordering."
+    relationship_types:
+      remediation_unblocks_build: "A gap_remediation_plan, governance_data_readiness_plan, knowledge_capture_plan, technical_feasibility_plan, or risk_control_plan must be completed before the build_ready_implementation_brief becomes effective."
+      risk_plan_constrains_scope: "A risk_control_plan defines the boundary for the build_ready_implementation_brief; the build packet must not exceed the risk plan's authorized scope."
+      governance_unblocks_build: "Specific governance/data readiness work must complete before the build packet is effective."
+      knowledge_capture_unblocks_build: "Knowledge capture must complete before the build packet is effective."
+      technical_feasibility_unblocks_build: "Technical feasibility resolution must complete before the build packet is effective."
+      independent: "Packets are independently effective; no blocking dependency."
+    required_per_relationship:
+      - "relationship_type"
+      - "predecessor_packet_id"
+      - "successor_packet_id"
+      - "blocking"
+      - "unblock_condition (when blocking is true)"
+  packet_set_validation:
+    required_checks:
+      - "Each packet conforms to its own packet_type contract per packet_validation above."
+      - "Every relationship references existing packet ids in this set."
+      - "If any relationship has blocking = true, an unblock_condition is named."
+      - "No cycle exists in the relationship graph."
+      - "When packets[] length is 1, cross_packet_relationships[] is empty or omitted."
+  approval_rules:
+    - "Sponsor may approve, reject, or request revision on any individual packet, but the engagement does not advance to Step 18 until every packet in the set has a final disposition."
+    - "When a relationship is blocking, the successor packet's authorization is conditional on completion of the predecessor's required work."
+  example:
+    scenario: "Residential brokerage inbound lead qualification with TCPA exposure and Fair Housing exposure"
+    packets:
+      - packet_type: "build_ready_implementation_brief"
+        scope: "Summarize lead, draft response for human send"
+      - packet_type: "risk_control_plan"
+        scope: "Autonomous SMS nurture with PEWC validation, opt-out propagation, quiet hours, and frequency limits"
+      - packet_type: "knowledge_capture_plan"
+        scope: "Client_must_supply Fair Housing language list and per-state guidance"
+    cross_packet_relationships:
+      - relationship_type: "knowledge_capture_unblocks_build"
+        predecessor: "knowledge_capture_plan"
+        successor: "build_ready_implementation_brief"
+        blocking: true
+        unblock_condition: "Client supplies fh.language_examples and fh.state_guidance for each active state."
+      - relationship_type: "risk_plan_constrains_scope"
+        predecessor: "risk_control_plan"
+        successor: "build_ready_implementation_brief"
+        blocking: false
+        unblock_condition: "Build packet must declare 'autonomous nurture out of scope' until risk plan controls are tested."

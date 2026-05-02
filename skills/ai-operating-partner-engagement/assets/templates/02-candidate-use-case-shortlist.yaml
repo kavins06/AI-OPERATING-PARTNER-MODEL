@@ -44,8 +44,20 @@ shortlist:
     disqualification_criteria:
       - criterion_id: ""
         criterion: ""
-        checked_in_step: "" # step6 | step7 | step11 | step12 | step14
+        checked_in_step: "" # step7 | step12 | step16
         if_true_route_to: "" # deprioritize | do_not_automate | remediation | revise_scope
+    disqualification_events:
+      - event_id: ""
+        event_type: "" # discovery_disqualification | economic_disqualification | readiness_disqualification
+        step: "" # step7 | step12 | step16
+        state_before_event: ""
+        state_after_event: "" # paused | disqualified | deprioritized | remediation_required | do_not_automate | revise_scope
+        reason: ""
+        linked_finding_ids: []
+        linked_blocker_ids: []
+        evidence_refs: []
+        operating_partner_judgment: ""
+        shortlist_version_after_event: ""
     minimum_safe_behavior_hypothesis: "" # read_only_summary | draft_and_flag | recommendation_support | human_approved_action | autonomous_action | unknown
     discovery_plan:
       interview_roles: []
@@ -62,9 +74,9 @@ portfolio_view:
 
 versioning:
   reaffirm_at_steps:
-    - "step6_diagnostic"
-    - "step11_value_case"
-    - "step14_readiness"
+    - "step7_diagnostic_for_discovery_disqualification"
+    - "step12_value_and_portfolio_for_economic_disqualification"
+    - "step16_readiness_for_readiness_disqualification"
   change_log:
     - date: ""
       changed_by: ""

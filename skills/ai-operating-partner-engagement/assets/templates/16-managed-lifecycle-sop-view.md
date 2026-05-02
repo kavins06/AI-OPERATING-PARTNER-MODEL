@@ -1,6 +1,6 @@
 # Managed Agent Lifecycle SOP View
 
-This is a generated Markdown view, not the canonical artifact. The canonical Step 18 artifact is `16-managed-lifecycle-object.yaml`. This is a future operating model, not a deployment plan for the current V2 engagement. Do not deploy, monitor, connect, or operate a client agent until after Step 18 is complete and the client approves a separate implementation phase.
+This is a generated Markdown view, not the canonical artifact. The canonical Step 18 artifact is `16-managed-lifecycle-object.yaml`. This is a future operating model, not a deployment plan for the current V3 engagement. Do not deploy, monitor, connect, or operate a client agent until after Step 18 is complete and the client approves a separate implementation phase.
 
 Agent:
 Workflow:

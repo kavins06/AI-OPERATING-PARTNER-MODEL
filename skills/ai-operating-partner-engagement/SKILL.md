@@ -11,55 +11,70 @@ Run the engagement as a structured, evidence-based pipeline. Use AI for heavy in
 
 Never assume a clean source of truth exists. Discover how business truth is currently produced: official source, de facto trusted source, exports, formulas, spreadsheets/macros, manual adjustments, reconciliations, expert judgment, ownership, reproducibility, auditability, and AI-safe usage. Treat Excel macros, shadow trackers, manual reports, recurring reconciliations, and expert memory as structured organizational intelligence assets. Fragile truth must become a readiness blocker unless the proposed AI behavior is limited to safe actions such as summarize, compare, flag uncertainty, draft clarification questions, or escalate.
 
-The V2 engagement is a pre-build organizational intelligence, use-case selection, adoption, and implementation-blueprint engagement. It has 18 operating steps plus a Step 0 engagement-tiering frame. Do not build client agents, MCP servers, connectors, live integrations, normalization pipelines, email ingestion, write-back automation, or production tools during this engagement. Implementation starts only after Step 18 is complete, the lifecycle and decision packet are approved, and the client starts a separate build phase.
+The V3 engagement is a pre-build organizational intelligence, use-case selection, adoption, and implementation-blueprint engagement. It has 18 operating steps plus a Step 0 engagement-tiering frame. V3 does not add more steps; it hardens the system with tier matrices, schemas, protocols, rubrics, hard gates, packet contracts, lifecycle variants, halt taxonomy, and handoff rules. Do not build client agents, tools, connectors, MCP servers, live integrations, normalization pipelines, email ingestion, write-back automation, or production tools during this engagement. Implementation starts only after Step 18 is complete, the lifecycle and decision packet are approved, the V3-to-build handoff is accepted, and the client starts a separate build phase.
 
 No broad live company data access is required for early discovery. Start with executive terrain, role interviews, and silent evidence need logs. Request planning evidence only after the interview batch. Planning evidence can include redacted reports, screenshots, walkthroughs, sample exports, schema or field lists, API/vendor documentation, access-control screenshots, architecture notes, and data dictionaries when tied to a specific workflow object.
 
-Do not request passwords, employee credentials, unrestricted production access, broad data-room access, all-email ingestion, unapproved API tokens, write access, or bulk unredacted data during the V2 engagement. If live access, MCPs, connectors, normalization pipelines, or credentials are needed, Steps 14-18 should define the future implementation request package, not execute it.
+Do not request passwords, employee credentials, unrestricted production access, broad data-room access, all-email ingestion, unapproved API tokens, write access, or bulk unredacted data during the V3 engagement. If live access, future tools, MCPs, connectors, normalization pipelines, or credentials are needed, Steps 14-18 should define the future implementation request package, not execute it. Treat MCP as one possible implementation pattern, not as the methodology's canonical platform assumption.
 
 Cheap offline proof points are allowed inside the pre-build boundary only when they use approved redacted, synthetic, or historical examples and do not require live credentials, production integrations, write-back, deployment, or unapproved data movement. Treat them as evidence for guidance/eval/readiness, not as implementation.
 
-This skill orchestrates the supporting skills and engagement gates:
+This skill orchestrates the supporting skills and engagement gates. Step 8's controlled validation and object-driven governance resolution is a step in the engagement, not a separate skill; it is supported by `data-governance-discovery` below.
 
 1. `source-grounded-consulting`
 2. `data-strategy-workshop`
 3. `voice-interview-discovery`
 4. `workflow-mapping`
 5. `information-ecology-diagnostic`
-6. controlled validation and object-driven governance resolution
-7. `data-governance-discovery` as an embedded helper for validation-stage source, owner, access, sensitivity, retention, and permission decisions
-8. `knowledge-map-capture`
-9. `tacit-to-explicit-knowledge-capture`
-10. `analytics-maturity-assessment`
-11. `dashboard-kpi-design`
-12. `data-monetization-canvas`
-13. `warehouse-lakehouse-blueprint`
-14. `privacy-security-risk-register`
-15. `zero-trust-agent-controls`
-16. `ai-agent-readiness-assessment`
-17. `managed-agent-lifecycle`
+6. `data-governance-discovery` as an embedded helper for validation-stage source, owner, access, sensitivity, retention, and permission decisions
+7. `knowledge-map-capture`
+8. `tacit-to-explicit-knowledge-capture`
+9. `analytics-maturity-assessment`
+10. `dashboard-kpi-design`
+11. `data-monetization-canvas`
+12. `warehouse-lakehouse-blueprint`
+13. `privacy-security-risk-register`
+14. `zero-trust-agent-controls`
+15. `ai-agent-readiness-assessment`
+16. `managed-agent-lifecycle`
+
+## Reference Platform
+
+Codex is the reference runtime for this skill set. The methodology is platform-agnostic: schemas, contracts, rubrics, and protocols can run on any harness. Install scripts, skill packaging, and the inter-skill orchestration pattern assume Codex by default. Operators using a different harness should preserve the schemas, rubrics, and step-numbered artifacts and substitute equivalent mechanics for skill loading and orchestration.
+
+## Primary Umbrellas
+
+The seven umbrellas below are the user-facing structure for the engagement. The 18 numbered steps are implementation mechanics under these umbrellas.
+
+1. Frame And Hypothesize: Steps 0-2.
+2. Discover Reality: Steps 3-5.
+3. Build And Validate The Intelligence Layer: Steps 6-8.
+4. Define AI Reasoning Requirements: Steps 9-10.
+5. Prove Measurement And Value: Steps 11-12.
+6. Shape The Future Solution: Steps 13-15.
+7. Decide And Govern: Steps 16-18.
 
 ## Practical Engagement Flow
 
-0. Set the engagement tier and vertical extension: choose lite, standard, or deep; confirm whether regulated-domain templates apply; define scope controls, expected depth, and the pre-build/offline-proof boundary.
+0. Set the engagement tier and vertical extension using the V3 tier matrix: choose lite, standard, or deep; confirm whether regulated-domain templates apply; define scope controls, expected depth, and the pre-build/offline-proof boundary.
 1. Start with executive opportunity terrain mapping: understand strategy, growth, operating context, leverage areas, trust boundaries, and who can explain the real work. Use triangulated nomination: sponsor names, org-chart sampling, and "who do people call when this breaks?" probes.
-2. Synthesize terrain into discovery zones and an explicit candidate use-case shortlist. Each candidate must have a hypothesis, target users, workflow boundary, value hypothesis, truth/adoption/regulatory dependencies, current confidence, and disqualification criteria.
-3. Use role-aware AI-led interviews across organizational layers with an explicit consent, recording, retention, no-live-upload, and no-asserted-facts protocol. Capture work episodes, decisions, edge cases, source access, truth production, tacit judgment, approvals, adoption realities, and silent evidence needs.
-4. Run variation mapping when the organization is fragmented, franchised, multi-region, or independent-contractor driven. Do not force saturation against a phantom canonical workflow; enumerate variants, participation bias, and which variants deserve separate modeling.
+2. Synthesize terrain into discovery zones and an explicit candidate use-case shortlist. Each candidate must have a hypothesis, target users, workflow boundary, value hypothesis, truth/adoption/regulatory dependencies, current confidence, disqualification criteria, and event slots for discovery, economic, and readiness disqualification.
+3. Use role-aware AI-led interviews across organizational layers with the V3 AI interviewer protocol: hosting, consent, recording, retention, redaction, no-live-upload, no-asserted-facts, correction handling, refusal fallback, async norms, and operating-partner intervention. Capture work episodes, decisions, edge cases, source access, truth production, tacit judgment, approvals, adoption realities, and silent evidence needs.
+4. Run variation mapping when triggers exist: fragmented, franchised, multi-region, independent-contractor, multi-system, multi-portfolio, seniority-driven, or local-practice variation. If skipped, record a single-canonical-workflow assertion with evidence and revisit triggers.
 5. Consolidate evidence needs after interviews and create a curated planning-evidence follow-up request with SLA, escalation, and acceptable substitutes. Ask only for the smallest useful set of redacted examples, screenshots, walkthroughs, formulas, macro walkthroughs, sample exports, schema/field lists, vendor docs, or data dictionaries. Do not request build access or credentials.
-6. Generate the initial AI-native organizational workflow intelligence object: structured roles, org context, actors, steps, decisions, edge cases, information objects, source access profiles, truth production profiles, sources, systems, approvals, variation patterns, evidence, confidence, unknowns, completeness checks, and enrichment routes.
-7. Run the organizational intelligence diagnostic: attach findings to workflow objects, separate symptoms from likely root causes, score confidence, identify automation blockers, classify each blocker as fatal-for-use-case, requires-remediation-before-build, acceptable-with-controls, or informational, and route accordingly.
-8. Validate through controlled role-specific views and object-specific governance resolution, then generate the Organizational Intelligence Baseline v1 data contract. Step 8 explicitly loops back to Step 6 and Step 7 when validation changes material workflow objects, truth profiles, source access paths, or blocker classifications. The baseline is the structured data substrate for a separate client-facing product; it is not the full raw internal object and not a report.
+6. Generate the initial AI-native organizational workflow intelligence object aligned to the V3 canonical object schema: structured roles, org context, actors, steps, decisions, edge cases, information objects, source access profiles, truth production profiles, sources, systems, approvals, variation patterns, evidence, confidence, unknowns, completeness checks, and enrichment routes.
+7. Run the organizational intelligence diagnostic using the V3 blocker rubric: attach findings to workflow objects, separate symptoms from likely root causes, score confidence, identify automation blockers, classify each blocker as fatal-for-use-case, requires-remediation-before-build, acceptable-with-controls, or informational, and route accordingly.
+8. Validate through controlled role-specific views and object-specific governance resolution, then generate the Organizational Intelligence Baseline v1 data contract using the V3 baseline release contract. Step 8 explicitly loops back to Step 6 and Step 7 when validation changes material workflow objects, truth profiles, source access paths, or blocker classifications. The baseline is the structured data substrate for a separate client-facing product; it is not the full raw internal object and not a report.
 9. Produce the AI knowledge and guideline requirements map for decisions, exceptions, escalation paths, truth production chains, expertise gaps, adoption knowledge, and regulated-domain knowledge. This maps requirements; it does not write final rules yet.
-10. Convert prioritized requirements into an AI guidance pack: canonical machine-readable guidance spec, readable view, behavioral evals, output-quality evals, regulated-domain evals where applicable, truth-production handling, explicit rules, examples, output contract, owners, update cadence, and validation status.
+10. Convert prioritized requirements into an AI guidance pack: canonical machine-readable guidance spec, readable view, behavioral evals, output-quality evals, regulated-domain evals where applicable, truth-production handling, explicit rules, examples, output contract, owners, update cadence, validation status, eval methodology, minimum counts, regression versioning, and drift/revalidation rules.
 11. Produce measurement intelligence and AI-capability metric design. Classify existing metric trust and truth status, then define future AI success metrics, leading indicators, lagging indicators, override/error/drift signals, cost metrics, and kill criteria.
 12. Produce business value case and portfolio comparison. Model value, AI-side costs, assumptions, confidence, fragile-truth caveats, and compare surviving opportunities so only 1-N are advanced to solution shape.
-13. Produce solution shape and adoption design. Decide build/buy/leverage-vendor, agent topology, model-selection class, UX surface, retrieval/context shape, eval/observability shape, end-user research, incentive alignment, opt-in vs mandate reality, training, rollout, and adoption-failure triggers.
+13. Produce solution shape and adoption design. Treat this as 13a solution shape and 13b adoption design under one step. Decide build/buy/leverage-vendor, agent topology, model-selection class, UX surface, retrieval/context shape, eval/observability shape, end-user research, incentive alignment, opt-in vs mandate reality, training, rollout, and adoption-failure triggers.
 14. Produce the technical/vendor implementation blueprint from the selected solution shape: architecture, integration, runtime/orchestration, hosting/environment, MCP/tooling, email access, normalization, identity resolution, truth-rule extraction, future component contracts, sandbox/test strategy, credential/secrets approach, audit/logging, blocked paths, and build sequence.
-15. Create the risk and control model with regulated-domain risk templates where applicable. Tie named risks to controls and owners, including privacy, security, output quality, truth-production risk, Fair Housing/TCPA/RESPA/MLS/state-license risks for real estate, and similar named rules for other verticals.
-16. Score AI-agent readiness with an implementation-grade readiness object for each surviving opportunity: published hard gates, behavior-level readiness, dependencies, blockers, evidence confidence, minimum safe first behavior, prohibited behaviors, and Step 17 path. This is still pre-build and does not authorize implementation.
-17. Produce a machine-readable implementation decision packet. It specifies build-ready brief, gap-remediation plan, governance/data readiness plan, knowledge capture plan, technical feasibility plan, risk/control plan, or do-not-automate recommendation, with confidence statement, conditional-revision triggers, and sponsor/technical/risk views.
-18. Produce a machine-readable managed lifecycle and adoption-change object. Define future validation, launch, monitoring, truth governance, feedback, incidents, revocation, guidance/source updates, access review, adoption/change management, improvement, expansion, retirement, remediation lifecycle, or no-automation review cadence.
+15. Create the risk and control model with regulated-domain risk templates where applicable. Tie named risks to controls and owners, including privacy, security, output quality, truth-production risk, Fair Housing/TCPA/RESPA/MLS/state-license risks for real estate, and similar named rules for other verticals. If risk forces topology, behavior-level, UX, retrieval, model, or adoption change, loop back to Step 13.
+16. Score AI-agent readiness with an implementation-grade readiness object for each surviving opportunity using the V3 hard-gate rubric: behavior-level readiness, dependencies, blockers, evidence confidence, minimum safe first behavior, prohibited behaviors, and Step 17 path. Hard gates override average scores. This is still pre-build and does not authorize implementation.
+17. Produce a machine-readable implementation decision packet using the V3 decision-packet contracts. It specifies build-ready brief, gap-remediation plan, governance/data readiness plan, knowledge capture plan, technical feasibility plan, risk/control plan, or do-not-automate recommendation, with confidence statement, conditional-revision triggers, and sponsor/technical/risk/remediation views. When multiple packet types apply to one workflow, produce a packet_set.
+18. Produce a machine-readable managed lifecycle and adoption-change object using V3 lifecycle variants. Define future validation, launch, monitoring, truth governance, feedback, incidents, revocation, guidance/source updates, access review, adoption/change management, improvement, expansion, retirement, remediation lifecycle, no-automation review cadence, and the V3-to-build handoff contract. When Step 17 produces a packet_set, produce a lifecycle_set.
 
 ## Resource Map
 
@@ -70,17 +85,51 @@ Read these when needed:
 - `references/input-collection-checklist.md`: what to collect and how to ask for it.
 - `references/output-standards.md`: deliverable standards and build-ready packet definition.
 
+### V3 Step → Physical Filename Map
+
+File numbers reflect V1/V2 history; the V3 step is authoritative. Use this table to find the right artifact for a given step.
+
+| V3 Step | Physical filename(s) |
+|---|---|
+| Cross-step contracts | `assets/templates/halt-taxonomy.yaml`, `assets/templates/offline-proof-catalog.yaml`, `assets/schemas/canonical-object-schemas.yaml` |
+| Step 0 | `assets/templates/00-engagement-tiering.yaml`, `assets/templates/00-tier-matrix.yaml`, `assets/templates/vertical-extension.schema.yaml`, `assets/templates/regulated-domain-extension.yaml`, `assets/templates/regulated-domain-extension-real-estate.yaml` |
+| Step 1 | `assets/templates/01-executive-opportunity-terrain.md`, `assets/templates/01-org-structure-capture.csv` |
+| Step 2 | `assets/templates/02-opportunity-terrain-synthesis.md`, `assets/templates/02-candidate-use-case-shortlist.yaml`, `assets/templates/02-interview-coverage-matrix.csv` |
+| Step 3 | `assets/templates/03-ai-interviewer-protocol.md`, `assets/templates/03-ai-interviewer-system-prompt.md`, `assets/templates/03-role-interview-guide.md`, `assets/templates/03-edge-case-register.csv`, `assets/templates/03-interview-evidence-need-log.csv`, `assets/templates/03-source-access-register.csv` |
+| Step 4 | `assets/templates/04-variation-map.yaml` |
+| Step 5 | `assets/templates/04-artifact-follow-up-request.md`, `assets/templates/04-artifact-follow-up-request.csv` |
+| Step 6 | `assets/templates/05-ai-workflow-spec.yaml` |
+| Step 7 | `assets/templates/06-organizational-intelligence-diagnostic.yaml`, `assets/templates/06-blocker-classification-rubric.md` |
+| Step 8 | `assets/templates/07-source-inventory.csv`, `assets/templates/07-validation-event.yaml`, `assets/templates/07-organizational-intelligence-baseline.yaml`, `assets/templates/07-baseline-release-contract.yaml`, `assets/templates/07-controlled-validation-call-view.md` |
+| Step 9 | `assets/templates/08-knowledge-map.md` |
+| Step 10 | `assets/templates/09-ai-guidance-spec.yaml`, `assets/templates/09-ai-guidance-test-cases.yaml`, `assets/templates/09-ai-guidance-skill.md` |
+| Step 11 | `assets/templates/10-measurement-intelligence.yaml`, `assets/templates/10-kpi-dictionary.csv` |
+| Step 12 | `assets/templates/11-business-value-case.yaml`, `assets/templates/11-portfolio-comparison.yaml` |
+| Step 13 | `assets/templates/12-solution-shape.yaml`, `assets/templates/13-adoption-design.yaml` |
+| Step 14 | `assets/templates/12-technical-implementation-blueprint.yaml` |
+| Step 15 | `assets/templates/13-risk-control-model.yaml`, `assets/templates/13-risk-register.csv` |
+| Step 16 | `assets/templates/14-ai-agent-readiness-score.yaml`, `assets/templates/14-hard-gates-readiness-rubric.yaml`, `assets/templates/14-readiness-scorecard.csv` |
+| Step 17 | `assets/templates/15-implementation-decision-packet.yaml`, `assets/templates/15-implementation-decision-packet-set.yaml`, `assets/templates/15-decision-packet-contracts.yaml`, `assets/templates/15-build-ready-implementation-brief-view.md` |
+| Step 18 | `assets/templates/16-managed-lifecycle-object.yaml`, `assets/templates/16-lifecycle-set.yaml`, `assets/templates/16-lifecycle-variant-contracts.yaml`, `assets/templates/16-managed-lifecycle-sop-view.md`, `assets/templates/18-v3-to-build-handoff-contract.md` |
+
 Use these templates:
 
 - `assets/templates/TEMPLATE_INDEX.md`
 - `assets/templates/00-engagement-tiering.yaml`
+- `assets/templates/00-tier-matrix.yaml`
 - `assets/templates/regulated-domain-extension.yaml`
+- `assets/templates/vertical-extension.schema.yaml`
+- `assets/templates/regulated-domain-extension-real-estate.yaml`
+- `assets/templates/halt-taxonomy.yaml`
+- `assets/templates/offline-proof-catalog.yaml`
+- `assets/schemas/canonical-object-schemas.yaml`
 - `assets/templates/01-executive-opportunity-terrain.md`
 - `assets/templates/01-org-structure-capture.csv`
 - `assets/templates/02-opportunity-terrain-synthesis.md`
 - `assets/templates/02-candidate-use-case-shortlist.yaml`
 - `assets/templates/02-interview-coverage-matrix.csv`
 - `assets/templates/03-ai-interviewer-system-prompt.md`
+- `assets/templates/03-ai-interviewer-protocol.md`
 - `assets/templates/03-role-interview-guide.md`
 - `assets/templates/03-edge-case-register.csv`
 - `assets/templates/03-interview-evidence-need-log.csv`
@@ -90,10 +139,12 @@ Use these templates:
 - `assets/templates/04-artifact-follow-up-request.csv`
 - `assets/templates/05-ai-workflow-spec.yaml`
 - `assets/templates/06-organizational-intelligence-diagnostic.yaml`
+- `assets/templates/06-blocker-classification-rubric.md`
 - `assets/templates/07-source-inventory.csv`
 - `assets/templates/07-controlled-validation-call-view.md`
 - `assets/templates/07-validation-event.yaml`
 - `assets/templates/07-organizational-intelligence-baseline.yaml`
+- `assets/templates/07-baseline-release-contract.yaml`
 - `assets/templates/08-knowledge-map.md`
 - `assets/templates/09-ai-guidance-spec.yaml`
 - `assets/templates/09-ai-guidance-skill.md`
@@ -108,11 +159,17 @@ Use these templates:
 - `assets/templates/13-risk-control-model.yaml`
 - `assets/templates/13-risk-register.csv`
 - `assets/templates/14-ai-agent-readiness-score.yaml`
+- `assets/templates/14-hard-gates-readiness-rubric.yaml`
 - `assets/templates/14-readiness-scorecard.csv`
 - `assets/templates/15-implementation-decision-packet.yaml`
+- `assets/templates/15-implementation-decision-packet-set.yaml`
+- `assets/templates/15-decision-packet-contracts.yaml`
 - `assets/templates/15-build-ready-implementation-brief-view.md`
 - `assets/templates/16-managed-lifecycle-object.yaml`
+- `assets/templates/16-lifecycle-set.yaml`
+- `assets/templates/16-lifecycle-variant-contracts.yaml`
 - `assets/templates/16-managed-lifecycle-sop-view.md`
+- `assets/templates/18-v3-to-build-handoff-contract.md`
 
 Use scripts:
 
@@ -123,7 +180,7 @@ Use scripts:
 
 ## Output Modes
 
-V2 step numbering overrides older V1 step references:
+V3 step numbering overrides older V1/V2 step references:
 
 - Step 0: engagement tiering and vertical extension.
 - Step 2: candidate use-case shortlist and disqualification criteria.
@@ -353,7 +410,7 @@ If the user asks for Step 16, produce:
 
 If the user asks for Step 17, produce:
 
-- Machine-readable implementation decision packet as the canonical artifact, preferably YAML or JSON.
+- Machine-readable implementation decision packet as the canonical artifact, preferably YAML or JSON. If multiple packet types apply to the same workflow, produce a packet_set.
 - Packet type: build-ready implementation brief, gap-remediation plan, governance/data readiness plan, knowledge capture plan, technical feasibility plan, risk/control plan, or do-not-automate recommendation.
 - Source-input trace from Steps 0-16, especially Step 16 readiness object, Step 14 technical blueprint, Step 15 risk/control model, Step 13 solution/adoption design, Step 10 guidance pack, Step 11 measurement intelligence, Step 12 value case, Step 6 workflow intelligence object, and Step 8 governance/source-access/truth-production decisions.
 - Decision summary: recommended path, rationale, minimum safe behavior level, client decision needed, and implementation approval boundary.
@@ -379,10 +436,10 @@ If the user asks for Step 17, produce:
 
 If the user asks for Step 18, produce:
 
-- Machine-readable managed lifecycle object as the canonical artifact, preferably YAML or JSON.
+- Machine-readable managed lifecycle object as the canonical artifact, preferably YAML or JSON. If Step 17 produced a packet_set, produce a lifecycle_set.
 - Lifecycle path: managed agent lifecycle, remediation lifecycle, or no-automation review cadence.
 - Source-input trace from Step 17 packet, Step 16 readiness object, Step 15 risk/control model, Step 14 technical blueprint, Step 13 solution/adoption design, Step 12 value/portfolio case, Step 11 measurement intelligence, Step 10 guidance/eval pack, and linked workflow/source/truth governance objects.
-- Operating status and approval boundary confirming this is still pre-build and no agent is deployed, monitored, connected, or operated during the V2 engagement.
+- Operating status and approval boundary confirming this is still pre-build and no agent is deployed, monitored, connected, or operated during the V3 engagement.
 - Lifecycle scope: future agent/workflow name, opportunity, business outcome, authorized behavior level, non-authorized behavior levels, target user groups, environments, and scope exclusions.
 - Owner model: business owner, day-to-day owner, technical owner, data owner, security owner, risk/compliance owner, support owner, guidance update owner, measurement owner, source freshness owner, incident owner, revocation owner, future build owner, sponsor, approval forum, and responsibility matrix.
 - Future lifecycle stages: implementation approval, offline validation, sandbox integration, limited pilot, controlled rollout, monitored operation, and expansion/retirement review, each with entry criteria, exit criteria, approvals, and stop conditions.
@@ -405,4 +462,25 @@ If the user asks for Step 18, produce:
 
 ## Quality Bar
 
-Do not initiate or recommend initiating implementation until the V2 engagement tier is clear, candidate use cases are explicitly framed and disqualified or advanced, material workflow variation is handled, the AI workflow specification is validated, sources and owners are known, truth production profiles are mapped and routed, regulated-domain obligations are identified, AI knowledge/guideline requirements and tacit knowledge gaps are named, Step 10 guidance packs and eval suites are structured and validated, trusted/conditional/disputed/shadow/manual/person-dependent/missing/not-reproducible measurements are classified, AI-capability success and kill metrics are designed, a credible business value case and portfolio decision exist, solution shape and adoption design are explicit, fragile truth is either remediated or limited to safe AI behavior, sensitive data and approval gates are controlled, the technical/vendor blueprint includes access paths and future component contracts, risk and zero-trust controls are defined, readiness is scored with evidence, the Step 17 implementation decision packet is complete, and the Step 18 managed lifecycle/adoption-change object is approved.
+Do not initiate or recommend initiating implementation until every precondition below is met. Each precondition is a hard requirement, not an aspiration.
+
+1. The V3 engagement tier is selected and sponsor-confirmed (lite, standard, or deep), with vertical-extension applicability resolved.
+2. Candidate use cases are explicitly framed and either disqualified at the appropriate step or advanced as alive opportunities.
+3. Material workflow variation is mapped at Step 4, or the single-canonical-workflow assertion has evidence and revisit triggers.
+4. The AI workflow specification conforms to the canonical object schema, including required nested objects with evidence_refs and confidence.
+5. Material sources, systems, and owners are known or routed; source access profiles exist for material information objects.
+6. Truth production profiles are mapped for material numbers, statuses, reports, and decision inputs, and each is classified by truth_status and routed accordingly.
+7. Regulated-domain obligations are identified, the applicable extensions are loaded, and the client_must_supply inputs (where required) are in place.
+8. AI knowledge and guideline requirements are mapped and tacit knowledge gaps are named with capture routes.
+9. Step 10 guidance packs and eval suites are structured per the canonical guidance contract, with methodology, minimum counts, regression versioning, and drift rules in place.
+10. Existing measurements are trust-classified (authoritative, conditionally_reliable, shadow_derived, manually_adjusted, person_dependent, disputed, missing, not_reproducible, unknown) and AI-capability metrics including success, override, error, drift, adoption, cost, and kill criteria are designed.
+11. A credible business value case exists and a portfolio decision selects the 1..N opportunities to advance.
+12. Solution shape and end-user adoption design are explicit (13a and 13b) and survive Step 15 risk loop.
+13. Fragile truth is either remediated or limited to safe AI behavior per the truth-production gate's behavior-level rules.
+14. Sensitive data, approval gates, output controls, and revocation paths are designed.
+15. The technical/vendor blueprint documents access paths, future component contracts, normalization, runtime, hosting, secrets, and build sequence without live access.
+16. Risk and zero-trust controls are defined, including regulated-domain risks, named owners, stop conditions, and Step 15-to-Step 13 loop status.
+17. Readiness is scored using the hard-gate rubric; hard gates pass or are conditional only for explicitly pre-build/pilot conditions; behavior-level readiness is named.
+18. The Step 17 implementation decision packet (or packet_set) matches its packet contract(s) per type.
+19. The Step 18 managed lifecycle (or lifecycle_set) matches its variant contract(s) and includes the V3-to-build handoff contract.
+20. The V3-to-build handoff is approved by sponsor, owner forum, and required security/risk/legal/data owners.

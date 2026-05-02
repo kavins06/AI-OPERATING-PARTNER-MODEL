@@ -31,13 +31,13 @@ def parse_scores(items: list[str]) -> dict[str, int]:
 
 
 def maturity_level(avg: float) -> int:
-    if avg < 0.75:
-        return 0
-    if avg < 1.75:
+    # 1-5 scale aligned with the V3 readiness rubric scoring_scale.
+    # Buckets centered on integer scores with 0.5 boundaries.
+    if avg < 1.5:
         return 1
-    if avg < 2.75:
+    if avg < 2.5:
         return 2
-    if avg < 3.75:
+    if avg < 3.5:
         return 3
     if avg < 4.5:
         return 4
@@ -62,8 +62,8 @@ def main() -> int:
     if missing:
         raise SystemExit("Missing scores: " + ", ".join(missing))
     for key, value in scores.items():
-        if value < 0 or value > 5:
-            raise SystemExit(f"{key} must be 0-5")
+        if value < 1 or value > 5:
+            raise SystemExit(f"{key} must be 1-5")
     avg = sum(scores[k] for k in DIMENSIONS) / len(DIMENSIONS)
     level = maturity_level(avg)
     print(f"Average: {avg:.2f} / 5")

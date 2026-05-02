@@ -3,6 +3,7 @@ spec_version: "0.1"
 object_type: "regulated_domain_extension"
 status: "draft" # draft | vertical_validated | client_confirmed
 vertical: "" # real_estate | healthcare | financial_services | legal | other
+schema_ref: "vertical-extension.v3"
 
 purpose: "Thread named domain-specific compliance, licensing, policy, and reputational constraints through knowledge, guidance, risk, readiness, decision, and lifecycle artifacts."
 

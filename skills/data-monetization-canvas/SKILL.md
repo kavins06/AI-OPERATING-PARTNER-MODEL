@@ -61,14 +61,16 @@ Do not treat disputed, untrusted, unknown, shadow-derived, manually adjusted, pe
 
 ## Canvas Template
 
-| Lens | Questions | Notes | Metric | Trust / Truth Status |
-|---|---|---|---|---|
-| Internal efficiency | What work, delay, or rework falls? | | | |
-| Customer experience | What experience improves? | | | |
-| Decision quality | What decision gets better evidenced? | | | |
-| Data product | What reusable asset can be created? | | | |
-| Risk reduction | What risk falls? | | | |
-| Revenue/leakage | What growth, retention, or leakage prevention improves? | | | |
+The Trust / Truth Status column uses the canonical `truth_status` enum (authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown). The Proposed AI behavior_level column uses the canonical `behavior_level` enum (read_only_summary | draft_and_flag | recommendation_support | human_approved_action | autonomous_action). A value case proposing `recommendation_support` or higher backed only by `shadow_derived`/`manually_adjusted`/`person_dependent`/`disputed`/`missing`/`not_reproducible` baseline metrics is a measurement/truth-infrastructure-fix recommendation, not a value case.
+
+| Lens | Questions | Notes | Metric | Truth status (canonical enum) | Proposed AI behavior_level | evidence_refs | confidence |
+|---|---|---|---|---|---|---|---|
+| Internal efficiency | What work, delay, or rework falls? | | | | | | |
+| Customer experience | What experience improves? | | | | | | |
+| Decision quality | What decision gets better evidenced? | | | | | | |
+| Data product | What reusable asset can be created? | | | | | | |
+| Risk reduction | What risk falls? | | | | | | |
+| Revenue/leakage | What growth, retention, or leakage prevention improves? | | | | | | |
 
 ## Evaluation Workflow
 

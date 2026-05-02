@@ -1,0 +1,223 @@
+tier_matrix_id: "tier_matrix.v3"
+spec_version: "0.1"
+object_type: "engagement_tier_matrix"
+status: "published"
+purpose: "Make lite, standard, and deep engagement depth selectable instead of vague."
+
+global_rules:
+  all_tiers_are_pre_build: true
+  no_credentials_or_live_access_in_any_tier: true
+  no_agent_mcp_connector_normalization_or_email_ingestion_build_in_any_tier: true
+  every_tier_must_produce_a_step_17_or_step_18_route: true
+  lite_is_not_allowed_for_high_regulatory_or_high_truth_fragility_scope: true
+  deep_is_required_when_multiple_business_units_or_high_variation_or_external_regulated_outputs_are_in_scope: true
+
+cost_model_field_definitions:
+  expected_operator_hours: "Engagement-time hours by the human operating partner (interviews, synthesis, judgment, client coordination). Scaffold field; values are filled per real engagement rather than as a fixed framework default."
+  expected_client_hours: "Engagement-time hours by client participants (sponsor, business owners, operators, IT/data/security/legal owners). Includes interviews, validation calls, and approvals."
+  expected_ai_token_cost_class: "Order-of-magnitude AI token cost class for V3-engagement processing (interviews, transcript extraction, synthesis, drafting, scoring). Allowed: low | medium | medium-high | high | null."
+  supporting_skills_invoked: "List of supporting skill ids the orchestrator should call into during this tier."
+  supporting_skills_suppressed: "List of supporting skill ids the orchestrator should not call during this tier (e.g., warehouse-lakehouse-blueprint suppressed in lite when scope is narrow and no platform redesign is implied)."
+
+tiers:
+  lite:
+    target_duration_business_days: "5-10"
+    expected_operator_hours: null
+    expected_client_hours: null
+    expected_ai_token_cost_class: null
+    supporting_skills_invoked: []
+    supporting_skills_suppressed: []
+    intended_for:
+      - "One narrow workflow or one candidate use case."
+      - "Low-to-medium risk internal use."
+      - "Known systems and limited variation."
+      - "Sponsor wants a quick build/fix/no-build decision."
+    not_suitable_when:
+      - "External regulated communication is in scope."
+      - "Material truth production is disputed or person-dependent."
+      - "Independent-contractor, franchise, multi-region, or multi-system variation controls adoption."
+      - "More than one business unit must be compared as a portfolio."
+    expected_interviews:
+      sponsor_or_business_owner: "1-2"
+      operators_or_role_layers: "3-6"
+      it_data_security_or_system_owners: "1-3 targeted confirmations"
+    max_candidate_use_cases_to_deep_discover: 1
+    max_opportunities_to_advance_after_portfolio_comparison: 1
+    offline_proof_points:
+      allowed: "optional"
+      max_count: 1
+      allowed_types:
+        - "guidance_dry_run"
+        - "redacted_example_output_review"
+    step_depth:
+      step_0: "full"
+      step_1: "compressed"
+      step_2: "full"
+      step_3: "compressed"
+      step_4: "conditional_or_skip_with_reason"
+      step_5: "compressed"
+      step_6: "full_for_selected_scope"
+      step_7: "compressed"
+      step_8: "compressed_baseline"
+      step_9: "compressed"
+      step_10: "compressed"
+      step_11: "compressed"
+      step_12: "compressed"
+      step_13: "compressed"
+      step_14: "compressed"
+      step_15: "compressed"
+      step_16: "full"
+      step_17: "full"
+      step_18: "compressed"
+    minimum_viable_artifacts:
+      - "candidate_use_case_shortlist"
+      - "ai_interviewer_protocol_acknowledgement"
+      - "workflow_intelligence_object_for_selected_scope"
+      - "truth_production_profiles_for_material_decisions"
+      - "controlled_validation_event"
+      - "readiness_object"
+      - "implementation_decision_packet"
+      - "lifecycle_or_remediation_route"
+
+  standard:
+    target_duration_business_days: "10-20"
+    expected_operator_hours: null
+    expected_client_hours: null
+    expected_ai_token_cost_class: null
+    supporting_skills_invoked: []
+    supporting_skills_suppressed: []
+    intended_for:
+      - "One function, portfolio, or business unit."
+      - "One to three serious candidate opportunities."
+      - "Moderate variation, moderate risk, or unclear truth production."
+      - "Client wants an implementation-grade plan but not build execution."
+    not_suitable_when:
+      - "Enterprise-wide operating model mapping is required."
+      - "Multiple regulated jurisdictions or high-risk external actions dominate scope."
+      - "Major system replacement or data-platform redesign is the real work."
+    expected_interviews:
+      sponsor_or_business_owner: "2-4"
+      operators_or_role_layers: "8-18"
+      it_data_security_or_system_owners: "3-8 targeted confirmations"
+    max_candidate_use_cases_to_deep_discover: 3
+    max_opportunities_to_advance_after_portfolio_comparison: "1-2"
+    offline_proof_points:
+      allowed: "recommended_when_high_value_or_high_uncertainty"
+      max_count: 2
+      allowed_types:
+        - "guidance_dry_run"
+        - "eval_case_dry_run"
+        - "redacted_document_retrieval_dry_run"
+        - "historical_example_output_review"
+    step_depth:
+      step_0: "full"
+      step_1: "full"
+      step_2: "full"
+      step_3: "full"
+      step_4: "conditional_full_if_triggered"
+      step_5: "full"
+      step_6: "full"
+      step_7: "full"
+      step_8: "full"
+      step_9: "full"
+      step_10: "full_for_selected_behaviors"
+      step_11: "full"
+      step_12: "full"
+      step_13: "full"
+      step_14: "full"
+      step_15: "full"
+      step_16: "full"
+      step_17: "full"
+      step_18: "full"
+    minimum_viable_artifacts:
+      - "full_candidate_use_case_shortlist"
+      - "ai_interviewer_protocol"
+      - "variation_map_or_skip_decision"
+      - "workflow_intelligence_object"
+      - "organizational_intelligence_diagnostic"
+      - "organizational_intelligence_baseline"
+      - "knowledge_requirements_map"
+      - "ai_guidance_pack_for_selected_behaviors"
+      - "measurement_intelligence"
+      - "business_value_case_and_portfolio_comparison"
+      - "solution_shape_and_adoption_design"
+      - "technical_blueprint"
+      - "risk_control_model"
+      - "readiness_object"
+      - "implementation_decision_packet"
+      - "managed_lifecycle_or_remediation_lifecycle"
+
+  deep:
+    target_duration_business_days: "20-45"
+    expected_operator_hours: null
+    expected_client_hours: null
+    expected_ai_token_cost_class: null
+    supporting_skills_invoked: []
+    supporting_skills_suppressed: []
+    intended_for:
+      - "Multi-business-unit or enterprise scope."
+      - "High variation, regulated outputs, or high-risk action paths."
+      - "Multiple candidates need portfolio comparison."
+      - "Client wants a durable organizational intelligence asset."
+    not_suitable_when:
+      - "Sponsor only wants a quick narrow decision."
+      - "Client cannot provide access to role groups or governance resolvers."
+    expected_interviews:
+      sponsor_or_business_owner: "4-8"
+      operators_or_role_layers: "18-40 plus targeted expansion"
+      it_data_security_or_system_owners: "8-15 targeted confirmations"
+    max_candidate_use_cases_to_deep_discover: "5-10"
+    max_opportunities_to_advance_after_portfolio_comparison: "1-3"
+    offline_proof_points:
+      allowed: "recommended"
+      max_count: 4
+      allowed_types:
+        - "guidance_dry_run"
+        - "eval_case_dry_run"
+        - "redacted_document_retrieval_dry_run"
+        - "synthetic_data_workflow_simulation"
+        - "historical_transcript_or_ticket_replay"
+    step_depth:
+      step_0: "full"
+      step_1: "full"
+      step_2: "full"
+      step_3: "full_plus_expansion"
+      step_4: "full_when_any_trigger_present"
+      step_5: "full"
+      step_6: "full_plus_schema_validation"
+      step_7: "full_plus_rubric_calibration"
+      step_8: "full_plus_product_view_release"
+      step_9: "full"
+      step_10: "full_plus_eval_coverage"
+      step_11: "full"
+      step_12: "full_plus_portfolio_model"
+      step_13: "full_with_13a_13b_views"
+      step_14: "full_plus_future_component_contracts"
+      step_15: "full_plus_regulated_domain_controls"
+      step_16: "full_plus_hard_gate_review"
+      step_17: "full_per_packet_type"
+      step_18: "full_per_lifecycle_variant"
+    minimum_viable_artifacts:
+      - "all_standard_artifacts"
+      - "regulated_domain_extension"
+      - "schema_validation_report"
+      - "offline_proof_results_when_approved"
+      - "halt_taxonomy_events"
+      - "v3_to_build_handoff_contract"
+
+selection_rules:
+  force_deep_if:
+    - "external customer, tenant, patient, borrower, consumer, investor, or agent communication is automated or drafted."
+    - "multiple jurisdictions or regulated-domain rules materially constrain the output."
+    - "truth production is disputed across teams for core value or risk metrics."
+    - "candidate behavior includes recommendation, human-approved action, or autonomous action in a high-risk workflow."
+  force_standard_or_deep_if:
+    - "more than one candidate use case must be compared."
+    - "system access paths are unknown."
+    - "workflow variation is likely but not yet mapped."
+  lite_allowed_only_if:
+    - "candidate scope is narrow."
+    - "output is internal or safe-limited."
+    - "known owners are available."
+    - "variation risk is low."
+    - "no named regulated rule from the active vertical-extension.schema.yaml extensions applies to candidate scope."

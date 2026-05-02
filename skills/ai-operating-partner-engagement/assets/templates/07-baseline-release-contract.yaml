@@ -1,0 +1,191 @@
+baseline_release_contract_id: "baseline_release_contract.v3"
+spec_version: "0.1"
+object_type: "organizational_intelligence_baseline_release_contract"
+status: "published_reference"
+applies_to_step: 8
+
+purpose:
+  release_baseline_v1: "Create a controlled, product-ready organizational intelligence substrate after validation."
+  protect_raw_internal_object: "Do not broadcast raw transcripts, unredacted sensitive content, or internal inference notes."
+  seed_downstream_steps: "Provide machine-readable payloads for Steps 9-18."
+
+release_audiences:
+  sponsor_or_executive:
+    receives_views:
+      - "executive_intelligence_view"
+      - "ai_fit_boundary_view"
+    may_receive:
+      - "candidate_ai_portfolio_summary"
+      - "major_truth_production_risks"
+      - "major_readiness_blockers"
+    excluded:
+      - "raw_transcripts"
+      - "unredacted_sensitive_content"
+      - "employee-level inference notes unless approved"
+
+  business_owner_or_department_head:
+    receives_views:
+      - "operating_intelligence_view"
+      - "workflow_variation_view"
+      - "owner_gap_view"
+    may_receive:
+      - "role-relevant workflow slices"
+      - "edge-case patterns"
+      - "knowledge gaps"
+    excluded:
+      - "unrelated departments"
+      - "sensitive governance notes outside their authority"
+
+  it_data_security_or_system_owner:
+    receives_views:
+      - "data_governance_view"
+      - "source_access_view"
+      - "truth_registry_view"
+    may_receive:
+      - "systems and sources"
+      - "source access profiles"
+      - "sensitive fields"
+      - "retention/export constraints"
+    excluded:
+      - "business-only diagnostic commentary unrelated to system/source responsibility"
+
+  risk_legal_compliance:
+    receives_views:
+      - "regulated_domain_obligations_view"
+      - "sensitive_field_and_output_risk_view"
+      - "truth_risk_view"
+    excluded:
+      - "raw full workflow object unless required and approved"
+
+  operating_partner_internal:
+    receives_views:
+      - "full_internal_baseline"
+      - "downstream_seed_payloads"
+    excluded:
+      - "nothing beyond client-approved retention/sensitivity rules"
+
+product_views:
+  executive_intelligence_view:
+    include:
+      - "top_operating_insights"
+      - "candidate_ai_portfolio_summary"
+      - "major_truth_production_risks"
+      - "major_readiness_blockers"
+      - "safe_vs_unsafe_ai_patterns"
+      - "strategic_follow_up_questions"
+    exclude:
+      - "raw transcripts"
+      - "unredacted sensitive values"
+      - "internal inference notes"
+
+  operating_intelligence_view:
+    include:
+      - "validated_workflows"
+      - "material_variations"
+      - "handoff_or_owner_gaps"
+      - "edge_case_patterns"
+      - "hidden_dependency_patterns"
+      - "workflow_standardization_opportunities"
+    exclude:
+      - "unrelated sensitive objects"
+
+  data_governance_view:
+    include:
+      - "systems_and_sources_involved"
+      - "source_access_profiles"
+      - "official_vs_de_facto_source_conflicts"
+      - "truth_production_registry_summary"
+      - "sensitive_field_or_retention_gaps"
+      - "owner_or_steward_gaps"
+    exclude:
+      - "credentials"
+      - "implementation secrets"
+
+  ai_fit_boundary_view:
+    include:
+      - "candidate_ai_portfolio"
+      - "safe_now"
+      - "unsafe_now"
+      - "safe_only_if"
+      - "fix_first"
+      - "prohibited"
+      - "next_routes"
+    exclude:
+      - "build credentials"
+      - "raw sensitive values"
+
+downstream_seed_payloads:
+  candidate_ai_portfolio_export:
+    routes_to: ["step9", "step12", "step16", "step17"]
+    required_fields:
+      - "candidate_use_case_id"
+      - "status"
+      - "ai_fit_boundary"
+      - "current_blockers"
+      - "evidence_refs"
+  truth_registry_export:
+    routes_to: ["step9", "step10", "step11", "step14", "step15", "step16", "step18"]
+    required_fields:
+      - "truth_profile_id"
+      - "official_source"
+      - "de_facto_trusted_source"
+      - "truth_status"
+      - "reproducibility"
+      - "auditability"
+      - "ai_safe_usage"
+      - "required_fix_before_ai_use"
+  source_inventory_export:
+    routes_to: ["step11", "step14", "step15", "step17"]
+    required_fields:
+      - "source_id"
+      - "system_id"
+      - "source_type"
+      - "owner_role"
+      - "sensitivity"
+      - "access_constraints_known"
+  workflow_graph_export:
+    routes_to: ["step9", "step10", "step13", "step14", "step16"]
+    required_fields:
+      - "workflow_id"
+      - "variant_id"
+      - "step_id"
+      - "decision_id"
+      - "role_id"
+      - "information_object_id"
+  validation_state_export:
+    routes_to: ["step9", "step10", "step11", "step16"]
+    required_fields:
+      - "validated"
+      - "partially_validated"
+      - "disputed"
+      - "unknown"
+      - "blocked"
+      - "unresolved_critical_items"
+
+release_gate:
+  ready:
+    requires:
+      - "Material workflows have validation status and evidence references."
+      - "Candidate use cases have explicit status and AI-fit boundary."
+      - "Material information objects have source access profiles or unresolved route."
+      - "Material numbers, statuses, reports, and decision inputs have truth production profiles or unresolved route."
+      - "Sensitive content is classified or excluded from product views."
+      - "Product-view audiences and exclusions are explicit."
+  partial:
+    allowed_when:
+      - "Some views are ready but unresolved critical items block other views."
+      - "Audience-specific exclusions allow safe release."
+    requires:
+      - "Release notes name missing views and next route."
+  blocked:
+    applies_when:
+      - "Sensitive content cannot be safely filtered."
+      - "Material objects lack validation or route."
+      - "Sponsor or authorized owner has not approved release."
+
+example_walkthrough:
+  scenario: "Multifamily REIT maintenance invoice review"
+  sponsor_view: "Receives candidate AI portfolio, truth risk summary, safe-limited invoice assistant boundary, and fix-first issues."
+  asset_management_view: "Receives workflow, variants, handoffs, edge cases, and owner gaps for invoice review."
+  accounting_view: "Receives source/truth profiles for invoice, approval, vendor, payment status, budget line, and audit requirements."
+  it_security_view: "Receives systems, source access profiles, future access-path questions, sensitive fields, retention/export constraints, and prohibited paths."

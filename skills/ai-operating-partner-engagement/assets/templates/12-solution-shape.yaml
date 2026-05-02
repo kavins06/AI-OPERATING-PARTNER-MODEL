@@ -21,6 +21,26 @@ solution_boundary:
   first_behavior_level: "" # read_only_summary | draft_and_flag | recommendation_support | human_approved_action | autonomous_action
   explicit_non_goals: []
 
+step_13a_solution_shape:
+  decision_scope: "technical_and_product_posture"
+  required_decisions:
+    - "build_buy_leverage"
+    - "agent_topology"
+    - "model_selection_class"
+    - "ux_surface"
+    - "retrieval_context_shape"
+    - "eval_observability_shape"
+
+step_13b_adoption_design:
+  decision_scope: "human_operating_posture"
+  required_decisions:
+    - "target_end_users"
+    - "adoption_path"
+    - "incentive_alignment"
+    - "training_support"
+    - "feedback_channels"
+    - "adoption_failure_triggers"
+
 build_buy_leverage_decision:
   selected_path: "unknown" # build | buy | leverage_existing_vendor | hybrid | defer | unknown
   rationale: ""
@@ -73,3 +93,11 @@ decision:
   date: ""
   open_questions: []
   blocks_technical_blueprint: false
+
+step15_to_step13_iteration_loop:
+  risk_can_force_solution_revision: true
+  revision_required: false
+  risk_finding_ids: []
+  affected_shape_fields: [] # topology | behavior_level | ux_surface | model_class | retrieval_scope | eval_observability | adoption_path
+  revision_reason: ""
+  revised_solution_shape_id: ""

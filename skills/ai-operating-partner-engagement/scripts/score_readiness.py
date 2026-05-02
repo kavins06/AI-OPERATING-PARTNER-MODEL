@@ -146,11 +146,54 @@ def load_scores(path: str | None, items: list[str]) -> tuple[dict[str, int], dic
     return scores, gates, behavior
 
 
-def decision(total: int, scores: dict[str, int], gates: dict[str, str]) -> str:
+DEFAULT_RUBRIC_PATH = (
+    Path(__file__).resolve().parent.parent
+    / "assets"
+    / "templates"
+    / "14-hard-gates-readiness-rubric.yaml"
+)
+
+FALLBACK_THRESHOLDS = {
+    "ready_for_step17_build_brief_min_pct": 0.85,
+    "fix_named_gaps_first_min_pct": 0.70,
+    "governance_or_data_or_knowledge_or_technical_or_risk_first_min_pct": 0.52,
+}
+
+
+def load_rubric(path: Path | None) -> dict[str, Any]:
+    rubric_path = path or DEFAULT_RUBRIC_PATH
+    if not rubric_path.exists():
+        return {}
+    try:
+        import yaml  # type: ignore
+    except ImportError:
+        return {}
+    text = rubric_path.read_text(encoding="utf-8")
+    data = yaml.safe_load(text) or {}
+    return data if isinstance(data, dict) else {}
+
+
+def get_thresholds(rubric: dict[str, Any]) -> dict[str, float]:
+    block = rubric.get("decision_thresholds")
+    if not isinstance(block, dict):
+        return dict(FALLBACK_THRESHOLDS)
+    out: dict[str, float] = {}
+    for key, default in FALLBACK_THRESHOLDS.items():
+        value = block.get(key)
+        out[key] = float(value) if isinstance(value, (int, float)) else default
+    return out
+
+
+def decision(total: int, scores: dict[str, int], gates: dict[str, str], rubric: dict[str, Any] | None = None) -> str:
+    rubric = rubric or {}
+    thresholds = get_thresholds(rubric)
     max_total = len(DIMENSIONS) * 5
-    ready_threshold = max(1, round(max_total * 0.85))
-    fix_threshold = max(1, round(max_total * 0.70))
-    remediation_threshold = max(1, round(max_total * 0.52))
+    ready_threshold = max(1, round(max_total * thresholds["ready_for_step17_build_brief_min_pct"]))
+    fix_threshold = max(1, round(max_total * thresholds["fix_named_gaps_first_min_pct"]))
+    remediation_threshold = max(
+        1,
+        round(max_total * thresholds["governance_or_data_or_knowledge_or_technical_or_risk_first_min_pct"]),
+    )
     failed = [gate for gate, status in gates.items() if status in {"fail", "blocked"}]
     if failed:
         return "Blocked: route to remediation before any Step 17 build-ready brief. Failed gates: " + ", ".join(failed)
@@ -191,6 +234,7 @@ def main() -> int:
     parser.add_argument("--json", help="JSON or YAML file containing a Step 16 readiness object or flat dimension scores")
     parser.add_argument("--score", action="append", default=[], help="Dimension score as key=value")
     parser.add_argument("--gate", action="append", default=[], help="Hard gate status as gate_id=status")
+    parser.add_argument("--rubric", help="Path to hard-gates rubric YAML; defaults to assets/templates/14-hard-gates-readiness-rubric.yaml")
     parser.add_argument("--template", action="store_true", help="Print a JSON template")
     args = parser.parse_args()
 
@@ -198,6 +242,7 @@ def main() -> int:
         print_template()
         return 0
 
+    rubric = load_rubric(Path(args.rubric)) if args.rubric else load_rubric(None)
     scores, gates, behavior = load_scores(args.json, args.score)
     gates.update(parse_gate_items(args.gate))
     missing = [k for k in DIMENSIONS if k not in scores]
@@ -208,7 +253,7 @@ def main() -> int:
             raise SystemExit(f"{key} must be 1-5")
     total = sum(scores[k] for k in DIMENSIONS)
     print(f"Total: {total} / {len(DIMENSIONS) * 5}")
-    print(f"Decision: {decision(total, scores, gates)}")
+    print(f"Decision: {decision(total, scores, gates, rubric)}")
     print("\nScores:")
     for key in DIMENSIONS:
         print(f"- {key}: {scores[key]}")

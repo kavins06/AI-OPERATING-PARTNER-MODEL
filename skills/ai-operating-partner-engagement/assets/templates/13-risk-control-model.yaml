@@ -177,6 +177,18 @@ stop_conditions:
     owner_role:
     blocks_step16_readiness: true
 
+step15_to_step13_iteration_loop:
+  revision_required: false
+  triggering_risk_ids: []
+  reason:
+  affected_solution_shape_fields: [] # topology | behavior_level | ux_surface | model_class | retrieval_scope | eval_observability | adoption_path
+  required_solution_shape_change:
+  return_to_step13_before_readiness: false
+  examples:
+    - "Autonomous SMS risk forces draft-only topology with human send approval."
+    - "Regulated data-license risk forces narrower retrieval scope."
+    - "Payment approval risk forces no-write-back tool contract."
+
 stop_boundary:
   does_not_provision_credentials: true
   does_not_grant_access: true

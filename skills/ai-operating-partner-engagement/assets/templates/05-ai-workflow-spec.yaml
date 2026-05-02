@@ -1,5 +1,6 @@
 # AI Workflow Specification
-
+# YAML enum convention: fields are left empty and a 'allowed:' comment lists permitted enum values.
+# Operators fill the field with exactly one of the allowed values. The framework canonical schema validates the filled value.
 spec_version: "0.2"
 object_type: "organizational_workflow_intelligence"
 status: "initial_workflow_spec"
@@ -10,22 +11,20 @@ process_alignment:
   regulated_domain_extension_ids: []
   candidate_use_case_ids: []
   variation_map_ids: []
-  schema_contract_status: "draft | validated_against_template | failed_completeness_checks"
-
+  schema_contract_status:  # allowed: draft | validated_against_template | failed_completeness_checks
 workflow:
   workflow_id:
   name:
   business_purpose:
   trigger:
   outcome:
-  validation_status: "draft | partially_validated | validated"
-  confidence: "low | medium | high"
-
+  validation_status:  # allowed: draft | partially_validated | validated
+  confidence:  # allowed: low | medium | high
 organization_context:
   company_type:
   business_unit:
   org_structure_source:
-  org_structure_status: "unknown | provided | inferred | partially_validated | validated"
+  org_structure_status:  # allowed: unknown | provided | inferred | partially_validated | validated
   teams:
     - team_id:
       name:
@@ -46,7 +45,7 @@ organization_context:
   reporting_structure:
     - parent_role_id:
       child_role_id:
-      relationship_type: "reports_to | dotted_line | escalation | approval"
+      relationship_type:  # allowed: reports_to | dotted_line | escalation | approval
       confidence:
   people:
     - person_id:
@@ -55,7 +54,7 @@ organization_context:
         -
       team_id:
       portfolio_or_function_scope:
-      status: "known_not_interviewed | interviewed | inferred"
+      status:  # allowed: known_not_interviewed | interviewed | inferred
       evidence_refs:
         -
       pii_policy: "minimal"
@@ -76,7 +75,7 @@ interview_coverage:
   fragmented_org_triggered_variation_mapping: false
   linked_variation_map_ids:
     -
-  saturation_status: "not_started | partial | strong | saturated"
+  saturation_status:  # allowed: not_started | partial | strong | saturated
   expansion_needed:
   expansion_reason:
     -
@@ -85,10 +84,10 @@ interview_coverage:
 
 role_involvement:
   - role_id:
-    involvement_type: "strategy | approval | escalation | decision | preparation | execution | coordination | support | system_owner | data_owner"
+    involvement_type:  # allowed: strategy | approval | escalation | decision | preparation | execution | coordination | support | system_owner | data_owner
     responsibilities_in_workflow:
       -
-    observed_importance: "low | medium | high"
+    observed_importance:  # allowed: low | medium | high
     evidence_refs:
       -
     confidence:
@@ -135,9 +134,8 @@ steps:
       -
     evidence_refs:
       -
-    validation_status: "unknown | interview_claim | artifact_supported | validated"
-    confidence: "low | medium | high"
-
+    validation_status:  # allowed: unknown | interview_claim | artifact_supported | validated
+    confidence:  # allowed: low | medium | high
 decisions:
   - decision_id:
     name:
@@ -184,8 +182,8 @@ edge_cases:
     decision_required:
     current_resolution:
     risk_if_mishandled:
-    frequency: "unknown | rare | occasional | frequent"
-    severity: "low | medium | high"
+    frequency:  # allowed: unknown | rare | occasional | frequent
+    severity:  # allowed: low | medium | high
     automation_implication:
     validation_needed:
     evidence_refs:
@@ -195,7 +193,7 @@ edge_cases:
 information_objects:
   - information_object_id:
     name:
-    object_type: "data_point | document | report | dashboard | spreadsheet | spreadsheet_macro | email | system_record | image | approval | policy | metric | message | person_knowledge | reconciliation | other"
+    object_type:  # allowed: data_point | document | report | dashboard | spreadsheet | spreadsheet_macro | email | system_record | image | approval | policy | metric | message | person_knowledge | reconciliation | other
     business_use:
     used_in_step_ids:
       -
@@ -220,7 +218,7 @@ information_objects:
     known_quality_or_access_issues:
       -
     sensitivity:
-    validation_status: "mentioned | access_path_captured | artifact_supported | needs_governance_resolution | validated"
+    validation_status:  # allowed: mentioned | access_path_captured | artifact_supported | needs_governance_resolution | validated
     evidence_refs:
       -
     confidence:
@@ -228,7 +226,7 @@ information_objects:
 sources_mentioned:
   - source_id:
     name:
-    source_type: "system | report | dashboard | tracker | document | email | spreadsheet | spreadsheet_macro | manual_adjustment | expert_memory | walkthrough | interview_claim | other"
+    source_type:  # allowed: system | report | dashboard | tracker | document | email | spreadsheet | spreadsheet_macro | manual_adjustment | expert_memory | walkthrough | interview_claim | other
     system_id:
     information_object_ids:
       -
@@ -240,7 +238,7 @@ sources_mentioned:
       -
     sensitivity:
     likely_owner:
-    validation_status: "mentioned | artifact_supported | needs_governance_resolution | validated"
+    validation_status:  # allowed: mentioned | artifact_supported | needs_governance_resolution | validated
     evidence_refs:
       -
     confidence:
@@ -255,7 +253,7 @@ systems_mentioned:
     source_access_profile_ids:
       -
     access_constraints_known:
-    validation_status: "mentioned | needs_governance_resolution | validated"
+    validation_status:  # allowed: mentioned | needs_governance_resolution | validated
     evidence_refs:
       -
     confidence:
@@ -267,7 +265,7 @@ source_access_profiles:
     system_id:
     system_or_location:
     module_report_view_or_path:
-    access_method: "system_ui | report_export | dashboard | shared_drive | email_search | portal | API | person_request | walkthrough | other"
+    access_method:  # allowed: system_ui | report_export | dashboard | shared_drive | email_search | portal | API | person_request | walkthrough | other
     practical_access_path:
     lookup_keys:
       -
@@ -280,14 +278,14 @@ source_access_profiles:
     compared_against_source_ids:
       -
     access_failure_modes:
-      - "missing | stale | duplicate | conflicting | permission_denied | not_exportable | manual_request_required | unknown"
+      # allowed: missing | stale | duplicate | conflicting | permission_denied | not_exportable | manual_request_required | unknown
     screenshot_walkthrough_or_export_needed:
     truth_production_profile_ids:
       -
-    official_source_status: "confirmed | candidate | disputed | missing | not_applicable | unknown"
-    de_facto_source_status: "confirmed | candidate | disputed | missing | not_applicable | unknown"
-    truth_status: "authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown"
-    validation_status: "mentioned | access_path_captured | artifact_supported | needs_governance_resolution | validated"
+    official_source_status:  # allowed: confirmed | candidate | disputed | missing | not_applicable | unknown
+    de_facto_source_status:  # allowed: confirmed | candidate | disputed | missing | not_applicable | unknown
+    truth_status:  # allowed: authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown
+    validation_status:  # allowed: mentioned | access_path_captured | artifact_supported | needs_governance_resolution | validated
     evidence_refs:
       -
     confidence:
@@ -306,15 +304,15 @@ truth_production_profiles:
     official_source:
       source_id:
       description:
-      status: "confirmed | candidate | disputed | missing | not_applicable | unknown"
+      status:  # allowed: confirmed | candidate | disputed | missing | not_applicable | unknown
     de_facto_source:
       source_id:
       artifact_or_role:
       why_people_trust_it:
-      status: "confirmed | candidate | disputed | unknown"
+      status:  # allowed: confirmed | candidate | disputed | unknown
     truth_production_chain:
       - sequence:
-        step_type: "system_entry | export | report_generation | formula | spreadsheet_macro | manual_adjustment | reconciliation | expert_judgment | approval | final_reporting | other"
+        step_type:  # allowed: system_entry | export | report_generation | formula | spreadsheet_macro | manual_adjustment | reconciliation | expert_judgment | approval | final_reporting | other
         description:
         input_source_ids:
           -
@@ -324,18 +322,18 @@ truth_production_profiles:
           -
     embedded_business_rules:
       - rule_id:
-        where_encoded: "system_config | report_logic | formula | spreadsheet_macro | SOP | expert_memory | meeting_habit | unknown"
+        where_encoded:  # allowed: system_config | report_logic | formula | spreadsheet_macro | SOP | expert_memory | meeting_habit | unknown
         description:
         owner_or_knower_role:
         extraction_needed: false
-    truth_status: "authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown"
-    reproducibility: "high | medium | low | unknown"
-    auditability: "high | medium | low | unknown"
+    truth_status:  # allowed: authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown
+    reproducibility:  # allowed: high | medium | low | unknown
+    auditability:  # allowed: high | medium | low | unknown
     versioning_or_change_control:
     owner_role:
     steward_or_knower_role:
     fragility_signals:
-      - "unowned | retired_employee_dependency | shared_drive_file | undocumented_macro | manual_copy_paste | no_version_control | conflicting_reports | no_reconciliation | unknown"
+      # allowed: unowned | retired_employee_dependency | shared_drive_file | undocumented_macro | manual_copy_paste | no_version_control | conflicting_reports | no_reconciliation | unknown
     ai_safe_usage:
       allowed_uses:
         - "summarize"
@@ -346,8 +344,8 @@ truth_production_profiles:
       prohibited_uses:
         - "final_decision"
         - "autonomous_action"
-    validation_status: "mentioned | artifact_supported | needs_governance_resolution | validated | blocked"
-    later_step_required: "controlled_validation_governance_resolution | knowledge_mapping | measurement_intelligence | architecture_blueprint | risk_control | readiness_assessment"
+    validation_status:  # allowed: mentioned | artifact_supported | needs_governance_resolution | validated | blocked
+    later_step_required:  # allowed: controlled_validation_governance_resolution | knowledge_mapping | measurement_intelligence | architecture_blueprint | risk_control | readiness_assessment
     evidence_refs:
       -
     confidence:
@@ -371,14 +369,14 @@ sensitive_data_signals:
     field_or_content_type:
     where_seen_or_mentioned:
     handling_notes:
-    later_step_required: "controlled_validation_governance_resolution | risk_register | zero_trust_controls"
+    later_step_required:  # allowed: controlled_validation_governance_resolution | risk_register | zero_trust_controls
     evidence_refs:
       -
     confidence:
 
 operating_strain_and_value_signals:
   - signal_id:
-    type: "delay | rework | manual_reconciliation | source_conflict | truth_production_fragility | visibility_gap | quality_review | capacity_constraint | risk_reduction | revenue | cost | service_quality"
+    type:  # allowed: delay | rework | manual_reconciliation | source_conflict | truth_production_fragility | visibility_gap | quality_review | capacity_constraint | risk_reduction | revenue | cost | service_quality
     description:
     affected_roles:
       -
@@ -405,15 +403,14 @@ role_variation_analysis:
       -
     standardization_opportunities:
       -
-    saturation_status: "unknown | partial | strong | saturated"
-
+    saturation_status:  # allowed: unknown | partial | strong | saturated
 adoption_signals:
   - adoption_signal_id:
     linked_role_ids:
       -
     linked_candidate_use_case_ids:
       -
-    signal_type: "trust_barrier | incentive | habit | workflow_surface | optional_vs_mandated | training_need | current_tool_loyalty | workflow_to_retire | adoption_failure_risk | other"
+    signal_type:  # allowed: trust_barrier | incentive | habit | workflow_surface | optional_vs_mandated | training_need | current_tool_loyalty | workflow_to_retire | adoption_failure_risk | other
     description:
     evidence_refs:
       -
@@ -427,19 +424,19 @@ regulated_domain_signals:
       -
     linked_candidate_use_case_ids:
       -
-    domain: "real_estate | healthcare | finance | legal | insurance | other"
+    domain:  # allowed: real_estate | healthcare | finance | legal | insurance | other
     possible_rule_or_constraint:
     why_it_may_apply:
     owner_or_reviewer_candidate:
     linked_regulated_domain_extension_id:
-    required_route: "knowledge_requirements | guidance_pack | risk_control | legal_review | none"
+    required_route:  # allowed: knowledge_requirements | guidance_pack | risk_control | legal_review | none
     evidence_refs:
       -
     confidence:
 
 candidate_ai_assists:
   - assist_id:
-    assist_type: "draft | retrieve | summarize | monitor | route | check | explain | recommend | act"
+    assist_type:  # allowed: draft | retrieve | summarize | monitor | route | check | explain | recommend | act
     target_step_or_decision_id:
     allowed_behavior:
     forbidden_behavior:
@@ -460,7 +457,7 @@ candidate_ai_assists:
 
 evidence:
   - evidence_id:
-    source_type: "interview | artifact | system_export | screenshot | walkthrough | assumption | inference"
+    source_type:  # allowed: interview | artifact | system_export | screenshot | walkthrough | assumption | inference
     description:
     participant_or_owner:
     date:
@@ -495,38 +492,37 @@ unknowns_and_enrichment_routes:
     question:
     blocks_readiness:
     likely_owner:
-    later_step_required: "controlled_validation_governance_resolution | knowledge_mapping | analytics_maturity_assessment | kpi_design | architecture_blueprint | risk_register | zero_trust_controls | readiness_assessment"
-    priority: "low | medium | high"
-
+    later_step_required:  # allowed: controlled_validation_governance_resolution | knowledge_mapping | analytics_maturity_assessment | kpi_design | architecture_blueprint | risk_register | zero_trust_controls | readiness_assessment
+    priority:  # allowed: low | medium | high
 completeness_checks:
   - check_id: "decision.owner_present"
     description: "Every material decision has an owner role or explicit unknown routed to validation."
-    status: "pass | fail | not_applicable"
+    status:  # allowed: pass | fail | not_applicable
     failing_object_ids: []
     route_if_failed: "controlled_validation_governance_resolution"
   - check_id: "information_object.source_access_profile_present"
     description: "Every material information object has at least one source access profile or an unknown routed to validation."
-    status: "pass | fail | not_applicable"
+    status:  # allowed: pass | fail | not_applicable
     failing_object_ids: []
     route_if_failed: "controlled_validation_governance_resolution"
   - check_id: "material_truth.truth_production_profile_present"
     description: "Every material number, status, report, decision input, metric, or artifact treated as true has a truth production profile."
-    status: "pass | fail | not_applicable"
+    status:  # allowed: pass | fail | not_applicable
     failing_object_ids: []
     route_if_failed: "controlled_validation_governance_resolution"
   - check_id: "candidate_ai_assist.boundaries_present"
     description: "Every candidate AI assist states allowed behavior, forbidden behavior, human review, and readiness dependencies."
-    status: "pass | fail | not_applicable"
+    status:  # allowed: pass | fail | not_applicable
     failing_object_ids: []
     route_if_failed: "organizational_intelligence_diagnostic"
   - check_id: "regulated_domain.extension_linked"
     description: "Every regulated-domain trigger has a linked extension or explicit legal/risk review route."
-    status: "pass | fail | not_applicable"
+    status:  # allowed: pass | fail | not_applicable
     failing_object_ids: []
     route_if_failed: "knowledge_mapping"
 
 step_5_stop_status:
-  status: "initial_ai_workflow_spec_complete | incomplete"
+  status:  # allowed: initial_ai_workflow_spec_complete | incomplete
   build_ready: false
   known:
     -

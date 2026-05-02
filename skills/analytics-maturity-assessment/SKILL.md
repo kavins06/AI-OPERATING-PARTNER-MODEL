@@ -20,33 +20,32 @@ Useful references:
 
 ## Maturity Levels
 
-Use this scale:
+Use this scale (1-5, aligned with the V3 readiness rubric `scoring_scale`):
 
-| Level | State | Symptoms | Suitable Scope |
+| Level | State | Symptoms (in canonical-schema terms) | Suitable behavior_level |
 |---|---|---|---|
-| 0 | Spreadsheet chaos | Manual exports, conflicting numbers, no owners | Narrow read-only help only |
-| 1 | Basic reporting | Static reports, manual refresh, limited trust | Reporting explainer |
-| 2 | Warehouse foundation | Integrated marts, stable KPIs | KPI Q&A, dashboard support |
-| 3 | Governed analytics | Owners, stewards, quality rules, access controls | Workflow-support agents |
-| 4 | Predictive operations | Scores, forecasts, anomaly detection | Prioritization and recommendations |
-| 5 | Agentic operations | Tool-using agents, approvals, monitoring | Managed agent operating layer |
+| 1 | Spreadsheet chaos | Most material `truth_production_profile`s have `truth_status` of shadow_derived, manually_adjusted, person_dependent, or not_reproducible. Owners often unknown. | `read_only_summary` only, with explicit uncertainty language |
+| 2 | Basic reporting | Some authoritative system reports exist; many KPIs still pass through Excel macros and manual adjustment. `de_facto_trusted_source` typically diverges from `official_source`. | `read_only_summary`; selective `draft_and_flag` |
+| 3 | Governed analytics | Material `truth_production_profile`s are conditionally_reliable or authoritative, with `owner_role` named, `reproducibility` medium-or-better, and `auditability` medium-or-better. | `draft_and_flag`; selective `recommendation_support` for behaviors with adequate guidance/eval coverage |
+| 4 | Predictive operations | Model outputs are governed, monitored, and tied to AI-capability metrics. Truth production is mostly authoritative. | `recommendation_support`; selective `human_approved_action` |
+| 5 | Agentic operations | Tool-using agents with approval gates, audit logging, kill criteria, and monitored override/error/drift signals. | `human_approved_action`; selective `autonomous_action` for low-regulated-domain-risk behaviors |
 
 ## Assessment Dimensions
 
-Score 0-5:
+Score 1-5. Each dimension is grounded in canonical-schema fields rather than generic rubric language.
 
-- Business question clarity.
-- Source integration.
-- Data quality.
-- Metric definitions.
-- Dashboard usefulness.
-- Governance and stewardship.
-- Truth production readiness.
-- Security/access control.
-- Statistical/modeling discipline.
-- Feedback and monitoring.
-- Change adoption.
-- AI-capability metric design: success, override, error, drift, adoption, cost, and kill criteria.
+- Business question clarity: each candidate AI behavior maps to a `decision_id` or `workflow_step_id` in the workflow_intelligence_object.
+- Source integration: material `information_object`s have at least one `source_access_profile` with a known `practical_access_path` and `access_method`.
+- Data quality: information objects have `known_quality_or_access_issues` triaged with controls or routes.
+- Metric definitions: KPIs in scope have grain, formula, owner, and a linked `truth_production_profile`.
+- Dashboard usefulness: dashboards drive named decisions and AI behavior on dashboards is constrained by `ai_safe_usage`.
+- Governance and stewardship: every material truth_production_profile has `owner_role` and `steward_or_knower_role` confirmed.
+- Truth production readiness: distribution of `truth_status` values across material profiles - higher percentage of `authoritative` and `conditionally_reliable` raises the score; presence of `shadow_derived`, `manually_adjusted`, `person_dependent`, `not_reproducible`, or `disputed` reduces it.
+- Security/access control: `current_access_roles` and `access_failure_modes` are documented; tool permissions and output controls are designed.
+- Statistical/modeling discipline: when models are in scope, evaluation methodology and regression-suite versioning exist (per the Step 10 `09-ai-guidance-test-cases.yaml` coverage_requirements).
+- Feedback and monitoring: AI-capability metrics (success, override_rate, error_rate, drift signals, cost, adoption, kill criteria) are defined and monitored.
+- Change adoption: adoption-failure triggers are defined and monitored per Step 13 adoption_design.
+- AI-capability metric design: success, override, error, drift, adoption, cost, and kill criteria are defined per the canonical `measurement_intelligence` schema.
 
 ## How To Get Inputs
 
@@ -75,15 +74,21 @@ Use interviews to identify trust, adoption, and actionability; use artifacts to 
 
 ## Measurement Trust Classification
 
-AI may propose trust status, but the authorized client owner must confirm or correct it.
+AI may propose trust status, but the authorized client owner must confirm or correct it. Use the canonical-schema `truth_status` enum rather than ad-hoc labels.
 
-Classify each important metric:
+Map metric trust to `truth_status`:
 
-- `trusted`: authoritative source, clear formula, known grain, named owner/steward, sufficient freshness, reproducible chain, adequate auditability, quality checks, and real decision use.
-- `conditionally_trusted`: usable with caveats such as timing lag, manual refresh, source hierarchy rule, documented manual adjustment, or human review.
+- `authoritative`: official source confirmed, clear formula, known grain, named owner/steward, sufficient freshness, reproducible chain, adequate auditability, quality checks, and real decision use.
+- `conditionally_reliable`: usable with caveats such as timing lag, manual refresh, source-hierarchy rule, documented manual adjustment, or human review. Suitable for `recommendation_support` only when the caveats are encoded in guidance.
+- `shadow_derived`: a system export passes through a spreadsheet, macro, or shadow tracker before becoming the trusted number.
+- `manually_adjusted`: the final number is produced by manual adjustment of a system value.
+- `person_dependent`: the rules or judgments live in one person's head.
 - `disputed`: sources, formulas, ownership, or decision usage conflict.
-- `untrusted`: no reliable owner, unclear formula, poor quality, stale data, not-reproducible chain, low auditability, or known misuse.
+- `missing`: required truth chain or owner cannot be located.
+- `not_reproducible`: the chain is too complex or undocumented to reproduce.
 - `unknown`: not enough evidence yet.
+
+Per the Step 16 `behavior_level_rules`, `recommendation_support`, `human_approved_action`, and `autonomous_action` cannot pass with fragile truth (shadow_derived, manually_adjusted, person_dependent, disputed, missing, not_reproducible). `read_only_summary` and `draft_and_flag` may pass with fragile truth provided the AI surfaces uncertainty and avoids final recommendations.
 
 Trust criteria:
 

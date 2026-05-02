@@ -10,6 +10,41 @@ applies_when:
   multiple_valid_workflows: false
   saturation_against_single_workflow_is_invalid: false
 
+trigger_evaluation:
+  required: true
+  assessed_in_steps:
+    - "step0_engagement_tiering"
+    - "step1_executive_terrain"
+    - "step3_interview_batch"
+  triggers:
+    - trigger: "multi_region"
+      present: "unknown" # yes | no | unknown
+      evidence_refs: []
+    - trigger: "franchise_or_independent_contractor_model"
+      present: "unknown"
+      evidence_refs: []
+    - trigger: "multiple_system_stacks"
+      present: "unknown"
+      evidence_refs: []
+    - trigger: "multi_portfolio_or_property_type_variation"
+      present: "unknown"
+      evidence_refs: []
+    - trigger: "role_seniority_changes_workflow"
+      present: "unknown"
+      evidence_refs: []
+    - trigger: "local_practice_or_manager_discretion"
+      present: "unknown"
+      evidence_refs: []
+  variation_mapping_required: "unknown" # yes | no | unknown
+  skip_allowed_when_all_triggers_no: true
+  skip_decision:
+    skipped: false
+    reason: ""
+    single_canonical_workflow_asserted: false
+    asserted_by_role: ""
+    evidence_refs: []
+    revisit_if_later_signal: []
+
 source_inputs:
   candidate_use_case_ids: []
   interview_batch_ids: []

@@ -9,7 +9,9 @@ description: "Design governed technical implementation blueprints for analytics,
 
 Design from workload and governance needs. Keep raw data, standardized data, semantic definitions, documents, retrieval, and agent tools logically separated.
 
-Inside the AI operating partner engagement, this skill produces the Step 14 technical/vendor implementation blueprint only. Do not build pipelines, MCPs, connectors, live integrations, email ingestion, service accounts, semantic layers, data warehouses, or production data movement during the V2 engagement.
+Inside the AI operating partner engagement, this skill produces the Step 14 technical/vendor implementation blueprint only. Do not build pipelines, MCPs, connectors, live integrations, email ingestion, service accounts, semantic layers, data warehouses, or production data movement during the V3 engagement.
+
+The blueprint output must conform to the canonical `technical_blueprint` schema in `skills/ai-operating-partner-engagement/assets/schemas/canonical-object-schemas.yaml`, including required fields: `technical_blueprint_id`, `implementation_posture` (technically_feasible | feasible_with_conditions | blocked | not_worth_blueprinting_yet), `systems_and_sources`, `access_options`, `future_component_contracts`, `normalization_requirements`, `truth_production_remediation`, `build_sequence`, and `stop_boundary`. Do not invent alternative output structures.
 
 Step 14 documents the future technical path for opportunities still alive after Step 12 and shaped in Step 13. Step 13 decides solution shape and adoption design first; Step 14 should not secretly decide build/buy/leverage, topology, model class, or UX surface without tracing to Step 13.
 
@@ -201,4 +203,3 @@ Stop when a future build team can understand what systems, data, runtime pattern
 ## Shared Engagement Resources
 
 For reusable intake forms, interview prompts, output templates, examples, and scoring scripts, use `../ai-operating-partner-engagement`.
-

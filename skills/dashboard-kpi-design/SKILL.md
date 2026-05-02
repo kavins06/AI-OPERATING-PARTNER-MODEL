@@ -20,17 +20,20 @@ Useful references:
 
 ## Design Workflow
 
+Each step references the canonical V3 schema. KPI definitions are downstream consumers of `truth_production_profile` and `source_access_profile`; do not invent new structures.
+
 1. Name the audience.
-2. Name the decision or monitoring need.
+2. Name the `decision_id` or `workflow_step_id` the KPI supports (from the workflow_intelligence_object).
 3. Identify the workflow and outcome.
 4. Select KPIs that drive action.
 5. Define formulas and grain.
-6. Identify official sources, de facto trusted sources, truth production chains, and refresh cadence.
-7. Classify metric trust: trusted, conditionally trusted, disputed, untrusted, or unknown.
-8. Add context: target, prior period, benchmark, trend, threshold.
-9. Define allowed filters and drilldowns.
-10. Define owners and quality checks.
-11. Define how an agent may calculate, cite, compare, summarize, flag, or escalate the KPI.
+6. Identify or link the canonical `truth_production_profile`: `official_source`, `de_facto_trusted_source`, `production_chain_summary`, `embedded_rules_or_macros`, `manual_adjustments_or_reconciliations`, `owner_role`, `steward_or_knower_role`, `reproducibility`, `auditability`, and `truth_status`.
+7. Classify metric `truth_status` per the canonical enum (authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown).
+8. Identify or link the `source_access_profile`: `practical_access_path`, `access_method`, `lookup_keys`, `required_fields_or_attributes`, `current_access_roles`, `access_failure_modes`.
+9. Add context: target, prior period, benchmark, trend, threshold.
+10. Define allowed filters and drilldowns.
+11. Define owners and quality checks.
+12. Define `ai_safe_usage` per the canonical schema: `allowed_uses`, `prohibited_uses`, `required_human_review_when`. Constrain the maximum permitted `behavior_level` per Step 16 `behavior_level_rules` - KPIs with fragile `truth_status` cannot support `recommendation_support` or higher.
 
 ## How To Get Inputs
 
@@ -84,6 +87,9 @@ Do not ask for live system access, credentials, or build access. Use approved pl
 | Human review triggers | |
 | AI success / override / error / drift / adoption / cost metrics | |
 | Kill criteria | |
+| Linked truth_production_profile id | |
+| Linked source_access_profile id | |
+| Maximum permitted behavior_level | |
 | Owner confirmation status | |
 
 ## Dashboard Rules

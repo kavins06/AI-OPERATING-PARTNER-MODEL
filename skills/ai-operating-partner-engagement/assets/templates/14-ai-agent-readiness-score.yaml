@@ -8,6 +8,8 @@ technical_blueprint_id: ""
 risk_control_model_id: ""
 solution_shape_id: ""
 adoption_design_id: ""
+uses_readiness_rubric_id: "readiness_hard_gates.v3"
+uses_halt_taxonomy_id: "halt_taxonomy.v3"
 
 source_inputs:
   workflow_spec_ids: []
@@ -407,6 +409,14 @@ readiness_decision:
   owner_confirmations_required: []
   operating_partner_judgment: ""
   client_priority_status: "unknown"
+
+halt_event_if_not_ready:
+  required_when_decision_is_not_build_ready: true
+  halt_event_type: "" # pause | revise | disqualify | revisit
+  halt_event_ref: ""
+  reason: ""
+  owner: ""
+  resume_or_revisit_condition: ""
 
 stop_boundary:
   no_agent_build_started: true
