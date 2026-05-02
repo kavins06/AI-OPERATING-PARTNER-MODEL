@@ -9,7 +9,7 @@ Facilitator:
 
 Do not hand over the full organizational intelligence object for review. Use it internally as the canonical reference, then generate controlled role-specific and object-specific views.
 
-Step 7 should also finish workflow-relevant governance resolution: official source, de facto trusted source, truth production chain, source access path, owner/steward, sensitive fields, retention or handling rules, access constraints, reproducibility, auditability, and permitted AI actions. This is not a third broad interview pass. Route each unresolved object to the smallest authorized resolver group.
+Step 8 should also finish workflow-relevant governance resolution: official source, de facto trusted source, truth production chain, source access path, owner/steward, sensitive fields, retention or handling rules, access constraints, reproducibility, auditability, and permitted AI actions. This is not a third broad interview pass. Route each unresolved object to the smallest authorized resolver group.
 
 ## Internal Inputs
 
@@ -289,6 +289,29 @@ next_enrichment_routes:
     reason:
     owner_candidate:
     priority:
+
+back_edge_decisions:
+  update_workflow_object_step6:
+    required: false
+    reason:
+    affected_object_ids: []
+  rerun_diagnostic_step7:
+    required: false
+    reason:
+    affected_finding_ids: []
+    blocker_classification_changes: []
+  update_candidate_shortlist_step2:
+    required: false
+    reason:
+    affected_candidate_use_case_ids: []
+  return_to_interviews_step3_or_variation_step4:
+    required: false
+    reason:
+    affected_roles_or_variants: []
+  continue_forward:
+    allowed: true
+    conditions:
+      -
 ```
 
 ## Decisions
@@ -296,6 +319,9 @@ next_enrichment_routes:
 - Validated enough to continue:
 - Governance resolved enough to continue:
 - Corrections required before continuing:
+- Step 6 workflow object update required:
+- Step 7 diagnostic re-score required:
+- Step 2 shortlist update required:
 - Blocking unresolved governance decisions:
 - Additional interviews needed:
 - Additional planning-evidence follow-up needed:
@@ -307,4 +333,5 @@ next_enrichment_routes:
 - Human validation views are controlled excerpts, not the full organizational intelligence model.
 - Source, truth production, owner, sensitivity, access, retention, and permitted-AI-action decisions should be resolved here whenever possible.
 - Information object and source access path corrections should be resolved here whenever possible.
+- If validation changes material workflow objects, truth production profiles, source access paths, candidate viability, or blocker classification, update Step 6 and re-score Step 7 before moving forward.
 - If too many core objects are disputed, return to interviews, planning-evidence follow-up, or org-structure clarification before knowledge/risk/readiness work.

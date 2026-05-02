@@ -1,4 +1,4 @@
 interface:
   display_name: "Tacit To Explicit Capture"
   short_description: "Convert expert judgment into reusable rules and examples."
-  default_prompt: "Use this skill to turn Step 8 knowledge/guideline requirements and expert know-how into an AI guidance pack: canonical machine-readable guidance spec, truth production handling, Markdown skill-style view, and test/evaluation cases."
+  default_prompt: "Use this skill to turn Step 9 knowledge/guideline requirements and expert know-how into a Step 10 AI guidance pack: canonical machine-readable guidance spec, truth production handling, regulated-domain handling, platform-agnostic readable view, and behavioral/output-quality eval cases."

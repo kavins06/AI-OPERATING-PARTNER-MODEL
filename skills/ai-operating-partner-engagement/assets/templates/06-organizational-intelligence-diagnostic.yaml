@@ -1,12 +1,16 @@
 # Organizational Intelligence Diagnostic
 
-spec_version: "0.1"
+spec_version: "0.2"
 object_type: "organizational_intelligence_diagnostic"
 diagnostic_status: "draft | initial | updated | validated"
 
 input_context:
   workflow_id:
   workflow_spec_ref:
+  candidate_use_case_ids:
+    -
+  variation_map_ids:
+    -
   discovery_zones:
     - 
   evidence_refs:
@@ -64,6 +68,13 @@ findings:
     recurrence: "unknown | isolated | repeated | systemic"
     affects_ai_fit:
     automation_blocker:
+    blocker_classification: "fatal_for_use_case | requires_remediation_before_build | acceptable_with_controls | informational"
+    immediate_route: "disqualify_use_case | remediation | continue_with_controls | continue"
+    use_case_status_impact:
+      affected_candidate_use_case_ids:
+        -
+      confidence_change: "raise | lower | kill | unchanged"
+      shortlist_update_required: false
     intervention_route:
       primary: "controlled_validation_governance_resolution | knowledge_mapping | tacit_knowledge_capture | analytics_maturity_assessment | kpi_design | architecture_blueprint | risk_register | zero_trust_controls | workflow_standardization | training_role_clarity | candidate_ai_assist | do_not_automate_yet"
       secondary:
@@ -106,6 +117,16 @@ candidate_ai_assist_refinements:
     required_enrichment_before_build:
       - 
     first_safe_behavior_hypothesis:
+
+candidate_use_case_routing:
+  - candidate_use_case_id:
+    current_status: "advance | revise | deprioritize | disqualify | needs_more_discovery"
+    strongest_supporting_findings:
+      -
+    strongest_blocking_findings:
+      -
+    required_shortlist_update:
+    route_to_next_step: "controlled_validation | knowledge_mapping | value_case | remediation | do_not_pursue"
 
 do_not_automate_yet:
   - reason_id:

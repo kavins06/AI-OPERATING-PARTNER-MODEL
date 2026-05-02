@@ -1,0 +1,56 @@
+variation_map_id: "variation_<workflow_or_use_case>_v1"
+spec_version: "0.1"
+object_type: "workflow_variation_map"
+status: "draft" # draft | sufficient | needs_more_sampling | blocked
+
+applies_when:
+  fragmented_org: false
+  independent_contractor_model: false
+  franchise_or_region_variation: false
+  multiple_valid_workflows: false
+  saturation_against_single_workflow_is_invalid: false
+
+source_inputs:
+  candidate_use_case_ids: []
+  interview_batch_ids: []
+  org_structure_refs: []
+  evidence_refs: []
+
+variation_dimensions:
+  - dimension_id: ""
+    dimension: "" # role | region | team | portfolio | lead_source | customer_segment | system_stack | seniority | business_unit | other
+    why_it_may_change_workflow: ""
+    sampling_status: "unknown" # covered | partially_covered | not_covered | not_applicable
+
+observed_variants:
+  - variant_id: ""
+    name: ""
+    linked_use_case_ids: []
+    variant_description: ""
+    roles_or_groups: []
+    workflow_differences: []
+    systems_or_sources_differ: []
+    truth_production_differences: []
+    adoption_or_incentive_differences: []
+    regulatory_or_policy_differences: []
+    evidence_refs: []
+    confidence: "unknown" # high | medium | low | unknown
+
+sampling_bias:
+  likely_biases:
+    - "" # sponsor_nominated_loyalists | top_producer_undercoverage | new_user_overcoverage | region_gap | system_stack_gap | other
+  mitigation_plan: []
+  minimum_viable_coverage_met: false
+
+canonical_workflow_decision:
+  canonical_workflow_exists: "unknown" # yes | no | partial | unknown
+  if_no_strategy: "" # model_variants_separately | split_use_cases | select_one_variant | do_not_advance
+  variants_to_model_in_step5: []
+  variants_to_exclude_or_defer: []
+  rationale: ""
+
+stop_condition:
+  sufficient_to_continue: false
+  reason: ""
+  additional_interviews_needed: []
+  route: "" # continue_to_workflow_object | expand_sampling | split_use_case | deprioritize

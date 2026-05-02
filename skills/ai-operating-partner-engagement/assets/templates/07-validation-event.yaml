@@ -21,6 +21,7 @@ validation_event:
       governance_resolution_scope:
   validation_status: "validated | corrected | disputed | incomplete"
   governance_resolution_status: "resolved | partially_resolved | disputed | blocking"
+  material_back_edge_required: false
 
 confirmed_objects:
   - object_id:
@@ -126,3 +127,26 @@ next_enrichment_routes:
     reason:
     owner_candidate:
     priority:
+
+back_edge_decisions:
+  update_workflow_object_step6:
+    required: false
+    reason:
+    affected_object_ids: []
+  rerun_diagnostic_step7:
+    required: false
+    reason:
+    affected_finding_ids: []
+    blocker_classification_changes: []
+  update_candidate_shortlist_step2:
+    required: false
+    reason:
+    affected_candidate_use_case_ids: []
+  return_to_interviews_step3_or_variation_step4:
+    required: false
+    reason:
+    affected_roles_or_variants: []
+  continue_forward:
+    allowed: true
+    conditions:
+      -

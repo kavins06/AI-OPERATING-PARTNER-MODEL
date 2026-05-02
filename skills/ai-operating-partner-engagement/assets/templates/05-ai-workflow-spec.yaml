@@ -1,9 +1,16 @@
 # AI Workflow Specification
 
-spec_version: "0.1"
+spec_version: "0.2"
 object_type: "organizational_workflow_intelligence"
 status: "initial_workflow_spec"
 build_ready: false
+
+process_alignment:
+  engagement_tier_id:
+  regulated_domain_extension_ids: []
+  candidate_use_case_ids: []
+  variation_map_ids: []
+  schema_contract_status: "draft | validated_against_template | failed_completeness_checks"
 
 workflow:
   workflow_id:
@@ -64,6 +71,11 @@ interview_coverage:
       interview_refs:
         -
   coverage_strategy:
+  participation_bias_notes:
+    -
+  fragmented_org_triggered_variation_mapping: false
+  linked_variation_map_ids:
+    -
   saturation_status: "not_started | partial | strong | saturated"
   expansion_needed:
   expansion_reason:
@@ -395,6 +407,36 @@ role_variation_analysis:
       -
     saturation_status: "unknown | partial | strong | saturated"
 
+adoption_signals:
+  - adoption_signal_id:
+    linked_role_ids:
+      -
+    linked_candidate_use_case_ids:
+      -
+    signal_type: "trust_barrier | incentive | habit | workflow_surface | optional_vs_mandated | training_need | current_tool_loyalty | workflow_to_retire | adoption_failure_risk | other"
+    description:
+    evidence_refs:
+      -
+    confidence:
+
+regulated_domain_signals:
+  - regulated_signal_id:
+    linked_step_ids:
+      -
+    linked_decision_ids:
+      -
+    linked_candidate_use_case_ids:
+      -
+    domain: "real_estate | healthcare | finance | legal | insurance | other"
+    possible_rule_or_constraint:
+    why_it_may_apply:
+    owner_or_reviewer_candidate:
+    linked_regulated_domain_extension_id:
+    required_route: "knowledge_requirements | guidance_pack | risk_control | legal_review | none"
+    evidence_refs:
+      -
+    confidence:
+
 candidate_ai_assists:
   - assist_id:
     assist_type: "draft | retrieve | summarize | monitor | route | check | explain | recommend | act"
@@ -455,6 +497,33 @@ unknowns_and_enrichment_routes:
     likely_owner:
     later_step_required: "controlled_validation_governance_resolution | knowledge_mapping | analytics_maturity_assessment | kpi_design | architecture_blueprint | risk_register | zero_trust_controls | readiness_assessment"
     priority: "low | medium | high"
+
+completeness_checks:
+  - check_id: "decision.owner_present"
+    description: "Every material decision has an owner role or explicit unknown routed to validation."
+    status: "pass | fail | not_applicable"
+    failing_object_ids: []
+    route_if_failed: "controlled_validation_governance_resolution"
+  - check_id: "information_object.source_access_profile_present"
+    description: "Every material information object has at least one source access profile or an unknown routed to validation."
+    status: "pass | fail | not_applicable"
+    failing_object_ids: []
+    route_if_failed: "controlled_validation_governance_resolution"
+  - check_id: "material_truth.truth_production_profile_present"
+    description: "Every material number, status, report, decision input, metric, or artifact treated as true has a truth production profile."
+    status: "pass | fail | not_applicable"
+    failing_object_ids: []
+    route_if_failed: "controlled_validation_governance_resolution"
+  - check_id: "candidate_ai_assist.boundaries_present"
+    description: "Every candidate AI assist states allowed behavior, forbidden behavior, human review, and readiness dependencies."
+    status: "pass | fail | not_applicable"
+    failing_object_ids: []
+    route_if_failed: "organizational_intelligence_diagnostic"
+  - check_id: "regulated_domain.extension_linked"
+    description: "Every regulated-domain trigger has a linked extension or explicit legal/risk review route."
+    status: "pass | fail | not_applicable"
+    failing_object_ids: []
+    route_if_failed: "knowledge_mapping"
 
 step_5_stop_status:
   status: "initial_ai_workflow_spec_complete | incomplete"

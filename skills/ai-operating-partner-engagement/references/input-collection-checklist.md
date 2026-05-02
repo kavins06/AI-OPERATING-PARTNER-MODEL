@@ -1,5 +1,23 @@
 # Input Collection Checklist
 
+## Engagement Tiering And Vertical Extension
+
+Before Step 1, decide the engagement depth and vertical obligations.
+
+Capture:
+
+- Engagement tier: lite / standard / deep.
+- Target duration and decision deadline.
+- Organization size, geography, business units, and operating model.
+- Whether the operating model is centralized, federated, franchised, multi-region, independent-contractor, or mixed.
+- Whether regulated-domain templates apply.
+- Which vertical extension is needed, if any.
+- Maximum candidate use cases to deep-discover.
+- Maximum opportunities to advance after portfolio comparison.
+- Explicit non-goals.
+
+For real estate, decide whether the RE extension applies: Fair Housing, TCPA, RESPA where referrals are involved, MLS/IDX/VOW data rules, state advertising/licensure rules, and broker-agent independent-contractor adoption dynamics.
+
 ## Executive Opportunity Terrain Mapping
 
 Ask the sponsor for leadership-level context, not low-level task mechanics or AI ideas.
@@ -19,6 +37,13 @@ Ask the sponsor for leadership-level context, not low-level task mechanics or AI
 - People who can explain how the work actually happens.
 - Definition of success.
 
+Triangulate informant nomination:
+
+- Sponsor-nominated people.
+- Org-chart sample across layers, portfolios, regions, or functions.
+- At least two non-sponsor answers to: "Who do people go to when this work breaks or the answer is unclear?"
+- Known system/data/risk owners, even if sponsor did not name them.
+
 Do not ask executives to identify where AI agents fit, what exact tasks should be automated, or how lower-level workflows happen. Use the executive conversation to map the terrain and collect only the relevant org structure needed for interview coverage, then use manager, operator, admin, customer-facing, and IT/data/security interviews to discover workflow truth.
 
 ## Opportunity Terrain Synthesis
@@ -31,11 +56,27 @@ Produce:
 - Operating leverage themes.
 - Full opportunity terrain.
 - Sequenced discovery tiers.
+- Candidate use-case shortlist.
 - Rationale for tiering.
 - Interview plan.
 - Org coverage matrix.
 - Artifact request plan.
 - Sponsor confirmation questions.
+
+Each candidate use case must include:
+
+- One-line hypothesis.
+- Target user group.
+- Workflow boundary.
+- Business outcome.
+- Value hypothesis.
+- Truth production dependencies.
+- Source access dependencies.
+- Adoption dependencies.
+- Regulated-domain dependencies.
+- Current confidence.
+- Disqualification criteria.
+- Minimum safe behavior hypothesis.
 
 Discovery zones are areas where important information, judgment, coordination, visibility, consistency, or trust-sensitive work appears to concentrate. Map the full terrain first, then sequence the investigation. Do not imply that lower-priority zones are unimportant.
 
@@ -46,9 +87,25 @@ Use tiering:
 - Foundation/dependency: cross-cutting data, governance, knowledge, analytics, architecture, or access issues.
 - Watchlist: potentially important areas needing more evidence.
 
-Do not recommend automation from this step. Candidate agent uses are hypotheses only.
+Do not recommend implementation from this step. Candidate AI uses are hypotheses only, but the shortlist is a required artifact and must be versioned/reaffirmed at diagnostic, value/portfolio, and readiness points.
 
 Use the org structure to create a stratified coverage plan. Start with representative deep interviews across hierarchy, function, portfolio, region, or workflow variation. Expand only when interviews reveal meaningful variation, unresolved conflicts, low quality coverage, high-risk workflows, or rollout/change-management needs.
+
+## AI Interview Protocol Requirements
+
+Before AI-led interviews, define:
+
+- Consent language.
+- Whether the interview is recorded or transcribed.
+- Retention and deletion expectations.
+- PII/sensitive data instructions.
+- No-live-upload boundary.
+- No-asserted-org-facts rule: the AI interviewer may ask questions but must not assert unvalidated facts about the organization.
+- Hallucination protocol: if the AI makes an unsupported assumption, the participant can correct it; the operating partner reviews and marks the item as invalid.
+- Operating-partner intervention rules: when to interrupt, clarify, stop, or route to human follow-up.
+- Participation-bias monitoring.
+
+For fragmented orgs, do not aim for saturation against one canonical workflow until variation is tested. Use variation mapping for independent contractors, franchises, multi-region operations, or multiple valid workflows.
 
 ## Documents and Examples
 
@@ -56,7 +113,7 @@ Ask for examples, not everything. During AI-led interviews, do not ask participa
 
 No direct company data access is required for early discovery. Prefer planning evidence: redacted examples, screenshots, reports, trackers, templates, walkthroughs, sample exports, schema/field lists, API/vendor documentation, access-control screenshots, architecture notes, and data dictionaries when tied to specific workflow objects.
 
-Do not ask for broad system access, employee credentials, production credentials, unapproved API tokens, live integrations, MCP/server access, connector access, all-email access, write access, data-room access, or bulk document dumps during the 16-step engagement. Those belong in the post-Step-16 implementation phase if the blueprint is approved.
+Do not ask for broad system access, employee credentials, production credentials, unapproved API tokens, live integrations, MCP/server access, connector access, all-email access, write access, data-room access, or bulk document dumps during the V2 engagement. Those belong in the post-Step-18 implementation phase if the decision packet and lifecycle object are approved.
 
 Every planning-evidence request must name:
 
@@ -68,6 +125,9 @@ Every planning-evidence request must name:
 - Access scope.
 - Retention or handling rule.
 - Priority.
+- SLA or due date.
+- Escalation path if unavailable.
+- Acceptable substitute hierarchy.
 
 - SOPs.
 - Current reports.
@@ -84,9 +144,17 @@ Every planning-evidence request must name:
 - Access-control screenshots.
 - Integration notes.
 
+Acceptable substitute hierarchy when redaction is too costly:
+
+1. Redacted file or screenshot.
+2. Screen-share or walkthrough recording with sensitive fields masked.
+3. Sample export with dummy or synthetic values.
+4. Schema/field list or report definition.
+5. Verbal walkthrough captured by the operating partner with evidence confidence marked lower.
+
 ## Planning Evidence Access Boundary
 
-Allowed during the 16-step engagement:
+Allowed during the V2 engagement:
 
 - Redacted report samples.
 - Redacted record examples.
@@ -102,7 +170,7 @@ Allowed during the 16-step engagement:
 - Access matrix or role-permission screenshots.
 - Redacted email or document examples tied to a specific workflow object.
 
-Prohibited during the 16-step engagement:
+Prohibited during the V2 engagement:
 
 - Employee passwords or personal credentials.
 - Production credentials or service accounts.
@@ -114,7 +182,7 @@ Prohibited during the 16-step engagement:
 - Bulk unredacted exports.
 - Automation of client workflows.
 
-Step 12-16 should define any future access request package needed for implementation, including purpose, scope, owner approvals, security controls, credential handling, testing approach, and revocation plan.
+Steps 14-18 should define any future access request package needed for implementation, including purpose, scope, owner approvals, security controls, credential handling, testing approach, and revocation plan.
 
 ## Systems Inventory
 

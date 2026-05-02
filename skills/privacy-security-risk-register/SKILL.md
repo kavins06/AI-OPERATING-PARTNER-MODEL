@@ -9,7 +9,7 @@ description: "Create implementation-grade privacy, security, compliance, operati
 
 Make risk visible, owned, and testable before deployment. Current legal, regulatory, privacy, cybersecurity, and vendor claims must be verified against current official sources before client-facing use.
 
-Inside the AI operating partner engagement, this is part of Step 13: the risk and control model. It is not only a risk register. It must translate workflow, data, guidance, measurement, value, and technical blueprint evidence into concrete protocols for future permissions, outputs, approvals, logging, monitoring, incident response, revocation, and stop conditions. It does not provision access, deploy monitoring, or implement controls.
+Inside the AI operating partner engagement, this is part of Step 15: the risk and control model. It is not only a risk register. It must translate workflow, data, guidance, measurement, value, adoption, regulated-domain, and technical blueprint evidence into concrete protocols for future permissions, outputs, approvals, logging, monitoring, incident response, revocation, and stop conditions. It does not provision access, deploy monitoring, or implement controls.
 
 Useful references:
 
@@ -37,6 +37,8 @@ Consider:
 - Undocumented transformation or manual-adjustment risk.
 - Low auditability or not-reproducible truth production.
 - Legal, regulatory, or compliance exposure.
+- Named regulated-domain exposure such as Fair Housing, TCPA, RESPA/referrals, MLS/IDX/VOW data-use rules, and state advertising/licensure rules for real estate when applicable.
+- Adoption, incentive, or end-user misuse risk.
 - Security incident response gaps.
 - Missing revocation path.
 - Tool permission mismatch.
@@ -47,14 +49,16 @@ Consider:
 
 In the AI operating partner engagement, use prior outputs first:
 
-- Step 5 workflow actions, decisions, approval gates, edge cases, and failure modes.
-- Step 6 diagnostic findings and automation blockers.
-- Step 7 sensitive fields, source constraints, retention/export limits, permitted AI actions, and governance decisions.
-- Step 9 AI guidance packs, forbidden behaviors, escalation triggers, output contracts, and test/evaluation cases.
-- Step 10 trusted/disputed measurements and agent-safe metric usage.
+- Step 6 workflow actions, decisions, approval gates, edge cases, and failure modes.
+- Step 7 diagnostic findings and automation blockers.
+- Step 8 sensitive fields, source constraints, retention/export limits, permitted AI actions, and governance decisions.
+- Step 10 AI guidance packs, forbidden behaviors, escalation triggers, output contracts, and test/evaluation cases.
+- Step 11 trusted/disputed measurements, AI-capability metrics, and agent-safe metric usage.
 - Truth production profiles and fragile truth statuses.
-- Step 11 business value case and risk tolerance implied by the value case.
-- Step 12 technical implementation blueprint: systems, access paths, future tools/MCPs/connectors, document/email scope, credential/secrets approach, audit/logging, test strategy, blocked paths, and build sequence.
+- Step 12 business value case and risk tolerance implied by the value case.
+- Step 13 solution shape and adoption design.
+- Step 14 technical implementation blueprint: systems, access paths, future tools/MCPs/connectors, document/email scope, credential/secrets approach, audit/logging, test strategy, blocked paths, and build sequence.
+- Regulated-domain extension, if applicable.
 - Existing policies: access, retention, incident response, data processing, acceptable use.
 - Targeted confirmations from risk, security, legal, compliance, IT/data, and business owners.
 

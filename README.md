@@ -1,7 +1,7 @@
 # AI Operating Partner System
 
 This repo is the canonical package for the AI operating partner skill system.
-It contains the 16 operating skills, the master engagement orchestrator, reusable templates, scoring scripts, and generated mastery references.
+It contains the operating skills, the master V2 engagement orchestrator, reusable templates, scoring scripts, and generated mastery references.
 
 The original installed Codex copies can stay in `C:\Users\kavin\.codex\skills` for day-to-day use, but this repo should be the clean place to maintain, version, and move the system.
 
@@ -37,26 +37,29 @@ The 79 original source documents, raw OCR cache, extracted source-text dumps, an
 
 ## Practical Order
 
-Use `ai-operating-partner-engagement` first when you want the full process. The engagement is a pre-build organizational intelligence and implementation-blueprint process. It does not build agents, MCPs, connectors, live integrations, normalization pipelines, email ingestion, or production automations during the 16-step engagement. It also does not assume a clean source of truth exists; it captures how business truth is actually produced through official systems, de facto trusted artifacts, spreadsheets/macros, manual adjustments, reconciliations, and expert judgment.
+Use `ai-operating-partner-engagement` first when you want the full process. V2 is a pre-build organizational intelligence, use-case selection, adoption, and implementation-blueprint process with Step 0 plus 18 operating steps. It does not build agents, MCPs, connectors, live integrations, normalization pipelines, email ingestion, or production automations during the engagement. It also does not assume a clean source of truth exists; it captures how business truth is actually produced through official systems, de facto trusted artifacts, spreadsheets/macros, manual adjustments, reconciliations, and expert judgment.
 
+0. Engagement tiering and vertical extension
 1. Executive opportunity terrain mapping
-2. Opportunity terrain synthesis and discovery-zone sequencing
+2. Opportunity terrain synthesis and candidate use-case shortlist
 3. Role-aware AI-led interviews
-4. Planning-evidence follow-up
-5. AI-native workflow intelligence object
-6. Organizational intelligence diagnostic
-7. Controlled validation and governance/source access/truth production resolution
-8. AI knowledge and guideline requirements map
-9. AI guidance pack: structured spec, skill-style view, and test cases
-10. Measurement intelligence, truth production, and analytics readiness
-11. Business value case
-12. Technical implementation blueprint: architecture, runtime/orchestration, hosting/environment, access, tools, truth remediation, normalization, and build sequence
-13. Risk and control model
-14. AI-agent readiness score: implementation-grade gates including truth production, behavior-level readiness, dependencies, blockers, and Step 15 path
-15. Machine-readable implementation decision packet: build-ready brief, truth/data remediation plan, runtime/hosting plan, or do-not-automate recommendation
-16. Machine-readable managed lifecycle object for future validation, launch, monitoring, truth governance, incident response, improvement, expansion, and retirement
+4. Variation mapping for fragmented operating models
+5. Planning-evidence follow-up
+6. AI-native workflow intelligence object
+7. Organizational intelligence diagnostic
+8. Controlled validation and governance/source access/truth production resolution
+9. AI knowledge and guideline requirements map
+10. AI guidance pack: structured spec, skill-style view, and test/eval cases
+11. Measurement intelligence and AI-capability metric design
+12. Business value case and portfolio comparison
+13. Solution shape and end-user adoption design
+14. Technical/vendor implementation blueprint
+15. Risk and control model
+16. AI-agent readiness score
+17. Machine-readable implementation decision packet
+18. Machine-readable managed lifecycle and adoption-change object
 
-Implementation starts only after Step 16 is complete, the blueprint is approved, and the client starts a separate build phase.
+Implementation starts only after Step 18 is complete, the decision packet and lifecycle object are approved, and the client starts a separate build phase.
 
 ## Install Into Codex
 

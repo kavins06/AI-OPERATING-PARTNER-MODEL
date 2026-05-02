@@ -5,11 +5,13 @@ source_of_truth: true
 lifecycle_path: "managed_agent_lifecycle" # managed_agent_lifecycle | remediation_lifecycle | no_automation_review_cadence
 
 source_inputs:
-  step_15_packet_id: ""
-  step_15_packet_type: ""
+  step_17_packet_id: ""
+  step_17_packet_type: ""
   readiness_object_id: ""
   risk_control_model_id: ""
   technical_blueprint_id: ""
+  solution_shape_id: ""
+  adoption_design_id: ""
   guidance_pack_ids: []
   measurement_intelligence_ids: []
   truth_production_profile_ids: []
@@ -19,12 +21,12 @@ source_inputs:
   missing_or_partial_inputs: []
 
 operating_status:
-  current_engagement_phase: "pre_build_step_16"
+  current_engagement_phase: "pre_build_step_18"
   future_implementation_phase_status: "not_started"
-  implementation_allowed_only_after_step_16_approval: true
+  implementation_allowed_only_after_step_18_approval: true
   separate_implementation_approval_required: true
   no_live_agent_operated_during_engagement: true
-  approval_boundary: "This object defines future operations only; it does not deploy, monitor, connect, or operate an agent during the 16-step engagement."
+  approval_boundary: "This object defines future operations only; it does not deploy, monitor, connect, or operate an agent during the V2 engagement."
 
 lifecycle_scope:
   agent_or_workflow_name: ""
@@ -108,7 +110,7 @@ future_lifecycle_stages:
     stage_name: "implementation_approval"
     purpose: "Decide whether the separate implementation phase may begin."
     entry_criteria:
-      - "Step 16 lifecycle object approved."
+      - "Step 18 lifecycle object approved."
       - "Client approves separate implementation phase."
     exit_criteria: []
     required_approvals: []
@@ -278,6 +280,53 @@ feedback_and_correction_loop:
   backlog_owner: ""
   severity_routing: []
 
+adoption_change_management:
+  adoption_design_id: ""
+  target_user_groups: []
+  adoption_path: "opt_in | encouraged | mandated | incentive_led | hybrid | unknown"
+  independent_contractor_or_external_user_constraints:
+    applies: false
+    implication:
+    enforcement_or_incentive_mechanism:
+  training_plan:
+    - audience:
+      format:
+      owner:
+      timing:
+      completion_signal:
+  incentive_alignment:
+    - incentive_or_barrier:
+      affected_user_group:
+      mitigation_or_design_response:
+      owner:
+  communication_plan:
+    launch_message_owner:
+    channels: []
+    proof_points_to_show: []
+    what_not_to_claim: []
+  feedback_channels:
+    - channel:
+      owner:
+      response_sla:
+      routed_to:
+  workflow_sunsetting:
+    replaced_or_reduced_workflows: []
+    retirement_condition:
+    exception_process:
+    owner:
+  adoption_metrics:
+    - metric_id:
+      definition:
+      target:
+      review_cadence:
+      owner:
+  adoption_failure_triggers:
+    - trigger_id:
+      condition:
+      threshold:
+      required_action: "revise_training | adjust_workflow_surface | revise_incentive | restrict_scope | pause_rollout | retire"
+      owner:
+
 change_management:
   guidance_update_owner: ""
   source_change_owner: ""
@@ -426,8 +475,8 @@ expansion_criteria:
     - "New scope has readiness reassessment."
     - "Controls, tests, and lifecycle object updated."
   expansion_decision_owner: ""
-  expansion_requires_step_14_update: true
-  expansion_requires_step_15_packet_update: true
+  expansion_requires_step_16_update: true
+  expansion_requires_step_17_packet_update: true
 
 retirement_criteria:
   triggers:
@@ -468,7 +517,7 @@ remediation_lifecycle:
   remediation_owner: ""
   remediation_review_cadence: ""
   evidence_required_to_reopen_readiness: []
-  return_to_step: 14
+  return_to_step: 16
   stop_if_not_resolved_by: ""
 
 no_automation_review_cadence:
@@ -480,7 +529,7 @@ no_automation_review_cadence:
   revisit_cadence: ""
 
 final_approval:
-  step_16_approved: false
+  step_18_approved: false
   approved_by: []
   approval_date: ""
   approval_notes: ""
@@ -494,4 +543,4 @@ stop_boundary:
   no_credentials_or_live_access_requested: true
   no_email_ingestion_started: true
   no_agent_deployed_or_operated: true
-  implementation_requires_separate_approval_after_step_16: true
+  implementation_requires_separate_approval_after_step_18: true

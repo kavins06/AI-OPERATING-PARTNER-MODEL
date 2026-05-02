@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Score AI-agent readiness from a Step 14 object or key=value scores."""
+"""Score AI-agent readiness from a Step 16 object or key=value scores."""
 
 from __future__ import annotations
 
@@ -10,6 +10,7 @@ from typing import Any
 
 
 DIMENSIONS = [
+    "use_case_framing_readiness",
     "business_value",
     "workflow_clarity",
     "source_access_readiness",
@@ -17,13 +18,18 @@ DIMENSIONS = [
     "truth_production_readiness",
     "knowledge_guidance_readiness",
     "measurement_readiness",
+    "ai_capability_metrics_readiness",
+    "regulated_domain_readiness",
+    "solution_shape_readiness",
     "architecture_feasibility",
     "risk_control_readiness",
     "human_oversight_readiness",
     "change_lifecycle_readiness",
+    "adoption_change_readiness",
 ]
 
 HARD_GATES = [
+    "use_case_framing_gate",
     "business_value_gate",
     "workflow_clarity_gate",
     "source_access_gate",
@@ -31,8 +37,12 @@ HARD_GATES = [
     "truth_production_gate",
     "knowledge_guidance_gate",
     "measurement_gate",
+    "ai_capability_metrics_gate",
+    "regulated_domain_gate",
+    "solution_shape_gate",
     "technical_feasibility_gate",
     "risk_control_gate",
+    "adoption_change_gate",
     "human_oversight_gate",
     "lifecycle_gate",
 ]
@@ -137,19 +147,23 @@ def load_scores(path: str | None, items: list[str]) -> tuple[dict[str, int], dic
 
 
 def decision(total: int, scores: dict[str, int], gates: dict[str, str]) -> str:
+    max_total = len(DIMENSIONS) * 5
+    ready_threshold = max(1, round(max_total * 0.85))
+    fix_threshold = max(1, round(max_total * 0.70))
+    remediation_threshold = max(1, round(max_total * 0.52))
     failed = [gate for gate, status in gates.items() if status in {"fail", "blocked"}]
     if failed:
-        return "Blocked: route to remediation before any Step 15 build-ready brief. Failed gates: " + ", ".join(failed)
+        return "Blocked: route to remediation before any Step 17 build-ready brief. Failed gates: " + ", ".join(failed)
     unknown = [gate for gate, status in gates.items() if status == "unknown"]
     if unknown:
         return "Discovery incomplete: resolve unknown hard gates before treating the score as build-ready."
     if any(scores.get(k, 0) <= 1 for k in DIMENSIONS):
         return "Severe gap: do not automate until critical blockers are fixed."
-    if total >= 47:
-        return "Ready for Step 15 build-ready implementation brief, still gated by Step 16 approval."
-    if total >= 39:
-        return "Fix named gaps first, then reconsider Step 15 build-ready brief."
-    if total >= 29:
+    if total >= ready_threshold:
+        return "Ready for Step 17 build-ready implementation brief, still gated by Step 18 approval."
+    if total >= fix_threshold:
+        return "Fix named gaps first, then reconsider Step 17 build-ready brief."
+    if total >= remediation_threshold:
         return "Governance, data, knowledge, technical feasibility, or risk-control readiness plan first."
     return "Do not automate yet."
 
@@ -174,7 +188,7 @@ def print_template() -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--json", help="JSON or YAML file containing a Step 14 readiness object or flat dimension scores")
+    parser.add_argument("--json", help="JSON or YAML file containing a Step 16 readiness object or flat dimension scores")
     parser.add_argument("--score", action="append", default=[], help="Dimension score as key=value")
     parser.add_argument("--gate", action="append", default=[], help="Hard gate status as gate_id=status")
     parser.add_argument("--template", action="store_true", help="Print a JSON template")

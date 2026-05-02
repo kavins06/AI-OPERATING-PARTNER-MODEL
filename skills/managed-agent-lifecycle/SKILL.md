@@ -9,7 +9,7 @@ description: "Create machine-readable managed lifecycle objects for future AI ca
 
 Manage agents as living information systems, not one-time automations.
 
-Inside the AI operating partner engagement, this skill produces the future operating model only. Do not build, deploy, monitor, or operate a client agent during the 16-step engagement.
+Inside the AI operating partner engagement, this skill produces the Step 18 future operating and adoption-change model only. Do not build, deploy, monitor, or operate a client agent during the V2 engagement.
 
 The canonical artifact is a structured lifecycle object, not a narrative SOP. Markdown SOPs are generated views.
 
@@ -30,8 +30,9 @@ Start the lifecycle only after the operating partner has gathered:
 - Knowledge map and review criteria.
 - Risk register.
 - Zero-trust permission boundary.
-- Step 14 readiness object with hard gates, behavior-level readiness, blockers, minimum safe first behavior, and Step 15 path.
-- Step 15 machine-readable implementation decision packet with build scope or remediation path, future component contracts, access requests, normalization, tests, controls, owners, sequence, and stop conditions.
+- Step 16 readiness object with hard gates, behavior-level readiness, blockers, minimum safe first behavior, and Step 17 path.
+- Step 17 machine-readable implementation decision packet with build scope or remediation path, future component contracts, access requests, normalization, tests, controls, owners, sequence, confidence, revision triggers, and stop conditions.
+- Step 13 adoption design: target users, opt-in/mandate reality, incentives, training, feedback channels, workflow sunsetting, and adoption-failure triggers.
 - Baseline metrics.
 - Truth production status for baseline metrics and AI inputs.
 - Human approval model.
@@ -45,7 +46,7 @@ If the build team lacks these inputs, return to discovery, governance, knowledge
 Use one of three paths:
 
 - `managed_agent_lifecycle`: the opportunity is build-ready or conditionally build-ready and needs a future operating contract.
-- `remediation_lifecycle`: the opportunity is not build-ready and needs owned remediation, evidence, review cadence, and return to Step 14.
+- `remediation_lifecycle`: the opportunity is not build-ready and needs owned remediation, evidence, review cadence, and return to Step 16.
 - `no_automation_review_cadence`: the opportunity should not be automated now and needs revisit conditions or an alternative operating recommendation.
 
 ## Lifecycle Stages
@@ -68,7 +69,7 @@ Use `../ai-operating-partner-engagement/assets/templates/16-managed-lifecycle-ob
 The lifecycle object must include:
 
 - Lifecycle path, operating status, and approval boundary.
-- Source-input trace from Step 15, Step 14, Step 13, Step 12, Step 11, Step 10, Step 9, Step 7, and Step 5.
+- Source-input trace from Step 17, Step 16, Step 15, Step 14, Step 13, Step 12, Step 11, Step 10, Step 9, Step 8, and Step 6.
 - Truth production governance: source drift checks, rule-change approval, reconciliation cadence, owner review, and shadow artifact retirement.
 - Lifecycle scope: future AI behavior level, authorized and unauthorized behavior levels, target users, environments, and exclusions.
 - Owner model: business, day-to-day, technical, data, security, risk/compliance, support, guidance update, measurement, source freshness, incident, revocation, future build, sponsor, and approval forum.
@@ -77,6 +78,7 @@ The lifecycle object must include:
 - Validation plan.
 - Monitoring plan, including truth production checks.
 - Feedback and correction loop.
+- Adoption/change management: training, incentive alignment, opt-in/mandate reality, communication plan, workflow sunsetting, adoption metrics, adoption-failure triggers, and remedial actions.
 - Change management and revalidation triggers.
 - Access review and revocation.
 - Incident response.
@@ -85,7 +87,7 @@ The lifecycle object must include:
 - Retirement criteria.
 - Remediation lifecycle or no-automation review cadence when applicable.
 - Final approval and conditions before implementation.
-- Stop boundary confirming no build or live operation during the 16-step engagement.
+- Stop boundary confirming no build or live operation during the V2 engagement.
 
 ## Operating Controls
 
@@ -159,7 +161,7 @@ Produce a machine-readable lifecycle object with:
 
 Do not propose expansion until the agent has evidence of accuracy, usefulness, controlled access, logged behavior, source freshness, acceptable risk, owner approval, and measurable value.
 
-Do not finish Step 16 with unnamed owners for monitoring, incident response, revocation, guidance updates, source freshness, or access review.
+Do not finish Step 18 with unnamed owners for monitoring, incident response, revocation, guidance updates, source freshness, access review, adoption support, feedback triage, or workflow sunsetting.
 
 ## Shared Engagement Resources
 

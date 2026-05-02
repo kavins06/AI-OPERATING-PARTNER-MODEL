@@ -9,7 +9,7 @@ description: "Design zero-trust control models for AI agents, automation, analyt
 
 Do not let agents inherit broad human access by default. Grant scoped, task-specific, observable, revocable permissions.
 
-Inside the AI operating partner engagement, this skill designs the Step 13 zero-trust portion of the future risk and control model only. Do not provision credentials, service accounts, live API tokens, MCP access, connectors, email ingestion, monitoring, or write access during the 16-step engagement.
+Inside the AI operating partner engagement, this skill designs the Step 15 zero-trust portion of the future risk and control model only. Do not provision credentials, service accounts, live API tokens, MCP access, connectors, email ingestion, monitoring, or write access during the V2 engagement.
 
 Useful references:
 
@@ -43,10 +43,10 @@ Collect:
 - Logging, monitoring, retention, and incident requirements.
 - Validation-call decisions about what should never be automated.
 - Planning evidence access boundaries and future implementation access requests.
-- Step 9 guidance packs with forbidden behaviors and output contracts.
-- Step 10 metric trust and agent-safe metric usage.
+- Step 10 guidance packs with forbidden behaviors and output contracts.
+- Step 11 metric trust, AI-capability metrics, and agent-safe metric usage.
 - Truth production profiles, fragile truth statuses, and AI-safe truth usage.
-- Step 13 risk register and data classification.
+- Step 15 risk register and data classification.
 
 Derive controls from actual agent behavior, not generic access roles.
 

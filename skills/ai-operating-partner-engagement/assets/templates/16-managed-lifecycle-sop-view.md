@@ -1,11 +1,11 @@
 # Managed Agent Lifecycle SOP View
 
-This is a generated Markdown view, not the canonical artifact. The canonical Step 16 artifact is `16-managed-lifecycle-object.yaml`. This is a future operating model, not a deployment plan for the current 16-step engagement. Do not deploy, monitor, connect, or operate a client agent until after Step 16 is complete and the client approves a separate implementation phase.
+This is a generated Markdown view, not the canonical artifact. The canonical Step 18 artifact is `16-managed-lifecycle-object.yaml`. This is a future operating model, not a deployment plan for the current V2 engagement. Do not deploy, monitor, connect, or operate a client agent until after Step 18 is complete and the client approves a separate implementation phase.
 
 Agent:
 Workflow:
-Step 16 lifecycle object ID:
-Step 15 implementation packet ID:
+Step 18 lifecycle object ID:
+Step 17 implementation packet ID:
 Owner:
 Date:
 
@@ -19,8 +19,8 @@ Date:
 
 ## 2. Readiness
 
-- Step 14 readiness object:
-- Step 15 packet type:
+- Step 16 readiness object:
+- Step 17 packet type:
 - Lifecycle path:
 - Behavior-level readiness:
 - Required fixes:
@@ -71,6 +71,10 @@ Date:
 
 - Feedback channels:
 - Correction loop:
+- Adoption metrics:
+- Training and support loop:
+- Workflow sunsetting:
+- Adoption-failure triggers:
 - Guidance update process:
 - Truth rule / macro / reconciliation update process:
 - Revalidation triggers:

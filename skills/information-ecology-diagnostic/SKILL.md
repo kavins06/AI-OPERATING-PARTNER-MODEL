@@ -34,6 +34,8 @@ Assess:
 - Behavior: how people search, interpret, share, avoid, or hoard information.
 - Technology: tools, dashboards, databases, documents, communication channels.
 - Governance: owners, definitions, quality, access, retention, escalation.
+- Adoption: end-user trust, incentives, workflow surfaces, optional versus mandated use, training, and workflow retirement.
+- Regulated-domain: named legal, licensing, communication, advertising, consent, data-use, or compliance constraints that shape the workflow.
 
 ## Diagnostic Questions
 
@@ -66,18 +68,22 @@ Watch for:
 
 ## Output Template
 
+Produce object-linked findings, not only themes. In the AI operating partner V2 engagement this is Step 7, and every material finding needs a blocker classification.
+
 Produce:
 
-| Lens | Finding | Evidence | Risk | Recommended Next Step |
-|---|---|---|---|---|
-| People | | | | |
-| Process | | | | |
-| Culture | | | | |
-| Politics | | | | |
-| Architecture | | | | |
-| Behavior | | | | |
-| Technology | | | | |
-| Governance | | | | |
+| Lens | Finding | Linked Object IDs | Evidence | Risk | Blocker Classification | Immediate Route | Recommended Next Step |
+|---|---|---|---|---|---|---|---|
+| People | | | | | fatal_for_use_case / requires_remediation_before_build / acceptable_with_controls / informational | disqualify_use_case / remediation / continue_with_controls / continue | |
+| Process | | | | | | | |
+| Culture | | | | | | | |
+| Politics | | | | | | | |
+| Architecture | | | | | | | |
+| Behavior | | | | | | | |
+| Technology | | | | | | | |
+| Governance | | | | | | | |
+| Adoption | | | | | | | |
+| Regulated-domain | | | | | | | |
 
 Then give:
 
@@ -88,6 +94,7 @@ Then give:
 - Governance questions.
 - Truth production questions.
 - Recommended path before build.
+- Candidate use-case routing: advance, revise, deprioritize, disqualify, or needs more discovery.
 
 ## Quality Bar
 

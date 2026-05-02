@@ -1,0 +1,72 @@
+candidate_use_case_shortlist_id: "shortlist_<client>_v1"
+spec_version: "0.1"
+object_type: "candidate_use_case_shortlist"
+status: "draft" # draft | sponsor_confirmed | updated | narrowed
+version: "0.1"
+
+source_inputs:
+  engagement_tiering_id: ""
+  executive_terrain_ids: []
+  opportunity_terrain_synthesis_id: ""
+  org_structure_refs: []
+  evidence_refs: []
+
+role_split:
+  ai_work:
+    - "Draft candidate use cases from terrain, leverage themes, trust boundaries, and likely workflows."
+    - "Name hypotheses, dependencies, disqualification criteria, and evidence gaps."
+  operating_partner_work:
+    - "Decide which candidates are worth discovery, remove weak or sponsor-bias-only candidates, and sequence the shortlist."
+  client_work:
+    - "Confirm strategic priority, access feasibility, and whether named candidates are worth exploring."
+
+shortlist:
+  - use_case_id: ""
+    name: ""
+    one_line_hypothesis: ""
+    target_user_groups: []
+    workflow_boundary: ""
+    discovery_zone: ""
+    business_outcome: ""
+    current_confidence: "low" # high | medium | low | unknown
+    value_hypothesis:
+      value_type: "" # efficiency | decision_quality | risk_reduction | revenue | experience | measurement_or_truth_infrastructure | other
+      evidence_refs: []
+    trust_dependencies:
+      truth_production_dependencies: []
+      source_access_dependencies: []
+      data_quality_dependencies: []
+      regulated_domain_dependencies: []
+    adoption_dependencies:
+      end_user_groups: []
+      incentive_or_behavior_change_needed: ""
+      adoption_risk: "unknown" # low | medium | high | unknown
+    disqualification_criteria:
+      - criterion_id: ""
+        criterion: ""
+        checked_in_step: "" # step6 | step7 | step11 | step12 | step14
+        if_true_route_to: "" # deprioritize | do_not_automate | remediation | revise_scope
+    minimum_safe_behavior_hypothesis: "" # read_only_summary | draft_and_flag | recommendation_support | human_approved_action | autonomous_action | unknown
+    discovery_plan:
+      interview_roles: []
+      evidence_needed: []
+      variation_mapping_needed: false
+      regulated_domain_review_needed: false
+    current_status: "candidate" # candidate | active_discovery | paused | disqualified | advanced
+    status_rationale: ""
+
+portfolio_view:
+  max_to_advance_to_deep_discovery: null
+  sequencing_rationale: ""
+  sponsor_confirmation_needed: []
+
+versioning:
+  reaffirm_at_steps:
+    - "step6_diagnostic"
+    - "step11_value_case"
+    - "step14_readiness"
+  change_log:
+    - date: ""
+      changed_by: ""
+      change: ""
+      reason: ""

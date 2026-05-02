@@ -1,4 +1,4 @@
 interface:
   display_name: "AI Agent Readiness Assessment"
   short_description: "Create implementation-grade readiness gates for a candidate AI opportunity."
-  default_prompt: "Use this skill to produce a readiness object with hard gates including truth production, behavior-level readiness, dependencies, blockers, minimum safe first behavior, and the Step 15 path. Do not authorize implementation before Step 16 approval."
+  default_prompt: "Use this skill to produce a Step 16 readiness object with hard gates including use-case framing, truth production, regulated-domain, solution shape, adoption/change, behavior-level readiness, dependencies, blockers, minimum safe first behavior, and the Step 17 path. Do not authorize implementation before Step 18 approval."

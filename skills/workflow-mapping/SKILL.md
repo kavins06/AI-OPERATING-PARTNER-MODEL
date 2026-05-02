@@ -44,11 +44,11 @@ As an AI operating partner, collect inputs through a staged process:
 
 Do not rely only on executives. Leaders often describe what should happen; operators reveal what actually happens.
 
-No direct company data access is required to start mapping. During the 16-step engagement, do not request production credentials, employee credentials, broad live system access, unapproved API tokens, all-email ingestion, write access, live MCP/connector access, or bulk unredacted data. If future implementation needs those, capture them as blueprint requirements for Step 12-16.
+No direct company data access is required to start mapping. During the V2 engagement, do not request production credentials, employee credentials, broad live system access, unapproved API tokens, all-email ingestion, write access, live MCP/connector access, or bulk unredacted data. If future implementation needs those, capture them as blueprint requirements for Steps 14-18.
 
 ## AI-Native Workflow Specification
 
-Step 5 produces an `organizational_workflow_intelligence` object, not a human-readable report. Human summaries are views generated from this object.
+Step 6 produces an `organizational_workflow_intelligence` object, not a human-readable report. Human summaries are views generated from this object.
 
 Build the spec by:
 
@@ -68,13 +68,13 @@ Build the spec by:
 
 ## Stop Boundary
 
-Step 5 should complete:
+Step 6 should complete:
 
 - Workflow identity, business purpose, trigger, outcome.
 - Known org context, roles, people, hierarchy, and interview coverage.
 - Known actors, steps, handoffs, decisions, approval gates, edge cases, information objects, source access profiles, truth production profiles, sources/systems mentioned, source trust signals, sensitive data signals, human boundaries, operating strain/value signals, candidate assist hypotheses, evidence, confidence, validation status, unknowns, and enrichment routes.
 
-Step 5 should not complete official source authority, final truth authority, data owner/steward, full data dictionary, metric formulas, data quality rules, retention rules, access matrix, agent permissions, risk scores, zero-trust controls, architecture design, readiness score, or build recommendation. Route source/truth/owner/sensitivity/access/permission fields to Step 7 controlled validation and governance resolution, and route risk, metric, architecture, and readiness fields to later enrichment steps.
+Step 6 should not complete official source authority, final truth authority, data owner/steward, full data dictionary, metric formulas, data quality rules, retention rules, access matrix, agent permissions, risk scores, zero-trust controls, architecture design, readiness score, or build recommendation. Route source/truth/owner/sensitivity/access/permission fields to Step 8 controlled validation and governance resolution, and route risk, metric, architecture, adoption, and readiness fields to later enrichment steps.
 
 ## Automation Readiness Signals
 

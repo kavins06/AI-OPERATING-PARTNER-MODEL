@@ -11,10 +11,18 @@ Consolidate silent evidence needs after interviews and request only the smallest
 
 ## Data Access Posture
 
-- No build access or credentials are required during the 16-step engagement.
+- No build access or credentials are required during the V2 engagement.
 - Do not request broad system access, employee credentials, production credentials, API tokens, MCP/server access, connector access, all-email ingestion, write access, data-room access, or bulk document dumps at this stage.
 - Prefer redacted examples, screenshots, reports, trackers, templates, walkthroughs, sample exports, formulas, macro walkthroughs, reconciliation notes, schema/field lists, API/vendor documentation, access-control screenshots, architecture notes, and data dictionaries when they are sufficient.
 - If live system access, API access, MCPs, connectors, normalization pipelines, email connectors, or unredacted data are needed later, define them as future implementation access requirements, not current requests.
+
+## SLA And Escalation
+
+- Requested response date:
+- Standard SLA: five business days unless engagement tier or client constraint says otherwise.
+- Escalation owner if evidence stalls:
+- Sponsor escalation date:
+- Acceptable substitute hierarchy: redacted artifact, redacted screenshot, walkthrough recording, live walkthrough without transfer, sample export, formula/macro walkthrough, verbal description with operating-partner-recreated structure.
 
 ## Evidence Need Review
 

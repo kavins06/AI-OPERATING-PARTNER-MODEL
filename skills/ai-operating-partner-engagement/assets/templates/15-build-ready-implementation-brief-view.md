@@ -1,9 +1,9 @@
 # Build-Ready Implementation Brief View
 
-This is a generated Markdown view, not the canonical artifact. The canonical Step 15 artifact is `15-implementation-decision-packet.yaml`. Do not request credentials, build MCPs, build connectors, normalize live data, ingest emails, or deploy agents until after Step 16 is complete and the client approves a separate implementation phase.
+This is a generated Markdown view, not the canonical artifact. The canonical Step 17 artifact is `15-implementation-decision-packet.yaml`. Do not request credentials, build MCPs, build connectors, normalize live data, ingest emails, or deploy agents until after Step 18 is complete and the client approves a separate implementation phase.
 
 Agent / workflow:
-Step 15 packet ID:
+Step 17 packet ID:
 Packet type:
 Business owner:
 Technical owner:
@@ -24,7 +24,25 @@ Risk owner:
 - Key assumptions:
 - Client-confirmed assumptions:
 - Recommendation:
+- Recommendation confidence:
+- Conditional revision triggers:
 - Value gaps to resolve before implementation:
+
+## Portfolio And Solution Shape
+
+- Portfolio comparison ID:
+- Portfolio rank / sequencing:
+- Solution shape ID:
+- Build / buy / leverage decision:
+- Agent topology:
+- Model-selection class:
+- UX surface:
+- Eval / observability shape:
+- Adoption design ID:
+- Target end users:
+- Adoption path:
+- Training / support:
+- Adoption-failure triggers:
 
 ## Validated AI Workflow Specification
 
@@ -94,7 +112,7 @@ Risk owner:
 
 ## Future Access Request Package
 
-- Access needed after Step 16:
+- Access needed after Step 18:
 - Purpose:
 - Permission scope:
 - Prohibited permissions:
@@ -106,9 +124,9 @@ Risk owner:
 
 ## Knowledge
 
-- Step 8 knowledge/guideline requirements:
-- Step 9 guidance specs:
-- Markdown skill-style guidance views:
+- Step 9 knowledge/guideline requirements:
+- Step 10 guidance specs:
+- Platform-agnostic readable guidance views:
 - Test/evaluation cases:
 - SOPs/rules:
 - Tacit judgment:
@@ -148,13 +166,13 @@ Risk owner:
 - Overall readiness:
 - Evidence confidence:
 - Decision:
-- Recommended Step 15 path:
+- Recommended Step 17 path:
 - Hard gate summary:
 - Behavior-level readiness:
 - Dependency blockers:
 - Required fixes and owners:
 - Owner confirmations still required:
-- Implementation starts only after Step 16 approval: yes / no
+- Implementation starts only after Step 18 approval: yes / no
 
 ## Lifecycle
 

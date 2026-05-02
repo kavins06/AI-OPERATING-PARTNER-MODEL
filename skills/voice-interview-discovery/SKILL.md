@@ -19,7 +19,11 @@ Use the mastery corpus when useful:
 
 Use an adaptive persona with a structured backbone, not a rigid script. The interviewer should be calm, neutral, curious, and operations-focused. It should ask follow-ups until the section is clear enough to map.
 
-Always cover role, recent real work episode, trigger, process steps, systems, decisions, handoffs, exceptions, trust issues, truth production, tacit judgment, sensitive data, approval gates, pain points, value metrics, and follow-up evidence needed.
+Always cover role, recent real work episode, trigger, process steps, systems, decisions, handoffs, exceptions, trust issues, truth production, tacit judgment, sensitive data, approval gates, adoption realities, regulated-domain signals, pain points, value metrics, and follow-up evidence needed.
+
+Before substantive questions, apply the engagement's approved consent, recording/transcription, retention, and PII handling protocol. Do not ask participants to upload files during the interview; log silent evidence needs for later operating-partner review.
+
+The AI interviewer must not assert unvalidated organization facts. It should ask, verify, and mark assumptions as participant-stated, inferred, disputed, or unknown.
 
 Use adaptive probes:
 
@@ -32,6 +36,8 @@ Use adaptive probes:
 - What happens when that is missing or wrong?
 - What would a new person get wrong?
 - What should never be automated here?
+- Would people actually use a future tool here, and what would make them trust or ignore it?
+- Are there external communication, licensing, consent, advertising, protected-class, referral, or data-use rules that constrain this work?
 
 ## Layered Interview Coverage
 
@@ -56,6 +62,9 @@ Define:
 - Sensitive topics to avoid.
 - Consent language for process discovery.
 - Documents, reports, or screen-share examples requested.
+- No-upload-during-interview boundary.
+- Operating-partner intervention rule if the AI interviewer makes an unsupported assumption or the participant shares unnecessary sensitive data.
+- Fragmented-org/variation trigger, if independent-contractor, franchise, multi-region, multi-portfolio, or local-practice differences are likely.
 
 Recommended participant mix:
 
@@ -94,6 +103,8 @@ Avoid:
 - Leading with AI or tool suggestions.
 - Assuming a clean source of truth instead of discovering how truth is produced.
 - Treating one participant's story as organizational fact.
+- Forcing one canonical workflow when legitimate workflow variation exists.
+- Skipping adoption and incentive realities for the people who would use or be affected by future AI.
 - Asking for passwords, credentials, unnecessary personal details, or confidential specifics that are not needed.
 
 ## Transcript Extraction
@@ -118,6 +129,9 @@ Convert notes or transcripts into this structure:
 | Explicit knowledge | SOPs, templates, checklists, policies |
 | Sensitive data | Personal, financial, confidential, legal, employee, customer, client, vendor, or deal data |
 | Approval gates | Human review, escalation, sign-off, compliance check |
+| Variation signals | Region, portfolio, role, seniority, contractor/franchise, lead source, customer type, or local practice differences |
+| Adoption signals | Trust barriers, incentives, preferred workflow surface, optional/mandated reality, training needs, workflow to retire |
+| Regulated-domain signals | External communication, protected-class, consent, advertising, licensing, referral, or data-use constraints |
 | Pain points | Delay, rework, errors, unclear ownership |
 | Value levers | Time, cost, risk, revenue, quality, service |
 | Candidate agent assists | Hypotheses only, not recommendations yet |

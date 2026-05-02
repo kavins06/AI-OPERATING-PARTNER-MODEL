@@ -2,6 +2,8 @@ technical_implementation_blueprint_id: "tib.workflow.opportunity.v1"
 opportunity_id:
 workflow_ids: []
 value_case_id:
+solution_shape_id:
+adoption_design_id:
 version: "0.1"
 status: "draft" # draft | technically_feasible | feasible_with_conditions | blocked | not_ready
 
@@ -19,7 +21,19 @@ source_inputs:
   guidance_pack_ids: []
   measurement_intelligence_ids: []
   value_case_ids: []
+  portfolio_comparison_ids: []
+  solution_shape_ids: []
+  adoption_design_ids: []
   planning_evidence_refs: []
+
+solution_shape_trace:
+  build_buy_leverage_decision: "build | buy | leverage_vendor | hybrid | do_not_automate | undecided"
+  vendor_native_capabilities_to_verify: []
+  agent_topology: "no_agent_workflow | workflow_with_llm_steps | single_agent | multi_agent | human_review_assistant | undecided"
+  model_selection_class: "small_fast | frontier | open_weight_private | multimodal | tool_heavy | deferred_to_implementation | undecided"
+  ux_surface: "embedded_existing_system | chat | inbox | workflow_queue | dashboard | browser_extension | internal_portal | api_only | undecided"
+  adoption_constraints_inherited: []
+  architecture_must_follow_solution_shape: true
 
 systems_and_sources:
   - system_id:
@@ -146,7 +160,7 @@ runtime_design_requirements:
     cost_sensitivity: "unknown" # low | medium | high | unknown
     privacy_or_data_residency_constraints: []
     fallback_or_routing_needed: false
-    final_model_not_selected_in_step12: true
+    final_model_not_selected_in_step14: true
   orchestration_requirements:
     durable_state_required: false
     workflow_queue_required: false
@@ -157,7 +171,7 @@ runtime_design_requirements:
     idempotency_required: false
     audit_trace_required: true
     state_objects_to_track: []
-    framework_not_selected_in_step12: true
+    framework_not_selected_in_step14: true
   overengineering_guardrail:
     default_to_minimum_safe_runtime: true
     multi_agent_is_escalation_not_default: true
@@ -241,7 +255,7 @@ hosting_environment_requirements:
       - pattern: ""
         reason: ""
         confirmed_by_role: ""
-  final_vendor_selection_not_made_in_step12: true
+  final_vendor_selection_not_made_in_step14: true
 
 document_and_email_scope:
   document_scope:
@@ -266,9 +280,10 @@ test_and_validation_plan:
   sample_exports_needed: []
   sandbox_needed: false
   linked_step9_eval_case_ids: []
+  linked_step10_eval_case_ids: []
   success_criteria: []
   failure_cases_to_test: []
-  production_data_not_required_before_step16: true
+  production_data_not_required_before_step18: true
 
 credential_and_secrets_plan:
   future_credential_type:
@@ -279,11 +294,11 @@ credential_and_secrets_plan:
   revocation_plan:
   audit_requirement:
   approval_dependencies: []
-  credentials_not_requested_in_step12: true
+  credentials_not_requested_in_step14: true
 
 future_access_request_package:
   - request_id:
-    access_needed_after_step16:
+    access_needed_after_step18:
     purpose:
     permission_scope:
     prohibited_permissions: []
@@ -298,7 +313,7 @@ build_sequence:
     prerequisites: []
     outputs: []
     exit_criteria: []
-    do_not_start_before_step16_approval: true
+    do_not_start_before_step18_approval: true
 
 open_decisions:
   - decision_id:

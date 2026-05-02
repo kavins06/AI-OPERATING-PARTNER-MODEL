@@ -79,7 +79,7 @@ def main() -> int:
     print("- Evidence needs logged: yes / no")
     print("- Follow-up required: yes / no")
     print("\n## Cross-Interview Triangulation Notes\n\n- Agreements:\n- Conflicts:\n- Repeated edge cases:\n- Role hierarchy or reporting-line updates:\n- Role variation or standardization opportunities:\n- Truth production questions:\n- Validation needs:\n")
-    print("\n## AI Workflow Spec Routing\n\n- Objects ready for Step 5 spec:\n- Fields still partial:\n- Fields unknown:\n- Later enrichment steps required:\n")
+    print("\n## AI Workflow Spec Routing\n\n- Objects ready for Step 6 spec:\n- Fields still partial:\n- Fields unknown:\n- Later enrichment steps required:\n")
     print("\n## Follow-Up Questions\n\n- What did we misunderstand?\n- Which source is official, and which source or artifact is actually trusted?\n- How is the final number, status, report, or decision produced?\n- Which access path, lookup key, or required field is missing?\n- What requires approval or should remain human?\n- Which evidence needs should be consolidated after interviews?\n")
     return 0
 

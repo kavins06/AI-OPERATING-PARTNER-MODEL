@@ -9,7 +9,7 @@ description: "Design decision-ready dashboards and KPI standards with audience, 
 
 Start with the audience and decision. A KPI is useful only if it supports action, comparison, accountability, or learning.
 
-Inside the AI operating partner engagement, KPI design supports Step 10 measurement intelligence. It defines decision-linked metrics and agent-safe usage; it does not build dashboards or analytics pipelines.
+Inside the AI operating partner engagement, KPI design supports Step 11 measurement intelligence and AI-capability metric design. It defines decision-linked metrics, agent-safe usage, success metrics, override/error/drift/adoption/cost metrics, and kill criteria; it does not build dashboards or analytics pipelines.
 
 Useful references:
 
@@ -34,7 +34,7 @@ Useful references:
 
 ## How To Get Inputs
 
-In the AI operating partner engagement, prefill from the workflow intelligence object, source access profiles, validation events, Step 8 knowledge requirements, Step 9 guidance packs, and planning evidence before asking new questions.
+In the AI operating partner engagement, prefill from the workflow intelligence object, source access profiles, validation events, Step 9 knowledge requirements, Step 10 guidance packs, and planning evidence before asking new questions.
 
 Interview and collect targeted confirmation from:
 
@@ -82,6 +82,8 @@ Do not ask for live system access, credentials, or build access. Use approved pl
 | Agent allowed uses | |
 | Agent prohibited uses | |
 | Human review triggers | |
+| AI success / override / error / drift / adoption / cost metrics | |
+| Kill criteria | |
 | Owner confirmation status | |
 
 ## Dashboard Rules

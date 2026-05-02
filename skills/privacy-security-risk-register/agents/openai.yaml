@@ -1,4 +1,4 @@
 interface:
   display_name: "Risk And Control Model"
   short_description: "Create implementation-grade risk, data classification, and control models."
-  default_prompt: "Use this skill to create a Step 13 risk and control model with risk register, truth production risks, data classification, tool permissions, output controls, approval gates, logging, monitoring, incident response, revocation, and stop conditions."
+  default_prompt: "Use this skill to create a Step 15 risk and control model with risk register, truth production risks, regulated-domain risks, data classification, tool permissions, output controls, approval gates, logging, monitoring, incident response, revocation, and stop conditions."

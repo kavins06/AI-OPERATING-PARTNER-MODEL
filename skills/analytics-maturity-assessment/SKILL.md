@@ -9,7 +9,7 @@ description: "Assess an organization's analytics maturity and measurement intell
 
 Assess whether decisions are supported by trusted, governed, measurable analytics before recommending predictive models or agents.
 
-Inside the AI operating partner engagement, this is part of Step 10: measurement intelligence and analytics readiness. AI does the heavy first pass, the operating partner decides which measurements matter, and the client confirms official source, de facto trusted source, truth production, and ownership. Do not build dashboards, models, pipelines, semantic layers, MCPs, connectors, live integrations, or production automations in this step.
+Inside the AI operating partner engagement, this is part of Step 11: measurement intelligence and AI-capability metric design. AI does the heavy first pass, the operating partner decides which measurements matter, and the client confirms official source, de facto trusted source, truth production, and ownership. Do not build dashboards, models, pipelines, semantic layers, MCPs, connectors, live integrations, or production automations in this step.
 
 Useful references:
 
@@ -46,6 +46,7 @@ Score 0-5:
 - Statistical/modeling discipline.
 - Feedback and monitoring.
 - Change adoption.
+- AI-capability metric design: success, override, error, drift, adoption, cost, and kill criteria.
 
 ## How To Get Inputs
 
@@ -56,8 +57,8 @@ In the AI operating partner engagement, use prior outputs first:
 - Organizational intelligence diagnostic.
 - Controlled validation and governance events.
 - Information objects and source access profiles.
-- Step 8 knowledge/guideline requirements.
-- Step 9 guidance packs.
+- Step 9 knowledge/guideline requirements.
+- Step 10 guidance packs.
 - Planning evidence such as dashboards, board reports, KPI lists, Excel trackers, budget variance reports, accounting exports, property management reports, invoice aging reports, and data dictionaries.
 - Truth production profiles, macro/formula walkthroughs, reconciliation notes, and manual adjustment evidence when available.
 

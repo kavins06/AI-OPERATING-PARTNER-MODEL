@@ -9,7 +9,7 @@ description: "Discover and document data governance requirements including offic
 
 No trusted analytics or AI agent exists without clear ownership, definitions, truth production, quality rules, access boundaries, and escalation paths.
 
-Inside the AI operating partner engagement, use this skill as an embedded Step 7 helper, not as a separate broad discovery cycle. Governance questions should be object-driven: start from information objects, source access profiles, sources, systems, decisions, sensitive fields, and permission gaps already found in the AI workflow specification and diagnostic.
+Inside the AI operating partner engagement, use this skill as an embedded Step 8 helper, not as a separate broad discovery cycle. Governance questions should be object-driven: start from information objects, source access profiles, sources, systems, decisions, sensitive fields, and permission gaps already found in the AI workflow specification and diagnostic.
 
 Useful references:
 
@@ -105,7 +105,7 @@ Deliver:
 - Agent permission boundaries.
 - Open governance decisions.
 - Structured governance resolution events linked to workflow-spec object IDs.
-- Future implementation access requirements, when live access or credentials will be needed after Step 16.
+- Future implementation access requirements, when live access or credentials will be needed after Step 18.
 
 ## Stop Conditions
 
@@ -118,7 +118,7 @@ Do not move to implementation-ready status when:
 - Sensitive data lacks handling rules.
 - Quality issues are known but unowned.
 - Agent permissions would inherit broad user access by default.
-- The engagement would require credentials, broad live access, or bulk unredacted data before Step 16 approval.
+- The engagement would require credentials, broad live access, or bulk unredacted data before Step 18 approval.
 
 ## Shared Engagement Resources
 

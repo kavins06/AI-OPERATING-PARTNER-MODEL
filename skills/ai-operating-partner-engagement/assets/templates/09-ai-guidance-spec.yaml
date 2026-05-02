@@ -2,8 +2,10 @@ guidance_id: "guidance.workflow.decision.v1"
 workflow_id: ""
 version: "0.1"
 status: "draft" # draft | expert_validated | risk_validated | implementation_ready | blocked
-source_step8_requirement_ids: []
+source_step9_requirement_ids: []
 linked_truth_production_profile_ids: []
+regulated_domain_extension_ids: []
+adoption_design_signal_ids: []
 
 scope:
   workflow:
@@ -76,6 +78,14 @@ truth_production_handling:
     - "official source and de facto trusted source conflict."
     - "manual adjustment, macro, or expert-memory rule is undocumented."
 
+regulated_domain_handling:
+  applies: false
+  domain:
+  named_constraints: []
+  prohibited_content_or_actions: []
+  required_review_roles: []
+  required_eval_categories: []
+
 explicit_rules:
   - rule_id:
     rule:
@@ -129,6 +139,14 @@ examples:
       production_chain_summary:
       expected_behavior:
       prohibited_behavior:
+  regulated_domain:
+    - example_id:
+      domain:
+      named_constraint:
+      situation:
+      expected_behavior:
+      prohibited_behavior:
+      reviewer_role:
 
 allowed_ai_behaviors:
   - behavior:
@@ -180,9 +198,24 @@ validation:
     notes:
   unresolved_gaps: []
 
+eval_design:
+  behavioral_eval_requirements:
+    minimum_good_cases_per_behavior_family: 10
+    minimum_bad_or_forbidden_cases_per_behavior_family: 10
+    minimum_edge_cases_per_behavior_family: 5
+    minimum_source_conflict_or_fragile_truth_cases_when_material: 5
+    minimum_regulated_domain_cases_when_applicable: 5
+  output_quality_eval_requirements:
+    required_fields_covered: true
+    evidence_or_citation_covered: true
+    confidence_language_covered: true
+    sensitive_field_handling_covered: true
+    schema_or_format_compliance_covered: true
+  coverage_status: "not_started | partial | meets_minimum | exceeds_minimum | blocked"
+
 implementation_notes:
   prompt_view_needed: true
   tool_policy_view_needed: false
   product_control_needed: false
   future_test_data_needed: true
-  do_not_build_before_step16_approval: true
+  do_not_build_before_step18_approval: true

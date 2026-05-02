@@ -7,7 +7,7 @@ Prepared by:
 
 ## Purpose
 
-Translate the executive opportunity terrain conversation into a full opportunity map, sequenced discovery zones, and a focused interview/preliminary artifact plan. Do not recommend automation yet.
+Translate the executive opportunity terrain conversation into a full opportunity map, sequenced discovery zones, an explicit candidate use-case shortlist, and a focused interview/preliminary artifact plan. Do not recommend automation yet.
 
 ## Evidence Used
 
@@ -48,6 +48,14 @@ Translate the executive opportunity terrain conversation into a full opportunity
 | Zone | Strategic Relevance | Intelligence Work | Potential Value Lever | Trust/Risk Considerations | Evidence | Unknowns |
 |---|---|---|---|---|---|---|
 | | | | | | | |
+
+## Candidate Use-Case Shortlist
+
+Maintain the canonical machine-readable shortlist in `02-candidate-use-case-shortlist.yaml`. This section is the readable summary.
+
+| Candidate ID | Hypothesis | Target User | Workflow Boundary | Value Hypothesis | Truth Dependencies | Adoption Dependencies | Regulated-Domain Dependencies | Current Confidence | Disqualification Criteria |
+|---|---|---|---|---|---|---|---|---|---|
+| | | | | | | | | | |
 
 ## Sequenced Discovery Tiers
 
@@ -119,3 +127,4 @@ Use these criteria:
 - This is a sequencing artifact, not a final diagnosis.
 - The goal is to map the full terrain, then investigate deeply enough to understand how work actually happens.
 - Candidate AI uses, if noted, are hypotheses only until workflow, governance, knowledge, risk, and measurement are validated.
+- The shortlist must be reaffirmed or revised after Step 7 diagnostic, Step 12 value/portfolio comparison, and Step 16 readiness.

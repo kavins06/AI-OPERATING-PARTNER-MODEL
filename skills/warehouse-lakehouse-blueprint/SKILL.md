@@ -9,9 +9,9 @@ description: "Design governed technical implementation blueprints for analytics,
 
 Design from workload and governance needs. Keep raw data, standardized data, semantic definitions, documents, retrieval, and agent tools logically separated.
 
-Inside the AI operating partner engagement, this skill produces the Step 12 technical implementation blueprint only. Do not build pipelines, MCPs, connectors, live integrations, email ingestion, service accounts, semantic layers, data warehouses, or production data movement during the 16-step engagement.
+Inside the AI operating partner engagement, this skill produces the Step 14 technical/vendor implementation blueprint only. Do not build pipelines, MCPs, connectors, live integrations, email ingestion, service accounts, semantic layers, data warehouses, or production data movement during the V2 engagement.
 
-Step 12 decides the future technical path for opportunities still alive after Step 11. It does not decide final agent scope; Step 15 does that.
+Step 14 documents the future technical path for opportunities still alive after Step 12 and shaped in Step 13. Step 13 decides solution shape and adoption design first; Step 14 should not secretly decide build/buy/leverage, topology, model class, or UX surface without tracing to Step 13.
 
 Do not choose vendors, models, hosting platforms, vector databases, or orchestration frameworks by default. Define requirements, acceptable patterns, preferred/fallback/blocked options, and confirmation needs. Select a specific vendor or framework only when the client has a mandated stack or the later implementation phase makes that decision.
 
@@ -37,11 +37,13 @@ Design:
 9. Retrieval and tool layer.
 10. Governance and monitoring.
 
-## Step 12 Blueprint Scope
+## Step 14 Blueprint Scope
 
 For AI operating partner work, include:
 
 - Implementation posture: technically feasible, feasible with conditions, blocked, or not ready.
+- Links to Step 13 solution shape and adoption design.
+- Build/buy/leverage-vendor decision trace and vendor-native capability verification needs.
 - Systems and sources with business, technical, and vendor owners.
 - Truth production profiles, including official source, de facto trusted source, derivation chain, embedded rules, reproducibility, auditability, and fragile truth blockers.
 - Access options: API, export, report view, database view, document store, email scope, manual staging, vendor integration, RPA, or other future path.
@@ -55,7 +57,7 @@ For AI operating partner work, include:
 - Future tool/MCP/connector specs with input/output contracts, allowed/prohibited actions, permission scope, human review, and logging.
 - Hosting/environment requirements: preferred client cloud or environment, identity provider, data residency, VPC/private networking, compute, storage, queues, secrets, observability, security review, preferred/fallback/blocked hosting patterns, and final vendor-decision boundary.
 - Document and email scope, including prohibited all-email access and manual-staging alternatives.
-- Test and validation plan using redacted examples, synthetic data, sample exports, linked Step 9 eval cases, sandbox needs, success criteria, and failure cases.
+- Test and validation plan using redacted examples, synthetic data, sample exports, linked Step 10 eval cases, sandbox needs, success criteria, and failure cases.
 - Credential and secrets approach for the future implementation phase.
 - Future access request package.
 - Build sequence with prerequisites, outputs, and exit criteria.
@@ -112,9 +114,10 @@ Collect:
 - Source inventory from IT/data teams.
 - Source access profiles and planning evidence from the operating partner engagement.
 - Truth production profiles, macro/formula walkthroughs, reconciliation notes, and manual adjustment evidence from the operating partner engagement.
-- Step 10 measurement intelligence, metric trust classifications, KPI definitions, and unresolved metric questions.
-- Step 11 business value case and recommendation.
-- Step 9 guidance packs and test/evaluation cases.
+- Step 11 measurement intelligence, AI-capability metrics, metric trust classifications, KPI definitions, and unresolved metric questions.
+- Step 12 business value case, AI-side cost model, portfolio comparison, and recommendation.
+- Step 13 solution shape and adoption design.
+- Step 10 guidance packs and test/evaluation cases.
 - Workflow and decision needs from managers/operators.
 - Current reports, dashboards, and extracts from business users.
 - Data-quality issues from admins and stewards.
@@ -193,7 +196,7 @@ Deliver:
 
 ## Stop Condition
 
-Stop when a future build team can understand what systems, data, runtime pattern, model capability requirements, RAG/retrieval requirements, orchestration/state requirements, hosting/environment requirements, tools, permissions, identity resolution, normalization, test data, credentials/secrets handling, audit logging, observability, and sequence would be required after Step 16 approval, while also knowing which paths are preferred, fallback, blocked, or deferred to implementation.
+Stop when a future build team can understand what systems, data, runtime pattern, model capability requirements, RAG/retrieval requirements, orchestration/state requirements, hosting/environment requirements, tools, permissions, identity resolution, normalization, test data, credentials/secrets handling, audit logging, observability, and sequence would be required after Step 18 approval, while also knowing which paths are preferred, fallback, blocked, or deferred to implementation.
 
 ## Shared Engagement Resources
 

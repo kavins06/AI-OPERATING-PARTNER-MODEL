@@ -25,7 +25,7 @@ Read approved metrics, retrieve source-linked exception notes, and draft an inte
 
 ## Future Access Package
 
-- Provision after Step 16 approval.
+- Provision after Step 18 approval.
 - No employee credentials.
 - Use scoped service account or approved connector.
 - No write-back or external send permission in first implementation phase.

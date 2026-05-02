@@ -3,6 +3,8 @@ opportunity_id:
 workflow_ids: []
 technical_blueprint_id:
 value_case_id:
+solution_shape_id:
+adoption_design_id:
 version: "0.1"
 status: "draft" # draft | owner_validated | partially_validated | blocked
 
@@ -15,6 +17,9 @@ source_inputs:
   truth_production_profile_ids: []
   value_case_ids: []
   technical_blueprint_ids: []
+  solution_shape_ids: []
+  adoption_design_ids: []
+  regulated_domain_extension_ids: []
   policy_or_contract_refs: []
   targeted_confirmation_refs: []
 
@@ -43,7 +48,7 @@ data_classification:
 
 risk_register:
   - risk_id:
-    category: "" # privacy | security | compliance | operational | vendor | output_quality | data_quality | access | external_communication | financial | reputational | spreadsheet_risk | key_person_truth_risk | undocumented_transformation | auditability_gap | shadow_reporting_drift
+    category: "" # privacy | security | compliance | operational | vendor | output_quality | data_quality | access | external_communication | financial | reputational | adoption | spreadsheet_risk | key_person_truth_risk | undocumented_transformation | auditability_gap | shadow_reporting_drift | fair_housing | tcpa_sms_calling | respa_referral | mls_idx_vow_data | state_real_estate_advertising_license | regulated_domain_other
     linked_workflow_object_ids: []
     linked_system_ids: []
     linked_source_ids: []
@@ -61,6 +66,23 @@ risk_register:
     verification_needed:
     residual_risk:
     blocks_readiness: false
+
+regulated_domain_risks:
+  applies: false
+  domain:
+  extension_id:
+  named_risks:
+    - risk_id:
+      named_rule_or_constraint: "Fair Housing | TCPA_SMS_calling | RESPA_referral | MLS_IDX_VOW_data | state_real_estate_advertising_license | other"
+      linked_candidate_use_case_ids: []
+      linked_guidance_ids: []
+      linked_outputs_or_actions: []
+      prohibited_ai_actions: []
+      required_controls: []
+      required_owner_role:
+      required_reviewer_role:
+      blocks_readiness: true
+      verification_needed:
 
 truth_production_controls:
   - control_id:
@@ -153,7 +175,7 @@ stop_conditions:
     reason:
     required_fix:
     owner_role:
-    blocks_step14_readiness: true
+    blocks_step16_readiness: true
 
 stop_boundary:
   does_not_provision_credentials: true

@@ -1,4 +1,4 @@
 interface:
   display_name: "Zero Trust Agent Controls"
   short_description: "Define least-privilege, observable, revocable controls for future agents."
-  default_prompt: "Use this skill to design the zero-trust portion of a Step 13 risk and control model: identity, scoped data access, tool permissions, output controls, approvals, logging, monitoring, incident response, and revocation."
+  default_prompt: "Use this skill to design the zero-trust portion of a Step 15 risk and control model: identity, scoped data access, tool permissions, output controls, approvals, logging, monitoring, incident response, and revocation."

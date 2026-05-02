@@ -9,7 +9,7 @@ description: "Create business value cases for data, analytics, and AI opportunit
 
 Data monetization is broader than selling data. Count internal efficiency, better decisions, risk reduction, customer experience, revenue protection, leakage prevention, and reusable data products.
 
-Inside the AI operating partner engagement, this is Step 11: the business value case. It is the economic filter before architecture, risk, readiness, and future implementation planning. It does not authorize build work.
+Inside the AI operating partner engagement, this is Step 12: the business value case and portfolio comparison. It is the economic and sequencing filter before solution shape, architecture, risk, readiness, and future implementation planning. It does not authorize build work.
 
 AI drafts the first-pass value case from prior evidence. The operating partner judges credibility, priority, and strategic fit. The client confirms business reality: volumes, costs, acceptable assumptions, risk tolerance, and which value matters to leadership.
 
@@ -51,9 +51,9 @@ Inside the AI operating partner engagement, use prior outputs first:
 - AI workflow specification and operating strain/value signals.
 - Organizational intelligence diagnostic.
 - Source access/governance decisions.
-- Step 8 knowledge/guideline requirements.
-- Step 9 guidance packs.
-- Step 10 measurement intelligence and metric trust classifications.
+- Step 9 knowledge/guideline requirements.
+- Step 10 guidance packs.
+- Step 11 measurement intelligence, AI-capability metric design, and metric trust classifications.
 - Truth production profiles and fragile-truth dependencies.
 - Planning evidence such as volumes, cycle times, cost ranges, error/rework examples, leakage examples, risk incidents, service feedback, reports, and financial/operational summaries.
 
@@ -77,12 +77,14 @@ Do not treat disputed, untrusted, unknown, shadow-derived, manually adjusted, pe
 3. Identify data rights and constraints.
 4. Identify required data and knowledge.
 5. Identify governance and quality prerequisites.
-6. Link value levers to Step 10 baseline metrics and trust status.
+6. Link value levers to Step 11 baseline metrics and trust status.
 7. Estimate conservative/base/upside ranges only when evidence supports them.
-8. List assumptions, confidence, and client-confirmation needs.
-9. Define pilot metric and measurement window.
-10. Identify risks and current verification needs.
-11. Recommend: carry forward to architecture/readiness, fix measurement first, fix truth production first, fix governance/knowledge first, deprioritize, or do not pursue.
+8. Estimate AI-side costs: model/tool calls, retrieval/storage, eval/observability, support, maintenance, human review, and vendor costs.
+9. List assumptions, confidence, and client-confirmation needs.
+10. Compare surviving opportunities as a portfolio and select 1-N to advance.
+11. Define pilot metric and measurement window.
+12. Identify risks and current verification needs.
+13. Recommend: carry forward to solution shape/readiness, fix measurement first, fix truth production first, fix governance/knowledge first, deprioritize, or do not pursue.
 
 ## Output
 
@@ -93,6 +95,8 @@ Deliver:
 - Baseline metrics and trust status.
 - Evidence references.
 - Conservative/base/upside estimates where supported.
+- AI-side cost model.
+- Portfolio comparison and sequencing recommendation.
 - Assumptions and confidence.
 - Dependencies across measurement, truth production, governance, source access, knowledge/guidance, architecture, risk, and change management.
 - Client confirmation needs.

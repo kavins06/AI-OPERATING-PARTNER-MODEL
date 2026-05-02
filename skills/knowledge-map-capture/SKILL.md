@@ -7,7 +7,7 @@ description: "Create AI knowledge and guideline requirements maps that identify 
 
 ## Core Rule
 
-Map knowledge to decisions and workflows. Do not merely inventory documents. In the AI operating partner engagement, Step 8 identifies what knowledge and future AI guidelines are required; Step 9 codifies the actual rules, examples, checklists, prompts, review criteria, escalation logic, and forbidden behaviors.
+Map knowledge to decisions and workflows. Do not merely inventory documents. In the AI operating partner engagement, Step 9 identifies what knowledge and future AI guidelines are required; Step 10 codifies the actual rules, examples, checklists, prompts, review criteria, escalation logic, regulated-domain handling, adoption implications, and forbidden behaviors.
 
 Useful references:
 
@@ -30,6 +30,9 @@ In the AI operating partner engagement, use prior outputs first:
 - Validation/governance events.
 - Role ownership, escalation paths, and disputed/unknown items.
 - Candidate AI assists.
+- Candidate use-case shortlist and variation map.
+- Adoption signals.
+- Regulated-domain extension when applicable.
 
 Do not run another broad interview cycle by default. Synthesize a draft knowledge requirements map, then use targeted follow-up only for high-value, high-risk, disputed, or low-confidence items.
 
@@ -72,6 +75,8 @@ Ask:
 - What examples show good, bad, and edge-case outcomes?
 - Which exceptions require escalation?
 - Which policies, contracts, standards, or preferences constrain the work?
+- Which regulated-domain rules constrain the work, such as Fair Housing, TCPA, RESPA/referrals, MLS/IDX/VOW data-use rules, or state advertising/licensure in real estate?
+- What adoption, incentive, training, workflow-surface, or end-user trust knowledge would affect whether the future AI is actually used?
 - What language should be used or avoided?
 - How does this knowledge get updated?
 

@@ -15,4 +15,4 @@ Workflow: Monthly operational report preparation
 | Measurement | 4 | Cycle time and correction rate available | Baseline needed |
 
 Total: 33 / 45
-Decision: Implementation-ready only after named gaps are fixed and Step 16 approval is complete.
+Decision: Implementation-ready only after named gaps are fixed and Step 18 approval is complete.

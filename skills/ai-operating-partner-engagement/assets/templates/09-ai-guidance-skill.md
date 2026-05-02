@@ -1,13 +1,14 @@
-# AI Guidance Skill View
+# AI Guidance Readable View
 
-This is a readable view generated from the Step 9 guidance spec. The machine-readable guidance spec remains the canonical artifact.
+This is a readable view generated from the Step 10 guidance spec. The machine-readable guidance spec remains the canonical artifact. It is platform-agnostic and can later be transformed into prompts, policy files, product controls, evals, or an agent-framework-specific instruction file.
 
 Guidance ID:
 Workflow ID:
 Version:
 Status:
-Linked Step 8 requirement IDs:
+Linked Step 9 requirement IDs:
 Linked truth production profile IDs:
+Linked regulated-domain extension IDs:
 
 ## When To Use
 
@@ -81,6 +82,14 @@ Source-conflict examples:
 -
 
 Fragile-truth examples:
+
+-
+
+Regulated-domain examples:
+
+-
+
+Adoption-failure examples:
 
 -
 

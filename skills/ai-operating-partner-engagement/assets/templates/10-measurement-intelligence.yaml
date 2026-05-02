@@ -9,6 +9,8 @@ source_inputs:
   validation_event_ids: []
   guidance_pack_ids: []
   planning_evidence_refs: []
+  candidate_use_case_ids: []
+  solution_shape_ids: []
 
 role_split:
   ai_work:
@@ -153,6 +155,67 @@ agent_safe_metric_usage:
       reason:
       safe_alternative:
   human_review_required_when: []
+
+ai_capability_metric_design:
+  capability_id:
+  linked_candidate_use_case_ids: []
+  linked_future_ai_behaviors: []
+  baseline_metrics:
+    - metric_id:
+      baseline_status: "usable | usable_with_caveats | not_usable | unknown"
+      trust_caveat:
+      truth_production_caveat:
+  leading_indicators:
+    - metric_id:
+      name:
+      why_it_predicts_success:
+      owner_role:
+      review_cadence:
+  lagging_outcome_indicators:
+    - metric_id:
+      name:
+      business_outcome:
+      owner_role:
+      review_cadence:
+  agent_performance_metrics:
+    - metric_id:
+      name:
+      definition:
+      target_or_threshold:
+      source_after_implementation:
+      owner_role:
+  human_review_and_override_metrics:
+    - metric_id:
+      name:
+      definition:
+      threshold:
+      escalation_when:
+  error_incident_and_drift_metrics:
+    - metric_id:
+      name:
+      signal_type: "error_rate | hallucination | source_conflict | fragile_truth_use | policy_violation | model_drift | retrieval_drift | tool_failure | other"
+      pause_or_kill_threshold:
+      owner_role:
+  adoption_metrics:
+    - metric_id:
+      name:
+      definition:
+      segment_or_role:
+      target:
+      adoption_failure_trigger:
+  cost_metrics:
+    - metric_id:
+      name:
+      cost_component: "model_tokens | tool_calls | retrieval_storage | observability | evals | human_review | vendor_license | maintenance | support"
+      forecast_method:
+      owner_role:
+  kill_criteria:
+    - criterion_id:
+      condition:
+      threshold:
+      measurement_source:
+      required_action: "pause | rollback | restrict_behavior | retrain_users | revise_guidance | do_not_launch"
+      owner_role:
 
 unresolved_metric_questions:
   - question_id:

@@ -6,6 +6,8 @@ workflow_ids: []
 value_case_id: ""
 technical_blueprint_id: ""
 risk_control_model_id: ""
+solution_shape_id: ""
+adoption_design_id: ""
 
 source_inputs:
   workflow_spec_ids: []
@@ -16,6 +18,9 @@ source_inputs:
   guidance_pack_ids: []
   measurement_intelligence_ids: []
   business_value_case_ids: []
+  portfolio_comparison_ids: []
+  solution_shape_ids: []
+  adoption_design_ids: []
   technical_blueprint_ids: []
   risk_control_model_ids: []
   evidence_refs: []
@@ -31,6 +36,14 @@ candidate_ai_behavior:
   scope_boundary: ""
 
 hard_gates:
+  - gate_id: "use_case_framing_gate"
+    status: "unknown" # pass | conditional | fail | blocked | unknown
+    gate_question: "Is the candidate use case explicitly framed with target user, workflow boundary, value hypothesis, dependencies, confidence, and disqualification criteria?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
   - gate_id: "business_value_gate"
     status: "unknown" # pass | conditional | fail | blocked | unknown
     gate_question: "Is there credible value, an accountable owner, and a decision/workflow worth improving?"
@@ -87,6 +100,30 @@ hard_gates:
     blocker: false
     owner: ""
     required_fix: ""
+  - gate_id: "ai_capability_metrics_gate"
+    status: "unknown"
+    gate_question: "Are future AI success, override, error, drift, adoption, cost, and kill-criteria metrics defined?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "regulated_domain_gate"
+    status: "unknown"
+    gate_question: "If a regulated-domain extension applies, are named rules, prohibited actions, reviewer roles, evals, and controls defined?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "solution_shape_gate"
+    status: "unknown"
+    gate_question: "Are build/buy/leverage, agent topology, model class, UX surface, retrieval/context shape, and eval/observability shape decided enough for blueprinting?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
   - gate_id: "technical_feasibility_gate"
     status: "unknown"
     gate_question: "Are future architecture, runtime/orchestration requirements, hosting/environment requirements, access paths, identity resolution, normalization, tool contracts, test strategy, credentials/secrets, audit/logging, and blocked paths known?"
@@ -98,6 +135,14 @@ hard_gates:
   - gate_id: "risk_control_gate"
     status: "unknown"
     gate_question: "Are data handling, tool permissions, output controls, approval gates, monitoring, incident response, and revocation defined?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "adoption_change_gate"
+    status: "unknown"
+    gate_question: "Are target users, adoption path, incentives, training, feedback, workflow retirement, and adoption-failure triggers realistic enough for the proposed behavior?"
     evidence_refs: []
     confidence: "unknown"
     blocker: false
@@ -121,6 +166,14 @@ hard_gates:
     required_fix: ""
 
 dimension_scores:
+  - dimension: "use_case_framing_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
   - dimension: "business_value"
     score_1_to_5: null
     evidence_confidence: "unknown"
@@ -177,6 +230,30 @@ dimension_scores:
     blocking_status: "unknown"
     owner: ""
     next_step: ""
+  - dimension: "ai_capability_metrics_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "regulated_domain_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "solution_shape_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
   - dimension: "architecture_feasibility"
     score_1_to_5: null
     evidence_confidence: "unknown"
@@ -209,6 +286,14 @@ dimension_scores:
     blocking_status: "unknown"
     owner: ""
     next_step: ""
+  - dimension: "adoption_change_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
 
 behavior_level_readiness:
   read_only_summary:
@@ -231,6 +316,19 @@ behavior_level_readiness:
     status: "unknown"
     required_conditions: []
     prohibited_reasons: []
+
+fragile_truth_hard_rule:
+  material_fragile_truth_blocks_non_safe_limited_behavior: true
+  safe_limited_behaviors:
+    - "summarize"
+    - "compare"
+    - "flag_uncertainty"
+    - "draft_clarification_question"
+    - "escalate"
+  non_safe_limited_behaviors_must_fail_if_material_truth_fragile:
+    - "recommendation_support"
+    - "human_approved_action"
+    - "autonomous_action"
 
 dependency_map:
   systems_and_sources:
@@ -282,7 +380,7 @@ blockers:
     required_fix: ""
     evidence_refs: []
     blocks_behavior_levels: []
-    changes_step_15_path: true
+    changes_step_17_path: true
 
 minimum_safe_first_behavior:
   behavior_level: ""
@@ -303,8 +401,8 @@ readiness_decision:
   overall_score: null
   overall_readiness: "unknown" # high | medium | low | not_ready | unknown
   evidence_confidence: "unknown"
-  decision: "discovery_incomplete" # ready_for_step_15_build_brief | fix_gaps_first | governance_or_data_readiness_first | knowledge_capture_first | technical_feasibility_first | risk_control_first | deprioritize | do_not_automate_yet | discovery_incomplete
-  recommended_step_15_path: "gap_remediation_plan" # build_ready_implementation_brief | gap_remediation_plan | governance_data_readiness_plan | knowledge_capture_plan | technical_feasibility_plan | risk_control_plan | do_not_automate_recommendation
+  decision: "discovery_incomplete" # ready_for_step_17_build_brief | fix_gaps_first | governance_or_data_readiness_first | knowledge_capture_first | technical_feasibility_first | risk_control_first | deprioritize | do_not_automate_yet | discovery_incomplete
+  recommended_step_17_path: "gap_remediation_plan" # build_ready_implementation_brief | gap_remediation_plan | governance_data_readiness_plan | knowledge_capture_plan | technical_feasibility_plan | risk_control_plan | do_not_automate_recommendation
   rationale: ""
   owner_confirmations_required: []
   operating_partner_judgment: ""
@@ -315,4 +413,4 @@ stop_boundary:
   no_mcp_or_connector_build_started: true
   no_normalization_pipeline_build_started: true
   no_credentials_or_live_access_requested: true
-  implementation_requires_step_16_approval: true
+  implementation_requires_step_18_approval: true

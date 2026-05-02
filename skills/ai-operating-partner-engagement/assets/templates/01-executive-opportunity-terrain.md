@@ -54,7 +54,11 @@ Facilitator:
 ## Discovery Zones And Stakeholders
 
 - Candidate discovery zones:
-- People who can explain how the work actually happens:
+- Sponsor-nominated people who can explain how the work actually happens:
+- Org-chart sample to test coverage:
+- "Who do people call when this breaks?" nominations:
+- Non-sponsor nomination checks:
+- Underrepresented roles or locations:
 - Relevant roles/layers to include in interviews:
 - Decision owners:
 - Approval owners:
@@ -62,9 +66,16 @@ Facilitator:
 - Risk/security/compliance contacts:
 - Final approval owner:
 
+## Concrete Terrain Map Deliverable
+
+| Opportunity Zone | Strategic Reason It Matters | Work To Understand | Named Informants | Trust / Risk Boundary | Adoption / Incentive Signal | Regulated-Domain Signal | Confidence |
+|---|---|---|---|---|---|---|---|
+| | | | | | | | |
+
 ## Notes
 
 - Do not ask the sponsor to identify where AI agents fit.
 - Do not ask the sponsor for low-level task mechanics unless they personally do the work.
 - Ask only for the relevant org structure needed to design interview coverage; avoid unnecessary personal detail.
+- Do not rely on sponsor nomination alone. Triangulate informants through org structure and break-fix knowledge.
 - Use this conversation to map opportunity terrain; use later interviews to discover workflow truth.

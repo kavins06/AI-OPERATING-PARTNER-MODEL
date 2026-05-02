@@ -9,12 +9,12 @@ description: "Convert expert tacit knowledge into explicit, reusable rules, exam
 
 Capture judgment through examples and decision criteria, not vague labels. Experts often know more than they can state directly.
 
-Inside the AI operating partner engagement, this is Step 9. Start from the Step 8 AI knowledge and guideline requirements map. Step 8 identifies what guidance is needed; Step 9 writes the actual AI guidance pack.
+Inside the AI operating partner engagement, this is Step 10. Start from the Step 9 AI knowledge and guideline requirements map. Step 9 identifies what guidance is needed; Step 10 writes the actual AI guidance pack.
 
-The canonical Step 9 artifact is a machine-readable guidance spec, not a prose memo and not only a `SKILL.md`. A Markdown skill-style guide is a readable view of the same guidance. Test/evaluation cases are a separate view used later to verify whether a future AI follows the guidance. Keep all three aligned:
+The canonical Step 10 artifact is a machine-readable guidance spec, not a prose memo and not only a `SKILL.md`. A Markdown readable guide is a platform-agnostic view of the same guidance. Test/evaluation cases are a separate view used later to verify whether a future AI follows the guidance. Keep all three aligned:
 
 - Structured guidance spec: canonical artifact.
-- Markdown skill-style guide: human-readable view.
+- Markdown readable guide: human-readable, platform-agnostic view.
 - Test/evaluation cases: behavior verification view.
 
 Useful references:
@@ -43,15 +43,15 @@ Stop only when the answer can be converted into rules, examples, edge cases, and
 
 ## Capture Workflow
 
-1. Start from a Step 8 knowledge or guideline requirement.
+1. Start from a Step 9 knowledge or guideline requirement.
 2. Confirm the decision or task where expertise matters.
 3. Identify top performers, reviewers, and exception handlers.
 4. Ask for recent concrete examples.
 5. Compare good, bad, and edge-case outcomes.
 6. Extract cues, rules of thumb, thresholds, and red flags.
 7. Identify exceptions and escalation triggers.
-8. Translate judgment into a structured guidance spec with explicit rules, source hierarchy, truth-production handling, tacit cues, examples, allowed behaviors, forbidden behaviors, escalation logic, and output contract.
-9. Generate a Markdown skill-style view and test/evaluation cases from the structured spec.
+8. Translate judgment into a structured guidance spec with explicit rules, source hierarchy, truth-production handling, regulated-domain handling where applicable, tacit cues, examples, allowed behaviors, forbidden behaviors, escalation logic, and output contract.
+9. Generate a Markdown readable view and behavioral/output-quality test cases from the structured spec.
 10. Validate with experts, reviewers, and risk owners where needed.
 11. Define ownership, update cadence, and validation status.
 
@@ -75,7 +75,7 @@ Ask:
 Choose the lightest useful format:
 
 - Machine-readable guidance spec.
-- Markdown skill-style guide.
+- Markdown readable guide.
 - Test/evaluation case file.
 - Checklist.
 - Decision tree.
@@ -92,7 +92,7 @@ Choose the lightest useful format:
 Produce:
 
 - Structured guidance spec:
-  - Guidance ID, workflow ID, version, status, and linked Step 8 requirement IDs.
+  - Guidance ID, workflow ID, version, status, and linked Step 9 requirement IDs.
   - Purpose, scope, and out-of-scope areas.
   - Owner roles, reviewers, update cadence, and validation status.
   - Required inputs and missing-input behavior.
@@ -100,14 +100,14 @@ Produce:
 - Truth production handling: allowed truth statuses, fragile truth behaviors, confidence language, and escalation rules.
   - Explicit rules.
   - Tacit cues and judgment signals.
-  - Examples: good, bad, edge, low-confidence, source-conflict, and fragile-truth.
+  - Examples: good, bad, edge, low-confidence, source-conflict, fragile-truth, regulated-domain, and adoption-failure where relevant.
   - Allowed AI behaviors.
   - Forbidden AI behaviors.
   - Escalation triggers and human approval gates.
   - Sensitive-field handling.
   - Output contract.
   - Evidence references and unresolved gaps.
-- Markdown skill-style guide:
+- Markdown readable guide:
   - When to use it.
   - Inputs.
   - Rules.
@@ -121,6 +121,9 @@ Produce:
   - Expected AI behavior.
   - Expected escalation or human review.
   - Pass criteria.
+  - Behavioral eval family or output-quality eval family.
+
+Minimum eval coverage before implementation planning: at least 10 good, 10 bad/forbidden, and 5 edge behavioral cases per material behavior family; at least 5 source-conflict or fragile-truth cases when material; at least 5 regulated-domain cases when a regulated extension applies; and output-quality evals for required fields, evidence/citation, confidence language, sensitive-field handling, and schema compliance.
 
 ## Quality Bar
 
