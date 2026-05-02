@@ -1,6 +1,6 @@
 ---
 name: zero-trust-agent-controls
-description: "Design zero-trust control models for AI agents, automation, analytics tools, and data workflows, including least privilege, scoped credentials, identity, device, application, data, network, automation, visibility, approval gates, logging, and revocation. Use before granting agents access or action rights."
+description: "Design the zero-trust portion of the Step 15 risk_control_model for future AI agents, automation, analytics tools, and data workflows, including least privilege, scoped credentials, identity, application, data, automation, visibility, approval gates, logging, monitoring, incident response, and revocation."
 ---
 
 # Zero Trust Agent Controls
@@ -9,7 +9,13 @@ description: "Design zero-trust control models for AI agents, automation, analyt
 
 Do not let agents inherit broad human access by default. Grant scoped, task-specific, observable, revocable permissions.
 
-Inside the AI operating partner engagement, this skill designs the Step 15 zero-trust portion of the future risk and control model only. Do not provision credentials, service accounts, live API tokens, MCP access, connectors, email ingestion, monitoring, or write access during the V2 engagement.
+Inside the AI operating partner engagement, this skill designs the Step 15 zero-trust portion of the future `risk_control_model` only. Do not provision credentials, service accounts, live API tokens, MCP access, connectors, email ingestion, monitoring, or write access during the engagement.
+
+## Engagement Role
+
+Use this skill as a Step 15 helper after Step 13 solution/adoption shape and Step 14 technical blueprint establish future behavior, tools, sources, runtime, document/email scope, credential/secrets approach, and build sequence. Its outputs should embed into the Step 15 `risk_control_model`, not become a separate implementation plan.
+
+Zero-trust controls must constrain Step 16 behavior-level readiness, Step 17 packet scope, and Step 18 lifecycle launch gates. If controls require a different topology, UX, retrieval scope, behavior level, or adoption approach, route back to Step 13.
 
 Useful references:
 

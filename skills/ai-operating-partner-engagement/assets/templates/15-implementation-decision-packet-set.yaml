@@ -1,11 +1,11 @@
-packet_set_id: "packet_set_<workflow_or_opportunity>_v1"
+packet_set_id: "packet_set_<workflow_or_opportunity>_current"
 object_type: "packet_set"
 spec_version: "0.1"
 status: "draft" # draft | ready_for_review | approved | revision_required | blocked
 workflow_id: ""
 opportunity_id: ""
-contract_ref: "decision_packet_contracts.v3"
-schema_ref: "canonical-object-schemas.v3#/$defs/packet_set"
+contract_ref: "decision_packet_contracts"
+schema_ref: "canonical-object-schemas#/$defs/packet_set"
 
 purpose: "Group multiple Step 17 packet outcomes for the same workflow or opportunity when different behavior levels or sub-scopes require different recommendations."
 

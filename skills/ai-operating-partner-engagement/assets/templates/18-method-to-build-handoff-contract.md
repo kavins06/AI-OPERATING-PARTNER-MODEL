@@ -1,14 +1,14 @@
-# V3-To-Build Handoff Contract
+# Method-To-Build Handoff Contract
 
-`handoff_contract_id`: `v3_to_build_handoff.v3`  
+`handoff_contract_id`: `method_to_build_handoff`  
 `applies_after_step`: `18`  
 `status`: `published_reference`
 
-This contract defines what transfers after the V3 pre-build engagement and what does not. It prevents the end of Step 18 from becoming an ambiguous "now go build it" moment.
+This contract defines what transfers after the pre-build engagement and what does not. It prevents the end of Step 18 from becoming an ambiguous "now go build it" moment.
 
 ## Handoff Boundary
 
-The V3 engagement ends with an approved Step 17 packet and Step 18 lifecycle object. It does not itself start implementation.
+The engagement ends with an approved Step 17 packet and Step 18 lifecycle object. It does not itself start implementation.
 
 Implementation begins only when:
 
@@ -90,9 +90,9 @@ Before build starts:
 - Build owner accepts stop conditions.
 - Client confirms what behavior level is authorized for first build.
 
-## Triggers For Return To V3
+## Triggers For Return To Method
 
-Return to the V3 framework or rerun affected steps when:
+Return to the method framework or rerun affected steps when:
 
 - material truth production changes;
 - source system, vendor, API, or data license changes;

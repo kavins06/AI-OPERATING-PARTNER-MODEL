@@ -1,6 +1,6 @@
 $schema: "https://json-schema.org/draft/2020-12/schema"
-$id: "https://ai-operating-partner.local/schemas/canonical-objects.v3.schema.json"
-title: "AI Operating Partner V3 Canonical Object Schemas"
+$id: "https://ai-operating-partner.local/schemas/canonical-objects.schema.json"
+title: "AI Operating Partner Canonical Object Schemas"
 description: "Versioned schema contract for machine-readable artifacts used by the 0-18 pre-build engagement."
 type: "object"
 required:
@@ -13,15 +13,15 @@ properties:
   spec_version:
     type: "string"
   schema_version:
-    const: "v3.1"
+    const: "current"
 
 schema_compatibility_policy:
-  current_version: "v3.1"
+  current_version: "current"
   policy:
     minor_versions: "Additive only. New optional fields, new $defs, new enum members may be added without a major bump. Required-field additions are minor only when accompanied by a default; otherwise treat as breaking."
     major_versions: "Breaking changes (renaming or removing fields, narrowing enums, or making previously optional fields required without default) require a major bump and a documented migration path."
     deprecation: "Fields scheduled for removal must be marked deprecated for at least one minor version with a deprecation note before removal in the next major."
-    extension_protocol: "Vertical or client-specific extensions must use the `extensions` field on each canonical object and reference an extension schema (e.g., vertical-extension.v3) by id. Extensions must not redefine or shadow core fields."
+    extension_protocol: "Vertical or client-specific extensions must use the `extensions` field on each canonical object and reference an extension schema (e.g., vertical-extension) by id. Extensions must not redefine or shadow core fields."
 
 "$defs":
   common:

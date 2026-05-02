@@ -1,6 +1,6 @@
 ---
 name: ai-agent-readiness-assessment
-description: "Create implementation-grade AI-agent readiness objects for candidate opportunities by evaluating hard gates, behavior-level readiness, use-case framing, business value, workflow clarity, source access, data quality, truth production, knowledge/guidance, measurement, AI-capability metrics, solution shape, regulated-domain readiness, architecture, risk controls, adoption/change, human oversight, lifecycle readiness, dependencies, blockers, and Step 17 path. Use after discovery and before implementation."
+description: "Create Step 16 implementation-grade readiness_object artifacts for candidate opportunities by evaluating hard gates, behavior-level readiness, use-case framing, business value, workflow clarity, source access, data quality, truth production, knowledge/guidance, measurement, AI-capability metrics, solution shape, regulated-domain readiness, architecture, risk controls, adoption/change, human oversight, lifecycle readiness, dependencies, blockers, and Step 17 path."
 ---
 
 # AI Agent Readiness Assessment
@@ -12,6 +12,14 @@ Readiness scoring comes after enough discovery to score with evidence. Scores wi
 Inside the AI operating partner engagement, readiness scoring does not authorize implementation by itself. Implementation starts only after Step 18 is complete and the client approves the separate implementation phase.
 
 Step 16 is not a generic percentage score. It produces an implementation-grade readiness object for each candidate AI opportunity. The object must say which AI behavior level is ready, which behavior levels are blocked, which dependencies matter, which gates override the score, and what Step 17 should become.
+
+## Engagement Role
+
+Step 16 consumes evidence from Steps 0-15 and produces the `readiness_object`. It is the hard-gate decision point before Step 17 packet selection. A candidate can be ready for one behavior level and prohibited for another.
+
+Use `../ai-operating-partner-engagement/assets/templates/14-ai-agent-readiness-score.yaml` as the canonical artifact, `../ai-operating-partner-engagement/assets/templates/14-hard-gates-readiness-rubric.yaml` as the hard-gate rubric, and `../ai-operating-partner-engagement/assets/templates/14-readiness-scorecard.csv` only as a compact view.
+
+The Step 16 decision must select a Step 17 path: build-ready implementation brief, gap remediation plan, governance/data readiness plan, knowledge capture plan, technical feasibility plan, risk/control plan, do-not-automate recommendation, or discovery incomplete. It must not start implementation.
 
 Useful references:
 
@@ -123,7 +131,7 @@ If material truth is shadow-derived, manually adjusted, person-dependent, disput
 
 ## Output Object
 
-Use `../ai-operating-partner-engagement/assets/templates/14-ai-agent-readiness-score.yaml` as the canonical artifact. The older CSV scorecard can be used only as a compact view.
+Use `../ai-operating-partner-engagement/assets/templates/14-ai-agent-readiness-score.yaml` as the canonical artifact. The CSV scorecard can be used only as a compact view.
 
 The readiness object must include:
 
@@ -153,6 +161,7 @@ The readiness object must include:
 - `risk_control_first`: sensitive data, approval, output, monitoring, incident, or revocation controls are not acceptable.
 - `deprioritize`: opportunity is not important enough relative to effort or risk.
 - `do_not_automate_yet`: behavior is unsafe, prohibited, unowned, unmeasurable, or unsupported.
+- `discovery_incomplete`: required required source inputs are missing or too low-confidence to score honestly.
 
 Step 17 should become either a build-ready implementation brief or a specific remediation plan based on this decision.
 

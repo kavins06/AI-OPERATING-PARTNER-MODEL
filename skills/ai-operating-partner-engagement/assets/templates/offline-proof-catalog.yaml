@@ -1,4 +1,4 @@
-offline_proof_catalog_id: "offline_proof_catalog.v3"
+offline_proof_catalog_id: "offline_proof_catalog"
 spec_version: "0.1"
 object_type: "offline_proof_catalog"
 status: "published_reference"

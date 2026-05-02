@@ -9,6 +9,10 @@ desktop.ini
 *.pyc
 __pycache__/
 
+# Generated guide output and previews. Keep these locally when useful, but
+# treat them as derived artifacts rather than method source.
+output/
+
 .env
 .env.*
 

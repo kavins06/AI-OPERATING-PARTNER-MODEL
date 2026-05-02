@@ -1,4 +1,4 @@
-guidance_id: "guidance.workflow.decision.v1"
+guidance_id: "guidance.workflow.decision.current"
 workflow_id: ""
 version: "0.1"
 status: "draft" # draft | expert_validated | risk_validated | implementation_ready | blocked

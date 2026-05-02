@@ -1,6 +1,6 @@
 ---
 name: workflow-mapping
-description: "Convert interviews, notes, transcripts, SOPs, reports, or observed work into AI-native workflow specifications. Use when Codex needs structured organizational workflow intelligence: roles, hierarchy, actors, steps, decisions, handoffs, exceptions, information objects, source access profiles, truth production profiles, inputs, outputs, controls, evidence, confidence, unknowns, and automation candidates."
+description: "Convert interviews, notes, transcripts, SOPs, reports, or observed work into the Step 6 workflow_intelligence_object. Use when Codex needs structured organizational workflow intelligence: roles, hierarchy, actors, steps, decisions, handoffs, exceptions, information objects, source access profiles, truth production profiles, inputs, outputs, controls, evidence, confidence, unknowns, variation signals, and candidate AI-assist hypotheses."
 ---
 
 # Workflow Mapping
@@ -8,6 +8,12 @@ description: "Convert interviews, notes, transcripts, SOPs, reports, or observed
 ## Core Rule
 
 Model what people actually do, not what the org chart or system diagram claims happens. Keep the AI workflow specification factual, evidence-referenced, confidence-scored, validated where possible, and separate from recommendations.
+
+## Engagement Role
+
+Inside the AI operating partner engagement, this skill owns Step 6: the AI-native workflow intelligence object. It consumes Step 1 terrain, Step 2 candidate shortlist, Step 3 interview evidence, Step 4 variation mapping when triggered, and Step 5 planning evidence. It produces the structured object that Step 7 diagnostics, Step 8 validation, Step 9 knowledge mapping, Step 11 measurement, Step 14 blueprinting, Step 15 risk, and Step 16 readiness depend on.
+
+Use `../ai-operating-partner-engagement/assets/templates/05-ai-workflow-spec.yaml` and the `workflow_intelligence_object` definition in `../ai-operating-partner-engagement/assets/schemas/canonical-object-schemas.yaml`. Do not invent a parallel object shape.
 
 Useful references:
 
@@ -44,11 +50,11 @@ As an AI operating partner, collect inputs through a staged process:
 
 Do not rely only on executives. Leaders often describe what should happen; operators reveal what actually happens.
 
-No direct company data access is required to start mapping. During the V2 engagement, do not request production credentials, employee credentials, broad live system access, unapproved API tokens, all-email ingestion, write access, live MCP/connector access, or bulk unredacted data. If future implementation needs those, capture them as blueprint requirements for Steps 14-18.
+No direct company data access is required to start mapping. During the engagement, do not request production credentials, employee credentials, broad live system access, unapproved API tokens, all-email ingestion, write access, live MCP/connector access, or bulk unredacted data. If future implementation needs those, capture them as blueprint requirements for Steps 14-18.
 
 ## AI-Native Workflow Specification
 
-Step 6 produces an `organizational_workflow_intelligence` object, not a human-readable report. Human summaries are views generated from this object.
+Step 6 produces a `workflow_intelligence_object`, not a human-readable report. Human summaries are views generated from this object.
 
 Build the spec by:
 

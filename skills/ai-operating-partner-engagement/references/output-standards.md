@@ -2,7 +2,7 @@
 
 ## Engagement Boundary
 
-The V2 engagement produces organizational intelligence, use-case selection, adoption design, and an implementation blueprint. It has Step 0 plus Steps 1-18. It does not implement agents, MCP servers, connectors, normalization pipelines, ETL/ELT, email ingestion, live integrations, write-back automation, or production tooling.
+The engagement produces organizational intelligence, use-case selection, adoption design, and an implementation blueprint. It has Step 0 plus Steps 1-18. It does not implement agents, MCP servers, connectors, normalization pipelines, ETL/ELT, email ingestion, live integrations, write-back automation, or production tooling.
 
 Allowed during the engagement:
 
@@ -217,11 +217,11 @@ Step 8 must produce:
 - Sensitive field, retention, export, and handling constraints.
 - Permitted AI actions and AI-safe truth usage.
 - Back-edge decision: whether Step 6 must update, Step 7 must re-score, Step 2 shortlist must change, or the flow can continue.
-- Organizational Intelligence Baseline v1: a machine-readable product data contract generated from Steps 0-8.
+- Organizational Intelligence Baseline: a machine-readable product data contract generated from Steps 0-8.
 
 Material changes to workflow objects, truth profiles, source access paths, candidate use-case viability, or blocker classification loop back to Step 6 and Step 7 before continuing.
 
-The Organizational Intelligence Baseline v1 must be structured enough for a separate client-facing product to render useful controlled views without scraping interviews, notes, or reports. It must include:
+The Organizational Intelligence Baseline must be structured enough for a separate client-facing product to render useful controlled views without scraping interviews, notes, or reports. It must include:
 
 - Source-input trace from Steps 0-8.
 - Scope, identity/privacy policy, evidence policy, and sensitivity policy.

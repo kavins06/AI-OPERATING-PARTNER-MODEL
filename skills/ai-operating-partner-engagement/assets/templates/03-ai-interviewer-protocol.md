@@ -1,7 +1,7 @@
 # AI Interviewer Operating Protocol
 
-`protocol_id`: `ai_interviewer_protocol.v3`  
-`status`: `published_reference`  
+`protocol_id`: `ai_interviewer_protocol`
+`status`: `published_reference`
 `applies_to_step`: `3`
 
 This protocol makes AI-led interviews shippable in enterprise settings. It is the operating contract for participant trust, consent, recording, redaction, intervention, refusal fallback, and interview quality.

@@ -1,5 +1,5 @@
 $schema: "https://json-schema.org/draft/2020-12/schema"
-$id: "https://ai-operating-partner.local/schemas/vertical-extension.v3.schema.json"
+$id: "https://ai-operating-partner.local/schemas/vertical-extension.schema.json"
 title: "Vertical Extension Contract"
 type: "object"
 required:

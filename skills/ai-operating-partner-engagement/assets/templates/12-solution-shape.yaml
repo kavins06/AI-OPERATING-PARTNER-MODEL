@@ -1,4 +1,4 @@
-solution_shape_id: "solution_shape_<opportunity_id>_v1"
+solution_shape_id: "solution_shape_<opportunity_id>_current"
 spec_version: "0.1"
 object_type: "solution_shape_decision"
 status: "draft" # draft | selected | blocked | needs_vendor_review

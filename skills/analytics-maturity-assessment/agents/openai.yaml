@@ -1,4 +1,4 @@
 interface:
   display_name: "Measurement Intelligence"
   short_description: "Assess analytics readiness, metric trust, truth production, and agent-safe measurement usage."
-  default_prompt: "Use this skill to create Step 11 measurement intelligence: decision-linked metrics, trust classifications, truth production profiles, analytics maturity, AI-capability metrics, agent-safe metric usage, and kill criteria."
+  default_prompt: "Use this skill to create the Step 11 measurement_intelligence object: decision-linked metrics, trust classifications, truth production profiles, analytics maturity, AI-capability metrics, agent-safe metric usage, and kill criteria."

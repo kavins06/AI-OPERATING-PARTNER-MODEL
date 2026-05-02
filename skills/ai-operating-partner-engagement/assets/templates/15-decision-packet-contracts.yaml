@@ -1,4 +1,4 @@
-decision_packet_contracts_id: "decision_packet_contracts.v3"
+decision_packet_contracts_id: "decision_packet_contracts"
 spec_version: "0.1"
 object_type: "decision_packet_contracts"
 status: "published_reference"

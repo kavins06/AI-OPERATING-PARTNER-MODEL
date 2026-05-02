@@ -1,6 +1,6 @@
 ---
 name: warehouse-lakehouse-blueprint
-description: "Design governed technical implementation blueprints for analytics, dashboards, data products, and AI agents, including warehouse/lakehouse, semantic layer, truth production remediation, document intelligence, retrieval, integration, runtime/orchestration requirements, hosting/environment requirements, MCP/tooling, email scope, normalization, identity resolution, tool contracts, test strategy, credentials/secrets, audit/logging, blocked paths, and future build order."
+description: "Design the Step 14 technical_blueprint for future analytics, dashboards, data products, and AI agents, including warehouse/lakehouse, semantic layer, truth production remediation, document intelligence, retrieval, integration, runtime/orchestration requirements, hosting/environment requirements, MCP/tooling, email scope, normalization, identity resolution, tool contracts, test strategy, credentials/secrets, audit/logging, blocked paths, and future build order."
 ---
 
 # Warehouse Lakehouse Blueprint
@@ -9,9 +9,15 @@ description: "Design governed technical implementation blueprints for analytics,
 
 Design from workload and governance needs. Keep raw data, standardized data, semantic definitions, documents, retrieval, and agent tools logically separated.
 
-Inside the AI operating partner engagement, this skill produces the Step 14 technical/vendor implementation blueprint only. Do not build pipelines, MCPs, connectors, live integrations, email ingestion, service accounts, semantic layers, data warehouses, or production data movement during the V3 engagement.
+Inside the AI operating partner engagement, this skill produces the Step 14 technical/vendor implementation blueprint only. Do not build pipelines, MCPs, connectors, live integrations, email ingestion, service accounts, semantic layers, data warehouses, or production data movement during the engagement.
 
 The blueprint output must conform to the canonical `technical_blueprint` schema in `skills/ai-operating-partner-engagement/assets/schemas/canonical-object-schemas.yaml`, including required fields: `technical_blueprint_id`, `implementation_posture` (technically_feasible | feasible_with_conditions | blocked | not_worth_blueprinting_yet), `systems_and_sources`, `access_options`, `future_component_contracts`, `normalization_requirements`, `truth_production_remediation`, `build_sequence`, and `stop_boundary`. Do not invent alternative output structures.
+
+Use `../ai-operating-partner-engagement/assets/templates/12-technical-implementation-blueprint.yaml` as the canonical Step 14 template.
+
+## Engagement Role
+
+Step 14 consumes the surviving opportunity, Step 13 solution/adoption shape, Step 10 guidance/evals, Step 11 measurement intelligence, Step 12 value case, Step 8 source/truth decisions, and Step 15 risk constraints when already known. It defines future implementation requirements and access request packages for after Step 18 approval. It does not decide to build or provision anything.
 
 Step 14 documents the future technical path for opportunities still alive after Step 12 and shaped in Step 13. Step 13 decides solution shape and adoption design first; Step 14 should not secretly decide build/buy/leverage, topology, model class, or UX surface without tracing to Step 13.
 

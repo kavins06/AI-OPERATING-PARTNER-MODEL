@@ -1,6 +1,6 @@
 ---
 name: data-strategy-workshop
-description: "Plan, run, and synthesize data strategy workshops that translate business goals into data needs, governance choices, architecture priorities, analytics opportunities, AI-agent candidates, and measurable roadmaps. Use when Codex needs a workshop agenda, discovery questions, data strategy one-pager, or prioritized data and AI roadmap."
+description: "Plan, run, and synthesize Step 1-2 strategy workshops that translate business goals into executive opportunity terrain, data needs, governance choices, analytics opportunities, AI-agent candidates, candidate-use-case shortlists, and measurable modernization priorities."
 ---
 
 # Data Strategy Workshop
@@ -9,7 +9,21 @@ description: "Plan, run, and synthesize data strategy workshops that translate b
 
 Start with business outcomes and decisions, not tools, models, dashboards, or agents.
 
-Inside the AI operating partner engagement, this skill produces inputs for Step 1 (executive opportunity terrain) and Step 2 (candidate use-case shortlist). The workshop's outputs must conform to the canonical V3 artifacts: opportunity terrain capture and a `candidate_use_case_shortlist` whose `candidates[]` items conform to the canonical `candidate_use_case` schema. Do not produce generic strategy outputs that cannot route to a Step 2 candidate.
+Inside the AI operating partner engagement, this skill produces inputs for Step 1 (executive opportunity terrain) and Step 2 (candidate use-case shortlist). The workshop's outputs must conform to the canonical current artifacts: opportunity terrain capture and a `candidate_use_case_shortlist` whose `candidates[]` items conform to the canonical `candidate_use_case` schema. Do not produce generic strategy outputs that cannot route to a Step 2 candidate.
+
+## Engagement Role
+
+Use this skill after Step 0 engagement tiering and vertical-extension applicability are known, or explicitly mark Step 0 as unresolved and route it back to the orchestrator. Step 1 captures strategy, leverage areas, risk tolerance, trust boundaries, and who can explain the real work. Step 2 converts that terrain into discovery zones and candidate use cases with value, truth, adoption, regulatory, and disqualification dependencies.
+
+Canonical templates:
+
+- `../ai-operating-partner-engagement/assets/templates/01-executive-opportunity-terrain.md`
+- `../ai-operating-partner-engagement/assets/templates/01-org-structure-capture.csv`
+- `../ai-operating-partner-engagement/assets/templates/02-opportunity-terrain-synthesis.md`
+- `../ai-operating-partner-engagement/assets/templates/02-candidate-use-case-shortlist.yaml`
+- `../ai-operating-partner-engagement/assets/templates/02-interview-coverage-matrix.csv`
+
+The output is a discovery plan and candidate shortlist, not a build roadmap. Implementation decisions wait for Steps 16-18.
 
 Useful references:
 
@@ -71,7 +85,7 @@ Do not ask for everything. Ask for examples that explain decisions, repeated wor
 
 ## Outputs
 
-Produce, in canonical V3 artifact form where applicable:
+Produce, in canonical current artifact form where applicable:
 
 - Executive opportunity terrain capture (Step 1 artifact).
 - Candidate use-case shortlist conforming to `candidate_use_case_shortlist` and `candidate_use_case` schemas, with each candidate carrying `one_line_hypothesis`, `target_user_groups`, `workflow_boundary`, `value_hypothesis`, `trust_dependencies` (truth_production / source_access / data_quality / regulated_domain), `adoption_dependencies`, `disqualification_criteria`, `current_status`, and `evidence_refs`.
@@ -94,4 +108,3 @@ Reject tool-first ideas until they can pass that chain.
 ## Shared Engagement Resources
 
 For reusable intake forms, interview prompts, output templates, examples, and scoring scripts, use `../ai-operating-partner-engagement`.
-

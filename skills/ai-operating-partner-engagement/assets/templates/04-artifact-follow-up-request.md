@@ -11,7 +11,7 @@ Consolidate silent evidence needs after interviews and request only the smallest
 
 ## Data Access Posture
 
-- No build access or credentials are required during the V3 engagement.
+- No build access or credentials are required during the engagement.
 - Do not request broad system access, employee credentials, production credentials, API tokens, MCP/server access, connector access, all-email ingestion, write access, data-room access, or bulk document dumps at this stage.
 - Prefer redacted examples, screenshots, reports, trackers, templates, walkthroughs, sample exports, formulas, macro walkthroughs, reconciliation notes, schema/field lists, API/vendor documentation, access-control screenshots, architecture notes, and data dictionaries when they are sufficient.
 - If live system access, API access, MCPs, connectors, normalization pipelines, email connectors, or unredacted data are needed later, define them as future implementation access requirements, not current requests.

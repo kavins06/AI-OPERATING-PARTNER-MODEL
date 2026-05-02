@@ -1,4 +1,4 @@
-adoption_design_id: "adoption_<opportunity_id>_v1"
+adoption_design_id: "adoption_<opportunity_id>_current"
 spec_version: "0.1"
 object_type: "end_user_adoption_and_change_design"
 status: "draft" # draft | validated | blocked | not_applicable

@@ -113,7 +113,7 @@ Ask for examples, not everything. During AI-led interviews, do not ask participa
 
 No direct company data access is required for early discovery. Prefer planning evidence: redacted examples, screenshots, reports, trackers, templates, walkthroughs, sample exports, schema/field lists, API/vendor documentation, access-control screenshots, architecture notes, and data dictionaries when tied to specific workflow objects.
 
-Do not ask for broad system access, employee credentials, production credentials, unapproved API tokens, live integrations, MCP/server access, connector access, all-email access, write access, data-room access, or bulk document dumps during the V2 engagement. Those belong in the post-Step-18 implementation phase if the decision packet and lifecycle object are approved.
+Do not ask for broad system access, employee credentials, production credentials, unapproved API tokens, live integrations, MCP/server access, connector access, all-email access, write access, data-room access, or bulk document dumps during the engagement. Those belong in the post-Step-18 implementation phase if the decision packet and lifecycle object are approved.
 
 Every planning-evidence request must name:
 
@@ -154,7 +154,7 @@ Acceptable substitute hierarchy when redaction is too costly:
 
 ## Planning Evidence Access Boundary
 
-Allowed during the V2 engagement:
+Allowed during the engagement:
 
 - Redacted report samples.
 - Redacted record examples.
@@ -170,7 +170,7 @@ Allowed during the V2 engagement:
 - Access matrix or role-permission screenshots.
 - Redacted email or document examples tied to a specific workflow object.
 
-Prohibited during the V2 engagement:
+Prohibited during the engagement:
 
 - Employee passwords or personal credentials.
 - Production credentials or service accounts.

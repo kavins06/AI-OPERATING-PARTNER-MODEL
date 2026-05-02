@@ -1,4 +1,4 @@
-technical_implementation_blueprint_id: "tib.workflow.opportunity.v1"
+technical_implementation_blueprint_id: "tib.workflow.opportunity.current"
 opportunity_id:
 workflow_ids: []
 value_case_id:

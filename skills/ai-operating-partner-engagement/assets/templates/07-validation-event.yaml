@@ -153,7 +153,7 @@ back_edge_decisions:
 
 organizational_intelligence_baseline_release:
   baseline_id:
-  generate_baseline_v1: false
+  generate_baseline_current: false
   ready_for_client_product_views: false
   required_updates_before_release:
     - object_id:

@@ -1,4 +1,4 @@
-readiness_object_id: "readiness_<opportunity_id>_v1"
+readiness_object_id: "readiness_<opportunity_id>_current"
 version: "0.1"
 status: "draft"
 opportunity_id: ""
@@ -8,8 +8,8 @@ technical_blueprint_id: ""
 risk_control_model_id: ""
 solution_shape_id: ""
 adoption_design_id: ""
-uses_readiness_rubric_id: "readiness_hard_gates.v3"
-uses_halt_taxonomy_id: "halt_taxonomy.v3"
+uses_readiness_rubric_id: "readiness_hard_gates"
+uses_halt_taxonomy_id: "halt_taxonomy"
 
 source_inputs:
   workflow_spec_ids: []

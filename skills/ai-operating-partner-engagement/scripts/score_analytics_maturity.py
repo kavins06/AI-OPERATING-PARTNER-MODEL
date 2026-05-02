@@ -31,7 +31,7 @@ def parse_scores(items: list[str]) -> dict[str, int]:
 
 
 def maturity_level(avg: float) -> int:
-    # 1-5 scale aligned with the V3 readiness rubric scoring_scale.
+    # 1-5 scale aligned with the current readiness rubric scoring_scale.
     # Buckets centered on integer scores with 0.5 boundaries.
     if avg < 1.5:
         return 1

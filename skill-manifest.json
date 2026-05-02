@@ -1,6 +1,6 @@
 {
   "name": "ai-operating-partner-system",
-  "description": "A Codex skill system for AI operating partner discovery, assessment, data readiness, agent readiness, and managed lifecycle work.",
+  "description": "A  Codex skill system for the AI operating partner method backbone: Step 0-18 pre-build discovery, organizational intelligence, governance, guidance, measurement, value, technical blueprinting, risk controls, readiness, decision packets, lifecycle, and method-to-build handoff.",
   "skills": [
     "information-ecology-diagnostic",
     "source-grounded-consulting",
@@ -23,4 +23,3 @@
   "master_skill": "ai-operating-partner-engagement",
   "source_documents_included": false
 }
-

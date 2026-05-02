@@ -1,4 +1,4 @@
-measurement_intelligence_id: "mi.workflow.v1"
+measurement_intelligence_id: "mi.workflow.current"
 workflow_ids: []
 version: "0.1"
 status: "draft" # draft | owner_validated | partially_validated | blocked

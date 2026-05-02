@@ -1,6 +1,6 @@
 ---
 name: information-ecology-diagnostic
-description: "Diagnose a business workflow or information environment across people, process, culture, incentives, politics, architecture, behavior, tools, and data flows before recommending analytics, automation, or AI agents. Use when Codex needs to explain why information work fails beyond software alone."
+description: "Diagnose a Step 7 business workflow or information environment across people, process, culture, incentives, politics, architecture, behavior, tools, data flows, truth production, adoption, and regulated-domain constraints before recommending analytics, automation, or AI agents."
 ---
 
 # Information Ecology Diagnostic
@@ -8,6 +8,14 @@ description: "Diagnose a business workflow or information environment across peo
 ## Core Rule
 
 Treat information work as an ecosystem. Diagnose the human, organizational, process, and technology environment before proposing tools.
+
+## Engagement Role
+
+Inside the AI operating partner engagement, this skill owns Step 7: organizational intelligence diagnostic. Start from the Step 6 `workflow_intelligence_object`, Step 3 interview evidence, Step 4 variation map when applicable, and Step 5 planning evidence. Produce findings that conform to the `organizational_intelligence_diagnostic` contract and route each blocker before later steps depend on it.
+
+Use `../ai-operating-partner-engagement/assets/templates/06-organizational-intelligence-diagnostic.yaml` as the canonical artifact and `../ai-operating-partner-engagement/assets/templates/06-blocker-classification-rubric.md` as the blocker rubric.
+
+Step 7 can update the Step 2 shortlist through discovery disqualification, route remediation before build, allow continuation with controls, or mark informational findings. It does not authorize solution design or implementation.
 
 Useful references:
 
@@ -68,7 +76,7 @@ Watch for:
 
 ## Output Template
 
-Produce object-linked findings, not only themes. In the AI operating partner V2 engagement this is Step 7, and every material finding needs a blocker classification.
+Produce object-linked findings, not only themes. In the AI operating partner engagement this is Step 7, and every material finding needs a blocker classification tied to workflow object IDs, evidence, confidence, affected behavior levels, and route.
 
 Produce:
 

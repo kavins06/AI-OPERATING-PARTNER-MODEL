@@ -1,6 +1,6 @@
 ---
 name: tacit-to-explicit-knowledge-capture
-description: "Convert expert tacit knowledge into explicit, reusable rules, examples, checklists, SOPs, prompts, escalation criteria, and review workflows. Use when important work depends on experience, judgment, context, undocumented exceptions, or expert pattern recognition."
+description: "Convert Step 9 knowledge requirements and expert tacit knowledge into Step 10 AI guidance packs: structured rules, source hierarchy, truth-production handling, examples, checklists, SOP views, escalation criteria, output contracts, and behavioral/output-quality eval cases."
 ---
 
 # Tacit To Explicit Knowledge Capture
@@ -16,6 +16,14 @@ The canonical Step 10 artifact is a machine-readable guidance spec, not a prose 
 - Structured guidance spec: canonical artifact.
 - Markdown readable guide: human-readable, platform-agnostic view.
 - Test/evaluation cases: behavior verification view.
+
+Use these canonical templates:
+
+- `../ai-operating-partner-engagement/assets/templates/09-ai-guidance-spec.yaml`
+- `../ai-operating-partner-engagement/assets/templates/09-ai-guidance-skill.md`
+- `../ai-operating-partner-engagement/assets/templates/09-ai-guidance-test-cases.yaml`
+
+Step 10 creates future AI guidance and eval requirements. It does not deploy an agent, connector, MCP, automation, live integration, or production skill.
 
 Useful references:
 

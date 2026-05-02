@@ -1,6 +1,6 @@
 ---
 name: voice-interview-discovery
-description: "Plan, conduct, and synthesize discovery interviews to understand how work actually happens before data, analytics, automation, or AI-agent design. Use when Codex needs interview guides, transcript extraction, work-episode analysis, discovery notes, or follow-up questions for any business workflow."
+description: "Plan, conduct, and synthesize Step 3 role-aware AI-led discovery interviews to understand how work actually happens before data, analytics, automation, or AI-agent design. Use when Codex needs interview guides, transcript extraction, work-episode analysis, evidence-need logs, source-access signals, or follow-up questions for a business workflow."
 ---
 
 # Voice Interview Discovery
@@ -8,6 +8,21 @@ description: "Plan, conduct, and synthesize discovery interviews to understand h
 ## Core Rule
 
 Behave like an ethnographer, not a salesperson. Discover lived work, repeated decisions, handoffs, exceptions, trust problems, sensitive data, undocumented judgment, and measurable pain before proposing automation.
+
+## Engagement Role
+
+Inside the AI operating partner engagement, this skill owns Step 3: role-aware AI-led interviews. It uses the current AI interviewer protocol and feeds Step 4 variation mapping, Step 5 planning-evidence follow-up, Step 6 workflow intelligence objects, Step 8 validation, Step 9 knowledge requirements, Step 11 measurement intelligence, and Step 15 risk signals.
+
+Use these canonical templates when the engagement context requires formal artifacts:
+
+- `../ai-operating-partner-engagement/assets/templates/03-ai-interviewer-protocol.md`
+- `../ai-operating-partner-engagement/assets/templates/03-ai-interviewer-system-prompt.md`
+- `../ai-operating-partner-engagement/assets/templates/03-role-interview-guide.md`
+- `../ai-operating-partner-engagement/assets/templates/03-interview-evidence-need-log.csv`
+- `../ai-operating-partner-engagement/assets/templates/03-source-access-register.csv`
+- `../ai-operating-partner-engagement/assets/templates/03-edge-case-register.csv`
+
+The Step 3 output is evidence, not final truth. It must preserve participant-stated facts, inferred patterns, disputes, unknowns, evidence needs, source-access signals, truth-production clues, and adoption/risk signals for later validation.
 
 Use the mastery corpus when useful:
 

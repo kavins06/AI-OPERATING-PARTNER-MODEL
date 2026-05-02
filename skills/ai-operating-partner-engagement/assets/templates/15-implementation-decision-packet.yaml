@@ -1,10 +1,10 @@
-step_17_packet_id: "step17_<opportunity_id>_v1"
+step_17_packet_id: "step17_<opportunity_id>_current"
 version: "0.1"
 status: "draft"
 packet_type: "build_ready_implementation_brief" # build_ready_implementation_brief | gap_remediation_plan | governance_data_readiness_plan | knowledge_capture_plan | technical_feasibility_plan | risk_control_plan | do_not_automate_recommendation
 source_of_truth: true
-uses_packet_contracts_id: "decision_packet_contracts.v3"
-uses_halt_taxonomy_id: "halt_taxonomy.v3"
+uses_packet_contracts_id: "decision_packet_contracts"
+uses_halt_taxonomy_id: "halt_taxonomy"
 
 source_inputs:
   opportunity_id: ""

@@ -1,4 +1,4 @@
-halt_taxonomy_id: "halt_taxonomy.v3"
+halt_taxonomy_id: "halt_taxonomy"
 spec_version: "0.1"
 object_type: "halt_taxonomy"
 status: "published_reference"

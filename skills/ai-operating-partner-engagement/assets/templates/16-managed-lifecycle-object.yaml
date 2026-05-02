@@ -1,11 +1,11 @@
-lifecycle_object_id: "lifecycle_<opportunity_id>_v1"
+lifecycle_object_id: "lifecycle_<opportunity_id>_current"
 version: "0.1"
 status: "draft"
 source_of_truth: true
 lifecycle_path: "managed_agent_lifecycle" # managed_agent_lifecycle | remediation_lifecycle | no_automation_review_cadence
-uses_lifecycle_variant_contracts_id: "lifecycle_variant_contracts.v3"
-uses_handoff_contract_id: "v3_to_build_handoff.v3"
-uses_halt_taxonomy_id: "halt_taxonomy.v3"
+uses_lifecycle_variant_contracts_id: "lifecycle_variant_contracts"
+uses_handoff_contract_id: "method_to_build_handoff"
+uses_halt_taxonomy_id: "halt_taxonomy"
 
 source_inputs:
   step_17_packet_id: ""
@@ -29,20 +29,20 @@ operating_status:
   implementation_allowed_only_after_step_18_approval: true
   separate_implementation_approval_required: true
   no_live_agent_operated_during_engagement: true
-  approval_boundary: "This object defines future operations only; it does not deploy, monitor, connect, or operate an agent during the V3 engagement."
+  approval_boundary: "This object defines future operations only; it does not deploy, monitor, connect, or operate an agent during the engagement."
 
 variant_contract:
   selected_variant: "managed_agent_lifecycle" # managed_agent_lifecycle | remediation_lifecycle | no_automation_review_cadence
-  contract_ref: "lifecycle_variant_contracts.v3"
+  contract_ref: "lifecycle_variant_contracts"
   required_sections_present: false
   missing_sections: []
 
 handoff_contract:
-  handoff_contract_ref: "v3_to_build_handoff.v3"
+  handoff_contract_ref: "method_to_build_handoff"
   operating_partner_role_after_handoff: "not_decided" # advisor_only | build_phase_operator | managed_services_owner | client_handoff_only | third_party_builder_handoff | not_decided
   future_build_owner_acceptance_required: true
   handoff_status: "not_ready_pending_client_decision" # ready_for_separate_implementation_approval | ready_for_remediation_execution | not_ready_missing_owner | not_ready_missing_controls | not_ready_missing_access_path | not_ready_pending_client_decision | do_not_automate_revisit_scheduled
-  return_to_v3_triggers: []
+  return_to_method_triggers: []
 
 lifecycle_scope:
   agent_or_workflow_name: ""

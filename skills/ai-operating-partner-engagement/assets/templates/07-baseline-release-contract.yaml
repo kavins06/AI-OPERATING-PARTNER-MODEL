@@ -1,11 +1,11 @@
-baseline_release_contract_id: "baseline_release_contract.v3"
+baseline_release_contract_id: "baseline_release_contract"
 spec_version: "0.1"
 object_type: "organizational_intelligence_baseline_release_contract"
 status: "published_reference"
 applies_to_step: 8
 
 purpose:
-  release_baseline_v1: "Create a controlled, product-ready organizational intelligence substrate after validation."
+  release_baseline_current: "Create a controlled, product-ready organizational intelligence substrate after validation."
   protect_raw_internal_object: "Do not broadcast raw transcripts, unredacted sensitive content, or internal inference notes."
   seed_downstream_steps: "Provide machine-readable payloads for Steps 9-18."
 

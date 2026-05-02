@@ -1,6 +1,6 @@
 ---
 name: data-monetization-canvas
-description: "Create business value cases for data, analytics, and AI opportunities through internal efficiency, customer experience, decision quality, data products, partnerships, risk reduction, revenue, leakage prevention, or retention. Use when Codex needs an evidence-linked value case, data monetization canvas, ROI framing, value hypothesis, or pilot metric design."
+description: "Create Step 12 business value cases and portfolio comparisons for data, analytics, and AI opportunities through internal efficiency, customer experience, decision quality, data products, partnerships, risk reduction, revenue, leakage prevention, or retention. Use when Codex needs an evidence-linked value case, AI-side cost model, sequencing recommendation, or economic disqualification decision."
 ---
 
 # Data Monetization Canvas
@@ -12,6 +12,12 @@ Data monetization is broader than selling data. Count internal efficiency, bette
 Inside the AI operating partner engagement, this is Step 12: the business value case and portfolio comparison. It is the economic and sequencing filter before solution shape, architecture, risk, readiness, and future implementation planning. It does not authorize build work.
 
 AI drafts the first-pass value case from prior evidence. The operating partner judges credibility, priority, and strategic fit. The client confirms business reality: volumes, costs, acceptable assumptions, risk tolerance, and which value matters to leadership.
+
+## Engagement Role
+
+Step 12 consumes candidate use cases, workflow intelligence, diagnostics, governance/source/truth decisions, guidance requirements, measurement intelligence, and planning evidence. It produces the `business_value_case` and `portfolio_comparison` artifacts, then decides which 1..N opportunities advance to Step 13 solution/adoption shape.
+
+Use `../ai-operating-partner-engagement/assets/templates/11-business-value-case.yaml` and `../ai-operating-partner-engagement/assets/templates/11-portfolio-comparison.yaml` as canonical outputs. Route weak or untrusted value evidence to measurement/truth remediation, deprioritization, or economic disqualification.
 
 Useful references:
 
@@ -121,4 +127,3 @@ Do not call an opportunity valuable only because it is automatable. Do not prete
 ## Shared Engagement Resources
 
 For reusable intake forms, interview prompts, output templates, examples, and scoring scripts, use `../ai-operating-partner-engagement`.
-

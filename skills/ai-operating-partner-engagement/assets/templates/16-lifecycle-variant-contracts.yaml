@@ -1,4 +1,4 @@
-lifecycle_variant_contracts_id: "lifecycle_variant_contracts.v3"
+lifecycle_variant_contracts_id: "lifecycle_variant_contracts"
 spec_version: "0.1"
 object_type: "lifecycle_variant_contracts"
 status: "published_reference"
@@ -114,7 +114,7 @@ validation_checks:
   - "Required variant sections are present."
   - "Owner model covers all required owners for selected variant."
   - "Review cadence and re-entry conditions are explicit."
-  - "Stop boundary confirms no live operation starts during V3 engagement."
+  - "Stop boundary confirms no live operation starts during engagement."
 
 lifecycle_set:
   rationale: "When Step 17 produces a packet_set with multiple packets, Step 18 produces a lifecycle_set with one lifecycle object per packet. Each lifecycle object selects its variant per variant_selection_rules above. Cross-variant relationships preserve the predecessor/successor relationships from the packet_set and govern lifecycle transitions."

@@ -11,6 +11,12 @@ Start with the audience and decision. A KPI is useful only if it supports action
 
 Inside the AI operating partner engagement, KPI design supports Step 11 measurement intelligence and AI-capability metric design. It defines decision-linked metrics, agent-safe usage, success metrics, override/error/drift/adoption/cost metrics, and kill criteria; it does not build dashboards or analytics pipelines.
 
+## Engagement Role
+
+This skill is a Step 11 helper. It should write KPI definitions that plug into the `measurement_intelligence` object and `10-kpi-dictionary.csv`, not a standalone dashboard plan. KPI definitions must carry source access, truth production, evidence, owner confirmation, AI-safe usage, and maximum permitted `behavior_level`.
+
+If a KPI's truth chain is fragile, route the issue back to Step 8 governance resolution, Step 10 guidance constraints, Step 14 normalization/truth remediation, or Step 16 readiness limits rather than treating the KPI as build-ready evidence.
+
 Useful references:
 
 - `../../mastery-reference/analytics/artifacts/dashboard_kpi_standards.md`
@@ -20,7 +26,7 @@ Useful references:
 
 ## Design Workflow
 
-Each step references the canonical V3 schema. KPI definitions are downstream consumers of `truth_production_profile` and `source_access_profile`; do not invent new structures.
+Each step references the canonical  schema. KPI definitions are downstream consumers of `truth_production_profile` and `source_access_profile`; do not invent new structures.
 
 1. Name the audience.
 2. Name the `decision_id` or `workflow_step_id` the KPI supports (from the workflow_intelligence_object).
@@ -133,4 +139,3 @@ Deliver:
 ## Shared Engagement Resources
 
 For reusable intake forms, interview prompts, output templates, examples, and scoring scripts, use `../ai-operating-partner-engagement`.
-

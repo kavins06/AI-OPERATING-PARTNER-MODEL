@@ -26,7 +26,7 @@ REQUIRED_TEMPLATE_FILES = [
     "15-implementation-decision-packet-set.yaml",
     "16-lifecycle-variant-contracts.yaml",
     "16-lifecycle-set.yaml",
-    "18-v3-to-build-handoff-contract.md",
+    "18-method-to-build-handoff-contract.md",
     "halt-taxonomy.yaml",
     "offline-proof-catalog.yaml",
     "regulated-domain-extension-real-estate.yaml",
@@ -68,7 +68,7 @@ def validate_required_files() -> list[str]:
     for name in REQUIRED_TEMPLATE_FILES:
         path = TEMPLATE_DIR / name
         if not path.exists():
-            errors.append(f"Missing V3 template: {path}")
+            errors.append(f"Missing method template: {path}")
     if not SCHEMA_PATH.exists():
         errors.append(f"Missing canonical schema: {SCHEMA_PATH}")
     return errors
@@ -197,12 +197,12 @@ def main() -> int:
     errors.extend(validate_template_index())
 
     if errors:
-        print("V3 contract validation failed:")
+        print("method contract validation failed:")
         for error in errors:
             print(f"- {error}")
         return 1
 
-    print("V3 contract validation passed.")
+    print("method contract validation passed.")
     print(f"Templates checked: {len(list(TEMPLATE_DIR.glob('*')))}")
     print(f"Schema definitions checked: {len(REQUIRED_SCHEMA_DEFS)}")
     return 0

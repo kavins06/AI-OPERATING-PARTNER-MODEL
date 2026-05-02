@@ -1,29 +1,58 @@
 # AI Operating Partner System
 
-This repo is the canonical package for the AI operating partner skill system.
-It contains the operating skills, the master V3 engagement orchestrator, reusable templates, schemas, scoring scripts, and generated mastery references.
+This repo is the method backbone for an AI operating partner workbench. It defines the principles, engagement sequence, canonical objects, templates, rubrics, schemas, scoring helpers, and handoff contracts for enterprise modernization work.
 
-The system is real-estate-first by primary identity. The vertical-extension schema (`assets/templates/vertical-extension.schema.yaml`) is the protocol for adding additional verticals; the worked real-estate extension (`assets/templates/regulated-domain-extension-real-estate.yaml`) is the reference implementation.
+It is not the enterprise modernization webapp. The future app should live elsewhere and operationalize this method through guided workflows, structured object editing, evidence management, validation, scoring, review, packet generation, lifecycle planning, and build-phase handoff.
 
-## Reference Platform
+## What This Repo Is For
 
-Codex is the reference runtime for this skill set. Install scripts, skill packaging, and inter-skill orchestration assume Codex by default. The methodology is platform-agnostic: schemas, contracts, rubrics, and protocols can run on any harness. Operators using a different harness should preserve the schemas, rubrics, and step-numbered artifacts and substitute equivalent mechanics for skill loading and orchestration. The original installed Codex copies live at `C:\Users\kavin\.codex\skills`; this repo is the clean place to maintain, version, and move the system.
+- Maintaining the operating method.
+- Maintaining Codex-ready skills that execute the method.
+- Defining machine-readable artifact contracts for a future app.
+- Preserving the pre-build boundary before any implementation work starts.
+- Supporting vertical extensions, with real estate as the first worked example.
+- Generating operator, sponsor, and visual guides as derived artifacts.
 
-## Source Corpus
+## What This Repo Is Not For
 
-The 79 original source documents, raw OCR cache, extracted source-text dumps, and chunk files are not included here by default. They remain outside this repo so the repository stays focused on the operating system and skills. The corpus is available on request from the maintainer for IP-defensibility purposes.
+- App UI code.
+- Production agents.
+- MCP servers, connectors, or live integrations.
+- Credential collection or broad production data access.
+- Normalization pipelines or production automations.
+- Build-phase implementation work before Step 18 approval.
 
-## Contents
+## Read First
 
-- `skills/` - all Codex-ready skill folders.
-- `skills/ai-operating-partner-engagement/` - the master orchestration skill with templates, prompts, examples, scoring scripts, and engagement references.
-- `mastery-reference/` - generated mastery artifacts and reference material copied from the combined mastery folder.
-- `docs/` - practical operating notes for sequence, installation, and maintenance.
-- `scripts/` - helper scripts for installing and validating the skills.
+- [docs/README.md](docs/README.md): method-workbench documentation map.
+- [docs/principles.md](docs/principles.md): non-negotiables and modernization thesis.
+- [docs/method-backbone.md](docs/method-backbone.md): system shape and artifact flow.
+- [docs/engagement-steps.md](docs/engagement-steps.md): canonical Step 0-18 process.
+- [docs/canonical-objects.md](docs/canonical-objects.md): object model for future product design.
+- [docs/quality-gates.md](docs/quality-gates.md): readiness, risk, validation, and handoff gates.
+- [docs/app-boundary.md](docs/app-boundary.md): what the future app may build and must preserve.
+- [docs/vertical-extension-guide.md](docs/vertical-extension-guide.md): how to extend the method by domain.
+
+## Repo Structure
+
+- `docs/`: method backbone, product boundary, quality gates, and install notes.
+- `skills/`: Codex-ready skill package.
+- `skills/ai-operating-partner-engagement/`: master orchestration skill with templates, schemas, references, examples, and scoring helpers.
+- `mastery-reference/`: generated mastery/reference material copied from the broader mastery folder.
+- `scripts/`: install, validation, guide-generation, and maintenance helpers.
+- `output/`: generated guide PDFs, markdown, and preview images.
+
+## Method Summary
+
+The engagement is a pre-build organizational intelligence, use-case selection, adoption, and implementation-blueprint process. It has Step 0 plus 18 operating steps.
+
+The method discovers how business truth is actually produced: official systems, de facto trusted sources, exports, formulas, spreadsheets/macros, manual adjustments, reconciliations, expert judgment, ownership, reproducibility, auditability, and AI-safe usage. Fragile truth becomes a readiness blocker unless the proposed AI behavior is limited to safe actions such as summarize, compare, flag uncertainty, draft clarification questions, or escalate.
+
+Implementation starts only after Step 18 is complete, the decision packet and lifecycle object are approved, the method-to-build handoff is accepted, and the client starts a separate build phase.
 
 ## Skill Set
 
-The bundle contains 16 supporting skills plus 1 orchestrator (17 total).
+The bundle contains 16 supporting skills plus 1 orchestrator.
 
 Supporting skills:
 
@@ -48,45 +77,15 @@ Orchestrator:
 
 17. `ai-operating-partner-engagement`
 
-## Practical Order
+## Reference Platform
 
-Use `ai-operating-partner-engagement` first when you want the full process. V3 is a pre-build organizational intelligence, use-case selection, adoption, and implementation-blueprint process with Step 0 plus 18 operating steps. V3 keeps the V2 sequence and adds artifact contracts: tier matrix, vertical extension schema, worked real-estate extension, AI interviewer protocol, canonical object schemas, blocker rubric, baseline release contract, eval methodology, hard-gate readiness rubric, halt taxonomy, decision-packet contracts (including the multi-packet `packet_set` shape), lifecycle variants (including `lifecycle_set`), offline proof catalog, and V3-to-build handoff. It does not build agents, MCPs, connectors, live integrations, normalization pipelines, email ingestion, or production automations during the engagement. It also does not assume a clean source of truth exists; it captures how business truth is actually produced through official systems, de facto trusted artifacts, spreadsheets/macros, manual adjustments, reconciliations, and expert judgment.
+Codex is the reference runtime for this skill set. The methodology is platform-agnostic: schemas, contracts, rubrics, and protocols can run on any harness. Operators using a different harness should preserve the schemas, rubrics, and step-numbered artifacts and substitute equivalent mechanics for skill loading and orchestration.
 
-### Primary Umbrellas
+The original installed Codex copies live at `C:\Users\kavin\.codex\skills`. This repo is the clean place to maintain, version, and move the system.
 
-The seven umbrellas are the user-facing structure. The 18 numbered steps are implementation mechanics.
+## Source Corpus
 
-1. Frame And Hypothesize: Steps 0-2.
-2. Discover Reality: Steps 3-5.
-3. Build And Validate The Intelligence Layer: Steps 6-8.
-4. Define AI Reasoning Requirements: Steps 9-10.
-5. Prove Measurement And Value: Steps 11-12.
-6. Shape The Future Solution: Steps 13-15.
-7. Decide And Govern: Steps 16-18.
-
-### Steps
-
-0. Engagement tiering and vertical extension
-1. Executive opportunity terrain mapping
-2. Opportunity terrain synthesis and candidate use-case shortlist
-3. Role-aware AI-led interviews
-4. Variation mapping for fragmented operating models
-5. Planning-evidence follow-up
-6. AI-native workflow intelligence object
-7. Organizational intelligence diagnostic
-8. Controlled validation, governance/source access/truth production resolution, and Organizational Intelligence Baseline v1
-9. AI knowledge and guideline requirements map
-10. AI guidance pack: structured spec, skill-style view, and test/eval cases
-11. Measurement intelligence and AI-capability metric design
-12. Business value case and portfolio comparison
-13. Solution shape and end-user adoption design
-14. Technical/vendor implementation blueprint
-15. Risk and control model
-16. AI-agent readiness score
-17. Machine-readable implementation decision packet
-18. Machine-readable managed lifecycle and adoption-change object
-
-Implementation starts only after Step 18 is complete, the decision packet and lifecycle object are approved, the V3-to-build handoff is accepted, and the client starts a separate build phase.
+The 79 original source documents, raw OCR cache, extracted source-text dumps, and chunk files are not included here by default. They remain outside this repo so the repository stays focused on the operating system and skills. The corpus is available on request from the maintainer for IP-defensibility purposes.
 
 ## Install Into Codex
 
@@ -106,9 +105,9 @@ To overwrite existing installed copies:
 
 ```powershell
 .\scripts\validate-codex-skills.ps1
-python .\scripts\validate-v3-contracts.py
+python .\scripts\validate-method-contracts.py
 ```
 
 ## Maintenance Rule
 
-Edit skills in this repo first. Then run the install script to copy the updated skills into Codex.
+Edit the method and skills in this repo first. Then run the install script to copy updated skills into Codex. Treat installed Codex copies and generated guide output as derived artifacts unless you explicitly decide to publish a snapshot.

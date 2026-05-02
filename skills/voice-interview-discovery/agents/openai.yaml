@@ -1,4 +1,4 @@
 interface:
   display_name: "Voice Interview Discovery"
-  short_description: "Discover real workflows through interviews."
-  default_prompt: "Use this skill to plan and synthesize workflow discovery interviews."
+  short_description: "Run Step 3 role-aware interviews."
+  default_prompt: "Use this skill to plan and synthesize Step 3 role-aware AI-led discovery interviews using the AI interviewer protocol, evidence-need logs, source-access signals, truth-production clues, and adoption/risk signals."

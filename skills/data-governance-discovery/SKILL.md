@@ -1,6 +1,6 @@
 ---
 name: data-governance-discovery
-description: "Discover and document data governance requirements including official sources, de facto trusted sources, truth production chains, source access paths, owners, stewards, definitions, data quality, access rights, retention, lineage, lifecycle rules, and agent permission boundaries. Use before analytics, dashboards, integrations, automation, or AI agents rely on organizational data."
+description: "Discover and document Step 8 object-driven governance requirements including official sources, de facto trusted sources, truth production chains, source access paths, owners, stewards, definitions, data quality, access rights, retention, lineage, baseline release rules, lifecycle implications, and agent permission boundaries."
 ---
 
 # Data Governance Discovery
@@ -9,7 +9,21 @@ description: "Discover and document data governance requirements including offic
 
 No trusted analytics or AI agent exists without clear ownership, definitions, truth production, quality rules, access boundaries, and escalation paths.
 
-Inside the AI operating partner engagement, use this skill as an embedded Step 8 helper, not as a separate broad discovery cycle. Governance questions should be object-driven: start from information objects, source access profiles, sources, systems, decisions, sensitive fields, and permission gaps already found in the AI workflow specification and diagnostic.
+Inside the AI operating partner engagement, use this skill as an embedded Step 8 helper, not as a separate broad discovery cycle. Governance questions should be object-driven: start from information objects, source access profiles, truth production profiles, sources, systems, decisions, sensitive fields, and permission gaps already found in the Step 6 `workflow_intelligence_object` and Step 7 diagnostic.
+
+## Engagement Role
+
+Step 8 resolves controlled validation, governance, source access, truth production, and baseline-release decisions. It produces structured validation events and source/truth decisions that can update Step 6, re-score Step 7, revise Step 2, or seed the Organizational Intelligence Baseline.
+
+Use these canonical method templates when formal output is needed:
+
+- `../ai-operating-partner-engagement/assets/templates/07-source-inventory.csv`
+- `../ai-operating-partner-engagement/assets/templates/07-validation-event.yaml`
+- `../ai-operating-partner-engagement/assets/templates/07-controlled-validation-call-view.md`
+- `../ai-operating-partner-engagement/assets/templates/07-organizational-intelligence-baseline.yaml`
+- `../ai-operating-partner-engagement/assets/templates/07-baseline-release-contract.yaml`
+
+Do not resolve governance by asking for broad data-room access. Use the smallest authorized owner group and the narrowest planning evidence needed for each unresolved object.
 
 Useful references:
 

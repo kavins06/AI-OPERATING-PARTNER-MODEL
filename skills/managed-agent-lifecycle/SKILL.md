@@ -1,6 +1,6 @@
 ---
 name: managed-agent-lifecycle
-description: "Create machine-readable managed lifecycle objects for future AI capabilities, covering ownership, approval, launch gates, validation, deployment stages, monitoring, feedback, truth governance, source freshness, access review, incident response, revocation, guidance updates, expansion, retirement, remediation cadence, and no-automation review cadence. Use after readiness and implementation decision planning."
+description: "Create Step 18 machine-readable managed_lifecycle_object or lifecycle_set artifacts for future AI capabilities, remediation paths, or no-automation review cadences, covering ownership, approval, launch gates, validation, monitoring, feedback, truth governance, source freshness, access review, incident response, revocation, guidance updates, adoption/change management, expansion, retirement, and method-to-build handoff."
 ---
 
 # Managed Agent Lifecycle
@@ -9,9 +9,23 @@ description: "Create machine-readable managed lifecycle objects for future AI ca
 
 Manage agents as living information systems, not one-time automations.
 
-Inside the AI operating partner engagement, this skill produces the Step 18 future operating and adoption-change model only. Do not build, deploy, monitor, or operate a client agent during the V2 engagement.
+Inside the AI operating partner engagement, this skill produces the Step 18 future operating, remediation, no-automation, and adoption-change model only. Do not build, deploy, monitor, connect, or operate a client agent during the engagement.
 
 The canonical artifact is a structured lifecycle object, not a narrative SOP. Markdown SOPs are generated views.
+
+## Engagement Role
+
+Step 18 consumes the Step 17 implementation decision packet or packet_set, Step 16 readiness object, Step 15 risk/control model, Step 14 technical blueprint, Step 13 solution/adoption design, Step 12 value case, Step 11 measurement intelligence, Step 10 guidance/evals, and Step 8 baseline/source/truth decisions.
+
+Use these canonical method templates:
+
+- `../ai-operating-partner-engagement/assets/templates/16-managed-lifecycle-object.yaml`
+- `../ai-operating-partner-engagement/assets/templates/16-lifecycle-set.yaml`
+- `../ai-operating-partner-engagement/assets/templates/16-lifecycle-variant-contracts.yaml`
+- `../ai-operating-partner-engagement/assets/templates/16-managed-lifecycle-sop-view.md`
+- `../ai-operating-partner-engagement/assets/templates/18-method-to-build-handoff-contract.md`
+
+If Step 17 produced a packet_set, produce a lifecycle_set with one lifecycle per packet and cross-variant relationships. The lifecycle path must match the Step 17 packet type: build-ready packets get `managed_agent_lifecycle`, remediation-style packets get `remediation_lifecycle`, and do-not-automate packets get `no_automation_review_cadence`.
 
 Useful references:
 
@@ -87,7 +101,7 @@ The lifecycle object must include:
 - Retirement criteria.
 - Remediation lifecycle or no-automation review cadence when applicable.
 - Final approval and conditions before implementation.
-- Stop boundary confirming no build or live operation during the V2 engagement.
+- Stop boundary confirming no build, live access, connector/MCP build, email ingestion, normalization build, deployment, monitoring, or live operation during the engagement.
 
 ## Operating Controls
 

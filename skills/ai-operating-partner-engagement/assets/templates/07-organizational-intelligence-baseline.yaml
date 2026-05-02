@@ -1,4 +1,4 @@
-baseline_id: "oib.<client>.<scope>.v1"
+baseline_id: "oib.<client>.<scope>.current"
 object_type: "organizational_intelligence_baseline"
 contract_version: "0.1"
 status: "draft" # draft | generated | partially_validated | validated | blocked

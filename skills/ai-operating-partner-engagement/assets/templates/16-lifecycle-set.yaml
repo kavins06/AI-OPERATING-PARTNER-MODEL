@@ -1,12 +1,12 @@
-lifecycle_set_id: "lifecycle_set_<workflow_or_opportunity>_v1"
+lifecycle_set_id: "lifecycle_set_<workflow_or_opportunity>_current"
 object_type: "lifecycle_set"
 spec_version: "0.1"
 status: "draft" # draft | ready_for_review | approved | revision_required | blocked
 workflow_id: ""
 opportunity_id: ""
 linked_packet_set_id: ""
-contract_ref: "lifecycle_variant_contracts.v3"
-schema_ref: "canonical-object-schemas.v3#/$defs/lifecycle_set"
+contract_ref: "lifecycle_variant_contracts"
+schema_ref: "canonical-object-schemas#/$defs/lifecycle_set"
 
 purpose: "Group multiple Step 18 lifecycle outcomes when a Step 17 packet_set creates more than one packet for the same workflow or opportunity."
 
@@ -20,7 +20,7 @@ source_inputs:
   adoption_design_id: ""
   evidence_refs: []
   lifecycle_variant_contracts_ref: "16-lifecycle-variant-contracts.yaml"
-  handoff_contract_ref: "18-v3-to-build-handoff-contract.md"
+  handoff_contract_ref: "18-method-to-build-handoff-contract.md"
 
 scope:
   workflow_id: ""
@@ -55,15 +55,15 @@ lifecycles:
       approval_committee_or_forum: ""
     variant_contract:
       selected_variant: "managed_agent_lifecycle"
-      contract_ref: "lifecycle_variant_contracts.v3"
+      contract_ref: "lifecycle_variant_contracts"
       required_sections_present: false
       missing_sections: []
     handoff_contract:
-      handoff_contract_ref: "v3_to_build_handoff.v3"
+      handoff_contract_ref: "method_to_build_handoff"
       operating_partner_role_after_handoff: "not_decided" # advisor_only | build_phase_operator | managed_services_owner | client_handoff_only | third_party_builder_handoff | not_decided
       future_build_owner_acceptance_required: true
       handoff_status: "not_ready_pending_client_decision"
-      return_to_v3_triggers: []
+      return_to_method_triggers: []
     final_approval:
       step_18_approved: false
       approved_by: []
@@ -104,11 +104,11 @@ lifecycle_set_validation:
   validation_notes: []
 
 handoff_summary:
-  handoff_contract_ref: "18-v3-to-build-handoff-contract.md"
+  handoff_contract_ref: "18-method-to-build-handoff-contract.md"
   handoff_status: "not_ready_pending_client_decision" # ready_for_separate_implementation_approval | ready_for_remediation_execution | not_ready_missing_owner | not_ready_missing_controls | not_ready_missing_access_path | not_ready_pending_client_decision | do_not_automate_revisit_scheduled
   operating_partner_role_after_handoff: "not_decided"
   future_build_owner: ""
-  return_to_v3_triggers: []
+  return_to_method_triggers: []
 
 stop_boundary:
   no_agent_build_started: true

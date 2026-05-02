@@ -1,4 +1,4 @@
 interface:
   display_name: "Data Governance Discovery"
-  short_description: "Identify ownership, definitions, access, and quality rules."
-  default_prompt: "Use this skill to capture governance requirements for a workflow."
+  short_description: "Resolve Step 8 source, truth, access, and baseline gates."
+  default_prompt: "Use this skill as the Step 8 object-driven governance helper: resolve official/de facto sources, truth production, source access paths, owners, sensitivity, permissions, validation events, and baseline-release decisions."

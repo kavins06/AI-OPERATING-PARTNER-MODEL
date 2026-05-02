@@ -1,4 +1,4 @@
-risk_control_model_id: "rcm.workflow.opportunity.v1"
+risk_control_model_id: "rcm.workflow.opportunity.current"
 opportunity_id:
 workflow_ids: []
 technical_blueprint_id:

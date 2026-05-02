@@ -9,7 +9,13 @@ description: "Assess an organization's analytics maturity and measurement intell
 
 Assess whether decisions are supported by trusted, governed, measurable analytics before recommending predictive models or agents.
 
-Inside the AI operating partner engagement, this is part of Step 11: measurement intelligence and AI-capability metric design. AI does the heavy first pass, the operating partner decides which measurements matter, and the client confirms official source, de facto trusted source, truth production, and ownership. Do not build dashboards, models, pipelines, semantic layers, MCPs, connectors, live integrations, or production automations in this step.
+Inside the AI operating partner engagement, this is part of Step 11: measurement intelligence and AI-capability metric design. AI does the heavy first pass, the operating partner decides which measurements matter, and the client confirms official source, de facto trusted source, truth production, and ownership. Do not build dashboards, models, pipelines, semantic layers, MCPs, connectors, live integrations, or production automations in this pre-build step.
+
+## Engagement Role
+
+Step 11 produces the `measurement_intelligence` object and supporting KPI dictionary. It consumes Step 6 workflow objects, Step 8 source/truth decisions, Step 9 knowledge requirements, Step 10 guidance constraints, planning evidence, and metric artifacts. It feeds Step 12 value cases, Step 13 solution/adoption design, Step 14 technical blueprinting, Step 15 risk, and Step 16 readiness.
+
+Use `../ai-operating-partner-engagement/assets/templates/10-measurement-intelligence.yaml` as the canonical artifact and `../ai-operating-partner-engagement/assets/templates/10-kpi-dictionary.csv` as the compact KPI view.
 
 Useful references:
 
@@ -20,7 +26,7 @@ Useful references:
 
 ## Maturity Levels
 
-Use this scale (1-5, aligned with the V3 readiness rubric `scoring_scale`):
+Use this scale (1-5, aligned with the current readiness rubric `scoring_scale`):
 
 | Level | State | Symptoms (in canonical-schema terms) | Suitable behavior_level |
 |---|---|---|---|
@@ -150,4 +156,3 @@ Do not over-score maturity because tools exist. Score by decision reliability, g
 ## Shared Engagement Resources
 
 For reusable intake forms, interview prompts, output templates, examples, and scoring scripts, use `../ai-operating-partner-engagement`.
-

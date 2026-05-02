@@ -1,7 +1,7 @@
 # Blocker Classification Rubric
 
-`rubric_id`: `blocker_classification.v3`  
-`applies_to_step`: `7`  
+`rubric_id`: `blocker_classification`
+`applies_to_step`: `7`
 `status`: `published_reference`
 
 Use this rubric when Step 7 classifies diagnostic findings. The point is not to remove operator judgment. The point is to make operator judgment comparable across engagements.

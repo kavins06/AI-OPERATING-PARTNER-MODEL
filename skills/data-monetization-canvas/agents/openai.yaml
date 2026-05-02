@@ -1,4 +1,4 @@
 interface:
   display_name: "Business Value Case"
   short_description: "Create evidence-linked value cases for data and AI opportunities."
-  default_prompt: "Use this skill to create a Step 12 business value case and portfolio comparison with value hypotheses, AI-side costs, metric trust, truth production status, assumptions, confidence, sequencing, and carry-forward or remediation recommendation."
+  default_prompt: "Use this skill to create Step 12 business_value_case and portfolio_comparison artifacts with value hypotheses, AI-side costs, metric trust, truth production status, assumptions, confidence, sequencing, carry-forward, remediation, or economic disqualification recommendation."

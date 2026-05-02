@@ -1,4 +1,4 @@
-tier_matrix_id: "tier_matrix.v3"
+tier_matrix_id: "tier_matrix"
 spec_version: "0.1"
 object_type: "engagement_tier_matrix"
 status: "published"
@@ -15,7 +15,7 @@ global_rules:
 cost_model_field_definitions:
   expected_operator_hours: "Engagement-time hours by the human operating partner (interviews, synthesis, judgment, client coordination). Scaffold field; values are filled per real engagement rather than as a fixed framework default."
   expected_client_hours: "Engagement-time hours by client participants (sponsor, business owners, operators, IT/data/security/legal owners). Includes interviews, validation calls, and approvals."
-  expected_ai_token_cost_class: "Order-of-magnitude AI token cost class for V3-engagement processing (interviews, transcript extraction, synthesis, drafting, scoring). Allowed: low | medium | medium-high | high | null."
+  expected_ai_token_cost_class: "Order-of-magnitude AI token cost class for -engagement processing (interviews, transcript extraction, synthesis, drafting, scoring). Allowed: low | medium | medium-high | high | null."
   supporting_skills_invoked: "List of supporting skill ids the orchestrator should call into during this tier."
   supporting_skills_suppressed: "List of supporting skill ids the orchestrator should not call during this tier (e.g., warehouse-lakehouse-blueprint suppressed in lite when scope is narrow and no platform redesign is implied)."
 
@@ -203,7 +203,7 @@ tiers:
       - "schema_validation_report"
       - "offline_proof_results_when_approved"
       - "halt_taxonomy_events"
-      - "v3_to_build_handoff_contract"
+      - "method_to_build_handoff_contract"
 
 selection_rules:
   force_deep_if:

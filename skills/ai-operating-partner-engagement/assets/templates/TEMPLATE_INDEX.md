@@ -1,8 +1,8 @@
 # AI Operating Partner Template Index
 
-Use this index to keep artifacts aligned to the V3 engagement. Machine-readable YAML or CSV artifacts are canonical unless a file name explicitly says `view`. V3 keeps the Step 0-18 process and adds operating contracts, schemas, rubrics, and handoff rules.
+Use this index to keep artifacts aligned to the engagement. Machine-readable YAML or CSV artifacts are canonical unless a file name explicitly says `view`. The current method keeps the Step 0-18 process and adds operating contracts, schemas, rubrics, and handoff rules.
 
-> **File-numbering note.** Physical filenames retain V1/V2 numeric prefixes (e.g., `06-blocker-classification-rubric.md` belongs to V3 Step 7; `07-baseline-release-contract.yaml` belongs to V3 Step 8). The Step column in the table below is authoritative; the prefix is historical. New artifacts use the V3 step number; existing artifacts are not renamed in order to preserve git history and avoid breaking inbound references.
+> **File-numbering note.** Physical filenames retain legacy numeric prefixes (e.g., `06-blocker-classification-rubric.md` belongs to Step 7; `07-baseline-release-contract.yaml` belongs to Step 8). The Step column in the table below is authoritative; the prefix is historical. New artifacts use the current step number; existing artifacts are not renamed in order to preserve git history and avoid breaking inbound references.
 
 | Step | Canonical Templates | Generated Or Supporting Views |
 |---|---|---|
@@ -25,11 +25,11 @@ Use this index to keep artifacts aligned to the V3 engagement. Machine-readable 
 | 15. Risk and control model | `13-risk-control-model.yaml`, `13-risk-register.csv` |  |
 | 16. AI-agent readiness score | `14-ai-agent-readiness-score.yaml`, `14-hard-gates-readiness-rubric.yaml`, `14-readiness-scorecard.csv` |  |
 | 17. Machine-readable implementation decision packet | `15-implementation-decision-packet.yaml`, `15-implementation-decision-packet-set.yaml`, `15-decision-packet-contracts.yaml` | `15-build-ready-implementation-brief-view.md` |
-| 18. Machine-readable managed lifecycle and adoption-change object | `16-managed-lifecycle-object.yaml`, `16-lifecycle-set.yaml`, `16-lifecycle-variant-contracts.yaml`, `18-v3-to-build-handoff-contract.md` | `16-managed-lifecycle-sop-view.md` |
+| 18. Machine-readable managed lifecycle and adoption-change object | `16-managed-lifecycle-object.yaml`, `16-lifecycle-set.yaml`, `16-lifecycle-variant-contracts.yaml`, `18-method-to-build-handoff-contract.md` | `16-managed-lifecycle-sop-view.md` |
 
 Cleanup rules:
 
-- Keep step numbers tied to the file series where the artifact is maintained; legacy file names may remain when the artifact moves in V3.
+- Keep step numbers tied to the file series where the artifact is maintained; legacy file names may remain when the artifact moves in .
 - Treat `view` files as generated human-readable projections, not canonical planning records.
 - Do not add build-phase templates here unless they remain explicitly pre-build planning artifacts.
 - Use `regulated-domain-extension.yaml` as a cross-cutting extension, not as a single isolated risk artifact.

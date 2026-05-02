@@ -1,4 +1,4 @@
-business_value_case_id: "bvc.workflow.opportunity.v1"
+business_value_case_id: "bvc.workflow.opportunity.current"
 opportunity_id:
 workflow_ids: []
 version: "0.1"

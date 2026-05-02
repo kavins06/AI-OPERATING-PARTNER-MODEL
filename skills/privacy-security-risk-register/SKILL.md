@@ -1,6 +1,6 @@
 ---
 name: privacy-security-risk-register
-description: "Create implementation-grade privacy, security, compliance, operational, vendor, output-quality, data-handling, and AI-agent risk/control models. Use when Codex needs risk registers, data classification, tool-level permissions, output controls, approvals, logging, monitoring, incident response, revocation, owners, verification needs, and stop conditions before implementation."
+description: "Create the Step 15 implementation-grade risk_control_model for privacy, security, compliance, operational, vendor, output-quality, data-handling, truth-production, regulated-domain, adoption, and AI-agent risks before implementation."
 ---
 
 # Privacy Security Risk Register
@@ -10,6 +10,17 @@ description: "Create implementation-grade privacy, security, compliance, operati
 Make risk visible, owned, and testable before deployment. Current legal, regulatory, privacy, cybersecurity, and vendor claims must be verified against current official sources before client-facing use.
 
 Inside the AI operating partner engagement, this is part of Step 15: the risk and control model. It is not only a risk register. It must translate workflow, data, guidance, measurement, value, adoption, regulated-domain, and technical blueprint evidence into concrete protocols for future permissions, outputs, approvals, logging, monitoring, incident response, revocation, and stop conditions. It does not provision access, deploy monitoring, or implement controls.
+
+## Engagement Role
+
+Step 15 produces the `risk_control_model`, risk register, data classification, tool permission matrix, output controls, stop conditions, and Step 15-to-Step 13 loop decision. Risk can force solution-shape redesign before readiness scoring.
+
+Use these canonical templates:
+
+- `../ai-operating-partner-engagement/assets/templates/13-risk-control-model.yaml`
+- `../ai-operating-partner-engagement/assets/templates/13-risk-register.csv`
+
+When a regulated-domain extension applies, load the extension requirements and name the specific owner-confirmed rules, prohibited AI behaviors, required human review, required evidence, and lifecycle implications.
 
 Useful references:
 

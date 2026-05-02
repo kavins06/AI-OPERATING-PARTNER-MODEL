@@ -1,6 +1,6 @@
 ---
 name: knowledge-map-capture
-description: "Create AI knowledge and guideline requirements maps that identify decision-linked knowledge areas, likely experts, documents, tacit and explicit knowledge, guideline needs, gaps, risks, and next capture routes before training, automation, analytics, or AI-agent design."
+description: "Create the Step 9 AI knowledge and guideline requirements map by identifying decision-linked knowledge areas, likely experts, documents, tacit and explicit knowledge, regulated-domain guidance needs, gaps, risks, owners, and next capture routes before training, automation, analytics, or AI-agent design."
 ---
 
 # Knowledge Map Capture
@@ -8,6 +8,14 @@ description: "Create AI knowledge and guideline requirements maps that identify 
 ## Core Rule
 
 Map knowledge to decisions and workflows. Do not merely inventory documents. In the AI operating partner engagement, Step 9 identifies what knowledge and future AI guidelines are required; Step 10 codifies the actual rules, examples, checklists, prompts, review criteria, escalation logic, regulated-domain handling, adoption implications, and forbidden behaviors.
+
+## Engagement Role
+
+Step 9 produces the `knowledge_requirements_map` from the validated workflow intelligence, diagnostic findings, source/truth decisions, edge cases, approval gates, candidate AI assists, adoption signals, and vertical-extension requirements. It maps requirements; it does not write final AI guidance or deploy a skill.
+
+Use `../ai-operating-partner-engagement/assets/templates/08-knowledge-map.md` as the canonical human-readable template and align structured content to the `knowledge_requirements_map` definition in `../ai-operating-partner-engagement/assets/schemas/canonical-object-schemas.yaml`.
+
+Route each requirement to Step 10 guidance creation, Step 15 risk/control design, Step 18 lifecycle ownership, or a remediation path when knowledge is missing or person-dependent.
 
 Useful references:
 

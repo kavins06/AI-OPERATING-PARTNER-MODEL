@@ -1,9 +1,9 @@
-engagement_tiering_id: "tiering_<client>_v1"
+engagement_tiering_id: "tiering_<client>_current"
 spec_version: "0.1"
 object_type: "engagement_tiering_and_vertical_extension"
 status: "draft" # draft | sponsor_confirmed | revised
-uses_tier_matrix_id: "tier_matrix.v3"
-uses_offline_proof_catalog_id: "offline_proof_catalog.v3"
+uses_tier_matrix_id: "tier_matrix"
+uses_offline_proof_catalog_id: "offline_proof_catalog"
 
 client_context:
   client_name: ""
@@ -17,7 +17,7 @@ client_context:
     variation_risk: "unknown" # low | medium | high | unknown
   regulated_domain: false
   regulated_domain_extension_ids: []
-  vertical_extension_schema_id: "vertical-extension.v3"
+  vertical_extension_schema_id: "vertical-extension"
 
 engagement_tier:
   selected_tier: "standard" # lite | standard | deep
@@ -43,7 +43,7 @@ tier_rules:
   standard:
     intended_for: "One to three serious opportunities across a function or business unit."
     minimum_required_artifacts:
-      - "full_v3_artifact_set_for_selected_opportunities"
+      - "full_artifact_set_for_selected_opportunities"
   deep:
     intended_for: "Multi-business-unit, regulated, high-risk, or high-variation enterprise work."
     minimum_required_artifacts:
@@ -67,7 +67,7 @@ pre_build_boundary:
   no_credentials_or_live_access_requested: true
   offline_proof_points_allowed: true
   offline_proof_point_boundary: "Allowed only with approved redacted, synthetic, or historical examples and no live system connection, no credentials, no production deployment, no write-back, and no unapproved data movement."
-  offline_proof_point_catalog_ref: "offline_proof_catalog.v3"
+  offline_proof_point_catalog_ref: "offline_proof_catalog"
   selected_offline_proof_points:
     - proof_type: ""
       linked_candidate_use_case_id: ""

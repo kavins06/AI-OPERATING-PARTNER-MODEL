@@ -1,4 +1,4 @@
-variation_map_id: "variation_<workflow_or_use_case>_v1"
+variation_map_id: "variation_<workflow_or_use_case>_current"
 spec_version: "0.1"
 object_type: "workflow_variation_map"
 status: "draft" # draft | sufficient | needs_more_sampling | blocked

@@ -1,4 +1,4 @@
-candidate_use_case_shortlist_id: "shortlist_<client>_v1"
+candidate_use_case_shortlist_id: "shortlist_<client>_current"
 spec_version: "0.1"
 object_type: "candidate_use_case_shortlist"
 status: "draft" # draft | sponsor_confirmed | updated | narrowed
