@@ -22,7 +22,7 @@ diagnostic_summary:
     - "Missing-input detection before asset manager review."
     - "Source-backed renewal brief drafting for human review."
   automation_blockers:
-    - "Source of record for critical dates is not confirmed."
+    - "Official source, de facto trusted source, and truth production chain for critical dates are not confirmed."
     - "Approval thresholds are not confirmed."
     - "Sensitive fields and access constraints are not mapped."
   likely_next_steps:
@@ -62,7 +62,7 @@ findings:
       secondary:
         - "controlled_validation_governance_resolution"
         - "knowledge_mapping"
-    recommended_next_step: "Define required renewal brief inputs and confirm source of record for each input."
+    recommended_next_step: "Define required renewal brief inputs and confirm official source, de facto trusted source, and truth production status for each input."
     owner_candidate: "Director Asset Management"
     validation_needed: true
 
@@ -122,7 +122,7 @@ candidate_ai_assist_refinements:
       - "finding_broker_context_unstructured"
     updated_assist_type: "draft"
     why_this_assist_may_fit: "The workflow has repeated input gathering, summarization, and brief preparation before human judgment."
-    why_this_assist_may_not_fit_yet: "Source of record, approval thresholds, sensitive fields, and approved source list are not confirmed."
+    why_this_assist_may_not_fit_yet: "Official/de facto sources, truth production chains, approval thresholds, sensitive fields, and approved source list are not confirmed."
     required_enrichment_before_build:
       - "controlled_validation_governance_resolution"
       - "knowledge_mapping"

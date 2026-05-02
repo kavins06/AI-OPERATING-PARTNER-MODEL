@@ -12,6 +12,7 @@ source_inputs:
   technical_blueprint_id: ""
   guidance_pack_ids: []
   measurement_intelligence_ids: []
+  truth_production_profile_ids: []
   value_case_id: ""
   workflow_ids: []
   evidence_refs: []
@@ -61,6 +62,7 @@ owner_model:
   support_owner: ""
   guidance_update_owner: ""
   measurement_owner: ""
+  truth_production_owner: ""
   source_freshness_owner: ""
   incident_owner: ""
   revocation_owner: ""
@@ -77,6 +79,10 @@ owner_model:
       consulted_roles: []
       informed_roles: []
     - responsibility: "monitor_quality"
+      accountable_owner: ""
+      consulted_roles: []
+      informed_roles: []
+    - responsibility: "monitor_truth_production"
       accountable_owner: ""
       consulted_roles: []
       informed_roles: []
@@ -187,6 +193,12 @@ launch_gates:
     evidence_required: []
     pass_criteria: []
     blocks_launch_if_missing: true
+  - gate_id: "truth_production_governance_ready"
+    required: true
+    owner: ""
+    evidence_required: []
+    pass_criteria: []
+    blocks_launch_if_missing: true
 
 validation_plan:
   eval_suite_ids: []
@@ -231,6 +243,13 @@ monitoring_plan:
       freshness_requirement: ""
       owner: ""
       failure_action: ""
+  truth_production_checks:
+    - truth_profile_id: ""
+      truth_status_allowed: []
+      reconciliation_cadence: ""
+      rule_change_owner: ""
+      owner_review_cadence: ""
+      failure_action: ""
   cost_or_usage_metrics:
     - metric_id: ""
       owner: ""
@@ -241,6 +260,9 @@ feedback_and_correction_loop:
   feedback_channels: []
   correction_categories:
     - category: "wrong_source"
+      owner: ""
+      required_action: ""
+    - category: "wrong_or_stale_truth_production"
       owner: ""
       required_action: ""
     - category: "bad_output"
@@ -259,10 +281,19 @@ feedback_and_correction_loop:
 change_management:
   guidance_update_owner: ""
   source_change_owner: ""
+  truth_rule_change_owner: ""
   tool_change_owner: ""
   model_or_runtime_change_owner: ""
   required_revalidation_triggers:
     - trigger: "new_system_source"
+      revalidation_required: true
+      owner: ""
+      affected_artifacts: []
+    - trigger: "changed_truth_production_chain"
+      revalidation_required: true
+      owner: ""
+      affected_artifacts: []
+    - trigger: "spreadsheet_macro_or_manual_adjustment_changed"
       revalidation_required: true
       owner: ""
       affected_artifacts: []
@@ -286,7 +317,33 @@ change_management:
     guidance_versioning: ""
     eval_versioning: ""
     tool_contract_versioning: ""
+    truth_profile_versioning: ""
     lifecycle_object_versioning: ""
+
+truth_production_governance:
+  source_drift_checks:
+    - truth_profile_id: ""
+      check:
+      cadence:
+      owner:
+      action_if_failed:
+  rule_change_approval:
+    approver_role:
+    changes_requiring_approval:
+      - "formula_change"
+      - "macro_change"
+      - "manual_adjustment_rule_change"
+      - "de_facto_source_change"
+      - "reconciliation_rule_change"
+  reconciliation_cadence:
+    cadence:
+    owner:
+    evidence_required:
+  shadow_artifact_retirement:
+    artifacts_to_retire: []
+    retirement_owner:
+    replacement_condition:
+    fallback_until_retired:
 
 access_review_and_revocation:
   access_review_cadence: ""
@@ -383,6 +440,10 @@ retirement_criteria:
       review_owner: ""
       action: ""
     - trigger: "source_system_replaced"
+      threshold: ""
+      review_owner: ""
+      action: ""
+    - trigger: "truth_production_no_longer_reproducible"
       threshold: ""
       review_owner: ""
       action: ""

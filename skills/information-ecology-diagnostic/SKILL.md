@@ -30,7 +30,7 @@ Assess:
 - Process: workflow steps, handoffs, queues, exceptions.
 - Culture: norms, incentives, trust, resistance, workarounds.
 - Politics: ownership conflicts, decision rights, competing priorities.
-- Architecture: systems, data flows, integration, source-of-truth design.
+- Architecture: systems, data flows, integration, official/de facto source design, and truth production chains.
 - Behavior: how people search, interpret, share, avoid, or hoard information.
 - Technology: tools, dashboards, databases, documents, communication channels.
 - Governance: owners, definitions, quality, access, retention, escalation.
@@ -43,6 +43,8 @@ Ask:
 - Who creates, changes, interprets, approves, and consumes the information?
 - Where does information enter, move, get transformed, and become stale?
 - Which sources are trusted, distrusted, duplicated, or disputed?
+- How is business truth produced when the official source differs from the artifact people actually trust?
+- Which spreadsheets, macros, manual adjustments, reconciliations, or expert-memory rules produce final numbers or statuses?
 - What informal workarounds keep the process alive?
 - What incentives make people withhold, reshape, or ignore information?
 - What rules are documented and what judgment lives only in experience?
@@ -57,6 +59,7 @@ Watch for:
 - Dashboard theater: metrics displayed but not acted on.
 - Tribal dependency: work depends on a few experts.
 - Shadow systems: spreadsheets and inboxes override official systems.
+- Shadow truth production: macros, manual adjustments, or retired-employee knowledge override official systems.
 - Definition drift: teams use the same term differently.
 - Access mismatch: people or agents can see too much or too little.
 - Feedback gap: outputs are not corrected, measured, or improved.
@@ -83,6 +86,7 @@ Then give:
 - Automation blockers.
 - Data and knowledge gaps.
 - Governance questions.
+- Truth production questions.
 - Recommended path before build.
 
 ## Quality Bar
@@ -94,7 +98,7 @@ Separate:
 - Assumptions.
 - Recommendations.
 
-Do not recommend agent build work until the ecology explains where the workflow is stable, trusted, governable, and measurable.
+Do not recommend agent build work until the ecology explains where the workflow is stable, trusted, governable, measurable, and truth production is either reliable or safely limited.
 
 ## Shared Engagement Resources
 

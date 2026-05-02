@@ -32,6 +32,10 @@ Consider:
 - Vendor or integration risk.
 - Model or tool outage.
 - Data-quality failure.
+- Spreadsheet, macro, or shadow-reporting risk.
+- Key-person truth dependency.
+- Undocumented transformation or manual-adjustment risk.
+- Low auditability or not-reproducible truth production.
 - Legal, regulatory, or compliance exposure.
 - Security incident response gaps.
 - Missing revocation path.
@@ -48,6 +52,7 @@ In the AI operating partner engagement, use prior outputs first:
 - Step 7 sensitive fields, source constraints, retention/export limits, permitted AI actions, and governance decisions.
 - Step 9 AI guidance packs, forbidden behaviors, escalation triggers, output contracts, and test/evaluation cases.
 - Step 10 trusted/disputed measurements and agent-safe metric usage.
+- Truth production profiles and fragile truth statuses.
 - Step 11 business value case and risk tolerance implied by the value case.
 - Step 12 technical implementation blueprint: systems, access paths, future tools/MCPs/connectors, document/email scope, credential/secrets approach, audit/logging, test strategy, blocked paths, and build sequence.
 - Existing policies: access, retention, incident response, data processing, acceptable use.
@@ -63,6 +68,7 @@ Derive controls from evidence:
 - Sensitive data implies classification, redaction, retention, export, and logging rules.
 - Forbidden behavior implies prohibited tool actions and output controls.
 - Disputed or conditionally trusted measurements imply human review or uncertainty language.
+- Shadow-derived, manually adjusted, person-dependent, disputed, missing, or not-reproducible truth implies safe-use limitation, remediation, or stop condition.
 - External communication implies approval gates, content restrictions, audit trail, and incident path.
 - Write-back implies stronger approval, rollback, logging, and revocation controls.
 - Broad access implies narrowing scope or redesign.
@@ -70,7 +76,7 @@ Derive controls from evidence:
 
 ## Risk Register Template
 
-| Risk ID | Category | Linked Object | Linked Tool/Source | Impact | Likelihood | Severity | Control | Owner | Status | Verification Needed | Residual Risk | Blocks Readiness |
+| Risk ID | Category | Linked Object | Linked Tool/Source/Truth Profile | Impact | Likelihood | Severity | Control | Owner | Status | Verification Needed | Residual Risk | Blocks Readiness |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | | | | | | | | | | | | | |
 
@@ -87,6 +93,8 @@ Ask:
 - What vendor or model receives the data?
 - What happens when a tool, model, or source fails?
 - What current laws, policies, standards, or contracts must be checked?
+- What spreadsheet, macro, manual adjustment, reconciliation, or person-dependent truth chain could create risk?
+- Can the truth be reproduced and audited before AI relies on it?
 - Which future tool action does this risk affect?
 - What output must be prohibited or approval-gated?
 - What must be logged and reviewed?
@@ -99,6 +107,7 @@ Deliver:
 - Risk and control model.
 - Data classification matrix.
 - Risk register.
+- Truth production controls.
 - Tool-level permission matrix.
 - Output controls.
 - Human approval gates.

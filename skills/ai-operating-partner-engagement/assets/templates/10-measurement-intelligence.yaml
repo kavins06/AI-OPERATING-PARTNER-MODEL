@@ -21,7 +21,7 @@ role_split:
     - "Challenge vague metrics and remove low-value measurement noise."
     - "Route material unresolved issues."
   client_work:
-    - "Confirm source authority, formulas, grain, owners, freshness, quality checks, access boundaries, and allowed AI usage."
+    - "Confirm official source, de facto trusted source, truth production chain, formulas, grain, owners, freshness, quality checks, access boundaries, reproducibility, auditability, and allowed AI usage."
 
 decision_metric_map:
   - decision_id:
@@ -40,9 +40,25 @@ metric_definitions:
     formula:
     grain:
     unit:
+    official_source:
+    de_facto_trusted_source:
     source_of_record:
     operational_working_source:
     supporting_sources: []
+    truth_production_profile_ids: []
+    truth_status: "unknown" # authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown
+    derivation_chain:
+      - sequence:
+        input_source:
+        transformation: "system_report | export | formula | spreadsheet_macro | manual_adjustment | reconciliation | expert_judgment | final_reporting | other"
+        output:
+        owner_or_knower:
+        evidence_refs: []
+    manual_adjustment_status: "none_known | documented | undocumented | suspected | disputed | unknown"
+    embedded_rule_locations: []
+    reproducibility: "high | medium | low | unknown"
+    auditability: "high | medium | low | unknown"
+    versioning_or_change_control:
     source_access_profile_ids: []
     owner_role:
     steward_role:
@@ -66,7 +82,7 @@ metric_definitions:
 metric_trust_issues:
   - issue_id:
     metric_id:
-    issue_type: "source_conflict" # source_conflict | formula_conflict | grain_mismatch | stale_data | missing_owner | quality_gap | access_gap | misuse
+    issue_type: "source_conflict" # source_conflict | formula_conflict | grain_mismatch | stale_data | missing_owner | quality_gap | access_gap | misuse | shadow_truth | undocumented_macro | manual_adjustment | person_dependency | not_reproducible | low_auditability
     description:
     affected_decisions: []
     severity:
@@ -88,8 +104,24 @@ reporting_reality:
       owner_role:
       why_used:
       conflict_with_authoritative_source:
+      linked_truth_production_profile_id:
+      embedded_rules_or_macros: []
   manual_exports_or_workarounds: []
   stale_or_unused_dashboards: []
+
+truth_production_profiles:
+  - truth_profile_id:
+    linked_metric_ids: []
+    official_source:
+    de_facto_trusted_source:
+    truth_status: "unknown"
+    production_chain_summary:
+    owner_role:
+    steward_or_knower_role:
+    reproducibility: "unknown"
+    auditability: "unknown"
+    fragile_truth_blocker: false
+    required_fix_before_ai_use:
 
 analytics_maturity:
   current_level:
@@ -113,6 +145,7 @@ agent_safe_metric_usage:
     - metric_id:
       allowed_uses: [] # calculate | cite | compare | summarize | flag_uncertainty | draft_question | escalate
       conditions: []
+      allowed_only_if_truth_status_in: []
       required_evidence_refs: []
   prohibited:
     - metric_id:

@@ -47,7 +47,7 @@ disputed_items:
 
 governance_resolutions:
   - object_id:
-    object_type: "information_object | source_access_profile | source | system | field | decision | approval_gate | output"
+    object_type: "information_object | source_access_profile | truth_production_profile | source | system | field | decision | approval_gate | output"
     linked_workflow_object_ids:
       -
     linked_information_object_ids:
@@ -62,7 +62,26 @@ governance_resolutions:
       -
     alternate_locations:
       -
-    source_of_record_status: "authoritative | not_authoritative | disputed | not_applicable"
+    official_source:
+    official_source_status: "confirmed | candidate | disputed | missing | not_applicable | unknown"
+    de_facto_trusted_source:
+    de_facto_source_status: "confirmed | candidate | disputed | missing | not_applicable | unknown"
+    truth_status: "authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown"
+    truth_production_chain_confirmed: false
+    embedded_rules_or_macros:
+      -
+    manual_adjustments_or_reconciliations:
+      -
+    reproducibility: "high | medium | low | unknown"
+    auditability: "high | medium | low | unknown"
+    truth_owner_role_or_person:
+    truth_steward_or_knower_role_or_person:
+    truth_fragility_signals:
+      -
+    ai_safe_truth_usage:
+      allowed_uses: []
+      prohibited_uses: []
+      required_human_review_when: []
     owner_role_or_person:
     steward_role_or_person:
     sensitive_fields_or_content:
@@ -88,12 +107,12 @@ governance_resolutions:
 unresolved_governance_items:
   - item_id:
     object_id:
-    object_type: "information_object | source_access_profile | source | system | field | decision | approval_gate | output"
+    object_type: "information_object | source_access_profile | truth_production_profile | source | system | field | decision | approval_gate | output"
     decision_needed:
     why_unresolved:
     authorized_resolver_needed:
     blocks_readiness:
-    later_route_if_unresolved: "formal_data_governance_project | risk_register | zero_trust_controls | architecture_blueprint"
+    later_route_if_unresolved: "formal_data_governance_project | knowledge_capture | measurement_intelligence | risk_register | zero_trust_controls | architecture_blueprint"
 
 new_unknowns:
   - unknown_id:

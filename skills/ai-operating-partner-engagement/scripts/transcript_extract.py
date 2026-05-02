@@ -18,6 +18,7 @@ KEYWORDS = {
     "metrics": ["time", "cost", "volume", "rate", "revenue", "error", "cycle", "baseline", "measure"],
     "edge_cases": ["exception", "edge case", "unusual", "rare", "escalate", "miss", "break", "different", "special case"],
     "source_trust": ["trust", "double-check", "source of truth", "conflict", "inconsistent", "reconcile", "authoritative"],
+    "truth_production": ["official", "de facto", "macro", "formula", "manual adjustment", "reconciliation", "reconcile", "final number", "board report", "source of truth", "reproducible", "audit"],
     "decisions_judgment": ["decide", "decision", "approve", "judgment", "confidence", "pause", "review", "sign-off"],
     "evidence_needs": ["example", "document", "screenshot", "report", "tracker", "memo", "email", "record", "artifact"],
 }
@@ -56,8 +57,12 @@ def main() -> int:
     print("| Information Object | Used In Step / Decision | System Or Location | Module / Report / Path | Lookup Keys | Required Fields | Compared Against | Access Roles | Alternate Locations | Known Issues | Validation Needed |")
     print("|---|---|---|---|---|---|---|---|---|---|---|")
     print("| | | | | | | | | | | |")
+    print("\n## Truth Production Profile Register\n")
+    print("| Truth Profile | Linked Object / Metric / Decision | Official Source | De Facto Trusted Source | Production Chain | Embedded Rules / Macros / Adjustments | Owner / Knower | Reproducibility | Auditability | Truth Status | AI-Safe Use | Validation Needed |")
+    print("|---|---|---|---|---|---|---|---|---|---|---|---|")
+    print("| | | | | | | | | | | | |")
     print("\n## Silent Evidence Need Log\n")
-    print("| Claim / Edge Case / Source Access Path | Linked Information Object | Why Evidence May Be Needed | Possible Artifact Type | Likely Owner | Sensitivity | Priority | Follow-Up Question |")
+    print("| Claim / Edge Case / Source Access Path / Truth Production Chain | Linked Information Object | Why Evidence May Be Needed | Possible Artifact Type | Likely Owner | Sensitivity | Priority | Follow-Up Question |")
     print("|---|---|---|---|---|---|---|---|")
     print("| | | | | | | | |")
     print("\n## Interview Quality Score\n")
@@ -68,13 +73,14 @@ def main() -> int:
     print("- Source access intelligence captured: high / medium / low")
     print("- Decisions and judgment captured: high / medium / low")
     print("- Source trust captured: high / medium / low")
+    print("- Truth production captured: high / medium / low")
     print("- Role hierarchy and handoff relationships captured: high / medium / low")
     print("- Role variation captured: high / medium / low")
     print("- Evidence needs logged: yes / no")
     print("- Follow-up required: yes / no")
-    print("\n## Cross-Interview Triangulation Notes\n\n- Agreements:\n- Conflicts:\n- Repeated edge cases:\n- Role hierarchy or reporting-line updates:\n- Role variation or standardization opportunities:\n- Source-of-truth questions:\n- Validation needs:\n")
+    print("\n## Cross-Interview Triangulation Notes\n\n- Agreements:\n- Conflicts:\n- Repeated edge cases:\n- Role hierarchy or reporting-line updates:\n- Role variation or standardization opportunities:\n- Truth production questions:\n- Validation needs:\n")
     print("\n## AI Workflow Spec Routing\n\n- Objects ready for Step 5 spec:\n- Fields still partial:\n- Fields unknown:\n- Later enrichment steps required:\n")
-    print("\n## Follow-Up Questions\n\n- What did we misunderstand?\n- Which source is authoritative?\n- Which access path, lookup key, or required field is missing?\n- What requires approval or should remain human?\n- Which evidence needs should be consolidated after interviews?\n")
+    print("\n## Follow-Up Questions\n\n- What did we misunderstand?\n- Which source is official, and which source or artifact is actually trusted?\n- How is the final number, status, report, or decision produced?\n- Which access path, lookup key, or required field is missing?\n- What requires approval or should remain human?\n- Which evidence needs should be consolidated after interviews?\n")
     return 0
 
 

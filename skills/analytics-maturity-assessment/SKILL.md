@@ -9,7 +9,7 @@ description: "Assess an organization's analytics maturity and measurement intell
 
 Assess whether decisions are supported by trusted, governed, measurable analytics before recommending predictive models or agents.
 
-Inside the AI operating partner engagement, this is part of Step 10: measurement intelligence and analytics readiness. AI does the heavy first pass, the operating partner decides which measurements matter, and the client confirms source authority and ownership. Do not build dashboards, models, pipelines, semantic layers, MCPs, connectors, live integrations, or production automations in this step.
+Inside the AI operating partner engagement, this is part of Step 10: measurement intelligence and analytics readiness. AI does the heavy first pass, the operating partner decides which measurements matter, and the client confirms official source, de facto trusted source, truth production, and ownership. Do not build dashboards, models, pipelines, semantic layers, MCPs, connectors, live integrations, or production automations in this step.
 
 Useful references:
 
@@ -41,6 +41,7 @@ Score 0-5:
 - Metric definitions.
 - Dashboard usefulness.
 - Governance and stewardship.
+- Truth production readiness.
 - Security/access control.
 - Statistical/modeling discipline.
 - Feedback and monitoring.
@@ -58,6 +59,7 @@ In the AI operating partner engagement, use prior outputs first:
 - Step 8 knowledge/guideline requirements.
 - Step 9 guidance packs.
 - Planning evidence such as dashboards, board reports, KPI lists, Excel trackers, budget variance reports, accounting exports, property management reports, invoice aging reports, and data dictionaries.
+- Truth production profiles, macro/formula walkthroughs, reconciliation notes, and manual adjustment evidence when available.
 
 Outside the operating partner engagement, gather evidence from:
 
@@ -76,20 +78,22 @@ AI may propose trust status, but the authorized client owner must confirm or cor
 
 Classify each important metric:
 
-- `trusted`: authoritative source, clear formula, known grain, named owner/steward, sufficient freshness, quality checks, and real decision use.
-- `conditionally_trusted`: usable with caveats such as timing lag, manual refresh, source hierarchy rule, or human review.
+- `trusted`: authoritative source, clear formula, known grain, named owner/steward, sufficient freshness, reproducible chain, adequate auditability, quality checks, and real decision use.
+- `conditionally_trusted`: usable with caveats such as timing lag, manual refresh, source hierarchy rule, documented manual adjustment, or human review.
 - `disputed`: sources, formulas, ownership, or decision usage conflict.
-- `untrusted`: no reliable owner, unclear formula, poor quality, stale data, or known misuse.
+- `untrusted`: no reliable owner, unclear formula, poor quality, stale data, not-reproducible chain, low auditability, or known misuse.
 - `unknown`: not enough evidence yet.
 
 Trust criteria:
 
-- Source of record.
+- Official source and de facto trusted source.
+- Truth production chain and truth status.
 - Formula.
 - Grain.
 - Owner and steward.
 - Freshness relative to the decision.
 - Reconciliation status.
+- Manual adjustment status, reproducibility, auditability, and version/change-control status.
 - Quality checks.
 - Access boundary.
 - Actual decision use.
@@ -109,6 +113,8 @@ Ask:
 - Are models evaluated and monitored?
 - What would a wrong recommendation cost?
 - Which source is authoritative for this metric?
+- Which source is official, and which source or artifact is actually trusted?
+- What exports, formulas, macros, manual adjustments, reconciliations, or expert-memory rules produce the final metric?
 - Is this metric current enough for the decision?
 - Can future AI calculate, cite, compare, summarize, flag, or only escalate this metric?
 
@@ -119,6 +125,7 @@ Deliver:
 - Measurement intelligence object.
 - Decision-to-metric map.
 - Metric trust classifications with evidence.
+- Truth production status for each material metric.
 - Agent-safe metric usage and prohibited metric usage.
 - Current maturity level.
 - Dimension-by-dimension scores.
@@ -128,6 +135,7 @@ Deliver:
 - First three improvements.
 - Suitable agent scope at current maturity.
 - Unresolved metric questions routed to governance, architecture/normalization, readiness, or do-not-use-yet.
+- Fragile truth questions routed to knowledge capture, architecture/normalization, readiness, or do-not-use-yet.
 
 ## Quality Bar
 

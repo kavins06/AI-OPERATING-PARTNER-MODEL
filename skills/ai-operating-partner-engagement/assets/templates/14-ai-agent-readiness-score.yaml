@@ -11,6 +11,7 @@ source_inputs:
   workflow_spec_ids: []
   diagnostic_ids: []
   validation_event_ids: []
+  truth_production_profile_ids: []
   knowledge_requirement_ids: []
   guidance_pack_ids: []
   measurement_intelligence_ids: []
@@ -48,7 +49,7 @@ hard_gates:
     required_fix: ""
   - gate_id: "source_access_gate"
     status: "unknown"
-    gate_question: "Are required sources, source-of-record decisions, access paths, owners, lookup keys, and failure modes known or explicitly scoped out?"
+    gate_question: "Are required sources, official/de facto source decisions, access paths, owners, lookup keys, and failure modes known or explicitly scoped out?"
     evidence_refs: []
     confidence: "unknown"
     blocker: false
@@ -57,6 +58,14 @@ hard_gates:
   - gate_id: "data_quality_gate"
     status: "unknown"
     gate_question: "Is data quality adequate for the proposed behavior level, with known quality checks and uncertainty handling?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "truth_production_gate"
+    status: "unknown"
+    gate_question: "Is truth production for required numbers, statuses, reports, and decisions known, owned, reproducible enough, auditable enough, and safe for the proposed AI behavior?"
     evidence_refs: []
     confidence: "unknown"
     blocker: false
@@ -137,6 +146,14 @@ dimension_scores:
     owner: ""
     next_step: ""
   - dimension: "data_quality"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "truth_production_readiness"
     score_1_to_5: null
     evidence_confidence: "unknown"
     evidence_refs: []
@@ -233,6 +250,15 @@ dependency_map:
       trust_status: "unknown"
       agent_safe_usage: ""
       blocking: false
+  truth_production_dependencies:
+    - truth_profile_id: ""
+      truth_status: "unknown"
+      reproducibility: "unknown"
+      auditability: "unknown"
+      allowed_ai_uses: []
+      prohibited_ai_uses: []
+      required_fix: ""
+      blocking: false
   technical_dependencies:
     - dependency_id: ""
       type: "tool_contract" # tool_contract | connector | mcp | normalization | identity_resolution | test_data | credentials | logging | sandbox | vendor
@@ -248,7 +274,7 @@ dependency_map:
 
 blockers:
   - blocker_id: ""
-    blocker_type: "" # source_access | data_quality | knowledge | measurement | technical | risk_control | ownership | lifecycle | value
+    blocker_type: "" # source_access | data_quality | truth_production | knowledge | measurement | technical | risk_control | ownership | lifecycle | value
     description: ""
     linked_gate_id: ""
     linked_dimension: ""

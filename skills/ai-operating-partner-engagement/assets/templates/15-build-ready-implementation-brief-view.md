@@ -1,6 +1,6 @@
 # Build-Ready Implementation Brief View
 
-This is a generated Markdown view, not the source of truth. The canonical Step 15 artifact is `15-implementation-decision-packet.yaml`. Do not request credentials, build MCPs, build connectors, normalize live data, ingest emails, or deploy agents until after Step 16 is complete and the client approves a separate implementation phase.
+This is a generated Markdown view, not the canonical artifact. The canonical Step 15 artifact is `15-implementation-decision-packet.yaml`. Do not request credentials, build MCPs, build connectors, normalize live data, ingest emails, or deploy agents until after Step 16 is complete and the client approves a separate implementation phase.
 
 Agent / workflow:
 Step 15 packet ID:
@@ -38,7 +38,14 @@ Risk owner:
 
 ## Data and Sources
 
-- Source of record:
+- Official source, if one formally exists:
+- Official source:
+- De facto trusted source:
+- Truth production profiles:
+- Truth status:
+- Reproducibility:
+- Auditability:
+- Fragile truth limitations:
 - Required sources:
 - Source access profiles:
 - Measurement intelligence object:
@@ -71,6 +78,9 @@ Risk owner:
 - Identity-resolution rules:
 - Source-to-canonical mappings:
 - Normalization rules:
+- Truth remediation rules:
+- Macro/formula/rule extraction needed:
+- Reconciliation tests:
 - Data quality checks:
 - Future tool input/output contracts:
 - Preferred implementation path:

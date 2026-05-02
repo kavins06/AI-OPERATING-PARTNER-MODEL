@@ -1,4 +1,4 @@
 interface:
   display_name: "Managed Agent Lifecycle"
   short_description: "Create a machine-readable operating contract for a future AI capability."
-  default_prompt: "Use this skill to create a Step 16 managed lifecycle object with owners, launch gates, validation, monitoring, feedback, incidents, revocation, updates, expansion, retirement, remediation cadence, and stop boundaries. Do not build or operate the agent during the engagement."
+  default_prompt: "Use this skill to create a Step 16 managed lifecycle object with owners, launch gates, validation, monitoring, truth governance, feedback, incidents, revocation, updates, expansion, retirement, remediation cadence, and stop boundaries. Do not build or operate the agent during the engagement."

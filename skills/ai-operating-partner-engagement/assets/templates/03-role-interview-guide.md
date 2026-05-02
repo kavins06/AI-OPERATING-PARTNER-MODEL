@@ -56,13 +56,21 @@ Capture at least one concrete recent example.
 - When does this escalate?
 - What should remain human?
 
-## Source Trust Mapping
+## Source Trust And Truth Production Mapping
 
 - Which source do you trust most?
 - Which source do you double-check?
 - Where do numbers, dates, statuses, or documents conflict?
 - What does the system say that people know is incomplete or misleading?
 - What do you check manually because the source cannot be fully trusted?
+- When a final number, status, report, or decision is treated as true, how is that truth produced?
+- What is the official source supposed to be?
+- What source or artifact do people actually trust?
+- What exports, formulas, spreadsheets, macros, manual adjustments, reconciliations, or judgment calls happen before the final answer is used?
+- Who understands the chain from raw source to final answer?
+- Is the chain documented, versioned, owned, reproducible, and auditable?
+- What breaks if a file, macro, shared drive, or specific person disappears?
+- Is this truth authoritative, conditionally reliable, shadow-derived, manually adjusted, person-dependent, disputed, missing, or not reproducible?
 
 ## Source Access Intelligence
 
@@ -85,6 +93,14 @@ Record each important information object:
 | Information Object | Used In Step / Decision | System Or Location | Module / Report / Path | Lookup Keys | Required Fields | Compared Against | Access Roles | Alternate Locations | Known Issues | Validation Needed |
 |---|---|---|---|---|---|---|---|---|---|---|
 | | | | | | | | | | | |
+
+## Truth Production Profile Capture
+
+Use this when the workflow depends on a number, status, report, exception decision, board packet, approval package, or any artifact people treat as true.
+
+| Truth Profile | Linked Object / Metric / Decision | Official Source | De Facto Trusted Source | Production Chain | Embedded Rules / Macros / Adjustments | Owner / Knower | Reproducibility | Auditability | Truth Status | AI-Safe Use | Validation Needed |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| | | system / report / policy / none / unknown | report / tracker / spreadsheet / macro / person / meeting / unknown | export -> formula -> macro -> manual adjustment -> reconciliation -> final report | | | high / medium / low / unknown | high / medium / low / unknown | authoritative / conditionally_reliable / shadow_derived / manually_adjusted / person_dependent / disputed / missing / not_reproducible | cite / summarize / compare / flag_uncertainty / draft_question / escalate / prohibited | |
 
 ## Edge Case Capture
 
@@ -122,7 +138,7 @@ Interviewer phrase:
 
 "That is helpful. I am going to note that as an example we may want to validate later. What happened next?"
 
-| Claim / Edge Case / Source Access Path | Linked Information Object | Why Evidence May Be Needed | Possible Artifact Type | Likely Owner | Sensitivity | Priority | Follow-Up Question |
+| Claim / Edge Case / Source Access Path / Truth Production Chain | Linked Information Object | Why Evidence May Be Needed | Possible Artifact Type | Likely Owner | Sensitivity | Priority | Follow-Up Question |
 |---|---|---|---|---|---|---|---|
 | | | | | | | | |
 
@@ -142,6 +158,7 @@ Interviewer phrase:
 - Source access intelligence captured: high / medium / low
 - Decisions and judgment captured: high / medium / low
 - Source trust captured: high / medium / low
+- Truth production captured: high / medium / low
 - Evidence needs logged: yes / no
 - Follow-up required: yes / no
 
@@ -153,5 +170,5 @@ Interviewer phrase:
 - Repeated edge cases:
 - Role hierarchy or reporting-line updates:
 - Role variation or standardization opportunities:
-- Source-of-truth questions:
+- Truth production questions:
 - Validation questions:

@@ -3,6 +3,7 @@ workflow_id: ""
 version: "0.1"
 status: "draft" # draft | expert_validated | risk_validated | implementation_ready | blocked
 source_step8_requirement_ids: []
+linked_truth_production_profile_ids: []
 
 scope:
   workflow:
@@ -47,6 +48,33 @@ source_hierarchy:
   conflict_handling:
     rule:
     escalation_required_when: []
+
+truth_production_handling:
+  truth_statuses_allowed_for_use:
+    - "authoritative"
+    - "conditionally_reliable"
+  fragile_truth_statuses:
+    - "shadow_derived"
+    - "manually_adjusted"
+    - "person_dependent"
+    - "disputed"
+    - "missing"
+    - "not_reproducible"
+  allowed_fragile_truth_behaviors:
+    - "summarize"
+    - "compare"
+    - "flag_uncertainty"
+    - "draft_question"
+    - "escalate"
+  prohibited_fragile_truth_behaviors:
+    - "final_decision"
+    - "autonomous_action"
+    - "unqualified_recommendation"
+  required_confidence_language:
+  escalation_required_when:
+    - "truth_status is disputed, missing, not_reproducible, or person_dependent for a material decision."
+    - "official source and de facto trusted source conflict."
+    - "manual adjustment, macro, or expert-memory rule is undocumented."
 
 explicit_rules:
   - rule_id:
@@ -94,6 +122,13 @@ examples:
       situation:
       conflicting_sources: []
       expected_behavior:
+  fragile_truth:
+    - example_id:
+      situation:
+      truth_status:
+      production_chain_summary:
+      expected_behavior:
+      prohibited_behavior:
 
 allowed_ai_behaviors:
   - behavior:

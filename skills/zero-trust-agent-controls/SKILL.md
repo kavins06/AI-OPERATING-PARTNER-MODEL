@@ -25,6 +25,7 @@ Design controls across:
 - Device: endpoint posture when relevant.
 - Application/workload: agent, tools, APIs, jobs.
 - Data: classification, row/field/document access, retention.
+- Truth production: allowed uses of shadow-derived, manually adjusted, person-dependent, disputed, missing, or not-reproducible truth.
 - Network/environment: allowed systems, boundaries, segmentation.
 - Automation/orchestration: tool calls, write actions, approval gates.
 - Visibility/analytics: logs, alerts, monitoring, review.
@@ -44,6 +45,7 @@ Collect:
 - Planning evidence access boundaries and future implementation access requests.
 - Step 9 guidance packs with forbidden behaviors and output contracts.
 - Step 10 metric trust and agent-safe metric usage.
+- Truth production profiles, fragile truth statuses, and AI-safe truth usage.
 - Step 13 risk register and data classification.
 
 Derive controls from actual agent behavior, not generic access roles.
@@ -58,6 +60,7 @@ Define for each agent:
 - Field-level restrictions.
 - Document-level restrictions.
 - Allowed actions: read, summarize, draft, calculate, route, write, send.
+- Allowed truth behaviors: summarize, compare, flag uncertainty, draft question, escalate, calculate, cite, recommend, decide.
 - Forbidden actions.
 - Human approval thresholds.
 - Credential owner.
@@ -114,6 +117,7 @@ Stop or redesign when:
 - Logs omit source, tool, action, or approval.
 - There is no revocation or incident path.
 - Output controls do not prevent prohibited claims, sends, approvals, or write actions.
+- Fragile truth would be used for final decisions, autonomous action, or unqualified recommendations.
 
 ## Output
 

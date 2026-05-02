@@ -16,6 +16,7 @@ Always cover:
 - Step-by-step process.
 - Systems and sources.
 - Information objects and source access paths.
+- Truth production chains for final numbers, statuses, reports, and decisions.
 - Decisions.
 - Handoffs.
 - Exceptions.
@@ -91,8 +92,28 @@ Ask:
 - Who can access it today?
 - What happens when it is missing, stale, duplicated, wrong, or stored somewhere else?
 - Is it official, practical, or disputed?
+- If people treat this as true, how is that truth produced from raw source to final use?
+- What official source is supposed to be authoritative, and what source or artifact is actually trusted?
+- Are there formulas, spreadsheet macros, manual adjustments, reconciliations, or expert-memory rules in the chain?
+- Who owns it now, who understands it, and could someone else reproduce it?
 
 Do not ask for credentials, live access, uploads, or confidential specifics. Log screenshots, walkthroughs, exports, or redacted examples as silent evidence needs for later operating-partner review.
+
+## Truth Production Protocol
+
+Use this protocol whenever a participant references a final number, status, board report, approval packet, metric, exception decision, reconciliation, spreadsheet, macro, or source conflict.
+
+Ask:
+
+- What is the official source supposed to be?
+- What do people actually trust when they need the answer?
+- What exports, formulas, macros, manual adjustments, reconciliations, or judgment calls happen before the final answer is used?
+- Who understands each step of that chain?
+- Is it documented, versioned, owned, reproducible, and auditable?
+- What breaks if the person, spreadsheet, macro, shared drive, or report disappears?
+- What may AI safely do with this today: summarize, compare, flag uncertainty, draft a question, escalate, cite, calculate, recommend, decide, or nothing?
+
+Classify truth status as: authoritative, conditionally reliable, shadow-derived, manually adjusted, person-dependent, disputed, missing, not reproducible, or unknown.
 
 ## Silent Evidence Need Log
 
@@ -124,6 +145,7 @@ After the interview, score:
 - Source access intelligence captured: high / medium / low.
 - Decisions and judgment captured: high / medium / low.
 - Source trust captured: high / medium / low.
+- Truth production captured: high / medium / low.
 - Role hierarchy and handoff relationships captured: high / medium / low.
 - Role variation captured: high / medium / low.
 - Evidence needs logged: yes / no.
@@ -158,6 +180,7 @@ Ask:
 - What gets escalated?
 - What reports do you rely on?
 - What definitions or numbers are disputed?
+- Which reports, spreadsheets, macros, or manual reconciliations produce the numbers leadership trusts?
 - Which team members should we interview next?
 
 ## Front-Line Operator
@@ -171,6 +194,7 @@ Ask:
 - What do you distrust?
 - What would a new person get wrong?
 - What workaround do you use?
+- Which final numbers or statuses depend on a spreadsheet, macro, manual adjustment, or someone just knowing the rule?
 
 ## Admin / Support
 
@@ -181,6 +205,7 @@ Ask:
 - What spreadsheets or inboxes matter?
 - What templates or forms drive the work?
 - What cleanup happens before anyone trusts the output?
+- What formulas, macros, reconciliation steps, or manual edits are needed before the output becomes trusted?
 
 ## IT / Data / Security
 
@@ -189,6 +214,8 @@ Ask:
 - What systems hold the relevant data?
 - Who owns access and integrations?
 - What APIs, exports, logs, or sandboxes exist?
+- Which reports or spreadsheets are de facto sources even though another system is official?
+- Which truth chains are reproducible and auditable, and which depend on manual work or key people?
 - What data is sensitive?
 - What retention, audit, or security controls apply?
 - What should an agent never be allowed to do?

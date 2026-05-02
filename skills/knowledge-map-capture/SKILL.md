@@ -25,6 +25,7 @@ In the AI operating partner engagement, use prior outputs first:
 - Edge cases.
 - Decisions and approval gates.
 - Source access profiles.
+- Truth production profiles.
 - Planning evidence.
 - Validation/governance events.
 - Role ownership, escalation paths, and disputed/unknown items.
@@ -41,7 +42,7 @@ Outside the operating partner engagement, inputs may also come from AI-led adapt
 - Ask IT/data/security where knowledge assets are stored and controlled.
 - Request examples of good, bad, and edge-case decisions.
 
-The strongest input is not a list of documents; it is a set of decisions, exceptions, approval gates, manual checks, and escalations with the knowledge required to handle them well.
+The strongest input is not a list of documents; it is a set of decisions, exceptions, approval gates, manual checks, truth production chains, and escalations with the knowledge required to handle them well.
 
 ## Knowledge Map Scope
 
@@ -66,6 +67,7 @@ Ask:
 - What future AI guideline would need to exist for this decision?
 - Who knows how to make the decision well?
 - Where is the knowledge written down?
+- Is the knowledge embedded in a spreadsheet, macro, formula, reconciliation, manual adjustment, or expert-memory rule?
 - What does an expert notice that a novice misses?
 - What examples show good, bad, and edge-case outcomes?
 - Which exceptions require escalation?
@@ -81,6 +83,8 @@ Use evidence-backed inference:
 - An edge case implies exception-handling knowledge.
 - An approval gate implies approval criteria and authority knowledge.
 - A manual check implies hidden quality or trust knowledge.
+- A spreadsheet macro, manual adjustment, or recurring reconciliation implies embedded business rules.
+- A person-dependent truth chain implies tacit capture or no-agent-use-yet until captured.
 - An escalation path implies likely expertise ownership.
 - A repeated correction implies a knowledge or training gap.
 - A source conflict implies source-trust guidance.
@@ -105,6 +109,7 @@ Deliver:
 - Gap analysis.
 - Knowledge-capture backlog.
 - Agent-ready SOP requirements.
+- Truth-rule extraction requirements for macros, manual adjustments, reconciliations, and expert-memory rules.
 - Validation questions.
 
 ## Quality Bar

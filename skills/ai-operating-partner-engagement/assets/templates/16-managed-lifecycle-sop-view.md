@@ -1,6 +1,6 @@
 # Managed Agent Lifecycle SOP View
 
-This is a generated Markdown view, not the source of truth. The canonical Step 16 artifact is `16-managed-lifecycle-object.yaml`. This is a future operating model, not a deployment plan for the current 16-step engagement. Do not deploy, monitor, connect, or operate a client agent until after Step 16 is complete and the client approves a separate implementation phase.
+This is a generated Markdown view, not the canonical artifact. The canonical Step 16 artifact is `16-managed-lifecycle-object.yaml`. This is a future operating model, not a deployment plan for the current 16-step engagement. Do not deploy, monitor, connect, or operate a client agent until after Step 16 is complete and the client approves a separate implementation phase.
 
 Agent:
 Workflow:
@@ -14,6 +14,7 @@ Date:
 - Business outcome:
 - Workflow:
 - Sources:
+- Truth production profiles:
 - Risk class:
 
 ## 2. Readiness
@@ -57,11 +58,13 @@ Date:
 ## 6. Operate
 
 - Monitoring cadence:
+- Truth production review cadence:
 - Quality metrics:
 - Business metrics:
 - Risk metrics:
 - Technical metrics:
 - Source freshness checks:
+- Truth production checks:
 - Cost/usage metrics:
 
 ## 7. Feedback, Change, And Incidents
@@ -69,6 +72,7 @@ Date:
 - Feedback channels:
 - Correction loop:
 - Guidance update process:
+- Truth rule / macro / reconciliation update process:
 - Revalidation triggers:
 - Incident path:
 - Pause/revocation triggers:

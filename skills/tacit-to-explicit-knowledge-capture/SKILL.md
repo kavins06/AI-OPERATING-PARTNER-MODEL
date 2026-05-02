@@ -13,7 +13,7 @@ Inside the AI operating partner engagement, this is Step 9. Start from the Step 
 
 The canonical Step 9 artifact is a machine-readable guidance spec, not a prose memo and not only a `SKILL.md`. A Markdown skill-style guide is a readable view of the same guidance. Test/evaluation cases are a separate view used later to verify whether a future AI follows the guidance. Keep all three aligned:
 
-- Structured guidance spec: source of truth.
+- Structured guidance spec: canonical artifact.
 - Markdown skill-style guide: human-readable view.
 - Test/evaluation cases: behavior verification view.
 
@@ -37,6 +37,7 @@ When an expert gives a general rule, ask:
 - When does that rule fail?
 - What would make you escalate?
 - How confident would you be, and why?
+- Is this rule encoded in a spreadsheet, macro, formula, report, reconciliation, manual adjustment, or expert memory?
 
 Stop only when the answer can be converted into rules, examples, edge cases, and review criteria.
 
@@ -49,7 +50,7 @@ Stop only when the answer can be converted into rules, examples, edge cases, and
 5. Compare good, bad, and edge-case outcomes.
 6. Extract cues, rules of thumb, thresholds, and red flags.
 7. Identify exceptions and escalation triggers.
-8. Translate judgment into a structured guidance spec with explicit rules, source hierarchy, tacit cues, examples, allowed behaviors, forbidden behaviors, escalation logic, and output contract.
+8. Translate judgment into a structured guidance spec with explicit rules, source hierarchy, truth-production handling, tacit cues, examples, allowed behaviors, forbidden behaviors, escalation logic, and output contract.
 9. Generate a Markdown skill-style view and test/evaluation cases from the structured spec.
 10. Validate with experts, reviewers, and risk owners where needed.
 11. Define ownership, update cadence, and validation status.
@@ -67,6 +68,7 @@ Ask:
 - What should always be escalated?
 - What language or action would be risky?
 - How do you know when confidence is low?
+- What rule, formula, macro, adjustment, or reconciliation would need to be extracted before AI can rely on this?
 
 ## Codification Formats
 
@@ -94,10 +96,11 @@ Produce:
   - Purpose, scope, and out-of-scope areas.
   - Owner roles, reviewers, update cadence, and validation status.
   - Required inputs and missing-input behavior.
-  - Source hierarchy, fallback sources, prohibited sources, and source-conflict handling.
+- Source hierarchy, fallback sources, prohibited sources, and source-conflict handling.
+- Truth production handling: allowed truth statuses, fragile truth behaviors, confidence language, and escalation rules.
   - Explicit rules.
   - Tacit cues and judgment signals.
-  - Examples: good, bad, edge, low-confidence, and source-conflict.
+  - Examples: good, bad, edge, low-confidence, source-conflict, and fragile-truth.
   - Allowed AI behaviors.
   - Forbidden AI behaviors.
   - Escalation triggers and human approval gates.

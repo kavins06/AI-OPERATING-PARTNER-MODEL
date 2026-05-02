@@ -3,6 +3,7 @@ opportunity_id,dimension,score_1_to_5,evidence_confidence,evidence_refs,gap_or_f
 ,workflow_clarity,,,,,,,
 ,source_access_readiness,,,,,,,
 ,data_quality,,,,,,,
+,truth_production_readiness,,,,,,,
 ,knowledge_guidance_readiness,,,,,,,
 ,measurement_readiness,,,,,,,
 ,architecture_feasibility,,,,,,,

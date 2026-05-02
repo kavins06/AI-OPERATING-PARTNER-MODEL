@@ -13,6 +13,7 @@ source_inputs:
   risk_control_model_id: ""
   guidance_pack_ids: []
   measurement_intelligence_ids: []
+  truth_production_profile_ids: []
   validation_event_ids: []
   evidence_refs: []
   missing_or_partial_inputs: []
@@ -96,6 +97,7 @@ business_case:
     base: ""
     upside: ""
   value_dependencies: []
+  truth_production_dependencies: []
   value_risks: []
 
 first_build_scope:
@@ -149,7 +151,12 @@ systems_and_sources:
     business_owner: ""
     technical_owner: ""
     vendor_owner: ""
-    source_of_record_status: "unknown" # confirmed | conditional | disputed | unknown | not_applicable
+    official_source: ""
+    official_source_status: "unknown" # confirmed | candidate | disputed | missing | not_applicable | unknown
+    de_facto_trusted_source: ""
+    de_facto_source_status: "unknown" # confirmed | candidate | disputed | missing | not_applicable | unknown
+    truth_production_profile_ids: []
+    truth_status: "unknown" # authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown
     role_in_workflow: ""
     data_needed: []
     required_fields: []
@@ -160,8 +167,28 @@ systems_and_sources:
     prohibited_access_paths: []
     refresh_or_freshness_need: ""
     data_quality_issues: []
+    truth_production_issues: []
     retention_or_export_constraints: []
     readiness_status: "unknown" # ready | conditional | blocked | unknown
+
+truth_production_readiness:
+  profiles:
+    - truth_profile_id: ""
+      linked_metric_or_decision_ids: []
+      official_source: ""
+      de_facto_trusted_source: ""
+      truth_status: "unknown"
+      reproducibility: "unknown"
+      auditability: "unknown"
+      owner_role: ""
+      steward_or_knower_role: ""
+      ai_safe_usage:
+        allowed: []
+        prohibited: []
+        human_review_required_when: []
+      required_fix_before_build: ""
+      changes_packet_type: false
+  fragile_truth_routing_rule: "If material truth is shadow_derived, manually_adjusted, person_dependent, disputed, missing, or not_reproducible, route to governance_data_readiness_plan, knowledge_capture_plan, or technical_feasibility_plan unless the first behavior is limited to summarize, compare, flag_uncertainty, draft_question, or escalate."
 
 runtime_design_requirements:
   runtime_pattern: "" # simple_assistant | rag_assistant | tool_using_agent | workflow_automation_with_ai | decision_support_copilot | monitoring_exception_agent | multi_agent_system | dashboard_or_reporting_fix | do_not_automate
@@ -260,7 +287,7 @@ hosting_environment_requirements:
 
 future_component_contracts:
   - component_id: ""
-    component_type: "" # tool | mcp_server | connector | retrieval_index | normalization_job | workflow_queue | eval_runner
+    component_type: "" # tool | mcp_server | connector | retrieval_index | normalization_job | truth_rule_extractor | reconciliation_test | workflow_queue | eval_runner
     build_phase: "" # offline_prototype | sandbox_integration | limited_pilot | controlled_expansion
     purpose: ""
     input_contract:
@@ -300,6 +327,18 @@ normalization_plan:
       confidence_rule: ""
       human_review_trigger: ""
   freshness_requirements: []
+
+truth_production_remediation_plan:
+  required: false
+  required_fixes:
+    - fix_id: ""
+      truth_profile_id: ""
+      fix_type: "" # macro_extraction | formula_documentation | rule_capture | canonical_mapping | reconciliation_test | owner_assignment | shadow_artifact_retirement | governed_replacement
+      owner: ""
+      evidence_needed: []
+      completion_criteria: []
+      blocks_behavior_levels: []
+      return_to_step_14: true
 
 guidance_and_eval_package:
   guidance_pack_ids: []
@@ -416,7 +455,7 @@ remediation_plan:
   reason_not_build_ready: []
   required_fixes:
     - fix_id: ""
-      blocker_type: "" # source_access | data_quality | knowledge | measurement | technical | risk_control | ownership | lifecycle | value
+      blocker_type: "" # source_access | data_quality | truth_production | knowledge | measurement | technical | risk_control | ownership | lifecycle | value
       linked_readiness_gate: ""
       description: ""
       owner: ""

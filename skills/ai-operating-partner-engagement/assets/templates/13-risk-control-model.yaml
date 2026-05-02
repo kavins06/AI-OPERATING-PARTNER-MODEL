@@ -12,6 +12,7 @@ source_inputs:
   governance_event_ids: []
   guidance_pack_ids: []
   measurement_intelligence_ids: []
+  truth_production_profile_ids: []
   value_case_ids: []
   technical_blueprint_ids: []
   policy_or_contract_refs: []
@@ -42,10 +43,11 @@ data_classification:
 
 risk_register:
   - risk_id:
-    category: "" # privacy | security | compliance | operational | vendor | output_quality | data_quality | access | external_communication | financial | reputational
+    category: "" # privacy | security | compliance | operational | vendor | output_quality | data_quality | access | external_communication | financial | reputational | spreadsheet_risk | key_person_truth_risk | undocumented_transformation | auditability_gap | shadow_reporting_drift
     linked_workflow_object_ids: []
     linked_system_ids: []
     linked_source_ids: []
+    linked_truth_production_profile_ids: []
     linked_tool_ids: []
     linked_output_types: []
     risk_description:
@@ -59,6 +61,16 @@ risk_register:
     verification_needed:
     residual_risk:
     blocks_readiness: false
+
+truth_production_controls:
+  - control_id:
+    truth_profile_id:
+    risk_type: "spreadsheet_risk | key_person_truth_risk | undocumented_transformation | auditability_gap | shadow_reporting_drift"
+    control:
+    owner_role:
+    verification_needed:
+    required_before_behavior_levels: []
+    stop_condition_if_missing:
 
 zero_trust_controls:
   identity:

@@ -7,13 +7,13 @@ Interview batch / discovery zones:
 
 ## Purpose
 
-Consolidate silent evidence needs after interviews and request only the smallest useful set of planning evidence needed to validate important claims, edge cases, source conflicts, source access paths, approval gates, metrics, workflow steps, and implementation-blueprint assumptions.
+Consolidate silent evidence needs after interviews and request only the smallest useful set of planning evidence needed to validate important claims, edge cases, source conflicts, source access paths, truth production chains, approval gates, metrics, workflow steps, and implementation-blueprint assumptions.
 
 ## Data Access Posture
 
 - No build access or credentials are required during the 16-step engagement.
 - Do not request broad system access, employee credentials, production credentials, API tokens, MCP/server access, connector access, all-email ingestion, write access, data-room access, or bulk document dumps at this stage.
-- Prefer redacted examples, screenshots, reports, trackers, templates, walkthroughs, sample exports, schema/field lists, API/vendor documentation, access-control screenshots, architecture notes, and data dictionaries when they are sufficient.
+- Prefer redacted examples, screenshots, reports, trackers, templates, walkthroughs, sample exports, formulas, macro walkthroughs, reconciliation notes, schema/field lists, API/vendor documentation, access-control screenshots, architecture notes, and data dictionaries when they are sufficient.
 - If live system access, API access, MCPs, connectors, normalization pipelines, email connectors, or unredacted data are needed later, define them as future implementation access requirements, not current requests.
 
 ## Evidence Need Review
@@ -24,9 +24,17 @@ Consolidate silent evidence needs after interviews and request only the smallest
 
 ## Curated Artifact Requests
 
-| Artifact | Why Requested | Claim / Edge Case / Source Access Path It Validates | Likely Owner | Sensitivity | Redaction Needed | Access Scope | Retention / Handling | Priority | Status |
+| Artifact | Why Requested | Claim / Edge Case / Source Access Path / Truth Production Chain It Validates | Likely Owner | Sensitivity | Redaction Needed | Access Scope | Retention / Handling | Priority | Status |
 |---|---|---|---|---|---|---|---|---:|---|
 | | | | | | | | | | |
+
+## Truth Production Evidence Requests
+
+Request only scoped planning evidence, not live access.
+
+| Truth Profile / Metric / Report | Evidence Needed | Why Needed | Acceptable Artifact Types | Likely Owner / Knower | Redaction / Handling | Priority | Status |
+|---|---|---|---|---|---|---:|---|
+| | formula / macro walkthrough / sample export / reconciliation note / final report / screenshot / decision packet | validate derivation, ownership, reproducibility, auditability, or AI-safe usage | redacted file copy / screenshot / walkthrough / sample export / data dictionary / report definition | | | | |
 
 ## Future Implementation Access Signals
 

@@ -7,9 +7,9 @@ Facilitator:
 
 ## Core Rule
 
-Do not hand over the full organizational intelligence object for review. Use it internally as the source of truth, then generate controlled role-specific and object-specific views.
+Do not hand over the full organizational intelligence object for review. Use it internally as the canonical reference, then generate controlled role-specific and object-specific views.
 
-Step 7 should also finish workflow-relevant governance resolution: source of record, source access path, owner/steward, sensitive fields, retention or handling rules, access constraints, and permitted AI actions. This is not a third broad interview pass. Route each unresolved object to the smallest authorized resolver group.
+Step 7 should also finish workflow-relevant governance resolution: official source, de facto trusted source, truth production chain, source access path, owner/steward, sensitive fields, retention or handling rules, access constraints, reproducibility, auditability, and permitted AI actions. This is not a third broad interview pass. Route each unresolved object to the smallest authorized resolver group.
 
 ## Internal Inputs
 
@@ -19,6 +19,7 @@ Step 7 should also finish workflow-relevant governance resolution: source of rec
 - Planning-evidence follow-up results:
 - Preliminary source inventory:
 - Information object and source access profile register:
+- Truth production profile register:
 - Open validation questions:
 - Open governance decisions:
 
@@ -57,6 +58,7 @@ Show only:
 - Standardization opportunities.
 - Diagnostic findings tied to their area.
 - Source, owner, and exception decisions in their operating area.
+- Truth production chains, manual adjustments, and de facto trusted artifacts in their operating area.
 
 Correction and decision prompts:
 
@@ -64,6 +66,8 @@ Correction and decision prompts:
 - Which approval gate applies only sometimes?
 - Which variation is intentional versus accidental?
 - Which source is authoritative for this workflow object?
+- Which source or artifact do people actually trust when it differs from the official source?
+- Which manual adjustment, reconciliation, or macro logic determines the final answer?
 - Who owns the definition, exception, or quality decision?
 
 ### Operator / Front-Line View
@@ -73,6 +77,7 @@ Show only:
 - Steps, handoffs, trackers/reports used.
 - Information objects and practical access paths.
 - Source conflicts and manual checks.
+- Truth production chains, shadow trackers, and manual adjustments they use or inherit.
 - Edge cases and exceptions.
 - Places where the model may miss lived work.
 
@@ -84,6 +89,7 @@ Correction prompts:
 - Which edge case is rare versus common?
 - Where does the model make the work look cleaner than it is?
 - Is there still a hidden tracker, manual correction, or quality issue not captured?
+- Which final report, spreadsheet, macro, or person-dependent rule makes the work look true?
 
 ### System / Data Owner View
 
@@ -91,7 +97,7 @@ Show only:
 
 - Systems and sources mentioned.
 - Information objects and source access profiles.
-- Source-of-record questions.
+- Official source, de facto trusted source, and truth production questions.
 - Data quality issues.
 - Access or export constraints.
 - Known sensitive fields, if appropriate.
@@ -100,6 +106,9 @@ Show only:
 Correction and decision prompts:
 
 - Which source is authoritative?
+- Which source is official, and which source or artifact is actually trusted?
+- Is the truth production chain documented, reproducible, auditable, and owned?
+- Which formulas, macros, manual adjustments, or reconciliations produce the final number or status?
 - Which access path, report, module, lookup key, or required field is correct?
 - Which source is not safe to rely on?
 - Which data-quality issue is known and who stewards it?
@@ -130,7 +139,7 @@ Correction and decision prompts:
 
 | Object ID | Object Type | Decision Needed | Current Evidence | Authorized Resolver | Decision Status |
 |---|---|---|---|---|---|
-| | information_object / source_access_profile / source / system / field / decision / approval_gate / output | access_path / lookup_keys / source_of_record / owner / steward / sensitive_field / retention / access / ai_action | | | pending / resolved / disputed / blocking |
+| | information_object / source_access_profile / truth_production_profile / source / system / field / decision / approval_gate / output | access_path / lookup_keys / official_source / de_facto_source / truth_chain / owner / steward / sensitive_field / retention / access / ai_action | | | pending / resolved / disputed / blocking |
 
 Use this queue to avoid asking the same people broad questions again. Each row should have a named resolver and a specific decision.
 
@@ -139,6 +148,10 @@ Use this queue to avoid asking the same people broad questions again. Each row s
 Ask only the questions needed for unresolved workflow objects:
 
 - Is this the authoritative source for this workflow object?
+- What is the official source, and what source or artifact is de facto trusted?
+- How is the final number, status, report, or decision produced?
+- Is the production chain documented, versioned, owned, reproducible, and auditable?
+- Which formulas, spreadsheet macros, manual adjustments, reconciliations, or expert-memory rules matter?
 - Is this the correct practical access path for the information object?
 - What module, report, dashboard, folder, inbox, portal, tracker, lookup key, or required field should be corrected?
 - Who owns the definition or business meaning?
@@ -199,7 +212,7 @@ disputed_items:
 
 governance_resolutions:
   - object_id:
-    object_type: "information_object | source_access_profile | source | system | field | decision | approval_gate | output"
+    object_type: "information_object | source_access_profile | truth_production_profile | source | system | field | decision | approval_gate | output"
     linked_workflow_object_ids:
       -
     linked_information_object_ids:
@@ -214,7 +227,24 @@ governance_resolutions:
       -
     alternate_locations:
       -
-    source_of_record_status: "authoritative | not_authoritative | disputed | not_applicable"
+    official_source:
+    official_source_status: "confirmed | candidate | disputed | missing | not_applicable | unknown"
+    de_facto_trusted_source:
+    de_facto_source_status: "confirmed | candidate | disputed | missing | not_applicable | unknown"
+    truth_status: "authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown"
+    truth_production_chain_confirmed: false
+    embedded_rules_or_macros:
+      -
+    manual_adjustments_or_reconciliations:
+      -
+    reproducibility: "high | medium | low | unknown"
+    auditability: "high | medium | low | unknown"
+    truth_owner_role_or_person:
+    truth_steward_or_knower_role_or_person:
+    ai_safe_truth_usage:
+      allowed_uses: []
+      prohibited_uses: []
+      required_human_review_when: []
     owner_role_or_person:
     steward_role_or_person:
     sensitive_fields_or_content:
@@ -240,12 +270,12 @@ governance_resolutions:
 unresolved_governance_items:
   - item_id:
     object_id:
-    object_type: "information_object | source_access_profile | source | system | field | decision | approval_gate | output"
+    object_type: "information_object | source_access_profile | truth_production_profile | source | system | field | decision | approval_gate | output"
     decision_needed:
     why_unresolved:
     authorized_resolver_needed:
     blocks_readiness:
-    later_route_if_unresolved: "formal_data_governance_project | risk_register | zero_trust_controls | architecture_blueprint"
+    later_route_if_unresolved: "formal_data_governance_project | knowledge_capture | measurement_intelligence | risk_register | zero_trust_controls | architecture_blueprint"
 
 new_unknowns:
   - unknown_id:
@@ -273,8 +303,8 @@ next_enrichment_routes:
 
 ## Notes
 
-- The source of truth remains the internal AI workflow specification and diagnostic.
+- The canonical internal reference remains the AI workflow specification and diagnostic.
 - Human validation views are controlled excerpts, not the full organizational intelligence model.
-- Source, owner, sensitivity, access, retention, and permitted-AI-action decisions should be resolved here whenever possible.
+- Source, truth production, owner, sensitivity, access, retention, and permitted-AI-action decisions should be resolved here whenever possible.
 - Information object and source access path corrections should be resolved here whenever possible.
 - If too many core objects are disputed, return to interviews, planning-evidence follow-up, or org-structure clarification before knowledge/risk/readiness work.

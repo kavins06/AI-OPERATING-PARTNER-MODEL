@@ -1,4 +1,4 @@
 interface:
   display_name: "Knowledge Map Capture"
   short_description: "Map AI knowledge and guideline requirements, owners, evidence, and gaps."
-  default_prompt: "Use this skill to build an AI knowledge and guideline requirements map for a workflow."
+  default_prompt: "Use this skill to build an AI knowledge and guideline requirements map for a workflow, including truth-production-linked knowledge in macros, manual adjustments, reconciliations, and expert memory."

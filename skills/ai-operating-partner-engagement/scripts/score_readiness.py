@@ -14,6 +14,7 @@ DIMENSIONS = [
     "workflow_clarity",
     "source_access_readiness",
     "data_quality",
+    "truth_production_readiness",
     "knowledge_guidance_readiness",
     "measurement_readiness",
     "architecture_feasibility",
@@ -27,6 +28,7 @@ HARD_GATES = [
     "workflow_clarity_gate",
     "source_access_gate",
     "data_quality_gate",
+    "truth_production_gate",
     "knowledge_guidance_gate",
     "measurement_gate",
     "technical_feasibility_gate",
@@ -143,11 +145,11 @@ def decision(total: int, scores: dict[str, int], gates: dict[str, str]) -> str:
         return "Discovery incomplete: resolve unknown hard gates before treating the score as build-ready."
     if any(scores.get(k, 0) <= 1 for k in DIMENSIONS):
         return "Severe gap: do not automate until critical blockers are fixed."
-    if total >= 43:
+    if total >= 47:
         return "Ready for Step 15 build-ready implementation brief, still gated by Step 16 approval."
-    if total >= 35:
+    if total >= 39:
         return "Fix named gaps first, then reconsider Step 15 build-ready brief."
-    if total >= 26:
+    if total >= 29:
         return "Governance, data, knowledge, technical feasibility, or risk-control readiness plan first."
     return "Do not automate yet."
 
@@ -191,7 +193,7 @@ def main() -> int:
         if value < 1 or value > 5:
             raise SystemExit(f"{key} must be 1-5")
     total = sum(scores[k] for k in DIMENSIONS)
-    print(f"Total: {total} / 50")
+    print(f"Total: {total} / {len(DIMENSIONS) * 5}")
     print(f"Decision: {decision(total, scores, gates)}")
     print("\nScores:")
     for key in DIMENSIONS:

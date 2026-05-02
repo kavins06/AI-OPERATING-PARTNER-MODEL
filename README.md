@@ -1,6 +1,6 @@
 # AI Operating Partner System
 
-This repo is the source-of-truth package for the AI operating partner skill system.
+This repo is the canonical package for the AI operating partner skill system.
 It contains the 16 operating skills, the master engagement orchestrator, reusable templates, scoring scripts, and generated mastery references.
 
 The original installed Codex copies can stay in `C:\Users\kavin\.codex\skills` for day-to-day use, but this repo should be the clean place to maintain, version, and move the system.
@@ -37,7 +37,7 @@ The 79 original source documents, raw OCR cache, extracted source-text dumps, an
 
 ## Practical Order
 
-Use `ai-operating-partner-engagement` first when you want the full process. The engagement is a pre-build organizational intelligence and implementation-blueprint process. It does not build agents, MCPs, connectors, live integrations, normalization pipelines, email ingestion, or production automations during the 16-step engagement.
+Use `ai-operating-partner-engagement` first when you want the full process. The engagement is a pre-build organizational intelligence and implementation-blueprint process. It does not build agents, MCPs, connectors, live integrations, normalization pipelines, email ingestion, or production automations during the 16-step engagement. It also does not assume a clean source of truth exists; it captures how business truth is actually produced through official systems, de facto trusted artifacts, spreadsheets/macros, manual adjustments, reconciliations, and expert judgment.
 
 1. Executive opportunity terrain mapping
 2. Opportunity terrain synthesis and discovery-zone sequencing
@@ -45,16 +45,16 @@ Use `ai-operating-partner-engagement` first when you want the full process. The 
 4. Planning-evidence follow-up
 5. AI-native workflow intelligence object
 6. Organizational intelligence diagnostic
-7. Controlled validation and governance/source access resolution
+7. Controlled validation and governance/source access/truth production resolution
 8. AI knowledge and guideline requirements map
 9. AI guidance pack: structured spec, skill-style view, and test cases
-10. Measurement intelligence and analytics readiness
+10. Measurement intelligence, truth production, and analytics readiness
 11. Business value case
-12. Technical implementation blueprint: architecture, runtime/orchestration, hosting/environment, access, tools, normalization, and build sequence
+12. Technical implementation blueprint: architecture, runtime/orchestration, hosting/environment, access, tools, truth remediation, normalization, and build sequence
 13. Risk and control model
-14. AI-agent readiness score: implementation-grade gates, behavior-level readiness, dependencies, blockers, and Step 15 path
-15. Machine-readable implementation decision packet: build-ready brief, remediation plan, runtime/hosting plan, or do-not-automate recommendation
-16. Machine-readable managed lifecycle object for future validation, launch, monitoring, incident response, improvement, expansion, and retirement
+14. AI-agent readiness score: implementation-grade gates including truth production, behavior-level readiness, dependencies, blockers, and Step 15 path
+15. Machine-readable implementation decision packet: build-ready brief, truth/data remediation plan, runtime/hosting plan, or do-not-automate recommendation
+16. Machine-readable managed lifecycle object for future validation, launch, monitoring, truth governance, incident response, improvement, expansion, and retirement
 
 Implementation starts only after Step 16 is complete, the blueprint is approved, and the client starts a separate build phase.
 

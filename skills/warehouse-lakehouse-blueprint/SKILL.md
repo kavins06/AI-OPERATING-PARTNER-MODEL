@@ -1,6 +1,6 @@
 ---
 name: warehouse-lakehouse-blueprint
-description: "Design governed technical implementation blueprints for analytics, dashboards, data products, and AI agents, including warehouse/lakehouse, semantic layer, document intelligence, retrieval, integration, runtime/orchestration requirements, hosting/environment requirements, MCP/tooling, email scope, normalization, identity resolution, tool contracts, test strategy, credentials/secrets, audit/logging, blocked paths, and future build order."
+description: "Design governed technical implementation blueprints for analytics, dashboards, data products, and AI agents, including warehouse/lakehouse, semantic layer, truth production remediation, document intelligence, retrieval, integration, runtime/orchestration requirements, hosting/environment requirements, MCP/tooling, email scope, normalization, identity resolution, tool contracts, test strategy, credentials/secrets, audit/logging, blocked paths, and future build order."
 ---
 
 # Warehouse Lakehouse Blueprint
@@ -43,12 +43,14 @@ For AI operating partner work, include:
 
 - Implementation posture: technically feasible, feasible with conditions, blocked, or not ready.
 - Systems and sources with business, technical, and vendor owners.
+- Truth production profiles, including official source, de facto trusted source, derivation chain, embedded rules, reproducibility, auditability, and fragile truth blockers.
 - Access options: API, export, report view, database view, document store, email scope, manual staging, vendor integration, RPA, or other future path.
 - Preferred path, fallback path, and blocked paths with reasons.
 - Canonical entities and fields.
 - Identity-resolution rules for matching records across systems.
 - Source-to-canonical mappings.
 - Normalization rules, quality checks, owners, blockers, and freshness requirements.
+- Truth remediation requirements: macro extraction, formula documentation, semantic normalization, canonical entity design, reconciliation tests, owner assignment, governed replacement path, and shadow artifact retirement.
 - Runtime design requirements: minimum runtime pattern, model capability needs, RAG need, orchestration/state needs, human approval gates, retry/idempotency needs, audit trace, and whether multi-agent design is truly required.
 - Future tool/MCP/connector specs with input/output contracts, allowed/prohibited actions, permission scope, human review, and logging.
 - Hosting/environment requirements: preferred client cloud or environment, identity provider, data residency, VPC/private networking, compute, storage, queues, secrets, observability, security review, preferred/fallback/blocked hosting patterns, and final vendor-decision boundary.
@@ -109,12 +111,14 @@ Collect:
 
 - Source inventory from IT/data teams.
 - Source access profiles and planning evidence from the operating partner engagement.
+- Truth production profiles, macro/formula walkthroughs, reconciliation notes, and manual adjustment evidence from the operating partner engagement.
 - Step 10 measurement intelligence, metric trust classifications, KPI definitions, and unresolved metric questions.
 - Step 11 business value case and recommendation.
 - Step 9 guidance packs and test/evaluation cases.
 - Workflow and decision needs from managers/operators.
 - Current reports, dashboards, and extracts from business users.
 - Data-quality issues from admins and stewards.
+- Shadow reporting, spreadsheet, macro, manual adjustment, person-dependent truth, and reconciliation issues from admins, stewards, and business owners.
 - Document and unstructured content examples.
 - Privacy/security constraints and access boundaries.
 - Refresh/freshness requirements.
@@ -142,6 +146,7 @@ For any domain, identify:
 - Access policies.
 - Data-quality rules.
 - Lineage.
+- Truth production chains and embedded rule locations.
 - Agent tool boundaries.
 - Tool input/output contracts.
 
@@ -151,14 +156,14 @@ Avoid hard-coding one industry model unless the user gives the domain.
 
 Recommend future implementation sequence:
 
-1. Inventory and data dictionary.
-2. Core entity reconciliation.
+1. Inventory, data dictionary, and truth production profile capture.
+2. Core entity reconciliation and truth-rule extraction.
 3. Key fact tables or analytical datasets.
-4. Semantic metrics.
+4. Semantic metrics with documented formulas, owners, and reconciliation tests.
 5. Dashboards.
 6. Retrieval over approved documents.
 7. Read-only agents.
-8. Approval-gated write-back only after trust is proven.
+8. Approval-gated write-back only after truth, controls, and monitoring are proven.
 
 ## Output Template
 

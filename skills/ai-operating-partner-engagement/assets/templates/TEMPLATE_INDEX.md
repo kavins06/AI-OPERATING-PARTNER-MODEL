@@ -1,6 +1,6 @@
 # AI Operating Partner Template Index
 
-Use this index to keep artifacts aligned to the 16-step engagement. Machine-readable YAML or CSV artifacts are the source of truth unless a file name explicitly says `view`.
+Use this index to keep artifacts aligned to the 16-step engagement. Machine-readable YAML or CSV artifacts are canonical unless a file name explicitly says `view`.
 
 | Step | Canonical Templates | Generated Or Supporting Views |
 |---|---|---|

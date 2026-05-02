@@ -54,13 +54,14 @@ Inside the AI operating partner engagement, use prior outputs first:
 - Step 8 knowledge/guideline requirements.
 - Step 9 guidance packs.
 - Step 10 measurement intelligence and metric trust classifications.
+- Truth production profiles and fragile-truth dependencies.
 - Planning evidence such as volumes, cycle times, cost ranges, error/rework examples, leakage examples, risk incidents, service feedback, reports, and financial/operational summaries.
 
-Do not treat disputed, untrusted, or unknown metrics as reliable baseline evidence unless the recommendation is explicitly to fix measurement first.
+Do not treat disputed, untrusted, unknown, shadow-derived, manually adjusted, person-dependent, missing, or not-reproducible metrics as reliable baseline evidence unless the recommendation is explicitly to fix measurement or truth infrastructure first.
 
 ## Canvas Template
 
-| Lens | Questions | Notes | Metric | Trust Status |
+| Lens | Questions | Notes | Metric | Trust / Truth Status |
 |---|---|---|---|---|
 | Internal efficiency | What work, delay, or rework falls? | | | |
 | Customer experience | What experience improves? | | | |
@@ -81,7 +82,7 @@ Do not treat disputed, untrusted, or unknown metrics as reliable baseline eviden
 8. List assumptions, confidence, and client-confirmation needs.
 9. Define pilot metric and measurement window.
 10. Identify risks and current verification needs.
-11. Recommend: carry forward to architecture/readiness, fix measurement first, fix governance/knowledge first, deprioritize, or do not pursue.
+11. Recommend: carry forward to architecture/readiness, fix measurement first, fix truth production first, fix governance/knowledge first, deprioritize, or do not pursue.
 
 ## Output
 
@@ -93,7 +94,7 @@ Deliver:
 - Evidence references.
 - Conservative/base/upside estimates where supported.
 - Assumptions and confidence.
-- Dependencies across measurement, governance, source access, knowledge/guidance, architecture, risk, and change management.
+- Dependencies across measurement, truth production, governance, source access, knowledge/guidance, architecture, risk, and change management.
 - Client confirmation needs.
 - Recommendation and next route.
 
@@ -106,7 +107,7 @@ Reject vague value claims. Every opportunity needs:
 - A measurable value lever.
 - Required data.
 - Rights/privacy constraints.
-- Trusted or conditionally trusted baseline evidence, or an explicit measurement-fix recommendation.
+- Trusted or conditionally trusted baseline evidence, or an explicit measurement/truth-infrastructure fix recommendation.
 - A pilot metric or value-capture metric.
 
 Do not call an opportunity valuable only because it is automatable. Do not pretend ROI precision when evidence only supports a directional case.

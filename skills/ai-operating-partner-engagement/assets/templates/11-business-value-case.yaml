@@ -12,6 +12,7 @@ source_inputs:
   knowledge_requirement_ids: []
   guidance_pack_ids: []
   measurement_intelligence_ids: []
+  truth_production_profile_ids: []
   planning_evidence_refs: []
 
 role_split:
@@ -102,12 +103,14 @@ overall_value_assessment:
   value_confidence: "unknown" # high | medium | low | unknown
   strategic_fit: "unknown" # high | medium | low | unknown
   measurement_strength: "unknown" # strong | partial | weak | unknown
+  truth_production_strength: "unknown" # strong | partial | fragile | blocking | unknown
   value_capture_complexity: "unknown" # low | medium | high | unknown
   strongest_value_lens:
   weakest_assumption:
 
 dependencies:
   measurement_dependencies: []
+  truth_production_dependencies: []
   governance_dependencies: []
   source_access_dependencies: []
   knowledge_or_guidance_dependencies: []
@@ -123,10 +126,20 @@ client_confirmation_needs:
     required_before_carry_forward: true
 
 recommendation:
-  decision: "" # carry_forward_to_architecture_and_readiness | fix_measurement_first | fix_governance_or_knowledge_first | deprioritize | do_not_pursue
+  decision: "" # carry_forward_to_architecture_and_readiness | fix_measurement_first | fix_truth_production_first | fix_governance_or_knowledge_first | deprioritize | do_not_pursue
   rationale:
   next_route:
   not_build_authorization: true
+
+fragile_truth_value_rules:
+  disputed_untrusted_or_unknown_metrics_not_used_as_reliable_baseline: true
+  fragile_truth_metrics_allowed_only_when_value_case_is_about_fixing_truth_infrastructure: true
+  fragile_truth_profiles_requiring_fix:
+    - truth_profile_id:
+      reason:
+      required_fix:
+      owner_role:
+      blocks_value_case: false
 
 stop_boundary:
   does_not_authorize_build: true

@@ -1,13 +1,13 @@
 ---
 name: data-governance-discovery
-description: "Discover and document data governance requirements including source of record, source access paths, owners, stewards, definitions, data quality, access rights, retention, lineage, lifecycle rules, and agent permission boundaries. Use before analytics, dashboards, integrations, automation, or AI agents rely on organizational data."
+description: "Discover and document data governance requirements including official sources, de facto trusted sources, truth production chains, source access paths, owners, stewards, definitions, data quality, access rights, retention, lineage, lifecycle rules, and agent permission boundaries. Use before analytics, dashboards, integrations, automation, or AI agents rely on organizational data."
 ---
 
 # Data Governance Discovery
 
 ## Core Rule
 
-No trusted analytics or AI agent exists without clear ownership, definitions, quality rules, access boundaries, and escalation paths.
+No trusted analytics or AI agent exists without clear ownership, definitions, truth production, quality rules, access boundaries, and escalation paths.
 
 Inside the AI operating partner engagement, use this skill as an embedded Step 7 helper, not as a separate broad discovery cycle. Governance questions should be object-driven: start from information objects, source access profiles, sources, systems, decisions, sensitive fields, and permission gaps already found in the AI workflow specification and diagnostic.
 
@@ -21,7 +21,11 @@ Useful references:
 
 Capture:
 
-- Source of record.
+- Official source.
+- De facto trusted source.
+- Truth production chain.
+- Embedded formulas, macros, manual adjustments, reconciliations, or expert-memory rules.
+- Reproducibility and auditability.
 - Practical source access path.
 - Data owner.
 - Data steward.
@@ -35,6 +39,7 @@ Capture:
 - Lineage and transformation steps.
 - Exception and approval rights.
 - Agent read/write/summarize/send permissions.
+- Agent-safe truth usage.
 
 ## How To Get Inputs
 
@@ -46,12 +51,13 @@ Start from the organizational intelligence object:
 - Planning-evidence follow-up results.
 - Source inventory.
 - Information object and source access profile register.
+- Truth production profile register.
 - Existing access matrices, policies, redacted system exports, data dictionaries, schema/field lists, API/vendor docs, or issue logs if approved as planning evidence.
 
 Do not reinterview multiple layers by default. Route each unresolved object to the smallest authorized resolver group:
 
-- Business owner for source-of-record, definition, exception, and approval decisions.
-- Steward or operator only when actual correction, quality, or shadow-tracker behavior is still unknown.
+- Business owner for official-source, de facto-source, truth-production, definition, exception, and approval decisions.
+- Steward or operator only when actual correction, quality, truth production, or shadow-tracker behavior is still unknown.
 - IT/data/security for system, integration, access, export, logging, retention, and permission reality.
 - Risk/legal/compliance only for sensitive data, external sharing, contractual, regulatory, or reputational boundaries.
 
@@ -61,7 +67,11 @@ Use AI-led follow-up only when the object cannot be resolved from current eviden
 
 Ask:
 
-- Which system or document is authoritative?
+- Which system or document is official?
+- Which source, report, spreadsheet, macro, or person is de facto trusted?
+- How is the final number, status, report, or decision produced?
+- Which formulas, macros, manual adjustments, reconciliations, or expert-memory rules matter?
+- Is the truth chain documented, versioned, owned, reproducible, and auditable?
 - Which practical access path, report, module, dashboard, folder, lookup key, or required field is correct?
 - Who can approve a definition?
 - Who fixes missing, stale, duplicated, or contradictory data?
@@ -74,7 +84,7 @@ Ask:
 
 ## Source Inventory Template
 
-| Source ID | Linked Information Objects | Linked Workflow Objects | Source | Location/System | Module/Report/Path | Lookup Keys | Source-of-Record Status | Owner | Steward | Sensitive Data | Quality Issues | Retention/Handling | Allowed AI Actions | Prohibited AI Actions | Validation Status |
+| Source ID | Linked Information Objects | Linked Workflow Objects | Linked Truth Profiles | Source | Location/System | Module/Report/Path | Lookup Keys | Official Source Status | De Facto Source Status | Truth Status | Owner | Steward | Sensitive Data | Quality Issues | Truth Production Issues | Retention/Handling | Allowed AI Actions | Prohibited AI Actions | Validation Status |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | | | | | | | | authoritative / disputed / not_authoritative | | | | | | read / summarize / compare / draft | send_external / write_back | pending / resolved / disputed |
 
@@ -82,13 +92,15 @@ Ask:
 
 Deliver:
 
-- Source-of-record map.
+- Official/de facto source map.
+- Truth production profile map.
 - Source access profile confirmations.
 - Stewardship assignments.
 - Data dictionary needs.
 - Metric definition needs.
 - Access matrix.
 - Data-quality rules.
+- Reproducibility and auditability gaps.
 - Retention and audit requirements.
 - Agent permission boundaries.
 - Open governance decisions.
@@ -99,7 +111,8 @@ Deliver:
 
 Do not move to implementation-ready status when:
 
-- No source of record exists.
+- No official source or de facto trusted source can be identified.
+- Material truth is shadow-derived, manually adjusted, person-dependent, disputed, missing, or not reproducible without a safe-use limitation or remediation route.
 - Practical access path is unknown for a source the agent must rely on.
 - No owner can approve definitions.
 - Sensitive data lacks handling rules.

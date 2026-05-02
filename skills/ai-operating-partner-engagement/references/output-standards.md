@@ -33,6 +33,7 @@ A workflow is implementation-ready only when the machine-readable Step 15 packet
 - Business value case with evidence, assumptions, confidence, and recommendation.
 - Validated AI workflow specification.
 - Source access profiles for important workflow information objects.
+- Truth production profiles for material numbers, statuses, reports, decisions, metrics, and artifacts treated as true.
 - Source inventory.
 - Governance model.
 - AI knowledge and guideline requirements map.
@@ -44,9 +45,38 @@ A workflow is implementation-ready only when the machine-readable Step 15 packet
 - Step 14 readiness object with hard gates, behavior-level readiness, blockers, dependencies, minimum safe first behavior, and Step 15 path.
 - Step 16 managed lifecycle object covering launch gates, validation, monitoring, feedback, incidents, revocation, updates, expansion, retirement, and remediation/no-automation cadence where applicable.
 
+## Truth Production Layer
+
+The engagement must not assume that a clean source of truth exists. For any material workflow object, metric, report, final number, status, approval package, board packet, exception decision, or candidate AI input treated as true, capture a `truth_production_profile`.
+
+Each truth production profile must include:
+
+- Official source: what policy, system design, or leadership says should be authoritative.
+- De facto trusted source: what people actually use or trust when work must get done.
+- Truth production chain: exports, formulas, macros, manual adjustments, reconciliations, expert judgment, approval, and final reporting.
+- Embedded rules: system configuration, report logic, spreadsheet formulas/macros, SOPs, expert memory, meeting habits, or unknown locations.
+- Owner, steward, and knower: who owns the truth, who maintains it, and who understands how it is produced.
+- Truth status: `authoritative`, `conditionally_reliable`, `shadow_derived`, `manually_adjusted`, `person_dependent`, `disputed`, `missing`, `not_reproducible`, or `unknown`.
+- Reproducibility and auditability: high, medium, low, or unknown.
+- AI-safe usage: allowed uses, prohibited uses, human review conditions, and escalation triggers.
+- Required fix: extraction, documentation, ownership, reconciliation, normalization, governed replacement, or do-not-use.
+
+Truth production classification rules:
+
+- `authoritative`: official and de facto source align, owner/steward are known, derivation is documented, quality checks exist, and use is reproducible.
+- `conditionally_reliable`: usable only with explicit caveats, timing rules, human review, or source hierarchy.
+- `shadow_derived`: de facto truth comes from a tracker, report, spreadsheet, shared-drive file, macro, email thread, or local artifact outside governed systems.
+- `manually_adjusted`: material truth depends on undocumented or semi-documented human adjustment.
+- `person_dependent`: only a person or small group knows how to produce or interpret the truth.
+- `disputed`: official source, de facto source, formula, owner, or decision use conflicts.
+- `missing`: no credible source or chain has been identified.
+- `not_reproducible`: the output cannot be recreated from known inputs, rules, and evidence.
+
+Fragile truth rule: if a material truth profile is shadow-derived, manually adjusted, person-dependent, disputed, missing, or not reproducible, Step 14 must fail or conditionally pass the relevant behavior level unless the proposed AI behavior is limited to summarize, compare, flag uncertainty, draft clarification questions, or escalate.
+
 ## AI-Native Workflow Specification
 
-Step 5 produces an `organizational_workflow_intelligence` object, not a human workflow report. Human-readable reports are views generated from this object, not the source of truth.
+Step 5 produces an `organizational_workflow_intelligence` object, not a human workflow report. Human-readable reports are views generated from this object, not the canonical artifact.
 
 The initial spec must include:
 
@@ -58,6 +88,7 @@ The initial spec must include:
 - Edge cases, broken normal rules, detection methods, handlers, escalation paths, severity, frequency, automation implications, and validation needs.
 - Information objects used by workflow steps, decisions, approvals, edge cases, and candidate assists.
 - Source access profiles: system/location, module/report/path, lookup keys, required fields, alternate locations, access roles, related sources, failure modes, and validation status.
+- Truth production profiles: official source, de facto source, production chain, embedded rules/macros/manual adjustments, owner/knower, reproducibility, auditability, truth status, AI-safe usage, and validation route.
 - Sources and systems mentioned, trust signals, known quality issues, sensitivity, likely owners, and validation status.
 - Approval gates and sensitive data signals.
 - Operating strain and value signals.
@@ -68,7 +99,8 @@ The initial spec must include:
 
 Step 5 must not complete:
 
-- Official source of record.
+- Official source authority.
+- Final truth authority or fully validated truth production chain.
 - Data owner or steward.
 - Full data dictionary.
 - Metric formulas.
@@ -82,7 +114,7 @@ Step 5 must not complete:
 - Readiness object or score.
 - Build recommendation.
 
-Stop Step 5 when the workflow can be represented as a structured graph of known actors, roles, hierarchy, steps, decisions, information objects, source access profiles, sources, edge cases, approvals, evidence, confidence, and unknowns, with incomplete source/owner/sensitivity/access/permission fields routed to Step 7 and incomplete risk, metric, architecture, and readiness fields routed to later enrichment steps.
+Stop Step 5 when the workflow can be represented as a structured graph of known actors, roles, hierarchy, steps, decisions, information objects, source access profiles, truth production profiles, sources, edge cases, approvals, evidence, confidence, and unknowns, with incomplete source/truth/owner/sensitivity/access/permission fields routed to Step 7 and incomplete risk, metric, architecture, and readiness fields routed to later enrichment steps.
 
 ## Organizational Intelligence Diagnostic
 
@@ -126,21 +158,22 @@ Scale Step 6 to the engagement:
 - Standard: findings across people, process, data, knowledge, governance, systems, risk, and measurement for a major workflow.
 - Upscaled: cross-workflow or enterprise pattern detection across multiple discovery zones.
 
-Step 6 must not decide build readiness, assign final risk scores, define official sources of record, design permissions, or finalize architecture. It routes source/owner/sensitivity/access/permission needs to Step 7 controlled validation and governance resolution, and routes risk, architecture, metric, and readiness needs to later steps.
+Step 6 must not decide build readiness, assign final risk scores, define official source authority or final truth production authority, design permissions, or finalize architecture. It routes source/truth/owner/sensitivity/access/permission needs to Step 7 controlled validation and governance resolution, and routes risk, architecture, metric, and readiness needs to later steps.
 
 ## Controlled Validation and Governance Resolution
 
-Step 7 validates the AI workflow specification and organizational intelligence diagnostic without handing over the full organizational intelligence object. It also completes object-driven governance resolution for the information objects, source access profiles, sources, systems, sensitive fields, ownership questions, retention constraints, access constraints, and permitted AI actions that are relevant to the workflow.
+Step 7 validates the AI workflow specification and organizational intelligence diagnostic without handing over the full organizational intelligence object. It also completes object-driven governance resolution for the information objects, source access profiles, truth production profiles, sources, systems, sensitive fields, ownership questions, retention constraints, access constraints, and permitted AI actions that are relevant to the workflow.
 
 Step 7 is not another broad interview cycle. Use Step 5 and Step 6 to prefill what is known, then route only unresolved or high-risk objects to the smallest authorized resolver group.
 
-Internal source of truth:
+Internal canonical references:
 
 - AI workflow specification.
 - Organizational intelligence diagnostic.
 - Evidence and validation logs.
 - Preliminary source inventory and unresolved governance fields.
 - Information object and source access profile register.
+- Truth production profile register.
 
 External validation artifacts:
 
@@ -150,6 +183,7 @@ External validation artifacts:
 - Structured validation and governance event.
 - Source inventory/governance enrichment output.
 - Source access profile corrections and confirmations.
+- Truth production profile corrections, confirmations, and unresolved fragile-truth decisions.
 
 The full organizational intelligence object is internal working infrastructure. Share controlled excerpts only with the people qualified to validate them.
 
@@ -158,7 +192,7 @@ Validation views should be role-specific:
 - Sponsor/executive: business purpose, decision rights, high-level approval boundaries, major risks, unknowns, enrichment routes.
 - Director/manager: escalation paths, approval gates, portfolio/team variation, standardization opportunities, diagnostic findings.
 - Operator/front-line: steps, handoffs, trackers/reports, source conflicts, edge cases, lived-work corrections.
-- System/data owner: systems, sources, source-of-record questions, data quality, access/export constraints.
+- System/data owner: official source, de facto trusted source, truth production chain, reproducibility, auditability, data quality, access/export constraints.
 - Risk/legal/compliance: sensitive data signals, external communication risks, approval boundaries, do-not-automate-yet areas.
 
 Validation and governance resolution must produce:
@@ -169,16 +203,18 @@ Validation and governance resolution must produce:
 - Disputed items.
 - New unknowns.
 - Not-reviewed critical objects.
-- Source-of-record decisions for relevant workflow sources.
+- Official source and de facto trusted source decisions for relevant workflow objects.
+- Truth production chain, embedded rule, macro, manual adjustment, reconciliation, and expert-memory decisions where material.
 - Confirmed practical access paths for relevant workflow information objects.
 - Lookup keys, required fields, alternate locations, related sources, and access failure modes where needed for AI readiness.
 - Owner and steward assignments for relevant sources, systems, definitions, and quality issues.
 - Sensitive fields or content classes.
 - Retention, export, and handling constraints where relevant.
 - Permitted AI actions at discovery level: read, summarize, compare, draft, export, send, write, or prohibited.
+- AI-safe truth usage: summarize, compare, flag uncertainty, draft question, escalate, calculate, cite, recommend, decide, or prohibited.
 - Remaining unresolved items, limited to decisions that could not be made by the authorized resolver group.
 
-Ask correction and decision questions, not generic approval questions. If too many core objects are disputed, return to interviews, planning-evidence follow-up, or org-structure clarification before knowledge, risk, or readiness work. Do not create a separate Step 8 governance loop unless a blocker requires a formal data-governance project outside this engagement.
+Ask correction and decision questions, not generic approval questions. If too many core objects or truth production profiles are disputed, return to interviews, planning-evidence follow-up, or org-structure clarification before knowledge, risk, or readiness work. Do not create a separate Step 8 governance loop unless a blocker requires a formal data-governance project outside this engagement.
 
 ## AI Knowledge And Guideline Requirements Map
 
@@ -191,6 +227,7 @@ Step 8 is primarily a synthesis step, not another broad discovery cycle. Use pri
 - Edge cases.
 - Decisions and approval gates.
 - Source access profiles.
+- Truth production profiles.
 - Planning evidence.
 - Validation and governance events.
 - Role ownership, escalation paths, and disputed/unknown items.
@@ -203,7 +240,8 @@ Each knowledge requirement must include:
 - Knowledge or guideline needed.
 - Why it is needed.
 - Whether it appears tacit, explicit, mixed, or unknown.
-- Where it likely lives: policy, SOP, system, document, tracker, email, meeting habit, expert memory, or role practice.
+- Whether it is embedded in a truth production chain.
+- Where it likely lives: policy, SOP, system, document, tracker, spreadsheet, macro, reconciliation, email, meeting habit, expert memory, or role practice.
 - Likely expert/owner and why that person or role was inferred.
 - Evidence references.
 - Confidence.
@@ -218,6 +256,8 @@ Reasoning rules:
 - An edge case implies exception-handling knowledge.
 - An approval gate implies approval criteria and authority knowledge.
 - A manual check implies hidden quality or trust knowledge.
+- A spreadsheet macro, manual adjustment, or recurring reconciliation implies embedded business rules.
+- A person-dependent truth chain implies tacit capture or no-agent-use-yet until captured.
 - An escalation path implies likely expertise ownership.
 - A repeated correction implies a knowledge or training gap.
 - A source conflict implies source-trust guidance.
@@ -227,7 +267,7 @@ Use targeted follow-up only for high-value, high-risk, disputed, or low-confiden
 
 ## AI Guidance Pack
 
-Step 9 converts prioritized Step 8 requirements into implementation-ready guidance artifacts, but it is still not an implementation step. The primary source of truth is a machine-readable YAML or JSON guidance spec. A Markdown skill-style guide, prompt view, tool-policy view, and test/evaluation cases can be generated from that spec later.
+Step 9 converts prioritized Step 8 requirements into implementation-ready guidance artifacts, but it is still not an implementation step. The primary artifact is a machine-readable YAML or JSON guidance spec. A Markdown skill-style guide, prompt view, tool-policy view, and test/evaluation cases can be generated from that spec later.
 
 The guidance pack must include:
 
@@ -237,9 +277,11 @@ The guidance pack must include:
 - Purpose and AI use boundary.
 - Required inputs and missing-input behavior.
 - Source hierarchy: preferred sources, fallback sources, prohibited sources, conflict handling, and source access profile references.
+- Truth production handling: allowed truth statuses, fragile-truth behaviors, prohibited uses, required confidence language, and escalation triggers.
 - Explicit rules.
 - Tacit cues and judgment signals.
 - Examples: good, bad, edge, low-confidence, and source-conflict cases.
+- Examples: good, bad, edge, low-confidence, source-conflict, and fragile-truth cases.
 - Checklists or review criteria.
 - Allowed AI behaviors.
 - Forbidden AI behaviors.
@@ -270,9 +312,9 @@ Use prior outputs first:
 
 Who does the work:
 
-- AI does the heavy first pass: extracts metric needs from workflows and decisions, finds candidate sources, detects conflicts, drafts KPI definitions, scores analytics maturity, and proposes trust classifications with evidence.
+- AI does the heavy first pass: extracts metric needs from workflows and decisions, finds candidate sources, detects conflicts, drafts KPI definitions, maps truth production chains, scores analytics maturity, and proposes trust classifications with evidence.
 - Operating partner does the judgment work: decides which metrics matter, removes noise, challenges vague KPIs, determines whether gaps are material, and routes unresolved items.
-- Client does the truth/authority work: confirms source of record, formula, grain, owner, steward, freshness, quality checks, access boundary, and whether AI may use the metric.
+- Client does the truth/authority work: confirms official source, de facto trusted source, truth production chain, formula, grain, owner, steward, freshness, reproducibility, auditability, quality checks, access boundary, and whether AI may use the metric.
 
 Each metric must include:
 
@@ -280,12 +322,14 @@ Each metric must include:
 - Linked workflow, decision, step, approval gate, information object, source access profile, or candidate AI assist.
 - Business question and decision/action supported.
 - Formula and grain.
-- Source of record.
+- Official source and de facto trusted source.
+- Truth production chain and truth status.
 - Operational working source, if different.
 - Supporting and fallback sources.
 - Owner and steward.
 - Refresh cadence and freshness required by the decision.
 - Reconciliation status and known timing gaps.
+- Manual adjustment status, embedded rule location, reproducibility, auditability, and version/change-control status.
 - Quality checks.
 - Thresholds, targets, benchmarks, or variance rules.
 - Trust status: `trusted`, `conditionally_trusted`, `disputed`, `untrusted`, or `unknown`.
@@ -297,12 +341,12 @@ Each metric must include:
 Trust classification rules:
 
 - `trusted`: source is authoritative, formula is defined, grain is clear, owner/steward is known, freshness is enough for the decision, quality checks exist, and the metric is actually used for decisions.
-- `conditionally_trusted`: usable with caveats such as timing lag, manual refresh, source hierarchy rule, or human review.
+- `conditionally_trusted`: usable with caveats such as timing lag, manual refresh, source hierarchy rule, documented manual adjustment, or human review.
 - `disputed`: sources, formulas, ownership, or decision usage conflict.
-- `untrusted`: no reliable owner, unclear formula, poor quality, stale data, or known misuse.
+- `untrusted`: no reliable owner, unclear formula, poor quality, stale data, not-reproducible chain, low auditability, or known misuse.
 - `unknown`: not enough evidence yet.
 
-Step 10 must not let AI independently declare a metric trusted. AI proposes trust status from evidence; the authorized client owner confirms, corrects, or leaves it unresolved.
+Step 10 must not let AI independently declare a metric trusted. AI proposes trust and truth status from evidence; the authorized client owner confirms, corrects, or leaves it unresolved.
 
 Step 10 must not build dashboards, models, pipelines, semantic layers, MCPs, connectors, normalization jobs, live integrations, agents, or production automations. Those needs are routed to Step 12 and later implementation planning.
 
@@ -319,6 +363,7 @@ Use prior outputs first:
 - Step 8 knowledge/guideline requirements.
 - Step 9 guidance packs.
 - Step 10 measurement intelligence and metric trust classifications.
+- Truth production profiles and fragile-truth dependencies.
 - Planning evidence such as volumes, cycle times, cost ranges, error/rework examples, leakage examples, risk incidents, service feedback, reports, and financial/operational summaries.
 
 Who does the work:
@@ -343,17 +388,18 @@ Each value case must include:
 - User, decision, and business outcome.
 - Value hypotheses by lens.
 - Baseline metrics and trust status.
+- Truth production status for baseline metrics.
 - Conservative, base, and upside estimate where evidence supports ranges.
 - Evidence references.
 - Assumptions and confidence.
-- Dependencies: measurement, governance, source access, knowledge/guidance, architecture, risk, change management.
+- Dependencies: measurement, truth production, governance, source access, knowledge/guidance, architecture, risk, change management.
 - Risks to value capture.
 - Client confirmation needs.
-- Recommendation: `carry_forward_to_architecture_and_readiness`, `fix_measurement_first`, `fix_governance_or_knowledge_first`, `deprioritize`, or `do_not_pursue`.
+- Recommendation: `carry_forward_to_architecture_and_readiness`, `fix_measurement_first`, `fix_truth_production_first`, `fix_governance_or_knowledge_first`, `deprioritize`, or `do_not_pursue`.
 
 Rules:
 
-- Do not use disputed, untrusted, or unknown metrics as reliable baseline evidence unless the value case is explicitly about fixing measurement.
+- Do not use disputed, untrusted, unknown, shadow-derived, manually adjusted, person-dependent, missing, or not-reproducible metrics as reliable baseline evidence unless the value case is explicitly about fixing measurement or truth infrastructure.
 - Do not pretend ROI precision when evidence only supports a directional case.
 - Do not call an opportunity valuable only because it is automatable.
 - Do not carry forward opportunities with no owner, no decision/workflow, no measurable value lever, or no acceptable baseline assumption.
@@ -401,7 +447,8 @@ After multiple interviews, produce cross-interview triangulation:
 - Conflicts.
 - Repeated edge cases.
 - Role-specific differences.
-- Source-of-truth questions.
+- Official/de facto source and truth-status questions.
+- Truth production questions: official source, de facto trusted source, derivation chain, manual adjustment, macro logic, owner, reproducibility, and auditability.
 - High-risk unknowns.
 - Validation needs.
 
@@ -414,7 +461,7 @@ The planning-evidence follow-up output must include:
 - Data access posture.
 - Evidence need review.
 - Curated artifact requests.
-- Claim, edge case, source conflict, source access path, or source access profile each artifact validates.
+- Claim, edge case, source conflict, source access path, source access profile, or truth production chain each artifact validates.
 - Likely owner.
 - Sensitivity and redaction needs.
 - Access scope.
@@ -426,7 +473,7 @@ The planning-evidence follow-up output must include:
 Trust rule:
 
 - The 16-step engagement does not require build access or credentials.
-- Prefer redacted examples, screenshots, reports, trackers, templates, walkthroughs, sample exports, schema/field lists, API/vendor documentation, access-control screenshots, and data dictionaries.
+- Prefer redacted examples, screenshots, reports, trackers, templates, walkthroughs, sample exports, formulas, macro walkthroughs, reconciliation notes, schema/field lists, API/vendor documentation, access-control screenshots, and data dictionaries.
 - Do not request production credentials, broad live system access, write access, all-email ingestion, live MCP/connector access, or bulk unredacted data during the 16-step engagement.
 - If implementation will require system access, API access, MCPs, connectors, normalization pipelines, email connectors, broad data movement, or unredacted data, define that as a future access request package in the implementation blueprint.
 
@@ -438,9 +485,11 @@ Use prior outputs first:
 
 - Validated AI workflow specification.
 - Source access profiles and source inventory.
+- Truth production profiles.
 - Governance decisions from Step 7.
 - Step 9 guidance packs and test/evaluation cases.
 - Step 10 measurement intelligence, metric trust, and unresolved metric questions.
+- Fragile truth profiles and unresolved truth production questions.
 - Step 11 business value case and recommendation.
 - Planning evidence such as API/vendor docs, schema/field lists, report/export samples, access matrices, screenshots, walkthrough notes, architecture notes, data dictionaries, and redacted examples.
 
@@ -455,7 +504,7 @@ Each blueprint must include:
 
 - Stable blueprint ID, opportunity ID, workflow IDs, and value case ID.
 - Implementation posture: `technically_feasible`, `technically_feasible_with_conditions`, `blocked`, or `not_ready_for_blueprint`.
-- Systems and sources: business owner, technical owner, vendor owner, current role in workflow, source access profile IDs, data needed, sensitivity, quality issues, and practical constraints.
+- Systems and sources: business owner, technical owner, vendor owner, current role in workflow, source access profile IDs, truth production profile IDs, data needed, sensitivity, quality issues, truth status, and practical constraints.
 - Access options: API, export, report view, database view, document store, email scope, manual staging, vendor integration, RPA, or other future path.
 - Preferred path, fallback path, and blocked paths with reasons.
 - Feasibility status and who confirmed it.
@@ -464,6 +513,7 @@ Each blueprint must include:
 - Identity-resolution rules for matching records across systems.
 - Source-to-canonical mappings.
 - Normalization rules, quality checks, owner, blocker, and data freshness requirement.
+- Truth production remediation: macro extraction, formula documentation, rule capture, semantic normalization, canonical entity design, reconciliation tests, owner assignment, governed replacement path, shadow artifact retirement, or do-not-use-for-AI.
 - Runtime design requirements: minimum safe runtime pattern, whether RAG is required, retrieval source boundaries, model capability requirements, tool-calling needs, structured output needs, latency/cost/privacy constraints, state/orchestration needs, human approval gates, retry/idempotency needs, audit trace needs, and whether multi-agent design is justified.
 - Hosting/environment requirements: client preferred cloud or mandated stack, identity provider, data residency, VPC/private networking, compute pattern, storage needs, queue/workflow needs, secrets manager, observability, audit logging, vendor/security review, and preferred/fallback/blocked hosting patterns.
 - Future tool/MCP/connector specs with input contract, output contract, allowed actions, prohibited actions, data touched, permission scope, human review, logging, and build phase.
@@ -504,7 +554,7 @@ Runtime and hosting rules:
 - If the client has a mandated stack, record it as a constraint. If not, specify preferred, fallback, and blocked patterns rather than vendor choices.
 - Final model, framework, vector-store, and hosting vendor selection normally belongs to the separate implementation phase.
 
-Step 12 stop condition: stop when a future build team can understand what systems, data, runtime pattern, model capability requirements, RAG/retrieval requirements, orchestration/state requirements, hosting/environment requirements, tools, permissions, identity resolution, normalization, test data, credentials/secrets handling, audit logging, observability, and sequence would be required after Step 16 approval, while also knowing which paths are preferred, fallback, blocked, prohibited, or deferred to implementation.
+Step 12 stop condition: stop when a future build team can understand what systems, data, truth production remediation, runtime pattern, model capability requirements, RAG/retrieval requirements, orchestration/state requirements, hosting/environment requirements, tools, permissions, identity resolution, normalization, test data, credentials/secrets handling, audit logging, observability, and sequence would be required after Step 16 approval, while also knowing which paths are preferred, fallback, blocked, prohibited, or deferred to implementation.
 
 ## Risk And Control Model
 
@@ -519,6 +569,7 @@ Use prior outputs first:
 - Step 7 sensitive fields, source constraints, retention/export limits, permitted AI actions, and governance decisions.
 - Step 9 AI guidance packs, forbidden behaviors, escalation triggers, output contracts, and test/evaluation cases.
 - Step 10 trusted/disputed measurements and agent-safe metric usage.
+- Truth production profiles, fragile truth status, and AI-safe truth usage.
 - Step 11 business value case and risk tolerance implied by the value case.
 - Step 12 technical implementation blueprint: systems, access paths, runtime/orchestration requirements, hosting/environment requirements, future tools/MCPs/connectors, document/email scope, credential/secrets approach, audit/logging, test strategy, blocked paths, and build sequence.
 - Client policies and targeted owner confirmations from risk, security, legal, compliance, IT/data, and business owners.
@@ -570,7 +621,7 @@ Use prior outputs first:
 
 - Step 5 workflow intelligence object: workflow, actors, decisions, edge cases, handoffs, information objects, source access profiles, and candidate AI assists.
 - Step 6 diagnostic findings and automation blockers.
-- Step 7 validation and governance decisions: source of record, owner/steward, source access path, sensitive fields, retention, permission boundaries, and permitted AI actions.
+- Step 7 validation and governance decisions: official source, de facto trusted source, truth production, owner/steward, source access path, sensitive fields, retention, permission boundaries, and permitted AI actions.
 - Step 8 knowledge/guideline requirements.
 - Step 9 guidance packs, forbidden behaviors, escalation triggers, output contract, and test/evaluation cases.
 - Step 10 measurement intelligence, metric trust, and agent-safe metric usage.
@@ -590,6 +641,7 @@ Hard gates override averages. Each readiness object must include gate status, ev
 - Workflow clarity.
 - Source access.
 - Data quality.
+- Truth production.
 - Knowledge/guidance.
 - Measurement.
 - Technical feasibility.
@@ -611,8 +663,8 @@ Each readiness object must include:
 - Source-input coverage and missing or partial inputs.
 - Candidate AI behavior, proposed users, business outcome, decision/action supported, accountable human owner, review owner, and scope boundary.
 - Hard gates.
-- Dimension scores: business value, workflow clarity, source access readiness, data quality, knowledge/guidance readiness, measurement readiness, architecture feasibility, risk/control readiness, human oversight readiness, and change/lifecycle readiness.
-- Dependency map: systems/sources, guidance packs, metrics, runtime/orchestration requirements, hosting/environment requirements, future tools/MCPs/connectors, normalization, identity resolution, test data, credentials/secrets, logging, and controls.
+- Dimension scores: business value, workflow clarity, source access readiness, data quality, truth production readiness, knowledge/guidance readiness, measurement readiness, architecture feasibility, risk/control readiness, human oversight readiness, and change/lifecycle readiness.
+- Dependency map: systems/sources, truth production profiles, guidance packs, metrics, runtime/orchestration requirements, hosting/environment requirements, future tools/MCPs/connectors, normalization, identity resolution, test data, credentials/secrets, logging, and controls.
 - Blockers: type, description, linked gate, linked dimension, owner, required fix, evidence, behavior levels blocked, and whether the blocker changes the Step 15 path.
 - Minimum safe first behavior: behavior level, allowed actions, required inputs, human review, required controls, tests, and explicit limitations.
 - Not-ready or prohibited behaviors, reasons, and reconsideration conditions.
@@ -642,11 +694,11 @@ Step 15 path options:
 - `risk_control_plan`
 - `do_not_automate_recommendation`
 
-Step 14 stop condition: stop when every candidate opportunity has a readiness object with hard gates, dimension scores, behavior-level readiness, dependencies, blockers, required fixes, minimum safe first behavior, prohibited behaviors, owner confirmations, and a Step 15 path. Do not move to Step 15 with only a total score.
+Step 14 stop condition: stop when every candidate opportunity has a readiness object with hard gates, dimension scores, behavior-level readiness, truth production readiness, dependencies, blockers, required fixes, minimum safe first behavior, prohibited behaviors, owner confirmations, and a Step 15 path. Do not move to Step 15 with only a total score.
 
 ## Implementation Decision Packet
 
-Step 15 creates the canonical machine-readable implementation decision packet. It is the source of truth for either a build-ready implementation brief, a remediation plan, or a do-not-automate recommendation. Markdown memos, sponsor summaries, IT/security views, and build-team briefs are generated views from this packet.
+Step 15 creates the canonical machine-readable implementation decision packet. It is the controlling artifact for either a build-ready implementation brief, a remediation plan, or a do-not-automate recommendation. Markdown memos, sponsor summaries, IT/security views, and build-team briefs are generated views from this packet.
 
 Step 15 is still pre-build. It does not request credentials, build agents, build MCPs, build connectors, build normalization pipelines, ingest emails, connect to live systems, or deploy automation.
 
@@ -657,6 +709,7 @@ Use prior outputs first:
 - Step 13 risk and control model.
 - Step 9 AI guidance pack and test/evaluation cases.
 - Step 10 measurement intelligence and trusted or conditionally trusted metrics.
+- Truth production profiles and fragile-truth routing.
 - Step 11 business value case.
 - Step 5 workflow intelligence object.
 - Step 7 source, owner, access, permission, retention, and governance decisions.
@@ -683,23 +736,24 @@ The packet type must be one of:
 
 Each Step 15 packet must include:
 
-- Stable packet ID, version, status, packet type, source-of-truth flag, and source-input trace.
+- Stable packet ID, version, status, packet type, canonical-artifact flag, and source-input trace.
 - Decision summary: recommended path, readiness decision, implementation recommendation, rationale, minimum safe behavior level, client decision needed, and approval boundary.
 - Audience views: sponsor, business owner, IT/data/security, future build team, and remediation owner. Views must specify included and excluded sections.
 - Business case summary: outcome, value confidence, trusted or conditionally trusted baseline metrics, expected value range, dependencies, and risks.
 - First-build scope for build-ready packets: agent/workflow name, behavior level, users, included/excluded workflow steps, roles, edge cases, success definition, and explicit non-goals.
 - Behavior contract: allowed actions, prohibited actions, human approval gates, output contract, and failure behavior.
-- Systems and sources: owners, source-of-record status, role in workflow, data needed, required fields, sensitive fields/content, source access profile IDs, future access path, fallback path, prohibited paths, freshness, data quality, retention/export constraints, and readiness status.
+- Systems and sources: owners, official source status, de facto trusted source status, truth status, role in workflow, data needed, required fields, sensitive fields/content, source access profile IDs, truth production profile IDs, future access path, fallback path, prohibited paths, freshness, data quality, retention/export constraints, and readiness status.
+- Truth production readiness and remediation: truth profiles, status, reproducibility, auditability, safe AI usage, required fixes, and whether the packet must become a remediation plan.
 - Runtime design requirements: runtime pattern, minimum viable runtime pattern, model capability requirements, RAG/retrieval requirements, orchestration/state requirements, multi-agent rationale if required, and overengineering guardrails.
 - Hosting/environment requirements: preferred client cloud or environment, mandated stack, identity provider, data residency, network boundaries, compute pattern, storage needs, security requirements, observability requirements, and preferred/fallback/blocked hosting patterns.
 - Future component contracts: tools, MCP servers, connectors, retrieval indexes, normalization jobs, workflow queues, eval runners, or similar future components, with input contract, output contract, allowed/prohibited actions, data touched, permission scope, human review, logging, failure behavior, and dependencies.
-- Normalization plan: canonical entities, mappings, identity-resolution rules, quality checks, owners, blockers, and freshness requirements.
+- Normalization and truth remediation plan: canonical entities, mappings, identity-resolution rules, quality checks, macro/formula/rule extraction, reconciliation tests, owners, blockers, and freshness requirements.
 - Guidance and eval package: guidance pack IDs, rule references, required examples, eval cases, expected behavior, pass criteria, linked controls, and exit criteria.
 - Risk and controls: risk posture, sensitive data summary, controls, audit logging, monitoring, incident response, and revocation.
 - Future access requests for after Step 16 approval: system/source, purpose, permission scope, prohibited permissions, provisioning owner, approval dependencies, credential/secrets handling, rotation, revocation, audit logging, and test/sandbox preference.
 - Build sequence: offline prototype, sandbox integration, limited pilot, and optional controlled expansion, with prerequisites, inputs, outputs, tests, exit criteria, and stop conditions.
 - Owner matrix: business, day-to-day, technical, data, security, risk/compliance, future build owner, and approvers.
-- Remediation plan when not build-ready: reason not ready, required fixes, linked readiness gate, owner, evidence needed, completion criteria, dependencies, reassessment trigger, and return to Step 14.
+- Remediation plan when not build-ready: reason not ready, required fixes, linked readiness gate, owner, evidence needed, completion criteria, dependencies, reassessment trigger, and return to Step 14. Fragile truth must route to governance/data readiness, knowledge capture, or technical feasibility unless safe-limited behavior is explicitly selected.
 - Do-not-automate recommendation when applicable: reasons, unacceptable risks, alternative recommendation, and revisit conditions.
 - Stop boundary confirming no build, no live access, no credentials, no MCP/connector build, no normalization pipeline build, and no email ingestion during the 16-step engagement.
 
@@ -709,12 +763,13 @@ Step 15 output rules:
 - Do not create separate inconsistent versions for different audiences. Generate controlled views from the same structured object.
 - Do not include implementation secrets, actual credentials, live tokens, or employee passwords.
 - Do not mark an item build-ready if Step 14 hard gates failed or blocking dependencies remain unresolved.
+- Do not mark an item build-ready when material truth is shadow-derived, manually adjusted, person-dependent, disputed, missing, or not reproducible unless the selected behavior is explicitly limited to safe support and the packet prohibits final decisions and autonomous action.
 - Do not hide blockers in narrative. Every blocker must have an owner, evidence needed, completion criteria, and reassessment route.
 - Do not create a build sequence without exit criteria and stop conditions.
 - Do not convert requirements into vendor picks unless the client has a mandated stack or the implementation phase owns that selection.
 - Do not default to RAG, vector databases, multi-agent orchestration, or frontier models without a requirement-based rationale.
 
-Step 15 stop condition: stop when the future implementation decision can be made from the packet, and a future build team can understand scope, behavior, systems, runtime pattern, model capability requirements, RAG/retrieval requirements, orchestration/state requirements, hosting/environment requirements, access requests, components, normalization, tests, controls, owners, sequence, and stop conditions without rediscovering the organization. If the opportunity is not ready, stop when the remediation packet names every blocking fix, owner, evidence needed, completion criteria, dependency, and Step 14 reassessment trigger.
+Step 15 stop condition: stop when the future implementation decision can be made from the packet, and a future build team can understand scope, behavior, systems, truth production status, runtime pattern, model capability requirements, RAG/retrieval requirements, orchestration/state requirements, hosting/environment requirements, access requests, components, normalization, truth remediation, tests, controls, owners, sequence, and stop conditions without rediscovering the organization. If the opportunity is not ready, stop when the remediation packet names every blocking fix, owner, evidence needed, completion criteria, dependency, and Step 14 reassessment trigger.
 
 ## Managed Lifecycle Object
 
@@ -730,6 +785,7 @@ Use prior outputs first:
 - Step 12 technical blueprint.
 - Step 11 value case.
 - Step 10 measurement intelligence.
+- Truth production profiles and truth governance requirements.
 - Step 9 guidance pack and eval cases.
 - Step 7 source, owner, access, permission, retention, and governance decisions.
 - Step 5 workflow intelligence object.
@@ -750,21 +806,21 @@ The lifecycle path must be one of:
 
 Each Step 16 lifecycle object must include:
 
-- Stable lifecycle object ID, version, status, source-of-truth flag, lifecycle path, and source-input trace.
+- Stable lifecycle object ID, version, status, canonical-artifact flag, lifecycle path, and source-input trace.
 - Operating status and approval boundary: current engagement phase, future implementation status, separate implementation approval requirement, and no-live-agent boundary.
 - Lifecycle scope: future agent/workflow name, opportunity, business outcome, authorized behavior level, unauthorized behavior levels, target user groups, environments, and scope exclusions.
 - Owner model: business owner, day-to-day owner, technical owner, data owner, security owner, risk/compliance owner, support owner, guidance update owner, measurement owner, source freshness owner, incident owner, revocation owner, future build owner, sponsor, approval forum, and responsibility matrix.
 - Future lifecycle stages: implementation approval, offline validation, sandbox integration, limited pilot, controlled rollout, monitored operation, and expansion/retirement review, each with entry criteria, exit criteria, approvals, and stop conditions.
 - Launch gates: evals passed, controls verified, audit logging ready, human review workflow confirmed, revocation ready, and support model ready.
 - Validation plan: eval suites, redacted/synthetic test data, source grounding, edge cases, permission boundaries, output quality, human review, failure behavior, and pre-pilot exit criteria.
-- Monitoring plan: quality metrics, business metrics, risk metrics, technical metrics, source freshness checks, cost/usage metrics, thresholds, alerts, owners, and cadence.
+- Monitoring plan: quality metrics, business metrics, risk metrics, technical metrics, source freshness checks, truth production checks, cost/usage metrics, thresholds, alerts, owners, and cadence.
 - Feedback and correction loop: feedback channels, correction categories, severity routing, backlog owner, and review cadence.
-- Change management: guidance updates, source changes, tool changes, model/runtime changes, required revalidation triggers, affected artifacts, and versioning policy.
+- Change management: guidance updates, source changes, truth-rule changes, tool changes, model/runtime changes, required revalidation triggers, affected artifacts, and versioning policy.
 - Access review and revocation: review cadence, review scope, revocation triggers, expected time to revoke, restoration conditions, and emergency pause process.
 - Incident response: owner, severity levels, triggers, immediate actions, escalation path, evidence preservation, notification expectations, and post-incident review.
 - Governance cadence: pilot governance meeting, steady-state review, and executive review cadence, attendees, agenda, and decision rights.
 - Expansion criteria: eligible expansion types, required evidence, owner approval, Step 14 reassessment, and Step 15 packet update.
-- Retirement criteria: low usage, high correction rate, source-system replacement, no measurable value, unacceptable risk, retirement owner, access revocation, retention/deletion rule, and documentation update.
+- Retirement criteria: low usage, high correction rate, source-system replacement, truth-production no longer reproducible, no measurable value, unacceptable risk, retirement owner, access revocation, retention/deletion rule, and documentation update.
 - Remediation lifecycle when applicable: linked fixes, remediation owner, review cadence, evidence required to reopen readiness, return-to-step, and stop-if-not-resolved condition.
 - No-automation review cadence when applicable: reason not automated, alternative operating recommendation, revisit conditions, revisit owner, and revisit cadence.
 - Final approval: Step 16 approval status, approvers, approval date, approval notes, implementation authorization, and conditions before implementation.
@@ -779,7 +835,7 @@ Step 16 output rules:
 - Do not treat monitoring as only technical uptime. Include quality, business value, risk, source freshness, user feedback, cost, and correction metrics.
 - Do not leave retirement undefined. Every future AI capability needs conditions for pause, remediation, and retirement.
 
-Step 16 stop condition: stop when the future operating model can answer who owns the AI capability, who can approve launch, who monitors it, what proves it works, what triggers pause/revocation, how rules and sources are updated, how incidents are handled, when scope can expand, when it should be retired, and what governance cadence keeps it accountable. If Step 15 is not build-ready, stop when the remediation or no-automation review cadence is owned, measurable, and has a return-to-readiness or revisit trigger.
+Step 16 stop condition: stop when the future operating model can answer who owns the AI capability, who can approve launch, who monitors it, what proves it works, what triggers pause/revocation, how rules, truth production chains, and sources are updated, how incidents are handled, when scope can expand, when it should be retired, and what governance cadence keeps it accountable. If Step 15 is not build-ready, stop when the remediation or no-automation review cadence is owned, measurable, and has a return-to-readiness or revisit trigger.
 
 ## Evidence Standard
 

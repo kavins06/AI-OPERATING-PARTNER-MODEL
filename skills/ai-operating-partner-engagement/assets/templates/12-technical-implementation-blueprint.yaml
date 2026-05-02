@@ -14,6 +14,7 @@ source_inputs:
   workflow_spec_ids: []
   source_inventory_ids: []
   source_access_profile_ids: []
+  truth_production_profile_ids: []
   governance_event_ids: []
   guidance_pack_ids: []
   measurement_intelligence_ids: []
@@ -28,9 +29,12 @@ systems_and_sources:
     vendor_owner_role:
     current_role_in_workflow:
     source_access_profile_ids: []
+    truth_production_profile_ids: []
     data_needed: []
     sensitive_fields_or_classes: []
     quality_issues: []
+    truth_status: "unknown" # authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown
+    truth_production_constraints: []
     practical_constraints: []
 
 access_options:
@@ -86,6 +90,31 @@ normalization_requirements:
     quality_check:
     freshness_requirement:
     blocker:
+
+truth_production_remediation:
+  - remediation_id:
+    truth_profile_id:
+    current_truth_status: "unknown"
+    remediation_pattern: "macro_extraction | formula_documentation | semantic_normalization | canonical_entity_design | reconciliation_tests | owner_assignment | governed_replacement | shadow_report_retirement | do_not_use_for_ai"
+    purpose:
+    artifacts_to_extract_or_document:
+      - "formula"
+      - "spreadsheet_macro"
+      - "manual_adjustment_rule"
+      - "reconciliation_rule"
+      - "report_definition"
+    future_build_phase:
+    required_owner_role:
+    required_knower_or_expert_role:
+    test_cases_needed:
+      - "clean_system_of_record"
+      - "shadow_excel_macro"
+      - "expert_memory_truth"
+      - "conflicting_reports"
+      - "safe_limited_ai_behavior"
+    acceptance_criteria: []
+    blocks_behavior_levels: []
+    not_build_authorization: true
 
 runtime_design_requirements:
   runtime_pattern: "" # simple_assistant | rag_assistant | tool_using_agent | workflow_automation_with_ai | decision_support_copilot | monitoring_exception_agent | multi_agent_system | dashboard_or_reporting_fix | do_not_automate

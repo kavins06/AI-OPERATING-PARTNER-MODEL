@@ -1,6 +1,6 @@
 ---
 name: managed-agent-lifecycle
-description: "Create machine-readable managed lifecycle objects for future AI capabilities, covering ownership, approval, launch gates, validation, deployment stages, monitoring, feedback, source freshness, access review, incident response, revocation, guidance updates, expansion, retirement, remediation cadence, and no-automation review cadence. Use after readiness and implementation decision planning."
+description: "Create machine-readable managed lifecycle objects for future AI capabilities, covering ownership, approval, launch gates, validation, deployment stages, monitoring, feedback, truth governance, source freshness, access review, incident response, revocation, guidance updates, expansion, retirement, remediation cadence, and no-automation review cadence. Use after readiness and implementation decision planning."
 ---
 
 # Managed Agent Lifecycle
@@ -11,7 +11,7 @@ Manage agents as living information systems, not one-time automations.
 
 Inside the AI operating partner engagement, this skill produces the future operating model only. Do not build, deploy, monitor, or operate a client agent during the 16-step engagement.
 
-The source of truth is a structured lifecycle object, not a narrative SOP. Markdown SOPs are generated views.
+The canonical artifact is a structured lifecycle object, not a narrative SOP. Markdown SOPs are generated views.
 
 Useful references:
 
@@ -26,12 +26,14 @@ Start the lifecycle only after the operating partner has gathered:
 - Validated workflow map.
 - Business owner and success metric.
 - Source inventory and governance model.
+- Truth production profiles and truth governance model.
 - Knowledge map and review criteria.
 - Risk register.
 - Zero-trust permission boundary.
 - Step 14 readiness object with hard gates, behavior-level readiness, blockers, minimum safe first behavior, and Step 15 path.
 - Step 15 machine-readable implementation decision packet with build scope or remediation path, future component contracts, access requests, normalization, tests, controls, owners, sequence, and stop conditions.
 - Baseline metrics.
+- Truth production status for baseline metrics and AI inputs.
 - Human approval model.
 - Monitoring requirements.
 - Future access request package for agents, MCPs, connectors, normalization pipelines, and email/data access.
@@ -54,7 +56,7 @@ Use one of three paths:
 4. Build: sandbox first, synthetic and historical examples, human review.
 5. Validate: grounding, edge cases, controls, metrics, failure behavior.
 6. Deploy: staged rollout, training, support, incident path.
-7. Operate: monitor quality, drift, feedback, cost, source freshness, risk events.
+7. Operate: monitor quality, drift, feedback, cost, source freshness, truth production, risk events.
 8. Improve: refresh sources, update SOPs, tune tools, close gaps.
 9. Expand: add scope only after evidence and owner approval.
 10. Retire: remove unused, risky, or low-value flows.
@@ -67,12 +69,13 @@ The lifecycle object must include:
 
 - Lifecycle path, operating status, and approval boundary.
 - Source-input trace from Step 15, Step 14, Step 13, Step 12, Step 11, Step 10, Step 9, Step 7, and Step 5.
+- Truth production governance: source drift checks, rule-change approval, reconciliation cadence, owner review, and shadow artifact retirement.
 - Lifecycle scope: future AI behavior level, authorized and unauthorized behavior levels, target users, environments, and exclusions.
 - Owner model: business, day-to-day, technical, data, security, risk/compliance, support, guidance update, measurement, source freshness, incident, revocation, future build, sponsor, and approval forum.
 - Future lifecycle stages with entry criteria, exit criteria, approvals, and stop conditions.
 - Launch gates: evals, controls, audit logging, human review workflow, revocation readiness, and support model.
 - Validation plan.
-- Monitoring plan.
+- Monitoring plan, including truth production checks.
 - Feedback and correction loop.
 - Change management and revalidation triggers.
 - Access review and revocation.
@@ -93,6 +96,7 @@ Every managed agent needs:
 - Data steward.
 - Risk owner.
 - Source inventory.
+- Truth production owner.
 - Permission boundary.
 - Human approval rules.
 - Audit log.
@@ -116,6 +120,8 @@ Monitoring must cover more than uptime. Track:
 - Business metric movement.
 - Risk events.
 - Data freshness.
+- Truth production drift.
+- Rule or macro change events.
 - Source retrieval failures.
 - Unsupported recommendation attempts.
 - Approval gate bypass attempts.
@@ -128,7 +134,7 @@ Monitoring must cover more than uptime. Track:
 - Do not approve launch unless every launch gate has an owner, evidence, pass criteria, and stop condition.
 - Do not expand scope until current-scope value, quality, risk, source freshness, access review, and user feedback are acceptable.
 - Any new user group, source, tool action, output type, write/send behavior, or workflow step requires readiness reassessment and an updated implementation packet.
-- Any major source, policy, approval-threshold, document-type, model/runtime, or tool-contract change requires revalidation.
+- Any major source, truth production chain, formula, macro, manual adjustment rule, policy, approval-threshold, document-type, model/runtime, or tool-contract change requires revalidation.
 
 ## Output Template
 

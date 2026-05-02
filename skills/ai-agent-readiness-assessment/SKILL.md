@@ -1,6 +1,6 @@
 ---
 name: ai-agent-readiness-assessment
-description: "Create implementation-grade AI-agent readiness objects for candidate opportunities by evaluating hard gates, behavior-level readiness, business value, workflow clarity, source access, data quality, knowledge/guidance, measurement, architecture, risk controls, human oversight, lifecycle readiness, dependencies, blockers, and Step 15 path. Use after discovery and before implementation."
+description: "Create implementation-grade AI-agent readiness objects for candidate opportunities by evaluating hard gates, behavior-level readiness, business value, workflow clarity, source access, data quality, truth production, knowledge/guidance, measurement, architecture, risk controls, human oversight, lifecycle readiness, dependencies, blockers, and Step 15 path. Use after discovery and before implementation."
 ---
 
 # AI Agent Readiness Assessment
@@ -27,7 +27,8 @@ Before scoring, gather or explicitly mark missing:
 - Candidate opportunity ID, linked workflow IDs, proposed users, and business outcome.
 - Validated AI workflow intelligence object from Step 5.
 - Organizational diagnostic findings and automation blockers from Step 6.
-- Controlled validation/governance decisions from Step 7: source of record, owner/steward, source access path, sensitive fields, retention, permission boundaries, and permitted AI actions.
+- Controlled validation/governance decisions from Step 7: official source, de facto trusted source, truth production, owner/steward, source access path, sensitive fields, retention, permission boundaries, and permitted AI actions.
+- Truth production profiles: truth status, owner/knower, reproducibility, auditability, AI-safe usage, and remediation route.
 - Knowledge requirements from Step 8.
 - AI guidance pack, forbidden behaviors, escalation triggers, output contract, and test cases from Step 9.
 - Measurement intelligence, metric trust classifications, KPI definitions, and agent-safe metric usage from Step 10.
@@ -48,7 +49,7 @@ Score readiness by behavior level. A workflow can be ready for a narrow AI behav
 - `human_approved_action`: prepare or execute a bounded action only after explicit human approval.
 - `autonomous_action`: execute bounded actions without case-by-case approval.
 
-Early implementation plans should usually start at the lowest useful behavior level. Do not mark a higher level ready when source access, controls, approvals, logging, revocation, or measurement trust are unresolved.
+Early implementation plans should usually start at the lowest useful behavior level. Do not mark a higher level ready when source access, truth production, controls, approvals, logging, revocation, or measurement trust are unresolved.
 
 ## Hard Gates
 
@@ -58,8 +59,9 @@ Minimum gates:
 
 - `business_value_gate`: credible value and owner exist.
 - `workflow_clarity_gate`: workflow, roles, decisions, and edge cases are clear enough.
-- `source_access_gate`: required sources, source-of-record, access path, and owner are known or explicitly scoped out.
+- `source_access_gate`: required sources, official/de facto source status, access path, and owner are known or explicitly scoped out.
 - `data_quality_gate`: required data quality is adequate for the proposed AI behavior level.
+- `truth_production_gate`: material truth production is known, owned, reproducible enough, auditable enough, and safe for the proposed behavior level.
 - `knowledge_guidance_gate`: guidance pack, examples, forbidden behaviors, and escalation rules are sufficient.
 - `measurement_gate`: value and success measurements are trusted or conditionally trusted.
 - `technical_feasibility_gate`: future architecture, runtime/orchestration requirements, hosting/environment requirements, access, identity, normalization, tool contracts, test strategy, and blocked paths are known.
@@ -77,6 +79,7 @@ Score 1-5 and record evidence confidence for each dimension:
 - Workflow clarity.
 - Source access readiness.
 - Data quality.
+- Truth production readiness.
 - Knowledge/guidance readiness.
 - Measurement readiness.
 - Architecture feasibility.
@@ -90,7 +93,7 @@ Score 1-5 and record evidence confidence for each dimension:
 3 means usable but with named gaps.
 5 means clear, governed, measurable, and ready to be included in a post-Step-16 implementation plan.
 
-Do not average away a critical stop condition. A single failed hard gate, severe Step 13 stop condition, missing source access path, missing owner, prohibited action, or unresolved credential/logging/revocation issue can block build even if the total score is high.
+Do not average away a critical stop condition. A single failed hard gate, severe Step 13 stop condition, missing source access path, missing owner, fragile truth dependency, prohibited action, or unresolved credential/logging/revocation issue can block build even if the total score is high.
 
 ## Assessment Workflow
 
@@ -99,7 +102,7 @@ Do not average away a critical stop condition. A single failed hard gate, severe
 3. Evaluate hard gates and identify any override conditions.
 4. Score each dimension with evidence references, confidence, gap/fix, owner, and blocking status.
 5. Score readiness by behavior level: ready, conditional, not ready, or prohibited.
-6. Map dependencies across systems, data sources, guidance packs, metrics, controls, owners, access paths, normalization, tools/MCPs/connectors, tests, credentials/secrets, logging, and lifecycle.
+6. Map dependencies across systems, data sources, truth production profiles, guidance packs, metrics, controls, owners, access paths, normalization, tools/MCPs/connectors, tests, credentials/secrets, logging, and lifecycle.
 7. Name blockers, required fixes, owner, target resolution path, and whether the blocker changes the Step 15 path.
 8. Define minimum safe first behavior and explicitly list not-ready or prohibited behaviors.
 9. Recommend the Step 15 path.
@@ -117,6 +120,7 @@ The readiness object must include:
 - Dimension scores with evidence confidence and gap/fix.
 - Behavior-level readiness.
 - Dependency map.
+- Truth production readiness and fragile truth blockers.
 - Blockers and required fixes.
 - Minimum safe first behavior.
 - Not-ready and prohibited behavior levels.
@@ -129,7 +133,7 @@ The readiness object must include:
 
 - `ready_for_step_15_build_brief`: all hard gates pass or have non-blocking conditions, score is strong, evidence confidence is sufficient, and the first behavior level is safe.
 - `fix_gaps_first`: value exists, but one or more fixable blockers prevent a build-ready brief.
-- `governance_or_data_readiness_first`: source, permission, quality, owner, retention, or measurement issues are blocking.
+- `governance_or_data_readiness_first`: source, truth production, permission, quality, owner, retention, or measurement issues are blocking.
 - `knowledge_capture_first`: tacit rules, examples, escalation criteria, or output contract are not mature enough.
 - `technical_feasibility_first`: API/export/vendor/test/credential/logging/normalization feasibility is unresolved.
 - `risk_control_first`: sensitive data, approval, output, monitoring, incident, or revocation controls are not acceptable.

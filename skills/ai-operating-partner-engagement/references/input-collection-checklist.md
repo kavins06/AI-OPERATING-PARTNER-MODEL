@@ -93,6 +93,10 @@ Allowed during the 16-step engagement:
 - Screenshots.
 - Read-only walkthroughs led by the client.
 - Sample exports.
+- Formula extracts or screenshots.
+- Macro walkthroughs.
+- Reconciliation notes.
+- Redacted final reporting or decision packets.
 - Schema, field lists, report definitions, or data dictionaries.
 - API, vendor, or integration documentation.
 - Access matrix or role-permission screenshots.
@@ -142,6 +146,11 @@ During interviews, when someone names a report, system, document, field, dashboa
 - Who can access it today?
 - What happens when it is missing, stale, duplicated, wrong, or stored somewhere else?
 - Is the source official, practical, or disputed?
+- If people treat this as true, what official source is supposed to be authoritative?
+- What de facto source, artifact, report, spreadsheet, macro, or person do people actually trust?
+- What export, formula, macro, manual adjustment, reconciliation, or judgment step produces the final answer?
+- Who owns the truth and who understands the production chain?
+- Is the chain documented, versioned, reproducible, and auditable?
 - Is any part sensitive or approval-bound?
 
 Do not ask for passwords, credentials, unrestricted system access, or live uploads. If a screenshot, walkthrough, export, or redacted example would help later, log a silent evidence need for operating partner review.
@@ -154,7 +163,8 @@ Use the AI workflow specification and diagnostic to prefill:
 
 - Systems and sources mentioned.
 - Information objects and source access profiles.
-- Source-of-record candidates and conflicts.
+- Official source candidates, de facto trusted sources, and source conflicts.
+- Truth production profiles: official source, de facto trusted source, production chain, embedded rules/macros/manual adjustments, owner, reproducibility, auditability, and AI-safe usage.
 - Practical access paths, lookup keys, required fields, and alternate locations.
 - Likely owners and stewards.
 - Known quality issues.
@@ -164,7 +174,11 @@ Use the AI workflow specification and diagnostic to prefill:
 
 Route only unresolved or high-risk objects to the smallest authorized resolver group. Ask object-specific decision questions:
 
-- Is this the authoritative source for this workflow object?
+- What is the official source for this workflow object?
+- What source or artifact is de facto trusted when work must get done?
+- How is the final truth produced from raw source to final report, status, or decision?
+- Which formulas, macros, manual adjustments, reconciliations, or expert-memory rules matter?
+- Is the truth chain owned, reproducible, and auditable?
 - Is this the correct practical access path for the information object?
 - Who owns the definition or source?
 - Who stewards quality and correction?
@@ -172,6 +186,7 @@ Route only unresolved or high-risk objects to the smallest authorized resolver g
 - What retention, export, or handling rule applies?
 - Can AI read, summarize, compare, draft from, export, send, or write this?
 - Which action is prohibited until risk or zero-trust controls are designed?
+- Which AI use is prohibited until truth production is remediated or limited to summarize, compare, flag uncertainty, draft question, or escalate?
 
 ## Metrics
 

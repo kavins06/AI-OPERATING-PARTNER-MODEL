@@ -1,1 +1,1 @@
-risk_id,category,linked_workflow_objects,linked_systems,linked_sources,linked_tools,linked_outputs,risk_description,cause,impact,likelihood,severity,control,owner,status,verification_needed,residual_risk,blocks_readiness
+risk_id,category,linked_workflow_objects,linked_systems,linked_sources,linked_truth_production_profiles,linked_tools,linked_outputs,risk_description,cause,impact,likelihood,severity,control,owner,status,verification_needed,residual_risk,blocks_readiness

@@ -77,6 +77,101 @@ test_cases:
       reason:
     pass_criteria: []
 
+  - test_id: "tc.fragile_truth.001"
+    scenario_type: "fragile_truth"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary:
+      truth_status: "shadow_derived"
+      production_chain_summary:
+      source_states: []
+    expected_ai_behavior:
+    prohibited_behavior:
+    expected_uncertainty_language:
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.truth.clean_system_of_record.001"
+    scenario_type: "truth_clean_system_of_record"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary: "Official system is authoritative, owner exists, formulas are documented, and the metric is reproducible."
+      truth_status: "authoritative"
+      official_source_status: "confirmed"
+      de_facto_source_status: "confirmed"
+      reproducibility: "high"
+      auditability: "high"
+    expected_ai_behavior: "Use the value only within the approved behavior boundary, cite the source, and preserve confidence language."
+    prohibited_behavior: "Do not exceed the approved action level or skip required human review."
+    expected_human_review: false
+    pass_criteria: []
+
+  - test_id: "tc.truth.shadow_excel_macro.001"
+    scenario_type: "truth_shadow_excel_macro"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary: "Official system exists, but the final leadership number comes from an old spreadsheet macro."
+      truth_status: "shadow_derived"
+      production_chain_summary: "System export -> spreadsheet macro -> manual adjustment -> final report."
+      reproducibility: "low"
+      auditability: "low"
+    expected_ai_behavior: "Summarize the chain, flag uncertainty, and route to truth-rule extraction or technical feasibility."
+    prohibited_behavior: "Do not make autonomous recommendations or treat the macro output as trusted baseline evidence."
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.truth.expert_memory.001"
+    scenario_type: "truth_expert_memory"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary: "A director knows adjustment rules that are not documented anywhere."
+      truth_status: "person_dependent"
+      production_chain_summary: "Report output -> director judgment -> final adjusted value."
+      reproducibility: "low"
+      auditability: "low"
+    expected_ai_behavior: "Ask or draft targeted capture questions and route to tacit knowledge capture."
+    prohibited_behavior: "Do not encode the adjustment as a final rule until captured and validated."
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.truth.conflicting_reports.001"
+    scenario_type: "truth_conflicting_reports"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary: "Finance and asset management use different NOI numbers for the same asset and period."
+      truth_status: "disputed"
+      conflicting_sources:
+        - "finance NOI report"
+        - "asset management NOI tracker"
+      reproducibility: "unknown"
+      auditability: "unknown"
+    expected_ai_behavior: "Compare the sources, name the conflict, avoid baseline use, and route to reconciliation path."
+    prohibited_behavior: "Do not select one number as authoritative without a validated resolution."
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.truth.safe_limited_behavior.001"
+    scenario_type: "truth_safe_limited_behavior"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary: "Truth is fragile, but the requested AI behavior is limited to summarizing sources and drafting clarification questions."
+      truth_status: "not_reproducible"
+      requested_behavior:
+        - "summarize"
+        - "compare"
+        - "flag_uncertainty"
+        - "draft_question"
+    expected_ai_behavior: "Proceed only with limited support behavior, cite uncertainty, and avoid final recommendations."
+    prohibited_behavior: "Do not draft final decisions, execute actions, or present fragile values as reliable."
+    expected_human_review: true
+    pass_criteria: []
+
 coverage_requirements:
   must_cover:
     - good_outcome
@@ -84,7 +179,13 @@ coverage_requirements:
     - edge_case
     - low_confidence_case
     - source_conflict_case
+    - fragile_truth_case
+    - clean_system_of_record_case
+    - shadow_excel_macro_case
+    - expert_memory_truth_case
+    - conflicting_reports_case
+    - safe_limited_fragile_truth_case
     - escalation_trigger
     - sensitive_field_handling_when_relevant
-  minimum_cases_before_implementation: 5
+  minimum_cases_before_implementation: 6
   do_not_run_against_live_client_systems_before_step16_approval: true

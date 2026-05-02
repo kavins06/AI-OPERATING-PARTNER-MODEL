@@ -15,6 +15,7 @@ Identify what knowledge and future AI guidelines are required before this workfl
 - Organizational intelligence diagnostic:
 - Edge case register:
 - Source access profiles:
+- Truth production profiles:
 - Planning evidence:
 - Validation/governance events:
 - Approval gates:
@@ -29,13 +30,21 @@ Use prior evidence first. Do not run another broad interview cycle. Use targeted
 
 | Knowledge ID | Linked Object | Knowledge / Guideline Needed | Why Needed | Tacit / Explicit | Likely Location | Likely Owner / Expert | Evidence Refs | Confidence | Gap / Risk | Next Route |
 |---|---|---|---|---|---|---|---|---|---|---|
-| | workflow / step / decision / edge_case / approval_gate / information_object / source / candidate_assist | | | tacit / explicit / mixed / unknown | policy / SOP / system / document / tracker / email / expert memory / role practice | | | low / medium / high | | tacit_capture / policy_review / SOP_needed / risk_review / analytics_definition / no_agent_use_yet / targeted_confirmation |
+| | workflow / step / decision / edge_case / approval_gate / information_object / source / truth_production_profile / candidate_assist | | | tacit / explicit / mixed / unknown | policy / SOP / system / document / tracker / spreadsheet / macro / reconciliation / email / expert memory / role practice | | | low / medium / high | | tacit_capture / policy_review / SOP_needed / risk_review / analytics_definition / truth_rule_extraction / no_agent_use_yet / targeted_confirmation |
+
+## Truth Production Knowledge Requirements
+
+Treat macros, manual adjustments, recurring reconciliations, shadow trackers, report-pack preparation, and expert memory as knowledge objects when they produce business truth.
+
+| Truth Profile ID | Embedded Knowledge | Where Encoded | Owner / Knower | Extraction Needed | Examples Needed | AI Use Boundary | Next Route |
+|---|---|---|---|---|---|---|---|
+| | formula / macro / adjustment rule / reconciliation rule / exception judgment / reporting convention | system_config / report_logic / spreadsheet_macro / SOP / expert_memory / meeting_habit / unknown | | yes / no / unknown | good / bad / edge / source_conflict | summarize / compare / flag_uncertainty / draft_question / escalate / prohibited | tacit_capture / policy_review / rule_extraction / risk_review / no_agent_use_yet |
 
 ## Guideline Requirements For AI
 
 | Guideline Requirement ID | Linked Knowledge ID | Future AI Guidance Needed | Allowed Future Use | Forbidden Future Use | Human Review Needed | Examples Needed | Step 9 Priority |
 |---|---|---|---|---|---|---|---|
-| | | | | | | good / bad / edge case | low / medium / high |
+| | | | | | | good / bad / edge / source_conflict / fragile_truth | low / medium / high |
 
 ## Expert And Ownership Inference
 
@@ -64,3 +73,4 @@ Use only when prior evidence is insufficient.
 - Items routed outside Step 9:
 - Blocking unknowns:
 - No-agent-use-yet areas:
+- Fragile truth profiles requiring extraction, ownership, or remediation:

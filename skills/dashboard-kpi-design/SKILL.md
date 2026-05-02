@@ -1,6 +1,6 @@
 ---
 name: dashboard-kpi-design
-description: "Design decision-ready dashboards and KPI standards with audience, business question, formulas, grain, source systems, context, thresholds, filters, owners, and quality checks. Use when Codex needs dashboard specs, KPI dictionaries, metric governance, or agent-safe analytics definitions."
+description: "Design decision-ready dashboards and KPI standards with audience, business question, formulas, grain, official sources, de facto trusted sources, truth production chains, context, thresholds, filters, owners, and quality checks. Use when Codex needs dashboard specs, KPI dictionaries, metric governance, or agent-safe analytics definitions."
 ---
 
 # Dashboard KPI Design
@@ -25,7 +25,7 @@ Useful references:
 3. Identify the workflow and outcome.
 4. Select KPIs that drive action.
 5. Define formulas and grain.
-6. Identify sources and refresh cadence.
+6. Identify official sources, de facto trusted sources, truth production chains, and refresh cadence.
 7. Classify metric trust: trusted, conditionally trusted, disputed, untrusted, or unknown.
 8. Add context: target, prior period, benchmark, trend, threshold.
 9. Define allowed filters and drilldowns.
@@ -43,6 +43,7 @@ Interview and collect targeted confirmation from:
 - Operators: what they check daily and what signals action.
 - Admin/reporting staff: current report production and metric pain.
 - Data owners: formulas, source systems, quality issues.
+- Report owners and operators: formulas, spreadsheet macros, manual adjustments, reconciliations, and de facto trusted artifacts.
 - Current dashboards, reports, spreadsheets, and board packs.
 
 Use adaptive AI interviews to ask "What decision does this number change?" for every proposed KPI.
@@ -58,7 +59,13 @@ Do not ask for live system access, credentials, or build access. Use approved pl
 | Formula | |
 | Grain | |
 | Unit | |
-| Source of record | |
+| Official source | |
+| De facto trusted source | |
+| Truth production chain | |
+| Truth status | |
+| Manual adjustment / macro / reconciliation status | |
+| Reproducibility | |
+| Auditability | |
 | Operational working source | |
 | Source access profile | |
 | Refresh cadence | |
@@ -108,6 +115,7 @@ Deliver:
 - Layout sections.
 - Filters and drilldowns.
 - Data sources.
+- Truth production profiles.
 - Metric trust status.
 - Agent-safe metric usage.
 - Quality checks.
