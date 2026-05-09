@@ -1,0 +1,417 @@
+example_id: golden_path_phase_13_managed_agentops
+phase_id: 13
+phase_key: managed_agentops
+phase_name: Managed AgentOps
+source_packet: skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml
+status: complete_phase_example
+purpose: "Filled operating record example for a production draft-and-flag revenue intake agent."
+minimum_completed_sections:
+  - source_inputs
+  - agent_identity
+  - operating_model
+  - live_scope
+  - cadence
+  - operating_metrics
+  - source_freshness
+  - access_review
+  - guidance_and_knowledge_updates
+  - incident_response_and_revocation
+  - review_log
+  - incidents
+  - drift_and_change_log
+  - value_tracking
+  - operating_decisions
+section1_inputs_used:
+  - managed_lifecycle_object
+  - measurement_intelligence
+  - ai_guidance_pack
+  - organizational_intelligence_baseline
+  - risk_control_model
+section2_outputs_demonstrated:
+  - agentops_operating_record
+evidence_expectations:
+  - "Cite approved Step 17/18 source artifacts and production readiness evidence."
+  - "Show current release, operating record, trace dashboard, access review, source attestation, and value evidence."
+  - "Record blockers instead of filling missing facts."
+  - "Evaluate stop conditions and return-to-method triggers before phase exit."
+
+completed_object:
+  object_type: "agentops_operating_record"
+  spec_version: "post_18_agentops_v0.1"
+  schema_version: "current"
+  object_id: "agentops_record_demo_revenue_intake_20260608"
+  version: "1.0"
+  status: "active"
+  source_of_truth: true
+  source_inputs:
+    build_contract_id: "build_contract_demo_revenue_intake_20260504"
+    release_version_manifest_id: "release_demo_revenue_intake_1_0_0"
+    production_readiness_gate_id: "production_gate_demo_revenue_intake_20260601"
+    trace_observability_spec_id: "trace_spec_demo_revenue_intake_20260504"
+    guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260504"
+    tool_contract_registry_id: "tool_registry_demo_revenue_intake_20260504"
+    eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260504"
+    incident_revocation_runbook_ref: "skills/agent-build-managed-agentops/assets/templates/incident-revocation-runbook.md"
+    internal_operator_run_card_ref: "skills/agent-build-managed-agentops/assets/templates/internal-operator-run-card.md"
+    evidence_refs:
+      - "evidence://demo/weekly-review-20260608"
+      - "evidence://demo/trace-dashboard-20260608"
+      - "evidence://demo/access-review-20260608"
+  agent_identity:
+    agent_id: "agent_demo_revenue_intake"
+    agent_name: "Revenue Intake Follow-up Agent"
+    current_release_version: "1.0.0"
+    current_environment: "production"
+    current_status: "active"
+    behavior_level_authorized: "draft_and_flag"
+    business_capability: "Draft missing-information follow-up requests for coordinator approval."
+    current_release_started_at: "2026-06-01"
+    current_release_expires_or_review_due_at: "2026-07-01"
+  operating_model:
+    executive_sponsor: "VP Revenue Operations"
+    business_owner: "Revenue Operations Manager"
+    product_owner: "Revenue AI Product Owner"
+    technical_owner: "Agent Platform Lead"
+    security_owner: "Security Lead"
+    data_owner: "CRM Data Owner"
+    risk_or_compliance_owner: "Revenue Risk Lead"
+    agentops_owner: "AgentOps Lead"
+    support_owner: "Revenue Operations Support"
+    revocation_owner: "Security Lead"
+    review_forum: "Revenue AI Build Forum"
+    escalation_channel: "#rev-ai-agentops"
+    support_hours: "Business days 08:00-18:00 America/New_York"
+    owner_coverage:
+      primary_coverage_window: "Business days 08:00-18:00 America/New_York"
+      backup_owner_required: true
+      backup_owners:
+        - "Assistant AgentOps Lead"
+        - "Deputy Security Lead"
+      critical_incident_contact_order:
+        - "Security Lead"
+        - "Agent Platform Lead"
+        - "VP Revenue Operations"
+      coverage_gaps: []
+      last_coverage_review_date: "2026-06-08"
+      next_coverage_review_date: "2026-06-15"
+  live_scope:
+    user_groups:
+      - "Revenue intake coordinators"
+    workflow_boundaries:
+      - "Open revenue intake records missing required intake fields."
+    environments_allowed:
+      - "production"
+    systems_connected:
+      - "CRM read-only view"
+      - "Intake form read-only view"
+    tools_enabled:
+      - "crm_read_only_lookup"
+      - "intake_form_read_only_lookup"
+    data_classes_allowed:
+      - "customer_contact"
+      - "opportunity_metadata"
+    sources_allowed:
+      - "CRM required field dictionary"
+      - "Approved follow-up guidance pack"
+    outputs_allowed:
+      - "Internal draft follow-up request for coordinator approval"
+    scale_limits:
+      - "Maximum 50 draft requests per business day during first month."
+    explicit_scope_exclusions:
+      - "No external send."
+      - "No CRM write."
+      - "No users outside revenue intake coordinators."
+  cadence:
+    daily_monitoring:
+      owner: "AgentOps Lead"
+      required_during: "first_30_days_of_production"
+      checks:
+        - "blocking alerts"
+        - "untraced runs"
+        - "control violations"
+        - "critical user feedback"
+    weekly_review:
+      owner: "AgentOps Lead"
+      required_during: "all_active_operation"
+      required_sections:
+        - "owner coverage"
+        - "operating metrics"
+        - "source freshness"
+        - "access and tool permissions"
+        - "incidents and near misses"
+        - "value tracking"
+        - "guidance changes"
+        - "stop conditions"
+    monthly_review:
+      owner: "Security Lead"
+      required_during: "all_active_operation"
+      required_sections:
+        - "formal access attestation"
+        - "source owner attestation"
+        - "value realization versus baseline"
+        - "cost and support burden"
+        - "owner coverage and succession"
+        - "retirement or redesign triggers"
+  operating_metrics:
+    quality_metrics:
+      - metric_id: "draft_acceptance_rate"
+        name: "Draft acceptance rate"
+        target: ">= 0.90"
+        warning_threshold: "< 0.92"
+        blocking_threshold: "< 0.85 for two consecutive weekly reviews"
+        current_value: "0.94"
+        trend: "stable"
+        owner: "Revenue Operations Manager"
+        evidence_refs:
+          - "evidence://demo/draft-review-dashboard-20260608"
+    safety_metrics:
+      - metric_id: "control_violation_count"
+        name: "Control violation count"
+        target: "0"
+        warning_threshold: "> 0"
+        blocking_threshold: "> 0 high or critical"
+        current_value: "0"
+        trend: "stable"
+        owner: "Security Lead"
+        evidence_refs:
+          - "evidence://demo/control-dashboard-20260608"
+    reliability_metrics:
+      - metric_id: "untraced_run_count"
+        name: "Untraced production run count"
+        target: "0"
+        warning_threshold: "> 0"
+        blocking_threshold: "> 0"
+        current_value: "0"
+        trend: "stable"
+        owner: "Agent Platform Lead"
+        evidence_refs:
+          - "evidence://demo/trace-dashboard-20260608"
+    adoption_metrics:
+      - metric_id: "weekly_active_pilot_users"
+        name: "Weekly active coordinator users"
+        target: ">= 5 of 6"
+        warning_threshold: "< 4"
+        blocking_threshold: "< 3 for two weekly reviews"
+        current_value: "5"
+        trend: "stable"
+        owner: "Revenue Operations Manager"
+        evidence_refs:
+          - "evidence://demo/usage-20260608"
+    value_metrics:
+      - metric_id: "net_time_saved_hours"
+        name: "Net coordinator time saved"
+        baseline: "0 hours saved; fully manual drafting."
+        target: ">= 8 hours per week net of correction time"
+        warning_threshold: "< 6 hours per week"
+        blocking_threshold: "< 4 hours per week for two reviews"
+        current_value: "9.5"
+        trend: "improving"
+        owner: "Revenue Operations Manager"
+        evidence_refs:
+          - "evidence://demo/value-review-20260608"
+    cost_metrics:
+      - metric_id: "operating_cost_per_completed_workflow"
+        name: "Operating cost per accepted draft"
+        target: "<= 2.50 USD"
+        warning_threshold: "> 2.50 USD"
+        blocking_threshold: "> 5.00 USD for two reviews"
+        current_value: "1.85 USD"
+        trend: "stable"
+        owner: "AgentOps Lead"
+        evidence_refs:
+          - "evidence://demo/cost-dashboard-20260608"
+  source_freshness:
+    policy:
+      stale_source_default_action: "pause affected output or require human review"
+      owner_attestation_required: true
+      conflicting_source_default_action: "stop and return to source owner"
+    sources:
+      - source_id: "src_crm_required_field_dictionary"
+        source_name: "CRM required field dictionary"
+        authoritative_owner: "CRM Data Owner"
+        system_or_repository: "CRM data dictionary"
+        used_for_outputs:
+          - "identify missing required intake fields"
+        freshness_sla: "7 days"
+        last_verified_at: "2026-06-07"
+        last_changed_at: "2026-06-02"
+        last_owner_attestation_at: "2026-06-07"
+        verification_method: "owner attestation and checksum comparison"
+        current_status: "current"
+        stale_action: "pause_affected_output"
+        evidence_refs:
+          - "evidence://demo/source-attestation-crm-20260607"
+      - source_id: "src_followup_guidance"
+        source_name: "Approved follow-up guidance pack"
+        authoritative_owner: "Revenue AI Product Owner"
+        system_or_repository: "AI guidance pack"
+        used_for_outputs:
+          - "draft follow-up wording"
+        freshness_sla: "30 days"
+        last_verified_at: "2026-06-05"
+        last_changed_at: "2026-05-29"
+        last_owner_attestation_at: "2026-06-05"
+        verification_method: "guidance owner attestation"
+        current_status: "current"
+        stale_action: "route_to_manual_review"
+        evidence_refs:
+          - "evidence://demo/guidance-attestation-20260605"
+    freshness_issues: []
+  access_review:
+    cadence: "monthly"
+    last_review_date: "2026-06-08"
+    next_review_date: "2026-07-01"
+    reviewed_by:
+      - "Security Lead"
+      - "CRM Data Owner"
+    user_entitlements:
+      - group_or_role: "Revenue intake coordinators"
+        allowed: true
+        owner: "Revenue Operations Manager"
+        last_attested_at: "2026-06-08"
+        exceptions: []
+    service_accounts:
+      - identity_id: "svc-agent-revenue-intake-prod"
+        permissions_summary: "Read-only CRM and intake form lookup."
+        owner: "Agent Platform Lead"
+        last_rotated_at: "2026-06-01"
+        last_used_at: "2026-06-08"
+        revoke_if_unused_after: "30 days"
+        exceptions: []
+    tool_credentials:
+      - tool_id: "crm_read_only_lookup"
+        credential_ref: "secret://agent/revenue-intake/crm-readonly"
+        permission_scope: "read-only intake records"
+        owner: "Security Lead"
+        last_reviewed_at: "2026-06-08"
+        revocation_method: "disable connector credential in secrets manager"
+        exceptions: []
+    access_changes_since_last_review: []
+    revocations_completed: []
+  guidance_and_knowledge_updates:
+    ai_guidance_pack_version: "guidance_revenue_intake_20260529"
+    prompt_or_instruction_refs:
+      - "prompt_set_revenue_intake_1_0_0"
+    policy_refs:
+      - "policy://revenue/customer-followup-language"
+    retrieval_corpus_refs:
+      - "corpus://revenue-intake-guidance-20260529"
+    eval_dataset_refs:
+      - "golden_set_revenue_intake_001"
+    update_cadence: "monthly or before material release"
+    last_review_date: "2026-06-08"
+    material_change_requires_phase_14: true
+    stale_guidance_stop_condition: "pause affected workflow if current policy or source guidance cannot be confirmed"
+    update_log:
+      - update_id: "guidance_review_20260608"
+        summary: "No guidance changes."
+        material_change: false
+  incident_response_and_revocation:
+    runbook_ref: "skills/agent-build-managed-agentops/assets/templates/incident-revocation-runbook.md"
+    severity_model_ref: "incident_runbook_v0.1"
+    pause_mechanisms:
+      - mechanism_id: "feature_flag_agent_revenue_intake_enabled"
+        mechanism_type: "feature_flag"
+        owner: "Agent Platform Lead"
+        max_time_to_execute: "15 minutes"
+        evidence_ref: "evidence://demo/pause-rehearsal-20260603"
+    revocation_mechanisms:
+      - mechanism_id: "revoke_crm_readonly_secret"
+        target: "crm_read_only_lookup credential"
+        owner: "Security Lead"
+        max_time_to_revoke: "30 minutes"
+        queued_work_stop_method: "disable queue consumer and drain pending draft jobs to manual review"
+        restoration_approval_required_from:
+          - "Security Lead"
+          - "Revenue Operations Manager"
+    rollback_release:
+      previous_stable_release_version: "none_initial_release"
+      rollback_package_ref: "release_demo_revenue_intake_1_0_0"
+      rollback_owner: "Agent Platform Lead"
+    last_rehearsal:
+      rehearsal_date: "2026-06-03"
+      result: "passed"
+      evidence_refs:
+        - "evidence://demo/revocation-rehearsal-20260603"
+    communication_plan:
+      user_message_owner: "Revenue Operations Support"
+      internal_status_channel: "#rev-ai-agentops"
+      external_notification_required_if:
+        - "customer data exposure"
+        - "incorrect external send"
+  review_log:
+    - review_id: "weekly_review_20260608"
+      review_date: "2026-06-08"
+      review_type: "weekly"
+      reviewed_by:
+        - "AgentOps Lead"
+        - "Revenue Operations Manager"
+        - "Security Lead"
+      evidence_refs:
+        - "evidence://demo/weekly-review-20260608"
+      findings:
+        - "All blocking metrics within threshold."
+        - "No source freshness issues."
+        - "No access drift detected."
+      decisions:
+        - "Continue operation without expansion."
+      follow_up_actions:
+        - action_id: "action_monthly_value_review"
+          owner: "Revenue Operations Manager"
+          due_date: "2026-07-01"
+          status: "open"
+  incidents: []
+  drift_and_change_log:
+    model_or_prompt_changes: []
+    retrieval_corpus_changes: []
+    source_authority_changes: []
+    tool_contract_changes: []
+    access_or_identity_changes: []
+    user_scope_changes: []
+    performance_or_quality_drift: []
+    operating_model_changes: []
+    phase_14_reviews_opened: []
+    phase_15_reviews_opened: []
+  value_tracking:
+    measurement_baseline_ref: "measurement_demo_revenue_intake_20260430"
+    value_owner: "Revenue Operations Manager"
+    expected_value: ">= 8 net hours saved per week after first production week"
+    minimum_viable_value_threshold: ">= 4 net hours saved per week for two consecutive reviews"
+    realized_value_to_date: "9.5 net hours saved in week ending 2026-06-08"
+    human_time_spent_operating_or_correcting: "1.5 hours"
+    net_value_assessment: "positive"
+    evidence_refs:
+      - "evidence://demo/value-review-20260608"
+    value_risks:
+      - "Value may fall if missing-field source freshness is not maintained."
+  operating_decisions:
+    current_decision: "continue"
+    continue_conditions:
+      - "No expansion during first production month."
+      - "Source freshness and access review remain current."
+    pause_conditions:
+      - "Any unauthorized send or CRM write attempt."
+      - "Any untraced production run."
+      - "CRM field dictionary freshness exceeds 7 days."
+    expansion_conditions:
+      - "Phase 14 approval required for any added user group, source, tool, workflow, or behavior."
+    retirement_conditions:
+      - "Open Phase 15 if net value falls below 4 hours per week for two reviews."
+    return_to_method_triggers:
+      - "Need for CRM write access."
+      - "Source-of-truth model changes from CRM data owner to another owner."
+    next_review_date: "2026-06-15"
+  operating_signoff:
+    prepared_by: "AgentOps Lead"
+    reviewed_by:
+      - "Revenue Operations Manager"
+      - "Security Lead"
+    approved_by:
+      - "Revenue Operations Manager"
+    approval_status: "approved"
+    approval_date: "2026-06-08"
+
+failure_modes_to_test:
+  - "Live operation lacks owner coverage, metric review, source freshness, cost review, access review, incident handling, or guidance update cadence."
+return_to_method_triggers_to_test:
+  - "Operating metrics show value, risk, source, ownership, or adoption assumptions are invalid."

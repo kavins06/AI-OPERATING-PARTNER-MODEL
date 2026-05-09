@@ -1,5 +1,31 @@
 # Input Collection Checklist
 
+## Client Input Cadence
+
+Collect client input in five bundled touchpoints. The full Step 0-18 method still runs internally; the bundles reduce repeated client interruptions without shrinking workflow interviews, system/data discovery, truth-production mapping, governance validation, risk review, readiness scoring, or handoff rigor.
+
+| Bundle | Locks by | Inputs to collect |
+|---|---:|---|
+| Strategy bundle | End Step 2 | Goals, scope, decision rights, constraints, org coverage, candidate terrain, participant list, success criteria, known IT/data/security owners, sponsor mechanics, co-sponsors, OKR/incentive linkage, and prior AI/automation attempts. |
+| Workflow interview bundle | End Step 4 | Role interviews, workflow variation, systems and sources mentioned in context, source access paths, truth-production chains, edge cases, handoffs, approvals, adoption signals, resistance-source map, oversight expectations, and silent evidence needs. |
+| Evidence/data bundle | Request at Step 5; resolve by Step 8 | One consolidated owner-grouped evidence request and approved artifacts or substitutes: screenshots, walkthroughs, reports, schemas, field lists, formulas, macros, access matrices, architecture notes, vendor docs, policies, redacted examples, prior-attempt notes, KPI evidence, shadow AI signals, and security review requirements. |
+| Governance validation bundle | End Step 8 | Authorized decisions for official sources, de facto trusted sources, truth chains, owners, stewards, practical access paths, sensitive fields, retention/export/handling, and permitted/prohibited AI actions. |
+| Decision/handoff bundle | End Step 18 | Targeted expert validation, technical feasibility confirmation, risk/control confirmation, readiness blockers, owner commitments, implementation conditions, lifecycle ownership, and handoff approval. |
+
+No drip requests: log evidence needs silently during interviews, then consolidate them at Step 5. Additional client asks after Step 5 should be limited to hard blockers, disputed material facts, missing authorized-owner decisions, or targeted validation needed for Steps 9-18.
+
+## IT/Data/Security Input Track
+
+Use a planned technical and governance track instead of pulling IT, data, and security into every step.
+
+| Timing | Purpose |
+|---|---|
+| Steps 0-2 | Identify system owners, data owners, security/risk/legal contacts, known platform constraints, sensitive areas, approval boundaries, sponsor cadence, co-sponsorship, and prior failed or stalled attempts. |
+| Steps 3-5 | Capture targeted confirmations from IT/data/system owners and request approved planning artifacts such as schemas, report definitions, access matrices, architecture notes, vendor/API docs, policies, and walkthroughs. |
+| Step 8 | Validate source, truth-production, owner/steward, access, sensitivity, retention/export/handling, and permitted/prohibited AI-action decisions with authorized resolvers. |
+| Steps 14-15 | Confirm future technical feasibility, access patterns, hosting/environment constraints, secrets approach, logging, monitoring, controls, incident handling, revocation, and stop conditions as a plan, not a build. |
+| Steps 17-18 | Confirm implementation conditions, lifecycle owners, launch gates, access-review cadence, incident expectations, and method-to-build handoff approvals. |
+
 ## Engagement Tiering And Vertical Extension
 
 Before Step 1, decide the engagement depth and vertical obligations.
@@ -32,6 +58,14 @@ Ask the sponsor for leadership-level context, not low-level task mechanics or AI
 - Trust-critical areas: external communication, sensitive data, regulated work, reputational risk, or approval-heavy decisions.
 - Strategic constraints.
 - Sponsor decision rights.
+- Sponsor ability to remove blockers weekly.
+- Business and technical co-sponsors.
+- OKR, incentive, board, or equivalent strategic linkage.
+- Appetite for controlled experiments and failure learning.
+- Prior AI, automation, analytics, or transformation attempts and what changed after failures.
+- Preference or constraints around headcount reduction, hiring avoided, redeployment, acceleration, revenue growth, or new capability creation.
+- Known staff-function blockers or enablers: Legal, HR, Risk, Compliance, Finance, IT, Security, Data, or vendors.
+- Known shadow AI or unofficial automation usage.
 - Relevant org chart or team structure for the operating areas being discussed.
 - Roles, reporting lines, portfolio/function scope, decision owners, approval owners, and known system/data owners.
 - People who can explain how the work actually happens.
@@ -70,6 +104,7 @@ Each candidate use case must include:
 - Workflow boundary.
 - Business outcome.
 - Value hypothesis.
+- Success-pattern fit: real pain, measurable outcome, recoverable-error potential, user willingness, existing foundation, sponsor strength, and value pattern.
 - Truth production dependencies.
 - Source access dependencies.
 - Adoption dependencies.
@@ -107,6 +142,24 @@ Before AI-led interviews, define:
 
 For fragmented orgs, do not aim for saturation against one canonical workflow until variation is tested. Use variation mapping for independent contractors, franchises, multi-region operations, or multiple valid workflows.
 
+## Resistance And Oversight Inputs
+
+During role interviews, map adoption and resistance by source:
+
+- End users: output inconsistency, workflow disruption, trust, replacement fear, or training needs.
+- Middle managers: status, accountability, incentive, staffing, or control concerns.
+- Legal, HR, Risk, Compliance, and Finance: liability, blame, policy, labor impact, compliance exposure, ROI proof, and approval path.
+- IT, Security, and Data: platform policy, data protection, identity, access, logging, integration, and vendor review.
+- Executives: strategic priority, budget, value proof, permission to fail, and blocker removal.
+
+For each candidate behavior, capture whether the right oversight model is:
+
+- Escalation: AI handles routine work and humans review exceptions.
+- Approval: AI drafts or performs work but humans approve every output or action.
+- Collaboration: AI and human work continuously together on each task.
+
+Use error tolerance, regulation, task complexity, recoverability, and trust to choose the model.
+
 ## Documents and Examples
 
 Ask for examples, not everything. During AI-led interviews, do not ask participants to upload documents live. Log evidence needs silently, then let the operating partner curate a consolidated planning-evidence follow-up request after interviews.
@@ -128,6 +181,14 @@ Every planning-evidence request must name:
 - SLA or due date.
 - Escalation path if unavailable.
 - Acceptable substitute hierarchy.
+
+Add the following only when material to readiness, value, or risk:
+
+- Prior pilot postmortems or project reviews.
+- Process documentation, SOPs, training materials, or workflow maps.
+- KPI definitions, dashboards, finance estimates, or adoption/usage reports.
+- Security questionnaires, access matrices, data classification notes, or approved architecture patterns.
+- Shadow AI or unofficial tool inventories, anonymized examples, or policy exceptions.
 
 - SOPs.
 - Current reports.
@@ -269,6 +330,13 @@ Ask for:
 - Revenue impact.
 - Customer impact.
 - Risk impact.
+- Revenue conversion or retention.
+- Speed-to-market or backlog reduction.
+- Hiring avoided, redeployment, or headcount reduction.
+- New product, service, or capability enabled.
+- Adoption and usage.
+- Shadow AI reduction.
+- Staff-function approval or review cycle time.
 
 ## Trust and Boundary Inputs
 

@@ -1,0 +1,126 @@
+rubric_id: agent_necessity_check_rubric
+phase_id: 2
+phase_key: agent_necessity_check
+status: active
+scoring:
+  pass: "Agent path survives the kill test with evidence, scope reductions, and required signoff."
+  conditional: "Only non-critical evidence follow-up remains and cannot affect the agent/no-agent decision."
+  blocked: "Any required criterion fails without authorized waiver, or any automatic kill condition is active."
+  return_to_method: "The agent/no-agent conclusion changes the approved Step 17 decision or Step 18 lifecycle assumptions."
+minimum_score_policy:
+  pass_requires:
+    - "No simpler alternative satisfies the approved outcome with lower risk and acceptable value."
+    - "Value vs operating burden is evidenced."
+    - "Human oversight is workable."
+criteria:
+  - criterion_id: source_inputs_approved
+    required: true
+    owner_role: "delivery_lead"
+    evidence_required:
+      - "candidate_use_case_shortlist.approval_status"
+      - "business_value_case.approval_status"
+      - "solution_shape.approval_status"
+      - "readiness_object.approval_status"
+      - "implementation_decision_packet.approval_status"
+    pass_condition: "All required Section 1 inputs are present, approved, versioned, cited, and current."
+    fail_condition: "Any required input is missing, draft, uncited, or stale."
+  - criterion_id: decision_summary_grounded
+    required: true
+    owner_role: "business_owner"
+    evidence_required:
+      - "agent_necessity_kill_test.decision_summary"
+      - "business_value_case.business_outcome"
+      - "implementation_decision_packet.first_build_scope"
+      - "candidate_use_case_shortlist.value_hypothesis"
+    pass_condition: "Requested outcome, status quo, lowest-risk sufficient solution, agent rationale, and first behavior are evidence-backed."
+    fail_condition: "Decision summary is generic, speculative, or broader than the approved outcome."
+  - criterion_id: simpler_alternatives_exhausted
+    required: true
+    owner_role: "product_owner"
+    evidence_required:
+      - "agent_necessity_kill_test.simpler_alternatives"
+      - "readiness_object.blockers"
+      - "solution_shape.build_buy_leverage_decision"
+      - "implementation_decision_packet.overengineering_guardrail"
+    pass_condition: "Human process, SOP/training, workflow automation, report/dashboard, search/retrieval, and template/macro alternatives are compared and selected or rejected with evidence."
+    fail_condition: "A plausible simpler path is omitted or rejected without evidence."
+  - criterion_id: agent_fit_tests_evidenced
+    required: true
+    owner_role: "technical_owner"
+    evidence_required:
+      - "agent_necessity_kill_test.agent_fit_tests"
+      - "workflow_examples_or_sample_cases"
+      - "readiness_object.minimum_safe_first_behavior"
+    pass_condition: "Agent-fit tests for judgment, unstructured reasoning, safe constraint, value burden, and human oversight are scored with evidence refs."
+    fail_condition: "Fit tests are unscored, unsupported, or do not distinguish agent behavior from automation."
+  - criterion_id: value_exceeds_operating_burden
+    required: true
+    owner_role: "business_owner"
+    evidence_required:
+      - "business_value_case.expected_value_range"
+      - "business_value_case.ai_side_cost_envelope"
+      - "agent_necessity_kill_test.decision_summary.operating_burden_summary"
+      - "agent_necessity_kill_test.risk_comparison.operating_burden_delta"
+    pass_condition: "Expected agent value exceeds incremental eval, monitoring, control, support, incident, and owner-cadence burden."
+    fail_condition: "Value is lower than operating burden, speculative, or lacks accountable owner acceptance."
+  - criterion_id: human_oversight_workable
+    required: true
+    owner_role: "agentops_owner"
+    evidence_required:
+      - "readiness_object.behavior_level_readiness"
+      - "solution_shape.oversight_model"
+      - "agent_necessity_kill_test.agent_fit_tests.human_oversight_is_workable"
+    pass_condition: "Reviewer role, volume, SLA, fallback, authority, and escalation path are feasible for the approved first behavior."
+    fail_condition: "Human review is undefined, capacity-constrained, lacks authority, or cannot meet workflow timing."
+  - criterion_id: risk_comparison_complete
+    required: true
+    owner_role: "security_owner"
+    evidence_required:
+      - "agent_necessity_kill_test.risk_comparison"
+      - "risk_or_readiness_controls"
+      - "simpler_path_risk_notes"
+    pass_condition: "Agent path and simpler path risks, controls, net risk position, and evidence gaps are explicitly compared."
+    fail_condition: "Risk comparison only lists agent risks or ignores controls required by simpler paths."
+  - criterion_id: scope_reductions_preserved
+    required: true
+    owner_role: "product_owner"
+    evidence_required:
+      - "agent_necessity_kill_test.kill_decision.required_scope_reductions"
+      - "implementation_decision_packet.stop_boundary"
+      - "readiness_object.prohibited_behaviors"
+    pass_condition: "Required reductions preserve no broader than approved scope and are carried forward for Phase 3."
+    fail_condition: "Proceed decision depends on scope expansion or omits required reductions."
+  - criterion_id: kill_decision_decisive
+    required: true
+    owner_role: "business_owner"
+    evidence_required:
+      - "agent_necessity_kill_test.kill_decision.decision"
+      - "agent_necessity_kill_test.kill_decision.decision_rationale"
+      - "agent_necessity_kill_test.kill_decision.approved_by"
+    pass_condition: "Decision is proceed, replace with simpler path, hold for evidence, or return to method, with rationale and approver."
+    fail_condition: "Decision is ambiguous, missing approver, or inconsistent with scored criteria."
+  - criterion_id: return_to_method_evaluated
+    required: true
+    owner_role: "delivery_lead"
+    evidence_required:
+      - "agent_necessity_kill_test.return_to_method_review"
+      - "implementation_decision_packet.decision_summary"
+      - "managed_lifecycle_object.lifecycle_scope"
+    pass_condition: "Return-to-method triggers are evaluated and inactive, or the build is paused with trigger reason and method question to reopen."
+    fail_condition: "Agent path changes Section 1 decision without return-to-method review."
+automatic_blockers:
+  - "Simpler non-agent path satisfies the approved outcome."
+  - "Agent value does not justify operating burden."
+  - "Human oversight is not workable."
+  - "Agent path requires unapproved source, tool, write/send action, user group, environment, or behavior-level expansion."
+  - "Required value, readiness, solution, or decision evidence is missing."
+return_to_method_triggers:
+  - "Agent path changes recommended Step 17 decision."
+  - "Lowest-risk sufficient solution is not an agent."
+  - "Approved first behavior, value case, readiness posture, oversight model, or solution shape must change."
+signoffs_required:
+  - "business_owner"
+  - "product_owner"
+  - "technical_owner"
+  - "security_owner"
+  - "agentops_owner"

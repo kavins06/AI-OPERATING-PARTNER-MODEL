@@ -48,7 +48,7 @@ data_classification:
 
 risk_register:
   - risk_id:
-    category: "" # privacy | security | compliance | operational | vendor | output_quality | data_quality | access | external_communication | financial | reputational | adoption | spreadsheet_risk | key_person_truth_risk | undocumented_transformation | auditability_gap | shadow_reporting_drift | fair_housing | tcpa_sms_calling | respa_referral | mls_idx_vow_data | state_real_estate_advertising_license | regulated_domain_other
+    category: "" # privacy | security | shadow_ai | compliance | operational | vendor | output_quality | data_quality | access | external_communication | financial | reputational | adoption | spreadsheet_risk | key_person_truth_risk | undocumented_transformation | auditability_gap | shadow_reporting_drift | fair_housing | tcpa_sms_calling | respa_referral | mls_idx_vow_data | state_real_estate_advertising_license | regulated_domain_other
     linked_workflow_object_ids: []
     linked_system_ids: []
     linked_source_ids: []
@@ -93,6 +93,30 @@ truth_production_controls:
     verification_needed:
     required_before_behavior_levels: []
     stop_condition_if_missing:
+
+shadow_ai_controls:
+  evidence_of_shadow_ai: "unknown" # yes | no | suspected | unknown
+  observed_or_reported_tools: []
+  sensitive_data_exposure_risk: "unknown" # low | medium | high | unknown
+  formal_channel_gap:
+  approved_alternative_needed: false
+  controls:
+    approved_tooling_path:
+    policy_update_needed: false
+    training_needed: false
+    monitoring_signal:
+    escalation_owner_role:
+    user_safe_harbor_or_disclosure_path:
+
+security_enablement_patterns:
+  front_loaded_security_tax_expected: "unknown" # low | medium | high | unknown
+  patterns_applicable:
+    - pattern: "" # pii_scrubbing | data_minimization | synthetic_substitution | private_networking | isolated_environment | audit_trail | contract_controls | local_or_private_model | approved_cloud_boundary | other
+      purpose:
+      owner_role:
+      verification_needed:
+  security_enables_sensitive_use_case: "unknown" # yes | no | partial | unknown
+  security_work_that_must_finish_before_build: []
 
 zero_trust_controls:
   identity:

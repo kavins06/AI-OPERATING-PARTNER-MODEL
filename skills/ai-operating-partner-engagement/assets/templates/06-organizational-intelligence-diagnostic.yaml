@@ -27,8 +27,32 @@ diagnostic_summary:
     - 
   automation_blockers:
     - 
+  invisible_cost_drivers:
+    - "process_redesign | process_documentation | data_access | data_quality | knowledge_capture | change_management | sponsor_behavior | resistance | security_review | prior_failure_learning | other"
   likely_next_steps:
     - 
+
+enterprise_ai_deployment_fit:
+  sponsor_mechanics:
+    active_blocker_removal: "unknown" # strong | partial | weak | unknown
+    business_technical_co_sponsorship: "unknown" # strong | partial | weak | unknown
+    okr_or_incentive_linkage: "unknown" # yes | no | partial | unknown
+    permission_to_fail: "unknown" # strong | partial | weak | unknown
+    prior_failure_learning: "unknown" # captured | partial | absent | unknown
+  process_and_data_foundation:
+    process_documentation_quality: "unknown" # strong | partial | weak | missing | unknown
+    data_access_layer_readiness: "unknown" # strong | partial | weak | missing | unknown
+    data_quality_can_be_controlled_progressively: "unknown" # yes | no | partial | unknown
+    knowledge_base_quality: "unknown" # strong | partial | weak | missing | unknown
+  resistance_profile:
+    likely_blockers: [] # legal | hr | risk | compliance | finance | it_security | data_owners | middle_management | end_users | executives | vendors | other
+    likely_enablers: []
+    required_interventions: [] # sponsor_mandate | controls | training | expectation_setting | role_transition | approved_tooling | workflow_redesign | measured_pilot | other
+  oversight_fit:
+    recommended_model: "unknown" # escalation | approval | collaboration | unknown
+    recoverable_error_fit: "unknown" # high | medium | low | unknown
+    zero_error_or_regulated_review_required: false
+    rationale:
 
 findings:
   - finding_id:
@@ -57,7 +81,7 @@ findings:
         - 
       signal_ids:
         - 
-    lens: "people | process | data | knowledge | governance | systems | incentives | politics | behavior | risk | measurement | architecture"
+    lens: "people | process | data | knowledge | governance | systems | incentives | politics | behavior | risk | measurement | architecture | sponsor | resistance | security_enablement | prior_failure_learning | model_orchestration"
     symptom:
     likely_root_cause:
     evidence_refs:

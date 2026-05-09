@@ -36,6 +36,24 @@ adoption_feasibility:
   switching_costs: []
   workflow_replacement_or_sunset_needed: []
 
+resistance_source_map:
+  - source_id: ""
+    source_type: "" # legal | hr | risk | compliance | finance | it_security | data_owner | middle_management | end_user | executive | vendor | other
+    likely_concern: "" # liability | change_management | blame | regulatory_exposure | roi_proof | output_inconsistency | replacement_fear | security_policy | workflow_disruption | cost | ownership | other
+    evidence_refs: []
+    intervention: "" # sponsor_mandate | measured_pilot | control_design | policy_review | training | expectation_setting | role_transition_plan | approved_tool_alternative | workflow_redesign | other
+    owner_role: ""
+    blocks_pilot: "unknown" # yes | no | partial | unknown
+
+role_transition_plan:
+  work_removed_or_reduced: []
+  work_remaining_human_owned: []
+  higher_value_work_for_freed_capacity: []
+  roles_at_risk_of_replacement_fear: []
+  message_to_users:
+  training_or_reskilling_needed: []
+  sponsor_commitment_needed: []
+
 channel_and_experience_design:
   preferred_surface: "" # existing_crm | email | sms | chat | browser_extension | dashboard | mobile | separate_app | other | unknown
   why_this_surface_fits_adoption: ""

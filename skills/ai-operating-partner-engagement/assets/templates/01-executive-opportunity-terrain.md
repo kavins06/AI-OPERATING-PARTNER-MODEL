@@ -51,6 +51,22 @@ Facilitator:
 - Target metrics or business outcomes:
 - Decision deadline:
 
+## Sponsor Mechanics And Prior Attempts
+
+- Executive sponsor:
+- Business co-sponsor:
+- Technical / data co-sponsor:
+- Risk / compliance / security sponsor or resolver:
+- Sponsor can remove blockers weekly: yes / no / partial / unknown
+- AI or modernization tied to OKRs, incentives, board priority, or equivalent mandate:
+- Permission to run controlled experiments that may fail:
+- Prior AI, automation, analytics, or workflow-transformation attempts:
+- What failed, stalled, or was abandoned:
+- What changed since the failed attempt:
+- Current appetite for reduction / hiring avoided / redeployment / acceleration / revenue growth / new capability:
+- Staff functions likely to block or enable: Legal / HR / Risk / Compliance / Finance / IT / Security / Data / Other
+- Known shadow AI or unofficial automation usage:
+
 ## Discovery Zones And Stakeholders
 
 - Candidate discovery zones:

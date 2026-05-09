@@ -1,0 +1,297 @@
+example_id: golden_path_phase_14_expansion_change_control_gate
+phase_id: 14
+phase_key: expansion_change_control_gate
+phase_name: Expansion/Change-Control Gate
+source_packet: skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml
+status: complete_phase_example
+purpose: "Filled change review example for a limited user expansion that denies an unapproved CRM write request."
+minimum_completed_sections:
+  - source_inputs
+  - review_scope
+  - baseline_scope
+  - change_description
+  - materiality_gate
+  - assessment
+  - control_plan
+  - decision_options
+  - decision
+  - post_decision_tracking
+section1_inputs_used:
+  - managed_lifecycle_object
+  - readiness_object
+  - implementation_decision_packet
+  - method_to_build_handoff_contract
+section2_outputs_demonstrated:
+  - change_expansion_retirement_review
+evidence_expectations:
+  - "Cite approved Step 17/18 source artifacts and the current operating record."
+  - "Show baseline scope, requested delta, materiality decision, owner coverage, source freshness, access, eval, control, rollback, and revocation evidence."
+  - "Record blockers instead of filling missing facts."
+  - "Evaluate return-to-method triggers before approving any scope change."
+
+completed_object:
+  object_type: "change_expansion_retirement_review"
+  spec_version: "post_18_agentops_v0.1"
+  schema_version: "current"
+  object_id: "change_review_demo_revenue_intake_20260615"
+  version: "0.1"
+  status: "approved"
+  source_inputs:
+    agentops_operating_record_id: "agentops_record_demo_revenue_intake_20260608"
+    build_contract_id: "build_contract_demo_revenue_intake_20260504"
+    release_version_manifest_id: "release_demo_revenue_intake_1_0_0"
+    production_readiness_gate_id: "production_gate_demo_revenue_intake_20260601"
+    readiness_object_id: "readiness_demo_revenue_intake_20260428"
+    risk_control_model_id: "risk_controls_demo_revenue_intake_20260430"
+    method_to_build_handoff_contract_id: "handoff_demo_revenue_intake_20260504"
+    implementation_decision_packet_id: "decision_packet_demo_revenue_intake_20260504"
+    measurement_intelligence_id: "measurement_demo_revenue_intake_20260430"
+    incident_ids: []
+    evidence_refs:
+      - "evidence://demo/change-request-20260615"
+      - "evidence://demo/access-review-20260615"
+      - "evidence://demo/eval-dry-run-20260615"
+  review_scope:
+    review_type: "expansion"
+    requested_by: "Revenue Operations Manager"
+    request_date: "2026-06-15"
+    agent_id: "agent_demo_revenue_intake"
+    current_release_version: "1.0.0"
+    current_environment: "production"
+    current_behavior_level: "draft_and_flag"
+    requested_environment_or_scope: "Add two additional revenue intake coordinators; also requested CRM write flag."
+    summary: "Approve limited user expansion while denying CRM write access."
+    reason_for_review: "Pilot team wants two backup coordinators covered before month-end volume."
+    urgency: "normal"
+    decision_deadline: "2026-06-17"
+    affected_business_outcome: "Reduce stalled intake records caused by missing information."
+  baseline_scope:
+    approved_user_groups:
+      - "Revenue intake coordinators pilot group"
+    approved_workflows:
+      - "Open revenue intake records missing required intake fields."
+    approved_systems:
+      - "CRM read-only view"
+      - "Intake form read-only view"
+    approved_tools:
+      - "crm_read_only_lookup"
+      - "intake_form_read_only_lookup"
+    approved_sources:
+      - "CRM required field dictionary"
+      - "Approved follow-up guidance pack"
+    approved_data_classes:
+      - "customer_contact"
+      - "opportunity_metadata"
+    approved_outputs:
+      - "Internal draft follow-up request for coordinator approval"
+    approved_behavior_level: "draft_and_flag"
+    approved_scale_limits:
+      - "Maximum 50 draft requests per business day during first month."
+    explicit_scope_exclusions:
+      - "No external send."
+      - "No CRM write."
+      - "No users outside approved revenue intake coordinator group."
+  change_description:
+    requested_change: "Add two named backup intake coordinators and set CRM field `missing_info_requested` after coordinator approval."
+    affected_user_groups:
+      - "Two additional revenue intake coordinators"
+    affected_workflows:
+      - "Same missing-information intake workflow"
+    affected_systems:
+      - "CRM"
+    affected_tools:
+      - "crm_read_only_lookup"
+      - "requested_crm_write_flag"
+    affected_sources:
+      - "CRM required field dictionary"
+    affected_data_classes:
+      - "customer_contact"
+      - "opportunity_metadata"
+    affected_outputs:
+      - "Internal draft follow-up request"
+      - "Requested CRM status flag"
+    behavior_level_change:
+      from: "draft_and_flag"
+      to: "human_approved_action"
+    model_or_prompt_change: "No prompt change requested."
+    retrieval_or_source_change: "No source change requested."
+    access_or_identity_change: "Add two named users; requested new CRM write permission denied."
+    operating_model_change: "No owner model change."
+    rollout_or_decommission_scope: "Limited user expansion only."
+    requested_effective_date: "2026-06-18"
+  materiality_gate:
+    material_change: true
+    material_change_reasons:
+      - "New users are added."
+      - "Requested CRM write action would change behavior level and tool permissions."
+    automatic_blockers:
+      - "Unapproved CRM write action."
+    requires_phase_14: true
+    requires_phase_15: false
+    requires_return_to_method: true
+    return_to_method_rationale: "CRM write action would change behavior level from draft_and_flag to human_approved_action and requires risk/value/readiness reassessment."
+  assessment:
+    value_evidence:
+      - metric_id: "net_time_saved_hours"
+        baseline: "9.5 net hours saved per week with current group."
+        current_value: "9.5"
+        expected_change: "Add 2 to 3 net hours per week by covering backup coordinator volume."
+        evidence_refs:
+          - "evidence://demo/value-review-20260615"
+    quality_evidence:
+      - "Draft acceptance rate remains 0.94."
+    risk_evidence:
+      - "Read-only user expansion does not add new data class or workflow."
+      - "CRM write request introduces downstream system-of-record risk."
+    adoption_evidence:
+      - "Five of six current coordinators active weekly."
+    cost_evidence:
+      - "Projected cost remains below 2.50 USD per accepted draft."
+    source_freshness_evidence:
+      - source_id: "src_crm_required_field_dictionary"
+        owner: "CRM Data Owner"
+        freshness_sla: "7 days"
+        last_verified_at: "2026-06-14"
+        status: "current"
+        evidence_refs:
+          - "evidence://demo/source-attestation-crm-20260614"
+    access_review_evidence:
+      - access_target: "two backup coordinator user entitlements"
+        permission_delta: "read and draft access only"
+        owner: "Revenue Operations Manager"
+        review_status: "approved"
+        revocation_method: "remove from revenue-intake-agent-users group"
+        evidence_refs:
+          - "evidence://demo/access-review-20260615"
+      - access_target: "CRM write flag permission"
+        permission_delta: "write missing_info_requested"
+        owner: "CRM Data Owner"
+        review_status: "rejected"
+        revocation_method: "not provisioned"
+        evidence_refs:
+          - "evidence://demo/security-denial-crm-write-20260615"
+    owner_coverage_evidence:
+      - owner_role: "revocation_owner"
+        primary_owner: "Security Lead"
+        backup_owner: "Deputy Security Lead"
+        coverage_status: "ready"
+    incident_history: []
+    readiness_delta:
+      readiness_score_before: "ready_for_draft_and_flag"
+      readiness_score_after_or_expected: "unchanged for limited user expansion; not ready for CRM write"
+      readiness_gaps:
+        - "CRM write requires new tool contract, evals, human approval control, rollback, and method risk review."
+    support_and_training_impact:
+      - "Two added coordinators require 30-minute training and support handoff."
+    required_contract_updates:
+      - "agentops_operating_record"
+      - "internal_operator_run_card"
+      - "release_version_manifest"
+  control_plan:
+    evals_required:
+      - "Run existing draft quality smoke eval against two new coordinator sample records."
+    guardrails_required:
+      - "Confirm no CRM write tool is enabled."
+    observability_required:
+      - "Trace new user identifier and approval event for every draft."
+    access_changes_required:
+      - "Add two users to revenue-intake-agent-users group."
+      - "Do not provision CRM write permission."
+    source_freshness_requirements:
+      - "CRM field dictionary must be verified within 7 days before rollout."
+    owner_coverage_requirements:
+      - "Support owner confirms training and first-week help channel."
+    rollout_plan:
+      rollout_type: "limited_user_expansion"
+      allowed_initial_population:
+        - "coordinator_backup_01"
+        - "coordinator_backup_02"
+      monitoring_cadence: "daily for first 5 business days after expansion"
+      rollback_trigger: "Any untraced run, unauthorized CRM write attempt, or draft acceptance rate below 0.85 for new users."
+    rollback_plan:
+      rollback_release_version: "release_demo_revenue_intake_1_0_0"
+      rollback_steps:
+        - "Remove two added users from access group."
+        - "Route their records to manual process."
+      rollback_owner: "Agent Platform Lead"
+      rollback_validation_checks:
+        - "Confirm added users cannot start agent run."
+    revocation_plan:
+      revocation_owner: "Security Lead"
+      revocation_targets:
+        - "user group membership for added coordinators"
+      max_time_to_revoke: "30 minutes"
+      queued_work_stop_method: "disable user access and drain pending drafts to manual review"
+    user_communication_plan:
+      audience:
+        - "Revenue intake coordinators"
+      message_owner: "Revenue Operations Support"
+      timing: "Before access is granted"
+  decision_options:
+    - option: "approve_limited_expansion"
+      conditions:
+        - "Only two named users are added."
+        - "No CRM write permission is provisioned."
+    - option: "hold_and_remediate"
+      conditions:
+        - "Use if training or source attestation is missing."
+    - option: "redesign_or_return_to_method"
+      conditions:
+        - "Required for CRM write behavior."
+  decision:
+    outcome: "approved_with_conditions"
+    rationale: "Limited user expansion remains inside the same workflow and behavior level with current sources and controls. CRM write request is denied and returned to method."
+    approved_scope:
+      - "Add coordinator_backup_01 and coordinator_backup_02 for draft-and-flag use only."
+    denied_scope:
+      - "CRM write to `missing_info_requested`."
+      - "Any behavior level above draft_and_flag."
+    required_actions:
+      - action_id: "train_added_users"
+        action: "Train two added coordinators before access."
+        owner: "Revenue Operations Support"
+        due_date: "2026-06-18"
+        blocking: true
+      - action_id: "update_access_group"
+        action: "Add two users with read/draft access only."
+        owner: "Security Lead"
+        due_date: "2026-06-18"
+        blocking: true
+    stop_conditions:
+      - "Any CRM write attempt."
+      - "Any untraced run by added users."
+      - "Draft acceptance rate below 0.85 for added users during first week."
+    expiration_or_recheck_date: "2026-06-25"
+    approved_by:
+      - "Revenue Operations Manager"
+      - "Security Lead"
+    decision_date: "2026-06-16"
+    next_review_date: "2026-06-25"
+  post_decision_tracking:
+    operating_record_updates:
+      - "Add two users to live_scope after training."
+    release_manifest_updates:
+      - "Patch release notes for limited user expansion."
+    access_changes_completed: []
+    source_reviews_completed:
+      - "CRM field dictionary attested 2026-06-14."
+    communications_completed: []
+    open_actions:
+      - "train_added_users"
+      - "update_access_group"
+  review_signoff:
+    prepared_by: "AgentOps Lead"
+    reviewed_by:
+      - "Revenue Operations Manager"
+      - "Security Lead"
+      - "CRM Data Owner"
+    approved_by:
+      - "Revenue Operations Manager"
+      - "Security Lead"
+    approval_status: "approved_with_conditions"
+    approval_date: "2026-06-16"
+
+failure_modes_to_test:
+  - "New user, source, tool, workflow, behavior level, model, or write/send action is added without approval."
+return_to_method_triggers_to_test:
+  - "Expansion changes readiness, risk, value, or lifecycle assumptions."

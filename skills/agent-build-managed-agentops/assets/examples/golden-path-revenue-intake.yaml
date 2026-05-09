@@ -1,0 +1,698 @@
+packet_type: "agentops_golden_path_packet"
+packet_id: "golden_path_revenue_intake_20260504"
+scenario: "Revenue intake follow-up agent from approved Step 18 handoff through production readiness."
+agent_id: "agent_demo_revenue_intake"
+build_contract_id: "build_contract_demo_revenue_intake_20260504"
+generated_for: "internal_delivery_dry_run"
+
+step_18_handoff:
+  implementation_decision_packet_id: "decision_packet_demo_revenue_intake_20260504"
+  managed_lifecycle_object_id: "lifecycle_demo_revenue_intake_20260504"
+  method_to_build_handoff_id: "handoff_demo_revenue_intake_20260504"
+  approved_first_behavior: "Draft missing-intake follow-up requests for human approval."
+  approved_behavior_level: "draft_and_flag"
+  implementation_authorization: "Revenue AI Build Forum approval on 2026-05-04."
+  build_boundary: "No external send, no CRM write, no expansion beyond intake coordinators."
+
+objects:
+  - object_type: "agent_build_contract"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "build_contract_demo_revenue_intake_20260504"
+    version: "0.1"
+    status: "approved"
+    source_of_truth: true
+    source_inputs:
+      step_18_lifecycle_object_id: "lifecycle_demo_revenue_intake_20260504"
+      implementation_decision_packet_id: "decision_packet_demo_revenue_intake_20260504"
+      readiness_object_id: "readiness_demo_revenue_intake_20260428"
+      risk_control_model_id: "risk_controls_demo_revenue_intake_20260430"
+      technical_blueprint_id: "blueprint_demo_revenue_intake_20260501"
+      evidence_refs:
+        - "evidence://demo/step18-handoff"
+        - "evidence://demo/implementation-approval"
+    authorization:
+      build_authorized: true
+      authorizing_body: "Revenue AI Build Forum"
+      authorization_date: "2026-05-04"
+      authorized_scope_summary: "Build a draft-and-flag agent for missing revenue intake follow-up requests."
+      explicit_out_of_scope:
+        - "Autonomous customer communication."
+        - "CRM field updates."
+        - "Use outside the intake coordinator pilot group."
+      approval_conditions:
+        - "Pilot must run with human approval before production readiness."
+      return_to_method_triggers:
+        - "Behavior level changes beyond draft_and_flag."
+        - "CRM write access becomes required."
+    owners:
+      executive_sponsor: "VP Revenue Operations"
+      business_owner: "Revenue Operations Manager"
+      product_owner: "Revenue AI Product Owner"
+      technical_owner: "Agent Platform Lead"
+      security_owner: "Security Lead"
+      data_owner: "CRM Data Owner"
+      risk_or_compliance_owner: "Revenue Risk Lead"
+      agentops_owner: "AgentOps Lead"
+      support_owner: "Revenue Operations Support"
+      revocation_owner: "Security Lead"
+    build_scope:
+      agent_name: "Revenue Intake Follow-up Agent"
+      business_outcome: "Reduce stalled intake records caused by missing information."
+      target_user_groups:
+        - "Revenue intake coordinators"
+      workflow_boundary: "Open revenue intake records that are missing required intake fields."
+      primary_use_cases:
+        - "Detect missing fields."
+        - "Draft a follow-up request for coordinator approval."
+      prohibited_use_cases:
+        - "Send customer-facing messages."
+        - "Modify opportunity stage, owner, or forecast."
+      human_review_requirements:
+        - "Coordinator approves every draft before delivery."
+      minimum_safe_first_behavior: "Draft and flag only."
+    acceptance_contract:
+      required_artifacts:
+        - "agent_necessity_kill_test"
+        - "agent_build_plan"
+        - "agent_architecture_record"
+        - "tool_contract_registry"
+        - "eval_harness_spec"
+        - "guardrail_control_matrix"
+        - "trace_observability_spec"
+      success_criteria:
+        - "Draft acceptance rate is at least 90 percent in pilot."
+        - "Material error rate is no more than 2 percent."
+      non_functional_requirements:
+        availability_target: "business_hours"
+        latency_target: "under 20 seconds per draft"
+        audit_requirements:
+          - "Trace every run and tool call."
+      launch_blockers:
+        - "Any untraced production run."
+    change_control:
+      material_change_definition:
+        - "Any write/send action."
+        - "Any new source, tool, user group, or behavior level."
+      change_review_required: true
+      change_review_object_type: "change_expansion_retirement_review"
+    contract_signoff:
+      prepared_by: "Agent Platform Lead"
+      reviewed_by:
+        - "Security Lead"
+      approved_by:
+        - "VP Revenue Operations"
+      approval_status: "approved"
+      approval_date: "2026-05-04"
+
+  - object_type: "agent_necessity_kill_test"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "agent_necessity_demo_revenue_intake_20260504"
+    version: "0.1"
+    status: "approved"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      step_18_lifecycle_object_id: "lifecycle_demo_revenue_intake_20260504"
+      implementation_decision_packet_id: "decision_packet_demo_revenue_intake_20260504"
+      readiness_object_id: "readiness_demo_revenue_intake_20260428"
+      evidence_refs:
+        - "evidence://demo/status-quo-shadowing"
+    decision_summary:
+      requested_agent_outcome: "Draft accurate missing-information follow-up requests."
+      current_status_quo: "Coordinators manually inspect CRM and intake forms, then draft follow-up messages."
+      lowest_risk_sufficient_solution: "A read-only draft-and-flag agent with mandatory human approval."
+      reason_an_agent_is_being_considered: "The work requires variable language drafting from semi-structured records."
+      approved_first_behavior: "Draft missing-intake follow-up requests for human approval."
+    simpler_alternatives:
+      - alternative_id: "alt_report"
+        alternative_type: "report_or_dashboard"
+        description: "Dashboard showing records with missing fields."
+        outcome_fit: "Identifies gaps but does not draft coordinator-ready follow-up."
+        decision: "rejected"
+      - alternative_id: "alt_template"
+        alternative_type: "template_or_macro"
+        description: "Static email template with manual field completion."
+        outcome_fit: "Useful fallback but too manual for the approved outcome."
+        decision: "rejected"
+    agent_fit_tests:
+      - test_id: "requires_language_or_unstructured_reasoning"
+        question: "Does the work require variable language drafting from record context?"
+        pass_condition: "Drafts differ based on missing fields and customer context."
+        status: "passed"
+        evidence_refs:
+          - "evidence://demo/sample-intake-records"
+      - test_id: "human_oversight_is_workable"
+        question: "Can human approval absorb pilot volume?"
+        pass_condition: "Pilot users can approve all drafts within one business day."
+        status: "passed"
+        evidence_refs:
+          - "evidence://demo/pilot-capacity-check"
+    risk_comparison:
+      agent_specific_risks:
+        - "Incorrect draft requests unnecessary information."
+      simpler_path_risks:
+        - "Manual status quo misses records and delays intake."
+      controls_required_for_agent_path:
+        - "Human approval."
+        - "Read-only tool permissions."
+        - "Trace every source field used."
+      controls_required_for_simpler_path:
+        - "Manual coordinator review."
+      net_risk_position: "agent_path_equal_risk"
+    kill_decision:
+      decision: "proceed_with_agent_build"
+      decision_rationale: "A constrained draft-and-flag agent is justified; autonomous send and CRM writes remain prohibited."
+      required_scope_reductions:
+        - "No external send."
+        - "No CRM write."
+      approved_by:
+        - "Revenue Operations Manager"
+      approval_date: "2026-05-04"
+
+  - object_type: "agent_build_plan"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "build_plan_demo_revenue_intake_20260504"
+    version: "0.1"
+    status: "approved"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      agent_necessity_kill_test_id: "agent_necessity_demo_revenue_intake_20260504"
+      architecture_record_id: "architecture_demo_revenue_intake_20260504"
+      tool_contract_registry_id: "tool_registry_demo_revenue_intake_20260504"
+      eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260504"
+      guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260504"
+      evidence_refs:
+        - "evidence://demo/build-plan-review"
+    delivery_model:
+      build_owner: "Revenue Operations Build Lead"
+      delivery_lead: "Agent Platform Lead"
+      engineering_team:
+        - "Agent engineer"
+      implementation_approach: "incremental"
+      target_first_pilot_date: "2026-05-18"
+      target_production_date: "2026-06-01"
+    workstreams:
+      - workstream_id: "ws_behavior"
+        name: "Behavior implementation"
+        owner: "Agent engineer"
+      - workstream_id: "ws_controls"
+        name: "Evals, controls, and observability"
+        owner: "AgentOps Lead"
+    milestones:
+      - milestone_id: "m0_contract_lock"
+        name: "Contract lock"
+        status: "passed"
+      - milestone_id: "m3_pilot_launch_ready"
+        name: "Pilot launch ready"
+        status: "passed"
+    dependencies:
+      client_dependencies:
+        - "Pilot roster"
+    definition_of_done:
+      production_complete_when:
+        - "Production readiness gate approved with no blocking open issues."
+
+  - object_type: "agent_architecture_record"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "architecture_demo_revenue_intake_20260504"
+    version: "0.1"
+    status: "approved"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      technical_blueprint_id: "blueprint_demo_revenue_intake_20260501"
+      risk_control_model_id: "risk_controls_demo_revenue_intake_20260430"
+      evidence_refs:
+        - "evidence://demo/architecture-review"
+    architecture_summary:
+      agent_name: "Revenue Intake Follow-up Agent"
+      agent_purpose: "Draft missing-information follow-up requests."
+      behavior_level: "draft_and_flag"
+      oversight_model: "human approval required"
+      topology: "single_agent"
+      operating_environments:
+        - "offline_validation"
+        - "sandbox"
+        - "limited_pilot"
+        - "production"
+    components:
+      - component_id: "agent_runtime"
+        component_type: "runtime"
+      - component_id: "crm_read_only_tool"
+        component_type: "connector"
+    model_posture:
+      model_classes_allowed:
+        - "approved_text_reasoning_model"
+      fallback_policy: "return no draft and ask for human review"
+    data_and_system_paths:
+      read_paths:
+        - "CRM opportunity read-only view"
+        - "Intake form read-only view"
+      write_paths: []
+      data_classifications_allowed:
+        - "customer_contact"
+        - "opportunity_metadata"
+    resilience_and_failure_modes:
+      expected_failure_modes:
+        - "Missing source field."
+      degraded_mode_behavior: "Return an explanation and require manual coordinator handling."
+
+  - object_type: "tool_contract_registry"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "tool_registry_demo_revenue_intake_20260504"
+    version: "0.1"
+    status: "approved"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      evidence_refs:
+        - "evidence://demo/tool-contract-review"
+    registry_policy:
+      default_tool_state: "disabled_until_registered"
+      unregistered_tools_allowed: false
+      write_actions_require_explicit_contract: true
+    tools:
+      - tool_id: "crm_read_only_lookup"
+        name: "CRM Opportunity Lookup"
+        tool_type: "connector"
+        permissions:
+          read: true
+          write: false
+          send: false
+        environments_allowed:
+          - "sandbox"
+          - "limited_pilot"
+          - "production"
+        invocation_policy: "Only for approved intake records."
+        failure_behavior: "Stop and ask for human review."
+      - tool_id: "intake_form_read_only_lookup"
+        name: "Intake Form Lookup"
+        tool_type: "document_store"
+        permissions:
+          read: true
+          write: false
+          send: false
+        environments_allowed:
+          - "sandbox"
+          - "limited_pilot"
+          - "production"
+        invocation_policy: "Only for approved intake records."
+        failure_behavior: "Stop and ask for human review."
+
+  - object_type: "eval_harness_spec"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "eval_harness_demo_revenue_intake_20260504"
+    version: "0.1"
+    status: "approved"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      tool_contract_registry_id: "tool_registry_demo_revenue_intake_20260504"
+      risk_control_model_id: "risk_controls_demo_revenue_intake_20260430"
+      evidence_refs:
+        - "evidence://demo/eval-design"
+    validation_scope:
+      environments:
+        - "offline_validation"
+        - "sandbox"
+        - "limited_pilot"
+      behaviors_under_test:
+        - "Draft and flag missing information request."
+    datasets:
+      - dataset_id: "golden_set_revenue_intake_001"
+        dataset_type: "golden_set"
+        owner: "Revenue Operations Manager"
+    eval_suites:
+      - suite_id: "suite_task_quality"
+        name: "Task quality"
+        metrics:
+          - metric_id: "quality_pass_rate"
+            name: "Quality pass rate"
+            target: ">= 0.92"
+            blocking: true
+        pass_threshold: ">= 0.92"
+      - suite_id: "suite_control_violations"
+        name: "Control violations"
+        metrics:
+          - metric_id: "control_violation_count"
+            name: "Control violation count"
+            target: "0"
+            blocking: true
+        pass_threshold: "0 blocking violations"
+    promotion_criteria:
+      pilot_to_production:
+        - "Quality pass rate >= 0.92."
+        - "No blocking control violations."
+
+  - object_type: "guardrail_control_matrix"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "guardrails_demo_revenue_intake_20260504"
+    version: "0.1"
+    status: "approved"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      evidence_refs:
+        - "evidence://demo/control-review"
+    control_policy:
+      default_posture: "deny write and send actions"
+    controls:
+      - control_id: "ctrl_no_external_send"
+        control_type: "preventive"
+        control_name: "Block external send"
+        owner: "Security Lead"
+        status: "passed"
+      - control_id: "ctrl_human_approval"
+        control_type: "human_review"
+        control_name: "Human approves every draft"
+        owner: "Revenue Operations Manager"
+        status: "passed"
+    revocation_controls:
+      revocation_owner: "Security Lead"
+      revoke_within: "1 hour"
+
+  - object_type: "trace_observability_spec"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "trace_spec_demo_revenue_intake_20260504"
+    version: "0.1"
+    status: "approved"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      evidence_refs:
+        - "evidence://demo/observability-review"
+    trace_policy:
+      trace_required_for_all_runs: true
+      audit_log_required_for_tool_calls: true
+      sensitive_data_redaction_required: true
+    event_taxonomy:
+      - event_type: "agent_run_started"
+        required_fields:
+          - "agent_id"
+          - "release_version"
+      - event_type: "tool_call_completed"
+        required_fields:
+          - "tool_id"
+          - "permission_scope"
+    observability_requirements:
+      trace_retention: "180 days"
+    metrics:
+      quality_metric: "draft_acceptance_rate"
+      safety_metric: "control_violation_count"
+    alerts:
+      - alert_id: "alert_untraced_run"
+        severity: "critical"
+        owner: "AgentOps Lead"
+
+  - object_type: "environment_progression_gate"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "environment_gate_demo_revenue_intake_20260518"
+    version: "0.1"
+    status: "approved"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      evidence_refs:
+        - "evidence://demo/sandbox-to-pilot-review"
+    gate_scope:
+      from_environment: "sandbox"
+      to_environment: "limited_pilot"
+    entry_criteria:
+      - criterion_id: "evals_passed"
+        required: true
+        status: "passed"
+      - criterion_id: "controls_verified"
+        required: true
+        status: "passed"
+    promotion_decision:
+      decision: "approved"
+      approved_by:
+        - "Revenue AI Build Forum"
+    rollback_plan:
+      rollback_trigger: "Any unauthorized action or blocking quality failure."
+
+  - object_type: "release_version_manifest"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "release_demo_revenue_intake_1_0_0"
+    version: "1.0.0"
+    status: "approved"
+    release:
+      agent_id: "agent_demo_revenue_intake"
+      release_version: "1.0.0"
+      release_type: "initial"
+      environment_target: "production"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      evidence_refs:
+        - "evidence://demo/release-review"
+    included_artifacts:
+      prompts: "prompt_set_revenue_intake_1_0_0"
+      tools: "tool_registry_demo_revenue_intake_20260504"
+      evals: "eval_harness_demo_revenue_intake_20260504"
+    compatibility:
+      compatible_schema_version: "current"
+    deployment:
+      deployment_window: "2026-06-01 09:00 America/New_York"
+    rollback:
+      rollback_release_version: "none_initial_release"
+      rollback_owner: "Agent Platform Lead"
+
+  - object_type: "pilot_launch_gate"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "pilot_gate_demo_revenue_intake_20260518"
+    version: "0.1"
+    status: "approved"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      release_version_manifest_id: "release_demo_revenue_intake_0_9_0"
+      environment_progression_gate_id: "environment_gate_demo_revenue_intake_20260518"
+      eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260504"
+      guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260504"
+      trace_observability_spec_id: "trace_spec_demo_revenue_intake_20260504"
+      evidence_refs:
+        - "evidence://demo/pilot-launch-review"
+    pilot_scope:
+      pilot_name: "Revenue intake coordinator pilot"
+      pilot_start_date: "2026-05-18"
+      pilot_end_date: "2026-05-29"
+      pilot_user_groups:
+        - "Revenue intake coordinators"
+      pilot_workflow_boundary: "Open records with missing required intake fields."
+      environments_allowed:
+        - "limited_pilot"
+      behaviors_allowed:
+        - "Draft and flag only."
+      behaviors_prohibited:
+        - "External send."
+    launch_criteria:
+      - criterion_id: "pilot_users_confirmed"
+        required: true
+        status: "passed"
+      - criterion_id: "pause_and_revocation_ready"
+        required: true
+        status: "passed"
+    monitoring_during_pilot:
+      review_cadence: "daily"
+      daily_owner: "AgentOps Lead"
+      stop_conditions:
+        - "Any unauthorized send or CRM write attempt."
+    pilot_decision:
+      decision: "approved"
+      approved_by:
+        - "VP Revenue Operations"
+
+  - object_type: "production_readiness_gate"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "production_gate_demo_revenue_intake_20260601"
+    version: "1.0"
+    status: "approved"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      release_version_manifest_id: "release_demo_revenue_intake_1_0_0"
+      pilot_launch_gate_id: "pilot_gate_demo_revenue_intake_20260518"
+      agentops_operating_record_id: "agentops_record_demo_revenue_intake_20260601"
+      eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260504"
+      guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260504"
+      trace_observability_spec_id: "trace_spec_demo_revenue_intake_20260504"
+      evidence_refs:
+        - "evidence://demo/pilot-results"
+        - "evidence://demo/incident-rehearsal"
+    production_scope:
+      target_launch_date: "2026-06-01"
+      user_groups:
+        - "Revenue intake coordinators"
+      workflow_boundaries:
+        - "Open revenue intake records with missing required fields."
+      environments_allowed:
+        - "production"
+      data_classes_allowed:
+        - "customer_contact"
+        - "opportunity_metadata"
+      tools_allowed:
+        - "crm_read_only_lookup"
+        - "intake_form_read_only_lookup"
+      behavior_level_authorized: "draft_and_flag"
+      scale_limits:
+        - "Maximum 50 draft requests per business day during first month."
+    readiness_domains:
+      - domain_id: "quality_and_evals"
+        required: true
+        owner: "AgentOps Lead"
+        status: "passed"
+        evidence_refs:
+          - "evidence://demo/eval-results"
+        open_issues: []
+      - domain_id: "security_privacy_and_access"
+        required: true
+        owner: "Security Lead"
+        status: "passed"
+        evidence_refs:
+          - "evidence://demo/security-review"
+        open_issues: []
+      - domain_id: "observability_and_audit"
+        required: true
+        owner: "Agent Platform Lead"
+        status: "passed"
+        evidence_refs:
+          - "evidence://demo/trace-dashboard"
+        open_issues: []
+      - domain_id: "support_and_operations"
+        required: true
+        owner: "Revenue Operations Support"
+        status: "passed"
+        evidence_refs:
+          - "evidence://demo/support-runbook"
+        open_issues: []
+      - domain_id: "business_value_and_adoption"
+        required: true
+        owner: "Revenue Operations Manager"
+        status: "passed"
+        evidence_refs:
+          - "evidence://demo/pilot-value-review"
+        open_issues: []
+    production_controls:
+      monitoring_cadence: "weekly for first month"
+      incident_sla: "critical incidents triaged within 1 hour"
+      access_review_cadence: "monthly"
+      eval_regression_cadence: "before every release and monthly"
+      model_or_prompt_change_policy: "change review required before promotion"
+      required_runbooks:
+        - "incident-revocation-runbook.md"
+        - "internal-operator-run-card.md"
+    production_decision:
+      decision: "approved"
+      conditions:
+        - "No scope expansion during first production month."
+      approved_by:
+        - "VP Revenue Operations"
+        - "Security Lead"
+      approval_date: "2026-06-01"
+    gate_signoff:
+      prepared_by: "AgentOps Lead"
+      approved_by:
+        - "VP Revenue Operations"
+        - "Security Lead"
+      approval_status: "approved"
+      approval_date: "2026-06-01"
+
+  - object_type: "agentops_operating_record"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "agentops_record_demo_revenue_intake_20260601"
+    version: "1.0"
+    status: "active"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      release_version_manifest_id: "release_demo_revenue_intake_1_0_0"
+      production_readiness_gate_id: "production_gate_demo_revenue_intake_20260601"
+      evidence_refs:
+        - "evidence://demo/launch-day-review"
+    agent_identity:
+      agent_id: "agent_demo_revenue_intake"
+      agent_name: "Revenue Intake Follow-up Agent"
+      current_environment: "production"
+      current_status: "active"
+      behavior_level_authorized: "draft_and_flag"
+    operating_model:
+      executive_sponsor: "VP Revenue Operations"
+      business_owner: "Revenue Operations Manager"
+      technical_owner: "Agent Platform Lead"
+      security_owner: "Security Lead"
+      agentops_owner: "AgentOps Lead"
+      support_owner: "Revenue Operations Support"
+      revocation_owner: "Security Lead"
+    live_scope:
+      user_groups:
+        - "Revenue intake coordinators"
+      workflow_boundaries:
+        - "Draft and flag missing-information follow-up requests."
+    operating_metrics:
+      quality:
+        - metric_id: "draft_acceptance_rate"
+          name: "Draft acceptance rate"
+          target: ">= 0.90"
+          blocking: true
+          current_value: "0.94"
+      safety:
+        - metric_id: "control_violation_count"
+          name: "Control violation count"
+          target: "0"
+          blocking: true
+          current_value: "0"
+    review_log:
+      - review_id: "review_launch_day"
+        review_date: "2026-06-01"
+        review_type: "launch_day"
+    incidents: []
+    operating_decisions:
+      current_decision: "operate"
+      next_review_date: "2026-06-08"
+
+  - object_type: "change_expansion_retirement_review"
+    spec_version: "post_18_agentops_v0.1"
+    schema_version: "current"
+    object_id: "change_review_demo_revenue_intake_placeholder_20260601"
+    version: "0.1"
+    status: "draft"
+    source_inputs:
+      build_contract_id: "build_contract_demo_revenue_intake_20260504"
+      evidence_refs:
+        - "evidence://demo/change-control-policy"
+    review_scope:
+      review_type: "change"
+      agent_id: "agent_demo_revenue_intake"
+      summary: "No expansion approved at production launch; this placeholder defines the first-month change rule."
+    change_description:
+      requested_change: "none"
+    assessment:
+      readiness_reassessment_required: true
+      method_alignment_required: true
+    decision_options:
+      - option: "hold_all_expansion_for_first_month"
+        rationale: "Stabilize first production release before adding scope."
+    decision:
+      outcome: "hold"
+      approved_by:
+        - "VP Revenue Operations"
+
+phase_timeline:
+  - phase_id: "01_build_conversion_gate"
+    planned_timebox: "0.5 business day"
+    completed_evidence: "agent_build_contract"
+  - phase_id: "02_agent_necessity_check"
+    planned_timebox: "0.5 business day"
+    completed_evidence: "agent_necessity_kill_test"
+  - phase_id: "07_eval_and_guardrail_design"
+    planned_timebox: "2 business days"
+    completed_evidence: "eval_harness_spec and guardrail_control_matrix"
+  - phase_id: "10_controlled_pilot"
+    planned_timebox: "10 business days"
+    completed_evidence: "pilot_launch_gate and pilot results"
+  - phase_id: "11_production_readiness_gate"
+    planned_timebox: "1 business day"
+    completed_evidence: "production_readiness_gate"

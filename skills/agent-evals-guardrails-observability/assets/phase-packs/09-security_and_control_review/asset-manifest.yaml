@@ -1,0 +1,38 @@
+phase_pack_id: 09-security_and_control_review
+support_skill: agent-evals-guardrails-observability
+phase_id: 9
+phase_key: security_and_control_review
+phase_name: Security And Control Review
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- risk_control_model
+- technical_blueprint
+- managed_lifecycle_object
+section2_outputs:
+- guardrail_control_matrix
+- trace_observability_spec
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/guardrail-control-matrix.yaml
+  - skills/agent-build-managed-agentops/assets/templates/trace-observability-spec.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/security-control-review-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/security-control-review-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/security_and_control_review.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/09-security-control-review.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- Residual risk is accepted without owner approval.
+- Audit, revocation, or incident evidence is missing.
+return_to_method_triggers:
+- Security control requires different architecture, behavior, or data path.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

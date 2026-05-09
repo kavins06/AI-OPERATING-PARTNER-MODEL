@@ -9,6 +9,7 @@ source_inputs:
   executive_terrain_ids: []
   opportunity_terrain_synthesis_id: ""
   org_structure_refs: []
+  prior_ai_or_automation_attempt_refs: []
   evidence_refs: []
 
 role_split:
@@ -29,6 +30,22 @@ shortlist:
     discovery_zone: ""
     business_outcome: ""
     current_confidence: "low" # high | medium | low | unknown
+    success_pattern_fit:
+      real_pain_or_strategic_pull: "unknown" # high | medium | low | unknown
+      measurable_outcome_available: "unknown" # yes | no | partial | unknown
+      workflow_boundary_clarity: "unknown" # high | medium | low | unknown
+      recoverable_error_potential: "unknown" # high | medium | low | unknown
+      end_user_willingness_signal: "unknown" # high | medium | low | unknown
+      existing_foundation_to_build_on: [] # process_docs | knowledge_base | data_access | platform | sponsor_mandate | prior_attempt_learning | none | unknown
+      candidate_value_pattern: "" # efficiency | risk_reduction | revenue_growth | speed_to_market | hiring_avoided | redeployment | new_capability | measurement_truth_infrastructure | other
+      success_pattern_rationale: ""
+    sponsor_fit:
+      executive_sponsor_role: ""
+      business_owner_role: ""
+      technical_or_data_owner_role: ""
+      active_blocker_removal_likely: "unknown" # yes | no | partial | unknown
+      okr_or_incentive_linkage: "unknown" # yes | no | partial | unknown
+      prior_failure_learning_available: "unknown" # yes | no | partial | unknown
     value_hypothesis:
       value_type: "" # efficiency | decision_quality | risk_reduction | revenue | experience | measurement_or_truth_infrastructure | other
       evidence_refs: []
@@ -39,6 +56,7 @@ shortlist:
       regulated_domain_dependencies: []
     adoption_dependencies:
       end_user_groups: []
+      resistance_sources_to_test: [] # end_users | middle_management | legal | hr | risk | compliance | finance | it_security | data_owners | executives | vendors | other
       incentive_or_behavior_change_needed: ""
       adoption_risk: "unknown" # low | medium | high | unknown
     disqualification_criteria:

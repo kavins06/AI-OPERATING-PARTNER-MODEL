@@ -1,0 +1,98 @@
+rubric_id: production_readiness_gate_rubric
+phase_id: 11
+phase_key: production_readiness_gate
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver; no automatic blocker remains."
+  conditional: "No critical blocker remains, and named follow-up is required before release."
+  blocked: "Any required criterion fails without authorized waiver."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    evidence_required:
+      - "managed_lifecycle_object"
+      - "measurement_intelligence"
+      - "risk_control_model"
+      - "technical_blueprint"
+    pass_condition: "All required Section 1 inputs are present, approved, versioned, and cited."
+  - criterion_id: pilot_evidence_complete
+    required: true
+    evidence_required:
+      - "pilot_launch_gate"
+      - "pilot_metric_summary"
+      - "pilot_review_records"
+    pass_condition: "Pilot evidence includes runs, users, quality, error, correction, adoption, incidents, defects, control violations, and untraced runs."
+  - criterion_id: production_scope_preserved
+    required: true
+    evidence_required:
+      - "production_readiness_gate.production_scope"
+      - "method_to_build_handoff_contract"
+      - "pilot_launch_gate.pilot_scope"
+    pass_condition: "Production scope is no wider than approved and pilot-tested scope unless change review is approved."
+  - criterion_id: eval_control_trace_thresholds_passed
+    required: true
+    evidence_required:
+      - "eval_results"
+      - "regression_results"
+      - "guardrail_test_results"
+      - "trace_completeness_report"
+    pass_condition: "All blocking eval, adversarial, regression, control, trace, and pilot thresholds pass after remediation."
+  - criterion_id: readiness_domains_complete
+    required: true
+    evidence_required:
+      - "production_readiness_gate.readiness_domains"
+    pass_condition: "Quality/evals, security/access, observability/audit, support, value/adoption, source truth, release/rollback, incident, and cost/capacity domains pass."
+  - criterion_id: residual_risk_accepted
+    required: true
+    evidence_required:
+      - "production_readiness_gate.residual_risk_acceptance"
+      - "risk_owner_approval"
+    pass_condition: "Residual risk is explicit, conditioned, dated, and approved by authorized business, security, and risk owners."
+  - criterion_id: production_support_ready
+    required: true
+    evidence_required:
+      - "support_runbook_ref"
+      - "operator_run_card"
+      - "support_rota"
+      - "incident_channel_ref"
+    pass_condition: "Support, escalation, owner rota, operator run card, and incident channel are live."
+  - criterion_id: observability_and_monitoring_ready
+    required: true
+    evidence_required:
+      - "trace_observability_spec"
+      - "dashboard_refs"
+      - "alert_routing_proof"
+    pass_condition: "Dashboards and alerts cover quality, safety, reliability, adoption, value, cost, source freshness, access, and incidents."
+  - criterion_id: incident_rehearsal_passed
+    required: true
+    evidence_required:
+      - "production_readiness_gate.incident_rehearsal"
+    pass_condition: "Detect, alert, pause, revoke, rollback, preserve evidence, communicate, remediate, and restart approval are rehearsed successfully."
+  - criterion_id: access_source_and_truth_governance_ready
+    required: true
+    evidence_required:
+      - "access_review_evidence"
+      - "source_freshness_plan"
+      - "truth_production_controls"
+    pass_condition: "Access review, credential revocation, source freshness, and truth-production controls are scheduled and owned."
+  - criterion_id: release_candidate_ready
+    required: true
+    evidence_required:
+      - "release_version_manifest"
+      - "smoke_test_plan"
+      - "rollback_package_ref"
+    pass_condition: "Release candidate, smoke tests, feature flags/config, and rollback package are ready for phase 12."
+  - criterion_id: return_to_method_rules_recorded
+    required: true
+    evidence_required:
+      - "phase_return_to_method_assessment"
+    pass_condition: "Scope, owner, risk, lifecycle, value, adoption, source truth, and operational assumption changes are assessed."
+automatic_blockers:
+  - "Pilot evidence is missing, incomplete, or fails blocking thresholds without remediation and retest."
+  - "Production launch lacks owner signoff, residual-risk acceptance, incident rehearsal, revocation readiness, or rollback evidence."
+  - "Any production run or tool call could be untraced."
+  - "Production scope exceeds approved or pilot-tested behavior without change review."
+  - "Incident rehearsal fails pause, revoke, rollback, evidence capture, communication, or restart approval."
+return_to_method_triggers:
+  - "Production readiness requires scope, owner, risk, or lifecycle changes."
+  - "Production evidence invalidates value, adoption, source truth, oversight, or operational assumptions."

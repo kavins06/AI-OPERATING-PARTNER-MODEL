@@ -54,9 +54,25 @@ hard_gates:
     blocker: false
     owner: ""
     required_fix: ""
+  - gate_id: "sponsor_behavior_gate"
+    status: "unknown"
+    gate_question: "Is there an active sponsor or sponsor pair able to remove blockers, connect business and technical owners, tolerate controlled iteration, and tie the effort to business priorities?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
   - gate_id: "workflow_clarity_gate"
     status: "unknown"
     gate_question: "Are workflow steps, roles, decisions, handoffs, edge cases, and variation patterns clear enough for the proposed AI behavior?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "process_documentation_gate"
+    status: "unknown"
+    gate_question: "Is the process documented or discoverable enough to avoid applying AI to a broken or undefined workflow?"
     evidence_refs: []
     confidence: "unknown"
     blocker: false
@@ -134,6 +150,14 @@ hard_gates:
     blocker: false
     owner: ""
     required_fix: ""
+  - gate_id: "model_orchestration_gate"
+    status: "unknown"
+    gate_question: "Is the model/orchestration posture appropriate for the task complexity, cost, latency, privacy, data access, and future model-switching needs?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
   - gate_id: "risk_control_gate"
     status: "unknown"
     gate_question: "Are data handling, tool permissions, output controls, approval gates, monitoring, incident response, and revocation defined?"
@@ -142,9 +166,33 @@ hard_gates:
     blocker: false
     owner: ""
     required_fix: ""
+  - gate_id: "security_enablement_gate"
+    status: "unknown"
+    gate_question: "Are security requirements, shadow AI risks, data minimization, PII handling, approved environments, and audit trails designed as enabling controls rather than unresolved blockers?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
   - gate_id: "adoption_change_gate"
     status: "unknown"
     gate_question: "Are target users, adoption path, incentives, training, feedback, workflow retirement, and adoption-failure triggers realistic enough for the proposed behavior?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "resistance_profile_gate"
+    status: "unknown"
+    gate_question: "Have likely blockers and enablers across Legal, HR, Risk, Compliance, Finance, IT/Security, data owners, managers, end users, and executives been mapped with interventions?"
+    evidence_refs: []
+    confidence: "unknown"
+    blocker: false
+    owner: ""
+    required_fix: ""
+  - gate_id: "recoverable_error_fit_gate"
+    status: "unknown"
+    gate_question: "Does the proposed behavior level match error tolerance, recoverability, regulatory requirements, and the selected oversight model?"
     evidence_refs: []
     confidence: "unknown"
     blocker: false
@@ -176,6 +224,22 @@ dimension_scores:
     blocking_status: "unknown"
     owner: ""
     next_step: ""
+  - dimension: "sponsor_behavior_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "prior_failure_learning_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
   - dimension: "business_value"
     score_1_to_5: null
     evidence_confidence: "unknown"
@@ -185,6 +249,14 @@ dimension_scores:
     owner: ""
     next_step: ""
   - dimension: "workflow_clarity"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "process_documentation_readiness"
     score_1_to_5: null
     evidence_confidence: "unknown"
     evidence_refs: []
@@ -264,7 +336,39 @@ dimension_scores:
     blocking_status: "unknown"
     owner: ""
     next_step: ""
+  - dimension: "model_orchestration_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
   - dimension: "risk_control_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "security_enablement_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "resistance_profile_readiness"
+    score_1_to_5: null
+    evidence_confidence: "unknown"
+    evidence_refs: []
+    gap_or_fix: ""
+    blocking_status: "unknown"
+    owner: ""
+    next_step: ""
+  - dimension: "recoverable_error_fit_readiness"
     score_1_to_5: null
     evidence_confidence: "unknown"
     evidence_refs: []
@@ -333,6 +437,12 @@ fragile_truth_hard_rule:
     - "autonomous_action"
 
 dependency_map:
+  sponsor_and_change_dependencies:
+    - dependency_id: ""
+      dependency_type: "sponsor_blocker_removal | business_technical_cosponsorship | okr_or_incentive_linkage | prior_failure_learning | resistance_intervention | role_transition | training"
+      status: "unknown"
+      owner: ""
+      blocking: false
   systems_and_sources:
     - system_or_source_id: ""
       role_in_ai_behavior: ""
@@ -361,7 +471,7 @@ dependency_map:
       blocking: false
   technical_dependencies:
     - dependency_id: ""
-      type: "tool_contract" # tool_contract | connector | mcp | normalization | identity_resolution | test_data | credentials | logging | sandbox | vendor
+      type: "tool_contract" # tool_contract | connector | mcp | normalization | identity_resolution | test_data | credentials | logging | sandbox | vendor | model_abstraction | model_routing | data_access_layer
       status: "unknown"
       owner: ""
       blocking: false

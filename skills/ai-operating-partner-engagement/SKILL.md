@@ -9,6 +9,10 @@ description: "Orchestrate a complete AI operating partner engagement from execut
 
 Run the engagement as a structured, evidence-based pipeline. Use AI for heavy interviewing, extraction, synthesis, drafting, and scoring. Use the human operating partner for scope, judgment, prioritization, client trust, and final recommendations. Use the client for truth, examples, approvals, and ownership decisions.
 
+Batch client participation into five touchpoints: strategy, workflow interview, evidence/data, governance validation, and decision/handoff. The full Step 0-18 method still runs internally. Reduce client burden by batching inputs and confirmations, not by shrinking workflow interviews, system/data discovery, truth-production mapping, governance validation, risk review, readiness scoring, or handoff rigor.
+
+Use enterprise AI deployment evidence as a calibration layer. Treat workflow redesign, process documentation, data access, knowledge capture, change management, security review, and executive sponsorship as core implementation work. Do not overfocus on model choice when the durable advantage is usually workflow, proprietary data, guidance, evals, controls, orchestration, and model abstraction.
+
 Never assume a clean source of truth exists. Discover how business truth is currently produced: official source, de facto trusted source, exports, formulas, spreadsheets/macros, manual adjustments, reconciliations, expert judgment, ownership, reproducibility, auditability, and AI-safe usage. Treat Excel macros, shadow trackers, manual reports, recurring reconciliations, and expert memory as structured organizational intelligence assets. Fragile truth must become a readiness blocker unless the proposed AI behavior is limited to safe actions such as summarize, compare, flag uncertainty, draft clarification questions, or escalate.
 
 The engagement is a pre-build organizational intelligence, use-case selection, adoption, and implementation-blueprint engagement. It has 18 operating steps plus a Step 0 engagement-tiering frame. The current method does not add more steps; it hardens the system with tier matrices, schemas, protocols, rubrics, hard gates, packet contracts, lifecycle variants, halt taxonomy, and handoff rules. Do not build client agents, tools, connectors, MCP servers, live integrations, normalization pipelines, email ingestion, write-back automation, or production tools during this engagement. Implementation starts only after Step 18 is complete, the lifecycle and decision packet are approved, the method-to-build handoff is accepted, and the client starts a separate build phase.
@@ -54,27 +58,43 @@ The seven umbrellas below are the user-facing structure for the engagement. The 
 6. Shape The Future Solution: Steps 13-15.
 7. Decide And Govern: Steps 16-18.
 
+## Client Touchpoint Architecture
+
+Use these five bundles as the client-facing operating cadence. They do not replace the Step 0-18 sequence.
+
+| Client bundle | Locks by | Client-facing content |
+|---|---:|---|
+| Strategy bundle | End Step 2 | Scope, goals, constraints, decision rights, candidate terrain, org coverage, participant list, and success criteria. |
+| Workflow interview bundle | End Step 4 | Role interviews, workflow variation, systems and sources named in context, edge cases, source paths, truth-production chains, and adoption signals. |
+| Evidence/data bundle | Request at Step 5; resolve by Step 8 | One consolidated evidence request plus approved artifacts or substitutes: redacted examples, screenshots, walkthroughs, reports, schemas, field lists, formulas, macros, access matrices, architecture notes, vendor docs, and policies. |
+| Governance validation bundle | End Step 8 | Controlled validation of workflows, systems, sources, official/de facto truth, owners/stewards, access, sensitivity, retention, and permitted/prohibited AI actions. |
+| Decision/handoff bundle | End Step 18 | Value, solution shape, adoption design, technical blueprint, risk controls, readiness, implementation decision packet, lifecycle, and method-to-build handoff. |
+
+No drip requests: after the interview batch, Step 5 should produce one owner-grouped planning-evidence request with SLA, sensitivity, redaction, handling, escalation, and acceptable substitutes. Additional client asks should be limited to hard blockers, disputed material facts, targeted expert validation, IT/data/security feasibility confirmation, risk/control confirmation, or final approval.
+
+After Step 8, use the validated baseline to run most Steps 9-18 as operating-partner and AI synthesis. Bring the client back for targeted validation and approval rather than a new broad discovery cycle.
+
 ## Practical Engagement Flow
 
 0. Set the engagement tier and vertical extension using the tier matrix: choose lite, standard, or deep; confirm whether regulated-domain templates apply; define scope controls, expected depth, and the pre-build/offline-proof boundary.
-1. Start with executive opportunity terrain mapping: understand strategy, growth, operating context, leverage areas, trust boundaries, and who can explain the real work. Use triangulated nomination: sponsor names, org-chart sampling, and "who do people call when this breaks?" probes.
-2. Synthesize terrain into discovery zones and an explicit candidate use-case shortlist. Each candidate must have a hypothesis, target users, workflow boundary, value hypothesis, truth/adoption/regulatory dependencies, current confidence, disqualification criteria, and event slots for discovery, economic, and readiness disqualification.
-3. Use role-aware AI-led interviews across organizational layers with the current AI interviewer protocol: hosting, consent, recording, retention, redaction, no-live-upload, no-asserted-facts, correction handling, refusal fallback, async norms, and operating-partner intervention. Capture work episodes, decisions, edge cases, source access, truth production, tacit judgment, approvals, adoption realities, and silent evidence needs.
+1. Start with executive opportunity terrain mapping: understand strategy, growth, operating context, leverage areas, trust boundaries, and who can explain the real work. Use triangulated nomination: sponsor names, org-chart sampling, and "who do people call when this breaks?" probes. Assess sponsor mechanics: weekly blocker removal, business/technical co-sponsorship, OKR or incentive linkage, permission-to-fail culture, and lessons from prior AI or automation attempts.
+2. Synthesize terrain into discovery zones and an explicit candidate use-case shortlist. Each candidate must have a hypothesis, target users, workflow boundary, value hypothesis, truth/adoption/regulatory dependencies, current confidence, disqualification criteria, and event slots for discovery, economic, and readiness disqualification. Screen for success-pattern fit: real pain, clear workflow, measurable outcome, recoverable-error potential, user willingness, existing data/process foundation, and revenue, risk, efficiency, or new-capability value.
+3. Use role-aware AI-led interviews across organizational layers with the current AI interviewer protocol: hosting, consent, recording, retention, redaction, no-live-upload, no-asserted-facts, correction handling, refusal fallback, async norms, and operating-partner intervention. Capture work episodes, decisions, edge cases, source access, truth production, tacit judgment, approvals, adoption realities, resistance-source mapping, and silent evidence needs.
 4. Run variation mapping when triggers exist: fragmented, franchised, multi-region, independent-contractor, multi-system, multi-portfolio, seniority-driven, or local-practice variation. If skipped, record a single-canonical-workflow assertion with evidence and revisit triggers.
-5. Consolidate evidence needs after interviews and create a curated planning-evidence follow-up request with SLA, escalation, and acceptable substitutes. Ask only for the smallest useful set of redacted examples, screenshots, walkthroughs, formulas, macro walkthroughs, sample exports, schema/field lists, vendor docs, or data dictionaries. Do not request build access or credentials.
+5. Consolidate evidence needs after interviews and create a curated planning-evidence follow-up request with SLA, escalation, and acceptable substitutes. Ask only for the smallest useful set of redacted examples, screenshots, walkthroughs, formulas, macro walkthroughs, sample exports, schema/field lists, vendor docs, data dictionaries, process docs, prior pilot postmortems, KPI reports, security review requirements, access matrices, shadow AI signals, or knowledge-base samples. Do not request build access or credentials. Treat this as the single consolidated evidence request unless a hard blocker or disputed material fact requires follow-up.
 6. Generate the initial AI-native organizational workflow intelligence object aligned to the canonical object schema: structured roles, org context, actors, steps, decisions, edge cases, information objects, source access profiles, truth production profiles, sources, systems, approvals, variation patterns, evidence, confidence, unknowns, completeness checks, and enrichment routes.
-7. Run the organizational intelligence diagnostic using the current blocker rubric: attach findings to workflow objects, separate symptoms from likely root causes, score confidence, identify automation blockers, classify each blocker as fatal-for-use-case, requires-remediation-before-build, acceptable-with-controls, or informational, and route accordingly.
-8. Validate through controlled role-specific views and object-specific governance resolution, then generate the Organizational Intelligence Baseline data contract using the current baseline release contract. Step 8 explicitly loops back to Step 6 and Step 7 when validation changes material workflow objects, truth profiles, source access paths, or blocker classifications. The baseline is the structured data substrate for a separate client-facing product; it is not the full raw internal object and not a report.
+7. Run the organizational intelligence diagnostic using the current blocker rubric: attach findings to workflow objects, separate symptoms from likely root causes, score confidence, identify automation blockers, classify each blocker as fatal-for-use-case, requires-remediation-before-build, acceptable-with-controls, or informational, and route accordingly. Score invisible cost drivers: process redesign, process documentation, data access, knowledge capture, change management, staff-function resistance, sponsor behavior, security review burden, and prior-failure learning.
+8. Validate through controlled role-specific views and object-specific governance resolution, then generate the Organizational Intelligence Baseline data contract using the current baseline release contract. Step 8 explicitly loops back to Step 6 and Step 7 when validation changes material workflow objects, truth profiles, source access paths, or blocker classifications. The baseline is the structured data substrate for a separate client-facing product; it is not the full raw internal object and not a report. By the end of Step 8, the engagement should have the workflow-specific system, data, source, owner, access, and truth-production baseline needed to support Steps 9-18.
 9. Produce the AI knowledge and guideline requirements map for decisions, exceptions, escalation paths, truth production chains, expertise gaps, adoption knowledge, and regulated-domain knowledge. This maps requirements; it does not write final rules yet.
 10. Convert prioritized requirements into an AI guidance pack: canonical machine-readable guidance spec, readable view, behavioral evals, output-quality evals, regulated-domain evals where applicable, truth-production handling, explicit rules, examples, output contract, owners, update cadence, validation status, eval methodology, minimum counts, regression versioning, and drift/revalidation rules.
-11. Produce measurement intelligence and AI-capability metric design. Classify existing metric trust and truth status, then define future AI success metrics, leading indicators, lagging indicators, override/error/drift signals, cost metrics, and kill criteria.
-12. Produce business value case and portfolio comparison. Model value, AI-side costs, assumptions, confidence, fragile-truth caveats, and compare surviving opportunities so only 1-N are advanced to solution shape.
-13. Produce solution shape and adoption design. Treat this as 13a solution shape and 13b adoption design under one step. Decide build/buy/leverage-vendor, agent topology, model-selection class, UX surface, retrieval/context shape, eval/observability shape, end-user research, incentive alignment, opt-in vs mandate reality, training, rollout, and adoption-failure triggers.
-14. Produce the technical/vendor implementation blueprint from the selected solution shape: architecture, integration, runtime/orchestration, hosting/environment, MCP/tooling, email access, normalization, identity resolution, truth-rule extraction, future component contracts, sandbox/test strategy, credential/secrets approach, audit/logging, blocked paths, and build sequence.
-15. Create the risk and control model with regulated-domain risk templates where applicable. Tie named risks to controls and owners, including privacy, security, output quality, truth-production risk, Fair Housing/TCPA/RESPA/MLS/state-license risks for real estate, and similar named rules for other verticals. If risk forces topology, behavior-level, UX, retrieval, model, or adoption change, loop back to Step 13.
-16. Score AI-agent readiness with an implementation-grade readiness object for each surviving opportunity using the current hard-gate rubric: behavior-level readiness, dependencies, blockers, evidence confidence, minimum safe first behavior, prohibited behaviors, and Step 17 path. Hard gates override average scores. This is still pre-build and does not authorize implementation.
+11. Produce measurement intelligence and AI-capability metric design. Classify existing metric trust and truth status, then define future AI success metrics, leading indicators, lagging indicators, override/error/drift signals, cost metrics, and kill criteria. Include quality, customer value, revenue, speed-to-market, backlog, redeployment, hiring avoided, adoption, and new-capability metrics where relevant.
+12. Produce business value case and portfolio comparison. Model value, AI-side costs, assumptions, confidence, fragile-truth caveats, and compare surviving opportunities so only 1-N are advanced to solution shape. Include headcount outcome scenarios: reduction, hiring avoided, redeployment, acceleration, revenue growth, new product/service creation, risk reduction, and capability expansion without headcount change.
+13. Produce solution shape and adoption design. Treat this as 13a solution shape and 13b adoption design under one step. Decide build/buy/leverage-vendor, agent topology, model-selection class, UX surface, retrieval/context shape, eval/observability shape, oversight model, end-user research, incentive alignment, opt-in vs mandate reality, training, rollout, and adoption-failure triggers. Oversight model must be escalation, approval, or collaboration with rationale tied to error tolerance, regulation, task complexity, and recoverability.
+14. Produce the technical/vendor implementation blueprint from the selected solution shape: architecture, integration, runtime/orchestration, hosting/environment, MCP/tooling, email access, normalization, identity resolution, truth-rule extraction, future component contracts, sandbox/test strategy, credential/secrets approach, audit/logging, blocked paths, and build sequence. Prefer access-layer, retrieval, progressive quality, and model-abstraction design over waiting for perfect centralized data.
+15. Create the risk and control model with regulated-domain risk templates where applicable. Tie named risks to controls and owners, including privacy, security, shadow AI, output quality, truth-production risk, Fair Housing/TCPA/RESPA/MLS/state-license risks for real estate, and similar named rules for other verticals. Treat security as enabling infrastructure when it unlocks sensitive-data use through minimization, scrubbing, isolation, audit trails, and approved patterns. If risk forces topology, behavior-level, UX, retrieval, model, or adoption change, loop back to Step 13.
+16. Score AI-agent readiness with an implementation-grade readiness object for each surviving opportunity using the current hard-gate rubric: behavior-level readiness, dependencies, blockers, evidence confidence, minimum safe first behavior, prohibited behaviors, and Step 17 path. Include sponsor behavior, prior-failure learning, process documentation, resistance profile, recoverable-error fit, data access, model/orchestration maturity, security enablement, and lifecycle ownership. Hard gates override average scores. This is still pre-build and does not authorize implementation.
 17. Produce a machine-readable implementation decision packet using the decision-packet contracts. It specifies build-ready brief, gap-remediation plan, governance/data readiness plan, knowledge capture plan, technical feasibility plan, risk/control plan, or do-not-automate recommendation, with confidence statement, conditional-revision triggers, and sponsor/technical/risk/remediation views. When multiple packet types apply to one workflow, produce a packet_set.
-18. Produce a machine-readable managed lifecycle and adoption-change object using the lifecycle variant contracts. Define future validation, launch, monitoring, truth governance, feedback, incidents, revocation, guidance/source updates, access review, adoption/change management, improvement, expansion, retirement, remediation lifecycle, no-automation review cadence, and the method-to-build handoff contract. When Step 17 produces a packet_set, produce a lifecycle_set.
+18. Produce a machine-readable managed lifecycle and adoption-change object using the lifecycle variant contracts. Define future validation, launch, monitoring, truth governance, feedback, incidents, revocation, guidance/source updates, access review, adoption/change management, improvement, expansion, retirement, remediation lifecycle, no-automation review cadence, and the method-to-build handoff contract. Include failure-learning capture, model/runtime switching review, KPI refresh, role-transition tracking, and evidence-based expansion/retirement decisions. When Step 17 produces a packet_set, produce a lifecycle_set.
 
 ## Resource Map
 
@@ -198,7 +218,9 @@ If the user asks to start an engagement, produce:
 
 - Engagement tiering recommendation: lite, standard, or deep.
 - Vertical extension recommendation and regulated-domain template need.
+- Client touchpoint plan: strategy, workflow interview, evidence/data, governance validation, and decision/handoff bundles with lock points.
 - Executive opportunity terrain request.
+- Sponsor mechanics request: blocker-removal cadence, business/technical co-sponsors, OKR or incentive linkage, permission-to-fail posture, and prior AI/automation attempts.
 - Opportunity terrain synthesis, discovery-zone sequencing plan, and candidate use-case shortlist.
 - Interview plan.
 - Variation-mapping plan, if the org is fragmented, franchised, multi-region, or independent-contractor driven.
@@ -209,8 +231,10 @@ If the user asks to start an engagement, produce:
 If the user gives executive terrain notes, produce:
 
 - Strategic context summary.
+- Sponsor mechanics and prior-failure learning summary.
 - Full opportunity terrain map.
 - Candidate use-case shortlist with hypothesis, target user, workflow boundary, value hypothesis, trust dependencies, adoption dependencies, regulated-domain dependencies, confidence, and disqualification criteria.
+- Success-pattern fit screen per candidate: real pain, measurable outcome, recoverable-error fit, user willingness, existing foundation, sponsor strength, and revenue/risk/efficiency/new-capability potential.
 - Sequenced discovery tiers.
 - Rationale for sequencing.
 - Interview and artifact request plan.
@@ -226,6 +250,7 @@ If the user gives transcripts or notes, produce:
 - Information object and source access profiles.
 - Truth production map and truth production profiles.
 - Adoption, incentive, and end-user trust signals.
+- Resistance-source map across end users, managers, Legal, HR, risk, compliance, finance, IT/security, data owners, technical owners, and executives.
 - Operating strain and value signals.
 - Knowledge gaps.
 - Risk signals.
@@ -243,6 +268,7 @@ If the user gives an AI workflow specification, produce:
 - Organizational intelligence diagnostic.
 - Object-linked diagnostic findings.
 - Root-cause hypotheses.
+- Invisible-cost assessment: process redesign, documentation, data access, knowledge capture, change management, sponsor behavior, resistance, security review, and prior-failure learning.
 - Automation blockers.
 - Intervention routes.
 - Scale recommendation: downsized, standard, or upscaled.
@@ -330,6 +356,7 @@ If the user asks for Step 11, produce:
 - Truth production reality: macros, formulas, manual adjustments, recurring reconciliations, expert-memory rules, and fragile artifacts that produce final numbers or statuses.
 - Agent-safe metric usage: what future AI may calculate, cite, compare, summarize, flag, or must escalate.
 - AI-capability metric design: baseline, leading indicators, lagging indicators, override rate, error rate, drift signals, adoption metrics, cost metrics, and kill criteria.
+- Value metric breadth: quality, customer value, revenue conversion or retention, speed-to-market, backlog reduction, role redeployment, hiring avoided, staff-function approval latency, shadow AI reduction, and new capability creation where relevant.
 - Unresolved metric questions routed to Step 8 governance resolution, Step 14 architecture/normalization blueprint, Step 16 readiness scoring, or do-not-use-yet.
 - Confirmation that Step 11 does not build dashboards, pipelines, models, agents, MCPs, connectors, or live integrations.
 
@@ -339,6 +366,7 @@ If the user asks for Step 12, produce:
 - Portfolio comparison across candidate opportunities.
 - AI-side cost modeling: model calls, tool calls, retrieval/indexing, observability, evals, maintenance, tuning, support, and change-management cost.
 - Value hypotheses by lens: internal efficiency, cycle time, rework/error reduction, decision quality, risk reduction, revenue protection/growth, customer/tenant/vendor experience, and reusable data product value.
+- Headcount and capacity scenarios: direct reduction, hiring avoided, redeployment, acceleration of backlog or roadmap, no-headcount-change capability expansion, revenue growth, and new product/service creation.
 - Evidence-linked baseline metrics from Step 11, using only trusted or conditionally trusted measurements unless the value case is explicitly about fixing measurement or truth infrastructure.
 - Truth production dependencies and whether fragile metrics are excluded from baseline evidence unless the case is explicitly about fixing measurement/truth infrastructure.
 - Assumptions, confidence, and sensitivity: conservative/base/upside where evidence supports ranges.
@@ -354,6 +382,7 @@ If the user asks for Step 13, produce:
 - Agent topology: no-agent workflow, single assistant, workflow with LLM steps, tool-using agent, multi-agent system, or monitoring agent.
 - Model selection class: small/fast, frontier, private/open-weight, routed models, client-mandated, or unknown.
 - UX surface: existing CRM/system, email, chat, dashboard, mobile, browser extension, separate app, or workflow queue.
+- Oversight operating model: escalation, approval, or collaboration, with rationale tied to error tolerance, regulation, task complexity, recoverability, and expected productivity/value tradeoff.
 - Retrieval/context shape, source grounding, permission filtering, eval/observability shape, and offline proof-point recommendation.
 - End-user research, adoption feasibility, incentive alignment, opt-in vs mandate reality, training plan, rollout plan, support model, feedback channels, and adoption-failure triggers.
 - Confirmation that Step 13 decides solution/adoption shape only and does not build or integrate anything.
@@ -368,6 +397,8 @@ If the user asks for Step 14, produce:
 - Normalization requirements: source field, target field, rule, owner, quality check, blocker, and freshness need.
 - Truth production remediation: macro extraction, formula documentation, rule capture, semantic normalization, canonical entity design, reconciliation tests, owner assignment, governed replacement, or shadow artifact retirement.
 - Runtime/orchestration requirements: minimum safe runtime pattern, whether RAG is required, whether multi-agent design is justified, model capability needs, state/workflow/queue needs, human approval gates, retry/idempotency needs, and audit trace requirements.
+- Data access over perfection plan: how scattered, messy, unstructured, or incomplete data will be retrieved, transformed, validated, cited, escalated, and improved over time.
+- Model abstraction or multi-model routing plan where useful: routing by cost, latency, privacy, capability, task complexity, validation redundancy, and vendor flexibility.
 - Hosting/environment requirements: client cloud or mandated stack, identity provider, data residency, VPC/private networking, compute pattern, storage needs, queues, secrets manager, observability, vendor/security review, and preferred/fallback/blocked hosting patterns.
 - Future tool/MCP/connector contracts: purpose, input contract, output contract, allowed actions, prohibited actions, data touched, permission scope, human review, logging, and build phase.
 - Document and email scope: approved folders, labels, mailboxes, retention constraints, prohibited all-email access, and manual staging alternatives.
@@ -385,6 +416,8 @@ If the user asks for Step 15, produce:
 - Risk register with linked workflow object, system, source, truth production profile, tool, output, cause, impact, likelihood, severity, control, owner, verification needed, and residual risk.
 - Truth production risks: spreadsheet risk, key-person truth risk, undocumented transformation, auditability gap, and shadow-reporting drift.
 - Zero-trust control model covering identity, role/user scope, data access, record/field/document restrictions, tool permissions, output controls, approval gates, logging, monitoring, incident response, and revocation.
+- Shadow AI risk and control plan, including approved alternatives, policy gaps, training, monitoring signals, and escalation path.
+- Security-as-enabler patterns where relevant: PII scrubbing, data minimization, synthetic substitution, isolation/private networking, audit trails, contractual controls, and approved cloud/vendor patterns.
 - Tool-level permission matrix: allowed actions, prohibited actions, human approval requirements, logging requirements, and stop conditions per future tool/MCP/connector.
 - Output controls: allowed internal summaries/drafts, prohibited outputs, external-send approval, citation/evidence requirements, confidence requirements, and uncertainty language.
 - Stop conditions that block implementation until fixed.
@@ -396,9 +429,9 @@ If the user asks for Step 16, produce:
 - AI-agent readiness object scoped to one candidate opportunity, workflow, proposed user group, and business outcome.
 - Source-input coverage from Steps 0-15, including missing or partial inputs.
 - Proposed first AI behavior level and accountable human owner.
-- Hard gates: use-case framing, business value, workflow clarity, source access, data quality, truth production, regulated-domain, knowledge/guidance, measurement, solution shape, adoption/change, technical feasibility, risk/control, human oversight, and lifecycle.
+- Hard gates: use-case framing, business value, sponsor behavior, workflow clarity, process documentation, source access, data quality, truth production, regulated-domain, knowledge/guidance, measurement, solution shape, adoption/change, technical feasibility, model/orchestration, risk/control, security enablement, resistance profile, recoverable-error fit, human oversight, and lifecycle.
 - Gate status: pass, conditional, fail, blocked, or unknown, with evidence, confidence, owner, blocker flag, and required fix.
-- Dimension scores: use-case framing readiness, business value, workflow clarity, source access readiness, data quality, truth production readiness, knowledge/guidance readiness, measurement readiness, AI-capability metrics readiness, regulated-domain readiness, solution-shape readiness, architecture feasibility, risk/control readiness, adoption/change readiness, human oversight readiness, and change/lifecycle readiness.
+- Dimension scores: use-case framing readiness, sponsor behavior, prior failure learning, business value, workflow clarity, process documentation, source access readiness, data quality, truth production readiness, knowledge/guidance readiness, measurement readiness, AI-capability metrics readiness, regulated-domain readiness, solution-shape readiness, architecture feasibility, model/orchestration readiness, risk/control readiness, security enablement, resistance profile, recoverable-error fit, adoption/change readiness, human oversight readiness, and change/lifecycle readiness.
 - Behavior-level readiness: read-only summary, draft-and-flag, recommendation support, human-approved action, and autonomous action.
 - Dependency map across systems/sources, truth production profiles, guidance packs, metrics, technical dependencies, future tools/MCPs/connectors, normalization, identity resolution, test data, credentials/secrets, logging, and controls.
 - Blockers with owner, required fix, linked gate, linked dimension, behavior levels blocked, and whether the blocker changes the Step 17 path.
@@ -446,10 +479,13 @@ If the user asks for Step 18, produce:
 - Launch gates: evals passed, controls verified, audit logging ready, human review workflow confirmed, revocation ready, and support model ready.
 - Validation plan: eval suites, redacted/synthetic test data, source grounding, edge cases, permission boundaries, output quality, human review, failure behavior, and pre-pilot exit criteria.
 - Monitoring plan: quality metrics, business metrics, risk metrics, technical metrics, source freshness checks, cost/usage metrics, owners, thresholds, alerts, and cadence.
+- KPI refresh and value-realization plan: baseline refresh, target review, value-capture owner, headcount/capacity outcome tracking, and new-capability evidence.
 - Truth governance: source drift checks, rule-change approval, reconciliation cadence, owner review, and retirement of shadow artifacts.
 - Feedback and correction loop: channels, correction categories, severity routing, backlog owner, and review cadence.
+- Failure-learning loop: prior failed attempts, pilot misses, root-cause capture, sponsor review, and changes to guidance, data, controls, adoption, or architecture.
 - Adoption and change management: training, incentive alignment, opt-in/mandate limits, workflow sunsetting, feedback channels, adoption metrics, and adoption-failure triggers.
 - Change management: guidance updates, source changes, tool changes, model/runtime changes, required revalidation triggers, and versioning policy.
+- Model/runtime switching review: cadence and triggers for changing model, routing, inference provider, orchestration framework, or open/private model posture.
 - Access review and revocation: review cadence, scope, revocation triggers, emergency pause process, restoration conditions, and response times.
 - Incident response: owner, severity levels, triggers, escalation path, evidence preservation, notification expectations, and post-incident review.
 - Governance cadence: pilot review, steady-state review, and executive review attendees, agenda, and decision rights.

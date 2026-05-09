@@ -177,6 +177,34 @@ runtime_design_requirements:
     multi_agent_is_escalation_not_default: true
     vendor_or_framework_choice_requires_client_stack_or_build_phase_decision: true
 
+data_access_over_perfection_plan:
+  data_is_fully_ready: "unknown" # yes | no | partial | unknown
+  scattered_or_unstructured_sources: []
+  access_layer_patterns: [] # api | export | report_view | rag_index | document_connector | manual_staging | data_product | mcp_tool | other
+  progressive_quality_controls: []
+  uncertainty_or_conflict_handling:
+    cite_sources: true
+    flag_low_confidence: true
+    escalate_conflicts: true
+    human_review_for_exceptions: true
+  data_improvement_loop:
+    issue_capture_owner: ""
+    correction_backlog_owner: ""
+    review_cadence: ""
+  data_not_ready_stop_conditions: []
+
+model_abstraction_and_routing:
+  abstraction_layer_needed: "unknown" # yes | no | conditional | unknown
+  routing_dimensions: [] # cost | latency | privacy | capability | reasoning_complexity | multimodal | context_length | redundancy_validation | client_mandate
+  candidate_model_classes: [] # small_fast | frontier | open_weight_private | multimodal | embedding | reranker | domain_specific | client_mandated
+  task_specific_routing:
+    - task_type: ""
+      preferred_model_class: ""
+      fallback_model_class: ""
+      rationale: ""
+  validation_redundancy_needed: false
+  final_provider_not_selected_in_step14: true
+
 future_tools_or_mcps:
   - tool_id:
     tool_name:

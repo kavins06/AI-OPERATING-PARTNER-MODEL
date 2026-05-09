@@ -130,6 +130,27 @@ Record each edge case:
 - If this improved, what would change?
 - How would improvement be measured?
 
+## Adoption, Resistance, And Role Impact
+
+Use this to separate resistance sources instead of treating adoption as one generic issue.
+
+- Who would need to trust this workflow change?
+- Who could slow, block, or enable it?
+- Would Legal, HR, Risk, Compliance, Finance, IT, Security, Data, or vendor owners need to approve anything?
+- What would each group worry about: liability, policy, blame, data exposure, inconsistent outputs, cost, job impact, customer impact, or operational disruption?
+- What repetitive work would people be relieved to stop doing?
+- What higher-value work could absorb freed capacity?
+- What would make users see the change as help rather than replacement?
+- What level of human oversight would feel appropriate: exception escalation, approval of every output, or continuous collaboration?
+- What errors are recoverable, and which errors are unacceptable?
+- Has anyone used unofficial AI tools, scripts, macros, or workarounds because formal tools are too slow or missing?
+
+Record each adoption or resistance signal:
+
+| Source | Role / Team | Concern Or Enabler | Evidence | Likely Intervention | Blocks Pilot? | Validation Needed |
+|---|---|---|---|---|---|---|
+| end user / manager / Legal / HR / Risk / Compliance / Finance / IT-Security / Data / Executive / Vendor / Other | | | | sponsor mandate / training / workflow redesign / policy review / control design / expectation setting / role transition plan / approved tool alternative | yes / no / partial / unknown | |
+
 ## Silent Evidence Need Log
 
 Do not ask for uploads, file links, screenshots, or document submission during the interview. When validation may be useful, keep the interview moving and log the need internally.

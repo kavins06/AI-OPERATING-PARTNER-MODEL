@@ -100,6 +100,40 @@ value_lenses:
     future_uses: []
     prerequisites: []
     confidence: "unknown"
+  new_capability_or_product:
+    value_hypothesis:
+    capability_unlocked:
+    why_not_feasible_before_ai:
+    revenue_or_strategic_option:
+    prerequisites: []
+    confidence: "unknown"
+
+headcount_and_capacity_scenarios:
+  direct_reduction:
+    plausible: "unknown" # yes | no | partial | unknown
+    affected_roles: []
+    estimate:
+    risks_or_constraints: []
+  hiring_avoided:
+    plausible: "unknown"
+    roles_or_volume_absorbed: []
+    estimate:
+    evidence_refs: []
+  redeployment:
+    plausible: "unknown"
+    work_reduced: []
+    higher_value_work_to_absorb_capacity: []
+    enablement_needed: []
+  acceleration:
+    plausible: "unknown"
+    backlog_or_roadmap_items_accelerated: []
+    expected_business_effect:
+  no_headcount_change_capability_expansion:
+    plausible: "unknown"
+    capability_created:
+    measurement_needed:
+  recommended_value_capture_path: "" # reduce | avoid_hiring | redeploy | accelerate | grow_revenue | create_new_capability | mixed | unknown
+  workforce_transition_risks: []
 
 overall_value_assessment:
   value_confidence: "unknown" # high | medium | low | unknown

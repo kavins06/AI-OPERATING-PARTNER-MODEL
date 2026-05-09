@@ -1,0 +1,136 @@
+object_type: "agent_build_plan"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "build_plan_demo_revenue_intake_20260504"
+version: "0.1"
+status: "approved"
+
+source_inputs:
+  build_contract_id: "build_contract_demo_revenue_intake_20260504"
+  agent_necessity_kill_test_id: "agent_necessity_demo_revenue_intake_20260504"
+  architecture_record_id: "architecture_demo_revenue_intake_20260504"
+  tool_contract_registry_id: "tool_registry_demo_revenue_intake_20260504"
+  eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260504"
+  guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260504"
+  evidence_refs:
+    - "evidence://demo/step18-handoff"
+    - "evidence://demo/build-authorization"
+
+delivery_model:
+  build_owner: "Revenue Operations Build Lead"
+  delivery_lead: "Agent Platform Lead"
+  engineering_team:
+    - "Agent engineer"
+    - "CRM integration engineer"
+  review_forums:
+    - "Revenue AI Build Forum"
+  implementation_approach: "incremental"
+  target_first_pilot_date: "2026-05-18"
+  target_production_date: "2026-06-01"
+  phase_cadence_reference: "references/phase-cadence-guide.md"
+
+workstreams:
+  - workstream_id: "ws_agent_experience"
+    name: "Agent behavior and user experience"
+    owner: "Agent engineer"
+    scope:
+      - "Draft missing-intake follow-up requests for human approval."
+    deliverables:
+      - "Prompt and response contract"
+    dependencies:
+      - "Approved first behavior"
+    exit_criteria:
+      - "Drafts cite source fields and require human approval."
+  - workstream_id: "ws_integrations"
+    name: "Tools, connectors, and data access"
+    owner: "CRM integration engineer"
+    scope:
+      - "Read-only CRM opportunity and intake-form views."
+    deliverables:
+      - "Tool contract registry"
+    dependencies:
+      - "Sandbox CRM credentials"
+    exit_criteria:
+      - "All tool calls are traced and read-only."
+  - workstream_id: "ws_evals_controls"
+    name: "Evals, guardrails, and observability"
+    owner: "AgentOps owner"
+    scope:
+      - "Quality evals, control checks, and pilot dashboards."
+    deliverables:
+      - "Eval harness"
+      - "Guardrail matrix"
+      - "Trace spec"
+    dependencies:
+      - "Golden set of approved intake examples"
+    exit_criteria:
+      - "Blocking eval suites pass and alerts are configured."
+
+milestones:
+  - milestone_id: "m0_contract_lock"
+    name: "Build intake contract approved"
+    target_date: "2026-05-05"
+    required_artifacts:
+      - "agent_build_contract"
+      - "agent_necessity_kill_test"
+    approval_required: true
+    owner: "Revenue Operations Build Lead"
+    status: "passed"
+  - milestone_id: "m1_offline_validation_ready"
+    name: "Offline validation ready"
+    target_date: "2026-05-10"
+    required_artifacts:
+      - "eval_harness_spec"
+      - "guardrail_control_matrix"
+    approval_required: true
+    owner: "AgentOps owner"
+    status: "passed"
+  - milestone_id: "m2_sandbox_ready"
+    name: "Sandbox integration ready"
+    target_date: "2026-05-14"
+    required_artifacts:
+      - "agent_architecture_record"
+      - "tool_contract_registry"
+      - "trace_observability_spec"
+    approval_required: true
+    owner: "Agent Platform Lead"
+    status: "passed"
+
+delivery_risks:
+  - risk_id: "delivery_risk_crm_access_delay"
+    description: "CRM sandbox access may arrive after the target sandbox date."
+    likelihood: "medium"
+    impact: "medium"
+    mitigation: "Use redacted historical exports until sandbox account is provisioned."
+    owner: "CRM integration engineer"
+    status: "mitigated"
+
+dependencies:
+  internal_dependencies:
+    - "CRM sandbox account"
+  client_dependencies:
+    - "Approved pilot user roster"
+  vendor_dependencies: []
+  security_or_data_dependencies:
+    - "Read-only permission set"
+
+definition_of_done:
+  build_complete_when:
+    - "The first behavior runs in sandbox with no write/send action."
+  pilot_complete_when:
+    - "Pilot criteria pass for ten business days."
+  production_complete_when:
+    - "Production readiness gate is approved and rollback is rehearsed."
+  documentation_required:
+    - "internal-operator-run-card.md"
+    - "incident-revocation-runbook.md"
+
+plan_signoff:
+  prepared_by: "Agent Platform Lead"
+  reviewed_by:
+    - "Security owner"
+    - "Revenue Operations Manager"
+  approved_by:
+    - "VP Revenue Operations"
+  approval_status: "approved"
+  approval_date: "2026-05-05"

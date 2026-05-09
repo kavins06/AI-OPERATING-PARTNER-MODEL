@@ -1,0 +1,406 @@
+object_type: "agent_build_plan"
+example_id: "golden_path_phase_03_first_behavior_scope"
+phase_id: 3
+phase_key: "first_behavior_scope"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "build_plan_demo_revenue_intake_20260504"
+version: "0.1"
+status: "approved"
+minimum_completed_sections:
+  - "source_inputs"
+  - "delivery_model"
+  - "first_behavior_scope_lock"
+  - "phase_cadence"
+  - "workstreams"
+  - "milestones"
+  - "delivery_risks"
+  - "dependencies"
+  - "definition_of_done"
+  - "return_to_method_controls"
+  - "plan_signoff"
+section1_inputs_used:
+  - "implementation_decision_packet"
+  - "readiness_object"
+  - "managed_lifecycle_object"
+  - "workflow_intelligence_object"
+  - "organizational_intelligence_baseline"
+section2_outputs_demonstrated:
+  - "agent_build_contract"
+  - "agent_build_plan"
+evidence_expectations:
+  - "Cite approved implementation decision and lifecycle scope."
+  - "Cite readiness minimum safe first behavior and prohibited behaviors."
+  - "Cite workflow roles, steps, edge cases, and information objects."
+  - "Cite organizational source ownership, access, sensitivity, retention, and permitted/prohibited AI action decisions."
+failure_modes_to_test:
+  - "First behavior is broader than approved handoff."
+  - "Prohibited behaviors are not explicit."
+  - "Human review path is undefined."
+return_to_method_triggers_to_test:
+  - "Workflow boundary changes from approved Step 17/18 scope."
+
+example_context:
+  scenario: "Lock the first behavior and translate it into an implementation-grade build plan."
+  phase_decision: "pass"
+  evidence_packet: "skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml"
+
+source_inputs:
+  build_contract_id: "build_contract_demo_revenue_intake_20260504"
+  agent_necessity_kill_test_id: "agent_necessity_demo_revenue_intake_20260504"
+  implementation_decision_packet_id: "decision_packet_demo_revenue_intake_20260504"
+  managed_lifecycle_object_id: "lifecycle_demo_revenue_intake_20260504"
+  method_to_build_handoff_contract_id: "handoff_demo_revenue_intake_20260504"
+  readiness_object_id: "readiness_demo_revenue_intake_20260428"
+  workflow_intelligence_object_id: "workflow_intel_demo_revenue_intake_20260424"
+  organizational_intelligence_baseline_id: "org_baseline_demo_revenue_intake_20260425"
+  architecture_record_id: "architecture_demo_revenue_intake_20260504"
+  tool_contract_registry_id: "tool_registry_demo_revenue_intake_20260504"
+  eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260504"
+  guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260504"
+  evidence_refs:
+    - "evidence://demo/first-behavior-scope-review"
+    - "evidence://demo/workflow-intelligence"
+    - "evidence://demo/org-baseline-source-access"
+  source_input_usage:
+    - artifact: "agent_build_contract"
+      usage: "Locks build authorization, owner model, scope boundaries, first behavior, launch blockers, and change-control rules."
+      required_before_phase_exit: true
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/build-contract-approved"
+    - artifact: "agent_necessity_kill_test"
+      usage: "Carries no-send, no-write, intake-coordinator-only reductions into the plan."
+      required_before_phase_exit: true
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/necessity-kill-test-approved"
+    - artifact: "implementation_decision_packet"
+      usage: "Converts first build scope, owner matrix, component contracts, and stop boundary into milestones."
+      required_before_phase_exit: true
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/step17-first-build-scope"
+    - artifact: "managed_lifecycle_object"
+      usage: "Converts lifecycle stages, launch gates, monitoring plan, change management, and incident response into delivery gates."
+      required_before_phase_exit: true
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/step18-lifecycle-scope"
+    - artifact: "readiness_object"
+      usage: "Carries minimum safe first behavior, hard gates, blockers, and prohibited behaviors into build sequencing."
+      required_before_phase_exit: true
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/readiness-hard-gates"
+    - artifact: "workflow_intelligence_object"
+      usage: "Defines coordinator role, open intake record start point, approved draft end point, edge cases, and information objects."
+      required_before_phase_exit: true
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/workflow-intelligence"
+    - artifact: "organizational_intelligence_baseline"
+      usage: "Defines CRM and intake form source ownership, access limits, sensitivity, retention, and prohibited AI actions."
+      required_before_phase_exit: true
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/org-baseline-source-access"
+
+delivery_model:
+  build_owner: "Revenue Operations Build Lead"
+  delivery_lead: "Agent Platform Lead"
+  engineering_team:
+    - "Agent engineer"
+    - "Integration engineer"
+  review_forums:
+    - "Revenue AI Build Forum"
+    - "Security and Data Access Review"
+    - "AgentOps Weekly Build Review"
+  implementation_approach: "incremental"
+  target_first_pilot_date: "2026-05-18"
+  target_production_date: "2026-06-01"
+  phase_cadence_reference: "references/phase-cadence-guide.md"
+  operating_principles:
+    - "Build draft-and-flag only before any broader revenue automation."
+    - "Treat write/send access as a material change."
+    - "Every phase exit needs evidence, signoff, and return-to-method evaluation."
+
+first_behavior_scope_lock:
+  behavior_name: "Draft missing-intake follow-up request"
+  behavior_statement: "When an approved intake coordinator opens a revenue intake record with missing required fields, the agent reads approved read-only sources and drafts an internal follow-up request for coordinator approval."
+  approved_behavior_level: "draft_and_flag"
+  first_user_group:
+    - "Revenue intake coordinators"
+  workflow_start: "Coordinator reviews open revenue intake record missing required intake fields."
+  workflow_end: "Coordinator receives a draft follow-up and missing-field explanation for approval."
+  allowed_sources:
+    - "CRM read-only opportunity view"
+    - "Intake form read-only response store"
+  allowed_actions:
+    - "Read approved source fields."
+    - "Draft internal text."
+    - "Flag draft for coordinator review."
+  allowed_outputs:
+    - "Draft follow-up request."
+    - "Missing-field checklist."
+    - "Source-field trace summary."
+  prohibited_sources:
+    - "Email inbox."
+    - "Call transcripts."
+    - "Unapproved customer notes."
+  prohibited_actions:
+    - "Send message."
+    - "Write CRM field."
+    - "Change opportunity stage, owner, forecast, or next step."
+  prohibited_outputs:
+    - "Customer-facing final message."
+    - "Opportunity recommendation."
+    - "Forecast or qualification decision."
+  human_review_path:
+    reviewer_role: "Revenue intake coordinator"
+    approval_points:
+      - "Before any follow-up text leaves the internal draft surface."
+    review_sla: "One business day during pilot."
+    escalation_path:
+      - "Revenue Operations Support"
+      - "Revenue Operations Manager"
+  build_must_stop_when:
+    - "Implementation requires send or write access."
+    - "The record needs unapproved customer notes."
+    - "Coordinator review queue exceeds one business day SLA."
+    - "The draft cannot cite approved source fields."
+
+phase_cadence:
+  - phase_id: "01_build_conversion_gate"
+    default_timebox: "0.5 business day"
+    review_cadence: "single gate review"
+    decision_owner: "Revenue Operations Build Lead"
+    exit_evidence:
+      - "agent_build_contract.authorization"
+      - "agent_build_contract.owners"
+      - "agent_build_contract.build_scope"
+      - "agent_build_contract.gate_decisions.build_conversion_gate"
+    exit_decision_options:
+      - "pass"
+      - "conditional_pass"
+      - "blocked"
+      - "return_to_method"
+  - phase_id: "02_agent_necessity_check"
+    default_timebox: "0.5 business day"
+    review_cadence: "single decision review"
+    decision_owner: "Revenue Operations Manager"
+    exit_evidence:
+      - "agent_necessity_kill_test"
+    exit_decision_options:
+      - "proceed_with_agent_build"
+      - "replace_with_simpler_path"
+      - "hold_for_more_evidence"
+      - "return_to_method"
+  - phase_id: "03_first_behavior_scope"
+    default_timebox: "0.5 business day"
+    review_cadence: "scope lock review"
+    decision_owner: "Revenue AI Product Owner"
+    exit_evidence:
+      - "agent_build_contract.first_behavior_scope"
+      - "agent_build_plan.first_behavior_scope_lock"
+      - "agent_build_plan.workstreams"
+      - "agent_build_plan.milestones"
+      - "agent_build_plan.definition_of_done"
+    exit_decision_options:
+      - "pass"
+      - "conditional_pass"
+      - "blocked"
+      - "return_to_method"
+
+workstreams:
+  - workstream_id: "ws_agent_experience"
+    name: "Agent behavior and user experience"
+    owner: "Agent engineer"
+    scope:
+      - "Implement draft-and-flag behavior only."
+      - "Show source-field trace and missing-field checklist to coordinator."
+    deliverables:
+      - "Prompt and behavior implementation."
+      - "Coordinator review handoff."
+      - "Fallback copy for missing or contradictory sources."
+    dependencies:
+      - "Approved first_behavior_scope_lock."
+    exit_criteria:
+      - "Agent cannot send externally or write CRM."
+      - "Agent stops when required source evidence is missing."
+  - workstream_id: "ws_integrations"
+    name: "Tools, connectors, and data access"
+    owner: "Integration engineer"
+    scope:
+      - "Read-only CRM opportunity lookup."
+      - "Read-only intake form lookup."
+    deliverables:
+      - "Tool contract inputs."
+      - "Access proof."
+      - "Revocation path."
+    dependencies:
+      - "CRM Data Owner approval."
+      - "Security review."
+    exit_criteria:
+      - "Every tool is read-only, traced, and revocable."
+  - workstream_id: "ws_evals_controls"
+    name: "Evals, guardrails, and observability"
+    owner: "AgentOps Lead"
+    scope:
+      - "Evaluate missing-field coverage, draft quality, and forbidden action refusal."
+    deliverables:
+      - "Initial eval seed cases."
+      - "Guardrail requirements."
+      - "Trace event requirements."
+    dependencies:
+      - "Risk control model."
+      - "Sample intake records."
+    exit_criteria:
+      - "No eval case permits send or CRM write."
+
+milestones:
+  - milestone_id: "m0_contract_lock"
+    name: "Build intake contract approved"
+    target_date: "2026-05-04"
+    required_artifacts:
+      - "agent_build_contract"
+      - "build_conversion_gate_rubric_result"
+    approval_required: true
+    owner: "Revenue Operations Build Lead"
+    status: "passed"
+    pass_criteria:
+      - "Build authorization, owner model, scope, and return-to-method triggers are approved."
+  - milestone_id: "m1_agent_necessity_decision"
+    name: "Agent necessity decision approved"
+    target_date: "2026-05-04"
+    required_artifacts:
+      - "agent_necessity_kill_test"
+    approval_required: true
+    owner: "Revenue Operations Manager"
+    status: "passed"
+    pass_criteria:
+      - "Agent path survives simpler-alternative kill test."
+  - milestone_id: "m2_first_behavior_locked"
+    name: "First behavior locked"
+    target_date: "2026-05-05"
+    required_artifacts:
+      - "agent_build_contract.first_behavior_scope"
+      - "agent_build_plan.first_behavior_scope_lock"
+    approval_required: true
+    owner: "Revenue AI Product Owner"
+    status: "passed"
+    pass_criteria:
+      - "Single first behavior is buildable, constrained, and signoff-ready."
+  - milestone_id: "m3_offline_validation_ready"
+    name: "Offline validation ready"
+    target_date: "2026-05-09"
+    required_artifacts:
+      - "agent_architecture_record"
+      - "tool_contract_registry"
+      - "eval_harness_spec"
+      - "guardrail_control_matrix"
+    approval_required: true
+    owner: "Agent Platform Lead"
+    status: "not_started"
+  - milestone_id: "m4_pilot_launch_ready"
+    name: "Pilot launch gate ready"
+    target_date: "2026-05-18"
+    required_artifacts:
+      - "pilot_launch_gate"
+    approval_required: true
+    owner: "AgentOps Lead"
+    status: "not_started"
+
+delivery_risks:
+  - risk_id: "delivery_risk_scope_expansion"
+    description: "Stakeholders request CRM write or external send during build."
+    likelihood: "medium"
+    impact: "high"
+    mitigation: "Block request and route through change review after pilot evidence."
+    owner: "Revenue AI Product Owner"
+    status: "open"
+  - risk_id: "delivery_risk_human_review_capacity"
+    description: "Coordinator review queue exceeds one business day during pilot."
+    likelihood: "medium"
+    impact: "high"
+    mitigation: "Reduce pilot volume to 25 drafts per business day or add backup coordinator."
+    owner: "Revenue Operations Manager"
+    status: "open"
+
+dependencies:
+  internal_dependencies:
+    - dependency: "Pilot coordinator roster"
+      owner: "Revenue Operations Manager"
+      due_date: "2026-05-10"
+      blocked_phase: "10_controlled_pilot"
+    - dependency: "Read-only CRM access approval"
+      owner: "CRM Data Owner"
+      due_date: "2026-05-07"
+      blocked_phase: "05_tool_data_identity_contracts"
+  client_dependencies: []
+  vendor_dependencies: []
+  security_or_data_dependencies:
+    - dependency: "Security review of read-only connector"
+      owner: "Security Lead"
+      due_date: "2026-05-08"
+      blocked_phase: "06_environment_and_access_setup"
+  dependency_rules:
+    - "A dependency without owner, due date, and blocked-phase impact is incomplete."
+    - "A dependency that changes approved scope triggers return-to-method review."
+    - "A dependency that requires unapproved access blocks tool/data/identity contracts."
+
+definition_of_done:
+  phase_3_complete_when:
+    - "Build conversion gate is passed."
+    - "Agent necessity kill test decision is proceed_with_agent_build."
+    - "First behavior scope is locked with allowed/prohibited users, sources, systems, actions, outputs, human review, stop conditions, and escalation."
+    - "Workstreams and milestones inherit draft-and-flag only scope."
+    - "Required signoffs are approved."
+    - "Return-to-method triggers have been evaluated."
+  build_complete_when:
+    - "Offline validation, sandbox, security review, and pilot gates pass."
+  pilot_complete_when:
+    - "Pilot launch gate and pilot results show no blocking safety or quality issue."
+  production_complete_when:
+    - "Production readiness gate is approved."
+  documentation_required:
+    - "Approved agent_build_contract."
+    - "Approved agent_necessity_kill_test."
+    - "Approved agent_build_plan."
+
+return_to_method_controls:
+  triggers:
+    - "Workflow boundary changes from approved Step 17/18 scope."
+    - "Lowest-risk sufficient solution is not an agent."
+    - "Agent path changes recommended Step 17 decision."
+    - "Owner, source, risk, value, readiness, or lifecycle assumption is contradicted."
+  handling:
+    - "Pause affected Section 2 phase."
+    - "Record trigger, evidence, owner, and method question to reopen."
+    - "Do not resume until Section 1 method owner or authorized change forum decides."
+  evaluated_for_phase_3: true
+  active_triggers: []
+
+plan_signoff:
+  prepared_by: "Revenue Operations Build Lead"
+  reviewed_by:
+    - "Revenue AI Product Owner"
+    - "Agent Platform Lead"
+    - "Security Lead"
+    - "CRM Data Owner"
+    - "AgentOps Lead"
+  approved_by:
+    - "Revenue Operations Manager"
+    - "Agent Platform Lead"
+    - "Security Lead"
+  approval_status: "approved"
+  approval_date: "2026-05-05"
+  required_signoff_roles:
+    - "business_owner"
+    - "product_owner"
+    - "technical_owner"
+    - "security_owner"
+    - "data_owner"
+    - "agentops_owner"
+  notes:
+    - "Plan locks draft-and-flag first behavior and defers all send/write expansion to change control."

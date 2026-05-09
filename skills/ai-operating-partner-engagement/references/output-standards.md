@@ -80,6 +80,9 @@ Step 1 produces a terrain map, not a use-case decision. It must include:
 - Named opportunity zones.
 - Triangulated informant nominations from sponsor names, org-chart sampling, and "who do people call when this breaks?" probes.
 - Initial adoption and regulated-domain signals.
+- Sponsor mechanics: blocker-removal cadence, business/technical co-sponsorship, OKR or incentive linkage, permission-to-fail posture, and decision authority.
+- Prior AI, automation, analytics, or workflow-transformation attempts, including failures, stalls, and what changed.
+- Headcount/capacity value preference: reduction, hiring avoided, redeployment, acceleration, revenue growth, new capability, or unknown.
 - Sponsor confirmations needed before Step 2.
 
 ## Step 2 Candidate Use-Case Shortlist
@@ -93,6 +96,7 @@ Each candidate use case must include:
 - Target user and affected roles.
 - Workflow boundary and out-of-scope boundary.
 - Business value hypothesis.
+- Success-pattern fit: real pain, measurable outcome, recoverable-error potential, user willingness, existing foundation, sponsor strength, and value pattern.
 - Truth production dependencies.
 - Source/data dependencies.
 - Knowledge/guidance dependencies.
@@ -120,6 +124,8 @@ Each interview output must include:
 - Silent evidence need log.
 - Sensitive data and trust boundaries.
 - Adoption, incentive, and end-user trust signals.
+- Resistance-source map across end users, managers, Legal, HR, Risk, Compliance, Finance, IT/Security, data owners, executives, and vendors.
+- Oversight expectations: whether escalation, approval, or collaboration is appropriate and why.
 - Regulated-domain signals where relevant.
 - Participation-bias notes.
 - Follow-up questions.
@@ -152,6 +158,7 @@ Step 5 requests only the smallest planning evidence needed after the interview b
 - Acceptable substitute hierarchy: redacted artifact, redacted screenshot, walkthrough recording, live walkthrough without transfer, sample export, formula/macro walkthrough, verbal description with operating-partner-recreated structure.
 - Sensitivity, redaction, retention, and handling rule for each request.
 - Items explicitly not requested because they are too broad, too sensitive, duplicate, or premature.
+- Prior-attempt, process-documentation, KPI, adoption, shadow-AI, and security-review evidence requests when material to readiness, value, or risk.
 
 Step 5 never requests credentials, live access, write access, all-email ingestion, live MCP/connector access, or bulk unredacted data.
 
@@ -191,6 +198,7 @@ Step 7 enriches the workflow object with structured diagnostic findings. Each fi
 
 - Linked workflow-spec object IDs.
 - Diagnostic lens: people, process, data, knowledge, governance, systems, incentives, politics, behavior, risk, measurement, architecture, adoption, or regulated-domain.
+- Enterprise AI deployment lens where relevant: sponsor behavior, prior-failure learning, process documentation, resistance, security enablement, recoverable-error fit, or model orchestration.
 - Symptom and likely root cause.
 - Evidence and confidence.
 - Implication, severity, and recurrence.
@@ -295,6 +303,8 @@ AI-capability metric design must include:
 - Human override and review metrics.
 - Error, incident, drift, source-conflict, and fragile-truth signals.
 - Adoption metrics.
+- Value-breadth metrics: quality, customer value, revenue conversion or retention, speed-to-market, backlog reduction, hiring avoided, redeployment, headcount reduction, new capability, risk reduction, and shadow AI reduction where relevant.
+- Staff-function and governance metrics: legal, HR, risk, compliance, finance, IT/security, data, or approval-cycle measures where relevant.
 - Cost/token/tool-call metrics.
 - Kill criteria and pause thresholds.
 - Metric owners and review cadence.
@@ -308,6 +318,7 @@ Step 12 is the economic and portfolio filter. It must include:
 - Opportunity-level value case with evidence, assumptions, confidence, and fragile-truth caveats.
 - Baseline metric trust and truth production status.
 - AI-side cost model: model calls/tokens, tool calls, retrieval/storage, eval/observability, support, maintenance, human review, and vendor costs.
+- Headcount and capacity scenarios: direct reduction, hiring avoided, redeployment, acceleration, no-headcount-change capability expansion, revenue growth, and new product/service creation.
 - Risks to value capture.
 - Recommendation: carry forward, fix measurement first, fix truth production first, fix governance/knowledge first, deprioritize, or do not pursue.
 - Portfolio comparison across surviving opportunities: value, feasibility, readiness, risk, adoption complexity, strategic fit, truth/data debt, cost, time-to-proof, and sequencing.
@@ -323,6 +334,7 @@ Step 13 is a decision step before architecture documentation. It must decide:
 - Agent topology: no-agent workflow, workflow with LLM steps, single agent, multi-agent, or human-review assistant.
 - Model-selection class: small/cheap, frontier, open-weight/private, multimodal, or tool-heavy; final model can be deferred to implementation.
 - UX surface: embedded in existing system, chat, inbox, workflow queue, dashboard, browser extension, internal portal, or API-only.
+- Oversight operating model: escalation, approval, or collaboration, with rationale tied to error tolerance, recoverability, regulation, task complexity, and expected value.
 - Retrieval/context shape.
 - Eval and observability shape.
 - End-user research findings.
@@ -341,6 +353,8 @@ Step 14 documents the future technical plan. It must include:
 - Build/buy/leverage-vendor decision rationale.
 - Future remediation patterns: macro extraction, formula documentation, semantic normalization, canonical entity design, reconciliation tests, owner assignment, governed replacement path, and shadow artifact retirement.
 - Runtime requirements, model capability requirements, RAG/retrieval requirements, orchestration/state requirements, tool-calling needs, structured-output needs, latency/cost/privacy constraints, and human approval gates.
+- Data-access-over-perfection plan: how scattered, messy, unstructured, or incomplete data will be retrieved, transformed, validated, cited, escalated, and improved.
+- Model abstraction or multi-model routing plan where useful for cost, latency, privacy, capability, validation redundancy, or vendor flexibility.
 - Hosting/environment requirements.
 - Future MCP/tool/connector specs.
 - Normalization and identity-resolution plan.
@@ -358,6 +372,8 @@ Step 15 creates an implementation-grade risk and control object. It must include
 
 - Risk register linked to workflow objects, guidance rules, sources, truth profiles, metrics, tools, outputs, adoption design, and technical blueprint.
 - Data classification, sensitive-field handling, retention, export, and logging rules.
+- Shadow AI risk and control plan.
+- Security-as-enabler patterns: data minimization, PII scrubbing, synthetic substitution, approved environments, isolation/private networking, audit trails, contractual controls, or local/private model posture where relevant.
 - Truth-production risk controls.
 - Tool/action permissions and prohibited actions.
 - Output controls, confidence language, human review, and escalation gates.
@@ -374,8 +390,14 @@ Step 16 produces behavior-level readiness, not a generic maturity score. It must
 - Published hard gates.
 - Dimension scores and evidence.
 - Use-case framing gate.
+- Sponsor behavior gate.
+- Process documentation gate.
 - Truth production gate.
 - Governance/access gate.
+- Model/orchestration gate.
+- Security enablement gate.
+- Resistance profile gate.
+- Recoverable-error fit gate.
 - Knowledge/guidance gate.
 - Regulated-domain gate when applicable.
 - Measurement and AI-capability metric gate.
@@ -385,7 +407,7 @@ Step 16 produces behavior-level readiness, not a generic maturity score. It must
 - Behavior-level readiness: summarize, retrieve, draft, compare, recommend, decide, act/write/send.
 - Minimum safe first behavior.
 - Prohibited behaviors.
-- Blockers, required fixes, owners, and reassessment triggers.
+- Blockers, required fixes, owners, and reassessment triggers, including sponsor/change, prior-failure learning, resistance intervention, model/routing, data-access-layer, and security enablement dependencies.
 - Recommended Step 17 path.
 
 Readiness must fail any non-safe-limited behavior that depends on material fragile truth.
@@ -412,8 +434,11 @@ Step 18 is the future operating contract. It must include:
 - Ownership model.
 - Launch gates and validation plan.
 - Monitoring and eval cadence.
+- Value-realization and KPI refresh plan.
 - Truth governance: source drift checks, rule-change approval, reconciliation cadence, owner review, and shadow artifact retirement.
 - Guidance/source update process.
+- Failure-learning loop and sponsor review cadence.
+- Model/runtime switching review and revalidation triggers.
 - Access review, revocation, incident response, pause conditions, and retirement criteria.
 - Adoption/change model: end-user roles, training plan, incentive alignment, opt-in/mandate reality, feedback channels, workflow sunsetting, adoption metrics, adoption-failure triggers, and remedial actions.
 - Expansion criteria and reassessment triggers.

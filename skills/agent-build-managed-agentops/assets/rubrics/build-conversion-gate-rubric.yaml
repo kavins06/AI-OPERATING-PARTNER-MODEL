@@ -1,0 +1,128 @@
+rubric_id: build_conversion_gate_rubric
+phase_id: 1
+phase_key: build_conversion_gate
+status: active
+scoring:
+  pass: "All required criteria pass with evidence and required signoffs."
+  conditional: "Only non-critical follow-ups remain; each has owner, due date, and cannot affect authorization, scope, owner model, or return-to-method decision."
+  blocked: "Any required criterion fails without authorized waiver, or any automatic blocker is active."
+  return_to_method: "A required Section 1 decision, artifact, assumption, or approval is missing, contradicted, or invalidated."
+minimum_score_policy:
+  pass_requires:
+    - "No critical criteria failed."
+    - "No automatic blocker active."
+    - "All signoff_required criteria passed."
+criteria:
+  - criterion_id: source_inputs_approved
+    required: true
+    owner_role: "delivery_lead"
+    evidence_required:
+      - "implementation_decision_packet.approval_status"
+      - "managed_lifecycle_object.final_approval"
+      - "method_to_build_handoff_contract.owner_acceptance"
+      - "separate_implementation_approval.authorization_record"
+    pass_condition: "All required Section 1 inputs are present, approved, versioned, cited, and current."
+    fail_condition: "Any required source artifact is missing, draft, unversioned, uncited, expired, or contradicted."
+  - criterion_id: handoff_version_traceable
+    required: true
+    owner_role: "delivery_lead"
+    evidence_required:
+      - "method_to_build_handoff_contract.handoff_version"
+      - "implementation_decision_packet.step_17_packet_id"
+      - "managed_lifecycle_object.lifecycle_object_id"
+    pass_condition: "The contract identifies the exact Step 17/18 handoff version used for Section 2 conversion."
+    fail_condition: "The handoff version or source object IDs cannot be identified."
+  - criterion_id: implementation_approval_current
+    required: true
+    owner_role: "executive_sponsor"
+    evidence_required:
+      - "separate_implementation_approval.authorizing_body"
+      - "separate_implementation_approval.authorization_date"
+      - "separate_implementation_approval.budget_timebox"
+      - "separate_implementation_approval.permitted_environments"
+    pass_condition: "Separate implementation approval explicitly authorizes this build scope, budget/timebox, owners, and permitted environments."
+    fail_condition: "Approval is absent, stale, incomplete, or does not match the requested Section 2 scope."
+  - criterion_id: scope_not_widened
+    required: true
+    owner_role: "product_owner"
+    evidence_required:
+      - "implementation_decision_packet.first_build_scope"
+      - "managed_lifecycle_object.lifecycle_scope"
+      - "agent_build_contract.build_scope"
+      - "agent_build_contract.authorization.explicit_out_of_scope"
+    pass_condition: "Users, workflow boundary, sources, systems, tools/actions, outputs, environments, and behavior level are equal to or narrower than approved Step 17/18 scope."
+    fail_condition: "The contract introduces an unapproved user, source, system, action, environment, behavior level, or output."
+  - criterion_id: owner_model_complete
+    required: true
+    owner_role: "business_owner"
+    evidence_required:
+      - "implementation_decision_packet.owner_matrix"
+      - "managed_lifecycle_object.owner_model"
+      - "method_to_build_handoff_contract.owner_acceptance"
+      - "agent_build_contract.owners"
+    pass_condition: "Business, product, technical, security, data, risk/compliance, AgentOps, support, and revocation owners are named or explicitly blocked."
+    fail_condition: "Any required owner role is blank without blocker, especially AgentOps, support, security, data, or revocation owner."
+  - criterion_id: evidence_map_complete
+    required: true
+    owner_role: "delivery_lead"
+    evidence_required:
+      - "agent_build_contract.source_inputs.evidence_refs"
+      - "agent_build_contract.source_inputs.source_input_usage"
+      - "agent_build_contract.open_handoff_questions"
+    pass_condition: "Every material authorization, owner, scope, environment, and launch-blocker claim has evidence refs or is recorded as a blocker."
+    fail_condition: "Material claims rely on inference, memory, or uncited source material."
+  - criterion_id: output_contract_complete
+    required: true
+    owner_role: "technical_owner"
+    evidence_required:
+      - "agent_build_contract.authorization"
+      - "agent_build_contract.owners"
+      - "agent_build_contract.build_scope"
+      - "agent_build_contract.acceptance_contract"
+      - "agent_build_contract.change_control"
+      - "agent_build_contract.gate_decisions.build_conversion_gate"
+    pass_condition: "The agent_build_contract contains all Phase 1 required sections needed for Phase 2 and Phase 3."
+    fail_condition: "Required contract sections are absent, placeholder-only, or insufficient for the next phase."
+  - criterion_id: failure_handling_operational
+    required: true
+    owner_role: "agentops_owner"
+    evidence_required:
+      - "agent_build_contract.gate_decisions.build_conversion_gate.failure_handling"
+      - "build-conversion-gate-checklist.Blocking Conditions"
+    pass_condition: "Missing approval, scope ambiguity, owner gap, and evidence gap each have explicit stop/hold/return handling."
+    fail_condition: "Failure modes are listed but not tied to operational handling."
+  - criterion_id: return_to_method_evaluated
+    required: true
+    owner_role: "delivery_lead"
+    evidence_required:
+      - "agent_build_contract.authorization.return_to_method_triggers"
+      - "agent_build_contract.gate_decisions.build_conversion_gate.return_to_method_review"
+      - "method_to_build_handoff_contract.return_to_method_triggers"
+    pass_condition: "Return-to-method triggers are evaluated and inactive, or the phase is stopped with trigger reason and method owner."
+    fail_condition: "Return-to-method triggers are copied but not evaluated."
+  - criterion_id: signoff_complete
+    required: true
+    owner_role: "executive_sponsor"
+    evidence_required:
+      - "agent_build_contract.contract_signoff"
+      - "agent_build_contract.gate_decisions.build_conversion_gate.owner_signoff_required"
+    pass_condition: "Required business, technical, security, data, and AgentOps signoffs are approved or explicitly blocking."
+    fail_condition: "Required signoff is missing without blocker or waiver."
+automatic_blockers:
+  - "Step 18 approval missing."
+  - "Separate implementation approval missing."
+  - "Owner model incomplete."
+  - "Scope or budget/timebox ambiguous."
+  - "Handoff version cannot be identified."
+  - "Section 2 scope exceeds approved Step 17/18 handoff."
+return_to_method_triggers:
+  - "Handoff version cannot be identified."
+  - "Required Step 17/18 artifact is incomplete."
+  - "Approved behavior level changes."
+  - "Workflow boundary, source, owner model, risk posture, or lifecycle assumption is contradicted."
+signoffs_required:
+  - "business_owner"
+  - "technical_owner"
+  - "security_owner"
+  - "data_owner"
+  - "agentops_owner"

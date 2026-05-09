@@ -1,0 +1,534 @@
+spec_id: "section2_build_spec"
+version: "0.1"
+status: "active"
+purpose: "Source-of-truth automation spec for making Section 2 as dense and enforceable as Section 1 without hand-building every file ad hoc."
+
+automation_contract:
+  source_of_truth: "02-implementation-managed-agentops/section2-build-spec.yaml"
+  generator_script: "scripts/generate-section2-backbone.py"
+  validator_script: "scripts/validate-section2-backbone.py"
+  validation_modes:
+    current: "Validate active/current Section 2 assets and the target spec structure."
+    strict: "Validate the full target-state Section 2 backbone after all support skills and assets are generated."
+  generated_without_overwrite_by_default: true
+  target_standard:
+    - "Every phase has a support skill or explicit orchestrator owner."
+    - "Every phase has Section 1 source inputs."
+    - "Every phase has machine-readable outputs."
+    - "Every phase has a checklist, rubric, validator rule group, example requirement, failure handling, and return-to-method trigger."
+    - "Every support skill can be scaffolded deterministically."
+
+shared_assets:
+  handoff_map: "skills/agent-build-managed-agentops/assets/mappings/section1-to-section2-handoff-map.yaml"
+  agentops_schema: "skills/agent-build-managed-agentops/assets/schemas/agentops-object-schemas.yaml"
+  template_index: "skills/agent-build-managed-agentops/assets/templates/TEMPLATE_INDEX.md"
+  golden_path_packet: "skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml"
+  phase_cadence_guide: "skills/agent-build-managed-agentops/references/phase-cadence-guide.md"
+
+target_directories:
+  skills_root: "skills"
+  checklists: "skills/agent-build-managed-agentops/assets/checklists"
+  rubrics: "skills/agent-build-managed-agentops/assets/rubrics"
+  examples: "skills/agent-build-managed-agentops/assets/examples"
+  validator_rules: "skills/agent-build-managed-agentops/assets/validator-rules"
+
+support_skills:
+  - skill_id: "agent-build-intake-and-scope"
+    status: "active"
+    phases: [1, 2, 3]
+    display_name: "Agent Build Intake And Scope"
+    short_description: "Gate implementation approval and lock the first safe agent behavior."
+  - skill_id: "agent-architecture-and-tooling"
+    status: "target"
+    phases: [4, 5]
+    display_name: "Agent Architecture And Tooling"
+    short_description: "Translate approved handoff artifacts into architecture, tool, data, and identity contracts."
+  - skill_id: "agent-environment-and-access"
+    status: "target"
+    phases: [6]
+    display_name: "Agent Environment And Access"
+    short_description: "Control environment progression, test data, secrets, provisioning, access review, and rollback readiness."
+  - skill_id: "agent-evals-guardrails-observability"
+    status: "target"
+    phases: [7, 9]
+    display_name: "Agent Evals Guardrails Observability"
+    short_description: "Design eval suites, guardrails, control verification, trace policy, dashboards, and alerting."
+  - skill_id: "agent-sandbox-pilot-readiness"
+    status: "target"
+    phases: [8, 10, 11]
+    display_name: "Agent Sandbox Pilot Readiness"
+    short_description: "Govern sandbox prototype evidence, controlled pilot launch, and production readiness gate."
+  - skill_id: "agent-release-management"
+    status: "target"
+    phases: [12]
+    display_name: "Agent Release Management"
+    short_description: "Version and release approved agent artifacts with deployment notes and rollback package."
+  - skill_id: "managed-agentops-operations"
+    status: "target"
+    phases: [13]
+    display_name: "Managed AgentOps Operations"
+    short_description: "Operate live agents through metrics, source freshness, incidents, access review, guidance updates, and value tracking."
+  - skill_id: "agent-change-expansion-retirement"
+    status: "target"
+    phases: [14, 15]
+    display_name: "Agent Change Expansion Retirement"
+    short_description: "Review material changes, expansion, rollback, remediation, retirement, and redesign loops."
+
+phase_detail_layers:
+  required_for_each_phase:
+    - "support_skill"
+    - "section1_inputs"
+    - "section2_outputs"
+    - "machine_readable_template"
+    - "schema_definition"
+    - "operator_checklist"
+    - "rubric"
+    - "validator_rules"
+    - "golden_path_example_requirement"
+    - "failure_modes"
+    - "return_to_method_triggers"
+
+implementation_grade_requirements:
+  required_for_each_support_skill:
+    - "clear boundary and no-backfill rule"
+    - "owned phase list"
+    - "Section 1 input list"
+    - "Section 2 output contract list"
+    - "local phase-pack index"
+    - "local phase-pack manifest and playbook for every owned phase"
+    - "phase-specific execution requirements"
+    - "resource map to schemas, templates, checklists, rubrics, validator rules, and examples"
+    - "quality bar that blocks scope widening and missing evidence"
+  required_for_each_checklist:
+    - "entry checks"
+    - "scope checks"
+    - "evidence checks"
+    - "phase-specific checks"
+    - "blocking conditions"
+    - "exit checks"
+    - "failure modes"
+    - "return-to-method triggers"
+  required_for_each_rubric:
+    minimum_criteria: 8
+    required_fields_per_criterion:
+      - "criterion_id"
+      - "required"
+      - "evidence_required"
+      - "pass_condition"
+  required_for_each_validator_rule_group:
+    minimum_checks: 8
+    required_fields_per_check:
+      - "check_id"
+      - "severity"
+      - "description"
+  required_for_each_phase_example:
+    - "phase_id"
+    - "phase_key"
+    - "section1_inputs_used"
+    - "section2_outputs_demonstrated"
+    - "evidence_expectations"
+    - "minimum_completed_sections"
+    - "failure_modes_to_test"
+    - "return_to_method_triggers_to_test"
+
+phases:
+  - phase_id: 1
+    phase_key: "build_conversion_gate"
+    name: "Build Conversion Gate"
+    support_skill: "agent-build-intake-and-scope"
+    section1_inputs:
+      - "implementation_decision_packet"
+      - "managed_lifecycle_object"
+      - "method_to_build_handoff_contract"
+      - "separate_implementation_approval"
+    section2_outputs:
+      - "agent_build_contract"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/build-intake-contract.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/build-conversion-gate-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/build-conversion-gate-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/01-agent-build-contract.yaml"
+    validator_rule_group: "build_conversion_gate"
+    failure_modes:
+      - "Step 18 approval missing."
+      - "Separate implementation approval missing."
+      - "Owner model incomplete."
+      - "Scope or budget/timebox ambiguous."
+    return_to_method_triggers:
+      - "Handoff version cannot be identified."
+      - "Required Step 17/18 artifact is incomplete."
+
+  - phase_id: 2
+    phase_key: "agent_necessity_check"
+    name: "Agent Necessity Check"
+    support_skill: "agent-build-intake-and-scope"
+    section1_inputs:
+      - "candidate_use_case_shortlist"
+      - "business_value_case"
+      - "solution_shape"
+      - "readiness_object"
+      - "implementation_decision_packet"
+    section2_outputs:
+      - "agent_necessity_kill_test"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/agent-necessity-kill-test.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/agent-necessity-kill-test-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/agent-necessity-kill-test-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/02-agent-necessity-kill-test.yaml"
+    validator_rule_group: "agent_necessity_check"
+    failure_modes:
+      - "Simpler non-agent path satisfies the approved outcome."
+      - "Agent value does not justify operating burden."
+      - "Human oversight is not workable."
+    return_to_method_triggers:
+      - "Agent path changes recommended Step 17 decision."
+      - "Lowest-risk sufficient solution is not an agent."
+
+  - phase_id: 3
+    phase_key: "first_behavior_scope"
+    name: "First Behavior Scope"
+    support_skill: "agent-build-intake-and-scope"
+    section1_inputs:
+      - "implementation_decision_packet"
+      - "readiness_object"
+      - "managed_lifecycle_object"
+      - "workflow_intelligence_object"
+      - "organizational_intelligence_baseline"
+    section2_outputs:
+      - "agent_build_contract"
+      - "agent_build_plan"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/build-intake-contract.yaml"
+      - "skills/agent-build-managed-agentops/assets/templates/agent-build-plan.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/first-behavior-scope-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/first-behavior-scope-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/03-agent-build-plan.yaml"
+    validator_rule_group: "first_behavior_scope"
+    failure_modes:
+      - "First behavior is broader than approved handoff."
+      - "Prohibited behaviors are not explicit."
+      - "Human review path is undefined."
+    return_to_method_triggers:
+      - "Workflow boundary changes from approved Step 17/18 scope."
+
+  - phase_id: 4
+    phase_key: "agent_architecture_spec"
+    name: "Agent Architecture Spec"
+    support_skill: "agent-architecture-and-tooling"
+    section1_inputs:
+      - "solution_shape"
+      - "technical_blueprint"
+      - "risk_control_model"
+      - "implementation_decision_packet"
+    section2_outputs:
+      - "agent_architecture_record"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/agent-architecture-record.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/agent-architecture-review-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/agent-architecture-readiness-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/04-agent-architecture-record.yaml"
+    validator_rule_group: "agent_architecture_spec"
+    failure_modes:
+      - "Runtime topology does not match approved behavior level."
+      - "Fallback and failure behavior are undefined."
+      - "Model/runtime posture ignores privacy, latency, or cost constraints."
+    return_to_method_triggers:
+      - "Architecture requires different behavior level, source, or oversight model."
+
+  - phase_id: 5
+    phase_key: "tool_data_identity_contracts"
+    name: "Tool/Data/Identity Contracts"
+    support_skill: "agent-architecture-and-tooling"
+    section1_inputs:
+      - "technical_blueprint"
+      - "organizational_intelligence_baseline"
+      - "risk_control_model"
+      - "implementation_decision_packet"
+    section2_outputs:
+      - "tool_contract_registry"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/tool-contract-registry.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/tool-data-identity-contracts-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/tool-contract-completeness-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/05-tool-contract-registry.yaml"
+    validator_rule_group: "tool_data_identity_contracts"
+    failure_modes:
+      - "Tool lacks owner, permission scope, audit logging, failure behavior, or revocation path."
+      - "Identity mapping is ambiguous."
+      - "Write/send action appears without explicit approval."
+    return_to_method_triggers:
+      - "Tool requires access not approved in Step 17/18."
+
+  - phase_id: 6
+    phase_key: "environment_and_access_setup"
+    name: "Environment And Access Setup"
+    support_skill: "agent-environment-and-access"
+    section1_inputs:
+      - "technical_blueprint"
+      - "risk_control_model"
+      - "managed_lifecycle_object"
+      - "method_to_build_handoff_contract"
+    section2_outputs:
+      - "environment_progression_gate"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/environment-progression-gate.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/environment-access-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/environment-access-readiness-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/06-environment-progression-gate.yaml"
+    validator_rule_group: "environment_and_access_setup"
+    failure_modes:
+      - "Secrets, test data, sandbox, or access review process is undefined."
+      - "Production access is implied before readiness gate."
+    return_to_method_triggers:
+      - "Approved environment path is not feasible."
+
+  - phase_id: 7
+    phase_key: "eval_and_guardrail_design"
+    name: "Eval And Guardrail Design"
+    support_skill: "agent-evals-guardrails-observability"
+    section1_inputs:
+      - "ai_guidance_pack"
+      - "measurement_intelligence"
+      - "risk_control_model"
+      - "readiness_object"
+      - "managed_lifecycle_object"
+    section2_outputs:
+      - "eval_harness_spec"
+      - "guardrail_control_matrix"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/eval-and-validation-plan.yaml"
+      - "skills/agent-build-managed-agentops/assets/templates/guardrail-control-matrix.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/eval-guardrail-design-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/eval-guardrail-launch-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/07-eval-harness-and-guardrails.yaml"
+    validator_rule_group: "eval_and_guardrail_design"
+    failure_modes:
+      - "Eval suite does not cover guidance, edge cases, risks, prohibited behaviors, and permissions."
+      - "Blocking thresholds are missing."
+    return_to_method_triggers:
+      - "Required evals reveal missing knowledge or unstable truth production."
+
+  - phase_id: 8
+    phase_key: "sandbox_prototype"
+    name: "Sandbox Prototype"
+    support_skill: "agent-sandbox-pilot-readiness"
+    section1_inputs:
+      - "technical_blueprint"
+      - "ai_guidance_pack"
+      - "risk_control_model"
+      - "method_to_build_handoff_contract"
+    section2_outputs:
+      - "environment_progression_gate"
+      - "release_version_manifest"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/environment-progression-gate.yaml"
+      - "skills/agent-build-managed-agentops/assets/templates/release-version-manifest.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/sandbox-exit-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/sandbox-exit-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/08-sandbox-prototype-evidence.yaml"
+    validator_rule_group: "sandbox_prototype"
+    failure_modes:
+      - "Sandbox uses unapproved data or access."
+      - "Prototype deviations are not recorded."
+      - "Sandbox success is treated as production readiness."
+    return_to_method_triggers:
+      - "Sandbox learning changes approved scope, risk, truth, or value assumptions."
+
+  - phase_id: 9
+    phase_key: "security_and_control_review"
+    name: "Security And Control Review"
+    support_skill: "agent-evals-guardrails-observability"
+    section1_inputs:
+      - "risk_control_model"
+      - "technical_blueprint"
+      - "managed_lifecycle_object"
+    section2_outputs:
+      - "guardrail_control_matrix"
+      - "trace_observability_spec"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/guardrail-control-matrix.yaml"
+      - "skills/agent-build-managed-agentops/assets/templates/trace-observability-spec.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/security-control-review-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/security-control-review-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/09-security-control-review.yaml"
+    validator_rule_group: "security_and_control_review"
+    failure_modes:
+      - "Residual risk is accepted without owner approval."
+      - "Audit, revocation, or incident evidence is missing."
+    return_to_method_triggers:
+      - "Security control requires different architecture, behavior, or data path."
+
+  - phase_id: 10
+    phase_key: "controlled_pilot"
+    name: "Controlled Pilot"
+    support_skill: "agent-sandbox-pilot-readiness"
+    section1_inputs:
+      - "managed_lifecycle_object"
+      - "adoption_design"
+      - "measurement_intelligence"
+      - "risk_control_model"
+    section2_outputs:
+      - "pilot_launch_gate"
+      - "agentops_operating_record"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/pilot-launch-gate.yaml"
+      - "skills/agent-build-managed-agentops/assets/templates/agentops-operating-record.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/pilot-readiness-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/pilot-readiness-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/10-pilot-launch-gate.yaml"
+    validator_rule_group: "controlled_pilot"
+    failure_modes:
+      - "Pilot audience, support model, feedback channel, monitoring, or stop condition is missing."
+    return_to_method_triggers:
+      - "Pilot reveals adoption, value, control, or truth assumptions were wrong."
+
+  - phase_id: 11
+    phase_key: "production_readiness_gate"
+    name: "Production Readiness Gate"
+    support_skill: "agent-sandbox-pilot-readiness"
+    section1_inputs:
+      - "managed_lifecycle_object"
+      - "measurement_intelligence"
+      - "risk_control_model"
+      - "technical_blueprint"
+    section2_outputs:
+      - "production_readiness_gate"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/production-readiness-gate.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/production-readiness-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/production-readiness-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/11-production-readiness-gate.yaml"
+    validator_rule_group: "production_readiness_gate"
+    failure_modes:
+      - "Production launch lacks pilot evidence, owner signoff, incident rehearsal, revocation readiness, or accepted residual risk."
+    return_to_method_triggers:
+      - "Production readiness requires scope, owner, risk, or lifecycle changes."
+
+  - phase_id: 12
+    phase_key: "production_release"
+    name: "Production Release"
+    support_skill: "agent-release-management"
+    section1_inputs:
+      - "technical_blueprint"
+      - "managed_lifecycle_object"
+      - "risk_control_model"
+    section2_outputs:
+      - "release_version_manifest"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/release-version-manifest.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/production-release-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/release-management-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/12-release-version-manifest.yaml"
+    validator_rule_group: "production_release"
+    failure_modes:
+      - "Release lacks versioned prompts, models, tools, schemas, eval sets, permissions, release notes, or rollback package."
+    return_to_method_triggers:
+      - "Release packaging changes approved runtime, tool, source, or behavior scope."
+
+  - phase_id: 13
+    phase_key: "managed_agentops"
+    name: "Managed AgentOps"
+    support_skill: "managed-agentops-operations"
+    section1_inputs:
+      - "managed_lifecycle_object"
+      - "measurement_intelligence"
+      - "ai_guidance_pack"
+      - "organizational_intelligence_baseline"
+      - "risk_control_model"
+    section2_outputs:
+      - "agentops_operating_record"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/agentops-operating-record.yaml"
+      - "skills/agent-build-managed-agentops/assets/templates/internal-operator-run-card.md"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/agentops-weekly-review-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/agentops-operating-health-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/13-agentops-operating-record.yaml"
+    validator_rule_group: "managed_agentops"
+    failure_modes:
+      - "Live operation lacks owner coverage, metric review, source freshness, cost review, access review, incident handling, or guidance update cadence."
+    return_to_method_triggers:
+      - "Operating metrics show value, risk, source, ownership, or adoption assumptions are invalid."
+
+  - phase_id: 14
+    phase_key: "expansion_change_control_gate"
+    name: "Expansion/Change-Control Gate"
+    support_skill: "agent-change-expansion-retirement"
+    section1_inputs:
+      - "managed_lifecycle_object"
+      - "readiness_object"
+      - "implementation_decision_packet"
+      - "method_to_build_handoff_contract"
+    section2_outputs:
+      - "change_expansion_retirement_review"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/change-expansion-retirement-review.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/change-expansion-review-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/change-control-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/14-change-expansion-review.yaml"
+    validator_rule_group: "expansion_change_control_gate"
+    failure_modes:
+      - "New user, source, tool, workflow, behavior level, model, or write/send action is added without approval."
+    return_to_method_triggers:
+      - "Expansion changes readiness, risk, value, or lifecycle assumptions."
+
+  - phase_id: 15
+    phase_key: "retirement_or_redesign_loop"
+    name: "Retirement Or Redesign Loop"
+    support_skill: "agent-change-expansion-retirement"
+    section1_inputs:
+      - "managed_lifecycle_object"
+      - "measurement_intelligence"
+      - "risk_control_model"
+      - "organizational_intelligence_diagnostic"
+    section2_outputs:
+      - "change_expansion_retirement_review"
+    existing_templates:
+      - "skills/agent-build-managed-agentops/assets/templates/change-expansion-retirement-review.yaml"
+    target_checklist: "skills/agent-build-managed-agentops/assets/checklists/retirement-redesign-checklist.md"
+    target_rubric: "skills/agent-build-managed-agentops/assets/rubrics/retirement-redesign-rubric.yaml"
+    target_example: "skills/agent-build-managed-agentops/assets/examples/golden-path/15-retirement-redesign-review.yaml"
+    validator_rule_group: "retirement_or_redesign_loop"
+    failure_modes:
+      - "Low value, high correction rate, source drift, ownership gap, or unacceptable risk continues without pause, redesign, or retirement."
+    return_to_method_triggers:
+      - "Redesign requires new discovery, readiness scoring, or lifecycle decision."
+
+generation_rules:
+  skill_scaffold:
+    create_skill_md: true
+    create_agents_openai_yaml: true
+    do_not_overwrite_existing_without_force: true
+    required_sections:
+      - "Boundary"
+      - "Required Inputs"
+      - "Owned Phases"
+      - "Resource Map"
+      - "Workflow"
+      - "Output Contracts"
+      - "Quality Bar"
+  phase_assets:
+    create_checklist_stub: true
+    create_rubric_stub: true
+    create_validator_rule_stub: true
+    create_example_placeholder: true
+  docs:
+    update_section2_readme_manually_after_generation: true
+    update_skill_manifest_manually_after_generation: true
+
+validation_requirements:
+  current_mode:
+    require_active_support_skills_exist: true
+    require_target_support_skills_exist: false
+    require_existing_templates_exist: true
+    require_shared_assets_exist: true
+    require_each_phase_has_section1_inputs: true
+    require_each_phase_has_outputs: true
+  strict_mode:
+    require_active_support_skills_exist: true
+    require_target_support_skills_exist: true
+    require_existing_templates_exist: true
+    require_target_checklists_exist: true
+    require_target_rubrics_exist: true
+    require_target_examples_exist: true
+    require_validator_rule_stubs_exist: true
+    require_manifest_lists_all_support_skills: true

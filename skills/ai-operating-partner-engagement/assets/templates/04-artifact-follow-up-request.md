@@ -44,6 +44,20 @@ Request only scoped planning evidence, not live access.
 |---|---|---|---|---|---|---:|---|
 | | formula / macro walkthrough / sample export / reconciliation note / final report / screenshot / decision packet | validate derivation, ownership, reproducibility, auditability, or AI-safe usage | redacted file copy / screenshot / walkthrough / sample export / data dictionary / report definition | | | | |
 
+## Prior Attempt, Adoption, And Security Evidence
+
+Use this only where the interviews or executive terrain suggest the evidence would materially change readiness, value, or risk.
+
+| Evidence Area | Evidence Needed | Why Needed | Acceptable Artifact Types | Likely Owner | Sensitivity / Handling | Priority | Status |
+|---|---|---|---|---|---|---:|---|
+| Prior AI / automation attempt | postmortem / project review / abandoned pilot notes / failure summary | learn what failed and what changed before repeating the pattern | redacted memo / interview summary / milestone review / operating-partner-captured walkthrough | sponsor / product / IT / analytics owner | | | |
+| Process documentation | SOP / workflow map / checklist / current training material | test process clarity before applying AI | redacted document / screenshot / walkthrough / recreated structure | business owner / manager | | | |
+| KPI and value baseline | dashboard / report / metric definition / finance note | prove value beyond vague productivity claims | report screenshot / KPI dictionary / finance-approved estimate | finance / analytics / business owner | | | |
+| Adoption and usage | current tool usage / adoption report / training attendance / user feedback | detect willingness, resistance, and rollout risk | summary / screenshot / survey excerpt / interview synthesis | business owner / enablement | | | |
+| Shadow AI or unofficial automation | policy exception / tool inventory / user-provided example / macro or script list | understand demand, risk, and approved-alternative needs | anonymized example / security summary / walkthrough | IT / security / team lead | | | |
+| Security review path | security questionnaire / access matrix / data classification / approved architecture pattern | estimate front-loaded security work and enabling controls | questionnaire / screenshot / policy excerpt / architecture note | security / IT / data owner | | | |
+| Knowledge base quality | approved KB / SOP library / FAQ / ticket corpus / document repository sample | assess whether AI will have usable guidance and source grounding | redacted sample / index / field list / walkthrough | knowledge owner / support owner | | | |
+
 ## Future Implementation Access Signals
 
 Record but do not request credentials or live access during this engagement.

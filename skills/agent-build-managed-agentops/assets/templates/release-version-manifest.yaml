@@ -1,0 +1,195 @@
+object_type: "release_version_manifest"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "release_<agent_id>_<version>"
+version: "0.1"
+status: "draft"
+
+release:
+  agent_id: ""
+  agent_name: ""
+  release_version: "0.0.1"
+  release_type: "initial"
+  environment_target: "sandbox"
+  release_date: ""
+  release_window: ""
+  release_owner: ""
+  technical_owner: ""
+  security_owner: ""
+  agentops_owner: ""
+  business_owner: ""
+  change_summary: ""
+  material_change: false
+  material_change_review_ref: ""
+  production_readiness_gate_id: ""
+
+source_inputs:
+  build_contract_id: ""
+  build_plan_id: ""
+  architecture_record_id: ""
+  tool_contract_registry_id: ""
+  eval_harness_spec_id: ""
+  guardrail_control_matrix_id: ""
+  trace_observability_spec_id: ""
+  pilot_launch_gate_id: ""
+  production_readiness_gate_id: ""
+  managed_lifecycle_object_id: ""
+  risk_control_model_id: ""
+  technical_blueprint_id: ""
+  evidence_refs: []
+
+versioning_policy:
+  semantic_versioning_required: true
+  version_change_rules:
+    patch: "Backward-compatible defect fix, prompt wording adjustment, or non-behavioral observability/config update."
+    minor: "Backward-compatible behavior improvement within approved scope."
+    major: "Material behavior, data, tool, model, user group, output, or workflow change requiring change review."
+    hotfix: "Urgent fix with explicit owner approval and post-release review."
+    rollback: "Restore previous stable release after failed gate, incident, or production defect."
+  immutable_artifact_refs_required: true
+  unversioned_runtime_artifacts_allowed: false
+
+included_artifacts:
+  code_refs: []
+  prompt_or_instruction_refs: []
+  system_message_refs: []
+  model_config_refs: []
+  retrieval_corpus_refs: []
+  retrieval_index_refs: []
+  tool_contract_refs: []
+  permission_policy_refs: []
+  schema_refs: []
+  eval_dataset_refs: []
+  eval_result_refs: []
+  guardrail_policy_refs: []
+  control_evidence_refs: []
+  trace_observability_refs: []
+  dashboard_refs: []
+  runbook_refs: []
+  user_or_operator_comms_refs: []
+  documentation_refs: []
+
+release_controls:
+  required_before_deploy:
+    - "Production readiness gate approved or sandbox/pilot gate approved for non-production release."
+    - "All runtime-changing artifacts are immutable and versioned."
+    - "No permission, source, tool, model, output type, or user group exceeds approved scope."
+    - "Blocking eval and regression suites pass for this release candidate."
+    - "Guardrail control tests pass for this release candidate."
+    - "Trace fields and dashboard configuration are deployed for target environment."
+    - "Rollback package and previous stable version are available."
+  prohibited_release_conditions:
+    - "Unversioned prompt, model, tool, schema, or eval set."
+    - "Unapproved write, send, export, privileged action, or external communication path."
+    - "Missing rollback owner or rollback validation check."
+    - "Missing monitoring owner during release window."
+    - "Open critical/high defect without approved waiver."
+  waivers: []
+
+compatibility:
+  schema_versions: []
+  tool_contract_versions: []
+  data_contract_versions: []
+  model_runtime_versions: []
+  client_environment_requirements: []
+  migration_required: false
+  migration_notes: []
+  backward_compatibility_notes: []
+  known_incompatibilities: []
+
+deployment:
+  deployment_method: ""
+  deployment_target: ""
+  rollout_strategy: "feature_flag_controlled"
+  release_window_owner_coverage: []
+  feature_flags:
+    - flag_name: ""
+      default_state: "off"
+      owner: ""
+      rollback_action: "disable_flag"
+  secrets_or_config_changes: []
+  database_or_state_changes: []
+  smoke_tests:
+    - test_id: "smoke_trace_emitted"
+      description: "Run one approved task and verify required trace events and fields exist."
+      owner: ""
+      blocking: true
+      status: "not_started"
+      evidence_refs: []
+    - test_id: "smoke_tool_permission"
+      description: "Verify allowed tool call succeeds and unauthorized tool/action is denied before dispatch."
+      owner: ""
+      blocking: true
+      status: "not_started"
+      evidence_refs: []
+    - test_id: "smoke_human_review"
+      description: "Verify human review gate records reviewer identity, decision, and timestamp before delivery."
+      owner: ""
+      blocking: true
+      status: "not_started"
+      evidence_refs: []
+    - test_id: "smoke_control_failure_alert"
+      description: "Trigger a synthetic control failure and verify alert routing and pause/escalation behavior."
+      owner: ""
+      blocking: true
+      status: "not_started"
+      evidence_refs: []
+  post_deploy_checks:
+    - "No untraced runs in first release window."
+    - "No control violations in first release window."
+    - "Dashboard receives quality, safety, reliability, adoption, value, and cost metrics."
+    - "Support and incident channels acknowledge release."
+
+rollback:
+  previous_stable_version: ""
+  rollback_package_ref: ""
+  rollback_owner: ""
+  rollback_authorizers: []
+  rollback_triggers:
+    - "Any critical smoke test failure."
+    - "Any production control violation."
+    - "Any untraced production run."
+    - "Any successful prompt injection or sensitive data exposure."
+    - "Material error rate exceeds threshold during release window."
+  rollback_steps:
+    - "Pause feature flag or disable agent entry point."
+    - "Disable newly introduced tool contracts or credentials."
+    - "Restore previous stable code, prompt, model config, retrieval index, and policy artifacts."
+    - "Run rollback validation checks."
+    - "Notify business, security, support, and AgentOps owners."
+    - "Record incident or release decision with evidence."
+  rollback_validation_checks:
+    - "Previous stable version responds to approved smoke test."
+    - "Trace and alerting remain active after rollback."
+    - "No new unapproved permission remains active."
+  expected_restore_time: ""
+  data_or_state_reconciliation_required: false
+  data_or_state_reconciliation_steps: []
+
+monitoring_handoff:
+  first_24_hours_owner: ""
+  first_week_owner: ""
+  dashboard_refs: []
+  alert_refs: []
+  review_cadence: ""
+  release_window_stop_conditions:
+    - "Any control violation."
+    - "Any untraced run."
+    - "Any smoke test failure."
+    - "Owner coverage lost."
+
+release_notes:
+  summary: ""
+  user_visible_changes: []
+  operator_visible_changes: []
+  known_risks: []
+  support_contacts: []
+  rollback_contact: ""
+
+release_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  notes: []

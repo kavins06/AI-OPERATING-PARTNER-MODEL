@@ -1,0 +1,133 @@
+rubric_id: environment_and_access_setup_rubric
+phase_id: 6
+phase_key: environment_and_access_setup
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver; no automatic blocker remains."
+  conditional: "No critical blocker remains, but named follow-up is required before sandbox, pilot, or production promotion."
+  blocked: "Any required criterion fails without authorized waiver, or any automatic blocker is present."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    owner: ""
+    evidence_required:
+      - "technical_blueprint"
+      - "risk_control_model"
+      - "managed_lifecycle_object"
+      - "method_to_build_handoff_contract"
+      - "agent_architecture_record"
+      - "tool_contract_registry"
+    pass_condition: "Required inputs and prior phase contracts are approved, versioned, internally consistent, and cited."
+  - criterion_id: environment_scope_preserved
+    required: true
+    owner: ""
+    evidence_required:
+      - "method_to_build_handoff_contract.approved_environments"
+      - "agent_architecture_record.operating_environments"
+      - "tool_contract_registry.tools.environments_allowed"
+    pass_condition: "Target environment is equal to or narrower than approved users, workflow boundary, behavior level, tools, data, network, and sources."
+  - criterion_id: environment_path_defined
+    required: true
+    owner: ""
+    evidence_required:
+      - "gate_scope.from_environment"
+      - "gate_scope.to_environment"
+      - "environment_baseline"
+      - "promotion_window"
+    pass_condition: "Current state, target state, promotion reason, promotion window, expiration, environment owner, support owner, and isolation model are explicit."
+  - criterion_id: data_policy_ready
+    required: true
+    owner: ""
+    evidence_required:
+      - "data_policy"
+      - "data_owner_approval_ref"
+      - "masking_or_synthesis_method"
+      - "retention_policy"
+      - "data_cleanup_on_rollback"
+    pass_condition: "Data posture, allowed/prohibited datasets, masking/synthesis, prohibited fields, retention, deletion, and rollback cleanup are approved and implementation-ready."
+  - criterion_id: secrets_and_configuration_ready
+    required: true
+    owner: ""
+    evidence_required:
+      - "secrets_and_configuration.secret_manager"
+      - "secret_refs"
+      - "runtime_injection_pattern"
+      - "rotation_cadence"
+      - "config_diff_review_required"
+    pass_condition: "Secrets use approved manager and runtime injection, prohibit plaintext/local/source-control exposure, and define rotation, emergency rotation, owner, and config review."
+  - criterion_id: identity_and_access_least_privilege
+    required: true
+    owner: ""
+    evidence_required:
+      - "identity_and_access.agent_identity"
+      - "service_accounts"
+      - "least_privilege_evidence_refs"
+      - "access_request_refs"
+      - "revocation"
+    pass_condition: "Agent identity, service accounts, user/system roles, provisioning requests, least-privilege evidence, access review, break-glass rules, expiration, and revocation SLA are defined."
+  - criterion_id: network_and_system_boundaries_ready
+    required: true
+    owner: ""
+    evidence_required:
+      - "network_and_system_boundaries.allowed_hosts"
+      - "outbound_restrictions"
+      - "firewall_or_allowlist_refs"
+      - "tenant_isolation_checks"
+    pass_condition: "Allowed/prohibited hosts, private endpoints, inbound/outbound restrictions, allowlists, tenant isolation, and environment-specific endpoints are documented."
+  - criterion_id: eval_and_control_evidence_complete
+    required: true
+    owner: ""
+    evidence_required:
+      - "entry_criteria.evals_passed"
+      - "entry_criteria.controls_verified"
+      - "eval_and_control_evidence"
+      - "revocation_drills"
+    pass_condition: "Quality thresholds, safety thresholds, negative tests, permission tests, audit-log tests, guardrail tests, and revocation drills pass or block promotion."
+  - criterion_id: observability_and_support_ready
+    required: true
+    owner: ""
+    evidence_required:
+      - "observability_and_support.dashboard_refs"
+      - "alert_routes"
+      - "log_retention"
+      - "incident_route"
+      - "operator_runbook_refs"
+    pass_condition: "Trace, audit, dashboard, alerting, retention, redaction, incident route, support hours, runbook, and monitoring window are ready before promotion."
+  - criterion_id: rollback_and_revocation_ready
+    required: true
+    owner: ""
+    evidence_required:
+      - "rollback_plan.rollback_owner"
+      - "rollback_trigger_conditions"
+      - "access_revocation_steps"
+      - "secret_rotation_steps"
+      - "validation_after_rollback"
+    pass_condition: "Rollback owner, trigger conditions, max rollback time, access revocation, secret rotation, data cleanup, communication, validation, and fallback mode are implementation-ready."
+  - criterion_id: promotion_decision_governed
+    required: true
+    owner: ""
+    evidence_required:
+      - "promotion_decision.decision"
+      - "approved_by"
+      - "conditions"
+      - "expires_on"
+      - "no_go_conditions"
+    pass_condition: "Promotion decision, approvers, conditions, expiration, no-go conditions, and post-promotion review are explicit."
+  - criterion_id: return_to_method_rules_recorded
+    required: true
+    owner: ""
+    evidence_required:
+      - "return_to_method_triggers"
+      - "blocking_conditions"
+    pass_condition: "Return-to-method triggers are evaluated and activated when the environment path requires unapproved data, access, endpoint, user population, or control model."
+automatic_blockers:
+  - "Secrets, test data, sandbox, or access review process is undefined."
+  - "Production access is implied before readiness gate."
+  - "Target environment has broader data, users, tools, network, or behavior than approved."
+  - "Promotion lacks rollback, revocation, audit, support, or incident evidence."
+  - "Access can persist after gate expiration, owner change, failed pilot, or rollback."
+return_to_method_triggers:
+  - "Approved environment path is not feasible."
+  - "Required data cannot be safely masked, isolated, logged, or retained under the approved constraints."
+  - "A necessary permission, system endpoint, or user population was not approved in Step 17/18."
+  - "Risk owner requires a different control model, oversight model, or lifecycle posture."

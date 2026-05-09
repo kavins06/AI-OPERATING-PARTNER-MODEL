@@ -1,0 +1,99 @@
+rule_group: tool_data_identity_contracts
+phase_id: 5
+phase_key: tool_data_identity_contracts
+status: active
+required_section1_inputs:
+  - technical_blueprint
+  - organizational_intelligence_baseline
+  - risk_control_model
+  - implementation_decision_packet
+required_section2_outputs:
+  - tool_contract_registry
+failure_modes:
+  - "Tool lacks owner, permission scope, audit logging, failure behavior, or revocation path."
+  - "Identity mapping is ambiguous."
+  - "Write/send action appears without explicit approval."
+  - "Data contract lacks source-of-truth, classification, freshness, retention, validation, or prohibited-field rules."
+  - "Tool output can drive user-visible or system side effects without a reconciliation path."
+return_to_method_triggers:
+  - "Tool requires access not approved in Step 17/18."
+  - "Required system owner refuses or cannot provide least-privilege access."
+  - "The approved outcome cannot be delivered without a new source, user group, workflow action, or identity assumption."
+checks:
+  - check_id: required_section1_inputs_present
+    severity: error
+    description: "Required Section 1 source artifacts and the current architecture record are referenced, approved, versioned, and cited with evidence."
+    target_paths:
+      - "source_inputs"
+      - "source_inputs.evidence_refs"
+  - check_id: required_section2_outputs_present
+    severity: error
+    description: "The tool_contract_registry exists, has object metadata, and is not treated as approved while required sections are empty."
+    target_paths:
+      - "object_type"
+      - "object_id"
+      - "status"
+  - check_id: registry_is_deny_by_default
+    severity: error
+    description: "Unregistered tools are blocked, unknown tool names are logged as control events, and production enablement requires an environment gate."
+    target_paths:
+      - "registry_policy.default_tool_state"
+      - "registry_policy.unregistered_tools_allowed"
+      - "registry_policy.production_enablement_requires_environment_gate"
+  - check_id: complete_tool_inventory
+    severity: error
+    description: "Every API, MCP tool, connector, database, document store, workflow action, notification path, and human handoff tool is registered or explicitly blocked."
+    target_paths:
+      - "tools"
+  - check_id: least_privilege_permissions_present
+    severity: error
+    description: "Each tool has explicit allowed and denied permission scopes by action, endpoint, data class, environment, and identity."
+    target_paths:
+      - "tools.permissions"
+      - "tools.permission_scopes_allowed"
+      - "tools.permission_scopes_denied"
+  - check_id: identity_mapping_unambiguous
+    severity: error
+    description: "Agent identity, runtime service account, end-user delegation, impersonation stance, credential storage, token rotation, break-glass policy, access review, and revocation SLA are defined."
+    target_paths:
+      - "identity_model"
+      - "tools.identity_and_access"
+  - check_id: data_contracts_complete
+    severity: error
+    description: "Authoritative source, field classification, freshness, retention, deletion, lineage, redaction, validation, and prohibited fields are defined for each tool."
+    target_paths:
+      - "data_governance_policy"
+      - "tools.data_contract"
+  - check_id: write_send_execute_actions_controlled
+    severity: error
+    description: "Create, update, delete, send, and execute actions have explicit approval, human approval policy, audit event, idempotency, reconciliation, and rollback or compensation behavior."
+    target_paths:
+      - "tools.endpoints_or_actions"
+      - "tools.invocation_policy"
+      - "tools.failure_behavior.compensation_or_rollback_steps"
+  - check_id: invocation_policy_implementation_ready
+    severity: error
+    description: "Allowed/prohibited conditions, rate limits, concurrency, timeout, retry, idempotency, and human approval rules are implementation-ready."
+    target_paths:
+      - "tools.invocation_policy"
+  - check_id: failure_behavior_safe
+    severity: error
+    description: "Validation error, permission error, unavailable service, stale data, partial success, duplicate invocation, unexpected side effect, and downstream policy rejection stop safely and alert owners."
+    target_paths:
+      - "tools.failure_behavior"
+  - check_id: auditability_complete
+    severity: error
+    description: "Every tool call records required audit fields, redacts sensitive data, routes alerts, and correlates to run, actor, release, environment, permission, and approval."
+    target_paths:
+      - "audit_policy"
+      - "tools.audit_and_observability"
+  - check_id: testing_and_revocation_evidence_present
+    severity: error
+    description: "Sandbox fixtures, permission tests, negative tests, audit-log tests, revocation drill, and rollback or compensation tests are attached or marked blocking."
+    target_paths:
+      - "tools.testing_evidence"
+  - check_id: return_to_method_triggers_present
+    severity: warning
+    description: "Return-to-method triggers are listed and evaluated before phase exit."
+    target_paths:
+      - "return_to_method_triggers"

@@ -1,0 +1,233 @@
+example_id: "golden_path_phase_12_production_release"
+phase_id: 12
+phase_key: "production_release"
+phase_name: "Production Release"
+source_packet: "skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml"
+status: "implementation_grade_example"
+purpose: "Demonstrate a release manifest with immutable versions, release controls, smoke tests, rollback package, notes, and monitoring handoff."
+
+minimum_completed_sections:
+  - "release"
+  - "source_inputs"
+  - "versioning_policy"
+  - "included_artifacts"
+  - "release_controls"
+  - "compatibility"
+  - "deployment"
+  - "rollback"
+  - "monitoring_handoff"
+  - "release_notes"
+  - "signoff"
+
+section1_inputs_used:
+  - "technical_blueprint"
+  - "managed_lifecycle_object"
+  - "risk_control_model"
+section2_outputs_demonstrated:
+  - "release_version_manifest"
+
+evidence_expectations:
+  - "Cite technical blueprint, managed lifecycle, risk model, build contract, architecture, tool registry, evals, guardrails, observability, pilot gate, and production readiness gate."
+  - "Show immutable artifact versions, release controls, compatibility, deployment plan, smoke tests, rollback package, monitoring handoff, release notes, and approvals."
+  - "Record blockers for unversioned artifacts, unapproved scope, failed smoke tests, missing rollback, or missing monitoring owner."
+failure_modes_to_test:
+  - "Release lacks versioned prompts, models, tools, schemas, eval sets, permissions, release notes, or rollback package."
+return_to_method_triggers_to_test:
+  - "Release packaging changes approved runtime, tool, source, or behavior scope."
+  - "Release packaging changes risk acceptance, lifecycle obligations, monitoring burden, owner model, or production support assumptions."
+
+release_version_manifest:
+  object_type: "release_version_manifest"
+  object_id: "release_demo_revenue_intake_1_0_0"
+  version: "0.2"
+  status: "approved"
+  release:
+    agent_id: "agent_demo_revenue_intake"
+    agent_name: "Revenue Intake Follow-up Agent"
+    release_version: "1.0.0"
+    release_type: "initial"
+    environment_target: "production"
+    release_date: "2026-06-03"
+    release_window: "2026-06-03 09:00-11:00 ET"
+    release_owner: "Agent Platform Lead"
+    technical_owner: "Agent Platform Lead"
+    security_owner: "Security Lead"
+    agentops_owner: "AgentOps Lead"
+    business_owner: "Revenue Operations Manager"
+    change_summary: "Initial production release for draft-and-flag missing-intake follow-up requests."
+    material_change: false
+    production_readiness_gate_id: "production_gate_demo_revenue_intake_20260601"
+  source_inputs:
+    build_contract_id: "build_contract_demo_revenue_intake_20260504"
+    build_plan_id: "build_plan_demo_revenue_intake_20260504"
+    architecture_record_id: "architecture_demo_revenue_intake_20260504"
+    tool_contract_registry_id: "tool_registry_demo_revenue_intake_20260504"
+    eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260506"
+    guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260513"
+    trace_observability_spec_id: "observability_demo_revenue_intake_20260513"
+    pilot_launch_gate_id: "pilot_gate_demo_revenue_intake_20260515"
+    production_readiness_gate_id: "production_gate_demo_revenue_intake_20260601"
+    managed_lifecycle_object_id: "lifecycle_demo_revenue_intake_20260504"
+    risk_control_model_id: "risk_controls_demo_revenue_intake_20260430"
+    technical_blueprint_id: "blueprint_demo_revenue_intake_20260501"
+    evidence_refs:
+      - "evidence://demo/phase12/release-readiness-review"
+  versioning_policy:
+    semantic_versioning_required: true
+    immutable_artifact_refs_required: true
+    unversioned_runtime_artifacts_allowed: false
+  included_artifacts:
+    code_refs:
+      - "git://demo/agent-runtime@b6a1031"
+    prompt_or_instruction_refs:
+      - "prompt://revenue-intake/followup-draft@1.0.0"
+    model_config_refs:
+      - "model-config://approved-text-reasoning@2026-06-01"
+    retrieval_corpus_refs:
+      - "retrieval://revenue-intake-approved-fields@2026-06-01"
+    tool_contract_refs:
+      - "tool-contract://crm_read_only_lookup@1.0.0"
+      - "tool-contract://intake_form_read_only_lookup@1.0.0"
+    permission_policy_refs:
+      - "policy://revenue-intake-agent-permissions@1.0.0"
+    schema_refs:
+      - "schema://agentops-object-schemas@current"
+    eval_dataset_refs:
+      - "dataset://golden_set_revenue_intake_001"
+      - "dataset://adversarial_set_revenue_intake_001"
+    eval_result_refs:
+      - "evidence://demo/phase12/final-eval-results"
+    control_evidence_refs:
+      - "evidence://demo/phase12/control-test-results"
+    trace_observability_refs:
+      - "observability_demo_revenue_intake_20260513"
+    dashboard_refs:
+      - "dashboard://demo/revenue-intake-agentops"
+      - "dashboard://demo/revenue-intake-security"
+    runbook_refs:
+      - "runbook://demo/incident-revocation"
+      - "runbook://demo/release-rollback"
+      - "runbook://demo/internal-operator-run-card"
+  release_controls:
+    required_before_deploy:
+      - "Production readiness gate approved."
+      - "All runtime-changing artifacts immutable and versioned."
+      - "Blocking eval, control, trace, smoke, and rollback checks pass."
+    prohibited_release_conditions:
+      - "Unapproved send, write, export, or privileged action."
+      - "Unversioned prompt, model, tool, schema, or eval set."
+      - "Missing monitoring owner during release window."
+    waivers: []
+  compatibility:
+    schema_versions:
+      - "agentops-object-schemas:current"
+    tool_contract_versions:
+      - "crm_read_only_lookup:1.0.0"
+      - "intake_form_read_only_lookup:1.0.0"
+    data_contract_versions:
+      - "revenue-intake-fields:2026-06-01"
+    model_runtime_versions:
+      - "approved-text-reasoning:2026-06-01"
+    migration_required: false
+    known_incompatibilities: []
+  deployment:
+    deployment_method: "feature-flagged production deploy"
+    deployment_target: "managed-agentops-production"
+    rollout_strategy: "feature_flag_controlled"
+    release_window_owner_coverage:
+      - "Agent Platform Lead"
+      - "Security Lead"
+      - "AgentOps Lead"
+    feature_flags:
+      - flag_name: "revenue_intake_followup_agent_prod"
+        default_state: "off"
+        owner: "Agent Platform Lead"
+        rollback_action: "disable_flag"
+    secrets_or_config_changes:
+      - "Rotate sandbox-only test credential out of production config."
+    smoke_tests:
+      - test_id: "smoke_trace_emitted"
+        status: "passed"
+        evidence_refs:
+          - "trace://demo/prod-smoke/run-001"
+      - test_id: "smoke_tool_permission"
+        status: "passed"
+        evidence_refs:
+          - "evidence://demo/phase12/tool-permission-smoke"
+      - test_id: "smoke_human_review"
+        status: "passed"
+        evidence_refs:
+          - "evidence://demo/phase12/human-review-smoke"
+      - test_id: "smoke_control_failure_alert"
+        status: "passed"
+        evidence_refs:
+          - "evidence://demo/phase12/control-alert-smoke"
+    post_deploy_checks:
+      - "No untraced run in release window."
+      - "No control violation in release window."
+      - "Dashboard receives quality, safety, reliability, adoption, value, and cost metrics."
+  rollback:
+    previous_stable_version: "0.4.0-pilot"
+    rollback_package_ref: "artifact://demo/revenue-intake/rollback/0.4.0"
+    rollback_owner: "Agent Platform Lead"
+    rollback_authorizers:
+      - "Security Lead"
+      - "AgentOps Lead"
+    rollback_triggers:
+      - "Any critical smoke test failure."
+      - "Any production control violation."
+      - "Any untraced production run."
+      - "Any customer-facing send attempt."
+    rollback_steps:
+      - "Disable production feature flag."
+      - "Disable production agent entry point."
+      - "Restore previous prompt, model config, retrieval index, and tool policy."
+      - "Run rollback validation checks."
+      - "Notify business, security, support, and AgentOps owners."
+    rollback_validation_checks:
+      - "Previous stable version responds to approved smoke test."
+      - "Trace and alerting remain active after rollback."
+      - "No new unapproved permission remains active."
+    expected_restore_time: "30 minutes"
+  monitoring_handoff:
+    first_24_hours_owner: "AgentOps Lead"
+    first_week_owner: "Revenue Operations Support"
+    dashboard_refs:
+      - "dashboard://demo/revenue-intake-agentops"
+      - "dashboard://demo/revenue-intake-security"
+    alert_refs:
+      - "alert://demo/control-failure"
+      - "alert://demo/untraced-run"
+      - "alert://demo/source-freshness"
+    review_cadence: "Daily for first week; weekly for first month."
+  release_notes:
+    summary: "Initial production release for coordinator-approved missing-intake follow-up drafts."
+    user_visible_changes:
+      - "Coordinators can request a draft follow-up for records missing intake fields."
+    operator_visible_changes:
+      - "New AgentOps dashboards and critical control alerts."
+    known_risks:
+      - "Coordinator may need to adjust tone or remove redundant phrasing."
+    support_contacts:
+      - "Revenue Operations Support"
+      - "AgentOps Lead"
+    rollback_contact: "Agent Platform Lead"
+  release_signoff:
+    prepared_by: "Agent Platform Lead"
+    reviewed_by:
+      - "Security Lead"
+      - "AgentOps Lead"
+    approved_by:
+      - "VP Revenue Operations"
+      - "Security Lead"
+    approval_status: "approved"
+    approval_date: "2026-06-03"
+
+blocking_conditions_checked:
+  - "All behavior-affecting artifacts are immutable and versioned."
+  - "No unapproved permission, source, tool, user group, output type, model, or behavior is included."
+  - "Rollback package and release-window monitoring are ready."
+return_to_method_assessment:
+  status: "not_triggered"
+  notes:
+    - "Packaging did not change runtime posture, behavior scope, risk, lifecycle, monitoring burden, or owner model."

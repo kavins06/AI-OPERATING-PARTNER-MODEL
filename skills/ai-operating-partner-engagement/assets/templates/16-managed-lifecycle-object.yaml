@@ -274,6 +274,22 @@ monitoring_plan:
       threshold: ""
       action_if_exceeded: ""
 
+value_realization_and_kpi_refresh:
+  baseline_refresh_cadence: ""
+  value_capture_owner: ""
+  target_review_cadence: ""
+  tracked_outcome_paths:
+    - "headcount_reduction"
+    - "hiring_avoided"
+    - "redeployment"
+    - "acceleration"
+    - "revenue_growth"
+    - "new_capability"
+    - "risk_reduction"
+  capacity_or_role_transition_metrics: []
+  new_capability_evidence_required: []
+  action_if_value_not_measurable: ""
+
 feedback_and_correction_loop:
   feedback_channels: []
   correction_categories:
@@ -295,6 +311,28 @@ feedback_and_correction_loop:
   review_cadence: ""
   backlog_owner: ""
   severity_routing: []
+
+failure_learning_loop:
+  prior_failed_attempts_to_remember: []
+  pilot_miss_categories:
+    - "workflow_misfit"
+    - "data_access_gap"
+    - "knowledge_gap"
+    - "guidance_gap"
+    - "control_gap"
+    - "adoption_resistance"
+    - "model_orchestration_gap"
+    - "security_review_gap"
+  root_cause_capture_owner: ""
+  sponsor_review_cadence: ""
+  changes_that_must_be_recorded:
+    - "guidance"
+    - "data_access"
+    - "process"
+    - "controls"
+    - "adoption"
+    - "architecture"
+    - "model_runtime"
 
 adoption_change_management:
   adoption_design_id: ""
@@ -349,6 +387,18 @@ change_management:
   truth_rule_change_owner: ""
   tool_change_owner: ""
   model_or_runtime_change_owner: ""
+  model_runtime_switching_review:
+    review_cadence: ""
+    triggers:
+      - "cost_threshold_exceeded"
+      - "latency_threshold_exceeded"
+      - "quality_or_eval_regression"
+      - "privacy_or_vendor_requirement_changed"
+      - "better_model_available"
+      - "open_or_private_model_now_viable"
+      - "agentic_workload_token_growth"
+    required_approvals: []
+    revalidation_required: true
   required_revalidation_triggers:
     - trigger: "new_system_source"
       revalidation_required: true

@@ -34,12 +34,26 @@ hard_gates:
     conditional_when:
       - "Value is plausible but baseline metrics are conditional or ranges are wide."
 
+  - gate_id: "sponsor_behavior_gate"
+    automatic_fail_when:
+      - "No sponsor or sponsor pair can remove blockers, assign owners, or keep the work connected to business priorities."
+      - "Prior failed attempts created political risk and no permission-to-fail or learning posture exists."
+    conditional_when:
+      - "Sponsor commitment exists but blocker-removal cadence, co-sponsor, or OKR linkage must be confirmed before build."
+
   - gate_id: "workflow_clarity_gate"
     automatic_fail_when:
       - "Required workflow steps, roles, handoffs, decisions, or edge cases are unknown for the proposed behavior."
       - "Material variation exists and no variation map or skip rationale exists."
     conditional_when:
       - "Workflow is clear enough for summarization or draft-and-flag but not for recommendation or action."
+
+  - gate_id: "process_documentation_gate"
+    automatic_fail_when:
+      - "The process is undocumented, disputed, or broken in ways that would cause AI to accelerate bad work."
+      - "Critical process rules live only in unvalidated expert memory and are required for the proposed behavior."
+    conditional_when:
+      - "The process is discoverable through walkthroughs or examples and can support a narrow behavior with human review."
 
   - gate_id: "source_access_gate"
     automatic_fail_when:
@@ -105,6 +119,13 @@ hard_gates:
     conditional_when:
       - "Feasible with manual export, sandbox, or reduced scope."
 
+  - gate_id: "model_orchestration_gate"
+    automatic_fail_when:
+      - "The proposed model/orchestration pattern cannot support the task complexity, latency, privacy, cost, or tool-use needs."
+      - "A single-provider or single-model assumption creates unacceptable vendor, cost, privacy, or capability risk."
+    conditional_when:
+      - "Model selection can be deferred if the blueprint defines capability needs, routing options, evals, and switching criteria."
+
   - gate_id: "risk_control_gate"
     automatic_fail_when:
       - "Material risks lack testable controls, owners, approval gates, logging, monitoring, incident response, or revocation path."
@@ -112,12 +133,33 @@ hard_gates:
     conditional_when:
       - "Controls are defined but must be verified before pilot."
 
+  - gate_id: "security_enablement_gate"
+    automatic_fail_when:
+      - "Security, privacy, data minimization, PII handling, or approved environment requirements are unknown for sensitive data."
+      - "Shadow AI risk is known or suspected and no approved alternative, monitoring signal, or mitigation path exists."
+    conditional_when:
+      - "Security work is front-loaded but has owners, target architecture, approvals, and a path to enabling the use case."
+
   - gate_id: "adoption_change_gate"
     automatic_fail_when:
       - "Target users are unreachable, unwilling, or not incentivized and no adoption design exists."
       - "Adoption-failure triggers are undefined for a user-facing capability."
     conditional_when:
       - "Pilot is opt-in or narrow with explicit adoption learning goals."
+
+  - gate_id: "resistance_profile_gate"
+    automatic_fail_when:
+      - "Likely blockers across staff functions, managers, users, IT/security, data owners, or executives are unmapped."
+      - "A known blocking group has no intervention, owner, or decision path."
+    conditional_when:
+      - "Resistance is mapped and acceptable for a limited pilot with targeted validation or sponsor intervention."
+
+  - gate_id: "recoverable_error_fit_gate"
+    automatic_fail_when:
+      - "The proposed oversight model allows errors that are unrecoverable, regulated-prohibited, customer-harming, or financially/reputationally unacceptable."
+      - "Autonomous action is proposed where approval or collaboration is required by task risk."
+    conditional_when:
+      - "Behavior can proceed at a lower autonomy level with escalation, approval, or collaboration."
 
   - gate_id: "human_oversight_gate"
     automatic_fail_when:
@@ -166,6 +208,8 @@ behavior_level_rules:
       - "all human-approved action requirements"
       - "high-confidence data and truth"
       - "low regulated-domain risk or approved controls"
+      - "recoverable-error fit or explicit zero-error controls"
+      - "mapped resistance and adoption plan"
       - "monitoring and kill criteria"
       - "executive and risk approval"
 
@@ -208,6 +252,12 @@ overall_decision_rules:
   risk_control_first:
     applies_when:
       - "material risk lacks control, owner, approval, monitoring, incident, or revocation design"
+  sponsor_or_adoption_first:
+    applies_when:
+      - "sponsor behavior, resistance profile, role transition, or user willingness blocks value capture"
+  model_or_security_first:
+    applies_when:
+      - "model/orchestration, security enablement, shadow AI, or approved environment constraints block readiness"
   do_not_automate_yet:
     applies_when:
       - "fatal blocker exists and no valuable safe-limited behavior remains"

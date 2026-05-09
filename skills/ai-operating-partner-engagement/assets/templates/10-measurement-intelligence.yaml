@@ -177,6 +177,15 @@ ai_capability_metric_design:
       business_outcome:
       owner_role:
       review_cadence:
+  value_breadth_metrics:
+    - metric_id:
+      name:
+      value_category: "" # quality | customer_value | revenue_conversion | revenue_retention | speed_to_market | backlog_reduction | hiring_avoided | redeployment | headcount_reduction | new_capability | risk_reduction | shadow_ai_reduction | other
+      definition:
+      baseline_status: "unknown" # usable | usable_with_caveats | not_usable | unknown
+      source:
+      owner_role:
+      review_cadence:
   agent_performance_metrics:
     - metric_id:
       name:
@@ -203,6 +212,13 @@ ai_capability_metric_design:
       segment_or_role:
       target:
       adoption_failure_trigger:
+  staff_function_and_governance_metrics:
+    - metric_id:
+      name:
+      function_or_owner: "" # legal | hr | risk | compliance | finance | it_security | data | other
+      definition:
+      target_or_threshold:
+      escalation_when:
   cost_metrics:
     - metric_id:
       name:

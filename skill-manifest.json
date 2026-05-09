@@ -1,6 +1,54 @@
 {
   "name": "ai-operating-partner-system",
   "description": "A  Codex skill system for the AI operating partner method backbone: Step 0-18 pre-build discovery, organizational intelligence, governance, guidance, measurement, value, technical blueprinting, risk controls, readiness, decision packets, lifecycle, and method-to-build handoff.",
+  "sections": [
+    {
+      "id": "01-discovery-prebuild",
+      "name": "Discovery / Pre-Build",
+      "index_path": "01-discovery-prebuild/README.md",
+      "primary_skill": "ai-operating-partner-engagement",
+      "supporting_skills": [
+        "information-ecology-diagnostic",
+        "source-grounded-consulting",
+        "voice-interview-discovery",
+        "workflow-mapping",
+        "ai-agent-readiness-assessment",
+        "data-strategy-workshop",
+        "data-governance-discovery",
+        "knowledge-map-capture",
+        "tacit-to-explicit-knowledge-capture",
+        "privacy-security-risk-register",
+        "zero-trust-agent-controls",
+        "data-monetization-canvas",
+        "analytics-maturity-assessment",
+        "warehouse-lakehouse-blueprint",
+        "dashboard-kpi-design",
+        "managed-agent-lifecycle"
+      ]
+    },
+    {
+      "id": "02-implementation-managed-agentops",
+      "name": "Implementation / Managed AgentOps",
+      "index_path": "02-implementation-managed-agentops/README.md",
+      "primary_skill": "agent-build-managed-agentops",
+      "build_spec": "02-implementation-managed-agentops/section2-build-spec.yaml",
+      "handoff_map": "skills/agent-build-managed-agentops/assets/mappings/section1-to-section2-handoff-map.yaml",
+      "handoff_map_doc": "docs/section1-to-section2-data-map.md",
+      "generator_script": "scripts/generate-section2-backbone.py",
+      "validator_script": "scripts/validate-section2-backbone.py",
+      "supporting_skills": [
+        "agent-build-intake-and-scope",
+        "agent-architecture-and-tooling",
+        "agent-environment-and-access",
+        "agent-evals-guardrails-observability",
+        "agent-sandbox-pilot-readiness",
+        "agent-release-management",
+        "managed-agentops-operations",
+        "agent-change-expansion-retirement"
+      ],
+      "starts_after": "Approved Step 18 handoff plus separate implementation approval"
+    }
+  ],
   "skills": [
     "information-ecology-diagnostic",
     "source-grounded-consulting",
@@ -18,8 +66,18 @@
     "warehouse-lakehouse-blueprint",
     "dashboard-kpi-design",
     "managed-agent-lifecycle",
-    "ai-operating-partner-engagement"
+    "ai-operating-partner-engagement",
+    "agent-build-managed-agentops",
+    "agent-build-intake-and-scope",
+    "agent-architecture-and-tooling",
+    "agent-environment-and-access",
+    "agent-evals-guardrails-observability",
+    "agent-sandbox-pilot-readiness",
+    "agent-release-management",
+    "managed-agentops-operations",
+    "agent-change-expansion-retirement"
   ],
   "master_skill": "ai-operating-partner-engagement",
+  "post_18_skill": "agent-build-managed-agentops",
   "source_documents_included": false
 }
