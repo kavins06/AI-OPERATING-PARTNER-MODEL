@@ -1,4 +1,4 @@
 interface:
-  display_name: "Privacy Security Risk Register"
-  short_description: "Document privacy, security, and operational risks."
-  default_prompt: "Use this skill to create a risk register for data or AI work."
+  display_name: "Risk And Control Model"
+  short_description: "Create implementation-grade risk, data classification, and control models."
+  default_prompt: "Use this skill to create the Step 15 risk_control_model with risk register, truth production risks, regulated-domain risks, data classification, tool permissions, output controls, approval gates, logging, monitoring, incident response, revocation, stop conditions, and Step 13 loopback decisions."

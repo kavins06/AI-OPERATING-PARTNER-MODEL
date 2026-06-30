@@ -1,0 +1,36 @@
+phase_pack_id: 12-production_release
+support_skill: agent-release-management
+phase_id: 12
+phase_key: production_release
+phase_name: Production Release
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- technical_blueprint
+- managed_lifecycle_object
+- risk_control_model
+section2_outputs:
+- release_version_manifest
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/release-version-manifest.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/production-release-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/release-management-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/production_release.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/12-release-version-manifest.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- Release lacks versioned prompts, models, tools, schemas, eval sets, permissions,
+  release notes, or rollback package.
+return_to_method_triggers:
+- Release packaging changes approved runtime, tool, source, or behavior scope.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

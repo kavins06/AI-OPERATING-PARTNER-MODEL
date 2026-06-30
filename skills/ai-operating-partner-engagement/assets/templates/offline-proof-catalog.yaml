@@ -1,0 +1,132 @@
+offline_proof_catalog_id: "offline_proof_catalog"
+spec_version: "0.1"
+object_type: "offline_proof_catalog"
+status: "published_reference"
+purpose: "Define pre-build-safe proof points that can de-risk guidance, evals, retrieval, value, adoption, and readiness without credentials or live integration."
+
+global_boundary:
+  no_live_system_connection: true
+  no_credentials_or_tokens: true
+  no_production_writeback: true
+  no_deployment_to_client_workflow: true
+  no_unapproved_data_movement: true
+  allowed_data:
+    - "redacted_examples"
+    - "synthetic_examples"
+    - "approved_historical_examples"
+    - "operator-created mock structures"
+  must_record:
+    - "source_of_examples"
+    - "redaction_status"
+    - "what_step_is_de_risked"
+    - "what_claim_is_supported"
+    - "limitations"
+
+proof_types:
+  guidance_dry_run:
+    description: "Run the Step 10 guidance against redacted or synthetic scenarios and compare output against expected behavior."
+    de_risks_steps: [10, 15, 16]
+    useful_when:
+      - "Tacit rules have been translated into guidance."
+      - "Behavior boundaries need validation."
+    output:
+      - "pass_fail_notes"
+      - "missed_rule_or_ambiguous_guidance"
+      - "recommended_guidance_update"
+    not_allowed:
+      - "live tool calls"
+      - "production data retrieval"
+
+  eval_case_dry_run:
+    description: "Run behavioral and output-quality eval cases without connecting to client systems."
+    de_risks_steps: [10, 16]
+    useful_when:
+      - "Hard-gate readiness depends on whether guidance is testable."
+      - "Regulated-domain or fragile-truth behavior needs proof."
+    output:
+      - "eval_results"
+      - "coverage_gaps"
+      - "failing_case_categories"
+
+  redacted_document_retrieval_dry_run:
+    description: "Use a small approved redacted document set to test whether relevant context can be retrieved and cited."
+    de_risks_steps: [9, 10, 14, 16]
+    useful_when:
+      - "Future RAG or document intelligence is likely."
+      - "Source hierarchy and citation behavior matter."
+    output:
+      - "retrieval_relevance_notes"
+      - "metadata_needed"
+      - "permission_filtering_implications"
+    not_allowed:
+      - "indexing full client repositories"
+      - "connecting to live document stores"
+
+  historical_example_output_review:
+    description: "Have the AI draft a sample output from a redacted historical packet, then subject-matter owners rate correctness and usefulness."
+    de_risks_steps: [10, 11, 12, 13, 16]
+    useful_when:
+      - "Client needs to see whether safe-limited behavior is valuable."
+      - "Output quality and adoption risk are uncertain."
+    output:
+      - "human_rating"
+      - "missing_context"
+      - "value_signal"
+      - "adoption_signal"
+
+  synthetic_data_workflow_simulation:
+    description: "Use synthetic records to simulate workflow state transitions, approval gates, and output contracts."
+    de_risks_steps: [13, 14, 15, 16]
+    useful_when:
+      - "Future tool or workflow orchestration is complex."
+      - "Client cannot provide redacted examples quickly."
+    output:
+      - "state_model_notes"
+      - "tool_contract_needs"
+      - "approval_gate_findings"
+
+  historical_transcript_or_ticket_replay:
+    description: "Replay approved redacted transcripts, tickets, or case notes through guidance to test classification, escalation, and draft output."
+    de_risks_steps: [9, 10, 11, 16]
+    useful_when:
+      - "Work is communication-heavy."
+      - "Escalation and edge-case handling matter."
+    output:
+      - "classification_accuracy_notes"
+      - "escalation_precision_notes"
+      - "edge_case_gaps"
+
+selection_rules:
+  lite:
+    max_proofs: 1
+    preferred:
+      - "guidance_dry_run"
+      - "historical_example_output_review"
+  standard:
+    max_proofs: 2
+    preferred:
+      - "guidance_dry_run"
+      - "eval_case_dry_run"
+      - "redacted_document_retrieval_dry_run"
+  deep:
+    max_proofs: 4
+    preferred:
+      - "guidance_dry_run"
+      - "eval_case_dry_run"
+      - "redacted_document_retrieval_dry_run"
+      - "synthetic_data_workflow_simulation"
+      - "historical_transcript_or_ticket_replay"
+
+result_contract:
+  proof_result_id: ""
+  proof_type: ""
+  linked_candidate_use_case_id: ""
+  linked_steps_de_risked: []
+  input_data_class: ""
+  redaction_status: ""
+  method_summary: ""
+  result_summary: ""
+  limitations: []
+  changed_artifacts: []
+  readiness_implication: ""
+  implementation_boundary_preserved: true

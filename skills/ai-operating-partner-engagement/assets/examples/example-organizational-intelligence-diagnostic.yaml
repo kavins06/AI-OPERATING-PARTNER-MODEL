@@ -1,0 +1,137 @@
+spec_version: "0.1"
+object_type: "organizational_intelligence_diagnostic"
+diagnostic_status: "initial"
+
+input_context:
+  workflow_id: "wf_retail_tenant_renewal_review"
+  workflow_spec_ref: "example-ai-workflow-spec.yaml"
+  discovery_zones:
+    - "Lease expiration, renewals, and leasing pipeline"
+  diagnostic_scope: "single_workflow"
+  scale_mode: "standard"
+  scale_rationale: "Major recurring workflow with multiple role layers, source-trust issues, and approval boundaries."
+
+diagnostic_summary:
+  workflow_stability: "medium"
+  main_fragility_points:
+    - "Critical-date and renewal input preparation varies across assistant asset managers."
+    - "Broker context is often unstructured and lives in email."
+    - "Approval thresholds are not yet confirmed."
+  strongest_leverage_points:
+    - "Standardized renewal brief input schema."
+    - "Missing-input detection before asset manager review."
+    - "Source-backed renewal brief drafting for human review."
+  automation_blockers:
+    - "Official source, de facto trusted source, and truth production chain for critical dates are not confirmed."
+    - "Approval thresholds are not confirmed."
+    - "Sensitive fields and access constraints are not mapped."
+  likely_next_steps:
+    - "controlled_validation_governance_resolution"
+    - "knowledge_mapping"
+    - "zero_trust_controls"
+
+findings:
+  - finding_id: "finding_aam_tracker_variation"
+    linked_objects:
+      workflow_ids:
+        - "wf_retail_tenant_renewal_review"
+      role_ids:
+        - "role_assistant_asset_manager"
+      step_ids:
+        - "step_001"
+      source_ids:
+        - "src_critical_date_report"
+      information_object_ids:
+        - "info_critical_dates"
+      source_access_profile_ids:
+        - "sap_critical_dates_report"
+    lens: "process"
+    symptom: "Assistant asset managers appear to use different tracker patterns to identify and prepare renewals."
+    likely_root_cause: "No confirmed standard renewal input schema or authoritative workflow tracker."
+    evidence_refs:
+      - "int_aam_001"
+      - "int_aam_004"
+    confidence: "medium"
+    implication: "A generic renewal agent could reinforce inconsistent preparation unless the required input model is standardized."
+    severity: "medium"
+    recurrence: "repeated"
+    affects_ai_fit: true
+    automation_blocker: true
+    intervention_route:
+      primary: "workflow_standardization"
+      secondary:
+        - "controlled_validation_governance_resolution"
+        - "knowledge_mapping"
+    recommended_next_step: "Define required renewal brief inputs and confirm official source, de facto trusted source, and truth production status for each input."
+    owner_candidate: "Director Asset Management"
+    validation_needed: true
+
+  - finding_id: "finding_broker_context_unstructured"
+    linked_objects:
+      workflow_ids:
+        - "wf_retail_tenant_renewal_review"
+      decision_ids:
+        - "decision_renewal_path"
+      source_ids:
+        - "src_broker_email"
+      information_object_ids:
+        - "info_broker_feedback"
+      source_access_profile_ids:
+        - "sap_broker_email"
+    lens: "knowledge"
+    symptom: "Current broker context is often captured in email rather than a structured system."
+    likely_root_cause: "Market and relationship context is treated as informal judgment rather than managed workflow knowledge."
+    evidence_refs:
+      - "int_am_001"
+      - "int_aam_002"
+    confidence: "medium"
+    implication: "AI summarization may help, but only if approved sources and review boundaries are defined."
+    severity: "medium"
+    recurrence: "repeated"
+    affects_ai_fit: true
+    automation_blocker: false
+    intervention_route:
+      primary: "knowledge_mapping"
+      secondary:
+        - "tacit_knowledge_capture"
+        - "zero_trust_controls"
+    recommended_next_step: "Capture what broker context matters for renewal decisions and define approved use in internal briefs."
+    owner_candidate: "Asset Manager"
+    validation_needed: true
+
+standardization_opportunities:
+  - opportunity_id: "std_renewal_brief_inputs"
+    linked_findings:
+      - "finding_aam_tracker_variation"
+      - "finding_broker_context_unstructured"
+    description: "Create a standard renewal brief schema with required sources, optional context, missing-input flags, and escalation criteria."
+    target_roles:
+      - "role_assistant_asset_manager"
+      - "role_asset_manager"
+    target_steps_or_decisions:
+      - "step_001"
+      - "decision_renewal_path"
+    expected_value: "More consistent renewal preparation and clearer first safe AI-assist scope."
+    risk_if_ignored: "AI support may amplify inconsistent inputs and source-trust gaps."
+    next_step: "knowledge_mapping"
+
+candidate_ai_assist_refinements:
+  - assist_id: "assist_renewal_brief"
+    linked_finding_ids:
+      - "finding_aam_tracker_variation"
+      - "finding_broker_context_unstructured"
+    updated_assist_type: "draft"
+    why_this_assist_may_fit: "The workflow has repeated input gathering, summarization, and brief preparation before human judgment."
+    why_this_assist_may_not_fit_yet: "Official/de facto sources, truth production chains, approval thresholds, sensitive fields, and approved source list are not confirmed."
+    required_enrichment_before_build:
+      - "controlled_validation_governance_resolution"
+      - "knowledge_mapping"
+      - "zero_trust_controls"
+    first_safe_behavior_hypothesis: "Draft internal renewal brief for asset manager review with missing-input flags and source references."
+
+step_6_stop_status:
+  status: "diagnostic_complete"
+  next_required_steps:
+    - "controlled_validation_governance_resolution"
+    - "knowledge_mapping"
+    - "zero_trust_controls"

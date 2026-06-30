@@ -1,0 +1,58 @@
+rule_group: security_and_control_review
+phase_id: 9
+phase_key: security_and_control_review
+status: active
+minimum_required_checks: 8
+required_section1_inputs:
+  - "risk_control_model"
+  - "technical_blueprint"
+  - "managed_lifecycle_object"
+required_section2_outputs:
+  - "guardrail_control_matrix"
+  - "trace_observability_spec"
+failure_modes:
+  - "Residual risk is accepted without owner approval."
+  - "Audit, revocation, or incident evidence is missing."
+return_to_method_triggers:
+  - "Security control requires different architecture, behavior, or data path."
+  - "Security review changes approved scope, source, access, oversight, lifecycle, or risk assumptions."
+checks:
+  - check_id: "required_section1_inputs_present"
+    severity: "error"
+    description: "Required Section 1 source artifacts are referenced, approved, versioned, and cited."
+  - check_id: "required_section2_outputs_present"
+    severity: "error"
+    description: "guardrail_control_matrix and trace_observability_spec are present or intentionally blocked with owner and reason."
+  - check_id: "checklist_has_phase_specific_sections"
+    severity: "error"
+    description: "Checklist includes exact sections ## Phase-Specific Checks and ## Blocking Conditions."
+  - check_id: "scope_not_widened_without_change_review"
+    severity: "error"
+    description: "No users, sources, tools, environments, actions, outputs, or behavior levels exceed the approved handoff."
+  - check_id: "risk_control_mapping_complete"
+    severity: "error"
+    description: "Every material risk maps to implemented preventive, detective, corrective, human-review, or revocation controls."
+  - check_id: "permission_boundary_tests_present"
+    severity: "error"
+    description: "Tool, identity, action, data-class, environment, and role permission-boundary tests are attached."
+  - check_id: "adversarial_security_tests_present"
+    severity: "error"
+    description: "Prompt injection, source manipulation, hidden instruction disclosure, and data-exfiltration tests are attached."
+  - check_id: "trace_event_taxonomy_complete"
+    severity: "error"
+    description: "Trace spec covers run start, input, retrieval, model call, tool call, control decision, output, human review, alert, incident, and completion."
+  - check_id: "sensitive_data_controls_present"
+    severity: "error"
+    description: "Sensitive data minimization, redaction, retention, and log access controls are defined and tested."
+  - check_id: "incident_rehearsal_evidence_present"
+    severity: "error"
+    description: "Pause, revoke, disable tool/flag, rollback, evidence preservation, owner notification, and restart approval are rehearsed."
+  - check_id: "residual_risk_approval_present"
+    severity: "error"
+    description: "Residual risk has authorized owner approval, conditions, and review date."
+  - check_id: "rubric_has_minimum_criteria"
+    severity: "error"
+    description: "Rubric has at least 8 criteria, each with criterion_id, required, evidence_required, and pass_condition."
+  - check_id: "return_to_method_triggers_present"
+    severity: "warning"
+    description: "Return-to-method triggers are listed and evaluated."

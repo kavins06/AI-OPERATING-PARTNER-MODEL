@@ -1,5 +1,4 @@
 interface:
   display_name: "AI Operating Partner Engagement"
-  short_description: "Run full discovery-to-readiness engagements."
-  default_prompt: "Use this skill to orchestrate a complete AI operating partner engagement."
-
+  short_description: "Run the Step 0-18 pre-build engagement."
+  default_prompt: "Use this skill to orchestrate the AI operating partner engagement from Step 0 tiering through Step 18 lifecycle and method-to-build handoff. Preserve the pre-build boundary."

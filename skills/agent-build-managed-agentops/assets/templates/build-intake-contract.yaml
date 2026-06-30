@@ -1,0 +1,375 @@
+object_type: "agent_build_contract"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "build_contract_<opportunity_id>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+source_of_truth: true
+
+source_inputs:
+  step_18_lifecycle_object_id: ""
+  implementation_decision_packet_id: ""
+  method_to_build_handoff_contract_id: ""
+  separate_implementation_approval_id: ""
+  readiness_object_id: ""
+  risk_control_model_id: ""
+  technical_blueprint_id: ""
+  handoff_version: ""
+  managed_lifecycle_path: "managed_agent_lifecycle"
+  approved_behavior_level: ""
+  approved_environments:
+    - "offline_validation"
+  evidence_refs: []
+  open_handoff_questions: []
+  source_input_usage:
+    - artifact: "implementation_decision_packet"
+      required_for_phase:
+        - "build_conversion_gate"
+        - "first_behavior_scope"
+      expected_fields:
+        - "first_build_scope"
+        - "behavior_contract"
+        - "owner_matrix"
+        - "systems_and_sources"
+        - "stop_boundary"
+      contract_paths_populated:
+        - "build_scope"
+        - "owners"
+        - "acceptance_contract"
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "managed_lifecycle_object"
+      required_for_phase:
+        - "build_conversion_gate"
+        - "first_behavior_scope"
+      expected_fields:
+        - "authorized_behavior_level"
+        - "lifecycle_scope"
+        - "owner_model"
+        - "launch_gates"
+        - "monitoring_plan"
+        - "change_management"
+      contract_paths_populated:
+        - "authorization"
+        - "owners"
+        - "change_control"
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "method_to_build_handoff_contract"
+      required_for_phase:
+        - "build_conversion_gate"
+      expected_fields:
+        - "accepted_transfer_package"
+        - "explicit_non_transfer_items"
+        - "entry_criteria"
+        - "owner_acceptance"
+        - "return_to_method_triggers"
+      contract_paths_populated:
+        - "authorization"
+        - "gate_decisions.build_conversion_gate"
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "separate_implementation_approval"
+      required_for_phase:
+        - "build_conversion_gate"
+      expected_fields:
+        - "authorizing_body"
+        - "authorization_date"
+        - "budget_timebox"
+        - "build_owner"
+        - "technical_owner"
+        - "security_risk_approvers"
+        - "permitted_environments"
+      contract_paths_populated:
+        - "authorization"
+        - "owners"
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "readiness_object"
+      required_for_phase:
+        - "first_behavior_scope"
+      expected_fields:
+        - "hard_gates"
+        - "behavior_level_readiness"
+        - "minimum_safe_first_behavior"
+        - "prohibited_behaviors"
+        - "blockers"
+      contract_paths_populated:
+        - "first_behavior_scope"
+        - "acceptance_contract.launch_blockers"
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "workflow_intelligence_object"
+      required_for_phase:
+        - "first_behavior_scope"
+      expected_fields:
+        - "roles"
+        - "workflow_steps"
+        - "decisions"
+        - "edge_cases"
+        - "information_objects"
+      contract_paths_populated:
+        - "build_scope.workflow_boundary"
+        - "first_behavior_scope"
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "organizational_intelligence_baseline"
+      required_for_phase:
+        - "first_behavior_scope"
+      expected_fields:
+        - "source_owners"
+        - "access_profiles"
+        - "sensitivity"
+        - "retention"
+        - "permitted_ai_actions"
+        - "prohibited_ai_actions"
+      contract_paths_populated:
+        - "build_scope.data_domains"
+        - "build_scope.systems_in_scope"
+        - "first_behavior_scope.data_and_source_limits"
+      completeness_status: "not_started"
+      evidence_refs: []
+
+authorization:
+  build_authorized: false
+  authorizing_body: ""
+  authorization_date: ""
+  budget_timebox: ""
+  authorized_scope_summary: ""
+  authorized_environments:
+    - "offline_validation"
+  explicit_out_of_scope:
+    - "Production operation is not authorized until production_readiness_gate is approved."
+    - "Pilot launch is not authorized until pilot_launch_gate is approved."
+    - "New user groups, sources, tools, write/send actions, or behavior levels require change review."
+  approval_conditions: []
+  decision_state: "not_submitted"
+  decision_record:
+    gate_owner: ""
+    decision_forum: ""
+    decision_date: ""
+    decision: "hold"
+    decision_rationale: ""
+    no_go_reasons: []
+    conditions_before_next_phase: []
+  return_to_method_triggers:
+    - "Approved behavior level changes."
+    - "Production data source or action scope materially changes."
+    - "Risk controls cannot be implemented as approved."
+    - "Separate implementation approval expires, is contradicted, or lacks budget/timebox."
+    - "Step 17/18 source artifact version cannot be identified."
+
+owners:
+  executive_sponsor: ""
+  business_owner: ""
+  product_owner: ""
+  technical_owner: ""
+  security_owner: ""
+  data_owner: ""
+  risk_or_compliance_owner: ""
+  agentops_owner: ""
+  support_owner: ""
+  revocation_owner: ""
+  owner_coverage_checks:
+    business_decision_owner_named: false
+    technical_delivery_owner_named: false
+    security_risk_owner_named: false
+    data_owner_named_for_each_source: false
+    agentops_owner_named: false
+    revocation_owner_named: false
+    backup_owner_or_delegate_named: false
+
+build_scope:
+  agent_name: ""
+  business_outcome: ""
+  target_user_groups: []
+  excluded_user_groups: []
+  workflow_boundary: ""
+  primary_use_cases: []
+  prohibited_use_cases: []
+  data_domains: []
+  systems_in_scope: []
+  systems_out_of_scope: []
+  tools_or_actions_in_scope: []
+  tools_or_actions_prohibited: []
+  human_review_requirements: []
+  minimum_safe_first_behavior: ""
+  scope_lock:
+    source_scope_statement: ""
+    narrowest_allowed_scope: ""
+    approved_behavior_level: ""
+    allowed_inputs: []
+    allowed_outputs: []
+    allowed_actions: []
+    prohibited_actions:
+      - "Unapproved write action."
+      - "Unapproved external send."
+      - "Use by unapproved user group."
+      - "Use of unapproved data source."
+    edge_cases_in_scope: []
+    edge_cases_out_of_scope: []
+    assumptions: []
+
+first_behavior_scope:
+  behavior_name: ""
+  behavior_statement: ""
+  user_trigger: ""
+  agent_may:
+    - ""
+  agent_must_not:
+    - ""
+  human_review_path:
+    required: true
+    reviewer_role: ""
+    approval_required_before: []
+    review_sla: ""
+    fallback_when_reviewer_unavailable: ""
+  data_and_source_limits:
+    approved_sources: []
+    prohibited_sources: []
+    sensitivity_limits: []
+    retention_or_logging_limits: []
+  output_contract:
+    allowed_output_types: []
+    required_fields: []
+    forbidden_content: []
+    traceability_required: true
+  stop_conditions:
+    - "Required source is unavailable or contradictory."
+    - "User requests an out-of-scope action."
+    - "Agent cannot satisfy output contract with approved sources."
+  escalation_path: []
+  phase_3_scope_decision:
+    decision: "hold"
+    pass_fail_basis: ""
+    scope_reductions_required: []
+    evidence_refs: []
+
+gate_decisions:
+  build_conversion_gate:
+    phase_id: 1
+    status: "not_started"
+    required_evidence:
+      - "Approved Step 17 implementation_decision_packet."
+      - "Approved Step 18 managed_lifecycle_object."
+      - "Accepted method_to_build_handoff_contract."
+      - "Separate implementation approval with budget/timebox and permitted environments."
+      - "Owner model covering business, technical, security, data, AgentOps, support, and revocation roles."
+    pass_criteria:
+      - "Build authorization is explicit and current."
+      - "Build scope is equal to or narrower than approved handoff."
+      - "Every required owner is named or the gap is a blocker."
+      - "Every material claim cites evidence."
+      - "Failure modes and return-to-method triggers are evaluated."
+    fail_criteria:
+      - "Missing Step 18 approval."
+      - "Missing separate implementation approval."
+      - "Unclear owner model."
+      - "Ambiguous scope, budget, or timebox."
+      - "Any proposed build behavior exceeds approved handoff."
+    failure_handling:
+      on_missing_approval: "Block build conversion and return to Section 1 method owner or authorizing body."
+      on_scope_ambiguity: "Hold phase and require explicit scope clarification before Phase 2."
+      on_owner_gap: "Assign owner or block; do not use delivery team as implicit owner."
+      on_evidence_gap: "Record missing evidence in open_handoff_questions; do not infer."
+    owner_signoff_required:
+      - "business_owner"
+      - "technical_owner"
+      - "security_owner"
+      - "agentops_owner"
+    return_to_method_review:
+      evaluated: false
+      triggered: false
+      trigger_reason: ""
+      returned_to: ""
+      decision_date: ""
+  first_behavior_scope:
+    phase_id: 3
+    status: "not_started"
+    required_evidence:
+      - "Readiness minimum safe first behavior."
+      - "Workflow roles, decisions, edge cases, and information objects."
+      - "Organizational source, access, sensitivity, retention, and permitted/prohibited AI actions."
+      - "Approved lifecycle behavior level and launch gates."
+    pass_criteria:
+      - "First behavior is a single buildable behavior, not a roadmap."
+      - "Human review path is named and feasible."
+      - "Allowed and prohibited inputs, outputs, actions, sources, users, and systems are explicit."
+      - "Stop conditions and escalation path are operational."
+      - "Build plan milestones inherit the locked first behavior."
+    fail_criteria:
+      - "First behavior is broader than approved handoff."
+      - "Prohibited behaviors are missing or ambiguous."
+      - "Human review path is undefined or infeasible."
+      - "Workflow boundary differs from approved Step 17/18 scope."
+    failure_handling:
+      on_scope_expansion: "Block Phase 3 and require change review or return to method."
+      on_missing_human_review: "Hold until reviewer role, SLA, and fallback are approved."
+      on_source_gap: "Remove source from first behavior or return to Section 1 source readiness work."
+    owner_signoff_required:
+      - "business_owner"
+      - "product_owner"
+      - "technical_owner"
+      - "data_owner"
+      - "security_owner"
+      - "agentops_owner"
+    return_to_method_review:
+      evaluated: false
+      triggered: false
+      trigger_reason: ""
+      returned_to: ""
+      decision_date: ""
+
+acceptance_contract:
+  required_artifacts:
+    - "agent_necessity_kill_test"
+    - "agent_build_plan"
+    - "agent_architecture_record"
+    - "tool_contract_registry"
+    - "eval_harness_spec"
+    - "guardrail_control_matrix"
+    - "trace_observability_spec"
+  phase_1_exit_artifacts:
+    - "agent_build_contract.authorization"
+    - "agent_build_contract.owners"
+    - "agent_build_contract.build_scope"
+    - "agent_build_contract.gate_decisions.build_conversion_gate"
+  phase_3_exit_artifacts:
+    - "agent_build_contract.first_behavior_scope"
+    - "agent_build_plan"
+  success_criteria: []
+  non_functional_requirements:
+    availability_target: ""
+    latency_target: ""
+    security_requirements: []
+    privacy_requirements: []
+    audit_requirements: []
+  launch_blockers:
+    - "Required Section 1 evidence is missing or not approved."
+    - "Build scope exceeds approved handoff."
+    - "Required owner or signoff is missing."
+    - "Human review, stop condition, revocation, or return-to-method handling is incomplete."
+
+change_control:
+  material_change_definition:
+    - "New tool permission, write action, or data class."
+    - "New user group, workflow boundary, geography, or system of record."
+    - "Model class, routing policy, retrieval corpus, or oversight model change."
+    - "Any reduction in human approval or monitoring requirement."
+    - "Any change that affects value, risk, readiness, truth, ownership, or lifecycle assumptions from Section 1."
+  change_review_required: true
+  change_review_object_type: "change_expansion_retirement_review"
+
+contract_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  required_signoff_roles:
+    - "business_owner"
+    - "technical_owner"
+    - "security_owner"
+    - "data_owner"
+    - "agentops_owner"
+  notes: []

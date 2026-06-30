@@ -1,0 +1,39 @@
+phase_pack_id: 05-tool_data_identity_contracts
+support_skill: agent-architecture-and-tooling
+phase_id: 5
+phase_key: tool_data_identity_contracts
+phase_name: Tool/Data/Identity Contracts
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- technical_blueprint
+- organizational_intelligence_baseline
+- risk_control_model
+- implementation_decision_packet
+section2_outputs:
+- tool_contract_registry
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/tool-contract-registry.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/tool-data-identity-contracts-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/tool-contract-completeness-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/tool_data_identity_contracts.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/05-tool-contract-registry.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- Tool lacks owner, permission scope, audit logging, failure behavior, or revocation
+  path.
+- Identity mapping is ambiguous.
+- Write/send action appears without explicit approval.
+return_to_method_triggers:
+- Tool requires access not approved in Step 17/18.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

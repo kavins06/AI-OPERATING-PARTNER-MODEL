@@ -1,0 +1,135 @@
+rubric_id: first_behavior_scope_rubric
+phase_id: 3
+phase_key: first_behavior_scope
+status: active
+scoring:
+  pass: "First behavior is buildable, constrained, owned, evidenced, and inherited by the build plan."
+  conditional: "Only non-critical implementation follow-ups remain and cannot change behavior, source, action, review, or owner boundaries."
+  blocked: "Any required criterion fails without authorized waiver, or any blocking condition is active."
+  return_to_method: "Workflow boundary, readiness, source/access, lifecycle, owner, or value assumption changes from approved Step 17/18 scope."
+minimum_score_policy:
+  pass_requires:
+    - "Exactly one first behavior is locked."
+    - "No approved scope expansion."
+    - "Human review path is operational."
+    - "Build plan inherits the locked scope."
+criteria:
+  - criterion_id: source_inputs_approved
+    required: true
+    owner_role: "delivery_lead"
+    evidence_required:
+      - "implementation_decision_packet.approval_status"
+      - "readiness_object.approval_status"
+      - "managed_lifecycle_object.final_approval"
+      - "workflow_intelligence_object.approval_status"
+      - "organizational_intelligence_baseline.approval_status"
+    pass_condition: "All required Section 1 inputs are present, approved, versioned, cited, and current."
+    fail_condition: "Any required input is missing, draft, uncited, or contradicted."
+  - criterion_id: single_behavior_defined
+    required: true
+    owner_role: "product_owner"
+    evidence_required:
+      - "agent_build_contract.first_behavior_scope.behavior_statement"
+      - "readiness_object.minimum_safe_first_behavior"
+      - "implementation_decision_packet.first_build_scope"
+    pass_condition: "The first behavior is a single observable behavior with trigger, user, start/end boundary, and expected output."
+    fail_condition: "The scope is a roadmap, bundle of behaviors, vague capability, or broader than minimum safe first behavior."
+  - criterion_id: scope_not_widened
+    required: true
+    owner_role: "product_owner"
+    evidence_required:
+      - "implementation_decision_packet.first_build_scope"
+      - "managed_lifecycle_object.lifecycle_scope"
+      - "agent_build_contract.build_scope.scope_lock"
+      - "agent_build_plan.first_behavior_scope_lock"
+    pass_condition: "Users, workflow, sources, systems, actions, outputs, environments, and behavior level are equal to or narrower than approved handoff."
+    fail_condition: "First behavior requires an unapproved user, source, system, action, output, environment, or behavior level."
+  - criterion_id: prohibited_behaviors_explicit
+    required: true
+    owner_role: "security_owner"
+    evidence_required:
+      - "readiness_object.prohibited_behaviors"
+      - "implementation_decision_packet.behavior_contract.prohibited_actions"
+      - "agent_build_contract.first_behavior_scope.agent_must_not"
+      - "agent_build_plan.first_behavior_scope_lock.prohibited_actions"
+    pass_condition: "Prohibited behaviors, sources, actions, and outputs are explicit in both contract and plan."
+    fail_condition: "Prohibited behaviors are vague, missing, or not carried into the build plan."
+  - criterion_id: source_access_limits_traceable
+    required: true
+    owner_role: "data_owner"
+    evidence_required:
+      - "organizational_intelligence_baseline.source_owners"
+      - "organizational_intelligence_baseline.access_profiles"
+      - "organizational_intelligence_baseline.sensitivity"
+      - "organizational_intelligence_baseline.permitted_ai_actions"
+      - "agent_build_contract.first_behavior_scope.data_and_source_limits"
+    pass_condition: "Approved sources, prohibited sources, access limits, sensitivity, retention, and permitted/prohibited AI actions are traceable."
+    fail_condition: "Any source lacks owner, access basis, permitted action, or sensitivity/retention handling."
+  - criterion_id: workflow_boundary_traceable
+    required: true
+    owner_role: "business_owner"
+    evidence_required:
+      - "workflow_intelligence_object.roles"
+      - "workflow_intelligence_object.workflow_steps"
+      - "workflow_intelligence_object.decisions"
+      - "workflow_intelligence_object.edge_cases"
+      - "agent_build_plan.first_behavior_scope_lock.workflow_start"
+      - "agent_build_plan.first_behavior_scope_lock.workflow_end"
+    pass_condition: "Workflow start, workflow end, user role, edge cases, and decisions match Section 1 workflow intelligence."
+    fail_condition: "The build scope changes the workflow boundary or ignores known edge cases."
+  - criterion_id: human_review_operational
+    required: true
+    owner_role: "agentops_owner"
+    evidence_required:
+      - "agent_build_contract.first_behavior_scope.human_review_path"
+      - "agent_build_plan.first_behavior_scope_lock.human_review_path"
+      - "readiness_object.behavior_level_readiness"
+    pass_condition: "Reviewer role, approval points, SLA, fallback, escalation, and authority are operational and feasible."
+    fail_condition: "Human review is unnamed, unfunded, too slow, lacks fallback, or cannot approve the behavior."
+  - criterion_id: output_and_stop_conditions_defined
+    required: true
+    owner_role: "technical_owner"
+    evidence_required:
+      - "agent_build_contract.first_behavior_scope.output_contract"
+      - "agent_build_contract.first_behavior_scope.stop_conditions"
+      - "agent_build_plan.first_behavior_scope_lock.build_must_stop_when"
+    pass_condition: "Allowed output types, required fields, forbidden content, traceability, stop conditions, and escalation are concrete."
+    fail_condition: "The build team would need to infer output format, stop behavior, or escalation."
+  - criterion_id: build_plan_inherits_scope
+    required: true
+    owner_role: "delivery_lead"
+    evidence_required:
+      - "agent_build_plan.first_behavior_scope_lock"
+      - "agent_build_plan.workstreams"
+      - "agent_build_plan.milestones"
+      - "agent_build_plan.definition_of_done"
+      - "agent_build_plan.delivery_risks"
+    pass_condition: "Workstreams, milestones, dependencies, risks, and definition of done implement only the locked first behavior."
+    fail_condition: "Plan sequencing implies broader scope, missing gates, or undefined owner accountability."
+  - criterion_id: return_to_method_evaluated
+    required: true
+    owner_role: "delivery_lead"
+    evidence_required:
+      - "agent_build_contract.gate_decisions.first_behavior_scope.return_to_method_review"
+      - "agent_build_plan.return_to_method_controls"
+      - "method_to_build_handoff_contract.return_to_method_triggers"
+    pass_condition: "Return-to-method triggers are evaluated and inactive, or the phase is stopped with trigger reason and owner."
+    fail_condition: "Workflow boundary or assumptions changed without return-to-method review."
+automatic_blockers:
+  - "First behavior is broader than approved handoff."
+  - "Prohibited behaviors are not explicit."
+  - "Human review path is undefined."
+  - "Workflow boundary changes from approved Step 17/18 scope."
+  - "Source ownership, access, sensitivity, retention, or permitted/prohibited action evidence is missing."
+  - "Build plan workstreams or milestones imply broader behavior than the locked first behavior."
+return_to_method_triggers:
+  - "Workflow boundary changes from approved Step 17/18 scope."
+  - "Minimum safe first behavior cannot be implemented using approved sources, actions, outputs, owners, or oversight."
+  - "Organizational source/access baseline contradicts approved build scope."
+signoffs_required:
+  - "business_owner"
+  - "product_owner"
+  - "technical_owner"
+  - "security_owner"
+  - "data_owner"
+  - "agentops_owner"

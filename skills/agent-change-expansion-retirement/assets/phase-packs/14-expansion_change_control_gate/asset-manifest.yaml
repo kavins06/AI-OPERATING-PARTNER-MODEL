@@ -1,0 +1,37 @@
+phase_pack_id: 14-expansion_change_control_gate
+support_skill: agent-change-expansion-retirement
+phase_id: 14
+phase_key: expansion_change_control_gate
+phase_name: Expansion/Change-Control Gate
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- managed_lifecycle_object
+- readiness_object
+- implementation_decision_packet
+- method_to_build_handoff_contract
+section2_outputs:
+- change_expansion_retirement_review
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/change-expansion-retirement-review.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/change-expansion-review-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/change-control-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/expansion_change_control_gate.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/14-change-expansion-review.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- New user, source, tool, workflow, behavior level, model, or write/send action is
+  added without approval.
+return_to_method_triggers:
+- Expansion changes readiness, risk, value, or lifecycle assumptions.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

@@ -1,0 +1,94 @@
+rule_group: agent_architecture_spec
+phase_id: 4
+phase_key: agent_architecture_spec
+status: active
+required_section1_inputs:
+  - solution_shape
+  - technical_blueprint
+  - risk_control_model
+  - implementation_decision_packet
+required_section2_outputs:
+  - agent_architecture_record
+failure_modes:
+  - "Runtime topology does not match approved behavior level."
+  - "Fallback and failure behavior are undefined."
+  - "Model/runtime posture ignores privacy, latency, cost, data residency, or audit constraints."
+  - "Component ownership, revocation, or support responsibility is ambiguous."
+  - "Architecture requires a tool, source, write action, identity model, or environment not approved in the handoff."
+return_to_method_triggers:
+  - "Architecture requires a different behavior level, source, user group, workflow boundary, oversight model, or business process assumption."
+  - "The only feasible architecture needs write/send capability that was not approved."
+  - "Required source or owner evidence from Section 1 cannot be reconciled."
+checks:
+  - check_id: required_section1_inputs_present
+    severity: error
+    description: "Required Section 1 source artifacts are referenced, approved, versioned, and cited with evidence."
+    target_paths:
+      - "source_inputs"
+      - "source_inputs.evidence_refs"
+  - check_id: required_section2_outputs_present
+    severity: error
+    description: "The agent_architecture_record exists, has object metadata, and is not treated as approved while required sections are empty."
+    target_paths:
+      - "object_type"
+      - "object_id"
+      - "status"
+  - check_id: scope_not_widened_without_change_review
+    severity: error
+    description: "Users, sources, tools, environments, actions, outputs, and behavior levels do not exceed the approved handoff without change review."
+    target_paths:
+      - "scope_lock"
+      - "architecture_summary.behavior_level"
+      - "architecture_summary.operating_environments"
+  - check_id: behavior_level_matches_runtime_topology
+    severity: error
+    description: "Runtime topology, orchestration pattern, oversight model, and environment posture match the approved behavior level."
+    target_paths:
+      - "architecture_summary.topology"
+      - "architecture_summary.orchestration_pattern"
+      - "architecture_summary.oversight_model"
+  - check_id: component_contracts_complete
+    severity: error
+    description: "Each material component has owner, purpose, environments, dependencies, interfaces, data classes, failure isolation, and audit events."
+    target_paths:
+      - "components"
+  - check_id: model_posture_has_quality_controls
+    severity: error
+    description: "Allowed/prohibited models, routing, fallback, context minimization, output constraints, uncertainty handling, privacy, latency, and cost controls are defined."
+    target_paths:
+      - "model_posture"
+  - check_id: data_and_system_paths_are_classified
+    severity: error
+    description: "Read, write, retrieval, event, logging, secret, and human approval paths are classified, owner-backed, environment-scoped, and validated."
+    target_paths:
+      - "data_and_system_paths"
+  - check_id: identity_and_access_posture_present
+    severity: error
+    description: "Agent identity, service account, delegation stance, impersonation stance, break-glass posture, access review, revocation owner, and SLA are defined."
+    target_paths:
+      - "identity_and_access_posture"
+  - check_id: auditability_and_observability_present
+    severity: error
+    description: "Required audit events, correlation IDs, redaction, retention, dashboards, and alert routes are defined for runs, model calls, tool calls, approvals, and violations."
+    target_paths:
+      - "auditability_and_observability"
+  - check_id: failure_modes_have_safe_responses
+    severity: error
+    description: "Expected failures include detection signal, safe response, user-message policy, escalation path, audit event, and owner."
+    target_paths:
+      - "resilience_and_failure_modes.expected_failure_modes"
+  - check_id: rollback_and_change_control_present
+    severity: error
+    description: "Rollback owner, dependencies, trigger conditions, validation, architecture freeze conditions, and material change review are defined."
+    target_paths:
+      - "rollback_and_change_control"
+  - check_id: architectural_decisions_traceable
+    severity: warning
+    description: "Material architectural decisions include context, options considered, rationale, rejected options, consequences, approver, date, and evidence."
+    target_paths:
+      - "architectural_decisions"
+  - check_id: return_to_method_triggers_present
+    severity: warning
+    description: "Return-to-method triggers are listed and evaluated before phase exit."
+    target_paths:
+      - "rollback_and_change_control.return_to_method_triggers"

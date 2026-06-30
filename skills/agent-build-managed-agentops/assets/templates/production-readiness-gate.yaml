@@ -1,0 +1,191 @@
+object_type: "production_readiness_gate"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "production_gate_<agent_id>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+
+source_inputs:
+  build_contract_id: ""
+  step_18_lifecycle_object_id: ""
+  release_version_manifest_id: ""
+  pilot_launch_gate_id: ""
+  agentops_operating_record_id: ""
+  eval_harness_spec_id: ""
+  guardrail_control_matrix_id: ""
+  trace_observability_spec_id: ""
+  risk_control_model_id: ""
+  technical_blueprint_id: ""
+  measurement_intelligence_id: ""
+  evidence_refs: []
+
+production_scope:
+  target_launch_date: ""
+  user_groups: []
+  named_owner_roles: []
+  workflow_boundaries: []
+  environments_allowed:
+    - "production"
+  data_classes_allowed: []
+  sources_allowed: []
+  tools_allowed: []
+  behavior_level_authorized: ""
+  outputs_allowed: []
+  outputs_prohibited: []
+  scale_limits:
+    - ""
+  first_month_expansion_freeze: true
+
+pilot_evidence_summary:
+  pilot_period: ""
+  total_runs: 0
+  active_users: 0
+  task_success_rate: ""
+  material_error_rate: ""
+  human_correction_rate: ""
+  user_acceptance_or_adoption_signal: ""
+  control_violations: 0
+  untraced_runs: 0
+  unauthorized_tool_calls: 0
+  incidents: []
+  open_defects: []
+  remediations_completed: []
+  return_to_method_assessment: ""
+
+readiness_domains:
+  - domain_id: "quality_and_evals"
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+    pass_condition: "All blocking eval, regression, pilot-quality, and adversarial thresholds pass with no unresolved critical/high defect."
+  - domain_id: "security_privacy_and_access"
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+    pass_condition: "Access, sensitive-data handling, permission boundaries, and residual risk are approved by security and risk owners."
+  - domain_id: "observability_and_audit"
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+    pass_condition: "Every production run, tool call, control decision, human review, and incident can be traced and audited."
+  - domain_id: "support_and_operations"
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+    pass_condition: "Support channel, escalation path, owner rota, operator run card, and incident SLAs are live."
+  - domain_id: "business_value_and_adoption"
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+    pass_condition: "Pilot evidence supports the business value case and adoption plan."
+  - domain_id: "source_freshness_and_truth"
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+    pass_condition: "Approved sources, truth rules, freshness checks, and conflict-handling paths are owned and tested."
+  - domain_id: "release_and_rollback"
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+    pass_condition: "Release candidate manifest, smoke tests, rollback package, and previous-stable restore checks are ready."
+  - domain_id: "incident_rehearsal_and_revocation"
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+    pass_condition: "Pause, revoke, rollback, evidence capture, owner notification, and restart approval were rehearsed successfully."
+  - domain_id: "cost_latency_and_capacity"
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+    pass_condition: "Latency, cost, throughput, and owner coverage can support the production scale limit."
+
+production_controls:
+  monitoring_cadence: "daily for first week, weekly for first month, then per AgentOps cadence"
+  first_30_day_metrics:
+    - "task_success_rate"
+    - "material_error_rate"
+    - "human_correction_rate"
+    - "draft_acceptance_rate"
+    - "control_violation_count"
+    - "untraced_run_count"
+    - "tool_failure_rate"
+    - "source_freshness_failures"
+    - "p95_latency_ms"
+    - "cost_per_successful_task"
+  incident_sla: ""
+  pause_sla: ""
+  access_review_cadence: "monthly for first quarter"
+  eval_regression_cadence: "before every release and monthly during first quarter"
+  source_freshness_cadence: ""
+  model_or_prompt_change_policy: "change review required before promotion"
+  required_runbooks:
+    - "incident-revocation-runbook.md"
+    - "release-rollback-runbook.md"
+    - "internal-operator-run-card.md"
+  production_stop_conditions:
+    - "Any control violation."
+    - "Any untraced production run or unlogged tool call."
+    - "Any successful prompt injection or sensitive data exposure."
+    - "Material error rate exceeds approved threshold."
+    - "Source freshness or truth production fails for approved sources."
+    - "Owner, support, or revocation coverage is unavailable."
+
+incident_rehearsal:
+  rehearsal_required: true
+  rehearsal_date: ""
+  scenarios_completed:
+    - "control_failure_pause"
+    - "tool_permission_revocation"
+    - "release_rollback"
+  time_to_detect: ""
+  time_to_pause: ""
+  time_to_revoke_access: ""
+  time_to_restore_previous_version: ""
+  gaps_found: []
+  remediation_evidence_refs: []
+  rehearsal_passed: false
+
+residual_risk_acceptance:
+  residual_risks: []
+  accepted_by: []
+  acceptance_conditions: []
+  expiration_or_review_date: ""
+
+production_decision:
+  decision: "not_submitted"
+  decision_options:
+    - "approve_production"
+    - "approve_with_conditions"
+    - "hold"
+    - "return_to_method"
+    - "rollback"
+  conditions: []
+  approved_by: []
+  approval_date: ""
+  first_operating_review_date: ""
+
+gate_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  notes: []

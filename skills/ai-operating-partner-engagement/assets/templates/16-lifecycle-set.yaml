@@ -1,0 +1,120 @@
+lifecycle_set_id: "lifecycle_set_<workflow_or_opportunity>_current"
+object_type: "lifecycle_set"
+spec_version: "0.1"
+status: "draft" # draft | ready_for_review | approved | revision_required | blocked
+workflow_id: ""
+opportunity_id: ""
+linked_packet_set_id: ""
+contract_ref: "lifecycle_variant_contracts"
+schema_ref: "canonical-object-schemas#/$defs/lifecycle_set"
+
+purpose: "Group multiple Step 18 lifecycle outcomes when a Step 17 packet_set creates more than one packet for the same workflow or opportunity."
+
+source_inputs:
+  linked_packet_set_id: ""
+  workflow_id: ""
+  opportunity_id: ""
+  readiness_object_id: ""
+  risk_control_model_id: ""
+  technical_blueprint_id: ""
+  adoption_design_id: ""
+  evidence_refs: []
+  lifecycle_variant_contracts_ref: "16-lifecycle-variant-contracts.yaml"
+  handoff_contract_ref: "18-method-to-build-handoff-contract.md"
+
+scope:
+  workflow_id: ""
+  workflow_name: ""
+  opportunity_id: ""
+  included_lifecycle_paths: [] # managed_agent_lifecycle | remediation_lifecycle | no_automation_review_cadence
+  explicit_non_goals: []
+
+lifecycles:
+  - lifecycle_object_id: ""
+    lifecycle_ref: "" # optional path or object id for the full individual lifecycle object
+    linked_step_17_packet_id: ""
+    lifecycle_path: "managed_agent_lifecycle" # managed_agent_lifecycle | remediation_lifecycle | no_automation_review_cadence
+    behavior_level_or_scope: ""
+    status: "draft" # draft | approved | revision_required | blocked
+    operating_status:
+      current_engagement_phase: "pre_build_step_18"
+      future_implementation_phase_status: "not_started"
+      implementation_allowed_only_after_step_18_approval: true
+      separate_implementation_approval_required: true
+      no_live_agent_operated_during_engagement: true
+    owner_model:
+      business_owner: ""
+      day_to_day_owner: ""
+      technical_owner: ""
+      data_owner: ""
+      security_owner: ""
+      risk_or_compliance_owner: ""
+      remediation_owner: ""
+      future_build_owner: ""
+      executive_sponsor: ""
+      approval_committee_or_forum: ""
+    variant_contract:
+      selected_variant: "managed_agent_lifecycle"
+      contract_ref: "lifecycle_variant_contracts"
+      required_sections_present: false
+      missing_sections: []
+    handoff_contract:
+      handoff_contract_ref: "method_to_build_handoff"
+      operating_partner_role_after_handoff: "not_decided" # advisor_only | build_phase_operator | managed_services_owner | client_handoff_only | third_party_builder_handoff | not_decided
+      future_build_owner_acceptance_required: true
+      handoff_status: "not_ready_pending_client_decision"
+      return_to_method_triggers: []
+    final_approval:
+      step_18_approved: false
+      approved_by: []
+      approval_date: ""
+      implementation_phase_authorized: false
+      conditions_before_implementation: []
+    stop_boundary:
+      no_agent_build_started: true
+      no_mcp_or_connector_build_started: true
+      no_normalization_pipeline_build_started: true
+      no_credentials_or_live_access_requested: true
+      no_email_ingestion_started: true
+      no_agent_deployed_or_operated: true
+
+cross_variant_relationships:
+  - relationship_id: ""
+    relationship_type: "" # remediation_completion_enables_managed_lifecycle | risk_revocation_pauses_managed_lifecycle | no_automation_constrains_managed_lifecycle_scope | independent
+    predecessor_lifecycle_id: ""
+    successor_lifecycle_id: ""
+    transition_condition: ""
+    owner: ""
+    evidence_refs: []
+
+governance_rules:
+  owner_for_lifecycle_set: ""
+  approval_forum: ""
+  review_cadence: ""
+  cascade_reentry_triggers_across_related_lifecycles: true
+  individual_lifecycle_overrides: []
+
+lifecycle_set_validation:
+  lifecycle_count: null
+  each_lifecycle_has_handoff: false
+  each_lifecycle_variant_matches_linked_packet_type: false
+  transitions_resolve: false
+  no_cycles_in_relationship_graph: false
+  single_lifecycle_has_no_cross_variant_relationships: false
+  validation_notes: []
+
+handoff_summary:
+  handoff_contract_ref: "18-method-to-build-handoff-contract.md"
+  handoff_status: "not_ready_pending_client_decision" # ready_for_separate_implementation_approval | ready_for_remediation_execution | not_ready_missing_owner | not_ready_missing_controls | not_ready_missing_access_path | not_ready_pending_client_decision | do_not_automate_revisit_scheduled
+  operating_partner_role_after_handoff: "not_decided"
+  future_build_owner: ""
+  return_to_method_triggers: []
+
+stop_boundary:
+  no_agent_build_started: true
+  no_mcp_or_connector_build_started: true
+  no_normalization_pipeline_build_started: true
+  no_credentials_or_live_access_requested: true
+  no_email_ingestion_started: true
+  no_agent_deployed_or_operated: true
+  implementation_requires_separate_approval_after_step_18: true

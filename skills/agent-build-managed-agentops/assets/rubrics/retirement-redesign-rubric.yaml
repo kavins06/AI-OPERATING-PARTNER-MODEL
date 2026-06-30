@@ -1,0 +1,121 @@
+rubric_id: retirement_or_redesign_loop_rubric
+phase_id: 15
+phase_key: retirement_or_redesign_loop
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver with expiry."
+  conditional: "No blocking condition remains, but named remediation, retirement, or redesign action is required by a due date."
+  blocked: "Any required criterion fails without authorized waiver, or unsafe or low-value operation continues without decision."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    owner: "agentops_owner"
+    evidence_required:
+      - managed_lifecycle_object
+      - measurement_intelligence
+      - risk_control_model
+      - organizational_intelligence_diagnostic
+      - agentops_operating_record
+    pass_condition: "Required method and operating inputs are approved, versioned, current, and cited."
+  - criterion_id: trigger_evidence_complete
+    required: true
+    owner: "agentops_owner"
+    evidence_required:
+      - value_metrics
+      - incident_history
+      - support_logs
+      - source_freshness_evidence
+      - access_review_evidence
+    pass_condition: "The review names the retirement or redesign trigger and cites metric, incident, source, access, support, adoption, cost, or owner coverage evidence."
+  - criterion_id: immediate_pause_need_decided
+    required: true
+    owner: "revocation_owner"
+    evidence_required:
+      - blocking_conditions_assessment
+      - pause_or_revocation_decision
+    pass_condition: "The review decides whether operation must pause or revoke before analysis continues, with action evidence if triggered."
+  - criterion_id: value_viability_assessed
+    required: true
+    owner: "business_owner"
+    evidence_required:
+      - measurement_intelligence.baseline
+      - realized_value
+      - correction_burden
+      - operating_cost
+    pass_condition: "Realized value, human correction burden, support burden, and operating cost are compared to minimum viable value threshold."
+  - criterion_id: risk_and_control_viability_assessed
+    required: true
+    owner: "risk_or_compliance_owner"
+    evidence_required:
+      - risk_control_model
+      - incident_history
+      - control_violations
+      - accepted_waivers
+    pass_condition: "Incidents, near misses, control violations, privacy/security findings, audit gaps, waivers, and residual risk are reviewed against risk appetite."
+  - criterion_id: source_and_guidance_viability_assessed
+    required: true
+    owner: "data_owner"
+    evidence_required:
+      - source_freshness_evidence
+      - source_owner_attestations
+      - guidance_and_knowledge_updates
+    pass_condition: "Source freshness, source authority, owner support, stale guidance, source model changes, and data quality issues are assessed."
+  - criterion_id: access_and_owner_viability_assessed
+    required: true
+    owner: "security_owner"
+    evidence_required:
+      - access_review_evidence
+      - owner_coverage_evidence
+      - revocation_owner_confirmation
+    pass_condition: "Access, service accounts, credentials, revocation paths, and business/technical/support/security/data/AgentOps owner coverage remain viable or are marked blocking."
+  - criterion_id: adoption_and_workflow_fit_assessed
+    required: true
+    owner: "product_owner"
+    evidence_required:
+      - adoption_metrics
+      - user_feedback
+      - support_tickets
+      - organizational_intelligence_diagnostic
+    pass_condition: "Active use, opt-outs, manual workarounds, training gaps, incentives, and workflow fit are compared to the original diagnosis."
+  - criterion_id: alternatives_considered
+    required: true
+    owner: "business_owner"
+    evidence_required:
+      - simpler_alternative_assessment
+      - non_agent_option_evidence
+    pass_condition: "Retirement without replacement, SOP, dashboard, template, workflow automation, report, or simpler tool are evaluated before redesigning the agent."
+  - criterion_id: retirement_plan_complete
+    required: true
+    owner: "technical_owner"
+    evidence_required:
+      - decommission_plan
+      - user_communication_plan
+      - access_revocation_plan
+      - evidence_archive_plan
+    pass_condition: "If retiring, user transition, manual fallback, queued work closure, access revocation, tool disablement, data retention, monitoring shutdown, and evidence archive are defined."
+  - criterion_id: redesign_return_to_method_decided
+    required: true
+    owner: "risk_or_compliance_owner"
+    evidence_required:
+      - redesign_scope
+      - return_to_method_rationale
+      - required_section1_artifacts
+    pass_condition: "If redesigning, the review states whether redesign stays inside approved lifecycle or returns to method for new discovery, readiness, risk, value, and lifecycle decisions."
+  - criterion_id: decision_signed_and_followed
+    required: true
+    owner: "approver"
+    evidence_required:
+      - decision.outcome
+      - decision.approved_by
+      - decision.required_actions
+      - next_review_date
+    pass_condition: "Decision outcome, rationale, required actions, owners, due dates, stop conditions, approvers, and next review are complete."
+automatic_blockers:
+  - "High or critical incident remains unresolved while the agent is active."
+  - "Agent cannot operate with current sources, controls, traces, access, and owner coverage."
+  - "Users rely on outputs lacking current source or control evidence."
+  - "Value remains below minimum viable threshold without owner-approved remediation."
+  - "Retirement would strand users, queued actions, downstream processes, or compliance evidence."
+return_to_method_triggers:
+  - "Redesign requires new discovery, readiness scoring, risk controls, value case, or lifecycle decision."
+  - "Retirement evidence shows original workflow, organizational, source, or value assumptions were wrong."

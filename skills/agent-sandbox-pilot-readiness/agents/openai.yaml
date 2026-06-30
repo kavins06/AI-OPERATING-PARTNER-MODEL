@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Sandbox Pilot Readiness"
+  short_description: "Govern sandbox evidence, pilot gates, production readiness, incident rehearsal, and monitoring gates."
+  default_prompt: "Use $agent-sandbox-pilot-readiness after approved Step 18 handoff and separate implementation approval to complete Section 2 phases 8, 10, and 11 with sandbox run evidence, pilot controls, production readiness evidence, incident rehearsal, rollback/revocation readiness, checklists, rubrics, and validator rules."

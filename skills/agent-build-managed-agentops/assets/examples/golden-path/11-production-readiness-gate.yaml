@@ -1,0 +1,180 @@
+example_id: "golden_path_phase_11_production_readiness_gate"
+phase_id: 11
+phase_key: "production_readiness_gate"
+phase_name: "Production Readiness Gate"
+source_packet: "skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml"
+status: "implementation_grade_example"
+purpose: "Demonstrate production readiness based on pilot evidence, owner signoff, incident rehearsal, revocation readiness, rollback, and first-month monitoring."
+
+minimum_completed_sections:
+  - "source_inputs"
+  - "production_scope"
+  - "pilot_evidence_summary"
+  - "readiness_domains"
+  - "production_controls"
+  - "incident_rehearsal"
+  - "residual_risk_acceptance"
+  - "production_decision"
+  - "signoff"
+
+section1_inputs_used:
+  - "managed_lifecycle_object"
+  - "measurement_intelligence"
+  - "risk_control_model"
+  - "technical_blueprint"
+section2_outputs_demonstrated:
+  - "production_readiness_gate"
+
+evidence_expectations:
+  - "Cite managed lifecycle, measurement intelligence, risk model, technical blueprint, pilot evidence, evals, controls, observability, release candidate, and rollback package."
+  - "Show pilot metric summary, readiness domains, first-month monitoring, residual-risk acceptance, incident rehearsal, revocation readiness, and owner signoffs."
+  - "Record blockers for failed pilot thresholds, missing owners, missing traces, failed rehearsal, or wider production scope."
+failure_modes_to_test:
+  - "Production launch lacks pilot evidence, owner signoff, incident rehearsal, revocation readiness, or accepted residual risk."
+return_to_method_triggers_to_test:
+  - "Production readiness requires scope, owner, risk, or lifecycle changes."
+  - "Production evidence invalidates value, adoption, source truth, oversight, or operational assumptions."
+
+production_readiness_gate:
+  object_type: "production_readiness_gate"
+  object_id: "production_gate_demo_revenue_intake_20260601"
+  version: "0.2"
+  status: "approved"
+  source_inputs:
+    build_contract_id: "build_contract_demo_revenue_intake_20260504"
+    release_version_manifest_id: "release_demo_revenue_intake_1_0_0"
+    pilot_launch_gate_id: "pilot_gate_demo_revenue_intake_20260515"
+    agentops_operating_record_id: "agentops_record_demo_revenue_intake_pilot_20260529"
+    eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260506"
+    guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260513"
+    trace_observability_spec_id: "observability_demo_revenue_intake_20260513"
+    evidence_refs:
+      - "evidence://demo/phase11/pilot-summary"
+      - "evidence://demo/phase11/production-readiness-review"
+  production_scope:
+    target_launch_date: "2026-06-03"
+    user_groups:
+      - "Revenue intake coordinators"
+    workflow_boundaries:
+      - "Draft and flag missing-information follow-up requests."
+    environments_allowed:
+      - "production"
+    data_classes_allowed:
+      - "customer_contact"
+      - "opportunity_metadata"
+    tools_allowed:
+      - "crm_read_only_lookup"
+      - "intake_form_read_only_lookup"
+    behavior_level_authorized: "draft_and_flag"
+    outputs_allowed:
+      - "Internal draft follow-up request pending human approval."
+    outputs_prohibited:
+      - "Customer-facing send."
+      - "CRM write."
+    scale_limits:
+      - "Maximum 50 draft requests per business day during first production month."
+    first_month_expansion_freeze: true
+  pilot_evidence_summary:
+    pilot_period: "2026-05-18 to 2026-05-29"
+    total_runs: 214
+    active_users: 3
+    task_success_rate: "0.93"
+    material_error_rate: "0.009"
+    human_correction_rate: "0.06"
+    user_acceptance_or_adoption_signal: "94 percent of accepted drafts used with minor or no edits."
+    control_violations: 0
+    untraced_runs: 0
+    unauthorized_tool_calls: 0
+    incidents: []
+    open_defects: []
+    remediations_completed:
+      - "Added regression case for redundant missing-field wording."
+  readiness_domains:
+    - domain_id: "quality_and_evals"
+      owner: "AgentOps Lead"
+      status: "passed"
+      evidence_refs:
+        - "evidence://demo/phase11/final-regression-results"
+      open_issues: []
+    - domain_id: "security_privacy_and_access"
+      owner: "Security Lead"
+      status: "passed"
+      evidence_refs:
+        - "evidence://demo/phase11/access-review"
+      open_issues: []
+    - domain_id: "observability_and_audit"
+      owner: "Agent Platform Lead"
+      status: "passed"
+      evidence_refs:
+        - "dashboard://demo/revenue-intake-agentops"
+      open_issues: []
+    - domain_id: "incident_rehearsal_and_revocation"
+      owner: "Security Lead"
+      status: "passed"
+      evidence_refs:
+        - "evidence://demo/phase11/incident-rehearsal"
+      open_issues: []
+    - domain_id: "business_value_and_adoption"
+      owner: "Revenue Operations Manager"
+      status: "passed"
+      evidence_refs:
+        - "evidence://demo/phase11/value-review"
+      open_issues: []
+  production_controls:
+    monitoring_cadence: "Daily first week, weekly first month."
+    incident_sla: "Critical incidents triaged within 15 minutes."
+    pause_sla: "Agent paused within 15 minutes of critical alert."
+    access_review_cadence: "Monthly for first quarter."
+    eval_regression_cadence: "Before every release and monthly during first quarter."
+    source_freshness_cadence: "Daily business-system freshness check."
+    required_runbooks:
+      - "incident-revocation-runbook.md"
+      - "release-rollback-runbook.md"
+      - "internal-operator-run-card.md"
+    production_stop_conditions:
+      - "Any control violation."
+      - "Any untraced production run."
+      - "Any customer-facing send attempt."
+      - "Owner coverage unavailable."
+  incident_rehearsal:
+    rehearsal_required: true
+    rehearsal_date: "2026-05-30"
+    scenarios_completed:
+      - "control_failure_pause"
+      - "tool_permission_revocation"
+      - "release_rollback"
+    time_to_detect: "3 minutes"
+    time_to_pause: "8 minutes"
+    time_to_revoke_access: "11 minutes"
+    time_to_restore_previous_version: "18 minutes"
+    gaps_found: []
+    rehearsal_passed: true
+  residual_risk_acceptance:
+    residual_risks:
+      - "Minor draft wording corrections may still be needed by coordinators."
+    accepted_by:
+      - "Revenue Operations Manager"
+      - "Security Lead"
+    acceptance_conditions:
+      - "Human approval remains mandatory."
+      - "Monthly regression refresh includes pilot corrections."
+    expiration_or_review_date: "2026-07-01"
+  production_decision:
+    decision: "approved"
+    conditions:
+      - "No expansion during first production month."
+      - "Daily first-week monitoring review."
+    approved_by:
+      - "VP Revenue Operations"
+      - "Security Lead"
+      - "AgentOps Lead"
+    approval_date: "2026-06-01"
+
+blocking_conditions_checked:
+  - "Pilot evidence passes blocking thresholds."
+  - "Incident rehearsal passed pause, revoke, rollback, evidence capture, and notification."
+  - "Production scope is no wider than pilot-tested scope."
+return_to_method_assessment:
+  status: "not_triggered"
+  notes:
+    - "Production readiness did not change scope, owner, risk, lifecycle, value, or source-truth assumptions."

@@ -1,0 +1,221 @@
+risk_control_model_id: "rcm.workflow.opportunity.current"
+opportunity_id:
+workflow_ids: []
+technical_blueprint_id:
+value_case_id:
+solution_shape_id:
+adoption_design_id:
+version: "0.1"
+status: "draft" # draft | owner_validated | partially_validated | blocked
+
+source_inputs:
+  workflow_spec_ids: []
+  diagnostic_ids: []
+  governance_event_ids: []
+  guidance_pack_ids: []
+  measurement_intelligence_ids: []
+  truth_production_profile_ids: []
+  value_case_ids: []
+  technical_blueprint_ids: []
+  solution_shape_ids: []
+  adoption_design_ids: []
+  regulated_domain_extension_ids: []
+  policy_or_contract_refs: []
+  targeted_confirmation_refs: []
+
+risk_posture:
+  overall_risk_level: "unknown" # low | medium | high | critical | unknown
+  implementation_allowed_if_controls_met: false
+  blocking_risks: []
+  residual_risk_summary:
+  not_build_authorization: true
+
+data_classification:
+  sensitive_fields_or_content_classes:
+    - item_id:
+      field_or_content_class:
+      source_id:
+      classification: "" # public | internal | confidential | restricted | regulated | unknown
+      handling_rule:
+      redaction_required: false
+      allowed_ai_use: [] # read | retrieve | summarize | compare | calculate | draft | cite | none
+      prohibited_ai_use: []
+      retention_or_export_constraints: []
+      owner_confirmation:
+        owner_role:
+        status: "not_started" # not_started | confirmed | corrected | disputed | blocked
+        notes:
+
+risk_register:
+  - risk_id:
+    category: "" # privacy | security | shadow_ai | compliance | operational | vendor | output_quality | data_quality | access | external_communication | financial | reputational | adoption | spreadsheet_risk | key_person_truth_risk | undocumented_transformation | auditability_gap | shadow_reporting_drift | fair_housing | tcpa_sms_calling | respa_referral | mls_idx_vow_data | state_real_estate_advertising_license | regulated_domain_other
+    linked_workflow_object_ids: []
+    linked_system_ids: []
+    linked_source_ids: []
+    linked_truth_production_profile_ids: []
+    linked_tool_ids: []
+    linked_output_types: []
+    risk_description:
+    cause:
+    impact:
+    likelihood: "unknown" # low | medium | high | unknown
+    severity: "unknown" # low | medium | high | critical | unknown
+    control:
+    owner_role:
+    status: "control_required" # control_required | owner_confirmed | blocked | accepted_residual | not_applicable
+    verification_needed:
+    residual_risk:
+    blocks_readiness: false
+
+regulated_domain_risks:
+  applies: false
+  domain:
+  extension_id:
+  named_risks:
+    - risk_id:
+      named_rule_or_constraint: "Fair Housing | TCPA_SMS_calling | RESPA_referral | MLS_IDX_VOW_data | state_real_estate_advertising_license | other"
+      linked_candidate_use_case_ids: []
+      linked_guidance_ids: []
+      linked_outputs_or_actions: []
+      prohibited_ai_actions: []
+      required_controls: []
+      required_owner_role:
+      required_reviewer_role:
+      blocks_readiness: true
+      verification_needed:
+
+truth_production_controls:
+  - control_id:
+    truth_profile_id:
+    risk_type: "spreadsheet_risk | key_person_truth_risk | undocumented_transformation | auditability_gap | shadow_reporting_drift"
+    control:
+    owner_role:
+    verification_needed:
+    required_before_behavior_levels: []
+    stop_condition_if_missing:
+
+shadow_ai_controls:
+  evidence_of_shadow_ai: "unknown" # yes | no | suspected | unknown
+  observed_or_reported_tools: []
+  sensitive_data_exposure_risk: "unknown" # low | medium | high | unknown
+  formal_channel_gap:
+  approved_alternative_needed: false
+  controls:
+    approved_tooling_path:
+    policy_update_needed: false
+    training_needed: false
+    monitoring_signal:
+    escalation_owner_role:
+    user_safe_harbor_or_disclosure_path:
+
+security_enablement_patterns:
+  front_loaded_security_tax_expected: "unknown" # low | medium | high | unknown
+  patterns_applicable:
+    - pattern: "" # pii_scrubbing | data_minimization | synthetic_substitution | private_networking | isolated_environment | audit_trail | contract_controls | local_or_private_model | approved_cloud_boundary | other
+      purpose:
+      owner_role:
+      verification_needed:
+  security_enables_sensitive_use_case: "unknown" # yes | no | partial | unknown
+  security_work_that_must_finish_before_build: []
+
+zero_trust_controls:
+  identity:
+    allowed_users: []
+    allowed_roles: []
+    prohibited_users_or_roles: []
+    future_service_account_needed: false
+    provisioning_owner_role:
+    authentication_or_sso_requirements: []
+  data_access:
+    allowed_sources: []
+    allowed_records_or_scopes: []
+    field_level_restrictions: []
+    document_level_restrictions: []
+    prohibited_sources: []
+    source_access_profile_ids: []
+  tool_permissions:
+    - tool_id:
+      allowed_actions: [] # read | retrieve | summarize | compare | calculate | draft | route | write | send
+      prohibited_actions: []
+      human_approval_required_for: []
+      approval_gate_ids: []
+      logging_required:
+        tool_call: true
+        inputs: true
+        outputs: true
+        source_refs: true
+        fields_accessed: true
+        human_approval: true
+      failure_behavior:
+      owner_role:
+  output_controls:
+    allowed_outputs: []
+    prohibited_outputs: []
+    external_send_requires_approval: true
+    citation_or_evidence_required: true
+    confidence_required: true
+    uncertainty_language_required_when: []
+    prohibited_claims: []
+  approval_gates:
+    - gate_id:
+      action_or_output:
+      trigger_condition:
+      approver_role:
+      evidence_required: []
+      timeout_or_sla:
+      override_or_exception_path:
+  monitoring:
+    logs_required: []
+    alert_conditions: []
+    review_cadence:
+    monitoring_owner_role:
+    quality_or_risk_metrics: []
+  incident_response:
+    incident_owner_role:
+    severity_levels: []
+    escalation_path: []
+    containment_actions: []
+    notification_requirements: []
+    evidence_preservation_requirements: []
+    post_incident_review_required: true
+  revocation:
+    who_can_revoke_roles: []
+    revocation_triggers: []
+    expected_time_to_revoke:
+    access_or_tool_scope_revoked: []
+    restoration_conditions: []
+
+targeted_confirmation_questions:
+  - question_id:
+    question:
+    resolver_role:
+    linked_risk_ids: []
+    linked_tool_ids: []
+    required_before_readiness: true
+
+stop_conditions:
+  - condition_id:
+    condition:
+    reason:
+    required_fix:
+    owner_role:
+    blocks_step16_readiness: true
+
+step15_to_step13_iteration_loop:
+  revision_required: false
+  triggering_risk_ids: []
+  reason:
+  affected_solution_shape_fields: [] # topology | behavior_level | ux_surface | model_class | retrieval_scope | eval_observability | adoption_path
+  required_solution_shape_change:
+  return_to_step13_before_readiness: false
+  examples:
+    - "Autonomous SMS risk forces draft-only topology with human send approval."
+    - "Regulated data-license risk forces narrower retrieval scope."
+    - "Payment approval risk forces no-write-back tool contract."
+
+stop_boundary:
+  does_not_provision_credentials: true
+  does_not_grant_access: true
+  does_not_connect_tools: true
+  does_not_deploy_monitoring: true
+  does_not_implement_automations: true

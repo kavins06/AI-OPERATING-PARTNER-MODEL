@@ -1,4 +1,4 @@
 interface:
-  display_name: "Dashboard KPI Design"
-  short_description: "Define decision-ready KPIs and dashboards."
-  default_prompt: "Use this skill to design KPIs and dashboards for a workflow."
+  display_name: "KPI And Metric Trust Design"
+  short_description: "Define decision-ready KPIs, metric trust, truth production, and agent-safe usage."
+  default_prompt: "Use this skill as a Step 11 helper to define KPI formulas, grain, official/de facto sources, truth production chain, trust status, owner confirmation, agent-safe usage, and maximum permitted behavior_level for a workflow."

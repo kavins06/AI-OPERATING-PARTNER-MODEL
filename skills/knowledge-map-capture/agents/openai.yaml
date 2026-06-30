@@ -1,4 +1,4 @@
 interface:
   display_name: "Knowledge Map Capture"
-  short_description: "Map critical knowledge, owners, sources, and gaps."
-  default_prompt: "Use this skill to build a knowledge map for a workflow."
+  short_description: "Map AI knowledge and guideline requirements, owners, evidence, and gaps."
+  default_prompt: "Use this skill to create the Step 9 knowledge_requirements_map for a workflow, including decision-linked knowledge, owners, evidence, gaps, regulated-domain needs, and truth-production-linked knowledge in macros, manual adjustments, reconciliations, and expert memory."

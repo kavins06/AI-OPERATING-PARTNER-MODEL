@@ -1,0 +1,355 @@
+object_type: "agent_build_contract"
+example_id: "golden_path_phase_01_build_conversion_gate"
+phase_id: 1
+phase_key: "build_conversion_gate"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "build_contract_demo_revenue_intake_20260504"
+version: "0.1"
+status: "approved"
+source_of_truth: true
+minimum_completed_sections:
+  - "source_inputs"
+  - "authorization"
+  - "owners"
+  - "build_scope"
+  - "gate_decisions.build_conversion_gate"
+  - "acceptance_contract"
+  - "change_control"
+  - "contract_signoff"
+section1_inputs_used:
+  - "implementation_decision_packet"
+  - "managed_lifecycle_object"
+  - "method_to_build_handoff_contract"
+  - "separate_implementation_approval"
+section2_outputs_demonstrated:
+  - "agent_build_contract"
+evidence_expectations:
+  - "Cite approved Step 17 implementation decision packet."
+  - "Cite approved Step 18 managed lifecycle object."
+  - "Cite accepted method-to-build handoff."
+  - "Cite separate implementation approval with budget/timebox."
+  - "Record blockers instead of filling missing facts."
+failure_modes_to_test:
+  - "Step 18 approval missing."
+  - "Separate implementation approval missing."
+  - "Owner model incomplete."
+  - "Scope or budget/timebox ambiguous."
+return_to_method_triggers_to_test:
+  - "Handoff version cannot be identified."
+  - "Required Step 17/18 artifact is incomplete."
+
+example_context:
+  scenario: "Revenue intake follow-up agent after approved Step 18 handoff."
+  phase_decision: "pass"
+  evidence_packet: "skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml"
+
+source_inputs:
+  step_18_lifecycle_object_id: "lifecycle_demo_revenue_intake_20260504"
+  implementation_decision_packet_id: "decision_packet_demo_revenue_intake_20260504"
+  method_to_build_handoff_contract_id: "handoff_demo_revenue_intake_20260504"
+  separate_implementation_approval_id: "impl_approval_revenue_ai_forum_20260504"
+  readiness_object_id: "readiness_demo_revenue_intake_20260428"
+  risk_control_model_id: "risk_controls_demo_revenue_intake_20260430"
+  technical_blueprint_id: "blueprint_demo_revenue_intake_20260501"
+  handoff_version: "handoff_demo_revenue_intake_20260504_v1"
+  managed_lifecycle_path: "managed_agent_lifecycle"
+  approved_behavior_level: "draft_and_flag"
+  approved_environments:
+    - "offline_validation"
+    - "sandbox"
+  evidence_refs:
+    - "evidence://demo/step17-decision-packet-approved"
+    - "evidence://demo/step18-lifecycle-approved"
+    - "evidence://demo/method-to-build-handoff-accepted"
+    - "evidence://demo/implementation-approval"
+  open_handoff_questions: []
+  source_input_usage:
+    - artifact: "implementation_decision_packet"
+      required_for_phase:
+        - "build_conversion_gate"
+        - "first_behavior_scope"
+      expected_fields:
+        - "first_build_scope"
+        - "behavior_contract"
+        - "owner_matrix"
+        - "systems_and_sources"
+        - "stop_boundary"
+      contract_paths_populated:
+        - "build_scope"
+        - "owners"
+        - "acceptance_contract"
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/step17-first-build-scope"
+    - artifact: "managed_lifecycle_object"
+      required_for_phase:
+        - "build_conversion_gate"
+        - "first_behavior_scope"
+      expected_fields:
+        - "authorized_behavior_level"
+        - "lifecycle_scope"
+        - "owner_model"
+        - "launch_gates"
+        - "monitoring_plan"
+        - "change_management"
+      contract_paths_populated:
+        - "authorization"
+        - "owners"
+        - "change_control"
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/step18-lifecycle-scope"
+    - artifact: "method_to_build_handoff_contract"
+      required_for_phase:
+        - "build_conversion_gate"
+      expected_fields:
+        - "accepted_transfer_package"
+        - "explicit_non_transfer_items"
+        - "entry_criteria"
+        - "owner_acceptance"
+        - "return_to_method_triggers"
+      contract_paths_populated:
+        - "authorization"
+        - "gate_decisions.build_conversion_gate"
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/handoff-owner-acceptance"
+    - artifact: "separate_implementation_approval"
+      required_for_phase:
+        - "build_conversion_gate"
+      expected_fields:
+        - "authorizing_body"
+        - "authorization_date"
+        - "budget_timebox"
+        - "build_owner"
+        - "technical_owner"
+        - "security_risk_approvers"
+        - "permitted_environments"
+      contract_paths_populated:
+        - "authorization"
+        - "owners"
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/revenue-ai-forum-approval"
+
+authorization:
+  build_authorized: true
+  authorizing_body: "Revenue AI Build Forum"
+  authorization_date: "2026-05-04"
+  budget_timebox: "Four-week build window capped at 160 engineering hours before pilot gate."
+  authorized_scope_summary: "Build a draft-and-flag agent that drafts missing-intake follow-up requests for coordinator approval."
+  authorized_environments:
+    - "offline_validation"
+    - "sandbox"
+  explicit_out_of_scope:
+    - "Autonomous external send."
+    - "CRM field updates."
+    - "Use by sales representatives or customer success managers."
+    - "Use outside missing-field intake follow-up."
+    - "Production operation before production_readiness_gate."
+  approval_conditions:
+    - "All drafts must be approved by an intake coordinator before delivery."
+    - "Read-only source access only until a later change review."
+  decision_state: "approved"
+  decision_record:
+    gate_owner: "Revenue Operations Build Lead"
+    decision_forum: "Revenue AI Build Forum"
+    decision_date: "2026-05-04"
+    decision: "pass"
+    decision_rationale: "Approved Step 17/18 handoff and separate implementation approval are complete; scope remains draft-and-flag."
+    no_go_reasons: []
+    conditions_before_next_phase:
+      - "Agent necessity kill test must preserve no-send and no-write reductions."
+  return_to_method_triggers:
+    - "Behavior level changes beyond draft_and_flag."
+    - "CRM write access becomes required."
+    - "Pilot group expands beyond intake coordinators."
+    - "Handoff version cannot be verified."
+
+owners:
+  executive_sponsor: "VP Revenue Operations"
+  business_owner: "Revenue Operations Manager"
+  product_owner: "Revenue AI Product Owner"
+  technical_owner: "Agent Platform Lead"
+  security_owner: "Security Lead"
+  data_owner: "CRM Data Owner"
+  risk_or_compliance_owner: "Revenue Risk Lead"
+  agentops_owner: "AgentOps Lead"
+  support_owner: "Revenue Operations Support"
+  revocation_owner: "Security Lead"
+  owner_coverage_checks:
+    business_decision_owner_named: true
+    technical_delivery_owner_named: true
+    security_risk_owner_named: true
+    data_owner_named_for_each_source: true
+    agentops_owner_named: true
+    revocation_owner_named: true
+    backup_owner_or_delegate_named: true
+
+build_scope:
+  agent_name: "Revenue Intake Follow-up Agent"
+  business_outcome: "Reduce stalled intake records caused by missing customer or opportunity information."
+  target_user_groups:
+    - "Revenue intake coordinators"
+  excluded_user_groups:
+    - "Sales representatives"
+    - "Customer success managers"
+  workflow_boundary: "Open revenue intake records where required intake fields are missing."
+  primary_use_cases:
+    - "Identify missing intake fields from approved read-only sources."
+    - "Draft a follow-up request for coordinator approval."
+  prohibited_use_cases:
+    - "Send customer-facing messages."
+    - "Modify opportunity stage, owner, forecast, or next step."
+    - "Prioritize or disqualify opportunities."
+  data_domains:
+    - "customer_contact"
+    - "opportunity_metadata"
+    - "intake_form_fields"
+  systems_in_scope:
+    - "CRM read-only opportunity view"
+    - "Intake form read-only response store"
+  systems_out_of_scope:
+    - "Email send service"
+    - "CRM write API"
+  tools_or_actions_in_scope:
+    - "Read approved intake record."
+    - "Read approved opportunity metadata."
+    - "Draft internal follow-up text."
+  tools_or_actions_prohibited:
+    - "External send."
+    - "CRM write."
+    - "Opportunity routing."
+  human_review_requirements:
+    - "Coordinator approves every draft before any message is sent."
+  minimum_safe_first_behavior: "Draft and flag missing-information follow-up requests for human approval."
+  scope_lock:
+    source_scope_statement: "Approved Step 17 first build scope: draft and flag only for missing intake fields."
+    narrowest_allowed_scope: "Intake coordinator receives a draft follow-up for review; no external action."
+    approved_behavior_level: "draft_and_flag"
+    allowed_inputs:
+      - "Missing-field list."
+      - "Customer contact name."
+      - "Opportunity metadata."
+    allowed_outputs:
+      - "Coordinator-facing draft follow-up."
+      - "Missing-field explanation."
+    allowed_actions:
+      - "Read approved sources."
+      - "Draft internal text."
+      - "Flag for human review."
+    prohibited_actions:
+      - "Send message."
+      - "Write CRM field."
+      - "Infer missing customer data from unapproved sources."
+    edge_cases_in_scope:
+      - "Multiple missing fields in one record."
+      - "Missing preferred contact name."
+    edge_cases_out_of_scope:
+      - "Customer disputes data accuracy."
+      - "Opportunity ownership conflict."
+    assumptions:
+      - "Intake coordinators can review drafts within one business day."
+
+gate_decisions:
+  build_conversion_gate:
+    phase_id: 1
+    status: "passed"
+    required_evidence:
+      - "Approved Step 17 implementation_decision_packet."
+      - "Approved Step 18 managed_lifecycle_object."
+      - "Accepted method_to_build_handoff_contract."
+      - "Separate implementation approval with budget/timebox and permitted environments."
+      - "Owner model covering business, technical, security, data, AgentOps, support, and revocation."
+    pass_criteria:
+      - "Build authorization is explicit and current."
+      - "Build scope is equal to or narrower than approved handoff."
+      - "Every required owner is named."
+      - "Every material claim cites evidence."
+      - "Failure modes and return-to-method triggers are evaluated."
+    fail_criteria:
+      - "Missing Step 18 approval."
+      - "Missing separate implementation approval."
+      - "Unclear owner model."
+      - "Ambiguous scope, budget, or timebox."
+      - "Any proposed build behavior exceeds approved handoff."
+    failure_handling:
+      on_missing_approval: "Block build conversion and return to Revenue AI Build Forum."
+      on_scope_ambiguity: "Hold phase and require product owner scope clarification."
+      on_owner_gap: "Assign named owner or block phase exit."
+      on_evidence_gap: "Record missing evidence in open_handoff_questions."
+    owner_signoff_required:
+      - "business_owner"
+      - "technical_owner"
+      - "security_owner"
+      - "agentops_owner"
+    return_to_method_review:
+      evaluated: true
+      triggered: false
+      trigger_reason: ""
+      returned_to: ""
+      decision_date: "2026-05-04"
+
+acceptance_contract:
+  required_artifacts:
+    - "agent_necessity_kill_test"
+    - "agent_build_plan"
+    - "agent_architecture_record"
+    - "tool_contract_registry"
+    - "eval_harness_spec"
+    - "guardrail_control_matrix"
+    - "trace_observability_spec"
+  phase_1_exit_artifacts:
+    - "agent_build_contract.authorization"
+    - "agent_build_contract.owners"
+    - "agent_build_contract.build_scope"
+    - "agent_build_contract.gate_decisions.build_conversion_gate"
+  phase_3_exit_artifacts:
+    - "agent_build_contract.first_behavior_scope"
+    - "agent_build_plan"
+  success_criteria:
+    - "Draft acceptance rate is at least 90 percent in pilot."
+    - "Material error rate is no more than 2 percent."
+  non_functional_requirements:
+    availability_target: "business_hours"
+    latency_target: "under 20 seconds per draft"
+    security_requirements:
+      - "Read-only access until later change review."
+    privacy_requirements:
+      - "No customer-sensitive free text beyond approved intake fields."
+    audit_requirements:
+      - "Trace every run and source field used."
+  launch_blockers:
+    - "Any unapproved write or send path."
+    - "Any untraced run."
+    - "Missing coordinator approval workflow."
+
+change_control:
+  material_change_definition:
+    - "Any write/send action."
+    - "Any new source, tool, user group, or behavior level."
+    - "Any reduction in human approval."
+  change_review_required: true
+  change_review_object_type: "change_expansion_retirement_review"
+
+contract_signoff:
+  prepared_by: "Revenue Operations Build Lead"
+  reviewed_by:
+    - "Agent Platform Lead"
+    - "Security Lead"
+    - "AgentOps Lead"
+  approved_by:
+    - "VP Revenue Operations"
+    - "Revenue Operations Manager"
+    - "Security Lead"
+  approval_status: "approved"
+  approval_date: "2026-05-04"
+  required_signoff_roles:
+    - "business_owner"
+    - "technical_owner"
+    - "security_owner"
+    - "data_owner"
+    - "agentops_owner"
+  notes:
+    - "Phase 1 passes with no active return-to-method triggers."

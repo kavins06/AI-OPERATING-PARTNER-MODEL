@@ -1,13 +1,19 @@
 ---
 name: workflow-mapping
-description: "Convert interviews, notes, transcripts, SOPs, reports, or observed work into clear trigger-to-outcome workflow maps. Use when Codex needs to identify steps, decisions, handoffs, exceptions, inputs, outputs, controls, pain points, and automation candidates for any business process."
+description: "Convert interviews, notes, transcripts, SOPs, reports, or observed work into the Step 6 workflow_intelligence_object. Use when Codex needs structured organizational workflow intelligence: roles, hierarchy, actors, steps, decisions, handoffs, exceptions, information objects, source access profiles, truth production profiles, inputs, outputs, controls, evidence, confidence, unknowns, variation signals, and candidate AI-assist hypotheses."
 ---
 
 # Workflow Mapping
 
 ## Core Rule
 
-Map what people actually do, not what the org chart or system diagram claims happens. Keep the map factual, validated, and separate from recommendations.
+Model what people actually do, not what the org chart or system diagram claims happens. Keep the AI workflow specification factual, evidence-referenced, confidence-scored, validated where possible, and separate from recommendations.
+
+## Engagement Role
+
+Inside the AI operating partner engagement, this skill owns Step 6: the AI-native workflow intelligence object. It consumes Step 1 terrain, Step 2 candidate shortlist, Step 3 interview evidence, Step 4 variation mapping when triggered, and Step 5 planning evidence. It produces the structured object that Step 7 diagnostics, Step 8 validation, Step 9 knowledge mapping, Step 11 measurement, Step 14 blueprinting, Step 15 risk, and Step 16 readiness depend on.
+
+Use `../ai-operating-partner-engagement/assets/templates/05-ai-workflow-spec.yaml` and the `workflow_intelligence_object` definition in `../ai-operating-partner-engagement/assets/schemas/canonical-object-schemas.yaml`. Do not invent a parallel object shape.
 
 Useful references:
 
@@ -20,10 +26,13 @@ Useful references:
 Use any available:
 
 - Interview transcript or notes.
+- Relevant org structure, roles, reporting lines, and interview coverage.
 - Screen-share walkthrough notes.
 - SOPs, checklists, forms, policies.
 - System exports or screenshots.
 - Reports, dashboards, tickets, emails, or handoff examples.
+- Information object and source access profiles for workflow-relevant data points, documents, reports, dashboards, trackers, emails, system records, policies, approvals, and messages.
+- Truth production evidence for workflow-relevant numbers, statuses, reports, macros, reconciliations, manual adjustments, and expert-memory rules.
 
 If evidence conflicts, preserve the conflict instead of smoothing it away.
 
@@ -31,52 +40,47 @@ If evidence conflicts, preserve the conflict instead of smoothing it away.
 
 As an AI operating partner, collect inputs through a staged process:
 
-1. Intake form for goals, systems, painful workflows, sensitive areas, and success definition.
-2. AI-led adaptive interviews across organizational layers.
-3. Screen-share walkthroughs of real work.
-4. Example artifacts: reports, forms, spreadsheets, templates, tickets, messages, policies.
-5. Systems inventory with owners, users, data held, export/API access, and known issues.
-6. Validation call to ask, "What did we misunderstand?"
+1. Executive opportunity terrain map for strategy, leverage areas, trust boundaries, candidate discovery zones, and success definition.
+2. Operating partner synthesis to map the full terrain and sequence discovery zones.
+3. AI-led adaptive interviews across organizational layers.
+4. Evidence need consolidation and curated planning-evidence follow-up. Request only the smallest useful set of redacted examples, screenshots, reports, trackers, templates, formulas, macro walkthroughs, reconciliation notes, walkthroughs, sample exports, schema/field lists, API/vendor documentation, access-control screenshots, or data dictionaries needed to validate the AI workflow specification.
+5. Client-led read-only screen-share walkthroughs of real work when approved and scoped.
+6. Systems inventory with owners, users, data held, export/API access, and known issues.
+7. Controlled validation and object-driven governance resolution using role-specific validation views and targeted source/truth/owner/permission decision views to ask, "What did we misunderstand?", "What is official?", "What is actually trusted?", and "What is allowed?"
 
 Do not rely only on executives. Leaders often describe what should happen; operators reveal what actually happens.
 
-## Mapping Workflow
+No direct company data access is required to start mapping. During the engagement, do not request production credentials, employee credentials, broad live system access, unapproved API tokens, all-email ingestion, write access, live MCP/connector access, or bulk unredacted data. If future implementation needs those, capture them as blueprint requirements for Steps 14-18.
 
-1. Name the workflow in plain language.
-2. Define the trigger, outcome, owner, users, and success measure.
-3. List the normal-path steps from trigger to outcome.
-4. Add decision points and approval gates.
-5. Add inputs and outputs for every step.
-6. Add systems, documents, spreadsheets, messages, and people used at each step.
-7. Add handoffs and queues.
-8. Add exceptions, rework loops, delays, and failure points.
-9. Add trust problems and source-of-truth conflicts.
-10. Mark sensitive data and risky actions.
-11. Mark candidate assists as hypotheses only.
-12. Identify validation questions.
+## AI-Native Workflow Specification
 
-## Map Template
+Step 6 produces a `workflow_intelligence_object`, not a human-readable report. Human summaries are views generated from this object.
 
-Use this structure:
+Build the spec by:
 
-| Step | Actor | Action | Inputs | Systems/Sources | Decision | Output | Risk/Issue |
-|---|---|---|---|---|---|---|---|
-| 1 | | | | | | | |
+1. Naming the workflow and defining business purpose, trigger, outcome, validation status, and confidence.
+2. Encoding lightweight org context: teams, roles, reporting structure, relevant people, and interview coverage.
+3. Creating stable IDs for roles, people, actors, steps, decisions, edge cases, information objects, source access profiles, truth production profiles, sources, systems, approval gates, evidence, unknowns, and candidate assists.
+4. Listing normal-path steps from trigger to outcome.
+5. Adding decision points, approval gates, handoffs, inputs, outputs, information object references, and source references for every step.
+6. Adding source access profiles for important workflow information objects: system/location, module/report/path, lookup keys, required fields, access roles, alternate locations, compared-against sources, and known access failure modes.
+7. Adding source trust signals, official/de facto source conflicts, and truth production profiles for material numbers, statuses, reports, and decisions.
+8. Adding edge cases, exceptions, rework loops, delays, and failure points.
+9. Adding role variation analysis: shared patterns, observed variations, conflicts, best-practice candidates, and standardization opportunities.
+10. Marking sensitive data signals and human boundaries.
+11. Marking candidate assists as hypotheses only.
+12. Separating facts, assumptions, inferences, unknowns, validation needs, and later-step enrichment routes.
+13. Adding evidence references, validation status, and confidence to every important object.
 
-Then summarize:
+## Stop Boundary
 
-- Trigger:
-- Desired outcome:
-- Workflow owner:
-- Users:
-- Source-of-truth candidates:
-- Key decisions:
-- Approval gates:
-- Exceptions:
-- Pain points:
-- Sensitive data:
-- Success metric:
-- Open validation questions:
+Step 6 should complete:
+
+- Workflow identity, business purpose, trigger, outcome.
+- Known org context, roles, people, hierarchy, and interview coverage.
+- Known actors, steps, handoffs, decisions, approval gates, edge cases, information objects, source access profiles, truth production profiles, sources/systems mentioned, source trust signals, sensitive data signals, human boundaries, operating strain/value signals, candidate assist hypotheses, evidence, confidence, validation status, unknowns, and enrichment routes.
+
+Step 6 should not complete official source authority, final truth authority, data owner/steward, full data dictionary, metric formulas, data quality rules, retention rules, access matrix, agent permissions, risk scores, zero-trust controls, architecture design, readiness score, or build recommendation. Route source/truth/owner/sensitivity/access/permission fields to Step 8 controlled validation and governance resolution, and route risk, metric, architecture, adoption, and readiness fields to later enrichment steps.
 
 ## Automation Readiness Signals
 
@@ -93,7 +97,8 @@ Good signs:
 Bad signs:
 
 - Disputed process.
-- Unclear source of truth.
+- Unclear official/de facto source or truth production chain.
+- Shadow-derived, manually adjusted, person-dependent, disputed, missing, or not-reproducible truth production.
 - Undocumented judgment.
 - Sensitive outputs without approval.
 - No owner.
@@ -103,12 +108,13 @@ Bad signs:
 
 Deliver:
 
-- A workflow map.
-- A short narrative of how work flows.
-- Evidence behind the map.
+- An AI-native workflow specification.
+- Stable IDs and relationships across workflow, roles, people, actors, steps, decisions, information objects, source access profiles, truth production profiles, sources, edge cases, approvals, evidence, unknowns, and candidate assists.
+- Evidence, validation status, and confidence for every important object.
+- Known role variations and coverage gaps.
 - Known disagreements or uncertainty.
 - A list of questions for validation.
-- A next-step recommendation: keep discovering, fix data/knowledge/governance gaps, or move to readiness scoring.
+- A next-step routing list: controlled validation/governance resolution, knowledge mapping, analytics/KPI design, architecture, risk register, zero-trust controls, or readiness scoring.
 
 ## Shared Engagement Resources
 

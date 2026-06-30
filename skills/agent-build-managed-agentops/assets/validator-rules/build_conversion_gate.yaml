@@ -1,0 +1,133 @@
+rule_group: build_conversion_gate
+phase_id: 1
+phase_key: build_conversion_gate
+status: active
+required_section1_inputs:
+  - implementation_decision_packet
+  - managed_lifecycle_object
+  - method_to_build_handoff_contract
+  - separate_implementation_approval
+required_section2_outputs:
+  - agent_build_contract
+failure_modes:
+  - Step 18 approval missing.
+  - Separate implementation approval missing.
+  - Owner model incomplete.
+  - Scope or budget/timebox ambiguous.
+return_to_method_triggers:
+  - Handoff version cannot be identified.
+  - Required Step 17/18 artifact is incomplete.
+  - Approved behavior level, workflow boundary, source, owner model, risk posture, or lifecycle assumption is contradicted.
+checks:
+  - check_id: required_section1_inputs_present
+    severity: error
+    description: "All required Section 1 source artifacts are referenced in source_inputs."
+    required_paths:
+      - "source_inputs.implementation_decision_packet_id"
+      - "source_inputs.step_18_lifecycle_object_id"
+      - "source_inputs.method_to_build_handoff_contract_id"
+      - "source_inputs.separate_implementation_approval_id"
+    fail_when: "Any required source input ID is blank or absent."
+    remediation: "Block Phase 1 and request the missing source artifact or approval."
+  - check_id: source_inputs_approved_and_versioned
+    severity: error
+    description: "Required source inputs must be approved, versioned, and cited."
+    required_paths:
+      - "source_inputs.handoff_version"
+      - "source_inputs.evidence_refs"
+      - "source_inputs.source_input_usage"
+    fail_when: "Handoff version, evidence refs, or source usage are missing."
+    remediation: "Return to the method owner if the handoff version cannot be identified."
+  - check_id: build_authorization_explicit
+    severity: error
+    description: "Build authorization cannot be inferred from Step 18 alone."
+    required_paths:
+      - "authorization.build_authorized"
+      - "authorization.authorizing_body"
+      - "authorization.authorization_date"
+      - "authorization.budget_timebox"
+      - "authorization.authorized_scope_summary"
+    fail_when: "build_authorized is true without authorizing body, date, budget/timebox, and scope summary."
+    remediation: "Hold until separate implementation approval is complete."
+  - check_id: authorized_environment_limited
+    severity: error
+    description: "Phase 1 cannot authorize pilot or production by implication."
+    required_paths:
+      - "authorization.authorized_environments"
+      - "authorization.explicit_out_of_scope"
+    fail_when: "Pilot or production appears authorized without explicit gate language."
+    remediation: "Move pilot/production authorization to later phase gates."
+  - check_id: owner_model_complete
+    severity: error
+    description: "Required business, product, technical, security, data, risk/compliance, AgentOps, support, and revocation owners are present or blocking."
+    required_paths:
+      - "owners.business_owner"
+      - "owners.technical_owner"
+      - "owners.security_owner"
+      - "owners.data_owner"
+      - "owners.agentops_owner"
+      - "owners.support_owner"
+      - "owners.revocation_owner"
+    fail_when: "Any required owner is blank without an explicit blocker."
+    remediation: "Assign owner or block phase exit."
+  - check_id: scope_not_widened_without_change_review
+    severity: error
+    description: "No users, sources, systems, actions, outputs, environments, or behavior levels exceed the approved handoff."
+    required_paths:
+      - "build_scope.target_user_groups"
+      - "build_scope.workflow_boundary"
+      - "build_scope.systems_in_scope"
+      - "build_scope.tools_or_actions_in_scope"
+      - "build_scope.minimum_safe_first_behavior"
+      - "build_scope.scope_lock"
+    fail_when: "Contract scope includes unapproved expansion or omits explicit exclusions."
+    remediation: "Remove expansion or trigger change review/return-to-method."
+  - check_id: prohibited_scope_explicit
+    severity: error
+    description: "Prohibited users, use cases, systems, and actions remain explicit."
+    required_paths:
+      - "build_scope.excluded_user_groups"
+      - "build_scope.prohibited_use_cases"
+      - "build_scope.systems_out_of_scope"
+      - "build_scope.tools_or_actions_prohibited"
+      - "build_scope.scope_lock.prohibited_actions"
+    fail_when: "Prohibited or excluded scope fields are absent or generic."
+    remediation: "Carry forward prohibited scope from Step 17/18 and readiness evidence."
+  - check_id: gate_decision_complete
+    severity: error
+    description: "The Phase 1 decision gate includes evidence, pass/fail criteria, failure handling, signoffs, and return-to-method review."
+    required_paths:
+      - "gate_decisions.build_conversion_gate.required_evidence"
+      - "gate_decisions.build_conversion_gate.pass_criteria"
+      - "gate_decisions.build_conversion_gate.fail_criteria"
+      - "gate_decisions.build_conversion_gate.failure_handling"
+      - "gate_decisions.build_conversion_gate.owner_signoff_required"
+      - "gate_decisions.build_conversion_gate.return_to_method_review"
+    fail_when: "Any gate-decision section is missing or placeholder-only."
+    remediation: "Complete the gate decision before Phase 2."
+  - check_id: launch_blockers_recorded
+    severity: error
+    description: "Known Phase 1 blockers are represented in the acceptance contract."
+    required_paths:
+      - "acceptance_contract.launch_blockers"
+      - "acceptance_contract.phase_1_exit_artifacts"
+    fail_when: "Launch blockers omit approval, scope, owner, evidence, or return-to-method gaps."
+    remediation: "Add blockers or resolve them before exit."
+  - check_id: signoff_status_valid
+    severity: error
+    description: "Required signoff roles and approval status are present."
+    required_paths:
+      - "contract_signoff.required_signoff_roles"
+      - "contract_signoff.approval_status"
+      - "contract_signoff.approved_by"
+    fail_when: "Approval status is approved without required approvers."
+    remediation: "Collect signoff or mark phase blocked."
+  - check_id: return_to_method_triggers_evaluated
+    severity: error
+    description: "Return-to-method triggers are listed and evaluated, not merely copied."
+    required_paths:
+      - "authorization.return_to_method_triggers"
+      - "gate_decisions.build_conversion_gate.return_to_method_review.evaluated"
+      - "gate_decisions.build_conversion_gate.return_to_method_review.triggered"
+    fail_when: "Triggers are not evaluated or an active trigger lacks returned_to and trigger_reason."
+    remediation: "Pause Section 2 and route to method owner when triggered."

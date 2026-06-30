@@ -1,0 +1,169 @@
+lifecycle_variant_contracts_id: "lifecycle_variant_contracts"
+spec_version: "0.1"
+object_type: "lifecycle_variant_contracts"
+status: "published_reference"
+applies_to_step: 18
+purpose: "Separate managed AI lifecycle, remediation lifecycle, and no-automation review cadence while keeping them under Step 18."
+
+shared_sections:
+  required_for_all_variants:
+    - "lifecycle_object_id"
+    - "lifecycle_path"
+    - "source_input_trace"
+    - "operating_status"
+    - "owner_model"
+    - "approval_forum"
+    - "review_cadence"
+    - "handoff_contract"
+    - "stop_boundary"
+
+variants:
+  managed_agent_lifecycle:
+    use_when:
+      - "Step 17 packet is build_ready_implementation_brief."
+      - "Client may approve a separate implementation phase after Step 18."
+    required_sections:
+      - "future_lifecycle_stages"
+      - "launch_gates"
+      - "validation_plan"
+      - "monitoring_plan"
+      - "truth_production_governance"
+      - "feedback_and_correction_loop"
+      - "adoption_change_management"
+      - "change_management"
+      - "access_review_and_revocation"
+      - "incident_response"
+      - "governance_cadence"
+      - "expansion_criteria"
+      - "retirement_criteria"
+    default_cadence:
+      pilot_review: "weekly or biweekly"
+      steady_state_review: "monthly or quarterly depending on risk"
+      executive_review: "quarterly for material capabilities"
+    required_owners:
+      - "business_owner"
+      - "day_to_day_owner"
+      - "technical_owner"
+      - "data_owner"
+      - "risk_or_compliance_owner"
+      - "support_owner"
+      - "guidance_update_owner"
+      - "incident_owner"
+      - "revocation_owner"
+
+  remediation_lifecycle:
+    use_when:
+      - "Step 17 packet is gap_remediation_plan, governance_data_readiness_plan, knowledge_capture_plan, technical_feasibility_plan, or risk_control_plan."
+    required_sections:
+      - "linked_required_fixes"
+      - "remediation_owner"
+      - "remediation_review_cadence"
+      - "evidence_required_to_reopen_readiness"
+      - "completion_criteria"
+      - "return_to_step"
+      - "stop_if_not_resolved_by"
+      - "escalation_path"
+    default_cadence:
+      review: "weekly for two-week engagements or biweekly/monthly for longer remediation"
+      reassessment: "return to Step 16 when completion criteria are met"
+    required_owners:
+      - "remediation_owner"
+      - "business_owner"
+      - "data_or_system_owner_when_applicable"
+      - "risk_or_compliance_owner_when_applicable"
+
+  no_automation_review_cadence:
+    use_when:
+      - "Step 17 packet is do_not_automate_recommendation."
+      - "Opportunity should not proceed to build or remediation now."
+    required_sections:
+      - "reason_not_automated"
+      - "alternative_operating_recommendation"
+      - "what_not_to_build"
+      - "revisit_conditions"
+      - "revisit_owner"
+      - "revisit_cadence"
+      - "signals_that_would_reopen_discovery"
+    default_cadence:
+      revisit: "quarterly, semiannual, annual, or on material trigger"
+    required_owners:
+      - "business_owner"
+      - "revisit_owner"
+      - "risk_or_compliance_owner_when_reason_is_risk"
+
+variant_selection_rules:
+  - packet_type: "build_ready_implementation_brief"
+    lifecycle_path: "managed_agent_lifecycle"
+  - packet_type: "gap_remediation_plan"
+    lifecycle_path: "remediation_lifecycle"
+  - packet_type: "governance_data_readiness_plan"
+    lifecycle_path: "remediation_lifecycle"
+  - packet_type: "knowledge_capture_plan"
+    lifecycle_path: "remediation_lifecycle"
+  - packet_type: "technical_feasibility_plan"
+    lifecycle_path: "remediation_lifecycle"
+  - packet_type: "risk_control_plan"
+    lifecycle_path: "remediation_lifecycle"
+  - packet_type: "do_not_automate_recommendation"
+    lifecycle_path: "no_automation_review_cadence"
+
+handoff_required_for_all_variants: true
+
+validation_checks:
+  - "Lifecycle path matches Step 17 packet type."
+  - "Required variant sections are present."
+  - "Owner model covers all required owners for selected variant."
+  - "Review cadence and re-entry conditions are explicit."
+  - "Stop boundary confirms no live operation starts during engagement."
+
+lifecycle_set:
+  rationale: "When Step 17 produces a packet_set with multiple packets, Step 18 produces a lifecycle_set with one lifecycle object per packet. Each lifecycle object selects its variant per variant_selection_rules above. Cross-variant relationships preserve the predecessor/successor relationships from the packet_set and govern lifecycle transitions."
+  use_when:
+    - "Step 17 packet_set has packets[] of length > 1."
+    - "Multiple lifecycle paths apply to the same workflow simultaneously (e.g., a managed_agent_lifecycle for a build-ready safe-limited behavior alongside a remediation_lifecycle for the unsafe behavior level)."
+  required_fields:
+    - "lifecycle_set_id"
+    - "workflow_id"
+    - "linked_packet_set_id"
+    - "lifecycles"
+    - "cross_variant_relationships"
+    - "lifecycle_set_validation"
+  lifecycles_field:
+    description: "Array of 1..N managed_lifecycle_object instances, one per packet in the linked packet_set. Each lifecycle conforms to its own variant contract per the variants block above."
+    minimum_count: 1
+  cross_variant_relationships_field:
+    description: "Array describing how lifecycles relate to one another. Mirrors cross_packet_relationships in the linked packet_set."
+    relationship_types:
+      remediation_completion_enables_managed_lifecycle: "A remediation_lifecycle's completion criteria, when met, enable the linked managed_agent_lifecycle to advance to its first launch gate."
+      risk_revocation_pauses_managed_lifecycle: "A risk-driven revocation in one lifecycle pauses or revokes the linked managed_agent_lifecycle until remediation succeeds."
+      no_automation_constrains_managed_lifecycle_scope: "A no_automation_review_cadence for a related behavior level constrains the scope of an adjacent managed_agent_lifecycle and adds revisit triggers."
+      independent: "Lifecycles operate independently."
+    required_per_relationship:
+      - "relationship_type"
+      - "predecessor_lifecycle_id"
+      - "successor_lifecycle_id"
+      - "transition_condition"
+  lifecycle_set_validation:
+    required_checks:
+      - "Each lifecycle has a handoff_contract present (handoff_required_for_all_variants applies per lifecycle)."
+      - "Each lifecycle's variant matches the linked packet's packet_type per variant_selection_rules."
+      - "Every relationship references existing lifecycle ids in this set."
+      - "No cycle exists in the relationship graph."
+      - "When lifecycles[] length is 1, cross_variant_relationships[] is empty or omitted."
+  governance_rules:
+    - "The owner forum approves the lifecycle_set as a whole; individual lifecycles inherit the set's approval forum and review cadence unless explicitly overridden."
+    - "Re-entry triggers in any one lifecycle that affect a related lifecycle must be propagated; the operating partner is responsible for cascading the trigger across the set."
+  example:
+    scenario: "Continuation of the residential brokerage lead qualification example from packet_set"
+    lifecycles:
+      - lifecycle_path: "managed_agent_lifecycle"
+        scope: "Summarize lead and draft response for human send"
+      - lifecycle_path: "remediation_lifecycle"
+        scope: "Autonomous SMS nurture with PEWC validation, opt-out propagation, quiet hours, and frequency limits"
+      - lifecycle_path: "remediation_lifecycle"
+        scope: "Knowledge capture for client-supplied Fair Housing language and per-state guidance"
+    cross_variant_relationships:
+      - relationship_type: "remediation_completion_enables_managed_lifecycle"
+        predecessor: "knowledge_capture remediation lifecycle"
+        successor: "managed_agent_lifecycle for draft-and-flag"
+        transition_condition: "Knowledge capture completion criteria met and reviewed at owner forum."

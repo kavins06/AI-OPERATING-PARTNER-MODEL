@@ -4,44 +4,86 @@
 
 Use `source-grounded-consulting` throughout as the evidence rule.
 
-1. Executive intake and `data-strategy-workshop`.
-2. `voice-interview-discovery` across organizational layers.
-3. `workflow-mapping`.
-4. `information-ecology-diagnostic`.
-5. Validation call.
-6. `data-governance-discovery`.
-7. `knowledge-map-capture`.
-8. `tacit-to-explicit-knowledge-capture`.
-9. `analytics-maturity-assessment`.
-10. `dashboard-kpi-design`.
-11. `data-monetization-canvas`.
-12. `warehouse-lakehouse-blueprint` when data foundation design is needed.
-13. `privacy-security-risk-register`.
-14. `zero-trust-agent-controls`.
-15. `ai-agent-readiness-assessment`.
-16. `managed-agent-lifecycle`.
+The current method keeps the Step 0-18 order and adds artifact contracts. The seven umbrellas are the primary user-facing structure: Frame And Hypothesize, Discover Reality, Build And Validate The Intelligence Layer, Define AI Reasoning Requirements, Prove Measurement And Value, Shape The Future Solution, and Decide And Govern.
+
+Client touchpoints are batched across the step sequence. The five client-facing bundles are strategy, workflow interview, evidence/data, governance validation, and decision/handoff. Use them to reduce repeated client asks without reducing interview coverage, system/data discovery, truth-production mapping, governance validation, risk review, readiness scoring, or handoff rigor.
+
+| Client bundle | Locks by | Client-facing content |
+|---|---:|---|
+| Strategy bundle | End Step 2 | Scope, goals, constraints, decision rights, candidate terrain, org coverage, participant list, and success criteria. |
+| Workflow interview bundle | End Step 4 | Role interviews, workflow variation, systems and sources named in context, edge cases, source paths, truth-production chains, and adoption signals. |
+| Evidence/data bundle | Request at Step 5; resolve by Step 8 | One consolidated evidence request plus approved artifacts or substitutes: redacted examples, screenshots, walkthroughs, reports, schemas, field lists, formulas, macros, access matrices, architecture notes, vendor docs, and policies. |
+| Governance validation bundle | End Step 8 | Controlled validation of workflows, systems, sources, official/de facto truth, owners/stewards, access, sensitivity, retention, and permitted/prohibited AI actions. |
+| Decision/handoff bundle | End Step 18 | Value, solution shape, adoption design, technical blueprint, risk controls, readiness, implementation decision packet, lifecycle, and method-to-build handoff. |
+
+No drip requests: after interviews, Step 5 produces one owner-grouped planning-evidence request with SLA, sensitivity, redaction, handling, escalation, and acceptable substitutes. After Step 5, ask the client only for hard blockers, disputed material facts, targeted expert validation, IT/data/security feasibility confirmation, risk/control confirmation, or final approval.
+
+Enterprise AI deployment calibration: treat process redesign, process documentation, data access, knowledge capture, change management, security review, and sponsor behavior as core work. Model choice is usually a component decision; workflow, proprietary data, orchestration, guidance, evals, controls, and adoption determine durable value.
+
+0. Engagement tiering and vertical-extension selection using `00-tier-matrix.yaml`, `vertical-extension.schema.yaml`, and any worked vertical extension such as `regulated-domain-extension-real-estate.yaml`.
+1. Executive opportunity terrain mapping and `data-strategy-workshop`, including sponsor mechanics, co-sponsorship, OKR/incentive linkage, permission-to-fail posture, and prior AI/automation attempts.
+2. Opportunity terrain synthesis, discovery-zone sequencing, and candidate use-case shortlist with success-pattern fit and typed disqualification events: discovery, economic, and readiness.
+3. `voice-interview-discovery` across organizational layers using `03-ai-interviewer-protocol.md` for hosting, consent, recording, redaction, refusal fallback, fact-assertion boundaries, and operating-partner intervention. Capture resistance-source mapping across users, managers, staff functions, IT/security, data owners, and executives.
+4. Conditional variation mapping for fragmented, franchised, multi-region, independent-contractor, multi-system, or multi-portfolio operating models. If skipped, record single-canonical-workflow rationale.
+5. Evidence need consolidation and curated planning-evidence follow-up with SLA, escalation, acceptable substitutes, prior-attempt evidence, process docs, KPI evidence, shadow AI signals, and security review requirements where relevant.
+6. AI-native workflow specification / `workflow-mapping`, validated against `assets/schemas/canonical-object-schemas.yaml` where practical.
+7. Organizational intelligence diagnostic / `information-ecology-diagnostic` with blocker classification using `06-blocker-classification-rubric.md`, including invisible cost drivers and prior-failure learning.
+8. Controlled validation review, object-driven governance resolution, and Organizational Intelligence Baseline release / `data-governance-discovery`, using `07-baseline-release-contract.yaml`, with explicit loops back to Step 6 and Step 7.
+9. `knowledge-map-capture`, including truth, adoption, and regulated-domain knowledge requirements.
+10. `tacit-to-explicit-knowledge-capture`, with behavioral evals, output-quality evals, regulated-domain evals where applicable, minimum counts, methodology, regression versioning, and drift rules.
+11. Measurement intelligence and AI-capability metric design / `analytics-maturity-assessment` and `dashboard-kpi-design`, including quality, customer value, revenue, speed, adoption, shadow AI reduction, and new-capability metrics where relevant.
+12. Business value case and portfolio comparison / `data-monetization-canvas`, including headcount reduction, hiring avoided, redeployment, acceleration, revenue growth, risk reduction, and new-capability scenarios.
+13. Solution shape and end-user adoption design, treated as 13a solution shape and 13b adoption design under one step, including escalation/approval/collaboration oversight model selection.
+14. Technical/vendor implementation blueprint / `warehouse-lakehouse-blueprint`, including data-access-over-perfection, progressive quality controls, and model abstraction or multi-model routing where useful.
+15. Risk and control model / `privacy-security-risk-register` and `zero-trust-agent-controls`, with shadow AI controls, security-as-enabler patterns, regulated-domain risk templates, and explicit Step 15 to Step 13 loop when risk forces solution-shape revision.
+16. `ai-agent-readiness-assessment` using `14-hard-gates-readiness-rubric.yaml`, including sponsor behavior, process documentation, resistance profile, recoverable-error fit, model/orchestration, security enablement, and prior-failure learning.
+17. Machine-readable implementation decision packet using `15-decision-packet-contracts.yaml`.
+18. Machine-readable managed lifecycle and adoption-change object / `managed-agent-lifecycle`, using `16-lifecycle-variant-contracts.yaml` and `18-method-to-build-handoff-contract.md`.
 
 ## Who Does What
 
 | Work | Human Operating Partner | AI | Client |
 |---|---|---|---|
-| Scope | Set engagement frame | Draft scope/options | State goals and constraints |
-| Interviews | Choose roles, monitor quality | Ask adaptive questions, synthesize | Answer with real examples |
-| Workflow map | Challenge and validate | Draft map | Correct reality |
-| Diagnosis | Interpret context | Detect patterns | Confirm facts |
-| Governance | Push ownership decisions | Draft maps/forms | Name owners and rules |
-| Knowledge | Decide what matters | Extract rules/examples | Share expertise |
-| Analytics | Decide implications | Score and draft gaps | Provide reports/data reality |
-| Risk | Lead risk conversation | Draft risk register | Confirm sensitive data |
-| Readiness | Make recommendation | Score evidence | Accept priorities/fixes |
-| Lifecycle | Own relationship | Draft SOP/monitoring | Assign owners/cadence |
+| Engagement tiering | Select lite/standard/deep depth and vertical extension | Draft tier recommendation and scope controls | Confirm budget, timeline, depth, and regulated-domain needs |
+| Opportunity terrain | Set strategic frame and test sponsor mechanics | Draft terrain capture plus sponsor/prior-attempt prompts | State direction, operating context, leverage areas, constraints, decision rights, sponsor cadence, and prior lessons |
+| Use-case framing | Interpret terrain, choose discovery tiers, define hypotheses, set disqualification criteria, and screen for success-pattern fit | Draft use-case shortlist, dependencies, confidence, success-pattern fit, and discovery plan | Confirm priorities, access, people, constraints, measurable outcomes, and sponsor path |
+| Interviews | Choose roles, monitor quality, intervene when protocol requires, and curate later evidence requests | Ask adaptive questions without asserting org facts, capture edge cases, information objects, source access paths, truth production chains, adoption signals, resistance sources, silent evidence needs, and quality score | Answer with real examples under consent/retention/redaction protocol; no live uploads required |
+| Variation mapping | Decide whether canonical workflow modeling is valid | Detect variation, sampling bias, and variant-specific workflow/truth/adoption differences | Provide representative participants or confirm that variation is real |
+| Evidence follow-up | Consolidate evidence needs; set SLA, escalation, substitutes, redaction, access scope, and handling rules | Cluster requests, identify duplicates, draft owner-grouped planning-evidence request, and flag future implementation access and truth remediation signals | Provide approved planning evidence, acceptable substitute, or explain unavailability by SLA |
+| AI workflow spec | Challenge structure, evidence, confidence, variation, source access coverage, truth production coverage, and unknowns | Draft structured organizational workflow intelligence object with information objects, source access profiles, and truth production profiles | Correct the model and later validate it |
+| Diagnosis | Interpret context, select scale, and route interventions | Link findings to workflow-spec objects, separate symptoms/root causes, detect invisible costs, map resistance, and draft routes | Confirm facts and clarify disputed interpretations |
+| Controlled validation, governance resolution, and baseline release | Choose validators and authorized resolvers, generate role-specific and object-specific views, protect sensitive model content, decide whether to continue, and decide whether the Step 8 baseline can be released for product views | Draft validation views, prefilled information object/source access/truth production registers, source inventory, governance prompts, structured validation/governance events, and Organizational Intelligence Baseline payload | Correct role-relevant slices and make binding access-path, official-source, de facto-source, truth-chain, owner, sensitivity, retention, access, and permitted-AI-action decisions without receiving the full organizational intelligence object |
+| AI knowledge and guideline requirements | Decide which knowledge and future AI guidelines matter enough to capture | Synthesize prior steps into decision-linked and truth-production-linked knowledge requirements, likely experts, evidence, confidence, examples needed, and Step 9 routes | Confirm only targeted high-value, high-risk, low-confidence, or fragile-truth ownership/gaps |
+| AI guidance pack | Choose which requirements deserve codified guidance; challenge vague rules, missing examples, weak source hierarchy, fragile truth handling, unsafe behavior, and weak eval coverage | Draft guidance spec, skill-style view, behavioral evals, output-quality evals, and regulated-domain evals | Experts validate rules, tacit cues, truth handling, examples, review criteria, forbidden behaviors, escalation triggers, and ownership |
+| Measurement and AI metrics | Decide which existing and future metrics matter | Map metric trust and truth, then design AI success, drift, override, cost, adoption, value-breadth, and kill metrics | Confirm formulas, owners, quality, allowed AI usage, and measurement feasibility |
+| Value and portfolio | Judge credibility, priority, strategic fit, AI-side cost, workforce/capacity path, and portfolio ranking | Draft value cases, headcount/capacity scenarios, cost models, and portfolio comparison | Confirm volumes, costs, priorities, budget/capacity, workforce preference, and selected opportunities |
+| Solution shape and adoption | Decide 13a build/buy/leverage path, topology, model class, surface, oversight model, and 13b adoption realism; revise if Step 15 risk forces shape change | Draft solution-shape decision, oversight model, and adoption design | Business/end-user owners confirm adoption realities, incentive fit, rollout, oversight, and training assumptions |
+| Technical/vendor blueprint | Document the selected technical plan without building | Draft systems/sources, access options, data-access-over-perfection plan, model abstraction/routing, contracts, normalization, truth remediation, runtime, hosting, tests, secrets plan, future access package, and build sequence | IT/data/security/system/vendor owners confirm feasibility as a plan |
+| Risk and control model | Judge materiality, regulatory risk, shadow AI risk, security enablement, and control fit | Draft risk register, regulated-domain risk template, shadow AI controls, security patterns, permissions, outputs, logging, incidents, revocation, and stop conditions | Risk/security/legal/compliance and owners confirm named risks, controls, and stop conditions |
+| Readiness | Challenge score, choose minimum safe behavior, apply hard-gate rubric, and recommend Step 17 path | Build readiness from Steps 0-15, apply gates, score dimensions, map dependencies, name blockers, and propose first safe behavior | Confirm unresolved sponsor, priority, source, truth, adoption, resistance, control, owner, and feasibility facts |
+| Implementation decision packet | Decide final first-build scope or remediation path using packet-type contracts | Assemble canonical packet or packet_set with confidence, revision triggers, views, access requests, sequence, controls, owners, and cross-packet relationships when needed | Confirm whether to approve separate implementation after Step 18 |
+| Managed lifecycle and adoption-change | Decide whether lifecycle variant and handoff model are realistic | Draft lifecycle object or lifecycle_set with owners, launch gates, monitoring, truth governance, adoption/change, incidents, revocation, expansion, retirement, remediation cadence, handoff, and cross-variant relationships when needed | Confirm owners, approval forum, governance cadence, adoption plan, incident expectations, handoff owner, and future implementation conditions |
+
+After the Step 8 baseline, Steps 9-18 should be mostly operating-partner and AI work. Use the validated baseline to draft knowledge requirements, guidance, metrics, value, solution shape, technical plan, risk controls, readiness, decision packets, and lifecycle objects. Bring the client back for targeted expert validation and final approval rather than for a new broad discovery cycle.
 
 ## Decision Gates
 
-- Gate 1: Scope is clear enough to interview.
-- Gate 2: Workflow is validated.
-- Gate 3: Sources, owners, and sensitive data are known.
-- Gate 4: Knowledge and analytics gaps are named.
-- Gate 5: Risk and permission controls are acceptable.
-- Gate 6: Readiness score supports build or remediation.
-
+- Gate 0: Engagement tier, vertical extension, scope controls, tier matrix depth, and pre-build/offline-proof boundaries are explicit.
+- Gate 1: Opportunity terrain is clear enough to synthesize discovery zones and use-case hypotheses, and sponsor mechanics/prior-attempt learning are captured or explicitly unknown.
+- Gate 2: Candidate use-case shortlist is versioned, sponsor-reviewed, and each candidate has target user, workflow boundary, value hypothesis, success-pattern fit, truth/adoption/regulatory dependencies, confidence, disqualification criteria, and typed disqualification event slots.
+- Gate 3: AI-led interview protocol is ready: hosting, consent, recording, retention, redaction, no-live-upload, no-asserted-org-facts, correction handling, refusal fallback, async norm, and operating-partner intervention rules.
+- Gate 4: Variation map is complete or explicitly not applicable. If skipped, single-canonical-workflow assertion has evidence and revisit triggers. Fragmented operating models do not proceed on a false canonical workflow assumption.
+- Gate 5: Planning-evidence request is justified, minimal, owner-grouped, SLA-bound, substitute-aware, sensitivity-aware, includes prior-attempt/process/KPI/security/shadow-AI evidence only where material, and does not request build access, credentials, broad live system access, all-email ingestion, or bulk unredacted data.
+- Gate 6: AI workflow specification captures known actors, roles, org context, steps, decisions, edge cases, information objects, source access profiles, truth production profiles, variation, source trust, approval gates, evidence, confidence, unknowns, and automated completeness checks, aligned to the canonical object schema.
+- Gate 7: Diagnostic findings are object-linked, evidence-backed, confidence-scored, blocker-classified by rubric, and routed. Invisible costs, sponsor mechanics, resistance, staff-function blockers, security review burden, and prior-failure learning are scored. Fatal use-case findings create a discovery disqualification or revision event instead of drifting downstream.
+- Gate 8: Validation events have updated the workflow object and diagnostic when material corrections were made. Back-edge decision is explicit: continue, update Step 6, re-score Step 7, expand interviews, split use case, or pause. Organizational Intelligence Baseline is generated, partially released, or explicitly blocked using the baseline release contract.
+- Gate 9: Knowledge requirements include decision knowledge, truth-production knowledge, adoption/end-user knowledge, and regulated-domain knowledge where applicable.
+- Gate 10: Guidance packs include machine-readable guidance, readable views, behavioral evals, output-quality evals, regulated-domain evals where applicable, truth handling, coverage targets, methodology, regression versioning, owners, and validation status.
+- Gate 11: Existing metrics are trust-classified, AI-capability metrics are designed, and success, drift, override, error, cost, adoption, value-breadth, and kill criteria are defined or routed.
+- Gate 12: Value cases include AI-side costs, fragile-truth caveats, headcount/capacity scenarios, revenue/new-capability potential, and portfolio comparison selects which 1-N opportunities advance, remediate, deprioritize, or stop.
+- Gate 13: Solution shape and adoption design are explicit as 13a and 13b: build/buy/leverage path, agent topology, model class, UX surface, oversight operating model, eval/observability shape, end-user adoption, incentives, opt-in/mandate reality, training, rollout, and failure triggers.
+- Gate 14: Technical/vendor blueprint documents the selected solution shape with future access paths, data-access-over-perfection plan, model abstraction/routing, component contracts, normalization, truth remediation, runtime, hosting, tests, secrets plan, build sequence, and open blocking decisions without live build access.
+- Gate 15: Risk/control model includes named regulated-domain risks where applicable, shadow AI controls, security-as-enabler patterns, sensitive data classification, tool permissions, output controls, approval gates, logging, monitoring, incident response, revocation, residual risk, stop conditions, and Step 15 to Step 13 loop decision.
+- Gate 16: Each surviving opportunity has readiness with published hard gates, behavior-level readiness, sponsor behavior, prior-failure learning, process documentation, resistance profile, recoverable-error fit, model/orchestration, security enablement, evidence confidence, dependency map, blockers, required fixes, minimum safe first behavior, prohibited behavior levels, and a Step 17 path.
+- Gate 17: Implementation decision packet, or packet_set when multiple packet types apply, matches the packet contract, names packet type, recommendation confidence, conditional-revision triggers, final first-build/remediation path, audience views, owners, runtime/hosting pattern, future access requests, future component contracts, normalization, truth remediation, tests, controls, sequence, cross-packet relationships where needed, and no-build boundary.
+- Gate 18: Managed lifecycle/adoption-change object, or lifecycle_set when Step 17 used a packet_set, matches the lifecycle variant contract and has a method-to-build handoff contract, including owners, launch gates, validation, rollout, monitoring, truth governance, adoption/change management, incident handling, revocation, updates, access review, expansion, retirement, remediation cadence, cross-variant relationships where needed, return-to-method triggers, and stop boundary.

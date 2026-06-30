@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Build Managed AgentOps"
+  short_description: "Convert approved handoffs into build and operating contracts."
+  default_prompt: "Use $agent-build-managed-agentops after approved Step 17/18 handoff and separate implementation approval to produce build/operate contracts for first behavior scope, architecture, tool/data/identity, evals, release, Managed AgentOps, change control, and retirement."

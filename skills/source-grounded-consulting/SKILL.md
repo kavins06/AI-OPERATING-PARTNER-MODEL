@@ -1,6 +1,6 @@
 ---
 name: source-grounded-consulting
-description: "Create traceable, evidence-based consulting recommendations by separating facts, assumptions, inferences, and recommendations. Use when Codex gives client-facing or decision-support advice, applies frameworks from the mastery corpus, cites source notes, or must verify current law, regulation, standards, vendor, or market claims."
+description: "Create traceable, evidence-based consulting recommendations by separating facts, assumptions, inferences, and recommendations. In the AI operating partner engagement, use as the cross-step evidence discipline for Steps 0-18, sponsor-facing views, packet/lifecycle recommendations, and current law, regulation, standards, vendor, or market claims."
 ---
 
 # Source Grounded Consulting
@@ -8,6 +8,14 @@ description: "Create traceable, evidence-based consulting recommendations by sep
 ## Core Rule
 
 Every recommendation needs a business reason, evidence, stated assumptions, risk limits, and a clear next action. Do not present unstable legal, privacy, security, vendor, or market claims as current fact without verification.
+
+## Engagement Role
+
+This is a cross-step  quality skill, not a standalone numbered deliverable. Use it whenever Steps 0-18 produce client-facing advice, owner decisions, risk statements, implementation packet views, lifecycle views, or claims that could affect legal, regulatory, security, vendor, financial, or market decisions.
+
+Inside the AI operating partner engagement, source-grounding must preserve the pre-build boundary. It can recommend a Step 17 packet path, a Step 18 lifecycle condition, a remediation route, a verification need, or a future implementation request. It must not start build work, request live credentials, grant access, build connectors, create MCP servers, run production automations, or imply that Step 17/18 approval has occurred.
+
+Canonical  outputs are embedded inside the artifact being produced: `evidence_refs`, confidence, facts, assumptions, inferences, verification_needed, owner, decision_needed, recommendation, and stop conditions.
 
 Useful references:
 

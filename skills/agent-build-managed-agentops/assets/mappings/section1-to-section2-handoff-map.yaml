@@ -1,0 +1,532 @@
+map_id: "section1_to_section2_handoff_map"
+version: "0.1"
+status: "active"
+purpose: "Make data collected and approved in Section 1 directly usable by Section 2 build, launch, and Managed AgentOps contracts."
+
+handoff_boundary:
+  section_1_name: "Discovery / Pre-Build"
+  section_1_primary_skill: "ai-operating-partner-engagement"
+  section_2_name: "Implementation / Managed AgentOps"
+  section_2_primary_skill: "agent-build-managed-agentops"
+  starts_after:
+    - "Step 17 implementation_decision_packet or packet_set is approved."
+    - "Step 18 managed_lifecycle_object or lifecycle_set is approved."
+    - "Step 18 method-to-build handoff contract is accepted."
+    - "Separate implementation approval is granted."
+  boundary_rule: "Section 2 may carry forward approved data, but it must not invent or backfill missing Section 1 decisions."
+
+source_artifacts:
+  - artifact: "candidate_use_case_shortlist"
+    step: 2
+    primary_use: "Opportunity ID, use-case boundary, target users, value hypothesis, confidence, and disqualification criteria."
+  - artifact: "variation_map"
+    step: 4
+    primary_use: "Workflow variation, pilot segmentation, geography/role/system fragmentation, and scope constraints."
+  - artifact: "workflow_intelligence_object"
+    step: 6
+    primary_use: "Roles, workflow steps, decisions, edge cases, information objects, source access profiles, truth production profiles, and evidence references."
+  - artifact: "organizational_intelligence_diagnostic"
+    step: 7
+    primary_use: "Blockers, invisible cost drivers, resistance sources, remediation routes, and return-to-method triggers."
+  - artifact: "organizational_intelligence_baseline"
+    step: 8
+    primary_use: "Validated source, owner, access, sensitivity, retention, and permitted/prohibited AI action decisions."
+  - artifact: "knowledge_requirements_map"
+    step: 9
+    primary_use: "Knowledge, judgment, guideline, exception, and escalation requirements."
+  - artifact: "ai_guidance_pack"
+    step: 10
+    primary_use: "Rules, examples, output contract, source hierarchy, forbidden behaviors, eval cases, and drift/revalidation rules."
+  - artifact: "measurement_intelligence"
+    step: 11
+    primary_use: "Baseline metrics, AI capability metrics, value metrics, cost metrics, drift signals, and kill criteria."
+  - artifact: "business_value_case"
+    step: 12
+    primary_use: "Business outcome, value range, assumptions, AI-side cost envelope, confidence, and value risks."
+  - artifact: "solution_shape"
+    step: 13
+    primary_use: "Build/buy/leverage decision, agent topology, model class, UX surface, retrieval/context shape, oversight model, and adoption constraints."
+  - artifact: "adoption_design"
+    step: 13
+    primary_use: "Target users, rollout path, incentives, training, feedback channels, workflow retirement, and adoption failure triggers."
+  - artifact: "technical_blueprint"
+    step: 14
+    primary_use: "Architecture, runtime/orchestration, hosting/environment, future component contracts, access paths, identity, normalization, test strategy, audit/logging, and build sequence."
+  - artifact: "risk_control_model"
+    step: 15
+    primary_use: "Risks, controls, tool permissions, output controls, incident response, revocation, stop conditions, monitoring, and regulated-domain constraints."
+  - artifact: "readiness_object"
+    step: 16
+    primary_use: "Hard gates, behavior-level readiness, dependency map, blockers, minimum safe first behavior, and prohibited behaviors."
+  - artifact: "implementation_decision_packet"
+    step: 17
+    primary_use: "Build-ready decision, first build scope, behavior contract, system/source summary, owner matrix, future access requests, component contracts, build sequence, and stop boundary."
+  - artifact: "managed_lifecycle_object"
+    step: 18
+    primary_use: "Authorized behavior level, lifecycle scope, owner model, lifecycle stages, launch gates, validation plan, monitoring plan, change management, incident response, access review, expansion, and retirement."
+  - artifact: "method_to_build_handoff_contract"
+    step: 18
+    primary_use: "Accepted transfer package, explicit non-transfer items, entry criteria, owner acceptance, and return-to-method triggers."
+  - artifact: "separate_implementation_approval"
+    step: "post_18_authorization"
+    primary_use: "Authorizing body, date, budget/timebox, build owner, technical owner, security/risk approvers, permitted environments, and approved scope."
+
+section2_phase_inputs:
+  - phase: 1
+    phase_name: "Build Conversion Gate"
+    required_source_artifacts:
+      - "implementation_decision_packet"
+      - "managed_lifecycle_object"
+      - "method_to_build_handoff_contract"
+      - "separate_implementation_approval"
+    produces_or_updates:
+      - "agent_build_contract"
+  - phase: 2
+    phase_name: "Agent Necessity Check"
+    required_source_artifacts:
+      - "candidate_use_case_shortlist"
+      - "business_value_case"
+      - "solution_shape"
+      - "readiness_object"
+      - "implementation_decision_packet"
+    produces_or_updates:
+      - "agent_necessity_kill_test"
+  - phase: 3
+    phase_name: "First Behavior Scope"
+    required_source_artifacts:
+      - "implementation_decision_packet"
+      - "readiness_object"
+      - "managed_lifecycle_object"
+      - "workflow_intelligence_object"
+      - "organizational_intelligence_baseline"
+    produces_or_updates:
+      - "agent_build_contract"
+      - "agent_build_plan"
+  - phase: 4
+    phase_name: "Agent Architecture Spec"
+    required_source_artifacts:
+      - "solution_shape"
+      - "technical_blueprint"
+      - "risk_control_model"
+      - "implementation_decision_packet"
+    produces_or_updates:
+      - "agent_architecture_record"
+  - phase: 5
+    phase_name: "Tool/Data/Identity Contracts"
+    required_source_artifacts:
+      - "technical_blueprint"
+      - "organizational_intelligence_baseline"
+      - "risk_control_model"
+      - "implementation_decision_packet"
+    produces_or_updates:
+      - "tool_contract_registry"
+  - phase: 6
+    phase_name: "Environment And Access Setup"
+    required_source_artifacts:
+      - "technical_blueprint"
+      - "risk_control_model"
+      - "managed_lifecycle_object"
+      - "method_to_build_handoff_contract"
+    produces_or_updates:
+      - "environment_progression_gate"
+  - phase: 7
+    phase_name: "Eval And Guardrail Design"
+    required_source_artifacts:
+      - "ai_guidance_pack"
+      - "measurement_intelligence"
+      - "risk_control_model"
+      - "readiness_object"
+      - "managed_lifecycle_object"
+    produces_or_updates:
+      - "eval_harness_spec"
+      - "guardrail_control_matrix"
+  - phase: 8
+    phase_name: "Sandbox Prototype"
+    required_source_artifacts:
+      - "technical_blueprint"
+      - "ai_guidance_pack"
+      - "risk_control_model"
+      - "method_to_build_handoff_contract"
+    produces_or_updates:
+      - "environment_progression_gate"
+      - "release_version_manifest"
+  - phase: 9
+    phase_name: "Security And Control Review"
+    required_source_artifacts:
+      - "risk_control_model"
+      - "technical_blueprint"
+      - "managed_lifecycle_object"
+    produces_or_updates:
+      - "guardrail_control_matrix"
+      - "trace_observability_spec"
+  - phase: 10
+    phase_name: "Controlled Pilot"
+    required_source_artifacts:
+      - "managed_lifecycle_object"
+      - "adoption_design"
+      - "measurement_intelligence"
+      - "risk_control_model"
+    produces_or_updates:
+      - "pilot_launch_gate"
+      - "agentops_operating_record"
+  - phase: 11
+    phase_name: "Production Readiness Gate"
+    required_source_artifacts:
+      - "managed_lifecycle_object"
+      - "measurement_intelligence"
+      - "risk_control_model"
+      - "technical_blueprint"
+    produces_or_updates:
+      - "production_readiness_gate"
+  - phase: 12
+    phase_name: "Production Release"
+    required_source_artifacts:
+      - "technical_blueprint"
+      - "managed_lifecycle_object"
+      - "risk_control_model"
+    produces_or_updates:
+      - "release_version_manifest"
+  - phase: 13
+    phase_name: "Managed AgentOps"
+    required_source_artifacts:
+      - "managed_lifecycle_object"
+      - "measurement_intelligence"
+      - "ai_guidance_pack"
+      - "organizational_intelligence_baseline"
+      - "risk_control_model"
+    produces_or_updates:
+      - "agentops_operating_record"
+  - phase: 14
+    phase_name: "Expansion/Change-Control Gate"
+    required_source_artifacts:
+      - "managed_lifecycle_object"
+      - "readiness_object"
+      - "implementation_decision_packet"
+      - "method_to_build_handoff_contract"
+    produces_or_updates:
+      - "change_expansion_retirement_review"
+  - phase: 15
+    phase_name: "Retirement Or Redesign Loop"
+    required_source_artifacts:
+      - "managed_lifecycle_object"
+      - "measurement_intelligence"
+      - "risk_control_model"
+      - "organizational_intelligence_diagnostic"
+    produces_or_updates:
+      - "change_expansion_retirement_review"
+
+field_mappings:
+  - mapping_id: "m001_handoff_ids_to_build_contract"
+    section2_object: "agent_build_contract"
+    section2_path: "source_inputs"
+    source_artifacts:
+      - artifact: "implementation_decision_packet"
+        source_path: "step_17_packet_id"
+      - artifact: "managed_lifecycle_object"
+        source_path: "lifecycle_object_id"
+      - artifact: "readiness_object"
+        source_path: "readiness_object_id"
+      - artifact: "implementation_decision_packet"
+        source_path: "source_inputs.technical_blueprint_id"
+      - artifact: "implementation_decision_packet"
+        source_path: "source_inputs.risk_control_model_id"
+    mapping_type: "direct_reference"
+    mapping_rule: "Carry approved object IDs into Section 2 source_inputs; preserve evidence_refs and missing_or_partial_inputs."
+
+  - mapping_id: "m002_implementation_approval_to_authorization"
+    section2_object: "agent_build_contract"
+    section2_path: "authorization"
+    source_artifacts:
+      - artifact: "managed_lifecycle_object"
+        source_path: "final_approval.implementation_phase_authorized"
+      - artifact: "method_to_build_handoff_contract"
+        source_path: "Build Phase Entry Criteria"
+      - artifact: "separate_implementation_approval"
+        source_path: "authorizing_body, authorization_date, approved_scope, budget_timebox"
+    mapping_type: "approval_required"
+    mapping_rule: "Set build_authorized true only when Step 18 is approved and separate implementation approval is explicit."
+
+  - mapping_id: "m003_owner_model_to_build_owners"
+    section2_object: "agent_build_contract"
+    section2_path: "owners"
+    source_artifacts:
+      - artifact: "managed_lifecycle_object"
+        source_path: "owner_model"
+      - artifact: "implementation_decision_packet"
+        source_path: "owner_matrix"
+      - artifact: "method_to_build_handoff_contract"
+        source_path: "Owner Model"
+    mapping_type: "normalize_roles"
+    mapping_rule: "Normalize Section 1 owner roles into executive_sponsor, business_owner, product_owner, technical_owner, security_owner, data_owner, risk_or_compliance_owner, agentops_owner, support_owner, and revocation_owner."
+
+  - mapping_id: "m004_first_scope_to_build_scope"
+    section2_object: "agent_build_contract"
+    section2_path: "build_scope"
+    source_artifacts:
+      - artifact: "implementation_decision_packet"
+        source_path: "first_build_scope"
+      - artifact: "readiness_object"
+        source_path: "minimum_safe_first_behavior"
+      - artifact: "managed_lifecycle_object"
+        source_path: "lifecycle_scope"
+      - artifact: "workflow_intelligence_object"
+        source_path: "roles, steps, decisions, edge_cases"
+    mapping_type: "carry_forward_with_scope_lock"
+    mapping_rule: "Use the narrowest approved first behavior, not the broad future solution. Excluded steps and prohibited behaviors must remain explicit."
+
+  - mapping_id: "m005_behavior_contract_to_acceptance"
+    section2_object: "agent_build_contract"
+    section2_path: "acceptance_contract"
+    source_artifacts:
+      - artifact: "implementation_decision_packet"
+        source_path: "behavior_contract"
+      - artifact: "ai_guidance_pack"
+        source_path: "output_contract, eval_cases"
+      - artifact: "readiness_object"
+        source_path: "hard_gates, behavior_level_readiness"
+    mapping_type: "derive_acceptance_criteria"
+    mapping_rule: "Convert allowed actions, output contract, human approval gates, failure behavior, and readiness hard gates into launch blockers and success criteria."
+
+  - mapping_id: "m006_business_case_to_necessity_decision"
+    section2_object: "agent_necessity_kill_test"
+    section2_path: "decision_summary"
+    source_artifacts:
+      - artifact: "business_value_case"
+        source_path: "business_outcome, expected_value_range, value_risks"
+      - artifact: "implementation_decision_packet"
+        source_path: "business_case, decision_summary, first_build_scope"
+      - artifact: "candidate_use_case_shortlist"
+        source_path: "value_hypothesis, disqualification_criteria"
+    mapping_type: "derive"
+    mapping_rule: "State the requested outcome, current status quo, lowest-risk sufficient solution, and why an agent is or is not justified."
+
+  - mapping_id: "m007_alternatives_to_kill_test"
+    section2_object: "agent_necessity_kill_test"
+    section2_path: "simpler_alternatives"
+    source_artifacts:
+      - artifact: "readiness_object"
+        source_path: "readiness_decision, blockers, not_ready_or_prohibited_behaviors"
+      - artifact: "solution_shape"
+        source_path: "build_buy_leverage_decision, runtime_pattern"
+      - artifact: "implementation_decision_packet"
+        source_path: "runtime_design_requirements.overengineering_guardrail"
+    mapping_type: "derive"
+    mapping_rule: "Compare agent build against report/dashboard, SOP/training, search/retrieval, rule automation, workflow automation, and human process."
+
+  - mapping_id: "m008_runtime_to_architecture"
+    section2_object: "agent_architecture_record"
+    section2_path: "architecture_summary, components, model_posture"
+    source_artifacts:
+      - artifact: "solution_shape"
+        source_path: "agent_topology, model_selection_class, ux_surface, eval_observability_shape"
+      - artifact: "technical_blueprint"
+        source_path: "runtime_design_requirements, hosting_environment_requirements, future_component_contracts"
+      - artifact: "implementation_decision_packet"
+        source_path: "runtime_design_requirements"
+    mapping_type: "carry_forward_and_refine"
+    mapping_rule: "Translate approved solution shape and blueprint into concrete runtime, components, model posture, fallback, and operating environments."
+
+  - mapping_id: "m019_build_sequence_to_build_plan"
+    section2_object: "agent_build_plan"
+    section2_path: "delivery_model, workstreams, milestones, dependencies, definition_of_done"
+    source_artifacts:
+      - artifact: "implementation_decision_packet"
+        source_path: "build_sequence, future_component_contracts, owner_matrix"
+      - artifact: "technical_blueprint"
+        source_path: "build sequence, component contracts, test strategy, dependencies"
+      - artifact: "managed_lifecycle_object"
+        source_path: "future_lifecycle_stages, launch_gates, validation_plan"
+      - artifact: "method_to_build_handoff_contract"
+        source_path: "Build Phase Entry Criteria"
+    mapping_type: "derive_plan"
+    mapping_rule: "Turn approved build sequence, lifecycle gates, dependencies, owners, and handoff entry criteria into workstreams, milestones, and definitions of done."
+
+  - mapping_id: "m009_sources_to_tool_registry"
+    section2_object: "tool_contract_registry"
+    section2_path: "tools"
+    source_artifacts:
+      - artifact: "organizational_intelligence_baseline"
+        source_path: "source, owner, access, sensitivity, permitted_action decisions"
+      - artifact: "implementation_decision_packet"
+        source_path: "systems_and_sources, future_component_contracts, future_access_requests"
+      - artifact: "technical_blueprint"
+        source_path: "access paths, component contracts, identity resolution"
+      - artifact: "risk_control_model"
+        source_path: "tool permissions, prohibited actions"
+    mapping_type: "normalize_contracts"
+    mapping_rule: "Create one tool contract per approved tool, connector, source, retrieval index, workflow action, or document store; prohibit unapproved write/send actions."
+
+  - mapping_id: "m010_environment_requirements_to_progression"
+    section2_object: "environment_progression_gate"
+    section2_path: "gate_scope, entry_criteria, rollback_plan"
+    source_artifacts:
+      - artifact: "technical_blueprint"
+        source_path: "hosting_environment_requirements, build_sequence"
+      - artifact: "managed_lifecycle_object"
+        source_path: "lifecycle_scope.environments, future_lifecycle_stages"
+      - artifact: "method_to_build_handoff_contract"
+        source_path: "Build Phase Entry Criteria"
+    mapping_type: "derive_gate"
+    mapping_rule: "Turn allowed environments and lifecycle stages into promotion gates with entry criteria, evidence, approvals, and rollback triggers."
+
+  - mapping_id: "m011_guidance_to_eval_harness"
+    section2_object: "eval_harness_spec"
+    section2_path: "datasets, eval_suites, validation_methods, promotion_criteria"
+    source_artifacts:
+      - artifact: "ai_guidance_pack"
+        source_path: "rules, examples, eval_cases, output_contract"
+      - artifact: "measurement_intelligence"
+        source_path: "ai_capability_metrics, drift_signals, kill_criteria"
+      - artifact: "readiness_object"
+        source_path: "hard_gates, required_tests"
+      - artifact: "managed_lifecycle_object"
+        source_path: "validation_plan, launch_gates"
+    mapping_type: "derive_tests"
+    mapping_rule: "Convert guidance examples, expected behaviors, metrics, and launch gates into offline, sandbox, pilot, regression, and production-derived eval suites."
+
+  - mapping_id: "m012_risk_controls_to_guardrails"
+    section2_object: "guardrail_control_matrix"
+    section2_path: "control_policy, controls, revocation_controls"
+    source_artifacts:
+      - artifact: "risk_control_model"
+        source_path: "risks, controls, output_controls, incident_response, revocation, stop_conditions"
+      - artifact: "implementation_decision_packet"
+        source_path: "risk_and_controls, behavior_contract.prohibited_actions"
+      - artifact: "managed_lifecycle_object"
+        source_path: "launch_gates, access_review_and_revocation, incident_response"
+    mapping_type: "carry_forward_and_verify"
+    mapping_rule: "Map each named risk to preventive, detective, corrective, human-review, or revocation controls with owners and verification evidence."
+
+  - mapping_id: "m013_observability_requirements_to_trace_spec"
+    section2_object: "trace_observability_spec"
+    section2_path: "trace_policy, event_taxonomy, metrics, alerts"
+    source_artifacts:
+      - artifact: "technical_blueprint"
+        source_path: "observability_requirements"
+      - artifact: "risk_control_model"
+        source_path: "audit_logging, monitoring"
+      - artifact: "managed_lifecycle_object"
+        source_path: "monitoring_plan, governance_cadence"
+    mapping_type: "derive"
+    mapping_rule: "Create run, model-call, retrieval, tool-call, approval, error, incident, and revocation event taxonomy from audit and monitoring requirements."
+
+  - mapping_id: "m014_release_inputs_to_manifest"
+    section2_object: "release_version_manifest"
+    section2_path: "included_artifacts, compatibility, deployment, rollback"
+    source_artifacts:
+      - artifact: "technical_blueprint"
+        source_path: "build_sequence, component contracts"
+      - artifact: "ai_guidance_pack"
+        source_path: "guidance versions, eval versions"
+      - artifact: "tool_contract_registry"
+        source_path: "approved Section 2 contract"
+      - artifact: "eval_harness_spec"
+        source_path: "approved Section 2 contract"
+      - artifact: "guardrail_control_matrix"
+        source_path: "approved Section 2 contract"
+    mapping_type: "assemble_release_record"
+    mapping_rule: "Version all prompts, models, tools, schemas, retrieval corpora, eval sets, runtime config, permissions, notes, and rollback package."
+
+  - mapping_id: "m015_lifecycle_to_pilot_gate"
+    section2_object: "pilot_launch_gate"
+    section2_path: "pilot_scope, launch_criteria, monitoring_during_pilot, pilot_decision"
+    source_artifacts:
+      - artifact: "managed_lifecycle_object"
+        source_path: "future_lifecycle_stages, launch_gates, monitoring_plan"
+      - artifact: "adoption_design"
+        source_path: "target_user_groups, training_plan, feedback_channels"
+      - artifact: "measurement_intelligence"
+        source_path: "success metrics, kill criteria"
+      - artifact: "risk_control_model"
+        source_path: "stop conditions, incident response"
+    mapping_type: "derive_gate"
+    mapping_rule: "Convert lifecycle pilot stage, adoption constraints, metrics, and stop conditions into the controlled pilot launch gate."
+
+  - mapping_id: "m016_lifecycle_to_production_gate"
+    section2_object: "production_readiness_gate"
+    section2_path: "production_scope, readiness_domains, production_controls, production_decision"
+    source_artifacts:
+      - artifact: "managed_lifecycle_object"
+        source_path: "launch_gates, monitoring_plan, access_review_and_revocation, incident_response"
+      - artifact: "risk_control_model"
+        source_path: "controls, residual risk, revocation"
+      - artifact: "measurement_intelligence"
+        source_path: "business metrics, quality metrics, cost metrics"
+      - artifact: "technical_blueprint"
+        source_path: "hosting, observability, rollback"
+    mapping_type: "derive_gate"
+    mapping_rule: "Require passed evidence across quality/evals, security/privacy/access, observability/audit, support/ops, and business value/adoption."
+
+  - mapping_id: "m017_lifecycle_to_operating_record"
+    section2_object: "agentops_operating_record"
+    section2_path: "agent_identity, operating_model, live_scope, operating_metrics, operating_decisions"
+    source_artifacts:
+      - artifact: "managed_lifecycle_object"
+        source_path: "lifecycle_scope, owner_model, monitoring_plan, change_management, expansion_criteria, retirement_criteria"
+      - artifact: "measurement_intelligence"
+        source_path: "AI capability metrics, value metrics, drift signals, kill criteria"
+      - artifact: "organizational_intelligence_baseline"
+        source_path: "source freshness, source owners, truth production owners"
+      - artifact: "ai_guidance_pack"
+        source_path: "guidance update cadence, revalidation rules"
+    mapping_type: "carry_forward_and_operationalize"
+    mapping_rule: "Initialize the live operating record with approved scope, owners, metrics, review cadence, access review, source freshness, guidance updates, and operating decisions."
+
+  - mapping_id: "m018_change_rules_to_review"
+    section2_object: "change_expansion_retirement_review"
+    section2_path: "review_scope, assessment, decision_options, decision"
+    source_artifacts:
+      - artifact: "managed_lifecycle_object"
+        source_path: "change_management, expansion_criteria, retirement_criteria, required_revalidation_triggers"
+      - artifact: "method_to_build_handoff_contract"
+        source_path: "Triggers For Return To Method"
+      - artifact: "readiness_object"
+        source_path: "behavior_level_readiness, blockers"
+      - artifact: "implementation_decision_packet"
+        source_path: "conditional_revision_triggers"
+    mapping_type: "derive_review"
+    mapping_rule: "Every material expansion, behavior change, source/tool/user change, rollback, remediation, or retirement decision must cite the original Step 17/18 boundary and reassessment requirements."
+
+coverage_requirements:
+  required_section2_objects:
+    - "agent_build_contract"
+    - "agent_necessity_kill_test"
+    - "agent_build_plan"
+    - "agent_architecture_record"
+    - "tool_contract_registry"
+    - "eval_harness_spec"
+    - "guardrail_control_matrix"
+    - "trace_observability_spec"
+    - "environment_progression_gate"
+    - "release_version_manifest"
+    - "pilot_launch_gate"
+    - "production_readiness_gate"
+    - "agentops_operating_record"
+    - "change_expansion_retirement_review"
+  required_handoff_artifacts:
+    - "implementation_decision_packet"
+    - "managed_lifecycle_object"
+    - "method_to_build_handoff_contract"
+    - "separate_implementation_approval"
+  required_field_mapping_types:
+    - "direct_reference"
+    - "approval_required"
+    - "normalize_roles"
+    - "carry_forward_with_scope_lock"
+    - "derive"
+    - "derive_gate"
+    - "carry_forward_and_verify"
+
+validation_rules:
+  - rule_id: "no_section2_object_without_section1_source"
+    rule: "Every Section 2 machine-readable object must have at least one field_mappings entry citing Section 1 source artifacts."
+  - rule_id: "no_build_without_approval"
+    rule: "agent_build_contract.authorization.build_authorized cannot be true without Step 18 approval and separate implementation approval."
+  - rule_id: "no_scope_widening"
+    rule: "Section 2 build_scope, pilot_scope, production_scope, and live_scope must be equal to or narrower than the approved first_build_scope and lifecycle_scope unless change_expansion_retirement_review approves a material change."
+  - rule_id: "no_unmapped_owner_model"
+    rule: "Owner roles from Section 1 owner_matrix and lifecycle owner_model must normalize into Section 2 owner_model fields before pilot or production."
+  - rule_id: "no_unmapped_controls"
+    rule: "Risk/control, incident, revocation, audit, and monitoring requirements from Section 1 must map into guardrail_control_matrix, trace_observability_spec, production_readiness_gate, and agentops_operating_record."
+  - rule_id: "return_to_method_on_invalidated_assumptions"
+    rule: "Build learning that changes approved behavior, truth, value, risk, technical feasibility, owner model, or lifecycle assumptions must trigger return-to-method review."

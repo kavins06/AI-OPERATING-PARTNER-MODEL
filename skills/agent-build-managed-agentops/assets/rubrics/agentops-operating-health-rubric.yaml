@@ -1,0 +1,123 @@
+rubric_id: managed_agentops_rubric
+phase_id: 13
+phase_key: managed_agentops
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver with expiry."
+  conditional: "No blocking condition remains, but named follow-up is required before next review or promotion."
+  blocked: "Any required criterion fails without authorized waiver, or any automatic blocker is present."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    owner: "agentops_owner"
+    evidence_required:
+      - managed_lifecycle_object
+      - measurement_intelligence
+      - ai_guidance_pack
+      - organizational_intelligence_baseline
+      - risk_control_model
+      - release_version_manifest
+      - production_readiness_gate
+    pass_condition: "All required Section 1 and Section 2 inputs are approved, versioned, current, and cited in the operating record."
+  - criterion_id: approved_scope_preserved
+    required: true
+    owner: "business_owner"
+    evidence_required:
+      - agent_build_contract.approved_scope
+      - production_readiness_gate.production_scope
+      - agentops_operating_record.live_scope
+    pass_condition: "Live users, workflows, sources, tools, data classes, outputs, environment, scale limits, and behavior level are equal to or narrower than approved scope."
+  - criterion_id: owner_coverage_ready
+    required: true
+    owner: "agentops_owner"
+    evidence_required:
+      - agentops_operating_record.operating_model.owner_coverage
+      - internal_operator_run_card.owners
+    pass_condition: "Business, technical, security, data, risk/compliance, AgentOps, support, and revocation owners plus backups are named, reachable, and assigned for the active operating window."
+  - criterion_id: metric_review_complete
+    required: true
+    owner: "agentops_owner"
+    evidence_required:
+      - operating_metrics.quality_metrics
+      - operating_metrics.safety_metrics
+      - operating_metrics.reliability_metrics
+      - operating_metrics.adoption_metrics
+      - operating_metrics.value_metrics
+      - operating_metrics.cost_metrics
+    pass_condition: "Quality, safety, reliability, adoption, value, cost, latency, and support metrics are reviewed against target, warning, and blocking thresholds."
+  - criterion_id: source_freshness_controlled
+    required: true
+    owner: "data_owner"
+    evidence_required:
+      - agentops_operating_record.source_freshness.sources
+      - source_owner_attestations
+    pass_condition: "Every source used in output has owner, freshness SLA, last verification, attestation, stale action, and evidence; stale or disputed sources are paused or routed to human review."
+  - criterion_id: access_review_current
+    required: true
+    owner: "security_owner"
+    evidence_required:
+      - access_review.user_entitlements
+      - access_review.service_accounts
+      - access_review.tool_credentials
+      - revocations_completed
+    pass_condition: "User entitlements, service accounts, credentials, connectors, secrets, and break-glass access are reviewed; orphaned, unused, overbroad, or unapproved access is revoked."
+  - criterion_id: incident_response_ready
+    required: true
+    owner: "revocation_owner"
+    evidence_required:
+      - incident_response_and_revocation.runbook_ref
+      - pause_mechanisms
+      - revocation_mechanisms
+      - last_rehearsal
+    pass_condition: "Pause, revocation, queued work stop, rollback, manual fallback, communication, and restoration approval paths are documented and tested or attested within cadence."
+  - criterion_id: incidents_and_near_misses_resolved
+    required: true
+    owner: "agentops_owner"
+    evidence_required:
+      - incidents
+      - control_alerts
+      - support_tickets
+      - user_corrections
+    pass_condition: "Incidents, near misses, manual overrides, support themes, and control alerts are classified with owner, severity, containment, decision, and follow-up."
+  - criterion_id: value_tracking_viable
+    required: true
+    owner: "business_owner"
+    evidence_required:
+      - measurement_intelligence.baseline
+      - value_tracking.realized_value_to_date
+      - human_time_spent_operating_or_correcting
+    pass_condition: "Realized value, adoption, operating cost, and correction/support burden are compared to baseline and minimum viable threshold."
+  - criterion_id: guidance_currency_controlled
+    required: true
+    owner: "product_owner"
+    evidence_required:
+      - guidance_and_knowledge_updates
+      - ai_guidance_pack
+      - prompt_or_instruction_refs
+      - eval_dataset_refs
+    pass_condition: "Guidance, prompts, retrieval corpus, policy references, eval datasets, and runbooks are current; material changes are routed to Phase 14."
+  - criterion_id: stop_conditions_evaluated
+    required: true
+    owner: "agentops_owner"
+    evidence_required:
+      - operating_decisions.pause_conditions
+      - review_log.decisions
+      - blocking_alerts
+    pass_condition: "Every blocking condition is evaluated and any triggered condition results in pause, revoke, remediation, Phase 14, Phase 15, or return-to-method action."
+  - criterion_id: return_to_method_rules_recorded
+    required: true
+    owner: "risk_or_compliance_owner"
+    evidence_required:
+      - operating_decisions.return_to_method_triggers
+      - review_log.findings
+    pass_condition: "Return-to-method triggers are evaluated against value, risk, source, ownership, and adoption evidence."
+automatic_blockers:
+  - "Unauthorized write, send, delete, permission change, workflow progression, user expansion, source use, tool call, output channel, or behavior-level escalation."
+  - "Critical or high incident remains unresolved."
+  - "Production run lacks required trace or audit evidence."
+  - "Source freshness SLA missed for source used in output without safe fallback."
+  - "Required owner coverage or revocation owner unavailable."
+  - "Blocking metric threshold crossed."
+return_to_method_triggers:
+  - "Operating metrics show value, risk, source, ownership, or adoption assumptions are invalid."
+  - "The agent requires new users, sources, tools, data classes, workflow scope, or autonomy to remain useful."

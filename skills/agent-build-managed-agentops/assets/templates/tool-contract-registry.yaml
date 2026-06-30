@@ -1,0 +1,209 @@
+object_type: "tool_contract_registry"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "tool_registry_<agent_id>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+
+source_inputs:
+  build_contract_id: ""
+  architecture_record_id: ""
+  technical_blueprint_id: ""
+  organizational_intelligence_baseline_id: ""
+  risk_control_model_id: ""
+  implementation_decision_packet_id: ""
+  evidence_refs: []
+  approval_checks:
+    step_18_handoff_approved: false
+    separate_implementation_approval_present: false
+    architecture_record_current: false
+
+registry_policy:
+  default_tool_state: "disabled_until_approved"
+  unregistered_tools_allowed: false
+  tool_name_hallucination_policy: "block_unknown_tool_and_log_control_event"
+  write_actions_require_explicit_contract: true
+  human_approval_required_for_write_actions: true
+  execute_actions_require_explicit_contract: true
+  secrets_handling_standard: ""
+  least_privilege_standard: ""
+  audit_log_required_for_all_tool_calls: true
+  revocation_required_for_all_tools: true
+  production_enablement_requires_environment_gate: true
+
+identity_model:
+  agent_identity: ""
+  runtime_service_account: ""
+  end_user_delegation_allowed: false
+  impersonation_allowed: false
+  service_account_owner: ""
+  credential_storage: ""
+  token_rotation_cadence: ""
+  break_glass_policy:
+    allowed: false
+    owner: ""
+    approval_required: []
+    max_duration: ""
+  access_review_cadence: ""
+  emergency_revocation_sla: ""
+
+data_governance_policy:
+  source_of_truth_required: true
+  field_level_classification_required: true
+  prohibited_fields_must_be_listed: true
+  freshness_requirement_required: true
+  retention_rule_required: true
+  redaction_required_for_sensitive_logs: true
+  lineage_required_for_agent_visible_outputs: true
+
+audit_policy:
+  required_fields:
+    - "timestamp"
+    - "agent_id"
+    - "run_id"
+    - "release_version"
+    - "environment"
+    - "actor_id"
+    - "tool_id"
+    - "permission_scope"
+    - "input_reference_or_hash"
+    - "output_reference_or_hash"
+    - "approval_reference"
+    - "status"
+    - "latency_ms"
+    - "error_code"
+  retention: ""
+  redaction_policy: ""
+  audit_sink: ""
+  alert_on_missing_audit_event: true
+
+tools:
+  - tool_id: "tool_001"
+    name: ""
+    tool_type: "api"
+    system_or_service: ""
+    owner: ""
+    technical_owner: ""
+    data_owner: ""
+    security_owner: ""
+    purpose: ""
+    approved_use_cases: []
+    prohibited_use_cases: []
+    environments_allowed:
+      - "sandbox"
+    environments_prohibited:
+      - "production"
+    data_classes_accessed: []
+    source_of_truth: ""
+    endpoints_or_actions:
+      - action_id: ""
+        action_name: ""
+        side_effect_level: "none"
+        requires_human_approval: true
+        approved_in_handoff: false
+    permissions:
+      read: false
+      create: false
+      update: false
+      delete: false
+      execute: false
+      send: false
+    permission_scopes_allowed: []
+    permission_scopes_denied: []
+    identity_and_access:
+      service_account: ""
+      end_user_delegation_allowed: false
+      impersonation_allowed: false
+      token_scope: []
+      provisioning_request_ref: ""
+      access_review_cadence: ""
+      revocation_owner: ""
+      revocation_sla: ""
+    inputs:
+      required_fields: []
+      optional_fields: []
+      validation_rules: []
+      prohibited_fields: []
+      max_payload_size: ""
+      schema_ref: ""
+    outputs:
+      output_schema_ref: ""
+      fields_returned: []
+      fields_redacted: []
+      side_effects: []
+      audit_fields: []
+      downstream_use_allowed: []
+      downstream_use_prohibited: []
+    data_contract:
+      authoritative_source: ""
+      data_classification_by_field: {}
+      freshness_requirement: ""
+      retention_rule: ""
+      deletion_rule: ""
+      lineage_fields: []
+      masking_or_redaction: ""
+    invocation_policy:
+      allowed_when: []
+      prohibited_when: []
+      rate_limits: ""
+      concurrency_limit: ""
+      timeout_seconds: 30
+      retry_policy: "no_retry_until_defined"
+      idempotency_required: true
+      idempotency_key: ""
+      human_approval_required: true
+      approval_policy_ref: ""
+    failure_behavior:
+      on_timeout: "stop_and_escalate"
+      on_validation_error: "stop_and_explain"
+      on_permission_error: "stop_and_escalate"
+      on_unavailable: "stop_and_escalate"
+      on_stale_data: "stop_and_explain"
+      on_partial_success: "reconcile_before_continue"
+      on_duplicate_invocation: "dedupe_and_log"
+      on_unexpected_side_effect: "pause_agent_and_escalate"
+      compensation_or_rollback_steps: []
+    audit_and_observability:
+      audit_events:
+        - "tool_call_requested"
+        - "tool_call_completed"
+      required_trace_fields: []
+      alert_conditions: []
+      dashboard_refs: []
+    testing_evidence:
+      sandbox_fixture_refs: []
+      permission_test_refs: []
+      negative_test_refs: []
+      audit_log_test_refs: []
+      revocation_drill_refs: []
+      rollback_test_refs: []
+    approval:
+      approval_status: "not_submitted"
+      approved_by: []
+      approval_date: ""
+      conditions: []
+
+registry_quality_bar:
+  all_tools_registered: false
+  unregistered_tools_blocked: true
+  least_privilege_verified: false
+  write_send_execute_actions_explicitly_approved: false
+  identity_mapping_unambiguous: false
+  auditability_verified: false
+  revocation_paths_verified: false
+  failure_behaviors_verified: false
+  environment_gate_dependencies_named: false
+  blockers: []
+
+return_to_method_triggers:
+  - "Tool requires access not approved in Step 17/18."
+  - "Required system owner cannot provide least-privilege access."
+  - "Approved outcome requires a new source, action, user group, or identity assumption."
+
+registry_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  notes: []

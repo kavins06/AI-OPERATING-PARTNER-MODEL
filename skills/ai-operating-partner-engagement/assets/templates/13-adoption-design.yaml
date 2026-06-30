@@ -1,0 +1,84 @@
+adoption_design_id: "adoption_<opportunity_id>_current"
+spec_version: "0.1"
+object_type: "end_user_adoption_and_change_design"
+status: "draft" # draft | validated | blocked | not_applicable
+
+source_inputs:
+  opportunity_id: ""
+  candidate_use_case_shortlist_id: ""
+  workflow_spec_ids: []
+  variation_map_ids: []
+  interview_refs: []
+  value_case_id: ""
+
+end_user_research:
+  target_user_groups:
+    - user_group_id: ""
+      name: ""
+      user_type: "" # employee | contractor | broker | agent | manager | admin | customer | vendor | other
+      current_workflow_tools: []
+      current_pain_or_leverage:
+      trust_concerns: []
+      participation_bias_risk: ""
+      evidence_refs: []
+  research_coverage_status: "unknown" # sufficient | partial | biased | insufficient | unknown
+  additional_research_needed: []
+
+adoption_feasibility:
+  mandate_possible: "unknown" # yes | no | partial | unknown
+  opt_in_required: false
+  incentive_alignment:
+    current_incentives: []
+    adoption_supporting_incentives: []
+    adoption_blocking_incentives: []
+  political_or_status_risks: []
+  trust_barriers: []
+  switching_costs: []
+  workflow_replacement_or_sunset_needed: []
+
+resistance_source_map:
+  - source_id: ""
+    source_type: "" # legal | hr | risk | compliance | finance | it_security | data_owner | middle_management | end_user | executive | vendor | other
+    likely_concern: "" # liability | change_management | blame | regulatory_exposure | roi_proof | output_inconsistency | replacement_fear | security_policy | workflow_disruption | cost | ownership | other
+    evidence_refs: []
+    intervention: "" # sponsor_mandate | measured_pilot | control_design | policy_review | training | expectation_setting | role_transition_plan | approved_tool_alternative | workflow_redesign | other
+    owner_role: ""
+    blocks_pilot: "unknown" # yes | no | partial | unknown
+
+role_transition_plan:
+  work_removed_or_reduced: []
+  work_remaining_human_owned: []
+  higher_value_work_for_freed_capacity: []
+  roles_at_risk_of_replacement_fear: []
+  message_to_users:
+  training_or_reskilling_needed: []
+  sponsor_commitment_needed: []
+
+channel_and_experience_design:
+  preferred_surface: "" # existing_crm | email | sms | chat | browser_extension | dashboard | mobile | separate_app | other | unknown
+  why_this_surface_fits_adoption: ""
+  surfaces_to_avoid: []
+  training_or_enablement_needed: []
+  support_model_needed: []
+
+rollout_strategy:
+  approach: "" # opt_in_pilot | champion_group | manager_mandated | phased_team_rollout | limited_backoffice | no_rollout_yet
+  pilot_group:
+    selection_criteria: []
+    excluded_groups: []
+  training_plan: []
+  communications_plan: []
+  feedback_channels: []
+  adoption_metrics: []
+  adoption_failure_triggers:
+    - trigger: ""
+      threshold: ""
+      action: ""
+      owner: ""
+
+decision_impact:
+  affects_solution_shape: false
+  affects_risk_controls: false
+  affects_lifecycle: true
+  blocks_readiness_if_unresolved: false
+  notes: ""

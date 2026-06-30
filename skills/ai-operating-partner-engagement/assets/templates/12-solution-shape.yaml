@@ -1,0 +1,116 @@
+solution_shape_id: "solution_shape_<opportunity_id>_current"
+spec_version: "0.1"
+object_type: "solution_shape_decision"
+status: "draft" # draft | selected | blocked | needs_vendor_review
+
+source_inputs:
+  opportunity_id: ""
+  candidate_use_case_shortlist_id: ""
+  portfolio_comparison_id: ""
+  value_case_id: ""
+  workflow_spec_ids: []
+  guidance_pack_ids: []
+  measurement_intelligence_ids: []
+  truth_production_profile_ids: []
+  risk_signal_refs: []
+  adoption_design_id: ""
+
+solution_boundary:
+  target_user_groups: []
+  user_experience_location: "" # existing_system | crm | email | chat | dashboard | embedded_widget | separate_app | workflow_queue | other | unknown
+  first_behavior_level: "" # read_only_summary | draft_and_flag | recommendation_support | human_approved_action | autonomous_action
+  explicit_non_goals: []
+
+step_13a_solution_shape:
+  decision_scope: "technical_and_product_posture"
+  required_decisions:
+    - "build_buy_leverage"
+    - "agent_topology"
+    - "model_selection_class"
+    - "ux_surface"
+    - "retrieval_context_shape"
+    - "eval_observability_shape"
+
+step_13b_adoption_design:
+  decision_scope: "human_operating_posture"
+  required_decisions:
+    - "target_end_users"
+    - "adoption_path"
+    - "incentive_alignment"
+    - "oversight_operating_model"
+    - "training_support"
+    - "feedback_channels"
+    - "adoption_failure_triggers"
+
+build_buy_leverage_decision:
+  selected_path: "unknown" # build | buy | leverage_existing_vendor | hybrid | defer | unknown
+  rationale: ""
+  existing_vendor_capabilities_to_verify: []
+  vendor_replacement_considered: false
+  vendor_replacement_rationale: ""
+  decision_owner: ""
+
+agent_topology:
+  selected_topology: "unknown" # no_agent_workflow | single_assistant | workflow_with_llm_steps | tool_using_agent | multi_agent_system | monitoring_agent | unknown
+  rationale: ""
+  why_simpler_topology_is_not_enough: ""
+  multi_agent_roles_if_any: []
+
+model_selection_class:
+  selected_class: "unknown" # small_fast_model | frontier_model | private_or_open_weight | routed_models | client_mandated | unknown
+  selection_rationale: ""
+  constraints:
+    context_window: ""
+    latency: ""
+    cost: ""
+    privacy_or_residency: ""
+    structured_output: ""
+    tool_calling: ""
+  final_model_selected_in_build_phase: true
+
+oversight_operating_model:
+  selected_model: "unknown" # escalation | approval | collaboration | unknown
+  rationale: ""
+  ai_autonomy_target: "" # handles_80_percent_plus | drafts_for_review | continuous_copilot | unknown
+  human_role: "" # exception_reviewer | approver | collaborator | accountable_owner | unknown
+  error_tolerance: "unknown" # low | medium | high | unknown
+  recoverability: "unknown" # high | medium | low | unknown
+  regulated_or_zero_error_constraints: []
+  escalation_triggers: []
+  approval_required_for: []
+  feedback_loop_for_model_or_guidance_improvement: []
+
+retrieval_and_context_shape:
+  rag_required: "unknown" # yes | no | conditional | unknown
+  approved_context_sources: []
+  prohibited_context_sources: []
+  source_grounding_required: true
+  permission_filtering_required: true
+
+eval_and_observability_shape:
+  behavioral_evals_required: true
+  output_quality_evals_required: true
+  regulated_domain_evals_required: false
+  offline_proof_point_recommended: false
+  offline_proof_point_boundary: "Use only approved redacted, synthetic, or historical examples; no live credentials, integrations, write-back, or production data movement."
+  observability_required:
+    traces: true
+    tool_calls: true
+    retrieved_context: true
+    human_review: true
+    cost_and_latency: true
+
+decision:
+  selected: false
+  selected_by: ""
+  date: ""
+  open_questions: []
+  blocks_technical_blueprint: false
+
+step15_to_step13_iteration_loop:
+  risk_can_force_solution_revision: true
+  revision_required: false
+  risk_finding_ids: []
+  affected_shape_fields: [] # topology | behavior_level | ux_surface | model_class | retrieval_scope | eval_observability | adoption_path
+  revision_reason: ""
+  revised_solution_shape_id: ""

@@ -1,0 +1,41 @@
+phase_pack_id: 07-eval_and_guardrail_design
+support_skill: agent-evals-guardrails-observability
+phase_id: 7
+phase_key: eval_and_guardrail_design
+phase_name: Eval And Guardrail Design
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- ai_guidance_pack
+- measurement_intelligence
+- risk_control_model
+- readiness_object
+- managed_lifecycle_object
+section2_outputs:
+- eval_harness_spec
+- guardrail_control_matrix
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/eval-and-validation-plan.yaml
+  - skills/agent-build-managed-agentops/assets/templates/guardrail-control-matrix.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/eval-guardrail-design-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/eval-guardrail-launch-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/eval_and_guardrail_design.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/07-eval-harness-and-guardrails.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- Eval suite does not cover guidance, edge cases, risks, prohibited behaviors, and
+  permissions.
+- Blocking thresholds are missing.
+return_to_method_triggers:
+- Required evals reveal missing knowledge or unstable truth production.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

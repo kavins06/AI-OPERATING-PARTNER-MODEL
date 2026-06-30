@@ -1,0 +1,96 @@
+rubric_id: controlled_pilot_rubric
+phase_id: 10
+phase_key: controlled_pilot
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver; no automatic blocker remains."
+  conditional: "No critical blocker remains, and named follow-up is required before pilot launch or production readiness."
+  blocked: "Any required criterion fails without authorized waiver."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    evidence_required:
+      - "managed_lifecycle_object"
+      - "adoption_design"
+      - "measurement_intelligence"
+      - "risk_control_model"
+    pass_condition: "All required Section 1 inputs are present, approved, versioned, and cited."
+  - criterion_id: sandbox_exit_confirmed
+    required: true
+    evidence_required:
+      - "environment_progression_gate"
+      - "sandbox_exit_approval"
+    pass_condition: "Sandbox exit is approved with no unresolved blocking eval, control, trace, tool, defect, or rollback issue."
+  - criterion_id: pilot_scope_locked
+    required: true
+    evidence_required:
+      - "pilot_launch_gate.pilot_scope"
+      - "method_to_build_handoff_contract"
+    pass_condition: "Pilot is limited by users, time, volume, behavior, tools, data, sources, and environment."
+  - criterion_id: pilot_users_and_training_ready
+    required: true
+    evidence_required:
+      - "pilot_roster"
+      - "training_or_comms_evidence"
+      - "adoption_design"
+    pass_condition: "Pilot users or roles are named, trained, authorized, and aligned to adoption plan."
+  - criterion_id: human_review_workflow_ready
+    required: true
+    evidence_required:
+      - "human_review_workflow_test"
+      - "pilot_launch_gate.launch_criteria.human_review_ready"
+    pass_condition: "Human review is staffed, tested, and logs reviewer identity, decision, edits, reason, and timestamp."
+  - criterion_id: monitoring_and_alerting_ready
+    required: true
+    evidence_required:
+      - "trace_observability_spec"
+      - "pilot_dashboard_ref"
+      - "alert_routing_proof"
+    pass_condition: "Pilot dashboard, alert routes, daily review cadence, metric thresholds, and evidence store are live."
+  - criterion_id: support_and_feedback_ready
+    required: true
+    evidence_required:
+      - "support_rota"
+      - "feedback_channel_ref"
+      - "triage_sla"
+    pass_condition: "Support channel, daily owner, escalation path, feedback capture, and triage owner are ready."
+  - criterion_id: stop_conditions_approved
+    required: true
+    evidence_required:
+      - "pilot_launch_gate.monitoring_during_pilot.stop_conditions"
+      - "owner_approvals"
+    pass_condition: "Stop, pause, rollback, and return-to-method triggers are approved by business, security, and AgentOps owners."
+  - criterion_id: eval_control_thresholds_passed
+    required: true
+    evidence_required:
+      - "eval_results"
+      - "guardrail_test_results"
+      - "trace_completeness_report"
+    pass_condition: "Offline and sandbox blocking eval, adversarial, control, and trace thresholds pass for the release candidate."
+  - criterion_id: incident_pause_and_rollback_tested
+    required: true
+    evidence_required:
+      - "incident_channel_test"
+      - "pause_test_results"
+      - "rollback_validation_results"
+    pass_condition: "Incident channel, feature pause, tool disablement, credential revocation, and rollback are tested before launch."
+  - criterion_id: pilot_exit_criteria_measurable
+    required: true
+    evidence_required:
+      - "pilot_launch_gate.pilot_exit_criteria"
+      - "measurement_intelligence"
+    pass_condition: "Pilot success, risk, adoption, value, and operational metrics can be measured from traces, reviews, feedback, and business systems."
+  - criterion_id: return_to_method_rules_recorded
+    required: true
+    evidence_required:
+      - "phase_return_to_method_assessment"
+    pass_condition: "Adoption, value, control, truth, scope-pressure, and lifecycle assumptions are assessed before pilot launch."
+automatic_blockers:
+  - "Pilot audience, support model, feedback channel, daily monitoring owner, or stop condition is missing."
+  - "Pilot success metrics cannot be measured."
+  - "Users can trigger behavior outside approved scope."
+  - "Human-review, incident, pause, revocation, or rollback paths are untested."
+  - "Pilot dashboard or alert routing is not live."
+return_to_method_triggers:
+  - "Pilot reveals adoption, value, control, or truth assumptions were wrong."
+  - "Pilot demand pressures the agent beyond approved behavior level, user group, tool, source, or oversight model."

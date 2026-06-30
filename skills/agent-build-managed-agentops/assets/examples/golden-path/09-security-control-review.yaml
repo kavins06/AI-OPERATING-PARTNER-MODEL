@@ -1,0 +1,161 @@
+example_id: "golden_path_phase_09_security_and_control_review"
+phase_id: 9
+phase_key: "security_and_control_review"
+phase_name: "Security And Control Review"
+source_packet: "skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml"
+status: "implementation_grade_example"
+purpose: "Demonstrate security-control review, trace policy, observability, and incident rehearsal evidence."
+
+minimum_completed_sections:
+  - "source_inputs"
+  - "control_policy"
+  - "risk_control_traceability"
+  - "controls"
+  - "trace_policy"
+  - "event_taxonomy"
+  - "observability_requirements"
+  - "metrics"
+  - "alerts"
+  - "dashboards"
+  - "incident_rehearsal"
+  - "residual_risk_acceptance"
+  - "signoff"
+
+section1_inputs_used:
+  - "risk_control_model"
+  - "technical_blueprint"
+  - "managed_lifecycle_object"
+section2_outputs_demonstrated:
+  - "guardrail_control_matrix"
+  - "trace_observability_spec"
+
+evidence_expectations:
+  - "Cite approved risk model, technical blueprint, managed lifecycle, tool contracts, eval plan, and security review evidence."
+  - "Show permission tests, adversarial tests, trace completeness, redaction checks, alert routing, dashboard proof, incident rehearsal, and residual-risk approval."
+  - "Record blockers for untested controls, missing traces, unapproved access, or failed incident rehearsal."
+failure_modes_to_test:
+  - "Residual risk is accepted without owner approval."
+  - "Audit, revocation, or incident evidence is missing."
+return_to_method_triggers_to_test:
+  - "Security control requires different architecture, behavior, or data path."
+  - "Security review changes approved scope, source, access, oversight, lifecycle, or risk assumptions."
+
+completed_objects:
+  guardrail_control_matrix_update:
+    object_type: "guardrail_control_matrix"
+    object_id: "guardrails_demo_revenue_intake_20260513"
+    version: "0.3"
+    status: "approved"
+    control_policy:
+      default_action_on_control_failure: "stop_and_escalate"
+      default_action_on_unregistered_tool: "deny_and_log"
+      human_override_allowed: false
+      control_test_frequency: "before every promotion and every release"
+    control_test_summary:
+      permission_boundary_tests: "passed"
+      prompt_injection_tests: "passed"
+      data_exfiltration_tests: "passed"
+      human_review_bypass_tests: "passed"
+      sensitive_log_redaction_tests: "passed"
+      trace_failure_behavior: "pause_agent"
+    residual_risk:
+      - risk_id: "risk-draft-tone-error"
+        description: "Draft may be overly terse or request redundant information."
+        severity: "medium"
+        accepted_by: "Revenue Operations Manager"
+        conditions:
+          - "Human review required for every pilot and production output."
+          - "Correction examples added to monthly regression set."
+  trace_observability_spec:
+    object_type: "trace_observability_spec"
+    object_id: "observability_demo_revenue_intake_20260513"
+    version: "0.2"
+    status: "approved"
+    trace_policy:
+      trace_required_for_all_runs: true
+      audit_log_required_for_tool_calls: true
+      human_review_trace_required: true
+      sensitive_data_redaction_required: true
+      untraced_run_behavior: "pause_agent_and_escalate"
+      retention_period: "18 months"
+      log_access_roles:
+        - "Security Lead"
+        - "AgentOps Lead"
+        - "Agent Platform Lead"
+    required_trace_fields:
+      run:
+        - "run_id"
+        - "agent_version"
+        - "release_version"
+        - "environment"
+        - "user_id_or_role"
+        - "behavior_level_requested"
+        - "behavior_level_authorized"
+      tool:
+        - "tool_id"
+        - "tool_contract_version"
+        - "permission_decision"
+        - "action_requested"
+        - "result_status"
+      control:
+        - "control_id"
+        - "decision"
+        - "reason"
+        - "severity"
+        - "fail_behavior"
+      human_review:
+        - "reviewer_id_or_role"
+        - "decision"
+        - "changes_made"
+        - "approval_timestamp"
+    metrics:
+      quality:
+        task_success_rate: ">= 0.90"
+        material_error_rate: "<= 0.02"
+      safety:
+        control_violation_count: "0"
+        untraced_run_count: "0"
+        unauthorized_tool_call_count: "0"
+      reliability:
+        p95_latency: "< 20 seconds"
+    alerts:
+      - alert_id: "alert_control_failure"
+        severity: "critical"
+        response_sla: "15 minutes"
+        auto_action: "pause_agent"
+      - alert_id: "alert_untraced_run"
+        severity: "critical"
+        response_sla: "15 minutes"
+        auto_action: "pause_agent"
+      - alert_id: "alert_source_freshness_failure"
+        severity: "high"
+        response_sla: "1 business hour"
+        auto_action: "degrade_to_human_review"
+    dashboards:
+      - dashboard_id: "agentops_overview"
+        evidence_ref: "dashboard://demo/revenue-intake-agentops"
+      - dashboard_id: "security_and_control"
+        evidence_ref: "dashboard://demo/revenue-intake-security"
+  incident_rehearsal:
+    rehearsal_date: "2026-05-13"
+    scenarios_completed:
+      - scenario_id: "control_failure_pause"
+        result: "passed"
+        time_to_pause: "8 minutes"
+      - scenario_id: "tool_permission_revocation"
+        result: "passed"
+        time_to_revoke_access: "11 minutes"
+      - scenario_id: "release_rollback"
+        result: "passed"
+        time_to_restore_previous_version: "18 minutes"
+    evidence_refs:
+      - "evidence://demo/phase09/incident-rehearsal"
+
+blocking_conditions_checked:
+  - "No residual risk accepted without owner approval."
+  - "Every run and tool call requires trace fields."
+  - "Incident rehearsal proved pause, revoke, rollback, evidence capture, notification, and restart approval."
+return_to_method_assessment:
+  status: "not_triggered"
+  notes:
+    - "Controls did not require architecture, behavior-level, source, access, or lifecycle change."

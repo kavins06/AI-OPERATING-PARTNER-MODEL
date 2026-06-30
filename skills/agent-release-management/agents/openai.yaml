@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Release Management"
+  short_description: "Version, package, release, monitor, and roll back approved managed-agent artifacts."
+  default_prompt: "Use $agent-release-management after approved Step 18 handoff and separate implementation approval to complete Section 2 phase 12 with immutable artifact versions, release controls, smoke tests, rollback package, release notes, monitoring handoff, checklists, rubrics, and validator rules."

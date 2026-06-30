@@ -1,0 +1,342 @@
+object_type: "agent_necessity_kill_test"
+example_id: "golden_path_phase_02_agent_necessity_check"
+phase_id: 2
+phase_key: "agent_necessity_check"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "agent_necessity_demo_revenue_intake_20260504"
+version: "0.1"
+status: "approved"
+minimum_completed_sections:
+  - "source_inputs"
+  - "decision_summary"
+  - "simpler_alternatives"
+  - "agent_fit_tests"
+  - "risk_comparison"
+  - "decision_gate"
+  - "return_to_method_review"
+  - "kill_decision"
+  - "kill_test_signoff"
+section1_inputs_used:
+  - "candidate_use_case_shortlist"
+  - "business_value_case"
+  - "solution_shape"
+  - "readiness_object"
+  - "implementation_decision_packet"
+section2_outputs_demonstrated:
+  - "agent_necessity_kill_test"
+evidence_expectations:
+  - "Cite approved candidate use case and business value case."
+  - "Cite solution shape and readiness evidence."
+  - "Compare simpler alternatives with evidence."
+  - "Record hold or return-to-method instead of forcing an agent decision."
+failure_modes_to_test:
+  - "Simpler non-agent path satisfies the approved outcome."
+  - "Agent value does not justify operating burden."
+  - "Human oversight is not workable."
+return_to_method_triggers_to_test:
+  - "Agent path changes recommended Step 17 decision."
+  - "Lowest-risk sufficient solution is not an agent."
+
+example_context:
+  scenario: "Test whether the approved revenue intake follow-up outcome truly requires an agent."
+  phase_decision: "proceed_with_agent_build"
+  evidence_packet: "skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml"
+
+source_inputs:
+  build_contract_id: "build_contract_demo_revenue_intake_20260504"
+  step_18_lifecycle_object_id: "lifecycle_demo_revenue_intake_20260504"
+  implementation_decision_packet_id: "decision_packet_demo_revenue_intake_20260504"
+  candidate_use_case_shortlist_id: "shortlist_demo_revenue_intake_20260420"
+  business_value_case_id: "value_case_demo_revenue_intake_20260426"
+  solution_shape_id: "solution_shape_demo_revenue_intake_20260429"
+  readiness_object_id: "readiness_demo_revenue_intake_20260428"
+  evidence_refs:
+    - "evidence://demo/status-quo-shadowing"
+    - "evidence://demo/value-case"
+    - "evidence://demo/sample-intake-records"
+    - "evidence://demo/pilot-capacity-check"
+  source_input_usage:
+    - artifact: "candidate_use_case_shortlist"
+      expected_fields:
+        - "opportunity_id"
+        - "use_case_boundary"
+        - "target_users"
+        - "value_hypothesis"
+        - "disqualification_criteria"
+      kill_test_usage: "Confirmed this is the approved intake follow-up candidate and not a broader revenue automation."
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/shortlist-selection"
+    - artifact: "business_value_case"
+      expected_fields:
+        - "business_outcome"
+        - "expected_value_range"
+        - "ai_side_cost_envelope"
+        - "confidence"
+        - "value_risks"
+      kill_test_usage: "Compared expected reduction in stalled intake records against AgentOps burden."
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/value-case"
+    - artifact: "solution_shape"
+      expected_fields:
+        - "build_buy_leverage_decision"
+        - "agent_topology"
+        - "runtime_pattern"
+        - "oversight_model"
+        - "adoption_constraints"
+      kill_test_usage: "Validated draft-and-flag agent with human approval is the recommended solution shape."
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/solution-shape-review"
+    - artifact: "readiness_object"
+      expected_fields:
+        - "hard_gates"
+        - "behavior_level_readiness"
+        - "dependency_map"
+        - "blockers"
+        - "minimum_safe_first_behavior"
+        - "prohibited_behaviors"
+      kill_test_usage: "Confirmed the first behavior can be constrained and monitored."
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/readiness-hard-gates"
+    - artifact: "implementation_decision_packet"
+      expected_fields:
+        - "first_build_scope"
+        - "behavior_contract"
+        - "build_ready_decision"
+        - "overengineering_guardrail"
+        - "stop_boundary"
+      kill_test_usage: "Preserved draft-and-flag only scope."
+      completeness_status: "complete"
+      evidence_refs:
+        - "evidence://demo/step17-decision-packet-approved"
+
+decision_summary:
+  requested_agent_outcome: "Draft accurate missing-information follow-up requests for coordinator approval."
+  current_status_quo: "Coordinators manually inspect CRM and intake forms, then draft follow-up messages from inconsistent field combinations."
+  lowest_risk_sufficient_solution: "A read-only draft-and-flag agent with mandatory human approval."
+  reason_an_agent_is_being_considered: "The work requires variable language drafting and contextual synthesis from semi-structured CRM and intake data."
+  approved_first_behavior: "Draft missing-intake follow-up requests for human approval."
+  operating_burden_summary:
+    evals_required: "Golden set for missing-field coverage, tone, source citation, and forbidden action refusal."
+    monitoring_required: "Trace every run, source read, draft output, and coordinator approval decision."
+    human_review_required: "Coordinator approves every draft before delivery."
+    incident_response_required: "Any unauthorized write/send attempt triggers immediate revocation and incident review."
+    support_required: "Revenue Operations Support handles coordinator questions during pilot."
+    ongoing_owner_cadence: "AgentOps weekly review during pilot, then monthly after stabilization."
+  decision_forcing_question: "Would a report, rule, workflow automation, template, SOP, search experience, or human process satisfy the approved outcome with less risk and lower operating burden?"
+
+simpler_alternatives:
+  - alternative_id: "alt_human_process"
+    alternative_type: "human_process"
+    description: "Keep manual coordinator review and drafting."
+    outcome_fit: "Maintains quality but does not reduce stalled intake records or drafting time."
+    delivery_speed: "immediate"
+    implementation_effort: "none"
+    risk_delta_vs_agent: "lower technical risk but higher operational miss risk"
+    operating_cost_delta_vs_agent: "higher coordinator labor"
+    value_delta_vs_agent: "lower expected value"
+    evidence_refs:
+      - "evidence://demo/status-quo-shadowing"
+    reason_selected_or_rejected: "Rejected because the approved outcome includes reducing manual drafting delay."
+    decision: "rejected"
+  - alternative_id: "alt_sop"
+    alternative_type: "sop_or_training"
+    description: "Train coordinators on a missing-field follow-up SOP."
+    outcome_fit: "Improves consistency but does not create draft text or reduce inspection effort."
+    delivery_speed: "1 week"
+    implementation_effort: "low"
+    risk_delta_vs_agent: "lower"
+    operating_cost_delta_vs_agent: "lower system cost, continued labor cost"
+    value_delta_vs_agent: "medium-low"
+    evidence_refs:
+      - "evidence://demo/coordinator-interviews"
+    reason_selected_or_rejected: "Rejected as useful support material but insufficient as the primary solution."
+    decision: "rejected"
+  - alternative_id: "alt_workflow_rule"
+    alternative_type: "workflow_automation"
+    description: "Rule detects records with missing required fields and assigns coordinator task."
+    outcome_fit: "Finds missing records but does not draft context-specific follow-up."
+    delivery_speed: "1-2 weeks"
+    implementation_effort: "medium"
+    risk_delta_vs_agent: "lower"
+    operating_cost_delta_vs_agent: "lower"
+    value_delta_vs_agent: "medium"
+    evidence_refs:
+      - "evidence://demo/field-variance-analysis"
+    reason_selected_or_rejected: "Rejected as standalone path because it fails the drafting outcome; retained as possible trigger component."
+    decision: "rejected"
+  - alternative_id: "alt_report"
+    alternative_type: "report_or_dashboard"
+    description: "Dashboard lists records missing intake fields."
+    outcome_fit: "Identifies gaps but does not generate coordinator-ready language."
+    delivery_speed: "3 days"
+    implementation_effort: "low"
+    risk_delta_vs_agent: "lower"
+    operating_cost_delta_vs_agent: "lower"
+    value_delta_vs_agent: "medium-low"
+    evidence_refs:
+      - "evidence://demo/status-quo-shadowing"
+    reason_selected_or_rejected: "Rejected because coordinators already know many records are missing fields; drafting is the bottleneck."
+    decision: "rejected"
+  - alternative_id: "alt_search"
+    alternative_type: "search_or_retrieval"
+    description: "Search experience lets coordinators retrieve SOP snippets and past examples."
+    outcome_fit: "Supports manual drafting but does not produce the approved draft output."
+    delivery_speed: "1 week"
+    implementation_effort: "medium"
+    risk_delta_vs_agent: "lower"
+    operating_cost_delta_vs_agent: "similar setup, lower monitoring"
+    value_delta_vs_agent: "lower"
+    evidence_refs:
+      - "evidence://demo/example-library-review"
+    reason_selected_or_rejected: "Rejected as primary solution; may seed eval and prompt examples."
+    decision: "rejected"
+  - alternative_id: "alt_template"
+    alternative_type: "template_or_macro"
+    description: "Static macro with blanks for missing fields."
+    outcome_fit: "Works for simple cases but fails when multiple missing fields require different framing."
+    delivery_speed: "2 days"
+    implementation_effort: "low"
+    risk_delta_vs_agent: "lower"
+    operating_cost_delta_vs_agent: "lower"
+    value_delta_vs_agent: "medium"
+    evidence_refs:
+      - "evidence://demo/sample-intake-records"
+    reason_selected_or_rejected: "Rejected because sample records require variable language and context-specific sequencing."
+    decision: "rejected"
+
+agent_fit_tests:
+  - test_id: "requires_contextual_judgment"
+    question: "Does the approved behavior require contextual judgment across variable cases rather than deterministic branching?"
+    pass_condition: "Sample records show missing-field combinations require different follow-up framing."
+    fail_condition: "A stable rule tree can produce acceptable drafts."
+    status: "passed"
+    evidence_refs:
+      - "evidence://demo/sample-intake-records"
+  - test_id: "requires_language_or_unstructured_reasoning"
+    question: "Does the work depend on interpreting or drafting unstructured language that fixed templates cannot handle safely?"
+    pass_condition: "Draft wording changes by missing field combination, customer context, and intake history."
+    fail_condition: "A static template can satisfy the output contract."
+    status: "passed"
+    evidence_refs:
+      - "evidence://demo/draft-variance-review"
+  - test_id: "agent_value_exceeds_operating_burden"
+    question: "Does measurable value justify evals, monitoring, controls, incident response, support, and ongoing AgentOps?"
+    pass_condition: "Expected reduction in stalled records exceeds weekly AgentOps and review burden."
+    fail_condition: "Coordinator time saved is below operating effort."
+    status: "passed"
+    evidence_refs:
+      - "evidence://demo/value-case"
+  - test_id: "scope_can_be_safely_constrained"
+    question: "Can the first behavior be constrained tightly enough to test without production-scale downside?"
+    pass_condition: "Read-only draft-and-flag behavior uses only approved intake and CRM fields."
+    fail_condition: "The behavior requires send/write access."
+    status: "passed"
+    evidence_refs:
+      - "evidence://demo/readiness-hard-gates"
+  - test_id: "human_oversight_is_workable"
+    question: "Can the required human review path operate at expected volume and speed?"
+    pass_condition: "Pilot coordinators can review all drafts within one business day."
+    fail_condition: "Reviewer capacity is below expected draft volume."
+    status: "passed"
+    evidence_refs:
+      - "evidence://demo/pilot-capacity-check"
+
+risk_comparison:
+  agent_specific_risks:
+    - "Draft may request unnecessary information."
+    - "Draft may omit a required missing field."
+  simpler_path_risks:
+    - "Manual status quo misses records and delays intake."
+    - "Static template creates inconsistent tone and incomplete requests."
+  controls_required_for_agent_path:
+    - "Human approval before delivery."
+    - "Read-only tool permissions."
+    - "Trace source fields used in every draft."
+    - "Eval suite for missing-field coverage and forbidden action refusal."
+  controls_required_for_simpler_path:
+    - "Coordinator quality review."
+    - "Periodic dashboard audit."
+  net_risk_position: "agent_path_equal_risk"
+  risk_notes:
+    - "Agent-specific risks are acceptable because no external send or write action is allowed."
+  evidence_gaps: []
+  operating_burden_delta:
+    agent_path:
+      implementation_complexity: "medium"
+      eval_monitoring_control_load: "medium"
+      support_and_incident_load: "low during pilot"
+      change_management_load: "medium"
+    simpler_path:
+      implementation_complexity: "low"
+      monitoring_or_manual_control_load: "high coordinator labor"
+      support_load: "low"
+      change_management_load: "low"
+
+decision_gate:
+  phase_id: 2
+  status: "passed"
+  pass_criteria:
+    - "No simpler alternative satisfies drafting outcome with lower risk and acceptable value."
+    - "Unstructured drafting and contextual judgment are evidenced."
+    - "Value exceeds AgentOps operating burden."
+    - "Human oversight is feasible."
+    - "Scope reductions preserve draft-and-flag only."
+  fail_criteria:
+    - "A simpler path satisfies the approved outcome."
+    - "Agent path requires unapproved write/send access."
+    - "Reviewer capacity is infeasible."
+  automatic_kill_conditions:
+    - "Selected simpler alternative meets outcome with lower risk."
+    - "No accountable business owner accepts AgentOps burden."
+  conditional_pass_allowed_only_when:
+    - "Follow-up evidence cannot alter the agent/no-agent decision."
+  failure_handling:
+    on_simpler_path_selected: "Stop agent build and return to Step 17 implementation decision."
+    on_value_gap: "Hold until value case is revised."
+    on_oversight_gap: "Reduce pilot volume or redesign review path."
+    on_scope_expansion: "Return to method before continuing."
+
+return_to_method_review:
+  evaluated: true
+  triggered: false
+  trigger_reason: ""
+  returned_to: ""
+  method_question_to_reopen: ""
+  decision_date: "2026-05-04"
+
+kill_decision:
+  decision: "proceed_with_agent_build"
+  decision_rationale: "A constrained read-only draft-and-flag agent is justified; simpler paths do not satisfy the approved drafting outcome."
+  required_scope_reductions:
+    - "No external send."
+    - "No CRM write."
+    - "No use outside revenue intake coordinators."
+  approved_by:
+    - "Revenue Operations Manager"
+    - "Agent Platform Lead"
+    - "Security Lead"
+  approval_date: "2026-05-04"
+
+kill_test_signoff:
+  prepared_by: "Revenue Operations Build Lead"
+  reviewed_by:
+    - "Revenue AI Product Owner"
+    - "AgentOps Lead"
+  approved_by:
+    - "Revenue Operations Manager"
+    - "Security Lead"
+  approval_status: "approved"
+  approval_date: "2026-05-04"
+  required_signoff_roles:
+    - "business_owner"
+    - "product_owner"
+    - "technical_owner"
+    - "security_owner"
+    - "agentops_owner"
+  notes:
+    - "Proceed decision depends on retaining human approval and read-only source access."

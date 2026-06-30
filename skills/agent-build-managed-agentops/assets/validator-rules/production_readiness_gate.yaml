@@ -1,0 +1,57 @@
+rule_group: production_readiness_gate
+phase_id: 11
+phase_key: production_readiness_gate
+status: active
+minimum_required_checks: 8
+required_section1_inputs:
+  - "managed_lifecycle_object"
+  - "measurement_intelligence"
+  - "risk_control_model"
+  - "technical_blueprint"
+required_section2_outputs:
+  - "production_readiness_gate"
+failure_modes:
+  - "Production launch lacks pilot evidence, owner signoff, incident rehearsal, revocation readiness, or accepted residual risk."
+return_to_method_triggers:
+  - "Production readiness requires scope, owner, risk, or lifecycle changes."
+  - "Production evidence invalidates value, adoption, source truth, oversight, or operational assumptions."
+checks:
+  - check_id: "required_section1_inputs_present"
+    severity: "error"
+    description: "Required Section 1 source artifacts are referenced, approved, versioned, and cited."
+  - check_id: "required_section2_outputs_present"
+    severity: "error"
+    description: "production_readiness_gate is present or intentionally blocked with owner and reason."
+  - check_id: "checklist_has_phase_specific_sections"
+    severity: "error"
+    description: "Checklist includes exact sections ## Phase-Specific Checks and ## Blocking Conditions."
+  - check_id: "pilot_evidence_complete"
+    severity: "error"
+    description: "Pilot evidence includes runs, users, quality, error, correction, adoption, incidents, defects, control violations, and untraced runs."
+  - check_id: "production_scope_preserved"
+    severity: "error"
+    description: "Production scope is no wider than approved and pilot-tested scope unless change review is approved."
+  - check_id: "eval_control_trace_thresholds_passed"
+    severity: "error"
+    description: "All blocking eval, adversarial, regression, control, trace, and pilot thresholds pass after remediation."
+  - check_id: "readiness_domains_complete"
+    severity: "error"
+    description: "Quality/evals, security/access, observability/audit, support, value/adoption, source truth, release/rollback, incident, and cost/capacity domains pass."
+  - check_id: "residual_risk_acceptance_present"
+    severity: "error"
+    description: "Residual risk is explicit, conditioned, dated, and approved by authorized owners."
+  - check_id: "incident_rehearsal_passed"
+    severity: "error"
+    description: "Detect, alert, pause, revoke, rollback, preserve evidence, communicate, remediate, and restart approval are rehearsed successfully."
+  - check_id: "first_month_monitoring_ready"
+    severity: "error"
+    description: "First-30-day monitoring cadence, metrics, thresholds, owners, and stop conditions are defined."
+  - check_id: "release_candidate_and_rollback_ready"
+    severity: "error"
+    description: "Release candidate manifest, smoke tests, feature flags/config, and rollback package are ready for phase 12."
+  - check_id: "rubric_has_minimum_criteria"
+    severity: "error"
+    description: "Rubric has at least 8 criteria, each with criterion_id, required, evidence_required, and pass_condition."
+  - check_id: "return_to_method_triggers_present"
+    severity: "warning"
+    description: "Return-to-method triggers are listed and evaluated."

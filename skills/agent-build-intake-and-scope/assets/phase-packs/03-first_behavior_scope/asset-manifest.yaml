@@ -1,0 +1,41 @@
+phase_pack_id: 03-first_behavior_scope
+support_skill: agent-build-intake-and-scope
+phase_id: 3
+phase_key: first_behavior_scope
+phase_name: First Behavior Scope
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- implementation_decision_packet
+- readiness_object
+- managed_lifecycle_object
+- workflow_intelligence_object
+- organizational_intelligence_baseline
+section2_outputs:
+- agent_build_contract
+- agent_build_plan
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/build-intake-contract.yaml
+  - skills/agent-build-managed-agentops/assets/templates/agent-build-plan.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/first-behavior-scope-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/first-behavior-scope-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/first_behavior_scope.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/03-agent-build-plan.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- First behavior is broader than approved handoff.
+- Prohibited behaviors are not explicit.
+- Human review path is undefined.
+return_to_method_triggers:
+- Workflow boundary changes from approved Step 17/18 scope.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.
