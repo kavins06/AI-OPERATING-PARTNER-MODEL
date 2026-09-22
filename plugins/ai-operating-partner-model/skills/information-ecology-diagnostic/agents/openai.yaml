@@ -1,0 +1,4 @@
+interface:
+  display_name: "Information Ecology Diagnostic"
+  short_description: "Create Step 7 diagnostic findings."
+  default_prompt: "Use this skill to produce the Step 7 organizational_intelligence_diagnostic with object-linked findings, blocker classifications, evidence, confidence, affected behavior levels, and routing."

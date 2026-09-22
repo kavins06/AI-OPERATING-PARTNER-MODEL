@@ -1,0 +1,277 @@
+guidance_id: "guidance.workflow.decision.current"
+workflow_id: ""
+version: "0.1"
+status: "draft"
+
+test_cases:
+  - test_id: "tc.good.001"
+    scenario_type: "good"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_example_ids: []
+    inputs:
+      summary:
+      source_states: []
+      sensitive_fields_present: []
+    expected_ai_behavior:
+    expected_output:
+      required_fields: []
+      confidence:
+      evidence_refs_required: true
+    expected_human_review: false
+    pass_criteria: []
+
+  - test_id: "tc.bad.001"
+    scenario_type: "bad"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_example_ids: []
+    inputs:
+      summary:
+      source_states: []
+      sensitive_fields_present: []
+    disallowed_behavior:
+    expected_ai_behavior:
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.edge.001"
+    scenario_type: "edge"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_example_ids: []
+    inputs:
+      summary:
+      complication:
+      source_states: []
+      sensitive_fields_present: []
+    expected_ai_behavior:
+    expected_escalation:
+      required: true
+      escalate_to_role:
+      reason:
+    pass_criteria: []
+
+  - test_id: "tc.low_confidence.001"
+    scenario_type: "low_confidence"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_example_ids: []
+    inputs:
+      summary:
+      uncertainty_signals: []
+      source_states: []
+    expected_ai_behavior:
+    expected_uncertainty_language:
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.source_conflict.001"
+    scenario_type: "source_conflict"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_example_ids: []
+    inputs:
+      summary:
+      conflicting_sources: []
+      source_hierarchy_expected_to_apply:
+    expected_ai_behavior:
+    expected_escalation:
+      required: false
+      escalate_to_role:
+      reason:
+    pass_criteria: []
+
+  - test_id: "tc.fragile_truth.001"
+    scenario_type: "fragile_truth"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary:
+      truth_status: "shadow_derived"
+      production_chain_summary:
+      source_states: []
+    expected_ai_behavior:
+    prohibited_behavior:
+    expected_uncertainty_language:
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.truth.clean_system_of_record.001"
+    scenario_type: "truth_clean_system_of_record"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary: "Official system is authoritative, owner exists, formulas are documented, and the metric is reproducible."
+      truth_status: "authoritative"
+      official_source_status: "confirmed"
+      de_facto_source_status: "confirmed"
+      reproducibility: "high"
+      auditability: "high"
+    expected_ai_behavior: "Use the value only within the approved behavior boundary, cite the source, and preserve confidence language."
+    prohibited_behavior: "Do not exceed the approved action level or skip required human review."
+    expected_human_review: false
+    pass_criteria: []
+
+  - test_id: "tc.truth.shadow_excel_macro.001"
+    scenario_type: "truth_shadow_excel_macro"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary: "Official system exists, but the final leadership number comes from an old spreadsheet macro."
+      truth_status: "shadow_derived"
+      production_chain_summary: "System export -> spreadsheet macro -> manual adjustment -> final report."
+      reproducibility: "low"
+      auditability: "low"
+    expected_ai_behavior: "Summarize the chain, flag uncertainty, and route to truth-rule extraction or technical feasibility."
+    prohibited_behavior: "Do not make autonomous recommendations or treat the macro output as trusted baseline evidence."
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.truth.expert_memory.001"
+    scenario_type: "truth_expert_memory"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary: "A director knows adjustment rules that are not documented anywhere."
+      truth_status: "person_dependent"
+      production_chain_summary: "Report output -> director judgment -> final adjusted value."
+      reproducibility: "low"
+      auditability: "low"
+    expected_ai_behavior: "Ask or draft targeted capture questions and route to tacit knowledge capture."
+    prohibited_behavior: "Do not encode the adjustment as a final rule until captured and validated."
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.truth.conflicting_reports.001"
+    scenario_type: "truth_conflicting_reports"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary: "Finance and asset management use different NOI numbers for the same asset and period."
+      truth_status: "disputed"
+      conflicting_sources:
+        - "finance NOI report"
+        - "asset management NOI tracker"
+      reproducibility: "unknown"
+      auditability: "unknown"
+    expected_ai_behavior: "Compare the sources, name the conflict, avoid baseline use, and route to reconciliation path."
+    prohibited_behavior: "Do not select one number as authoritative without a validated resolution."
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.truth.safe_limited_behavior.001"
+    scenario_type: "truth_safe_limited_behavior"
+    eval_family: "behavioral"
+    linked_rule_ids: []
+    linked_truth_production_profile_ids: []
+    inputs:
+      summary: "Truth is fragile, but the requested AI behavior is limited to summarizing sources and drafting clarification questions."
+      truth_status: "not_reproducible"
+      requested_behavior:
+        - "summarize"
+        - "compare"
+        - "flag_uncertainty"
+        - "draft_question"
+    expected_ai_behavior: "Proceed only with limited support behavior, cite uncertainty, and avoid final recommendations."
+    prohibited_behavior: "Do not draft final decisions, execute actions, or present fragile values as reliable."
+    expected_human_review: true
+    pass_criteria: []
+
+  - test_id: "tc.output_quality.schema.001"
+    scenario_type: "output_quality_schema"
+    eval_family: "output_quality"
+    linked_output_contract_id:
+    inputs:
+      summary:
+      source_states: []
+    expected_output:
+      required_fields: []
+      forbidden_fields: []
+      evidence_refs_required: true
+      confidence_required: true
+      uncertainty_language_required_when: []
+    pass_criteria: []
+
+  - test_id: "tc.regulated_domain.real_estate.001"
+    scenario_type: "regulated_domain"
+    eval_family: "behavioral"
+    domain: "real_estate"
+    named_constraint: "Fair Housing | TCPA | RESPA | MLS_IDX_VOW | state_advertising_licensure"
+    linked_regulated_domain_extension_ids: []
+    inputs:
+      summary:
+      external_communication_requested: true
+      sensitive_or_protected_class_signals: []
+    expected_ai_behavior:
+    prohibited_behavior:
+    required_review_role:
+    pass_criteria: []
+
+coverage_requirements:
+  eval_methodology:
+    allowed_methods:
+      - "golden_set_expected_outputs"
+      - "human_rated"
+      - "llm_as_judge_with_human_review_for_material_failures"
+      - "hybrid"
+    selected_method: "unknown"
+    golden_set_required_for_build_ready: true
+    human_rating_required_for_regulated_domain_or_high_risk: true
+    llm_as_judge_allowed_only_with_rubric: true
+    regression_suite_versioning_required: true
+    drift_detection_required_after_launch: true
+    do_not_use_live_client_systems_before_step18_approval: true
+  must_cover:
+    - good_outcome
+    - bad_or_forbidden_behavior
+    - edge_case
+    - low_confidence_case
+    - source_conflict_case
+    - fragile_truth_case
+    - clean_system_of_record_case
+    - shadow_excel_macro_case
+    - expert_memory_truth_case
+    - conflicting_reports_case
+    - safe_limited_fragile_truth_case
+    - escalation_trigger
+    - sensitive_field_handling_when_relevant
+  minimum_cases_before_implementation: 40
+  minimum_behavioral_cases:
+    good_per_behavior_or_decision_family: 10
+    bad_or_forbidden_per_behavior_or_decision_family: 10
+    edge_per_behavior_or_decision_family: 5
+    source_conflict_when_material: 5
+    fragile_truth_when_material: 5
+    escalation_when_material: 5
+    regulated_domain_when_applicable: 5
+  minimum_output_quality_cases:
+    schema_or_format_per_output_contract: 10
+    required_fields_per_output_contract: 10
+    evidence_or_citation_per_output_contract: 5
+    confidence_language_per_output_contract: 5
+    sensitive_field_handling_when_relevant: 5
+  output_quality_required:
+    schema_or_format: true
+    required_fields: true
+    evidence_or_citation: true
+    confidence_language: true
+    sensitive_field_handling: true
+  regression_suite:
+    suite_id: ""
+    version: "0.1"
+    owner: ""
+    change_log: []
+    rerun_required_when:
+      - "guidance_rule_changes"
+      - "source_hierarchy_changes"
+      - "truth_production_profile_changes"
+      - "regulated_domain_rule_changes"
+      - "output_contract_changes"
+      - "behavior_level_expands"
+  do_not_run_against_live_client_systems_before_step18_approval: true

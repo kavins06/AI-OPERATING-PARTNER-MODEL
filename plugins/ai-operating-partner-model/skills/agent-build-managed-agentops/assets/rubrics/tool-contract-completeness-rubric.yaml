@@ -1,0 +1,124 @@
+rubric_id: tool_data_identity_contracts_rubric
+phase_id: 5
+phase_key: tool_data_identity_contracts
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver; no automatic blocker remains."
+  conditional: "No critical blocker remains, but named follow-up is required before environment, pilot, or production promotion."
+  blocked: "Any required criterion fails without authorized waiver, or any automatic blocker is present."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    owner: ""
+    evidence_required:
+      - "technical_blueprint"
+      - "organizational_intelligence_baseline"
+      - "risk_control_model"
+      - "implementation_decision_packet"
+      - "agent_architecture_record"
+    pass_condition: "Required source inputs and current architecture record are approved, versioned, internally consistent, and cited."
+  - criterion_id: scope_preserved
+    required: true
+    owner: ""
+    evidence_required:
+      - "implementation_decision_packet.first_build_scope"
+      - "agent_architecture_record.scope_lock"
+      - "approved tools and sources"
+    pass_condition: "Tool/data/identity contracts are equal to or narrower than approved handoff and architecture."
+  - criterion_id: complete_tool_inventory
+    required: true
+    owner: ""
+    evidence_required:
+      - "tools"
+      - "architecture_record.components"
+      - "technical_blueprint.integration_inventory"
+    pass_condition: "Every API, MCP tool, connector, database, document store, workflow action, notification path, and human handoff tool is registered or explicitly blocked."
+  - criterion_id: least_privilege_permissions
+    required: true
+    owner: ""
+    evidence_required:
+      - "tools.permissions"
+      - "permission_scopes_allowed"
+      - "permission_scopes_denied"
+      - "least_privilege_evidence"
+    pass_condition: "Permissions are scoped by action, endpoint, data class, environment, and identity, with explicit denied scopes and system-owner approval."
+  - criterion_id: identity_mapping_unambiguous
+    required: true
+    owner: ""
+    evidence_required:
+      - "identity_model"
+      - "tools.identity_and_access"
+      - "access_request_refs"
+      - "revocation_owner"
+    pass_condition: "Agent identity, service accounts, end-user delegation, impersonation stance, credential storage, rotation, access review, break-glass policy, and revocation SLA are explicit."
+  - criterion_id: data_contracts_complete
+    required: true
+    owner: ""
+    evidence_required:
+      - "data_governance_policy"
+      - "tools.data_contract"
+      - "field classifications"
+      - "retention and redaction rules"
+    pass_condition: "Each tool has authoritative source, field classification, freshness, retention, deletion, lineage, redaction, validation, and prohibited-field rules."
+  - criterion_id: invocation_policy_implementation_ready
+    required: true
+    owner: ""
+    evidence_required:
+      - "tools.invocation_policy"
+      - "rate_limits"
+      - "timeouts"
+      - "retry_policy"
+      - "idempotency_key"
+    pass_condition: "Allowed/prohibited conditions, rate limits, concurrency, timeouts, retries, idempotency, and human approval policy are sufficient for implementation."
+  - criterion_id: write_send_execute_controls
+    required: true
+    owner: ""
+    evidence_required:
+      - "endpoints_or_actions"
+      - "approval_policy_ref"
+      - "human_approval_required"
+      - "compensation_or_rollback_steps"
+    pass_condition: "Any create/update/delete/send/execute action has explicit handoff approval, human approval, audit event, idempotency, reconciliation, rollback or compensation, and revocation behavior."
+  - criterion_id: failure_behavior_safe
+    required: true
+    owner: ""
+    evidence_required:
+      - "tools.failure_behavior"
+      - "negative_test_refs"
+      - "rollback_test_refs"
+    pass_condition: "Validation error, permission error, unavailable service, stale data, partial success, duplicate invocation, unexpected side effect, and downstream policy rejection stop safely and alert owners."
+  - criterion_id: auditability_complete
+    required: true
+    owner: ""
+    evidence_required:
+      - "audit_policy.required_fields"
+      - "tools.audit_and_observability"
+      - "audit_log_test_refs"
+    pass_condition: "Every tool call records required audit fields, redacts sensitive data, routes alerts, and can be correlated to run, actor, release, environment, permission, and approval."
+  - criterion_id: test_and_revocation_evidence_complete
+    required: true
+    owner: ""
+    evidence_required:
+      - "sandbox_fixture_refs"
+      - "permission_test_refs"
+      - "negative_test_refs"
+      - "audit_log_test_refs"
+      - "revocation_drill_refs"
+    pass_condition: "Sandbox fixtures, permission tests, negative tests, audit-log tests, revocation drill, and rollback/compensation tests are attached or marked blocking."
+  - criterion_id: return_to_method_rules_recorded
+    required: true
+    owner: ""
+    evidence_required:
+      - "return_to_method_triggers"
+      - "blockers"
+    pass_condition: "Return-to-method triggers are evaluated and activated when a tool requires unapproved access, source, user, workflow action, or identity assumption."
+automatic_blockers:
+  - "Tool lacks owner, permission scope, audit logging, failure behavior, or revocation path."
+  - "Identity mapping is ambiguous."
+  - "Write/send action appears without explicit approval."
+  - "Data contract lacks source-of-truth, classification, freshness, retention, validation, or prohibited-field rules."
+  - "Tool output can drive user-visible or system side effects without a reconciliation path."
+return_to_method_triggers:
+  - "Tool requires access not approved in Step 17/18."
+  - "Required system owner refuses or cannot provide least-privilege access."
+  - "The approved outcome cannot be delivered without a new source, user group, workflow action, or identity assumption."

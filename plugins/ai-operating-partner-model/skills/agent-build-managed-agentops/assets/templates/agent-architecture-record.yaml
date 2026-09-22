@@ -1,0 +1,270 @@
+object_type: "agent_architecture_record"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "architecture_<agent_id>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+
+source_inputs:
+  build_contract_id: ""
+  agent_build_plan_id: ""
+  implementation_decision_packet_id: ""
+  managed_lifecycle_object_id: ""
+  technical_blueprint_id: ""
+  solution_shape_id: ""
+  risk_control_model_id: ""
+  evidence_refs: []
+  approval_checks:
+    step_18_handoff_approved: false
+    separate_implementation_approval_present: false
+    source_artifacts_version_locked: false
+    unresolved_method_conditions: []
+
+scope_lock:
+  approved_first_behavior: ""
+  approved_behavior_level: ""
+  approved_workflow_boundary: ""
+  approved_user_groups: []
+  approved_sources: []
+  approved_tools: []
+  approved_environments:
+    - "offline_validation"
+  prohibited_behaviors: []
+  prohibited_actions: []
+  prohibited_sources: []
+  out_of_scope_user_groups: []
+  material_change_triggers:
+    - "New user group, source, tool, workflow, behavior level, write/send action, or production access."
+
+architecture_summary:
+  agent_id: ""
+  agent_name: ""
+  agent_purpose: ""
+  behavior_level: ""
+  oversight_model: ""
+  topology: "single_agent"
+  orchestration_pattern: "single_turn_with_tool_calls"
+  primary_user_surfaces: []
+  operating_environments:
+    - "offline_validation"
+  excluded_environments: []
+  non_goals: []
+  implementation_assumptions: []
+
+components:
+  - component_id: "agent_runtime"
+    component_type: "runtime"
+    owner: ""
+    purpose: ""
+    implementation_notes: ""
+    environments: []
+    dependencies: []
+    inbound_interfaces: []
+    outbound_interfaces: []
+    data_classes_processed: []
+    failure_isolation: ""
+    audit_events_emitted: []
+  - component_id: "model_gateway"
+    component_type: "model_gateway"
+    owner: ""
+    purpose: ""
+    implementation_notes: ""
+    environments: []
+    dependencies: []
+    model_classes_allowed: []
+    policy_controls: []
+    audit_events_emitted: []
+  - component_id: "tool_orchestration"
+    component_type: "tool_orchestration"
+    owner: ""
+    purpose: ""
+    implementation_notes: ""
+    environments: []
+    dependencies: []
+    approved_tool_contracts: []
+    denied_tool_categories: []
+    audit_events_emitted: []
+  - component_id: "human_review_queue"
+    component_type: "human_review"
+    owner: ""
+    purpose: ""
+    implementation_notes: ""
+    environments: []
+    dependencies: []
+    approval_sla: ""
+    escalation_path: ""
+    audit_events_emitted: []
+  - component_id: "trace_and_audit_layer"
+    component_type: "observability"
+    owner: ""
+    purpose: ""
+    implementation_notes: ""
+    environments: []
+    dependencies: []
+    trace_retention: ""
+    sensitive_data_redaction: ""
+
+model_posture:
+  model_classes_allowed: []
+  model_classes_prohibited: []
+  routing_policy: ""
+  fallback_policy: ""
+  model_selection_constraints:
+    latency_budget: ""
+    cost_budget: ""
+    data_residency: ""
+    privacy_posture: ""
+  prompt_or_instruction_sources: []
+  retrieval_sources: []
+  context_minimization_rules: []
+  model_output_constraints: []
+  prohibited_model_behaviors: []
+  uncertainty_policy: ""
+  human_review_required_when: []
+
+identity_and_access_posture:
+  agent_identity: ""
+  runtime_service_account: ""
+  end_user_delegation_allowed: false
+  impersonation_allowed: false
+  break_glass_allowed: false
+  break_glass_owner: ""
+  permission_boundary_summary: ""
+  least_privilege_evidence_refs: []
+  access_review_cadence: ""
+  revocation_owner: ""
+  revocation_sla: ""
+
+data_and_system_paths:
+  read_paths:
+    - path_id: ""
+      source_system: ""
+      data_owner: ""
+      data_classes: []
+      fields_allowed: []
+      fields_prohibited: []
+      freshness_requirement: ""
+      validation_required: []
+      environments_allowed: []
+  write_paths: []
+  retrieval_paths: []
+  event_paths:
+    - event_id: "agent_run_started"
+      producer: "agent_runtime"
+      consumer: "trace_and_audit_layer"
+      required_fields:
+        - "agent_id"
+        - "run_id"
+        - "release_version"
+        - "environment"
+  human_approval_paths: []
+  logging_paths:
+    traces: ""
+    audit_logs: ""
+    metrics: ""
+    alerts: ""
+  secrets_and_credentials:
+    storage_pattern: ""
+    runtime_injection_pattern: ""
+    rotation_policy: ""
+    emergency_rotation_policy: ""
+    access_roles: []
+    prohibited_storage_patterns:
+      - "local files"
+      - "source control"
+      - "plaintext environment dumps"
+  data_classifications_allowed: []
+  data_classifications_prohibited: []
+  retention_and_deletion:
+    trace_retention: ""
+    prompt_context_retention: ""
+    tool_payload_retention: ""
+    deletion_owner: ""
+
+auditability_and_observability:
+  trace_required_for_all_runs: true
+  audit_log_required_for_tool_calls: true
+  correlation_ids_required:
+    - "agent_id"
+    - "run_id"
+    - "release_version"
+    - "environment"
+    - "user_or_actor_id"
+  required_audit_events:
+    - "agent_run_started"
+    - "model_invocation_completed"
+    - "tool_call_requested"
+    - "tool_call_completed"
+    - "human_approval_requested"
+    - "human_approval_decided"
+    - "agent_run_completed"
+    - "control_violation_detected"
+  redaction_policy: ""
+  dashboard_refs: []
+  alert_routes: []
+
+architectural_decisions:
+  - decision_id: "adr_001"
+    decision: ""
+    context: ""
+    options_considered: []
+    rationale: ""
+    consequences: []
+    rejected_options: []
+    linked_risks: []
+    approver: ""
+    date: ""
+    evidence_refs: []
+
+resilience_and_failure_modes:
+  expected_failure_modes:
+    - failure_mode_id: "missing_required_source_data"
+      description: ""
+      detection_signal: ""
+      safe_response: "stop_and_explain"
+      user_message_policy: ""
+      human_escalation_path: ""
+      audit_event: ""
+      owner: ""
+  degraded_mode_behavior: ""
+  retry_policy:
+    default: "no_retry_until_defined"
+    idempotent_tool_calls: ""
+    non_idempotent_tool_calls: "do_not_retry"
+  timeout_policy:
+    model_timeout_seconds: null
+    tool_timeout_seconds: null
+    overall_run_timeout_seconds: null
+  stop_conditions: []
+  human_escalation_path: ""
+  incident_route: ""
+  rollback_dependencies: []
+
+rollback_and_change_control:
+  rollback_owner: ""
+  rollback_dependencies: []
+  rollback_trigger_conditions: []
+  rollback_validation: []
+  architecture_freeze_conditions: []
+  material_change_review_required: true
+  return_to_method_triggers:
+    - "Architecture requires different behavior level, source, or oversight model."
+
+architecture_readiness_checks:
+  scope_preserved: false
+  component_owners_assigned: false
+  least_privilege_path_defined: false
+  auditability_defined: false
+  failure_modes_defined: false
+  rollback_dependencies_defined: false
+  security_and_data_owner_reviewed: false
+  next_phase_dependencies_named: false
+  blockers: []
+
+architecture_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  notes: []

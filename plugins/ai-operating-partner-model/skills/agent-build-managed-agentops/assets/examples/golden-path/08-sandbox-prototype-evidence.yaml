@@ -1,0 +1,144 @@
+example_id: "golden_path_phase_08_sandbox_prototype"
+phase_id: 8
+phase_key: "sandbox_prototype"
+phase_name: "Sandbox Prototype"
+source_packet: "skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml"
+status: "implementation_grade_example"
+purpose: "Demonstrate sandbox prototype evidence for the approved revenue intake draft-and-flag agent."
+
+minimum_completed_sections:
+  - "source_inputs"
+  - "sandbox_scope"
+  - "build_version"
+  - "test_data_lineage"
+  - "sandbox_run_results"
+  - "eval_and_control_results"
+  - "trace_evidence"
+  - "deviation_log"
+  - "defect_log"
+  - "rollback_and_revocation_tests"
+  - "promotion_decision"
+
+section1_inputs_used:
+  - "technical_blueprint"
+  - "ai_guidance_pack"
+  - "risk_control_model"
+  - "method_to_build_handoff_contract"
+section2_outputs_demonstrated:
+  - "environment_progression_gate"
+  - "release_version_manifest"
+
+evidence_expectations:
+  - "Cite approved technical blueprint, guidance, risk model, and method-to-build handoff."
+  - "Show sandbox environment isolation, test-data lineage, versioned build artifacts, traces, eval/control results, deviations, defects, and rollback evidence."
+  - "Record blockers instead of treating sandbox success as production readiness."
+failure_modes_to_test:
+  - "Sandbox uses unapproved data or access."
+  - "Prototype deviations are not recorded."
+  - "Sandbox success is treated as production readiness."
+return_to_method_triggers_to_test:
+  - "Sandbox learning changes approved scope, risk, truth, or value assumptions."
+  - "Sandbox feasibility requires different behavior level, source, tool, access, oversight, or lifecycle model."
+
+sandbox_evidence:
+  source_inputs:
+    build_contract_id: "build_contract_demo_revenue_intake_20260504"
+    technical_blueprint_id: "blueprint_demo_revenue_intake_20260501"
+    eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260506"
+    guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260506"
+    trace_observability_spec_id: "observability_demo_revenue_intake_20260507"
+    evidence_refs:
+      - "evidence://demo/phase08/sandbox-run-report"
+  sandbox_scope:
+    environment: "sandbox"
+    behavior_level: "draft_and_flag"
+    allowed_users:
+      - "agent_engineer"
+      - "agentops_reviewer"
+    allowed_tools:
+      - "crm_read_only_lookup"
+      - "intake_form_read_only_lookup"
+    prohibited_actions:
+      - "send_email"
+      - "crm_write"
+      - "export_customer_list"
+    data_policy: "Redacted historical records plus synthetic adversarial cases; no production secrets."
+  build_version:
+    release_version_manifest_id: "release_demo_revenue_intake_0_3_0_sandbox"
+    code_ref: "git://demo/agent-runtime@8f21c6d"
+    prompt_ref: "prompt://revenue-intake/followup-draft@0.3.0"
+    model_config_ref: "model-config://approved-text-reasoning@2026-05-06"
+    tool_contract_refs:
+      - "tool-contract://crm_read_only_lookup@1.0.0"
+      - "tool-contract://intake_form_read_only_lookup@1.0.0"
+  test_data_lineage:
+    dataset_refs:
+      - "dataset://golden_set_revenue_intake_001"
+      - "dataset://adversarial_set_revenue_intake_001"
+    redaction_status: "redacted_or_synthetic"
+    production_data_used: false
+    approved_by: "CRM Data Owner"
+  sandbox_run_results:
+    total_runs: 168
+    successful_runs: 151
+    blocked_or_escalated_runs: 17
+    untraced_runs: 0
+    unauthorized_tool_calls: 0
+    human_review_bypass_attempts: 6
+    human_review_bypass_successes: 0
+  eval_and_control_results:
+    task_success_rate: "0.94"
+    material_error_rate: "0.01"
+    prompt_injection_success_count: 0
+    sensitive_data_exposure_count: 0
+    control_violation_count: 0
+    evidence_refs:
+      - "evidence://demo/phase08/eval-results"
+      - "evidence://demo/phase08/control-test-results"
+  trace_evidence:
+    trace_completeness_rate: "1.00"
+    sampled_runs:
+      - "trace://demo/sandbox/run-0007-success"
+      - "trace://demo/sandbox/run-0044-tool-denied"
+      - "trace://demo/sandbox/run-0102-human-review-required"
+      - "trace://demo/sandbox/run-0133-source-conflict"
+  deviation_log:
+    - deviation_id: "dev-001"
+      description: "Added source-conflict escalation copy to reduce reviewer confusion."
+      severity: "low"
+      owner: "Agent Platform Lead"
+      decision: "accepted_with_no_scope_change"
+      return_to_method_required: false
+  defect_log:
+    - defect_id: "bug-014"
+      description: "Draft included redundant request when two missing fields mapped to same intake question."
+      severity: "medium"
+      owner: "Agent engineer"
+      remediation: "Updated field de-duplication rule and regression test."
+      retest_status: "passed"
+      pilot_blocking: false
+  rollback_and_revocation_tests:
+    feature_pause_test: "passed"
+    tool_revocation_test: "passed"
+    rollback_to_previous_sandbox_build: "passed"
+    evidence_refs:
+      - "evidence://demo/phase08/rollback-revocation-test"
+  promotion_decision:
+    decision: "approve_for_pilot_gate"
+    conditions:
+      - "Pilot volume cap of 25 draft requests per business day."
+      - "Daily pilot review required."
+    approved_by:
+      - "Revenue Operations Manager"
+      - "Security Lead"
+      - "AgentOps Lead"
+    approval_date: "2026-05-12"
+
+blocking_conditions_checked:
+  - "No unapproved live data, production secrets, or unregistered tools used."
+  - "No blocking eval/control/trace/rollback failures remain open."
+  - "Sandbox success is only evidence for pilot readiness."
+return_to_method_assessment:
+  status: "not_triggered"
+  notes:
+    - "No sandbox learning changed approved behavior level, scope, risk, truth, or value assumptions."

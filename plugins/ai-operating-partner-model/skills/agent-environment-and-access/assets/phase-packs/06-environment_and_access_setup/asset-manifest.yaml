@@ -1,0 +1,37 @@
+phase_pack_id: 06-environment_and_access_setup
+support_skill: agent-environment-and-access
+phase_id: 6
+phase_key: environment_and_access_setup
+phase_name: Environment And Access Setup
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- technical_blueprint
+- risk_control_model
+- managed_lifecycle_object
+- method_to_build_handoff_contract
+section2_outputs:
+- environment_progression_gate
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/environment-progression-gate.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/environment-access-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/environment-access-readiness-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/environment_and_access_setup.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/06-environment-progression-gate.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- Secrets, test data, sandbox, or access review process is undefined.
+- Production access is implied before readiness gate.
+return_to_method_triggers:
+- Approved environment path is not feasible.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

@@ -1,0 +1,334 @@
+object_type: "agentops_operating_record"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "agentops_record_<agent_id>_current"
+version: "0.1"
+status: "draft"
+source_of_truth: true
+
+source_inputs:
+  build_contract_id: ""
+  release_version_manifest_id: ""
+  production_readiness_gate_id: ""
+  trace_observability_spec_id: ""
+  guardrail_control_matrix_id: ""
+  tool_contract_registry_id: ""
+  eval_harness_spec_id: ""
+  incident_revocation_runbook_ref: "skills/agent-build-managed-agentops/assets/templates/incident-revocation-runbook.md"
+  internal_operator_run_card_ref: "skills/agent-build-managed-agentops/assets/templates/internal-operator-run-card.md"
+  evidence_refs: []
+
+agent_identity:
+  agent_id: ""
+  agent_name: ""
+  current_release_version: ""
+  current_environment: "limited_pilot"
+  current_status: "not_live"
+  behavior_level_authorized: ""
+  business_capability: ""
+  current_release_started_at: ""
+  current_release_expires_or_review_due_at: ""
+
+operating_model:
+  executive_sponsor: ""
+  business_owner: ""
+  product_owner: ""
+  technical_owner: ""
+  security_owner: ""
+  data_owner: ""
+  risk_or_compliance_owner: ""
+  agentops_owner: ""
+  support_owner: ""
+  revocation_owner: ""
+  review_forum: ""
+  escalation_channel: ""
+  support_hours: ""
+  owner_coverage:
+    primary_coverage_window: ""
+    backup_owner_required: true
+    backup_owners: []
+    critical_incident_contact_order: []
+    coverage_gaps: []
+    last_coverage_review_date: ""
+    next_coverage_review_date: ""
+
+live_scope:
+  user_groups: []
+  workflow_boundaries: []
+  environments_allowed: []
+  systems_connected: []
+  tools_enabled: []
+  data_classes_allowed: []
+  sources_allowed: []
+  outputs_allowed: []
+  scale_limits: []
+  explicit_scope_exclusions:
+    - "No user, workflow, source, tool, data class, output channel, write/send action, or behavior level outside approved Step 17/18 scope."
+
+cadence:
+  daily_monitoring:
+    owner: ""
+    required_during: "pilot_and_first_30_days_of_production"
+    checks:
+      - "blocking alerts"
+      - "untraced runs"
+      - "control violations"
+      - "critical user feedback"
+  weekly_review:
+    owner: ""
+    required_during: "all_active_operation"
+    required_sections:
+      - "owner coverage"
+      - "operating metrics"
+      - "source freshness"
+      - "access and tool permissions"
+      - "incidents and near misses"
+      - "value tracking"
+      - "guidance changes"
+      - "stop conditions"
+  monthly_review:
+    owner: ""
+    required_during: "all_active_operation"
+    required_sections:
+      - "formal access attestation"
+      - "source owner attestation"
+      - "value realization versus baseline"
+      - "cost and support burden"
+      - "owner coverage and succession"
+      - "retirement or redesign triggers"
+  quarterly_review:
+    owner: ""
+    required_during: "agents_with_quarterly_governance_requirement"
+    required_sections:
+      - "lifecycle fit"
+      - "risk posture"
+      - "business value"
+      - "replacement or simplification opportunity"
+
+operating_metrics:
+  quality_metrics:
+    - metric_id: "task_quality_pass_rate"
+      name: ""
+      target: ""
+      warning_threshold: ""
+      blocking_threshold: ""
+      current_value: null
+      trend: "unknown"
+      owner: ""
+      evidence_refs: []
+  safety_metrics:
+    - metric_id: "control_violation_count"
+      name: "Control violation count"
+      target: "0"
+      warning_threshold: "> 0"
+      blocking_threshold: "> 0 critical or high severity"
+      current_value: null
+      trend: "unknown"
+      owner: ""
+      evidence_refs: []
+  reliability_metrics:
+    - metric_id: "untraced_run_count"
+      name: "Untraced run count"
+      target: "0"
+      warning_threshold: "> 0"
+      blocking_threshold: "> 0 production runs"
+      current_value: null
+      trend: "unknown"
+      owner: ""
+      evidence_refs: []
+  adoption_metrics:
+    - metric_id: "active_user_rate"
+      name: ""
+      target: ""
+      warning_threshold: ""
+      blocking_threshold: ""
+      current_value: null
+      trend: "unknown"
+      owner: ""
+      evidence_refs: []
+  value_metrics:
+    - metric_id: "net_time_saved_hours"
+      name: ""
+      baseline: ""
+      target: ""
+      warning_threshold: ""
+      blocking_threshold: "below minimum viable value for two consecutive review cycles"
+      current_value: null
+      trend: "unknown"
+      owner: ""
+      evidence_refs: []
+  cost_metrics:
+    - metric_id: "operating_cost_per_completed_workflow"
+      name: ""
+      target: ""
+      warning_threshold: ""
+      blocking_threshold: ""
+      current_value: null
+      trend: "unknown"
+      owner: ""
+      evidence_refs: []
+
+source_freshness:
+  policy:
+    stale_source_default_action: "pause affected output or require human review"
+    owner_attestation_required: true
+    conflicting_source_default_action: "stop and return to source owner"
+  sources:
+    - source_id: ""
+      source_name: ""
+      authoritative_owner: ""
+      system_or_repository: ""
+      used_for_outputs: []
+      freshness_sla: ""
+      last_verified_at: ""
+      last_changed_at: ""
+      last_owner_attestation_at: ""
+      verification_method: ""
+      current_status: "unknown"
+      stale_action: "pause_affected_output"
+      evidence_refs: []
+  freshness_issues: []
+
+access_review:
+  cadence: "monthly"
+  last_review_date: ""
+  next_review_date: ""
+  reviewed_by: []
+  user_entitlements:
+    - group_or_role: ""
+      allowed: true
+      owner: ""
+      last_attested_at: ""
+      exceptions: []
+  service_accounts:
+    - identity_id: ""
+      permissions_summary: ""
+      owner: ""
+      last_rotated_at: ""
+      last_used_at: ""
+      revoke_if_unused_after: ""
+      exceptions: []
+  tool_credentials:
+    - tool_id: ""
+      credential_ref: ""
+      permission_scope: ""
+      owner: ""
+      last_reviewed_at: ""
+      revocation_method: ""
+      exceptions: []
+  access_changes_since_last_review: []
+  revocations_completed: []
+
+guidance_and_knowledge_updates:
+  ai_guidance_pack_version: ""
+  prompt_or_instruction_refs: []
+  policy_refs: []
+  retrieval_corpus_refs: []
+  eval_dataset_refs: []
+  update_cadence: ""
+  last_review_date: ""
+  material_change_requires_phase_14: true
+  stale_guidance_stop_condition: "pause affected workflow if current policy or source guidance cannot be confirmed"
+  update_log: []
+
+incident_response_and_revocation:
+  runbook_ref: "skills/agent-build-managed-agentops/assets/templates/incident-revocation-runbook.md"
+  severity_model_ref: ""
+  pause_mechanisms:
+    - mechanism_id: ""
+      mechanism_type: "feature_flag"
+      owner: ""
+      max_time_to_execute: ""
+      evidence_ref: ""
+  revocation_mechanisms:
+    - mechanism_id: ""
+      target: ""
+      owner: ""
+      max_time_to_revoke: ""
+      queued_work_stop_method: ""
+      restoration_approval_required_from: []
+  rollback_release:
+    previous_stable_release_version: ""
+    rollback_package_ref: ""
+    rollback_owner: ""
+  last_rehearsal:
+    rehearsal_date: ""
+    result: ""
+    evidence_refs: []
+  communication_plan:
+    user_message_owner: ""
+    internal_status_channel: ""
+    external_notification_required_if: []
+
+review_log:
+  - review_id: "review_001"
+    review_date: ""
+    review_type: "weekly"
+    reviewed_by: []
+    evidence_refs: []
+    findings: []
+    decisions: []
+    follow_up_actions:
+      - action_id: ""
+        owner: ""
+        due_date: ""
+        status: "open"
+
+incidents:
+  - incident_id: "incident_001"
+    opened_at: ""
+    severity: "unknown"
+    summary: ""
+    status: "open"
+    controls_triggered: []
+    stop_condition_triggered: false
+    user_or_workflow_impact: ""
+    containment_actions: []
+    revocations_or_pauses: []
+    root_cause_summary: ""
+    resolution_summary: ""
+    restoration_approved_by: []
+    evidence_refs: []
+
+drift_and_change_log:
+  model_or_prompt_changes: []
+  retrieval_corpus_changes: []
+  source_authority_changes: []
+  tool_contract_changes: []
+  access_or_identity_changes: []
+  user_scope_changes: []
+  performance_or_quality_drift: []
+  operating_model_changes: []
+  phase_14_reviews_opened: []
+  phase_15_reviews_opened: []
+
+value_tracking:
+  measurement_baseline_ref: ""
+  value_owner: ""
+  expected_value: ""
+  minimum_viable_value_threshold: ""
+  realized_value_to_date: ""
+  human_time_spent_operating_or_correcting: ""
+  net_value_assessment: "unknown"
+  evidence_refs: []
+  value_risks: []
+
+operating_decisions:
+  current_decision: "not_submitted"
+  continue_conditions: []
+  pause_conditions:
+    - "Any blocking safety, traceability, access, source freshness, owner coverage, or value threshold failure."
+  expansion_conditions:
+    - "Phase 14 approval required before any material scope expansion."
+  retirement_conditions:
+    - "Phase 15 review required when value, source, owner, adoption, support, or risk evidence falls below threshold."
+  return_to_method_triggers:
+    - "Operating metrics show value, risk, source, ownership, or adoption assumptions are invalid."
+  next_review_date: ""
+
+operating_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""

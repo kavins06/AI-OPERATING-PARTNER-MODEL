@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Evals Guardrails Observability"
+  short_description: "Design implementation-grade evals, guardrails, traces, dashboards, alerts, and security-control evidence."
+  default_prompt: "Use $agent-evals-guardrails-observability after approved Step 18 handoff and separate implementation approval to complete Section 2 phases 7 and 9 with behavior-level evals, adversarial tests, blocking thresholds, guardrail controls, trace policy, incident rehearsal evidence, checklists, rubrics, and validator rules."

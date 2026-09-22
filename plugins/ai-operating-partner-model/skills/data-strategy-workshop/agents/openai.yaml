@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Strategy Workshop"
+  short_description: "Create Step 1-2 terrain and candidate use cases."
+  default_prompt: "Use this skill to produce Step 1 executive opportunity terrain and a Step 2 candidate_use_case_shortlist with evidence, value, trust, adoption, regulated-domain dependencies, and disqualification criteria."

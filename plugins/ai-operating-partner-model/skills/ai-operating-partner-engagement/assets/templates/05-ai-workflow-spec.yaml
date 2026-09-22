@@ -1,0 +1,536 @@
+# AI Workflow Specification
+# YAML enum convention: fields are left empty and a 'allowed:' comment lists permitted enum values.
+# Operators fill the field with exactly one of the allowed values. The framework canonical schema validates the filled value.
+spec_version: "0.2"
+object_type: "organizational_workflow_intelligence"
+status: "initial_workflow_spec"
+build_ready: false
+
+process_alignment:
+  engagement_tier_id:
+  regulated_domain_extension_ids: []
+  candidate_use_case_ids: []
+  variation_map_ids: []
+  schema_contract_status:  # allowed: draft | validated_against_template | failed_completeness_checks
+workflow:
+  workflow_id:
+  name:
+  business_purpose:
+  trigger:
+  outcome:
+  validation_status:  # allowed: draft | partially_validated | validated
+  confidence:  # allowed: low | medium | high
+organization_context:
+  company_type:
+  business_unit:
+  org_structure_source:
+  org_structure_status:  # allowed: unknown | provided | inferred | partially_validated | validated
+  teams:
+    - team_id:
+      name:
+      parent_team_id:
+      scope:
+      confidence:
+  roles:
+    - role_id:
+      name:
+      layer:
+      team_id:
+      responsibilities:
+        -
+      decision_rights:
+        -
+      approval_authority:
+      confidence:
+  reporting_structure:
+    - parent_role_id:
+      child_role_id:
+      relationship_type:  # allowed: reports_to | dotted_line | escalation | approval
+      confidence:
+  people:
+    - person_id:
+      display_label:
+      role_ids:
+        -
+      team_id:
+      portfolio_or_function_scope:
+      status:  # allowed: known_not_interviewed | interviewed | inferred
+      evidence_refs:
+        -
+      pii_policy: "minimal"
+      confidence:
+
+interview_coverage:
+  intended_population_by_role:
+    - role_id:
+      count:
+  completed_by_role:
+    - role_id:
+      count:
+      interview_refs:
+        -
+  coverage_strategy:
+  participation_bias_notes:
+    -
+  fragmented_org_triggered_variation_mapping: false
+  linked_variation_map_ids:
+    -
+  saturation_status:  # allowed: not_started | partial | strong | saturated
+  expansion_needed:
+  expansion_reason:
+    -
+  known_coverage_gaps:
+    -
+
+role_involvement:
+  - role_id:
+    involvement_type:  # allowed: strategy | approval | escalation | decision | preparation | execution | coordination | support | system_owner | data_owner
+    responsibilities_in_workflow:
+      -
+    observed_importance:  # allowed: low | medium | high
+    evidence_refs:
+      -
+    confidence:
+
+actors:
+  - actor_id:
+    person_id:
+    role_id:
+    workflow_id:
+    involvement:
+    decision_rights:
+      -
+    approval_authority:
+    knowledge_domains:
+      -
+    evidence_refs:
+      -
+    confidence:
+
+steps:
+  - step_id:
+    sequence:
+    primary_actor_id:
+    primary_role_id:
+    action:
+    trigger:
+    inputs:
+      -
+    information_object_ids:
+      -
+    systems_or_sources_mentioned:
+      -
+    outputs:
+      -
+    handoff_to_actor_id:
+    handoff_to_role_id:
+    decision_ids:
+      -
+    approval_gate_ids:
+      -
+    risk_signal_ids:
+      -
+    sensitive_data_signal_ids:
+      -
+    evidence_refs:
+      -
+    validation_status:  # allowed: unknown | interview_claim | artifact_supported | validated
+    confidence:  # allowed: low | medium | high
+decisions:
+  - decision_id:
+    name:
+    owner_actor_id:
+    owner_role_id:
+    inputs_required:
+      -
+    information_object_ids:
+      -
+    explicit_rules:
+      -
+    tacit_judgment:
+      -
+    confidence_signals:
+      -
+    escalation_triggers:
+      -
+    human_required:
+    ai_support_allowed:
+      -
+    ai_support_forbidden:
+      -
+    evidence_refs:
+      -
+    validation_status:
+    confidence:
+
+edge_cases:
+  - edge_case_id:
+    description:
+    normal_rule_broken:
+    trigger:
+    detected_by_actor_id:
+    detected_by_role_id:
+    detection_method:
+    handler_actor_id:
+    handler_role_id:
+    escalation_actor_id:
+    escalation_role_id:
+    systems_or_sources:
+      -
+    information_object_ids:
+      -
+    decision_required:
+    current_resolution:
+    risk_if_mishandled:
+    frequency:  # allowed: unknown | rare | occasional | frequent
+    severity:  # allowed: low | medium | high
+    automation_implication:
+    validation_needed:
+    evidence_refs:
+      -
+    confidence:
+
+information_objects:
+  - information_object_id:
+    name:
+    object_type:  # allowed: data_point | document | report | dashboard | spreadsheet | spreadsheet_macro | email | system_record | image | approval | policy | metric | message | person_knowledge | reconciliation | other
+    business_use:
+    used_in_step_ids:
+      -
+    used_in_decision_ids:
+      -
+    used_in_edge_case_ids:
+      -
+    required_for_outcome:
+    required_fields_or_attributes:
+      -
+    lookup_keys:
+      -
+    freshness_requirement:
+    source_access_profile_ids:
+      -
+    truth_production_profile_ids:
+      -
+    compared_against_information_object_ids:
+      -
+    related_source_ids:
+      -
+    known_quality_or_access_issues:
+      -
+    sensitivity:
+    validation_status:  # allowed: mentioned | access_path_captured | artifact_supported | needs_governance_resolution | validated
+    evidence_refs:
+      -
+    confidence:
+
+sources_mentioned:
+  - source_id:
+    name:
+    source_type:  # allowed: system | report | dashboard | tracker | document | email | spreadsheet | spreadsheet_macro | manual_adjustment | expert_memory | walkthrough | interview_claim | other
+    system_id:
+    information_object_ids:
+      -
+    trusted_for:
+      -
+    not_trusted_for:
+      -
+    known_quality_issues:
+      -
+    sensitivity:
+    likely_owner:
+    validation_status:  # allowed: mentioned | artifact_supported | needs_governance_resolution | validated
+    evidence_refs:
+      -
+    confidence:
+
+systems_mentioned:
+  - system_id:
+    name:
+    purpose:
+    likely_owner:
+    data_held:
+      -
+    source_access_profile_ids:
+      -
+    access_constraints_known:
+    validation_status:  # allowed: mentioned | needs_governance_resolution | validated
+    evidence_refs:
+      -
+    confidence:
+
+source_access_profiles:
+  - source_access_profile_id:
+    information_object_id:
+    source_id:
+    system_id:
+    system_or_location:
+    module_report_view_or_path:
+    access_method:  # allowed: system_ui | report_export | dashboard | shared_drive | email_search | portal | API | person_request | walkthrough | other
+    practical_access_path:
+    lookup_keys:
+      -
+    required_fields_or_attributes:
+      -
+    current_access_roles:
+      -
+    alternate_locations:
+      -
+    compared_against_source_ids:
+      -
+    access_failure_modes:
+      # allowed: missing | stale | duplicate | conflicting | permission_denied | not_exportable | manual_request_required | unknown
+    screenshot_walkthrough_or_export_needed:
+    truth_production_profile_ids:
+      -
+    official_source_status:  # allowed: confirmed | candidate | disputed | missing | not_applicable | unknown
+    de_facto_source_status:  # allowed: confirmed | candidate | disputed | missing | not_applicable | unknown
+    truth_status:  # allowed: authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown
+    validation_status:  # allowed: mentioned | access_path_captured | artifact_supported | needs_governance_resolution | validated
+    evidence_refs:
+      -
+    confidence:
+
+truth_production_profiles:
+  - truth_profile_id:
+    name:
+    linked_information_object_ids:
+      -
+    linked_metric_ids:
+      -
+    linked_decision_ids:
+      -
+    linked_report_or_output_ids:
+      -
+    official_source:
+      source_id:
+      description:
+      status:  # allowed: confirmed | candidate | disputed | missing | not_applicable | unknown
+    de_facto_source:
+      source_id:
+      artifact_or_role:
+      why_people_trust_it:
+      status:  # allowed: confirmed | candidate | disputed | unknown
+    truth_production_chain:
+      - sequence:
+        step_type:  # allowed: system_entry | export | report_generation | formula | spreadsheet_macro | manual_adjustment | reconciliation | expert_judgment | approval | final_reporting | other
+        description:
+        input_source_ids:
+          -
+        output_information_object_id:
+        owner_or_knower_role:
+        evidence_refs:
+          -
+    embedded_business_rules:
+      - rule_id:
+        where_encoded:  # allowed: system_config | report_logic | formula | spreadsheet_macro | SOP | expert_memory | meeting_habit | unknown
+        description:
+        owner_or_knower_role:
+        extraction_needed: false
+    truth_status:  # allowed: authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown
+    reproducibility:  # allowed: high | medium | low | unknown
+    auditability:  # allowed: high | medium | low | unknown
+    versioning_or_change_control:
+    owner_role:
+    steward_or_knower_role:
+    fragility_signals:
+      # allowed: unowned | retired_employee_dependency | shared_drive_file | undocumented_macro | manual_copy_paste | no_version_control | conflicting_reports | no_reconciliation | unknown
+    ai_safe_usage:
+      allowed_uses:
+        - "summarize"
+        - "compare"
+        - "flag_uncertainty"
+        - "draft_question"
+        - "escalate"
+      prohibited_uses:
+        - "final_decision"
+        - "autonomous_action"
+    validation_status:  # allowed: mentioned | artifact_supported | needs_governance_resolution | validated | blocked
+    later_step_required:  # allowed: controlled_validation_governance_resolution | knowledge_mapping | measurement_intelligence | architecture_blueprint | risk_control | readiness_assessment
+    evidence_refs:
+      -
+    confidence:
+
+approval_gates:
+  - approval_gate_id:
+    condition:
+    approver_actor_id:
+    approver_role_id:
+    required_before:
+    audit_required:
+    ai_boundary:
+    validation_status:
+    evidence_refs:
+      -
+    confidence:
+
+sensitive_data_signals:
+  - sensitive_data_signal_id:
+    description:
+    field_or_content_type:
+    where_seen_or_mentioned:
+    handling_notes:
+    later_step_required:  # allowed: controlled_validation_governance_resolution | risk_register | zero_trust_controls
+    evidence_refs:
+      -
+    confidence:
+
+operating_strain_and_value_signals:
+  - signal_id:
+    type:  # allowed: delay | rework | manual_reconciliation | source_conflict | truth_production_fragility | visibility_gap | quality_review | capacity_constraint | risk_reduction | revenue | cost | service_quality
+    description:
+    affected_roles:
+      -
+    value_hypothesis:
+    metric_candidate:
+    evidence_refs:
+      -
+    confidence:
+
+role_variation_analysis:
+  - role_id:
+    shared_patterns:
+      -
+    observed_variations:
+      - variation_id:
+        description:
+        implication:
+        evidence_refs:
+          -
+        confidence:
+    conflicts:
+      -
+    best_practice_candidates:
+      -
+    standardization_opportunities:
+      -
+    saturation_status:  # allowed: unknown | partial | strong | saturated
+adoption_signals:
+  - adoption_signal_id:
+    linked_role_ids:
+      -
+    linked_candidate_use_case_ids:
+      -
+    signal_type:  # allowed: trust_barrier | incentive | habit | workflow_surface | optional_vs_mandated | training_need | current_tool_loyalty | workflow_to_retire | adoption_failure_risk | other
+    description:
+    evidence_refs:
+      -
+    confidence:
+
+regulated_domain_signals:
+  - regulated_signal_id:
+    linked_step_ids:
+      -
+    linked_decision_ids:
+      -
+    linked_candidate_use_case_ids:
+      -
+    domain:  # allowed: real_estate | healthcare | finance | legal | insurance | other
+    possible_rule_or_constraint:
+    why_it_may_apply:
+    owner_or_reviewer_candidate:
+    linked_regulated_domain_extension_id:
+    required_route:  # allowed: knowledge_requirements | guidance_pack | risk_control | legal_review | none
+    evidence_refs:
+      -
+    confidence:
+
+candidate_ai_assists:
+  - assist_id:
+    assist_type:  # allowed: draft | retrieve | summarize | monitor | route | check | explain | recommend | act
+    target_step_or_decision_id:
+    allowed_behavior:
+    forbidden_behavior:
+    required_sources:
+      -
+    required_information_object_ids:
+      -
+    required_source_access_profile_ids:
+      -
+    required_truth_production_profile_ids:
+      -
+    human_review_required:
+    readiness_dependencies:
+      -
+    evidence_refs:
+      -
+    confidence:
+
+evidence:
+  - evidence_id:
+    source_type:  # allowed: interview | artifact | system_export | screenshot | walkthrough | assumption | inference
+    description:
+    participant_or_owner:
+    date:
+    sensitivity:
+    supports_objects:
+      -
+    confidence:
+
+facts:
+  - fact_id:
+    statement:
+    evidence_refs:
+      -
+    confidence:
+
+assumptions:
+  - assumption_id:
+    statement:
+    why_assumed:
+    validation_needed:
+    later_step_required:
+
+inferences:
+  - inference_id:
+    statement:
+    based_on:
+      -
+    confidence:
+
+unknowns_and_enrichment_routes:
+  - unknown_id:
+    question:
+    blocks_readiness:
+    likely_owner:
+    later_step_required:  # allowed: controlled_validation_governance_resolution | knowledge_mapping | analytics_maturity_assessment | kpi_design | architecture_blueprint | risk_register | zero_trust_controls | readiness_assessment
+    priority:  # allowed: low | medium | high
+completeness_checks:
+  - check_id: "decision.owner_present"
+    description: "Every material decision has an owner role or explicit unknown routed to validation."
+    status:  # allowed: pass | fail | not_applicable
+    failing_object_ids: []
+    route_if_failed: "controlled_validation_governance_resolution"
+  - check_id: "information_object.source_access_profile_present"
+    description: "Every material information object has at least one source access profile or an unknown routed to validation."
+    status:  # allowed: pass | fail | not_applicable
+    failing_object_ids: []
+    route_if_failed: "controlled_validation_governance_resolution"
+  - check_id: "material_truth.truth_production_profile_present"
+    description: "Every material number, status, report, decision input, metric, or artifact treated as true has a truth production profile."
+    status:  # allowed: pass | fail | not_applicable
+    failing_object_ids: []
+    route_if_failed: "controlled_validation_governance_resolution"
+  - check_id: "candidate_ai_assist.boundaries_present"
+    description: "Every candidate AI assist states allowed behavior, forbidden behavior, human review, and readiness dependencies."
+    status:  # allowed: pass | fail | not_applicable
+    failing_object_ids: []
+    route_if_failed: "organizational_intelligence_diagnostic"
+  - check_id: "regulated_domain.extension_linked"
+    description: "Every regulated-domain trigger has a linked extension or explicit legal/risk review route."
+    status:  # allowed: pass | fail | not_applicable
+    failing_object_ids: []
+    route_if_failed: "knowledge_mapping"
+
+step_5_stop_status:
+  status:  # allowed: initial_ai_workflow_spec_complete | incomplete
+  build_ready: false
+  known:
+    -
+  partial:
+    -
+  unknown:
+    -
+  reason_not_build_ready:
+    -
+  next_required_steps:
+    -

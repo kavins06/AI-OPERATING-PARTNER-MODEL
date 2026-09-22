@@ -1,0 +1,267 @@
+object_type: "agent_necessity_kill_test"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "agent_necessity_<opportunity_id>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+
+source_inputs:
+  build_contract_id: ""
+  step_18_lifecycle_object_id: ""
+  implementation_decision_packet_id: ""
+  candidate_use_case_shortlist_id: ""
+  business_value_case_id: ""
+  solution_shape_id: ""
+  readiness_object_id: ""
+  evidence_refs: []
+  source_input_usage:
+    - artifact: "candidate_use_case_shortlist"
+      expected_fields:
+        - "opportunity_id"
+        - "use_case_boundary"
+        - "target_users"
+        - "value_hypothesis"
+        - "disqualification_criteria"
+      kill_test_usage: "Confirm the requested outcome and disqualification criteria still fit the approved candidate."
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "business_value_case"
+      expected_fields:
+        - "business_outcome"
+        - "expected_value_range"
+        - "ai_side_cost_envelope"
+        - "confidence"
+        - "value_risks"
+      kill_test_usage: "Compare incremental agent value against operating burden and simpler-path value."
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "solution_shape"
+      expected_fields:
+        - "build_buy_leverage_decision"
+        - "agent_topology"
+        - "runtime_pattern"
+        - "oversight_model"
+        - "adoption_constraints"
+      kill_test_usage: "Identify whether the recommended solution truly requires agent behavior."
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "readiness_object"
+      expected_fields:
+        - "hard_gates"
+        - "behavior_level_readiness"
+        - "dependency_map"
+        - "blockers"
+        - "minimum_safe_first_behavior"
+        - "prohibited_behaviors"
+      kill_test_usage: "Test whether the agent path can be constrained and safely overseen."
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "implementation_decision_packet"
+      expected_fields:
+        - "first_build_scope"
+        - "behavior_contract"
+        - "build_ready_decision"
+        - "overengineering_guardrail"
+        - "stop_boundary"
+      kill_test_usage: "Preserve the approved first build scope and prevent convenience-driven expansion."
+      completeness_status: "not_started"
+      evidence_refs: []
+
+decision_summary:
+  requested_agent_outcome: ""
+  current_status_quo: ""
+  lowest_risk_sufficient_solution: ""
+  reason_an_agent_is_being_considered: ""
+  approved_first_behavior: ""
+  operating_burden_summary:
+    evals_required: ""
+    monitoring_required: ""
+    human_review_required: ""
+    incident_response_required: ""
+    support_required: ""
+    ongoing_owner_cadence: ""
+  decision_forcing_question: "Would a report, rule, workflow automation, template, SOP, search experience, or human process satisfy the approved outcome with less risk and lower operating burden?"
+
+simpler_alternatives:
+  - alternative_id: "alt_human_process"
+    alternative_type: "human_process"
+    description: ""
+    outcome_fit: ""
+    delivery_speed: ""
+    implementation_effort: ""
+    risk_delta_vs_agent: ""
+    operating_cost_delta_vs_agent: ""
+    value_delta_vs_agent: ""
+    evidence_refs: []
+    reason_selected_or_rejected: ""
+    decision: "needs_more_evidence"
+  - alternative_id: "alt_sop_or_training"
+    alternative_type: "sop_or_training"
+    description: ""
+    outcome_fit: ""
+    delivery_speed: ""
+    implementation_effort: ""
+    risk_delta_vs_agent: ""
+    operating_cost_delta_vs_agent: ""
+    value_delta_vs_agent: ""
+    evidence_refs: []
+    reason_selected_or_rejected: ""
+    decision: "needs_more_evidence"
+  - alternative_id: "alt_rule_or_workflow_automation"
+    alternative_type: "workflow_automation"
+    description: ""
+    outcome_fit: ""
+    delivery_speed: ""
+    implementation_effort: ""
+    risk_delta_vs_agent: ""
+    operating_cost_delta_vs_agent: ""
+    value_delta_vs_agent: ""
+    evidence_refs: []
+    reason_selected_or_rejected: ""
+    decision: "needs_more_evidence"
+  - alternative_id: "alt_report_or_dashboard"
+    alternative_type: "report_or_dashboard"
+    description: ""
+    outcome_fit: ""
+    delivery_speed: ""
+    implementation_effort: ""
+    risk_delta_vs_agent: ""
+    operating_cost_delta_vs_agent: ""
+    value_delta_vs_agent: ""
+    evidence_refs: []
+    reason_selected_or_rejected: ""
+    decision: "needs_more_evidence"
+  - alternative_id: "alt_search_or_retrieval"
+    alternative_type: "search_or_retrieval"
+    description: ""
+    outcome_fit: ""
+    delivery_speed: ""
+    implementation_effort: ""
+    risk_delta_vs_agent: ""
+    operating_cost_delta_vs_agent: ""
+    value_delta_vs_agent: ""
+    evidence_refs: []
+    reason_selected_or_rejected: ""
+    decision: "needs_more_evidence"
+  - alternative_id: "alt_template_or_macro"
+    alternative_type: "template_or_macro"
+    description: ""
+    outcome_fit: ""
+    delivery_speed: ""
+    implementation_effort: ""
+    risk_delta_vs_agent: ""
+    operating_cost_delta_vs_agent: ""
+    value_delta_vs_agent: ""
+    evidence_refs: []
+    reason_selected_or_rejected: ""
+    decision: "needs_more_evidence"
+
+agent_fit_tests:
+  - test_id: "requires_contextual_judgment"
+    question: "Does the approved behavior require contextual judgment across variable cases rather than deterministic branching?"
+    pass_condition: "Evidence shows materially different cases require judgment that cannot be captured by a stable rule set."
+    fail_condition: "A deterministic rule tree, workflow automation, SOP, or report satisfies the outcome."
+    status: "not_started"
+    evidence_refs: []
+  - test_id: "requires_language_or_unstructured_reasoning"
+    question: "Does the work depend on interpreting or drafting unstructured language that fixed templates cannot handle safely?"
+    pass_condition: "Source examples show variable language, context interpretation, or synthesis is required."
+    fail_condition: "A fixed template, mail merge, or structured form can safely produce the output."
+    status: "not_started"
+    evidence_refs: []
+  - test_id: "agent_value_exceeds_operating_burden"
+    question: "Does measurable value justify evals, monitoring, controls, incident response, support, and ongoing AgentOps?"
+    pass_condition: "Value case covers incremental benefit and operating cost with named owners and review cadence."
+    fail_condition: "Benefit is speculative, smaller than operating burden, or lacks owner accountability."
+    status: "not_started"
+    evidence_refs: []
+  - test_id: "scope_can_be_safely_constrained"
+    question: "Can the first behavior be constrained tightly enough to test without production-scale downside?"
+    pass_condition: "Allowed users, sources, actions, outputs, environments, and stop conditions are explicit."
+    fail_condition: "Safe first behavior depends on broad access, production-only learning, or undefined boundaries."
+    status: "not_started"
+    evidence_refs: []
+  - test_id: "human_oversight_is_workable"
+    question: "Can the required human review path operate at expected volume and speed?"
+    pass_condition: "Reviewer role, SLA, fallback, expected volume, and escalation path are feasible."
+    fail_condition: "Reviewer capacity, authority, or SLA is missing or incompatible with workflow demand."
+    status: "not_started"
+    evidence_refs: []
+
+risk_comparison:
+  agent_specific_risks: []
+  simpler_path_risks: []
+  controls_required_for_agent_path: []
+  controls_required_for_simpler_path: []
+  net_risk_position: "unknown"
+  risk_notes: []
+  evidence_gaps: []
+  operating_burden_delta:
+    agent_path:
+      implementation_complexity: ""
+      eval_monitoring_control_load: ""
+      support_and_incident_load: ""
+      change_management_load: ""
+    simpler_path:
+      implementation_complexity: ""
+      monitoring_or_manual_control_load: ""
+      support_load: ""
+      change_management_load: ""
+
+decision_gate:
+  phase_id: 2
+  status: "not_started"
+  pass_criteria:
+    - "No simpler alternative satisfies the approved outcome with lower risk and acceptable value."
+    - "At least one agent-fit test tied to contextual judgment or unstructured language passes with evidence."
+    - "Agent value exceeds operating burden after controls and human review are included."
+    - "Human oversight is feasible for expected volume and escalation."
+    - "Required scope reductions keep the first behavior equal to or narrower than approved Step 17/18 scope."
+  fail_criteria:
+    - "A simpler non-agent path satisfies the approved outcome."
+    - "Agent value does not justify operating burden."
+    - "Human oversight is not workable."
+    - "Agent path requires scope expansion, unapproved access, or changed behavior level."
+    - "Required evidence is missing for any critical value, risk, or feasibility claim."
+  automatic_kill_conditions:
+    - "Selected simpler alternative meets the approved outcome with lower risk."
+    - "Agent path requires autonomous action that was not approved."
+    - "Agent path requires production data or write/send access not approved in Step 17/18."
+    - "No accountable business owner accepts ongoing AgentOps burden."
+  conditional_pass_allowed_only_when:
+    - "Named evidence gaps do not affect the agent/no-agent decision."
+    - "Follow-up is assigned to an owner and due before architecture or tool enablement."
+  failure_handling:
+    on_simpler_path_selected: "Stop Section 2 agent build and return to method owner to revise the implementation decision."
+    on_value_gap: "Hold until business value case is corrected or agent path is rejected."
+    on_oversight_gap: "Reduce scope, redesign review flow, or return to method."
+    on_scope_expansion: "Trigger change review or return-to-method before further build work."
+
+return_to_method_review:
+  evaluated: false
+  triggered: false
+  trigger_reason: ""
+  returned_to: ""
+  method_question_to_reopen: ""
+  decision_date: ""
+
+kill_decision:
+  decision: "hold_for_more_evidence"
+  decision_rationale: ""
+  required_scope_reductions: []
+  approved_by: []
+  approval_date: ""
+
+kill_test_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  required_signoff_roles:
+    - "business_owner"
+    - "product_owner"
+    - "technical_owner"
+    - "security_owner"
+    - "agentops_owner"
+  notes: []

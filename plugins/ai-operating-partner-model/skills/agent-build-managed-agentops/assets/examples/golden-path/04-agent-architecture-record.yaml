@@ -1,0 +1,412 @@
+example_id: golden_path_phase_04_agent_architecture_spec
+phase_id: 4
+phase_key: agent_architecture_spec
+phase_name: Agent Architecture Spec
+source_packet: skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml
+status: implementation_grade_example
+purpose: "Golden-path architecture record for a constrained revenue intake draft-and-flag agent."
+section1_inputs_used:
+  - solution_shape
+  - technical_blueprint
+  - risk_control_model
+  - implementation_decision_packet
+section2_outputs_demonstrated:
+  - agent_architecture_record
+expected_templates:
+  - skills/agent-build-managed-agentops/assets/templates/agent-architecture-record.yaml
+evidence_expectations:
+  - "Cite approved Step 18 handoff, implementation approval, technical blueprint, and risk controls."
+  - "Show that architecture remains draft_and_flag with no external send and no CRM write."
+  - "Attach evidence for owners, data paths, least privilege, auditability, and failure behavior."
+  - "Record blockers instead of filling missing facts."
+minimum_completed_sections:
+  - "source_inputs"
+  - "scope_lock"
+  - "architecture_summary"
+  - "components"
+  - "model_posture"
+  - "identity_and_access_posture"
+  - "data_and_system_paths"
+  - "auditability_and_observability"
+  - "resilience_and_failure_modes"
+  - "rollback_and_change_control"
+  - "architecture_signoff"
+completed_object:
+  object_type: "agent_architecture_record"
+  spec_version: "post_18_agentops_v0.1"
+  schema_version: "current"
+  object_id: "architecture_demo_revenue_intake_20260504"
+  version: "0.1"
+  status: "approved"
+  source_inputs:
+    build_contract_id: "build_contract_demo_revenue_intake_20260504"
+    agent_build_plan_id: "build_plan_demo_revenue_intake_20260504"
+    implementation_decision_packet_id: "decision_packet_demo_revenue_intake_20260504"
+    managed_lifecycle_object_id: "lifecycle_demo_revenue_intake_20260504"
+    technical_blueprint_id: "blueprint_demo_revenue_intake_20260501"
+    solution_shape_id: "solution_shape_demo_revenue_intake_20260430"
+    risk_control_model_id: "risk_controls_demo_revenue_intake_20260430"
+    evidence_refs:
+      - "evidence://demo/step18-handoff"
+      - "evidence://demo/implementation-approval"
+      - "evidence://demo/architecture-review"
+    approval_checks:
+      step_18_handoff_approved: true
+      separate_implementation_approval_present: true
+      source_artifacts_version_locked: true
+      unresolved_method_conditions: []
+  scope_lock:
+    approved_first_behavior: "Draft missing-intake follow-up requests for coordinator approval."
+    approved_behavior_level: "draft_and_flag"
+    approved_workflow_boundary: "Open revenue intake records missing required intake fields."
+    approved_user_groups:
+      - "Revenue intake coordinators"
+    approved_sources:
+      - "CRM opportunity read-only view"
+      - "Intake form read-only view"
+    approved_tools:
+      - "crm_read_only_lookup"
+      - "intake_form_read_only_lookup"
+    approved_environments:
+      - "offline_validation"
+      - "sandbox"
+      - "limited_pilot"
+    prohibited_behaviors:
+      - "Autonomous customer communication."
+      - "CRM field updates."
+    prohibited_actions:
+      - "external_send"
+      - "crm_create"
+      - "crm_update"
+      - "crm_delete"
+    prohibited_sources:
+      - "Unapproved sales call transcripts."
+    out_of_scope_user_groups:
+      - "Account executives"
+      - "Customer success managers"
+    material_change_triggers:
+      - "Any write/send action or new source requires change review."
+  architecture_summary:
+    agent_id: "agent_demo_revenue_intake"
+    agent_name: "Revenue Intake Follow-up Agent"
+    agent_purpose: "Draft missing-information follow-up requests for human approval."
+    behavior_level: "draft_and_flag"
+    oversight_model: "Coordinator approves every draft before use."
+    topology: "single_agent"
+    orchestration_pattern: "single_turn_with_two_read_only_lookups"
+    primary_user_surfaces:
+      - "Internal intake coordinator workbench"
+    operating_environments:
+      - "offline_validation"
+      - "sandbox"
+      - "limited_pilot"
+    excluded_environments:
+      - "production"
+    non_goals:
+      - "No message sending."
+      - "No CRM writes."
+  components:
+    - component_id: "agent_runtime"
+      component_type: "runtime"
+      owner: "Agent Platform Lead"
+      purpose: "Execute the draft generation workflow and enforce policy decisions."
+      environments:
+        - "offline_validation"
+        - "sandbox"
+        - "limited_pilot"
+      dependencies:
+        - "model_gateway"
+        - "tool_orchestration"
+        - "trace_and_audit_layer"
+      inbound_interfaces:
+        - "coordinator_workbench_request"
+      outbound_interfaces:
+        - "draft_response_to_workbench"
+      data_classes_processed:
+        - "customer_contact"
+        - "opportunity_metadata"
+      failure_isolation: "Stop run and return manual-review message on control violation."
+      audit_events_emitted:
+        - "agent_run_started"
+        - "agent_run_completed"
+    - component_id: "model_gateway"
+      component_type: "model_gateway"
+      owner: "Agent Platform Lead"
+      purpose: "Route approved prompt context to approved text reasoning model."
+      environments:
+        - "offline_validation"
+        - "sandbox"
+        - "limited_pilot"
+      dependencies:
+        - "approved_model_provider"
+      model_classes_allowed:
+        - "approved_text_reasoning_model"
+      policy_controls:
+        - "No training on client data."
+        - "No prompt context retention beyond trace policy."
+      audit_events_emitted:
+        - "model_invocation_completed"
+    - component_id: "tool_orchestration"
+      component_type: "tool_orchestration"
+      owner: "Agent engineer"
+      purpose: "Call only registered read-only lookup tools."
+      environments:
+        - "sandbox"
+        - "limited_pilot"
+      dependencies:
+        - "crm_read_only_lookup"
+        - "intake_form_read_only_lookup"
+      approved_tool_contracts:
+        - "crm_read_only_lookup"
+        - "intake_form_read_only_lookup"
+      denied_tool_categories:
+        - "send_message"
+        - "crm_write"
+      audit_events_emitted:
+        - "tool_call_requested"
+        - "tool_call_completed"
+    - component_id: "human_review_queue"
+      component_type: "human_review"
+      owner: "Revenue Operations Manager"
+      purpose: "Route draft to coordinator for approval before use."
+      environments:
+        - "limited_pilot"
+      dependencies:
+        - "coordinator_workbench"
+      approval_sla: "One business day during pilot."
+      escalation_path: "Revenue Operations Support"
+      audit_events_emitted:
+        - "human_approval_requested"
+        - "human_approval_decided"
+    - component_id: "trace_and_audit_layer"
+      component_type: "observability"
+      owner: "AgentOps Lead"
+      purpose: "Capture run, model, tool, approval, and control evidence."
+      environments:
+        - "sandbox"
+        - "limited_pilot"
+      dependencies:
+        - "agentops_trace_store"
+      trace_retention: "180 days"
+      sensitive_data_redaction: "Redact email addresses in searchable logs; retain hashed reference."
+  model_posture:
+    model_classes_allowed:
+      - "approved_text_reasoning_model"
+    model_classes_prohibited:
+      - "unapproved_external_model"
+      - "image_generation_model"
+    routing_policy: "Use approved text model only; no dynamic provider fallback."
+    fallback_policy: "Return no draft and request manual coordinator handling."
+    model_selection_constraints:
+      latency_budget: "20 seconds per draft"
+      cost_budget: "Pilot cap of 50 drafts per business day"
+      data_residency: "US tenant only"
+      privacy_posture: "No model training on client data"
+    prompt_or_instruction_sources:
+      - "ai_guidance_pack_revenue_intake_v0_1"
+    retrieval_sources:
+      - "CRM opportunity read-only view"
+      - "Intake form read-only view"
+    context_minimization_rules:
+      - "Include only missing fields, account name, contact role, and intake context."
+    model_output_constraints:
+      - "Output draft text plus missing-field rationale."
+      - "No external send instruction."
+    prohibited_model_behaviors:
+      - "Invent missing facts."
+      - "Suggest CRM field changes."
+    uncertainty_policy: "If required field confidence is below threshold, do not draft."
+    human_review_required_when:
+      - "Every draft."
+      - "Any missing or conflicting source data."
+  identity_and_access_posture:
+    agent_identity: "agent_demo_revenue_intake"
+    runtime_service_account: "svc-agent-revenue-intake-sandbox"
+    end_user_delegation_allowed: false
+    impersonation_allowed: false
+    break_glass_allowed: false
+    break_glass_owner: "Security Lead"
+    permission_boundary_summary: "Read-only CRM and intake form lookups scoped to pilot records."
+    least_privilege_evidence_refs:
+      - "evidence://demo/least-privilege-review"
+    access_review_cadence: "monthly during pilot"
+    revocation_owner: "Security Lead"
+    revocation_sla: "1 hour"
+  data_and_system_paths:
+    read_paths:
+      - path_id: "crm_opportunity_read"
+        source_system: "CRM"
+        data_owner: "CRM Data Owner"
+        data_classes:
+          - "customer_contact"
+          - "opportunity_metadata"
+        fields_allowed:
+          - "account_name"
+          - "contact_role"
+          - "missing_required_fields"
+          - "opportunity_id"
+        fields_prohibited:
+          - "forecast_amount"
+          - "opportunity_stage"
+        freshness_requirement: "Less than 15 minutes old"
+        validation_required:
+          - "opportunity_id must match pilot roster"
+        environments_allowed:
+          - "sandbox"
+          - "limited_pilot"
+    write_paths: []
+    retrieval_paths:
+      - "intake_form_read_only_view"
+    event_paths:
+      - event_id: "tool_call_completed"
+        producer: "tool_orchestration"
+        consumer: "trace_and_audit_layer"
+        required_fields:
+          - "agent_id"
+          - "run_id"
+          - "tool_id"
+          - "permission_scope"
+          - "status"
+    human_approval_paths:
+      - "draft_response_to_coordinator_workbench"
+    logging_paths:
+      traces: "agentops_trace_store"
+      audit_logs: "security_audit_log"
+      metrics: "agentops_metrics_dashboard"
+      alerts: "agentops-critical-alerts"
+    secrets_and_credentials:
+      storage_pattern: "central_secret_manager"
+      runtime_injection_pattern: "short-lived runtime token"
+      rotation_policy: "30 days and immediately on incident"
+      emergency_rotation_policy: "Security Lead can rotate within 1 hour"
+      access_roles:
+        - "agent-platform-runtime"
+      prohibited_storage_patterns:
+        - "local files"
+        - "source control"
+        - "plaintext environment dumps"
+    data_classifications_allowed:
+      - "customer_contact"
+      - "opportunity_metadata"
+    data_classifications_prohibited:
+      - "payment_data"
+      - "forecast_confidential"
+    retention_and_deletion:
+      trace_retention: "180 days"
+      prompt_context_retention: "30 days in restricted trace store"
+      tool_payload_retention: "30 days redacted"
+      deletion_owner: "AgentOps Lead"
+  auditability_and_observability:
+    trace_required_for_all_runs: true
+    audit_log_required_for_tool_calls: true
+    correlation_ids_required:
+      - "agent_id"
+      - "run_id"
+      - "release_version"
+      - "environment"
+      - "user_or_actor_id"
+    required_audit_events:
+      - "agent_run_started"
+      - "model_invocation_completed"
+      - "tool_call_requested"
+      - "tool_call_completed"
+      - "human_approval_requested"
+      - "human_approval_decided"
+      - "agent_run_completed"
+      - "control_violation_detected"
+    redaction_policy: "Redact email, phone, and free-text customer notes in searchable logs."
+    dashboard_refs:
+      - "dashboard://agentops/revenue-intake-pilot"
+    alert_routes:
+      - "pager://agentops-critical"
+  architectural_decisions:
+    - decision_id: "adr_001"
+      decision: "Use single-agent draft-and-flag topology with read-only tools."
+      context: "Approved behavior excludes send and CRM write actions."
+      options_considered:
+        - "Single agent with read-only lookups."
+        - "Workflow automation with static template."
+        - "Autonomous sender."
+      rationale: "Single agent supports variable drafting while preserving human approval and read-only system access."
+      consequences:
+        - "Human approval remains required for every draft."
+        - "No CRM updates occur in pilot."
+      rejected_options:
+        - "Autonomous sender rejected because external send is out of scope."
+      linked_risks:
+        - "Incorrect or unsupported draft content."
+      approver: "Revenue AI Build Forum"
+      date: "2026-05-04"
+      evidence_refs:
+        - "evidence://demo/architecture-review"
+  resilience_and_failure_modes:
+    expected_failure_modes:
+      - failure_mode_id: "missing_required_source_data"
+        description: "CRM or intake form lacks required field context."
+        detection_signal: "Source validation returns missing required field."
+        safe_response: "stop_and_explain"
+        user_message_policy: "Tell coordinator which source field is missing and request manual handling."
+        human_escalation_path: "Revenue Operations Support"
+        audit_event: "control_violation_detected"
+        owner: "Revenue Operations Manager"
+      - failure_mode_id: "tool_permission_denied"
+        description: "Read-only lookup lacks access to pilot record."
+        detection_signal: "Permission error from tool adapter."
+        safe_response: "stop_and_escalate"
+        user_message_policy: "No draft produced."
+        human_escalation_path: "AgentOps Lead"
+        audit_event: "tool_call_completed"
+        owner: "Security Lead"
+    degraded_mode_behavior: "Return no draft and route record to manual coordinator review."
+    retry_policy:
+      default: "no_retry_until_defined"
+      idempotent_tool_calls: "One retry for read-only lookup after transient timeout."
+      non_idempotent_tool_calls: "do_not_retry"
+    timeout_policy:
+      model_timeout_seconds: 15
+      tool_timeout_seconds: 5
+      overall_run_timeout_seconds: 20
+    stop_conditions:
+      - "Any attempted write/send action."
+      - "Any unregistered tool request."
+    human_escalation_path: "Revenue Operations Support"
+    incident_route: "pager://agentops-critical"
+    rollback_dependencies:
+      - "Disable runtime route."
+      - "Revoke service account tokens."
+  rollback_and_change_control:
+    rollback_owner: "Agent Platform Lead"
+    rollback_dependencies:
+      - "feature flag for agent runtime route"
+      - "secret manager revocation"
+    rollback_trigger_conditions:
+      - "Any external send attempt."
+      - "Any untraced run."
+      - "Material error rate above pilot threshold."
+    rollback_validation:
+      - "No active runtime route."
+      - "Service account token disabled."
+      - "Pilot users notified."
+    architecture_freeze_conditions:
+      - "No new sources, users, or actions during pilot."
+    material_change_review_required: true
+    return_to_method_triggers:
+      - "Architecture requires different behavior level, source, or oversight model."
+  architecture_signoff:
+    prepared_by: "Agent Platform Lead"
+    reviewed_by:
+      - "Security Lead"
+      - "CRM Data Owner"
+      - "AgentOps Lead"
+    approved_by:
+      - "Revenue AI Build Forum"
+    approval_status: "approved"
+    approval_date: "2026-05-04"
+failure_modes_to_test:
+  - "Runtime topology does not match approved behavior level."
+  - "Fallback and failure behavior are undefined."
+  - "Model/runtime posture ignores privacy, latency, cost, data residency, or audit constraints."
+  - "Component ownership, revocation, or support responsibility is ambiguous."
+return_to_method_triggers_to_test:
+  - "Architecture requires a different behavior level, source, user group, workflow boundary, oversight model, or business process assumption."
+  - "The only feasible architecture needs write/send capability that was not approved."

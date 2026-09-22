@@ -1,0 +1,58 @@
+rule_group: controlled_pilot
+phase_id: 10
+phase_key: controlled_pilot
+status: active
+minimum_required_checks: 8
+required_section1_inputs:
+  - "managed_lifecycle_object"
+  - "adoption_design"
+  - "measurement_intelligence"
+  - "risk_control_model"
+required_section2_outputs:
+  - "pilot_launch_gate"
+  - "agentops_operating_record"
+failure_modes:
+  - "Pilot audience, support model, feedback channel, monitoring, or stop condition is missing."
+return_to_method_triggers:
+  - "Pilot reveals adoption, value, control, or truth assumptions were wrong."
+  - "Pilot demand pressures the agent beyond approved behavior level, user group, tool, source, or oversight model."
+checks:
+  - check_id: "required_section1_inputs_present"
+    severity: "error"
+    description: "Required Section 1 source artifacts are referenced, approved, versioned, and cited."
+  - check_id: "required_section2_outputs_present"
+    severity: "error"
+    description: "pilot_launch_gate and initial agentops_operating_record evidence are present or intentionally blocked."
+  - check_id: "checklist_has_phase_specific_sections"
+    severity: "error"
+    description: "Checklist includes exact sections ## Phase-Specific Checks and ## Blocking Conditions."
+  - check_id: "sandbox_exit_confirmed"
+    severity: "error"
+    description: "Sandbox exit is approved with no unresolved blocking eval, control, trace, tool, defect, or rollback issue."
+  - check_id: "pilot_scope_locked"
+    severity: "error"
+    description: "Pilot is limited by users, time, volume, behavior, tools, data, sources, and environment."
+  - check_id: "pilot_users_and_training_ready"
+    severity: "error"
+    description: "Pilot users or roles are named, trained, authorized, and aligned to adoption plan."
+  - check_id: "human_review_workflow_ready"
+    severity: "error"
+    description: "Human review is staffed, tested, and logs reviewer identity, decision, edits, reason, and timestamp."
+  - check_id: "monitoring_alerting_support_ready"
+    severity: "error"
+    description: "Pilot dashboard, alert routes, daily review cadence, support channel, and feedback triage are live."
+  - check_id: "stop_conditions_approved"
+    severity: "error"
+    description: "Stop, pause, rollback, and return-to-method triggers are approved by business, security, and AgentOps owners."
+  - check_id: "incident_pause_rollback_tested"
+    severity: "error"
+    description: "Incident channel, feature pause, tool disablement, credential revocation, and rollback are tested before launch."
+  - check_id: "pilot_exit_criteria_measurable"
+    severity: "error"
+    description: "Pilot metrics can be measured from traces, reviews, feedback, and business-system evidence."
+  - check_id: "rubric_has_minimum_criteria"
+    severity: "error"
+    description: "Rubric has at least 8 criteria, each with criterion_id, required, evidence_required, and pass_condition."
+  - check_id: "return_to_method_triggers_present"
+    severity: "warning"
+    description: "Return-to-method triggers are listed and evaluated."

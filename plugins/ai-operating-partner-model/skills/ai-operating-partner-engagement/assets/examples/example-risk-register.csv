@@ -1,0 +1,5 @@
+risk,data_or_workflow,impact_1_to_5,likelihood_1_to_5,control,owner,status,verification_needed
+Overbroad agent access,Reporting data,5,3,Least privilege and row-level access,IT Lead,Open,Review access policy
+Incorrect external message,Client update workflow,4,2,Human approval before send,Ops Manager,Planned,Approved language needed
+Missing audit trail,Agent tool calls,4,3,Log sources tool calls outputs approvals,Technical Owner,Open,Logging design
+

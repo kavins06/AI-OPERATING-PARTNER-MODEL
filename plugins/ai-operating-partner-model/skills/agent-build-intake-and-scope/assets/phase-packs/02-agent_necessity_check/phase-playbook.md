@@ -1,0 +1,65 @@
+# Phase 2: Agent Necessity Check
+
+Local phase pack for `agent_necessity_check`. Use this file from the owning support skill folder; use the referenced central assets as the source of truth for executable templates, rubrics, validator rules, and examples.
+
+## Required Inputs
+
+- `candidate_use_case_shortlist`
+- `business_value_case`
+- `solution_shape`
+- `readiness_object`
+- `implementation_decision_packet`
+
+## Required Outputs
+
+- `agent_necessity_kill_test`
+
+## Canonical Assets
+
+Templates:
+
+- `skills/agent-build-managed-agentops/assets/templates/agent-necessity-kill-test.yaml`
+
+- Checklist: `skills/agent-build-managed-agentops/assets/checklists/agent-necessity-kill-test-checklist.md`
+- Rubric: `skills/agent-build-managed-agentops/assets/rubrics/agent-necessity-kill-test-rubric.yaml`
+- Validator rule: `skills/agent-build-managed-agentops/assets/validator-rules/agent_necessity_check.yaml`
+- Golden-path example: `skills/agent-build-managed-agentops/assets/examples/golden-path/02-agent-necessity-kill-test.yaml`
+
+## Operating Steps
+
+1. Confirm each required Section 1 input is approved, versioned, and cited by object ID.
+2. Confirm the phase is still inside the approved Step 17/18 first behavior and lifecycle scope.
+3. Complete the canonical template fields that this phase owns.
+4. Complete the checklist and attach evidence for every material claim.
+5. Apply the rubric and record pass, conditional, blocked, stop, or return-to-method.
+6. Run or apply the validator rule group for this phase.
+7. Record the downstream fields the next phase must consume.
+
+## Blocking Conditions
+
+- Required source input, approval, owner, evidence reference, or decision forum is missing.
+- Scope is wider than the approved handoff and no change review has approved it.
+- A required control, trace, eval, rollback, revocation, monitoring, or support path is absent.
+- A high-impact, regulated, write, send, export, privileged, or autonomous action appears without explicit approval.
+- The phase output cannot be consumed by the next phase without undocumented assumptions.
+
+## Failure Modes
+
+- Simpler non-agent path satisfies the approved outcome.
+- Agent value does not justify operating burden.
+- Human oversight is not workable.
+
+## Return-To-Method Triggers
+
+- Agent path changes recommended Step 17 decision.
+- Lowest-risk sufficient solution is not an agent.
+
+## Exit Evidence
+
+- Source input IDs and evidence references.
+- Completed output object IDs or blocked output decision.
+- Checklist result.
+- Rubric result.
+- Validator result.
+- Owner signoff or blocker owner.
+- Return-to-method assessment.

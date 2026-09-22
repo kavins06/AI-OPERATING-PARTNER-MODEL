@@ -1,0 +1,414 @@
+regulated_domain_extension_id: "regulated_domain.real_estate"
+spec_version: "0.1"
+object_type: "regulated_domain_extension"
+status: "published_reference"
+vertical: "real_estate"
+purpose: "Provide a worked real-estate extension for brokerage, property management, multifamily, and asset-management AI opportunity discovery."
+
+scope_variants:
+  - "residential_brokerage"
+  - "multifamily_property_management"
+  - "commercial_or_retail_asset_management"
+  - "leasing_and_marketing"
+  - "maintenance_and_vendor_operations"
+  - "portfolio_reporting"
+
+regulated_entities:
+  - entity_type: "consumer_or_lead"
+    examples: ["buyer lead", "seller lead", "tenant prospect", "renter applicant"]
+    why_it_matters: "External communications may trigger Fair Housing, TCPA, advertising, privacy, and recordkeeping obligations."
+  - entity_type: "resident_or_tenant"
+    examples: ["current resident", "commercial tenant", "leaseholder"]
+    why_it_matters: "Resident or tenant communication can involve protected-class, lease, payment, maintenance, habitability, or privacy issues."
+  - entity_type: "licensed_agent_or_broker"
+    examples: ["broker", "salesperson", "team lead", "independent contractor agent"]
+    why_it_matters: "License law, supervision, advertising review, and broker-agent incentives shape what AI can draft, send, recommend, or route."
+  - entity_type: "vendor_or_contractor"
+    examples: ["maintenance vendor", "property service vendor", "brokerage referral partner"]
+    why_it_matters: "Vendor payment, insurance, scope, and compliance data can affect accounting controls and approval gates."
+  - entity_type: "property_or_listing_data"
+    examples: ["MLS listing", "IDX/VOW data", "unit availability", "rent roll", "lease abstract"]
+    why_it_matters: "Display, licensing, accuracy, freshness, and permitted-use constraints affect retrieval and generation."
+
+named_rules:
+  - rule_id: "fair_housing"
+    rule_name: "Fair Housing and protected-class constraints"
+    domain_area: "protected_classes"
+    framework_position: "This framework does not ship Fair Housing language content. Fair Housing prohibited-language and steering-risk content is client-policy-authoritative and state-variant. The framework requires the client to supply or commission the language list; see client_must_supply.fair_housing below."
+    applies_when:
+      - "AI drafts, ranks, routes, qualifies, summarizes, or recommends anything involving housing availability, neighborhoods, tenants, residents, applicants, buyers, sellers, or leads."
+      - "AI creates marketing, leasing, property-description, lead-response, or nurture content."
+    prohibited_ai_behaviors:
+      - "Use protected-class characteristics or proxies to qualify, rank, route, discourage, steer, or personalize housing opportunities."
+      - "Generate language that expresses preference, limitation, or discrimination tied to protected classes."
+      - "Recommend neighborhoods, buildings, or units based on protected-class assumptions."
+      - "Operate without the client_must_supply.fair_housing inputs in place; do not synthesize prohibited-language lists from defaults."
+    required_human_review:
+      - "Any external housing-related communication before send."
+      - "Any lead-routing or qualification logic that could affect access to housing opportunities."
+    required_evidence:
+      - "Client Fair Housing policy or legal review standard."
+      - "Client-supplied prohibited and approved language list per active state."
+      - "Named reviewer role and backup."
+
+  - rule_id: "tcpa_sms_calling"
+    rule_name: "TCPA, consent, opt-out, quiet hours, and channel controls"
+    domain_area: "consent"
+    applies_when:
+      - "AI drafts, schedules, recommends, or sends SMS, calls, or automated outreach."
+      - "AI uses lead-source consent status or opt-out status."
+    consent_distinction:
+      prior_express_consent_pec_required_for: "Informational, non-marketing automated calls or SMS to a number the consumer has provided in the course of a transaction."
+      prior_express_written_consent_pewc_required_for: "Marketing automated/prerecorded calls or SMS using an autodialer or automatic telephone dialing system, including most lead-nurture sequences. PEWC requires a clear, conspicuous written disclosure and an unambiguous signature; bundled lead-source consent must be inspected per lead source."
+    quiet_hours_required: true
+    frequency_limits_required: true
+    carrier_aggregator_constraints_required: true
+    prohibited_ai_behaviors:
+      - "Send or trigger external SMS/calls without validated PEC or PEWC consent state for the channel and content type."
+      - "Ignore opt-out, quiet hours, contact frequency, channel-specific consent state, or carrier-aggregator constraints."
+      - "Treat lead-source consent as automatically sufficient for marketing autodialed SMS or prerecorded calls without confirming PEWC."
+    required_human_review:
+      - "Any new outbound messaging workflow before launch."
+      - "Any escalation from draft-only to send or scheduled-send behavior."
+      - "Any change to consent classification (PEC vs PEWC) or to lead-source consent posture."
+    required_evidence:
+      - "Per-lead-source consent disclosure language and signature evidence."
+      - "Channel and content classification map (informational vs marketing)."
+      - "Opt-out handling rule and propagation interval."
+      - "Quiet-hours rule per recipient time zone."
+      - "Frequency-limit rule per channel and per audience."
+      - "Communication vendor and carrier-aggregator constraints."
+
+  - rule_id: "respa_referrals"
+    rule_name: "RESPA, Section 8 anti-kickback, and Affiliated Business Arrangement constraints"
+    domain_area: "referrals"
+    applies_when:
+      - "AI recommends lenders, title companies, inspectors, settlement services, referral partners, or affiliated services."
+      - "AI influences routing of consumer leads to settlement-service providers."
+    section_8_anti_kickback_note: "RESPA Section 8 prohibits giving or receiving a thing of value in exchange for the referral of settlement-service business related to a federally related mortgage loan. AI-driven routing, ranking, or recommendation logic that effectively delivers referrals to a paying or affiliated provider is in scope and should be reviewed for Section 8 exposure."
+    aba_disclosure_note: "When the brokerage or its principals have an ownership or controlled-business relationship with a recommended provider, an Affiliated Business Arrangement disclosure is typically required at or before referral. AI must not generate or route referrals that bypass the client's ABA disclosure pattern."
+    prohibited_ai_behaviors:
+      - "Recommend or route to settlement-service providers without approved policy, Section 8 review, and disclosure handling."
+      - "Generate referral language that conflicts with client compliance guidance or that omits a required ABA disclosure."
+      - "Optimize routing toward affiliated or paying providers in a way that the client has not approved as compliant under Section 8."
+    required_human_review:
+      - "Referral-related outputs and recommendation logic."
+      - "Any change to provider ranking, routing weights, or affiliated-provider treatment."
+    required_evidence:
+      - "Client referral policy."
+      - "Affiliated business disclosure list and disclosure pattern."
+      - "Section 8 review attestation from legal/compliance owner."
+
+  - rule_id: "mls_listing_data"
+    rule_name: "MLS participant data and licensing constraints"
+    domain_area: "data_licensing"
+    applies_when:
+      - "AI reads, retrieves, summarizes, transforms, compares, displays, or stores raw MLS participant data, MLS exports, or RETS/Web API/Spark feeds."
+    prohibited_ai_behaviors:
+      - "Use raw MLS data outside the participant agreement scope, including derivative-use terms and retention limits."
+      - "Aggregate, share, or re-syndicate MLS data to non-permitted audiences."
+      - "Generate property availability or listing claims without freshness and citation controls."
+    required_human_review:
+      - "Any retrieval or generated output using raw MLS data before implementation."
+      - "Any new derivative use, model training input, or analytical output sourced from MLS data."
+    required_evidence:
+      - "Participant agreement and data-use addenda for each MLS in scope."
+      - "Retention, deletion, and derivative-use rules."
+      - "Per-MLS freshness requirement and citation rule."
+
+  - rule_id: "idx_consumer_display"
+    rule_name: "IDX (Internet Data Exchange) consumer-display constraints"
+    domain_area: "data_licensing"
+    applies_when:
+      - "AI generates or supports consumer-facing display of MLS listing data via IDX feeds (broker reciprocity)."
+      - "AI summarizes, ranks, or contextualizes IDX-sourced listings on consumer-facing surfaces."
+    prohibited_ai_behaviors:
+      - "Display or generate IDX content outside the participant's IDX rules, including required attribution, brokerage identification, and last-update display."
+      - "Strip or omit MLS-required attribution, disclaimer, or update-frequency information from generated outputs."
+      - "Cache or generate derived listing summaries that violate IDX retention or freshness rules."
+    required_human_review:
+      - "Any new IDX-sourced consumer surface or generated content channel before launch."
+      - "Any change to attribution, disclaimer, or freshness display."
+    required_evidence:
+      - "IDX rules of the participating MLS, including required attribution and disclaimer text."
+      - "Update-frequency requirement and last-update display rule."
+      - "Permitted consumer-facing surfaces and prohibited surfaces."
+
+  - rule_id: "vow_registered_user_display"
+    rule_name: "VOW (Virtual Office Website) registered-user display constraints"
+    domain_area: "data_licensing"
+    applies_when:
+      - "AI supports a Virtual Office Website displaying MLS data to registered consumer users behind a broker-consumer relationship."
+      - "AI generates user-specific summaries, recommendations, or saved-search content from VOW data."
+    prohibited_ai_behaviors:
+      - "Allow VOW data to be exposed without the required broker-consumer relationship and registration."
+      - "Use VOW data outside the registered-user scope, including transfer to non-VOW surfaces."
+      - "Generate recommendations or rankings that violate VOW display rules or that ingest non-permitted listing fields."
+    required_human_review:
+      - "Any new AI-driven personalization or recommendation behavior on a VOW surface."
+      - "Any change to registration, authentication, or session boundaries that affect VOW eligibility."
+    required_evidence:
+      - "VOW rules of the participating MLS, including registration and broker-consumer relationship requirements."
+      - "Permitted display fields and prohibited fields per VOW rule set."
+      - "Authentication and session-scope evidence."
+
+  - rule_id: "state_license_and_advertising"
+    rule_name: "State real-estate license, advertising, and disclosure rules"
+    domain_area: "advertising"
+    applies_when:
+      - "AI drafts advertising, listing descriptions, agent bios, consumer-facing market commentary, or brokerage communications."
+      - "AI outputs vary across states."
+    prohibited_ai_behaviors:
+      - "Publish or send consumer-facing advertising without required broker/license/disclosure review."
+      - "Omit required brokerage, license, agency, or state-specific disclosures."
+    required_human_review:
+      - "State-specific external advertising and disclosure-sensitive content."
+    required_evidence:
+      - "State scope."
+      - "Brokerage advertising policy."
+      - "Required disclosure examples."
+
+  - rule_id: "property_management_resident_operations"
+    rule_name: "Resident operations, lease, maintenance, habitability, and privacy constraints"
+    domain_area: "communications"
+    applies_when:
+      - "AI drafts or recommends resident notices, maintenance responses, delinquency messages, renewal communications, or lease-related responses."
+    prohibited_ai_behaviors:
+      - "Make lease, legal, eviction, habitability, accommodation, or resident-rights determinations."
+      - "Send resident-impacting communication without approved review when policy or legal risk is present."
+    required_human_review:
+      - "Delinquency, eviction, accommodation, safety, habitability, or legal-sensitive messages."
+    required_evidence:
+      - "Resident communication policy."
+      - "Lease escalation rules."
+      - "Legal/compliance reviewer role."
+
+  - rule_id: "accounting_payment_and_sox_controls"
+    rule_name: "Accounting, payment, approval, and audit controls"
+    domain_area: "financial_controls"
+    applies_when:
+      - "AI supports invoices, vendor payments, budgets, capex, NOI, rent rolls, reconciliations, board reporting, or accounting write-back."
+    prohibited_ai_behaviors:
+      - "Approve payment, reject payment, change accounting records, or bypass approval gates without explicit approved future controls."
+      - "Treat shadow-derived or manually adjusted metrics as authoritative baseline evidence."
+    required_human_review:
+      - "Any recommendation or action affecting payment, accounting, board reporting, or financial statements."
+    required_evidence:
+      - "Approval matrix."
+      - "Accounting source hierarchy."
+      - "Audit-log requirement."
+      - "Truth production profile for material metrics."
+
+client_must_supply:
+  fair_housing:
+    rationale: "The framework does not author Fair Housing language content. The client supplies authoritative language artifacts so that AI guidance, evals, and human review are grounded in client-approved, state-aware policy."
+    required_inputs:
+      - input_id: "fh.policy"
+        name: "Client Fair Housing policy"
+        what_we_need: "Current written Fair Housing policy with effective date, owner, version, and last legal review date."
+        why: "Anchor for guidance pack rules, evals, and human-review escalation."
+        accept_substitutes: "Brokerage compliance handbook section dedicated to Fair Housing if signed and dated."
+      - input_id: "fh.advertising_review_standard"
+        name: "Prior advertising review standard"
+        what_we_need: "Existing advertising review checklist or SOP showing what is reviewed, by whom, and against which rules."
+        why: "Ensures AI draft-and-flag behavior aligns with the client's existing review pipeline."
+        accept_substitutes: "Description of prior practice plus three sample reviewed pieces with reviewer name."
+      - input_id: "fh.state_guidance"
+        name: "State-specific Fair Housing guidance"
+        what_we_need: "State-by-state guidance for each state where the brokerage operates, including any state-protected classes beyond federal."
+        why: "Federal Fair Housing is the floor; states add classes (e.g., source of income, sexual orientation, age) and additional advertising rules."
+        accept_substitutes: "Named legal counsel attestation per state plus controlling state regulator publication reference."
+      - input_id: "fh.reviewer_role"
+        name: "Named reviewer role and backup"
+        what_we_need: "Named role (not just person) responsible for Fair Housing review of AI outputs, plus a named backup."
+        why: "Step 16 human_oversight_gate requires a named accountable owner."
+        accept_substitutes: "None. This is required."
+      - input_id: "fh.language_examples"
+        name: "Approved and prohibited language examples library"
+        what_we_need: "Reference to the client's library of approved and prohibited language examples, including state variants if any."
+        why: "Source material for behavioral evals, output-quality evals, and the regulated-domain eval category required at Step 10."
+        accept_substitutes: "If no library exists, the client must commission an initial set before Step 10. Document the commissioning plan as a knowledge_capture_plan packet at Step 17."
+      - input_id: "fh.escalation_path"
+        name: "Escalation path for ambiguous cases"
+        what_we_need: "Escalation steps when AI flags uncertainty: who reviews, time-to-decision SLA, and how the decision is fed back into guidance."
+        why: "Closes the feedback loop required by Step 18 lifecycle."
+        accept_substitutes: "None. Required for any draft-and-flag or recommendation-support behavior."
+      - input_id: "fh.training_record"
+        name: "Training record for human reviewer"
+        what_we_need: "Evidence that the named reviewer has current Fair Housing training (date, provider, scope)."
+        why: "Reviewer competence is part of the Step 15 risk model and Step 18 lifecycle."
+        accept_substitutes: "Attestation from compliance owner if formal training is unavailable."
+    framework_will_not_do:
+      - "Author or ship a Fair Housing prohibited-language list as default content."
+      - "Infer protected-class proxies from defaults; proxy lists must be client-confirmed per state."
+      - "Treat federal Fair Housing as sufficient when state-additional protected classes apply."
+
+state_real_estate_rules_seed:
+  framework_position: "Starter rows requiring client confirmation per active state. The framework does not ship authoritative state rules. These seeds prompt the operator to ask the right questions; the client and the client's counsel supply the binding answers."
+  states:
+    - state_code: "CA"
+      applies: "unknown"
+      state_specific_disclosures:
+        - "Agency relationship disclosure under California Civil Code (residential 1-4 units)."
+        - "Required brokerage license number display in advertising."
+        - "Subject-property disclosure obligations including TDS, NHD, and statutory hazard packets where applicable."
+      advertising_review_authority: "California Department of Real Estate (DRE)."
+      additional_protected_classes_note: "California adds protected classes beyond federal Fair Housing including source of income, ancestry, marital status, and others; client must confirm current list."
+      license_renewal_or_supervision_constraints: "DRE license display, broker supervision, and team-name advertising rules apply; confirm with client compliance."
+      tcpa_state_overlay_note: "California does not preempt federal TCPA; confirm any state-specific consent rules with client counsel."
+    - state_code: "NY"
+      applies: "unknown"
+      state_specific_disclosures:
+        - "Agency disclosure form requirements (residential)."
+        - "Standardized Operating Procedures disclosure required of brokers; confirm content and posting requirements."
+        - "Cooperative and condominium specific disclosures where applicable."
+      advertising_review_authority: "New York Department of State, Division of Licensing Services."
+      additional_protected_classes_note: "New York State Human Rights Law and NYC Human Rights Law add protected classes including source of income, lawful occupation, and others; client must confirm current list including NYC overlays."
+      license_renewal_or_supervision_constraints: "Broker supervision rules and licensee identification requirements apply; confirm with client compliance."
+      tcpa_state_overlay_note: "Confirm NY-specific telemarketing and registration rules with client counsel."
+    - state_code: "TX"
+      applies: "unknown"
+      state_specific_disclosures:
+        - "Information About Brokerage Services (IABS) form delivery requirements."
+        - "Consumer Protection Notice requirements."
+        - "Required broker name and license display in advertising."
+      advertising_review_authority: "Texas Real Estate Commission (TREC)."
+      additional_protected_classes_note: "Texas generally tracks federal Fair Housing classes; confirm any local-jurisdiction additions with client counsel."
+      license_renewal_or_supervision_constraints: "TREC team and assumed-name advertising rules; broker supervision requirements; confirm with client compliance."
+      tcpa_state_overlay_note: "Confirm Texas telemarketing rules with client counsel."
+    - state_code: "FL"
+      applies: "unknown"
+      state_specific_disclosures:
+        - "Agency relationship disclosure (transaction broker default vs single/no agency)."
+        - "Required brokerage and license display in advertising."
+      advertising_review_authority: "Florida Real Estate Commission (FREC) under DBPR."
+      additional_protected_classes_note: "Florida generally tracks federal Fair Housing classes; some local jurisdictions add classes; confirm with client counsel."
+      license_renewal_or_supervision_constraints: "Broker-licensee supervision and advertising display rules; confirm with client compliance."
+      tcpa_state_overlay_note: "Florida has state-level telemarketing rules including Florida Telephone Solicitation Act variants; confirm current scope with client counsel."
+  client_responsibility:
+    - "Confirm whether each seed state is in the engagement scope."
+    - "Provide current state-specific guidance, disclosures, and protected-class additions."
+    - "Identify any additional states not seeded above."
+    - "Provide named state-by-state reviewer role where state guidance differs from default."
+
+knowledge_requirements:
+  - requirement_id: "re.knowledge.fair_housing_language"
+    knowledge_needed: "Approved and prohibited housing-related language, protected-class/proxy avoidance, and steering-risk examples."
+    examples_needed: ["good lead response", "bad steering response", "edge case with protected-class signal"]
+    routes_to_step: "step9"
+  - requirement_id: "re.knowledge.communication_consent"
+    knowledge_needed: "Consent source, opt-out rule, channel restrictions, frequency limits, and reviewer role for SMS/calls/email."
+    examples_needed: ["valid consent", "missing consent", "opt-out present"]
+    routes_to_step: "step9"
+  - requirement_id: "re.knowledge.accounting_approval_controls"
+    knowledge_needed: "Payment approval thresholds, reviewer roles, audit requirements, allowed recommendations, and forbidden write-back behavior."
+    examples_needed: ["clean invoice", "missing approval", "manual adjustment"]
+    routes_to_step: "step9"
+  - requirement_id: "re.knowledge.mls_listing_data_use"
+    knowledge_needed: "Permitted uses, retention, derivative-use, freshness requirements, and citation/source rules for raw MLS participant data."
+    examples_needed: ["fresh listing summary", "stale listing conflict", "license-restricted output"]
+    routes_to_step: "step9"
+  - requirement_id: "re.knowledge.idx_consumer_display"
+    knowledge_needed: "IDX rules for consumer-facing display, including required attribution, disclaimer, last-update display, and freshness."
+    examples_needed: ["compliant IDX summary with attribution", "missing-attribution failure", "stale-cache failure"]
+    routes_to_step: "step9"
+  - requirement_id: "re.knowledge.vow_registered_user_display"
+    knowledge_needed: "VOW rules for registered-user display, including registration, broker-consumer relationship, and permitted display fields."
+    examples_needed: ["compliant VOW personalization", "missing-registration failure", "non-permitted-field exposure"]
+    routes_to_step: "step9"
+  - requirement_id: "re.knowledge.tcpa_pewc_vs_pec"
+    knowledge_needed: "Distinction between prior express consent (informational) and prior express written consent (marketing autodialed/prerecorded), per-lead-source consent posture, quiet hours, frequency limits, and carrier-aggregator constraints."
+    examples_needed: ["PEWC-compliant marketing SMS", "PEC-only number sent marketing autodialed SMS (forbidden)", "quiet-hours violation", "missing per-lead-source PEWC evidence"]
+    routes_to_step: "step9"
+  - requirement_id: "re.knowledge.respa_section_8_aba"
+    knowledge_needed: "Section 8 anti-kickback exposure for AI-driven referrals, ABA disclosure pattern, and prohibited routing optimizations."
+    examples_needed: ["Section 8-safe referral", "AI ranking that favors affiliated provider without disclosure (forbidden)", "missing ABA disclosure"]
+    routes_to_step: "step9"
+  - requirement_id: "re.knowledge.state_real_estate_rules"
+    knowledge_needed: "State-specific advertising, disclosure, supervision, additional-protected-class, and licensure rules per state in scope."
+    examples_needed: ["state-compliant advertising", "missing state disclosure", "state-additional protected-class proxy"]
+    routes_to_step: "step9"
+
+guidance_requirements:
+  prohibited_language_or_logic_lists_required: true
+  prohibited_language_source_policy: "Client-supplied per client_must_supply.fair_housing.fh.language_examples; framework will not synthesize defaults."
+  source_hierarchy_required: true
+  required_eval_categories:
+    - "fair_housing_protected_class_or_proxy"
+    - "fair_housing_state_additional_protected_class"
+    - "tcpa_pec_vs_pewc_classification"
+    - "tcpa_missing_consent_or_opt_out_or_quiet_hours"
+    - "mls_data_license_or_freshness_conflict"
+    - "idx_attribution_or_disclaimer_failure"
+    - "vow_registration_or_permitted_field_failure"
+    - "respa_section_8_or_aba_referral_risk"
+    - "state_advertising_or_disclosure_failure"
+    - "resident_or_tenant_sensitive_communication"
+    - "payment_or_accounting_writeback_forbidden"
+    - "shadow_truth_or_manual_adjustment"
+
+risk_requirements:
+  - risk_id: "re.risk.fair_housing"
+    risk_name: "Fair Housing steering, discriminatory language, or protected-class/proxy use"
+    required_control: "Prohibited logic list, external-output human review, eval cases, and reviewer owner."
+    owner_role: "legal_or_compliance"
+  - risk_id: "re.risk.tcpa"
+    risk_name: "Unconsented SMS/call or opt-out violation"
+    required_control: "Consent-source check, opt-out check, channel permission matrix, and no-send default."
+    owner_role: "legal_or_marketing_operations"
+  - risk_id: "re.risk.mls_license"
+    risk_name: "Licensed MLS participant data used outside permitted scope"
+    required_control: "Approved source list, retention/derivative-use rule, freshness rule, permitted-use rule, and retrieval/output restrictions."
+    owner_role: "brokerage_operations_or_data_owner"
+  - risk_id: "re.risk.idx_attribution"
+    risk_name: "IDX consumer display without required attribution, disclaimer, or freshness"
+    required_control: "IDX-rule validator at output, attribution and disclaimer required, last-update display required, cache and derivative-output policy."
+    owner_role: "brokerage_operations_or_data_owner"
+  - risk_id: "re.risk.vow_scope"
+    risk_name: "VOW data exposed outside registered-user broker-consumer relationship"
+    required_control: "Authentication and registration enforcement, permitted-field allowlist, session-scope audit, and VOW-rule validator at output."
+    owner_role: "brokerage_operations_or_data_owner"
+  - risk_id: "re.risk.respa_section_8"
+    risk_name: "AI-driven referral routing creates Section 8 or ABA disclosure exposure"
+    required_control: "Routing-logic review by compliance, Section 8 attestation, ABA disclosure injection, and human approval before scope change."
+    owner_role: "legal_or_compliance"
+  - risk_id: "re.risk.state_rule_drift"
+    risk_name: "State advertising, disclosure, or protected-class rule violation"
+    required_control: "State-aware guidance, named state reviewer, state-rules update cadence, and rule-change revalidation trigger."
+    owner_role: "legal_or_compliance"
+  - risk_id: "re.risk.accounting_payment"
+    risk_name: "Incorrect payment, approval bypass, or financial reporting reliance"
+    required_control: "Human approval gate, audit log, no-write-back default, and truth production gate."
+    owner_role: "finance_or_accounting_controller"
+  - risk_id: "re.risk.resident_sensitive"
+    risk_name: "Resident/tenant communication creates legal, privacy, or reputational issue"
+    required_control: "Sensitive communication classifier, escalation rules, and approved review role."
+    owner_role: "property_operations_or_legal"
+
+lifecycle_requirements:
+  review_cadence: "At least quarterly for active AI behaviors; immediate revalidation for new state, communication channel, source, data license, or write/send/action capability."
+  rule_change_revalidation_required: true
+  required_owners:
+    - "business_owner"
+    - "legal_or_compliance_owner"
+    - "data_or_system_owner"
+    - "guidance_update_owner"
+    - "incident_or_revocation_owner"
+
+evidence_requirements:
+  - "Client compliance or legal policy for applicable RE scope."
+  - "Approved and prohibited examples for external communications where available."
+  - "Consent and opt-out source definitions when outreach is in scope."
+  - "MLS/vendor license constraints when listing data is in scope."
+  - "Accounting approval matrix when payment or financial reporting is in scope."
+  - "Truth production profiles for financial metrics, status fields, reports, and decision inputs."
+
+step_threading:
+  step5_planning_evidence: "Request the client_must_supply.fair_housing inputs and any state-specific guidance for active states. Do not proceed past Step 9 without the named reviewer role and state guidance for each active state in scope."
+  step8_baseline: "Mark regulated-domain obligations on candidate AI portfolio, source/truth objects, and AI-fit boundaries. Block baseline release if Fair Housing client_must_supply inputs are missing for any external-communication candidate."
+  step9_knowledge_map: "Create knowledge requirements for named RE rules and owner roles, including the IDX/VOW/MLS split, TCPA PEC/PEWC distinction, RESPA Section 8/ABA, and state seeds."
+  step10_guidance_pack: "Require RE-specific behavioral, output-quality, source-conflict, and regulated-domain evals per the expanded eval category list. Treat Fair Housing eval cases as client-supplied content, not framework defaults."
+  step14_technical_blueprint: "When external communication is in scope, require a consent-state validator, opt-out propagation tests, IDX/VOW rule validators where applicable, and a state-rule lookup component."
+  step15_risk_control: "Add named RE risks, controls, owners, stop conditions, and tool/output permissions. Include re.risk.idx_attribution, re.risk.vow_scope, re.risk.respa_section_8, and re.risk.state_rule_drift in addition to the original five."
+  step16_readiness: "Fail or conditionally pass any behavior that lacks named regulated-domain controls or that lacks the client_must_supply.fair_housing inputs for external Fair Housing-affecting behavior."
+  step18_lifecycle: "Require rule-change revalidation and owner review cadence. Add per-state revalidation when state guidance changes."

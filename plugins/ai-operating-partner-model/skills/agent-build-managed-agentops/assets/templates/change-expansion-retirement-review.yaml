@@ -1,0 +1,213 @@
+object_type: "change_expansion_retirement_review"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "change_review_<agent_id>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+
+source_inputs:
+  agentops_operating_record_id: ""
+  build_contract_id: ""
+  release_version_manifest_id: ""
+  production_readiness_gate_id: ""
+  readiness_object_id: ""
+  risk_control_model_id: ""
+  method_to_build_handoff_contract_id: ""
+  implementation_decision_packet_id: ""
+  measurement_intelligence_id: ""
+  organizational_intelligence_diagnostic_id: ""
+  incident_ids: []
+  evidence_refs: []
+
+review_scope:
+  review_type: "change"
+  requested_by: ""
+  request_date: ""
+  agent_id: ""
+  current_release_version: ""
+  current_environment: ""
+  current_behavior_level: ""
+  requested_environment_or_scope: ""
+  summary: ""
+  reason_for_review: ""
+  urgency: "normal"
+  decision_deadline: ""
+  affected_business_outcome: ""
+
+baseline_scope:
+  approved_user_groups: []
+  approved_workflows: []
+  approved_systems: []
+  approved_tools: []
+  approved_sources: []
+  approved_data_classes: []
+  approved_outputs: []
+  approved_behavior_level: ""
+  approved_scale_limits: []
+  explicit_scope_exclusions: []
+
+change_description:
+  requested_change: ""
+  affected_user_groups: []
+  affected_workflows: []
+  affected_systems: []
+  affected_tools: []
+  affected_sources: []
+  affected_data_classes: []
+  affected_outputs: []
+  behavior_level_change:
+    from: ""
+    to: ""
+  model_or_prompt_change: ""
+  retrieval_or_source_change: ""
+  access_or_identity_change: ""
+  operating_model_change: ""
+  rollout_or_decommission_scope: ""
+  requested_effective_date: ""
+
+materiality_gate:
+  material_change: true
+  material_change_reasons:
+    - "New user, source, tool, workflow, behavior level, model, environment, or write/send action is added without prior approval."
+  automatic_blockers:
+    - "Unapproved write/send/autonomous action."
+    - "Missing owner for affected source, tool, data class, support path, or revocation path."
+    - "Unresolved high or critical incident relevant to requested scope."
+    - "No rollback, revocation, or human fallback for the requested change."
+    - "Required Section 1 source input is missing, stale, or contradicted."
+  requires_phase_14: true
+  requires_phase_15: false
+  requires_return_to_method: false
+  return_to_method_rationale: ""
+
+assessment:
+  value_evidence:
+    - metric_id: ""
+      baseline: ""
+      current_value: ""
+      expected_change: ""
+      evidence_refs: []
+  quality_evidence: []
+  risk_evidence: []
+  adoption_evidence: []
+  cost_evidence: []
+  source_freshness_evidence:
+    - source_id: ""
+      owner: ""
+      freshness_sla: ""
+      last_verified_at: ""
+      status: "unknown"
+      evidence_refs: []
+  access_review_evidence:
+    - access_target: ""
+      permission_delta: ""
+      owner: ""
+      review_status: "not_started"
+      revocation_method: ""
+      evidence_refs: []
+  owner_coverage_evidence:
+    - owner_role: ""
+      primary_owner: ""
+      backup_owner: ""
+      coverage_status: "unknown"
+  incident_history: []
+  readiness_delta:
+    readiness_score_before: ""
+    readiness_score_after_or_expected: ""
+    readiness_gaps: []
+  support_and_training_impact: []
+  required_contract_updates:
+    - "agent_build_contract"
+    - "release_version_manifest"
+    - "eval_harness_spec"
+    - "guardrail_control_matrix"
+    - "tool_contract_registry"
+    - "trace_observability_spec"
+    - "agentops_operating_record"
+    - "internal_operator_run_card"
+
+control_plan:
+  evals_required: []
+  guardrails_required: []
+  observability_required: []
+  access_changes_required: []
+  source_freshness_requirements: []
+  owner_coverage_requirements: []
+  rollout_plan:
+    rollout_type: "none"
+    allowed_initial_population: []
+    monitoring_cadence: ""
+    rollback_trigger: ""
+  rollback_plan:
+    rollback_release_version: ""
+    rollback_steps: []
+    rollback_owner: ""
+    rollback_validation_checks: []
+  revocation_plan:
+    revocation_owner: ""
+    revocation_targets: []
+    max_time_to_revoke: ""
+    queued_work_stop_method: ""
+  user_communication_plan:
+    audience: []
+    message_owner: ""
+    timing: ""
+
+decision_options:
+  - option: "approve_change"
+    conditions: []
+    allowed_when:
+      - "No automatic blockers remain."
+      - "All required contracts, evals, controls, access reviews, source reviews, owners, rollback, and revocation evidence are complete."
+  - option: "approve_limited_expansion"
+    conditions: []
+    allowed_when:
+      - "Expansion is bounded by users, workflow, source, tool, behavior, time, and monitoring limits."
+  - option: "hold_and_remediate"
+    conditions: []
+    allowed_when:
+      - "Evidence is incomplete or remediable blockers exist."
+  - option: "rollback"
+    conditions: []
+    allowed_when:
+      - "Current release is unsafe, degraded, or outside approved scope."
+  - option: "retire"
+    conditions: []
+    allowed_when:
+      - "Value, risk, owner coverage, source freshness, or operating burden no longer justifies operation."
+  - option: "redesign_or_return_to_method"
+    conditions: []
+    allowed_when:
+      - "The requested future state changes method assumptions or requires a new lifecycle decision."
+
+decision:
+  outcome: "not_submitted"
+  rationale: ""
+  approved_scope: []
+  denied_scope: []
+  required_actions:
+    - action_id: ""
+      action: ""
+      owner: ""
+      due_date: ""
+      blocking: true
+  stop_conditions: []
+  expiration_or_recheck_date: ""
+  approved_by: []
+  decision_date: ""
+  next_review_date: ""
+
+post_decision_tracking:
+  operating_record_updates: []
+  release_manifest_updates: []
+  access_changes_completed: []
+  source_reviews_completed: []
+  communications_completed: []
+  open_actions: []
+
+review_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""

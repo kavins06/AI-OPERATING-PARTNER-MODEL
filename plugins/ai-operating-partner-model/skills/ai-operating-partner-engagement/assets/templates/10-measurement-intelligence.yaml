@@ -1,0 +1,249 @@
+measurement_intelligence_id: "mi.workflow.current"
+workflow_ids: []
+version: "0.1"
+status: "draft" # draft | owner_validated | partially_validated | blocked
+
+source_inputs:
+  workflow_spec_ids: []
+  diagnostic_ids: []
+  validation_event_ids: []
+  guidance_pack_ids: []
+  planning_evidence_refs: []
+  candidate_use_case_ids: []
+  solution_shape_ids: []
+
+role_split:
+  ai_work:
+    - "Extract metric needs from workflows, decisions, approvals, edge cases, and candidate AI assists."
+    - "Find candidate sources and detect source or formula conflicts."
+    - "Draft KPI definitions and analytics maturity scores."
+    - "Propose trust status with evidence."
+  operating_partner_work:
+    - "Decide which metrics matter for value, risk, and implementation planning."
+    - "Challenge vague metrics and remove low-value measurement noise."
+    - "Route material unresolved issues."
+  client_work:
+    - "Confirm official source, de facto trusted source, truth production chain, formulas, grain, owners, freshness, quality checks, access boundaries, reproducibility, auditability, and allowed AI usage."
+
+decision_metric_map:
+  - decision_id:
+    workflow_id:
+    decision_or_action:
+    metrics_needed: []
+    why_needed:
+    wrong_metric_risk:
+    linked_guidance_ids: []
+
+metric_definitions:
+  - metric_id:
+    name:
+    business_question:
+    decision_or_action_supported:
+    formula:
+    grain:
+    unit:
+    official_source:
+    de_facto_trusted_source:
+    source_of_record:
+    operational_working_source:
+    supporting_sources: []
+    truth_production_profile_ids: []
+    truth_status: "unknown" # authoritative | conditionally_reliable | shadow_derived | manually_adjusted | person_dependent | disputed | missing | not_reproducible | unknown
+    derivation_chain:
+      - sequence:
+        input_source:
+        transformation: "system_report | export | formula | spreadsheet_macro | manual_adjustment | reconciliation | expert_judgment | final_reporting | other"
+        output:
+        owner_or_knower:
+        evidence_refs: []
+    manual_adjustment_status: "none_known | documented | undocumented | suspected | disputed | unknown"
+    embedded_rule_locations: []
+    reproducibility: "high | medium | low | unknown"
+    auditability: "high | medium | low | unknown"
+    versioning_or_change_control:
+    source_access_profile_ids: []
+    owner_role:
+    steward_role:
+    refresh_cadence:
+    freshness_required_for_decision:
+    thresholds_or_targets: []
+    quality_checks: []
+    allowed_filters: []
+    drilldowns: []
+    reconciliation_status: "unknown" # reconciled | timing_gap_known | conflicting | not_reconciled | unknown
+    known_issues: []
+    trust_status: "unknown" # trusted | conditionally_trusted | disputed | untrusted | unknown
+    trust_evidence: []
+    confidence: "unknown"
+    owner_confirmation:
+      required: true
+      confirmed_by_role:
+      status: "not_started" # not_started | confirmed | corrected | disputed | blocked
+      notes:
+
+metric_trust_issues:
+  - issue_id:
+    metric_id:
+    issue_type: "source_conflict" # source_conflict | formula_conflict | grain_mismatch | stale_data | missing_owner | quality_gap | access_gap | misuse | shadow_truth | undocumented_macro | manual_adjustment | person_dependency | not_reproducible | low_auditability
+    description:
+    affected_decisions: []
+    severity:
+    recommended_resolution:
+    route_to_step: "" # step7_governance | step12_architecture_normalization | step14_readiness | do_not_use_yet
+
+reporting_reality:
+  current_reports_or_dashboards:
+    - report_id:
+      name:
+      owner_role:
+      source_systems: []
+      used_by_roles: []
+      decisions_supported: []
+      trust_notes:
+  shadow_trackers:
+    - tracker_id:
+      name:
+      owner_role:
+      why_used:
+      conflict_with_authoritative_source:
+      linked_truth_production_profile_id:
+      embedded_rules_or_macros: []
+  manual_exports_or_workarounds: []
+  stale_or_unused_dashboards: []
+
+truth_production_profiles:
+  - truth_profile_id:
+    linked_metric_ids: []
+    official_source:
+    de_facto_trusted_source:
+    truth_status: "unknown"
+    production_chain_summary:
+    owner_role:
+    steward_or_knower_role:
+    reproducibility: "unknown"
+    auditability: "unknown"
+    fragile_truth_blocker: false
+    required_fix_before_ai_use:
+
+analytics_maturity:
+  current_level:
+  dimension_scores:
+    business_question_clarity:
+    source_integration:
+    data_quality:
+    metric_definitions:
+    dashboard_usefulness:
+    governance_stewardship:
+    security_access_control:
+    statistical_modeling_discipline:
+    feedback_monitoring:
+    change_adoption:
+  evidence_refs: []
+  suitable_future_ai_scope:
+  maturity_blockers: []
+
+agent_safe_metric_usage:
+  allowed:
+    - metric_id:
+      allowed_uses: [] # calculate | cite | compare | summarize | flag_uncertainty | draft_question | escalate
+      conditions: []
+      allowed_only_if_truth_status_in: []
+      required_evidence_refs: []
+  prohibited:
+    - metric_id:
+      prohibited_use:
+      reason:
+      safe_alternative:
+  human_review_required_when: []
+
+ai_capability_metric_design:
+  capability_id:
+  linked_candidate_use_case_ids: []
+  linked_future_ai_behaviors: []
+  baseline_metrics:
+    - metric_id:
+      baseline_status: "usable | usable_with_caveats | not_usable | unknown"
+      trust_caveat:
+      truth_production_caveat:
+  leading_indicators:
+    - metric_id:
+      name:
+      why_it_predicts_success:
+      owner_role:
+      review_cadence:
+  lagging_outcome_indicators:
+    - metric_id:
+      name:
+      business_outcome:
+      owner_role:
+      review_cadence:
+  value_breadth_metrics:
+    - metric_id:
+      name:
+      value_category: "" # quality | customer_value | revenue_conversion | revenue_retention | speed_to_market | backlog_reduction | hiring_avoided | redeployment | headcount_reduction | new_capability | risk_reduction | shadow_ai_reduction | other
+      definition:
+      baseline_status: "unknown" # usable | usable_with_caveats | not_usable | unknown
+      source:
+      owner_role:
+      review_cadence:
+  agent_performance_metrics:
+    - metric_id:
+      name:
+      definition:
+      target_or_threshold:
+      source_after_implementation:
+      owner_role:
+  human_review_and_override_metrics:
+    - metric_id:
+      name:
+      definition:
+      threshold:
+      escalation_when:
+  error_incident_and_drift_metrics:
+    - metric_id:
+      name:
+      signal_type: "error_rate | hallucination | source_conflict | fragile_truth_use | policy_violation | model_drift | retrieval_drift | tool_failure | other"
+      pause_or_kill_threshold:
+      owner_role:
+  adoption_metrics:
+    - metric_id:
+      name:
+      definition:
+      segment_or_role:
+      target:
+      adoption_failure_trigger:
+  staff_function_and_governance_metrics:
+    - metric_id:
+      name:
+      function_or_owner: "" # legal | hr | risk | compliance | finance | it_security | data | other
+      definition:
+      target_or_threshold:
+      escalation_when:
+  cost_metrics:
+    - metric_id:
+      name:
+      cost_component: "model_tokens | tool_calls | retrieval_storage | observability | evals | human_review | vendor_license | maintenance | support"
+      forecast_method:
+      owner_role:
+  kill_criteria:
+    - criterion_id:
+      condition:
+      threshold:
+      measurement_source:
+      required_action: "pause | rollback | restrict_behavior | retrain_users | revise_guidance | do_not_launch"
+      owner_role:
+
+unresolved_metric_questions:
+  - question_id:
+    question:
+    metric_ids: []
+    resolver_role:
+    route_to_step:
+    blocks_future_ai_use: false
+
+stop_boundary:
+  does_not_build_dashboards: true
+  does_not_build_pipelines: true
+  does_not_build_models: true
+  does_not_build_mcp_or_connectors: true
+  does_not_create_live_integrations: true

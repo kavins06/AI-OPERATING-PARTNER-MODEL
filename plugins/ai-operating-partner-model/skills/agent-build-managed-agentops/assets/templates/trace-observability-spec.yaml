@@ -1,0 +1,345 @@
+object_type: "trace_observability_spec"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "observability_<agent_id>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+
+source_inputs:
+  build_contract_id: ""
+  step_18_lifecycle_object_id: ""
+  architecture_record_id: ""
+  tool_contract_registry_id: ""
+  eval_harness_spec_id: ""
+  guardrail_control_matrix_id: ""
+  release_version_manifest_id: ""
+  evidence_refs: []
+
+trace_policy:
+  trace_required_for_all_runs: true
+  audit_log_required_for_tool_calls: true
+  control_decision_required_for_all_denials: true
+  human_review_trace_required: true
+  user_visible_explanations_required: true
+  sensitive_data_redaction_required: true
+  prompt_and_tool_input_storage_policy: "hash_or_redact_sensitive_values"
+  retention_period: ""
+  log_access_roles: []
+  log_export_allowed: false
+  untraced_run_behavior: "pause_agent_and_escalate"
+
+event_taxonomy:
+  - event_type: "agent_run_started"
+    required_fields:
+      - "run_id"
+      - "correlation_id"
+      - "agent_id"
+      - "agent_version"
+      - "release_version"
+      - "environment"
+      - "user_id_or_role"
+      - "user_group"
+      - "workflow_id"
+      - "behavior_level_requested"
+      - "timestamp"
+  - event_type: "input_received"
+    required_fields:
+      - "run_id"
+      - "input_hash"
+      - "input_classification"
+      - "data_classes_detected"
+      - "redaction_applied"
+      - "timestamp"
+  - event_type: "retrieval_performed"
+    required_fields:
+      - "run_id"
+      - "retrieval_request_id"
+      - "source_ids"
+      - "source_versions"
+      - "source_freshness_status"
+      - "citation_ids"
+      - "result_count"
+      - "timestamp"
+  - event_type: "model_invocation"
+    required_fields:
+      - "run_id"
+      - "model_config_version"
+      - "prompt_version"
+      - "input_token_count"
+      - "output_token_count"
+      - "latency_ms"
+      - "timestamp"
+  - event_type: "tool_invocation"
+    required_fields:
+      - "run_id"
+      - "tool_call_id"
+      - "tool_id"
+      - "tool_contract_version"
+      - "action_requested"
+      - "input_hash"
+      - "permission_decision"
+      - "result_status"
+      - "latency_ms"
+      - "timestamp"
+  - event_type: "control_decision"
+    required_fields:
+      - "run_id"
+      - "control_id"
+      - "control_version"
+      - "decision"
+      - "reason"
+      - "severity"
+      - "fail_behavior"
+      - "owner_notified"
+      - "timestamp"
+  - event_type: "human_review_decision"
+    required_fields:
+      - "run_id"
+      - "reviewer_id_or_role"
+      - "review_required_reason"
+      - "decision"
+      - "changes_made"
+      - "approval_timestamp"
+  - event_type: "agent_output_created"
+    required_fields:
+      - "run_id"
+      - "output_id"
+      - "output_hash"
+      - "output_type"
+      - "citation_ids"
+      - "policy_check_status"
+      - "delivered_to_user"
+      - "timestamp"
+  - event_type: "incident_or_alert_created"
+    required_fields:
+      - "incident_id"
+      - "run_id"
+      - "alert_id"
+      - "severity"
+      - "trigger"
+      - "owner"
+      - "response_sla"
+      - "timestamp"
+  - event_type: "agent_run_completed"
+    required_fields:
+      - "run_id"
+      - "completion_status"
+      - "user_visible_outcome"
+      - "escalated"
+      - "blocked"
+      - "cost_estimate"
+      - "timestamp"
+
+observability_requirements:
+  run_trace_fields:
+    - "run_id"
+    - "correlation_id"
+    - "agent_id"
+    - "agent_version"
+    - "release_version"
+    - "environment"
+    - "user_id_or_role"
+    - "user_group"
+    - "workflow_id"
+    - "behavior_level_requested"
+    - "behavior_level_authorized"
+    - "source_input_refs"
+    - "tool_call_ids"
+    - "control_decision_ids"
+    - "human_review_decision_id"
+    - "output_id"
+    - "completion_status"
+  model_trace_fields:
+    - "model_config_version"
+    - "prompt_version"
+    - "system_instruction_version"
+    - "retrieval_policy_version"
+    - "temperature_or_decoding_config"
+    - "latency_ms"
+    - "token_counts"
+  retrieval_trace_fields:
+    - "source_ids"
+    - "source_versions"
+    - "source_owner"
+    - "freshness_timestamp"
+    - "freshness_status"
+    - "citation_ids"
+    - "conflict_detected"
+  tool_trace_fields:
+    - "tool_id"
+    - "tool_contract_version"
+    - "permission_decision"
+    - "identity_used"
+    - "action_requested"
+    - "input_hash"
+    - "result_status"
+    - "error_code"
+  control_trace_fields:
+    - "control_id"
+    - "control_version"
+    - "decision"
+    - "reason"
+    - "severity"
+    - "owner_notified"
+    - "fail_behavior"
+  user_feedback_fields:
+    - "feedback_id"
+    - "run_id"
+    - "user_group"
+    - "rating"
+    - "correction_required"
+    - "feedback_category"
+    - "triage_owner"
+  incident_fields:
+    - "incident_id"
+    - "run_id"
+    - "severity"
+    - "trigger"
+    - "time_to_detect"
+    - "time_to_pause"
+    - "time_to_restore"
+    - "evidence_refs"
+
+metrics:
+  quality_metrics:
+    - metric_id: "task_success_rate"
+      name: "Task success rate"
+      target: ""
+      blocking: true
+    - metric_id: "material_error_rate"
+      name: "Material error rate"
+      target: ""
+      blocking: true
+    - metric_id: "human_correction_rate"
+      name: "Human correction rate"
+      target: ""
+      blocking: false
+  safety_metrics:
+    - metric_id: "control_violation_count"
+      name: "Control violation count"
+      target: "0"
+      blocking: true
+    - metric_id: "unauthorized_tool_call_count"
+      name: "Unauthorized tool call count"
+      target: "0"
+      blocking: true
+    - metric_id: "untraced_run_count"
+      name: "Untraced run count"
+      target: "0"
+      blocking: true
+  reliability_metrics:
+    - metric_id: "tool_failure_rate"
+      name: "Tool failure rate"
+      target: ""
+      blocking: false
+    - metric_id: "p95_latency_ms"
+      name: "P95 latency"
+      target: ""
+      blocking: false
+  adoption_metrics:
+    - metric_id: "active_pilot_users"
+      name: "Active pilot users"
+      target: ""
+      blocking: false
+    - metric_id: "draft_acceptance_rate"
+      name: "Draft acceptance rate"
+      target: ""
+      blocking: true
+  value_metrics:
+    - metric_id: "cycle_time_reduction"
+      name: "Cycle time reduction"
+      target: ""
+      blocking: false
+  cost_metrics:
+    - metric_id: "cost_per_successful_task"
+      name: "Cost per successful task"
+      target: ""
+      blocking: false
+
+alerts:
+  - alert_id: "alert_control_failure"
+    trigger: "Any blocking control decision or violation."
+    severity: "critical"
+    owner: ""
+    notification_channels: []
+    response_sla: ""
+    auto_action: "pause_agent"
+  - alert_id: "alert_untraced_run"
+    trigger: "Any run or tool call missing required trace fields."
+    severity: "critical"
+    owner: ""
+    notification_channels: []
+    response_sla: ""
+    auto_action: "pause_agent"
+  - alert_id: "alert_quality_threshold_breach"
+    trigger: "Material error rate, correction rate, or acceptance rate crosses approved threshold."
+    severity: "high"
+    owner: ""
+    notification_channels: []
+    response_sla: ""
+    auto_action: "escalate_to_agentops_owner"
+  - alert_id: "alert_source_freshness_failure"
+    trigger: "Approved source freshness check fails or source is unavailable."
+    severity: "high"
+    owner: ""
+    notification_channels: []
+    response_sla: ""
+    auto_action: "degrade_to_human_review"
+
+dashboards:
+  - dashboard_id: "agentops_overview"
+    audience: "agentops_owner"
+    metrics:
+      - "task_success_rate"
+      - "material_error_rate"
+      - "human_correction_rate"
+      - "control_violation_count"
+      - "untraced_run_count"
+      - "tool_failure_rate"
+      - "p95_latency_ms"
+      - "cost_per_successful_task"
+    refresh_cadence: ""
+    evidence_ref: ""
+  - dashboard_id: "security_and_control"
+    audience: "security_owner"
+    metrics:
+      - "control_violation_count"
+      - "unauthorized_tool_call_count"
+      - "prompt_injection_success_count"
+      - "sensitive_data_exposure_count"
+      - "time_to_pause"
+    refresh_cadence: ""
+    evidence_ref: ""
+  - dashboard_id: "pilot_value_and_adoption"
+    audience: "business_owner"
+    metrics:
+      - "active_pilot_users"
+      - "draft_acceptance_rate"
+      - "user_feedback_rating"
+      - "cycle_time_reduction"
+    refresh_cadence: ""
+    evidence_ref: ""
+
+incident_rehearsal:
+  required_before_pilot: true
+  required_before_production: true
+  scenarios:
+    - scenario_id: "control_failure_pause"
+      description: "Simulate a blocking control failure and verify alert, pause, owner notification, evidence preservation, and restart approval."
+      expected_evidence_refs: []
+    - scenario_id: "tool_permission_revocation"
+      description: "Simulate unauthorized tool permission and verify credential/tool revocation plus denial logging."
+      expected_evidence_refs: []
+    - scenario_id: "release_rollback"
+      description: "Simulate failed release smoke check and restore previous stable version."
+      expected_evidence_refs: []
+  last_rehearsal_date: ""
+  rehearsal_status: "not_started"
+
+observability_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  notes: []

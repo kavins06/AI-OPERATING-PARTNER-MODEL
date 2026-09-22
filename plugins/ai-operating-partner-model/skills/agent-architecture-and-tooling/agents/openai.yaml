@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Architecture And Tooling"
+  short_description: "Translate approved handoff artifacts into implementation-grade architecture, tool, data, and identity contracts."
+  default_prompt: "Use $agent-architecture-and-tooling after approved Step 18 handoff and separate implementation approval to complete Section 2 phases 4-5. Produce architecture and tool/data/identity contracts with explicit evidence, scope preservation, least privilege, auditability, failure modes, revocation, rollback dependencies, and return-to-method triggers."

@@ -1,0 +1,48 @@
+portfolio_comparison_id: "portfolio_<client>_current"
+spec_version: "0.1"
+object_type: "opportunity_portfolio_comparison"
+status: "draft" # draft | sponsor_reviewed | selected | revised
+
+source_inputs:
+  candidate_use_case_shortlist_id: ""
+  business_value_case_ids: []
+  measurement_intelligence_ids: []
+  truth_production_profile_ids: []
+  risk_signal_refs: []
+  adoption_design_refs: []
+
+opportunities:
+  - opportunity_id: ""
+    name: ""
+    business_value_confidence: "unknown" # high | medium | low | unknown
+    strategic_fit: "unknown"
+    truth_production_strength: "unknown" # strong | partial | fragile | blocking | unknown
+    adoption_feasibility: "unknown" # high | medium | low | unknown
+    regulated_domain_risk: "unknown" # low | medium | high | critical | unknown
+    technical_complexity: "unknown" # low | medium | high | unknown
+    ai_side_cost_complexity: "unknown" # low | medium | high | unknown
+    likely_first_behavior: ""
+    disqualification_status: "" # active | disqualified | paused | remediation_first
+    score_or_rank: null
+    rationale: ""
+
+selection:
+  advance_to_solution_shape:
+    - opportunity_id: ""
+      reason: ""
+  remediation_first:
+    - opportunity_id: ""
+      required_fix: ""
+      owner: ""
+  deprioritize:
+    - opportunity_id: ""
+      reason: ""
+  do_not_automate:
+    - opportunity_id: ""
+      reason: ""
+
+portfolio_decision_notes:
+  max_to_advance: null
+  budget_or_capacity_constraint: ""
+  sponsor_confirmation_needed: []
+  revision_triggers: []

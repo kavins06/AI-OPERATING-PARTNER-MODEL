@@ -1,0 +1,40 @@
+phase_pack_id: 08-sandbox_prototype
+support_skill: agent-sandbox-pilot-readiness
+phase_id: 8
+phase_key: sandbox_prototype
+phase_name: Sandbox Prototype
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- technical_blueprint
+- ai_guidance_pack
+- risk_control_model
+- method_to_build_handoff_contract
+section2_outputs:
+- environment_progression_gate
+- release_version_manifest
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/environment-progression-gate.yaml
+  - skills/agent-build-managed-agentops/assets/templates/release-version-manifest.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/sandbox-exit-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/sandbox-exit-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/sandbox_prototype.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/08-sandbox-prototype-evidence.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- Sandbox uses unapproved data or access.
+- Prototype deviations are not recorded.
+- Sandbox success is treated as production readiness.
+return_to_method_triggers:
+- Sandbox learning changes approved scope, risk, truth, or value assumptions.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

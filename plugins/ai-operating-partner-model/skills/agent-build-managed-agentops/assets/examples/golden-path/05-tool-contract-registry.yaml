@@ -1,0 +1,452 @@
+example_id: golden_path_phase_05_tool_data_identity_contracts
+phase_id: 5
+phase_key: tool_data_identity_contracts
+phase_name: Tool/Data/Identity Contracts
+source_packet: skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml
+status: implementation_grade_example
+purpose: "Golden-path tool registry for approved read-only revenue intake lookup tools."
+section1_inputs_used:
+  - technical_blueprint
+  - organizational_intelligence_baseline
+  - risk_control_model
+  - implementation_decision_packet
+section2_outputs_demonstrated:
+  - tool_contract_registry
+expected_templates:
+  - skills/agent-build-managed-agentops/assets/templates/tool-contract-registry.yaml
+evidence_expectations:
+  - "Cite approved tool inventory, architecture record, system-owner approval, and least-privilege review."
+  - "Show all tools are read-only and disabled until approved per environment."
+  - "Attach permission tests, negative tests, audit-log tests, and revocation drill evidence."
+minimum_completed_sections:
+  - "source_inputs"
+  - "registry_policy"
+  - "identity_model"
+  - "data_governance_policy"
+  - "audit_policy"
+  - "tools"
+  - "registry_quality_bar"
+  - "return_to_method_triggers"
+  - "registry_signoff"
+completed_object:
+  object_type: "tool_contract_registry"
+  spec_version: "post_18_agentops_v0.1"
+  schema_version: "current"
+  object_id: "tool_registry_demo_revenue_intake_20260504"
+  version: "0.1"
+  status: "approved"
+  source_inputs:
+    build_contract_id: "build_contract_demo_revenue_intake_20260504"
+    architecture_record_id: "architecture_demo_revenue_intake_20260504"
+    technical_blueprint_id: "blueprint_demo_revenue_intake_20260501"
+    organizational_intelligence_baseline_id: "org_intel_demo_revenue_intake_20260426"
+    risk_control_model_id: "risk_controls_demo_revenue_intake_20260430"
+    implementation_decision_packet_id: "decision_packet_demo_revenue_intake_20260504"
+    evidence_refs:
+      - "evidence://demo/tool-contract-review"
+      - "evidence://demo/least-privilege-review"
+    approval_checks:
+      step_18_handoff_approved: true
+      separate_implementation_approval_present: true
+      architecture_record_current: true
+  registry_policy:
+    default_tool_state: "disabled_until_approved"
+    unregistered_tools_allowed: false
+    tool_name_hallucination_policy: "block_unknown_tool_and_log_control_event"
+    write_actions_require_explicit_contract: true
+    human_approval_required_for_write_actions: true
+    execute_actions_require_explicit_contract: true
+    secrets_handling_standard: "central_secret_manager_only"
+    least_privilege_standard: "read-only per pilot record"
+    audit_log_required_for_all_tool_calls: true
+    revocation_required_for_all_tools: true
+    production_enablement_requires_environment_gate: true
+  identity_model:
+    agent_identity: "agent_demo_revenue_intake"
+    runtime_service_account: "svc-agent-revenue-intake-sandbox"
+    end_user_delegation_allowed: false
+    impersonation_allowed: false
+    service_account_owner: "Agent Platform Lead"
+    credential_storage: "central_secret_manager"
+    token_rotation_cadence: "30 days and immediately on incident"
+    break_glass_policy:
+      allowed: false
+      owner: "Security Lead"
+      approval_required:
+        - "Security Lead"
+      max_duration: "not_applicable"
+    access_review_cadence: "monthly during pilot"
+    emergency_revocation_sla: "1 hour"
+  data_governance_policy:
+    source_of_truth_required: true
+    field_level_classification_required: true
+    prohibited_fields_must_be_listed: true
+    freshness_requirement_required: true
+    retention_rule_required: true
+    redaction_required_for_sensitive_logs: true
+    lineage_required_for_agent_visible_outputs: true
+  audit_policy:
+    required_fields:
+      - "timestamp"
+      - "agent_id"
+      - "run_id"
+      - "release_version"
+      - "environment"
+      - "actor_id"
+      - "tool_id"
+      - "permission_scope"
+      - "input_reference_or_hash"
+      - "output_reference_or_hash"
+      - "approval_reference"
+      - "status"
+      - "latency_ms"
+      - "error_code"
+    retention: "180 days"
+    redaction_policy: "Redact email, phone, and free-text customer notes in searchable logs."
+    audit_sink: "security_audit_log"
+    alert_on_missing_audit_event: true
+  tools:
+    - tool_id: "crm_read_only_lookup"
+      name: "CRM Opportunity Lookup"
+      tool_type: "connector"
+      system_or_service: "CRM"
+      owner: "CRM Data Owner"
+      technical_owner: "CRM Platform Owner"
+      data_owner: "CRM Data Owner"
+      security_owner: "Security Lead"
+      purpose: "Read approved pilot opportunity fields needed to draft missing-intake follow-up."
+      approved_use_cases:
+        - "Lookup pilot opportunity metadata by opportunity_id."
+      prohibited_use_cases:
+        - "Modify CRM fields."
+        - "Read forecast amount or opportunity stage."
+      environments_allowed:
+        - "sandbox"
+        - "limited_pilot"
+      environments_prohibited:
+        - "production"
+      data_classes_accessed:
+        - "customer_contact"
+        - "opportunity_metadata"
+      source_of_truth: "CRM opportunity object"
+      endpoints_or_actions:
+        - action_id: "crm_opportunity_get"
+          action_name: "GET /opportunities/{id}"
+          side_effect_level: "none"
+          requires_human_approval: false
+          approved_in_handoff: true
+      permissions:
+        read: true
+        create: false
+        update: false
+        delete: false
+        execute: false
+        send: false
+      permission_scopes_allowed:
+        - "opportunity:read:pilot_roster"
+      permission_scopes_denied:
+        - "opportunity:write"
+        - "forecast:read"
+        - "message:send"
+      identity_and_access:
+        service_account: "svc-agent-revenue-intake-sandbox"
+        end_user_delegation_allowed: false
+        impersonation_allowed: false
+        token_scope:
+          - "opportunity:read:pilot_roster"
+        provisioning_request_ref: "access://demo/crm-readonly-20260504"
+        access_review_cadence: "monthly during pilot"
+        revocation_owner: "Security Lead"
+        revocation_sla: "1 hour"
+      inputs:
+        required_fields:
+          - "opportunity_id"
+        optional_fields: []
+        validation_rules:
+          - "opportunity_id must be in pilot roster."
+        prohibited_fields:
+          - "free_text_customer_notes"
+        max_payload_size: "8KB"
+        schema_ref: "schema://demo/crm-opportunity-read-request"
+      outputs:
+        output_schema_ref: "schema://demo/crm-opportunity-read-response"
+        fields_returned:
+          - "opportunity_id"
+          - "account_name"
+          - "contact_role"
+          - "missing_required_fields"
+        fields_redacted:
+          - "email"
+          - "phone"
+        side_effects: []
+        audit_fields:
+          - "tool_id"
+          - "permission_scope"
+          - "opportunity_id_hash"
+          - "status"
+        downstream_use_allowed:
+          - "Draft text for coordinator review."
+        downstream_use_prohibited:
+          - "CRM write."
+      data_contract:
+        authoritative_source: "CRM opportunity object"
+        data_classification_by_field:
+          opportunity_id: "internal_identifier"
+          account_name: "customer_contact"
+          contact_role: "customer_contact"
+          missing_required_fields: "opportunity_metadata"
+        freshness_requirement: "Less than 15 minutes old"
+        retention_rule: "Redacted payload retained 30 days in trace store"
+        deletion_rule: "Delete pilot trace payloads on retirement or by retention schedule"
+        lineage_fields:
+          - "opportunity_id_hash"
+          - "retrieved_at"
+        masking_or_redaction: "Hash opportunity_id and redact direct contact values in searchable logs."
+      invocation_policy:
+        allowed_when:
+          - "Record is in approved pilot roster."
+          - "Run is in sandbox or limited_pilot."
+        prohibited_when:
+          - "User is outside coordinator pilot group."
+          - "Tool call requests write permission."
+        rate_limits: "50 reads per business day during pilot"
+        concurrency_limit: "5"
+        timeout_seconds: 5
+        retry_policy: "one_retry_on_transient_timeout"
+        idempotency_required: true
+        idempotency_key: "run_id:tool_id:opportunity_id_hash"
+        human_approval_required: false
+        approval_policy_ref: "approval://demo/read-only-tool"
+      failure_behavior:
+        on_timeout: "stop_and_escalate"
+        on_validation_error: "stop_and_explain"
+        on_permission_error: "stop_and_escalate"
+        on_unavailable: "stop_and_escalate"
+        on_stale_data: "stop_and_explain"
+        on_partial_success: "reconcile_before_continue"
+        on_duplicate_invocation: "dedupe_and_log"
+        on_unexpected_side_effect: "pause_agent_and_escalate"
+        compensation_or_rollback_steps: []
+      audit_and_observability:
+        audit_events:
+          - "tool_call_requested"
+          - "tool_call_completed"
+        required_trace_fields:
+          - "agent_id"
+          - "run_id"
+          - "release_version"
+          - "environment"
+          - "tool_id"
+          - "permission_scope"
+          - "status"
+        alert_conditions:
+          - "Permission denied."
+          - "Tool requests write scope."
+        dashboard_refs:
+          - "dashboard://agentops/revenue-intake-tooling"
+      testing_evidence:
+        sandbox_fixture_refs:
+          - "fixture://demo/crm-opportunity-pilot-record"
+        permission_test_refs:
+          - "evidence://demo/crm-read-permission-test"
+        negative_test_refs:
+          - "evidence://demo/crm-write-block-test"
+        audit_log_test_refs:
+          - "evidence://demo/crm-audit-log-test"
+        revocation_drill_refs:
+          - "evidence://demo/crm-token-revocation-drill"
+        rollback_test_refs: []
+      approval:
+        approval_status: "approved"
+        approved_by:
+          - "CRM Data Owner"
+          - "Security Lead"
+        approval_date: "2026-05-04"
+        conditions:
+          - "Limited to pilot roster records."
+    - tool_id: "intake_form_read_only_lookup"
+      name: "Intake Form Lookup"
+      tool_type: "document_store"
+      system_or_service: "Intake Forms"
+      owner: "Revenue Operations Manager"
+      technical_owner: "Agent Platform Lead"
+      data_owner: "Revenue Operations Manager"
+      security_owner: "Security Lead"
+      purpose: "Read submitted intake form fields needed to draft missing-information follow-up."
+      approved_use_cases:
+        - "Lookup missing form fields for approved intake record."
+      prohibited_use_cases:
+        - "Modify form submission."
+        - "Read unrelated attachment content."
+      environments_allowed:
+        - "sandbox"
+        - "limited_pilot"
+      environments_prohibited:
+        - "production"
+      data_classes_accessed:
+        - "customer_contact"
+        - "opportunity_metadata"
+      source_of_truth: "Intake form submission store"
+      endpoints_or_actions:
+        - action_id: "intake_submission_get"
+          action_name: "GET /submissions/{id}"
+          side_effect_level: "none"
+          requires_human_approval: false
+          approved_in_handoff: true
+      permissions:
+        read: true
+        create: false
+        update: false
+        delete: false
+        execute: false
+        send: false
+      permission_scopes_allowed:
+        - "intake_submission:read:pilot_roster"
+      permission_scopes_denied:
+        - "intake_submission:write"
+        - "attachment:read"
+        - "message:send"
+      identity_and_access:
+        service_account: "svc-agent-revenue-intake-sandbox"
+        end_user_delegation_allowed: false
+        impersonation_allowed: false
+        token_scope:
+          - "intake_submission:read:pilot_roster"
+        provisioning_request_ref: "access://demo/intake-readonly-20260504"
+        access_review_cadence: "monthly during pilot"
+        revocation_owner: "Security Lead"
+        revocation_sla: "1 hour"
+      inputs:
+        required_fields:
+          - "submission_id"
+        optional_fields: []
+        validation_rules:
+          - "submission_id must map to approved opportunity_id."
+        prohibited_fields:
+          - "attachments"
+        max_payload_size: "8KB"
+        schema_ref: "schema://demo/intake-submission-read-request"
+      outputs:
+        output_schema_ref: "schema://demo/intake-submission-read-response"
+        fields_returned:
+          - "submission_id"
+          - "submitted_fields"
+          - "missing_required_fields"
+        fields_redacted:
+          - "email"
+          - "phone"
+        side_effects: []
+        audit_fields:
+          - "tool_id"
+          - "submission_id_hash"
+          - "status"
+        downstream_use_allowed:
+          - "Draft text for coordinator review."
+        downstream_use_prohibited:
+          - "Form mutation."
+      data_contract:
+        authoritative_source: "Intake form submission store"
+        data_classification_by_field:
+          submission_id: "internal_identifier"
+          submitted_fields: "opportunity_metadata"
+          missing_required_fields: "opportunity_metadata"
+        freshness_requirement: "Less than 15 minutes old"
+        retention_rule: "Redacted payload retained 30 days in trace store"
+        deletion_rule: "Delete pilot trace payloads on retirement or by retention schedule"
+        lineage_fields:
+          - "submission_id_hash"
+          - "retrieved_at"
+        masking_or_redaction: "Hash submission_id and redact direct contact values in searchable logs."
+      invocation_policy:
+        allowed_when:
+          - "Submission maps to approved pilot opportunity."
+        prohibited_when:
+          - "Submission includes unapproved attachments."
+        rate_limits: "50 reads per business day during pilot"
+        concurrency_limit: "5"
+        timeout_seconds: 5
+        retry_policy: "one_retry_on_transient_timeout"
+        idempotency_required: true
+        idempotency_key: "run_id:tool_id:submission_id_hash"
+        human_approval_required: false
+        approval_policy_ref: "approval://demo/read-only-tool"
+      failure_behavior:
+        on_timeout: "stop_and_escalate"
+        on_validation_error: "stop_and_explain"
+        on_permission_error: "stop_and_escalate"
+        on_unavailable: "stop_and_escalate"
+        on_stale_data: "stop_and_explain"
+        on_partial_success: "reconcile_before_continue"
+        on_duplicate_invocation: "dedupe_and_log"
+        on_unexpected_side_effect: "pause_agent_and_escalate"
+        compensation_or_rollback_steps: []
+      audit_and_observability:
+        audit_events:
+          - "tool_call_requested"
+          - "tool_call_completed"
+        required_trace_fields:
+          - "agent_id"
+          - "run_id"
+          - "release_version"
+          - "environment"
+          - "tool_id"
+          - "permission_scope"
+          - "status"
+        alert_conditions:
+          - "Permission denied."
+          - "Unapproved attachment requested."
+        dashboard_refs:
+          - "dashboard://agentops/revenue-intake-tooling"
+      testing_evidence:
+        sandbox_fixture_refs:
+          - "fixture://demo/intake-form-pilot-record"
+        permission_test_refs:
+          - "evidence://demo/intake-read-permission-test"
+        negative_test_refs:
+          - "evidence://demo/intake-attachment-block-test"
+        audit_log_test_refs:
+          - "evidence://demo/intake-audit-log-test"
+        revocation_drill_refs:
+          - "evidence://demo/intake-token-revocation-drill"
+        rollback_test_refs: []
+      approval:
+        approval_status: "approved"
+        approved_by:
+          - "Revenue Operations Manager"
+          - "Security Lead"
+        approval_date: "2026-05-04"
+        conditions:
+          - "Limited to pilot roster submissions."
+  registry_quality_bar:
+    all_tools_registered: true
+    unregistered_tools_blocked: true
+    least_privilege_verified: true
+    write_send_execute_actions_explicitly_approved: true
+    identity_mapping_unambiguous: true
+    auditability_verified: true
+    revocation_paths_verified: true
+    failure_behaviors_verified: true
+    environment_gate_dependencies_named: true
+    blockers: []
+  return_to_method_triggers:
+    - "Tool requires access not approved in Step 17/18."
+    - "Required system owner cannot provide least-privilege access."
+  registry_signoff:
+    prepared_by: "Agent Platform Lead"
+    reviewed_by:
+      - "CRM Data Owner"
+      - "Revenue Operations Manager"
+      - "Security Lead"
+      - "AgentOps Lead"
+    approved_by:
+      - "Revenue AI Build Forum"
+    approval_status: "approved"
+    approval_date: "2026-05-04"
+failure_modes_to_test:
+  - "Tool lacks owner, permission scope, audit logging, failure behavior, or revocation path."
+  - "Identity mapping is ambiguous."
+  - "Write/send action appears without explicit approval."
+  - "Data contract lacks source-of-truth, classification, freshness, retention, validation, or prohibited-field rules."
+return_to_method_triggers_to_test:
+  - "Tool requires access not approved in Step 17/18."
+  - "The approved outcome cannot be delivered without a new source, user group, workflow action, or identity assumption."

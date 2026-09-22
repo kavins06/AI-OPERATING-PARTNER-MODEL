@@ -1,0 +1,133 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://ai-operating-partner.local/schemas/vertical-extension.schema.json"
+title: "Vertical Extension Contract"
+type: "object"
+required:
+  - "vertical_extension_id"
+  - "vertical"
+  - "regulated_entities"
+  - "knowledge_requirements"
+  - "guidance_requirements"
+  - "risk_requirements"
+  - "lifecycle_requirements"
+  - "evidence_requirements"
+properties:
+  vertical_extension_id:
+    type: "string"
+  spec_version:
+    type: "string"
+  vertical:
+    type: "string"
+  scope_variants:
+    type: "array"
+    items:
+      type: "string"
+  regulated_entities:
+    type: "array"
+    items:
+      type: "object"
+      required: ["entity_type", "why_it_matters"]
+      properties:
+        entity_type:
+          type: "string"
+        examples:
+          type: "array"
+          items:
+            type: "string"
+        why_it_matters:
+          type: "string"
+  named_rules:
+    type: "array"
+    items:
+      type: "object"
+      required: ["rule_id", "rule_name", "domain_area", "applies_when"]
+      properties:
+        rule_id:
+          type: "string"
+        rule_name:
+          type: "string"
+        domain_area:
+          enum:
+            - "advertising"
+            - "communications"
+            - "data_licensing"
+            - "consent"
+            - "referrals"
+            - "licensing"
+            - "protected_classes"
+            - "recordkeeping"
+            - "financial_controls"
+            - "clinical_or_safety"
+            - "other"
+        applies_when:
+          type: "array"
+          items:
+            type: "string"
+        prohibited_ai_behaviors:
+          type: "array"
+          items:
+            type: "string"
+        required_human_review:
+          type: "array"
+          items:
+            type: "string"
+        required_evidence:
+          type: "array"
+          items:
+            type: "string"
+  knowledge_requirements:
+    type: "array"
+    items:
+      type: "object"
+      required: ["requirement_id", "knowledge_needed", "routes_to_step"]
+      properties:
+        requirement_id:
+          type: "string"
+        knowledge_needed:
+          type: "string"
+        examples_needed:
+          type: "array"
+          items:
+            type: "string"
+        routes_to_step:
+          enum: ["step9", "step10", "step15", "step18"]
+  guidance_requirements:
+    type: "object"
+    properties:
+      required_eval_categories:
+        type: "array"
+        items:
+          type: "string"
+      prohibited_language_or_logic_lists_required:
+        type: "boolean"
+      source_hierarchy_required:
+        type: "boolean"
+  risk_requirements:
+    type: "array"
+    items:
+      type: "object"
+      required: ["risk_id", "risk_name", "required_control"]
+      properties:
+        risk_id:
+          type: "string"
+        risk_name:
+          type: "string"
+        required_control:
+          type: "string"
+        owner_role:
+          type: "string"
+  lifecycle_requirements:
+    type: "object"
+    properties:
+      review_cadence:
+        type: "string"
+      rule_change_revalidation_required:
+        type: "boolean"
+      required_owners:
+        type: "array"
+        items:
+          type: "string"
+  evidence_requirements:
+    type: "array"
+    items:
+      type: "string"

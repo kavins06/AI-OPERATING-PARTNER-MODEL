@@ -1,0 +1,364 @@
+object_type: "agent_build_plan"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "build_plan_<opportunity_id>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+
+source_inputs:
+  build_contract_id: ""
+  agent_necessity_kill_test_id: ""
+  implementation_decision_packet_id: ""
+  managed_lifecycle_object_id: ""
+  method_to_build_handoff_contract_id: ""
+  readiness_object_id: ""
+  workflow_intelligence_object_id: ""
+  organizational_intelligence_baseline_id: ""
+  architecture_record_id: ""
+  tool_contract_registry_id: ""
+  eval_harness_spec_id: ""
+  guardrail_control_matrix_id: ""
+  evidence_refs: []
+  source_input_usage:
+    - artifact: "agent_build_contract"
+      usage: "Locks build authorization, owner model, scope boundaries, first behavior, launch blockers, and change-control rules."
+      required_before_phase_exit: true
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "agent_necessity_kill_test"
+      usage: "Confirms the build remains an agent build and carries required scope reductions into the plan."
+      required_before_phase_exit: true
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "implementation_decision_packet"
+      usage: "Converts first build scope, component contracts, build sequence, owner matrix, and stop boundary into plan workstreams and milestones."
+      required_before_phase_exit: true
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "managed_lifecycle_object"
+      usage: "Converts lifecycle stages, validation plan, launch gates, monitoring plan, change management, and incident response into delivery gates."
+      required_before_phase_exit: true
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "readiness_object"
+      usage: "Carries hard gates, dependencies, blockers, minimum safe first behavior, and prohibited behaviors into build sequencing."
+      required_before_phase_exit: true
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "workflow_intelligence_object"
+      usage: "Defines first-behavior workflow steps, roles, edge cases, decisions, and information objects for implementation and eval planning."
+      required_before_phase_exit: true
+      completeness_status: "not_started"
+      evidence_refs: []
+    - artifact: "organizational_intelligence_baseline"
+      usage: "Defines source ownership, access limits, sensitivity, retention, permitted actions, and prohibited actions for delivery dependencies."
+      required_before_phase_exit: true
+      completeness_status: "not_started"
+      evidence_refs: []
+
+delivery_model:
+  build_owner: ""
+  delivery_lead: ""
+  engineering_team: []
+  review_forums: []
+  implementation_approach: "incremental"
+  target_first_pilot_date: ""
+  target_production_date: ""
+  phase_cadence_reference: "references/phase-cadence-guide.md"
+  operating_principles:
+    - "Build the minimum safe first behavior before any broader roadmap behavior."
+    - "Treat unapproved access, source, user, action, behavior-level, or environment expansion as a blocker."
+    - "Every phase exit needs evidence, owner signoff, and return-to-method evaluation."
+
+first_behavior_scope_lock:
+  behavior_name: ""
+  behavior_statement: ""
+  approved_behavior_level: ""
+  first_user_group: []
+  workflow_start: ""
+  workflow_end: ""
+  allowed_sources: []
+  allowed_actions: []
+  allowed_outputs: []
+  prohibited_sources: []
+  prohibited_actions: []
+  prohibited_outputs: []
+  human_review_path:
+    reviewer_role: ""
+    approval_points: []
+    review_sla: ""
+    escalation_path: []
+  build_must_stop_when:
+    - "Implementation requires an unapproved tool, source, write/send action, user group, or behavior level."
+    - "The first behavior cannot meet the output contract using approved sources."
+    - "Human review is not feasible at expected pilot volume."
+    - "Source facts contradict Section 1 assumptions."
+
+phase_cadence:
+  - phase_id: "01_build_conversion_gate"
+    default_timebox: "0.5-1 business day"
+    review_cadence: "single gate review"
+    decision_owner: ""
+    exit_evidence:
+      - "agent_build_contract.authorization"
+      - "agent_build_contract.owners"
+      - "agent_build_contract.build_scope"
+      - "agent_build_contract.gate_decisions.build_conversion_gate"
+    exit_decision_options:
+      - "pass"
+      - "conditional_pass"
+      - "blocked"
+      - "return_to_method"
+  - phase_id: "02_agent_necessity_check"
+    default_timebox: "0.5-1 business day"
+    review_cadence: "single decision review"
+    decision_owner: ""
+    exit_evidence:
+      - "agent_necessity_kill_test"
+    exit_decision_options:
+      - "proceed_with_agent_build"
+      - "replace_with_simpler_path"
+      - "hold_for_more_evidence"
+      - "return_to_method"
+  - phase_id: "03_first_behavior_scope"
+    default_timebox: "0.5-1 business day"
+    review_cadence: "scope lock review"
+    decision_owner: ""
+    exit_evidence:
+      - "agent_build_contract.first_behavior_scope"
+      - "agent_build_plan.first_behavior_scope_lock"
+      - "agent_build_plan.workstreams"
+      - "agent_build_plan.milestones"
+      - "agent_build_plan.definition_of_done"
+    exit_decision_options:
+      - "pass"
+      - "conditional_pass"
+      - "blocked"
+      - "return_to_method"
+  - phase_id: "04_agent_architecture_spec"
+    default_timebox: "1-3 business days"
+    review_cadence: "architecture review before sandbox build"
+    exit_evidence:
+      - "agent_architecture_record"
+  - phase_id: "05_tool_data_identity_contracts"
+    default_timebox: "1-3 business days"
+    review_cadence: "security/data review before tool enablement"
+    exit_evidence:
+      - "tool_contract_registry"
+  - phase_id: "06_environment_and_access_setup"
+    default_timebox: "1-5 business days"
+    review_cadence: "environment promotion review"
+    exit_evidence:
+      - "environment_progression_gate"
+  - phase_id: "07_eval_and_guardrail_design"
+    default_timebox: "1-3 business days"
+    review_cadence: "quality/control review before prototype evaluation"
+    exit_evidence:
+      - "eval_harness_spec"
+      - "guardrail_control_matrix"
+  - phase_id: "08_sandbox_prototype"
+    default_timebox: "3-10 business days"
+    review_cadence: "twice-weekly build review"
+    exit_evidence: []
+  - phase_id: "09_security_and_control_review"
+    default_timebox: "1-3 business days"
+    review_cadence: "security/risk signoff"
+    exit_evidence: []
+  - phase_id: "10_controlled_pilot"
+    default_timebox: "5-15 business days"
+    review_cadence: "daily owner check plus weekly sponsor review"
+    exit_evidence:
+      - "pilot_launch_gate"
+  - phase_id: "11_production_readiness_gate"
+    default_timebox: "1-2 business days"
+    review_cadence: "single launch decision review"
+    exit_evidence:
+      - "production_readiness_gate"
+  - phase_id: "12_production_release"
+    default_timebox: "0.5-2 business days"
+    review_cadence: "release-day monitoring and next-business-day review"
+    exit_evidence:
+      - "release_version_manifest"
+  - phase_id: "13_managed_agentops"
+    default_timebox: "ongoing"
+    review_cadence: "weekly for first month, monthly after stabilization"
+    exit_evidence:
+      - "agentops_operating_record"
+      - "internal-operator-run-card.md"
+  - phase_id: "14_expansion_change_control_gate"
+    default_timebox: "1-5 business days per material change"
+    review_cadence: "per-change approval forum"
+    exit_evidence:
+      - "change_expansion_retirement_review"
+  - phase_id: "15_retirement_or_redesign_loop"
+    default_timebox: "1-10 business days depending on shutdown scope"
+    review_cadence: "retirement/redesign decision review"
+    exit_evidence:
+      - "change_expansion_retirement_review"
+
+workstreams:
+  - workstream_id: "ws_agent_experience"
+    name: "Agent behavior and user experience"
+    owner: ""
+    scope:
+      - "Implement only the locked first behavior."
+      - "Make prohibited behaviors visible in prompts, UX, and fallback copy."
+    deliverables:
+      - "Behavior contract implementation."
+      - "Human review UX and approval handoff."
+      - "Fallback and stop-condition handling."
+    dependencies:
+      - "Approved first_behavior_scope_lock."
+    exit_criteria:
+      - "Behavior cannot complete unapproved action."
+      - "Every output cites approved source context where required."
+  - workstream_id: "ws_integrations"
+    name: "Tools, connectors, and data access"
+    owner: ""
+    scope:
+      - "Prepare only approved sources, systems, and permissions."
+      - "Prohibit write/send actions unless explicitly approved."
+    deliverables:
+      - "Tool/data/identity contract inputs."
+      - "Read-only access proof or access blocker."
+      - "Revocation path evidence."
+    dependencies:
+      - "Organizational intelligence baseline source ownership."
+      - "Security/data owner approval."
+    exit_criteria:
+      - "Every source has owner, permission scope, environment, and failure behavior."
+  - workstream_id: "ws_evals_controls"
+    name: "Evals, guardrails, and observability"
+    owner: ""
+    scope:
+      - "Turn first behavior, prohibited behaviors, source limits, and human review into eval/control requirements."
+    deliverables:
+      - "Eval seed cases for first behavior and failure modes."
+      - "Guardrail requirements for prohibited actions."
+      - "Trace and audit requirements."
+    dependencies:
+      - "Risk/control model."
+      - "Readiness hard gates."
+    exit_criteria:
+      - "Every prohibited behavior has a preventive or detective control requirement."
+
+milestones:
+  - milestone_id: "m0_contract_lock"
+    name: "Build intake contract approved"
+    target_date: ""
+    required_artifacts:
+      - "agent_build_contract"
+      - "build_conversion_gate_rubric_result"
+    approval_required: true
+    owner: ""
+    status: "not_started"
+    pass_criteria:
+      - "Build authorization, owner model, scope, and return-to-method triggers are approved."
+  - milestone_id: "m1_agent_necessity_decision"
+    name: "Agent necessity decision approved"
+    target_date: ""
+    required_artifacts:
+      - "agent_necessity_kill_test"
+    approval_required: true
+    owner: ""
+    status: "not_started"
+    pass_criteria:
+      - "Agent path survives simpler-alternative kill test or build stops."
+  - milestone_id: "m2_first_behavior_locked"
+    name: "First behavior locked"
+    target_date: ""
+    required_artifacts:
+      - "agent_build_contract.first_behavior_scope"
+      - "agent_build_plan.first_behavior_scope_lock"
+    approval_required: true
+    owner: ""
+    status: "not_started"
+    pass_criteria:
+      - "Single first behavior is buildable, constrained, and signoff-ready."
+  - milestone_id: "m3_offline_validation_ready"
+    name: "Offline validation ready"
+    target_date: ""
+    required_artifacts:
+      - "agent_architecture_record"
+      - "tool_contract_registry"
+      - "eval_harness_spec"
+      - "guardrail_control_matrix"
+    approval_required: true
+    owner: ""
+    status: "not_started"
+  - milestone_id: "m4_pilot_launch_ready"
+    name: "Pilot launch gate ready"
+    target_date: ""
+    required_artifacts:
+      - "pilot_launch_gate"
+    approval_required: true
+    owner: ""
+    status: "not_started"
+
+delivery_risks:
+  - risk_id: "delivery_risk_scope_expansion"
+    description: "Team attempts to add unapproved user, source, tool, write/send action, or behavior level during build."
+    likelihood: "unknown"
+    impact: "high"
+    mitigation: "Block milestone exit and require change review or return-to-method."
+    owner: ""
+    status: "open"
+  - risk_id: "delivery_risk_human_review_capacity"
+    description: "Human reviewer cannot support the expected volume or SLA."
+    likelihood: "unknown"
+    impact: "high"
+    mitigation: "Reduce first behavior volume, change rollout segment, or redesign oversight path."
+    owner: ""
+    status: "open"
+
+dependencies:
+  internal_dependencies: []
+  client_dependencies: []
+  vendor_dependencies: []
+  security_or_data_dependencies: []
+  dependency_rules:
+    - "A dependency without owner, due date, and blocked-phase impact is incomplete."
+    - "A dependency that changes approved scope triggers return-to-method review."
+    - "A dependency that requires unapproved access blocks tool/data/identity contracts."
+
+definition_of_done:
+  phase_3_complete_when:
+    - "Build conversion gate is passed or explicitly blocked."
+    - "Agent necessity kill test decision is proceed_with_agent_build or build is stopped."
+    - "First behavior scope is locked with allowed/prohibited users, sources, systems, actions, outputs, human review, stop conditions, and escalation."
+    - "Workstreams and milestones inherit the locked first behavior."
+    - "All required signoffs are captured or listed as blockers."
+    - "Return-to-method triggers have been evaluated."
+  build_complete_when: []
+  pilot_complete_when: []
+  production_complete_when: []
+  documentation_required:
+    - "Approved agent_build_contract."
+    - "Approved agent_necessity_kill_test."
+    - "Approved agent_build_plan."
+
+return_to_method_controls:
+  triggers:
+    - "Workflow boundary changes from approved Step 17/18 scope."
+    - "Lowest-risk sufficient solution is not an agent."
+    - "Agent path changes recommended Step 17 decision."
+    - "Owner, source, risk, value, readiness, or lifecycle assumption is contradicted."
+  handling:
+    - "Pause affected Section 2 phase."
+    - "Record trigger, evidence, owner, and method question to reopen."
+    - "Do not resume until Section 1 method owner or authorized change forum decides."
+
+plan_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  required_signoff_roles:
+    - "business_owner"
+    - "product_owner"
+    - "technical_owner"
+    - "security_owner"
+    - "data_owner"
+    - "agentops_owner"
+  notes: []

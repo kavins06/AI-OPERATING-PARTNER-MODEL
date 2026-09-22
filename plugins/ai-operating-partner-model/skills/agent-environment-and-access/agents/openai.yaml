@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Environment And Access"
+  short_description: "Control environment progression, test data, secrets, provisioning, access review, and rollback readiness."
+  default_prompt: "Use $agent-environment-and-access after approved Step 18 handoff and separate implementation approval to complete Section 2 phase 6. Produce an environment progression gate with explicit environment scope, test data, secrets, least-privilege access, auditability, eval/control evidence, rollback, revocation, and return-to-method triggers."

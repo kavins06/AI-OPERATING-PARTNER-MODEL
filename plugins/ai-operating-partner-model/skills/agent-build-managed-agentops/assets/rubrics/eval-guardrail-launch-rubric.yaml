@@ -1,0 +1,95 @@
+rubric_id: eval_and_guardrail_design_rubric
+phase_id: 7
+phase_key: eval_and_guardrail_design
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver; no automatic blocker remains."
+  conditional: "No critical blocker remains, and named follow-up is required before later promotion."
+  blocked: "Any required criterion fails without authorized waiver."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    evidence_required:
+      - "ai_guidance_pack"
+      - "measurement_intelligence"
+      - "risk_control_model"
+      - "readiness_object"
+      - "managed_lifecycle_object"
+    pass_condition: "All required Section 1 inputs are present, approved, versioned, and cited."
+  - criterion_id: approved_scope_preserved
+    required: true
+    evidence_required:
+      - "implementation_decision_packet.first_build_scope"
+      - "managed_lifecycle_object.lifecycle_scope"
+      - "method_to_build_handoff_contract"
+    pass_condition: "Eval and guardrail design is equal to or narrower than approved Step 17/18 scope."
+  - criterion_id: behavior_level_eval_coverage
+    required: true
+    evidence_required:
+      - "eval_harness_spec.coverage_requirements"
+      - "eval_harness_spec.eval_suites"
+    pass_condition: "Approved behavior has golden, edge, adversarial, regression, source-truth, permission-boundary, and human-review coverage."
+  - criterion_id: adversarial_tests_defined
+    required: true
+    evidence_required:
+      - "eval_harness_spec.datasets.adversarial_set"
+      - "eval_harness_spec.eval_suites.suite_adversarial_resilience"
+    pass_condition: "Prompt injection, instruction override, source manipulation, data exfiltration, unsupported write/send, and policy conflict tests are defined with blocking thresholds."
+  - criterion_id: thresholds_and_sample_sizes_defined
+    required: true
+    evidence_required:
+      - "eval_harness_spec.eval_suites.metrics"
+      - "eval_harness_spec.eval_suites.minimum_sample_size"
+      - "eval_harness_spec.promotion_criteria"
+    pass_condition: "Every suite has minimum sample size, blocking metrics, pass threshold, reviewer roles, and promotion criteria."
+  - criterion_id: dataset_provenance_and_redaction
+    required: true
+    evidence_required:
+      - "eval_harness_spec.datasets"
+    pass_condition: "Every dataset has source, owner, redaction status, sensitive-field handling, allowed environments, and evidence references."
+  - criterion_id: risk_to_control_traceability
+    required: true
+    evidence_required:
+      - "risk_control_model"
+      - "guardrail_control_matrix.risk_control_traceability"
+      - "guardrail_control_matrix.controls"
+    pass_condition: "Every material risk, prohibited behavior, permission boundary, and source-truth rule maps to tested controls."
+  - criterion_id: fail_closed_control_behavior
+    required: true
+    evidence_required:
+      - "guardrail_control_matrix.control_policy"
+      - "guardrail_control_matrix.controls.fail_behavior"
+    pass_condition: "Missing source, stale source, unknown intent, unregistered tool, trace failure, control failure, and unsupported scope fail closed."
+  - criterion_id: human_review_and_override_policy
+    required: true
+    evidence_required:
+      - "guardrail_control_matrix.human_review_controls"
+      - "guardrail_control_matrix.control_policy.override_evidence_required"
+    pass_condition: "Human-review gates, reviewer roles, override policy, evidence requirements, and bypass tests are defined."
+  - criterion_id: promotion_and_rollback_rules
+    required: true
+    evidence_required:
+      - "eval_harness_spec.promotion_criteria"
+      - "guardrail_control_matrix.revocation_controls"
+    pass_condition: "Offline-to-sandbox, sandbox-to-pilot, pilot-to-production, rollback, pause, and revocation rules are explicit."
+  - criterion_id: owners_and_approvers_assigned
+    required: true
+    evidence_required:
+      - "managed_lifecycle_object.owner_model"
+      - "eval_harness_spec.eval_signoff"
+      - "guardrail_control_matrix.control_signoff"
+    pass_condition: "Eval, control, security, data, business, AgentOps, and revocation owners are named."
+  - criterion_id: return_to_method_rules_recorded
+    required: true
+    evidence_required:
+      - "phase_return_to_method_assessment"
+    pass_condition: "Missing knowledge, unstable truth production, or changed scope/value/risk assumptions are assessed before phase exit."
+automatic_blockers:
+  - "Any approved behavior lacks golden, edge, adversarial, and regression coverage."
+  - "Any prohibited behavior lacks a blocking eval or fail-closed control."
+  - "Any write, send, export, privileged action, or external communication path appears without explicit approval."
+  - "Blocking thresholds, sample sizes, owners, or dataset provenance are missing."
+  - "Any successful prompt injection, unauthorized tool call, human-review bypass, sensitive data exposure, or untraced run remains unresolved."
+return_to_method_triggers:
+  - "Required evals reveal missing knowledge or unstable truth production."
+  - "Eval or guardrail design changes approved scope, behavior level, source truth, risk, value, or oversight assumptions."

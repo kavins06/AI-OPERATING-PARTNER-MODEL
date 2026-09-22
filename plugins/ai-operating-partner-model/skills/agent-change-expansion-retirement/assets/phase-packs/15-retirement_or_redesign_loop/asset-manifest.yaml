@@ -1,0 +1,37 @@
+phase_pack_id: 15-retirement_or_redesign_loop
+support_skill: agent-change-expansion-retirement
+phase_id: 15
+phase_key: retirement_or_redesign_loop
+phase_name: Retirement Or Redesign Loop
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- managed_lifecycle_object
+- measurement_intelligence
+- risk_control_model
+- organizational_intelligence_diagnostic
+section2_outputs:
+- change_expansion_retirement_review
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/change-expansion-retirement-review.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/retirement-redesign-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/retirement-redesign-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/retirement_or_redesign_loop.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/15-retirement-redesign-review.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- Low value, high correction rate, source drift, ownership gap, or unacceptable risk
+  continues without pause, redesign, or retirement.
+return_to_method_triggers:
+- Redesign requires new discovery, readiness scoring, or lifecycle decision.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

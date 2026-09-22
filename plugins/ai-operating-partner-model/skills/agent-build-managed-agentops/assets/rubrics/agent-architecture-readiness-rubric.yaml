@@ -1,0 +1,130 @@
+rubric_id: agent_architecture_spec_rubric
+phase_id: 4
+phase_key: agent_architecture_spec
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver; no automatic blocker remains."
+  conditional: "No critical blocker remains, but named follow-up is required before tool, environment, or release promotion."
+  blocked: "Any required criterion fails without authorized waiver, or any automatic blocker is present."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    owner: ""
+    evidence_required:
+      - "solution_shape"
+      - "technical_blueprint"
+      - "risk_control_model"
+      - "implementation_decision_packet"
+      - "Step 18 handoff approval"
+      - "separate implementation approval"
+    pass_condition: "All required Section 1 inputs are present, approved, versioned, internally consistent, and cited."
+  - criterion_id: scope_preserved
+    required: true
+    owner: ""
+    evidence_required:
+      - "implementation_decision_packet.first_build_scope"
+      - "agent_build_contract.scope_lock"
+      - "approved prohibited behaviors and actions"
+    pass_condition: "Architecture is equal to or narrower than approved users, workflow boundary, sources, tools, environments, actions, and behavior level."
+  - criterion_id: behavior_topology_alignment
+    required: true
+    owner: ""
+    evidence_required:
+      - "architecture_summary.behavior_level"
+      - "architecture_summary.topology"
+      - "architecture_summary.oversight_model"
+      - "risk_control_model.human_review_controls"
+    pass_condition: "Topology, orchestration pattern, oversight model, and environment posture match the approved behavior level."
+  - criterion_id: components_are_implementation_ready
+    required: true
+    owner: ""
+    evidence_required:
+      - "components"
+      - "component owners"
+      - "component dependencies"
+      - "component audit events"
+    pass_condition: "Runtime, model gateway, orchestration, retrieval/tool adapters, human review, audit/trace, and operator-control components have owner, purpose, dependencies, interfaces, environments, data classes, and audit events."
+  - criterion_id: data_and_system_paths_complete
+    required: true
+    owner: ""
+    evidence_required:
+      - "data_and_system_paths.read_paths"
+      - "data_and_system_paths.write_paths"
+      - "data_and_system_paths.event_paths"
+      - "data_and_system_paths.secrets_and_credentials"
+    pass_condition: "Read, write, retrieval, event, logging, secret, and human approval paths are explicit, classified, owner-backed, environment-scoped, and validated; empty write paths are intentionally documented."
+  - criterion_id: model_posture_defined
+    required: true
+    owner: ""
+    evidence_required:
+      - "model_posture.model_classes_allowed"
+      - "model_posture.routing_policy"
+      - "model_posture.fallback_policy"
+      - "model_posture.model_output_constraints"
+      - "privacy latency cost constraints"
+    pass_condition: "Allowed/prohibited model classes, routing, fallback, context minimization, retrieval sources, output constraints, uncertainty behavior, and privacy/latency/cost constraints are documented."
+  - criterion_id: identity_and_access_posture_defined
+    required: true
+    owner: ""
+    evidence_required:
+      - "identity_and_access_posture.agent_identity"
+      - "identity_and_access_posture.runtime_service_account"
+      - "least_privilege_evidence_refs"
+      - "revocation_owner"
+    pass_condition: "Agent identity, service account, delegation stance, impersonation prohibition, break-glass stance, access review, revocation owner, and revocation SLA are defined."
+  - criterion_id: auditability_and_observability_defined
+    required: true
+    owner: ""
+    evidence_required:
+      - "auditability_and_observability.required_audit_events"
+      - "correlation_ids_required"
+      - "redaction_policy"
+      - "dashboard_refs"
+      - "alert_routes"
+    pass_condition: "Every run, model invocation, tool call, human approval, control violation, and completion can be traced with required IDs, redaction, retention, dashboards, and alert routes."
+  - criterion_id: resilience_and_failure_modes_handled
+    required: true
+    owner: ""
+    evidence_required:
+      - "resilience_and_failure_modes.expected_failure_modes"
+      - "retry_policy"
+      - "timeout_policy"
+      - "stop_conditions"
+      - "incident_route"
+    pass_condition: "Invalid input, missing data, unavailable tools, permission errors, uncertainty, malformed output, partial success, latency breach, control violation, and cost spike have safe responses and owners."
+  - criterion_id: rollback_and_change_control_ready
+    required: true
+    owner: ""
+    evidence_required:
+      - "rollback_and_change_control.rollback_owner"
+      - "rollback_trigger_conditions"
+      - "rollback_validation"
+      - "material_change_review_required"
+    pass_condition: "Rollback dependencies, trigger conditions, validation, owner, architecture freeze conditions, and material change triggers are explicit."
+  - criterion_id: architectural_decisions_traceable
+    required: true
+    owner: ""
+    evidence_required:
+      - "architectural_decisions"
+      - "options_considered"
+      - "rationale"
+      - "approver"
+      - "evidence_refs"
+    pass_condition: "Material decisions include context, options considered, rejected options, rationale, consequences, approver, date, and evidence."
+  - criterion_id: return_to_method_rules_recorded
+    required: true
+    owner: ""
+    evidence_required:
+      - "return_to_method_triggers"
+      - "blockers"
+    pass_condition: "Return-to-method triggers are evaluated, documented, and activated when architecture changes approved behavior, source, oversight, risk, or workflow assumptions."
+automatic_blockers:
+  - "Runtime topology does not match approved behavior level."
+  - "Fallback and failure behavior are undefined."
+  - "Model/runtime posture ignores privacy, latency, cost, data residency, or audit constraints."
+  - "Component ownership, revocation, or support responsibility is ambiguous."
+  - "Architecture requires a tool, source, write action, identity model, or environment not approved in the handoff."
+return_to_method_triggers:
+  - "Architecture requires a different behavior level, source, user group, workflow boundary, oversight model, or business process assumption."
+  - "The only feasible architecture needs write/send capability that was not approved."
+  - "Required source or owner evidence from Section 1 cannot be reconciled."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Workflow Specification"
+  short_description: "Create AI-native workflow intelligence from discovery evidence."
+  default_prompt: "Use this skill to convert discovery notes into the Step 6 workflow_intelligence_object with information objects, source access profiles, truth production profiles, evidence, confidence, variation signals, unknowns, and enrichment routes."
