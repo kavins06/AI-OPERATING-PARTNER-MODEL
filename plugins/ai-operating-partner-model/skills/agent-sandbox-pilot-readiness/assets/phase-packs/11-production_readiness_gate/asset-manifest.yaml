@@ -1,0 +1,37 @@
+phase_pack_id: 11-production_readiness_gate
+support_skill: agent-sandbox-pilot-readiness
+phase_id: 11
+phase_key: production_readiness_gate
+phase_name: Production Readiness Gate
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- managed_lifecycle_object
+- measurement_intelligence
+- risk_control_model
+- technical_blueprint
+section2_outputs:
+- production_readiness_gate
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/production-readiness-gate.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/production-readiness-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/production-readiness-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/production_readiness_gate.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/11-production-readiness-gate.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- Production launch lacks pilot evidence, owner signoff, incident rehearsal, revocation
+  readiness, or accepted residual risk.
+return_to_method_triggers:
+- Production readiness requires scope, owner, risk, or lifecycle changes.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

@@ -1,0 +1,348 @@
+example_id: golden_path_phase_06_environment_and_access_setup
+phase_id: 6
+phase_key: environment_and_access_setup
+phase_name: Environment And Access Setup
+source_packet: skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml
+status: implementation_grade_example
+purpose: "Golden-path environment gate for promoting the revenue intake agent from sandbox to limited pilot."
+section1_inputs_used:
+  - technical_blueprint
+  - risk_control_model
+  - managed_lifecycle_object
+  - method_to_build_handoff_contract
+section2_outputs_demonstrated:
+  - environment_progression_gate
+expected_templates:
+  - skills/agent-build-managed-agentops/assets/templates/environment-progression-gate.yaml
+evidence_expectations:
+  - "Cite handoff, lifecycle object, architecture record, tool registry, eval evidence, guardrail evidence, and observability evidence."
+  - "Show sandbox to limited_pilot promotion only; production remains prohibited."
+  - "Attach data owner approval, access request evidence, secret manager evidence, audit tests, revocation drill, and rollback rehearsal."
+minimum_completed_sections:
+  - "source_inputs"
+  - "gate_scope"
+  - "environment_baseline"
+  - "data_policy"
+  - "secrets_and_configuration"
+  - "identity_and_access"
+  - "network_and_system_boundaries"
+  - "entry_criteria"
+  - "eval_and_control_evidence"
+  - "observability_and_support"
+  - "promotion_decision"
+  - "rollback_plan"
+  - "gate_signoff"
+completed_object:
+  object_type: "environment_progression_gate"
+  spec_version: "post_18_agentops_v0.1"
+  schema_version: "current"
+  object_id: "environment_gate_demo_revenue_intake_sandbox_to_limited_pilot_20260518"
+  version: "0.1"
+  status: "approved"
+  source_inputs:
+    build_contract_id: "build_contract_demo_revenue_intake_20260504"
+    architecture_record_id: "architecture_demo_revenue_intake_20260504"
+    tool_contract_registry_id: "tool_registry_demo_revenue_intake_20260504"
+    release_version_manifest_id: "release_demo_revenue_intake_0_9_0"
+    eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260504"
+    guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260504"
+    trace_observability_spec_id: "trace_spec_demo_revenue_intake_20260504"
+    technical_blueprint_id: "blueprint_demo_revenue_intake_20260501"
+    risk_control_model_id: "risk_controls_demo_revenue_intake_20260430"
+    managed_lifecycle_object_id: "lifecycle_demo_revenue_intake_20260504"
+    method_to_build_handoff_contract_id: "handoff_demo_revenue_intake_20260504"
+    evidence_refs:
+      - "evidence://demo/sandbox-exit-review"
+      - "evidence://demo/limited-pilot-access-review"
+      - "evidence://demo/rollback-rehearsal"
+    approval_checks:
+      step_18_handoff_approved: true
+      separate_implementation_approval_present: true
+      prior_phase_contracts_current: true
+  gate_scope:
+    agent_id: "agent_demo_revenue_intake"
+    agent_name: "Revenue Intake Follow-up Agent"
+    release_version: "0.9.0"
+    behavior_level: "draft_and_flag"
+    from_environment: "sandbox"
+    to_environment: "limited_pilot"
+    promotion_reason: "Begin coordinator pilot after sandbox evals and controls passed."
+    promotion_window: "2026-05-18 09:00-11:00 America/New_York"
+    promotion_expires_on: "2026-05-29"
+    user_groups_allowed:
+      - "Revenue intake coordinators in pilot roster"
+    workflow_boundaries_allowed:
+      - "Open revenue intake records missing required intake fields."
+    tools_allowed:
+      - "crm_read_only_lookup"
+      - "intake_form_read_only_lookup"
+    data_classes_allowed:
+      - "customer_contact"
+      - "opportunity_metadata"
+    prohibited_behaviors:
+      - "Autonomous customer communication."
+      - "CRM field updates."
+    prohibited_actions:
+      - "external_send"
+      - "crm_create"
+      - "crm_update"
+      - "crm_delete"
+    prohibited_environments:
+      - "production"
+  environment_baseline:
+    from_environment_state:
+      deployment_ref: "deploy://demo/revenue-intake-sandbox-0.9.0"
+      config_ref: "config://demo/revenue-intake-sandbox"
+      secrets_ref: "secretset://demo/revenue-intake-sandbox"
+      data_policy_ref: "data-policy://demo/sandbox-masked"
+      known_open_issues: []
+    to_environment_target:
+      deployment_ref: "deploy://demo/revenue-intake-limited-pilot-0.9.0"
+      config_ref: "config://demo/revenue-intake-limited-pilot"
+      environment_owner: "Agent Platform Lead"
+      support_owner: "Revenue Operations Support"
+      incident_route: "pager://agentops-critical"
+      tenant_or_workspace: "revenue-ops-pilot-workspace"
+      isolation_model: "Pilot roster allowlist and read-only service account."
+  data_policy:
+    allowed_data_posture: "approved_pilot_production_records_read_only"
+    production_data_allowed: true
+    data_owner_approval_ref: "approval://demo/crm-data-owner-pilot-data"
+    datasets_allowed:
+      - "Pilot roster CRM opportunity records"
+      - "Pilot roster intake form submissions"
+    datasets_prohibited:
+      - "Forecast data"
+      - "Payment data"
+      - "Unapproved attachments"
+    masking_or_synthesis_method: "Direct identifiers redacted in logs; source systems queried live with read-only scope."
+    sampled_data_rules:
+      - "Pilot limited to 50 draft requests per business day."
+    prohibited_fields:
+      - "forecast_amount"
+      - "opportunity_stage"
+      - "free_text_customer_notes"
+    retention_policy: "Redacted traces 180 days; tool payload excerpts 30 days."
+    deletion_policy: "Delete pilot payload excerpts on retirement or retention expiry."
+    data_cleanup_on_rollback:
+      - "Stop new traces."
+      - "Mark pilot traces for retention review."
+  secrets_and_configuration:
+    secret_manager: "central_secret_manager"
+    secret_refs:
+      - "secret://demo/crm-readonly-token"
+      - "secret://demo/intake-readonly-token"
+    runtime_injection_pattern: "short-lived token mounted at runtime"
+    local_plaintext_secrets_allowed: false
+    source_control_secrets_allowed: false
+    rotation_cadence: "30 days and immediately on incident"
+    emergency_rotation_owner: "Security Lead"
+    emergency_rotation_sla: "1 hour"
+    config_diff_review_required: true
+    config_owner: "Agent Platform Lead"
+    environment_variables_allowed:
+      - "AGENT_RELEASE_VERSION"
+      - "TRACE_SINK_REF"
+    environment_variables_prohibited:
+      - "RAW_CRM_TOKEN"
+      - "RAW_INTAKE_TOKEN"
+  identity_and_access:
+    agent_identity: "agent_demo_revenue_intake"
+    service_accounts:
+      - account_id: "svc-agent-revenue-intake-pilot"
+        owner: "Agent Platform Lead"
+        environments_allowed:
+          - "limited_pilot"
+        permission_scopes:
+          - "opportunity:read:pilot_roster"
+          - "intake_submission:read:pilot_roster"
+        provisioning_request_ref: "access://demo/pilot-service-account-20260518"
+        expiration: "2026-05-29"
+    end_user_roles_allowed:
+      - "pilot_intake_coordinator"
+    system_roles_allowed:
+      - "read_only_pilot_lookup"
+    least_privilege_evidence_refs:
+      - "evidence://demo/pilot-least-privilege-review"
+    access_request_refs:
+      - "access://demo/pilot-service-account-20260518"
+      - "access://demo/pilot-roster-users-20260518"
+    access_review_cadence: "weekly during pilot"
+    break_glass:
+      allowed: false
+      owner: "Security Lead"
+      conditions: []
+      approval_required:
+        - "Security Lead"
+      max_duration: "not_applicable"
+    revocation:
+      owner: "Security Lead"
+      sla: "1 hour"
+      steps:
+        - "Disable service account."
+        - "Remove pilot roster role."
+        - "Disable agent runtime route."
+      validation_after_revocation:
+        - "Attempted tool calls return permission denied."
+        - "Pilot user cannot launch agent."
+  network_and_system_boundaries:
+    allowed_hosts:
+      - "crm.internal.example"
+      - "intake.internal.example"
+      - "trace.agentops.internal"
+    prohibited_hosts:
+      - "smtp.external.example"
+      - "public-webhook.example"
+    private_endpoints_required:
+      - "crm_private_endpoint"
+      - "intake_private_endpoint"
+    outbound_restrictions:
+      - "No outbound email or webhook hosts."
+    inbound_restrictions:
+      - "Only coordinator workbench may initiate runs."
+    firewall_or_allowlist_refs:
+      - "network://demo/pilot-allowlist"
+    tenant_isolation_checks:
+      - "Pilot workspace only."
+    environment_specific_endpoints:
+      - "https://crm.internal.example/pilot"
+      - "https://intake.internal.example/pilot"
+  entry_criteria:
+    - criterion_id: "evals_passed"
+      description: "Sandbox eval suites meet pilot thresholds."
+      required: true
+      status: "passed"
+      evidence_refs:
+        - "evidence://demo/eval-results-sandbox-20260517"
+      owner: "AgentOps Lead"
+    - criterion_id: "controls_verified"
+      description: "No-send, no-write, human review, and revocation controls passed."
+      required: true
+      status: "passed"
+      evidence_refs:
+        - "evidence://demo/control-tests-sandbox-20260517"
+      owner: "Security Lead"
+    - criterion_id: "observability_ready"
+      description: "Trace, audit, dashboard, alert route, retention, and redaction are ready."
+      required: true
+      status: "passed"
+      evidence_refs:
+        - "evidence://demo/observability-smoke-test"
+      owner: "Agent Platform Lead"
+    - criterion_id: "access_provisioned_least_privilege"
+      description: "Pilot service account and user roster are provisioned with least privilege."
+      required: true
+      status: "passed"
+      evidence_refs:
+        - "evidence://demo/access-provisioning-review"
+      owner: "Security Lead"
+    - criterion_id: "rollback_rehearsed"
+      description: "Runtime disable, access revocation, secret rotation, and user communication are rehearsed."
+      required: true
+      status: "passed"
+      evidence_refs:
+        - "evidence://demo/rollback-rehearsal"
+      owner: "Agent Platform Lead"
+  eval_and_control_evidence:
+    required_eval_suites:
+      - "suite_task_quality"
+      - "suite_control_violations"
+    quality_thresholds:
+      - "Quality pass rate >= 0.92"
+    safety_thresholds:
+      - "0 blocking control violations"
+    negative_tests:
+      - "Attempt external send is blocked."
+      - "Attempt CRM write is blocked."
+      - "Unregistered tool name is blocked."
+    permission_tests:
+      - "Pilot record read succeeds."
+      - "Non-pilot record read fails."
+    audit_log_tests:
+      - "Every tool call emits required audit fields."
+    revocation_drills:
+      - "Service account disabled within 1 hour."
+    open_control_gaps: []
+  observability_and_support:
+    trace_required_for_all_runs: true
+    audit_log_required_for_tool_calls: true
+    dashboard_refs:
+      - "dashboard://agentops/revenue-intake-pilot"
+    alert_routes:
+      - "pager://agentops-critical"
+    log_retention: "180 days"
+    redaction_policy: "Redact direct contact values in searchable logs."
+    incident_route: "pager://agentops-critical"
+    support_hours: "Business hours during pilot, critical incident route always on."
+    operator_runbook_refs:
+      - "runbook://demo/revenue-intake-pilot-operator"
+    post_promotion_monitoring_window: "Daily for first 10 business days."
+  promotion_decision:
+    decision: "approved"
+    decision_date: "2026-05-18"
+    approved_by:
+      - "Revenue AI Build Forum"
+      - "Security Lead"
+    conditions:
+      - "No production access."
+      - "No scope expansion during pilot."
+    expires_on: "2026-05-29"
+    no_go_conditions:
+      - "Any external send attempt."
+      - "Any untraced run."
+      - "Material error rate above 2 percent."
+    post_promotion_review_date: "2026-05-19"
+  rollback_plan:
+    rollback_owner: "Agent Platform Lead"
+    maximum_rollback_time: "1 hour"
+    rollback_trigger_conditions:
+      - "Unauthorized action attempt."
+      - "Blocking quality failure."
+      - "Missing audit trace."
+    rollback_steps:
+      - "Disable limited_pilot runtime route."
+      - "Switch coordinator workbench back to manual template."
+    access_revocation_steps:
+      - "Disable service account."
+      - "Remove pilot user role."
+    secret_rotation_steps:
+      - "Rotate CRM and intake read-only tokens."
+    data_cleanup_steps:
+      - "Freeze traces for incident review."
+      - "Delete transient prompt context cache."
+    communication_plan:
+      - "Notify pilot coordinators in operations channel."
+      - "Notify Revenue Operations Manager and Security Lead."
+    validation_after_rollback:
+      - "Pilot users cannot launch agent."
+      - "Tool calls return permission denied."
+      - "Dashboard shows no new runs."
+    fallback_operating_mode: "Manual coordinator review using existing template."
+  blocking_conditions:
+    - "Production environment requested."
+    - "Read-only scope cannot be enforced."
+    - "Audit logging unavailable."
+  return_to_method_triggers:
+    - "Approved environment path is not feasible."
+    - "Necessary permission, endpoint, or user population was not approved in Step 17/18."
+  gate_signoff:
+    prepared_by: "AgentOps Lead"
+    reviewed_by:
+      - "Agent Platform Lead"
+      - "Security Lead"
+      - "CRM Data Owner"
+      - "Revenue Operations Support"
+    approved_by:
+      - "Revenue AI Build Forum"
+      - "Security Lead"
+    approval_status: "approved"
+    approval_date: "2026-05-18"
+failure_modes_to_test:
+  - "Secrets, test data, sandbox, or access review process is undefined."
+  - "Production access is implied before readiness gate."
+  - "Target environment has broader data, users, tools, network, or behavior than approved."
+  - "Promotion lacks rollback, revocation, audit, support, or incident evidence."
+return_to_method_triggers_to_test:
+  - "Approved environment path is not feasible."
+  - "Required data cannot be safely masked, isolated, logged, or retained under the approved constraints."
+  - "A necessary permission, system endpoint, or user population was not approved in Step 17/18."

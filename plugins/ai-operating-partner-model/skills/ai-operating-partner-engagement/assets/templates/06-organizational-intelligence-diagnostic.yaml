@@ -1,0 +1,173 @@
+# Organizational Intelligence Diagnostic
+
+spec_version: "0.2"
+object_type: "organizational_intelligence_diagnostic"
+diagnostic_status: "draft | initial | updated | validated"
+
+input_context:
+  workflow_id:
+  workflow_spec_ref:
+  candidate_use_case_ids:
+    -
+  variation_map_ids:
+    -
+  discovery_zones:
+    - 
+  evidence_refs:
+    - 
+  diagnostic_scope: "single_workflow | multi_workflow | enterprise_scan"
+  scale_mode: "downsized | standard | upscaled"
+  scale_rationale:
+
+diagnostic_summary:
+  workflow_stability: "low | medium | high"
+  main_fragility_points:
+    - 
+  strongest_leverage_points:
+    - 
+  automation_blockers:
+    - 
+  invisible_cost_drivers:
+    - "process_redesign | process_documentation | data_access | data_quality | knowledge_capture | change_management | sponsor_behavior | resistance | security_review | prior_failure_learning | other"
+  likely_next_steps:
+    - 
+
+enterprise_ai_deployment_fit:
+  sponsor_mechanics:
+    active_blocker_removal: "unknown" # strong | partial | weak | unknown
+    business_technical_co_sponsorship: "unknown" # strong | partial | weak | unknown
+    okr_or_incentive_linkage: "unknown" # yes | no | partial | unknown
+    permission_to_fail: "unknown" # strong | partial | weak | unknown
+    prior_failure_learning: "unknown" # captured | partial | absent | unknown
+  process_and_data_foundation:
+    process_documentation_quality: "unknown" # strong | partial | weak | missing | unknown
+    data_access_layer_readiness: "unknown" # strong | partial | weak | missing | unknown
+    data_quality_can_be_controlled_progressively: "unknown" # yes | no | partial | unknown
+    knowledge_base_quality: "unknown" # strong | partial | weak | missing | unknown
+  resistance_profile:
+    likely_blockers: [] # legal | hr | risk | compliance | finance | it_security | data_owners | middle_management | end_users | executives | vendors | other
+    likely_enablers: []
+    required_interventions: [] # sponsor_mandate | controls | training | expectation_setting | role_transition | approved_tooling | workflow_redesign | measured_pilot | other
+  oversight_fit:
+    recommended_model: "unknown" # escalation | approval | collaboration | unknown
+    recoverable_error_fit: "unknown" # high | medium | low | unknown
+    zero_error_or_regulated_review_required: false
+    rationale:
+
+findings:
+  - finding_id:
+    linked_objects:
+      workflow_ids:
+        - 
+      role_ids:
+        - 
+      actor_ids:
+        - 
+      step_ids:
+        - 
+      decision_ids:
+        - 
+      source_ids:
+        - 
+      information_object_ids:
+        - 
+      source_access_profile_ids:
+        - 
+      system_ids:
+        - 
+      edge_case_ids:
+        - 
+      approval_gate_ids:
+        - 
+      signal_ids:
+        - 
+    lens: "people | process | data | knowledge | governance | systems | incentives | politics | behavior | risk | measurement | architecture | sponsor | resistance | security_enablement | prior_failure_learning | model_orchestration"
+    symptom:
+    likely_root_cause:
+    evidence_refs:
+      - 
+    confidence: "low | medium | high"
+    implication:
+    severity: "low | medium | high"
+    recurrence: "unknown | isolated | repeated | systemic"
+    affects_ai_fit:
+    automation_blocker:
+    blocker_classification: "fatal_for_use_case | requires_remediation_before_build | acceptable_with_controls | informational"
+    immediate_route: "disqualify_use_case | remediation | continue_with_controls | continue"
+    use_case_status_impact:
+      affected_candidate_use_case_ids:
+        -
+      confidence_change: "raise | lower | kill | unchanged"
+      shortlist_update_required: false
+    intervention_route:
+      primary: "controlled_validation_governance_resolution | knowledge_mapping | tacit_knowledge_capture | analytics_maturity_assessment | kpi_design | architecture_blueprint | risk_register | zero_trust_controls | workflow_standardization | training_role_clarity | candidate_ai_assist | do_not_automate_yet"
+      secondary:
+        - 
+    recommended_next_step:
+    owner_candidate:
+    validation_needed:
+
+cross_workflow_patterns:
+  - pattern_id:
+    description:
+    affected_workflows:
+      - 
+    evidence_refs:
+      - 
+    implication:
+    intervention_route:
+    confidence:
+
+standardization_opportunities:
+  - opportunity_id:
+    linked_findings:
+      - 
+    description:
+    target_roles:
+      - 
+    target_steps_or_decisions:
+      - 
+    expected_value:
+    risk_if_ignored:
+    next_step:
+
+candidate_ai_assist_refinements:
+  - assist_id:
+    linked_finding_ids:
+      - 
+    updated_assist_type: "draft | retrieve | summarize | monitor | route | check | explain | recommend | act"
+    why_this_assist_may_fit:
+    why_this_assist_may_not_fit_yet:
+    required_enrichment_before_build:
+      - 
+    first_safe_behavior_hypothesis:
+
+candidate_use_case_routing:
+  - candidate_use_case_id:
+    current_status: "advance | revise | deprioritize | disqualify | needs_more_discovery"
+    strongest_supporting_findings:
+      -
+    strongest_blocking_findings:
+      -
+    required_shortlist_update:
+    route_to_next_step: "controlled_validation | knowledge_mapping | value_case | remediation | do_not_pursue"
+
+do_not_automate_yet:
+  - reason_id:
+    linked_objects:
+      - 
+    reason:
+    blocking_condition:
+    required_fix_or_enrichment:
+    later_step_required:
+
+step_6_stop_status:
+  status: "diagnostic_complete | incomplete"
+  complete_when:
+    - "Findings are linked to workflow-spec objects."
+    - "Symptoms are separated from likely root causes."
+    - "Evidence and confidence are recorded."
+    - "Each finding has an intervention route."
+    - "Scale mode is appropriate for workflow size and engagement scope."
+  next_required_steps:
+    - 

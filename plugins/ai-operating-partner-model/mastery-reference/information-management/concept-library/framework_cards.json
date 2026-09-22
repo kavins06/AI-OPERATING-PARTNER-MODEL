@@ -1,0 +1,250 @@
+[
+  {
+    "framework": "Information ecology diagnostic",
+    "domain": "foundations",
+    "components": [
+      "People",
+      "Process",
+      "Culture",
+      "Politics",
+      "Architecture",
+      "Behavior",
+      "Technology"
+    ],
+    "use_cases": "Diagnose why information work fails before proposing tools or agents.",
+    "failure_modes": "Treating the problem as software-only; ignoring incentives, ownership, or informal workarounds.",
+    "business_application": "Map leasing, maintenance, brokerage, diligence, and reporting information flows before automation.",
+    "source_references": [
+      "Data Protection COMPLETE.pdf (page 64)",
+      "The Knowing Organization.pdf (page 98)",
+      "The Knowing Organization.pdf (page 99)",
+      "The Knowing Organization.pdf (page 160)",
+      "The Knowing Organization.pdf (page 113)",
+      "Data Protection COMPLETE.pdf (page 38)"
+    ]
+  },
+  {
+    "framework": "Knowing organization cycle",
+    "domain": "foundations",
+    "components": [
+      "Sensemaking",
+      "Knowledge creation",
+      "Decision making"
+    ],
+    "use_cases": "Explain how organizations turn signals into knowledge and action.",
+    "failure_modes": "Collecting data without interpretation, learning, or decision accountability.",
+    "business_application": "Design agents that scan market signals, update knowledge bases, and support decisions with traceable evidence.",
+    "source_references": [
+      "The Knowing Organization.pdf (page 38)",
+      "The Knowing Organization.pdf (page 359)",
+      "The Knowing Organization.pdf (page 32)",
+      "The Knowing Organization.pdf (page 325)",
+      "The Knowing Organization.pdf (page 26)",
+      "The Knowing Organization.pdf (page 264)"
+    ]
+  },
+  {
+    "framework": "Five Vs assessment",
+    "domain": "data_strategy_governance",
+    "components": [
+      "Volume",
+      "Velocity",
+      "Variety",
+      "Veracity",
+      "Value"
+    ],
+    "use_cases": "Characterize data-management challenges and prioritize fixes.",
+    "failure_modes": "Solving scale while ignoring trust or business value.",
+    "business_application": "Evaluate CRM, listing, lease, maintenance, accounting, email, and document data before building agents.",
+    "source_references": [
+      "free lunch.pdf (page 2)",
+      "Data Strategy Five Vs_Fall 2025.docx (paragraph-block 1)",
+      "free lunch.pdf (page 6)",
+      "Notional DRA.V2_Review.pdf (page 9)",
+      "free lunch.pdf (page 32)",
+      "free lunch.pdf (page 22)"
+    ]
+  },
+  {
+    "framework": "Data strategy value chain",
+    "domain": "data_strategy_governance",
+    "components": [
+      "Business outcomes",
+      "Data needs",
+      "Sources",
+      "Governance",
+      "Architecture",
+      "Analytics/AI",
+      "Adoption",
+      "Measures"
+    ],
+    "use_cases": "Turn business goals into data and AI implementation plans.",
+    "failure_modes": "Starting with models or tools before defining outcomes and decision owners.",
+    "business_application": "Prioritize AI-agent pilots by vacancy reduction, faster deal review, lead conversion, reporting speed, and risk reduction.",
+    "source_references": [
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 115)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 68)",
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 116)",
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 24)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 65)",
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 159)"
+    ]
+  },
+  {
+    "framework": "CDO operating model",
+    "domain": "data_strategy_governance",
+    "components": [
+      "Mandate",
+      "Stewardship",
+      "Standards",
+      "Enablement",
+      "Value delivery",
+      "Risk management"
+    ],
+    "use_cases": "Create data leadership in organizations that lack mature data functions.",
+    "failure_modes": "Unclear decision rights, unfunded governance, and no business-facing value story.",
+    "business_application": "Offer fractional data leadership for firms adopting AI agents without an internal CDO.",
+    "source_references": [
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 64)",
+      "The Chief Data Officer in Government_ A CDO Playbook4251.pdf (page 7)",
+      "The Chief Data Officer in Government_ A CDO Playbook4251.pdf (page 5)",
+      "DOD new framework.pdf (page 2)",
+      "cybersecurity_framework_v1-1_presentation.pptx (slide 7)",
+      "Public Health as a model for cyber info sharing Sedenberg.pdf (page 31)"
+    ]
+  },
+  {
+    "framework": "Tacit-to-explicit knowledge capture",
+    "domain": "knowledge_management",
+    "components": [
+      "Identify experts",
+      "Elicit decisions",
+      "Capture examples",
+      "Codify rules",
+      "Validate with users",
+      "Maintain over time"
+    ],
+    "use_cases": "Convert expert know-how into reusable operating knowledge.",
+    "failure_modes": "Capturing documents but missing context, exceptions, and judgment.",
+    "business_application": "Turn top broker, property manager, maintenance coordinator, and asset-manager judgment into agent-ready playbooks.",
+    "source_references": []
+  },
+  {
+    "framework": "APQC-style knowledge mapping",
+    "domain": "knowledge_management",
+    "components": [
+      "Strategic goals",
+      "Knowledge areas",
+      "Experts",
+      "Documents",
+      "Processes",
+      "Gaps",
+      "Action plan"
+    ],
+    "use_cases": "Locate mission-critical knowledge and close gaps.",
+    "failure_modes": "Mapping repositories without linking to strategic goals or capability gaps.",
+    "business_application": "Map where leasing policy, vendor knowledge, market intelligence, and transaction know-how actually live.",
+    "source_references": [
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 175)",
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 232)",
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 233)",
+      "The Knowing Organization.pdf (page 98)",
+      "The Knowing Organization.pdf (page 254)",
+      "APQC_Knowlege Map Templates_2023.pdf (page 3)"
+    ]
+  },
+  {
+    "framework": "NIST Cybersecurity Framework functions",
+    "domain": "privacy_security",
+    "components": [
+      "Identify",
+      "Protect",
+      "Detect",
+      "Respond",
+      "Recover"
+    ],
+    "use_cases": "Structure cybersecurity risk management and program maturity.",
+    "failure_modes": "Focusing only on prevention while ignoring detection, response, and recovery.",
+    "business_application": "Apply to AI-agent access, vendor integrations, sensitive documents, incident playbooks, and monitoring.",
+    "source_references": [
+      "Data Protection COMPLETE.pdf (page 19)",
+      "Data protection laws.pdf (page 10)",
+      "Data Protection COMPLETE.pdf (page 18)",
+      "Data Protection COMPLETE.pdf (page 2)",
+      "Data Protection COMPLETE.pdf (page 98)",
+      "Data Protection COMPLETE.pdf (page 95)"
+    ]
+  },
+  {
+    "framework": "Zero Trust reference architecture",
+    "domain": "privacy_security",
+    "components": [
+      "User",
+      "Device",
+      "Application/workload",
+      "Data",
+      "Network/environment",
+      "Automation/orchestration",
+      "Visibility/analytics"
+    ],
+    "use_cases": "Design access around continuous verification and least privilege.",
+    "failure_modes": "Letting agents inherit broad user permissions without monitoring or segmentation.",
+    "business_application": "Constrain agents to specific sources, tasks, approval thresholds, and audit trails.",
+    "source_references": [
+      "data strategy challenges_2025.docx (paragraph-block 2)",
+      "Department of Defense Zero Trust Reference Architecture.pdf (page 69)",
+      "Notional DRA.V2_Review.pdf (page 29)",
+      "free lunch.pdf (page 22)",
+      "free lunch.pdf (page 21)",
+      "The Chief Data Officer in Government_ A CDO Playbook8247.pdf (page 5)"
+    ]
+  },
+  {
+    "framework": "Data monetization pathways",
+    "domain": "data_monetization",
+    "components": [
+      "Internal efficiency",
+      "Customer experience",
+      "New data products",
+      "Partnerships",
+      "Market intelligence",
+      "Risk reduction"
+    ],
+    "use_cases": "Find value beyond simply selling data.",
+    "failure_modes": "Reducing monetization to external data sales and missing operational value.",
+    "business_application": "Package agents around faster leasing, better lead conversion, lower maintenance leakage, smarter acquisition, and stronger reporting.",
+    "source_references": [
+      "National_Intelligence_Strategy_2019.pdf (page 25)",
+      "the-trillion-dollar-question-for-advanced-industries.pdf (page 8)",
+      "_OceanofPDF.com_Information_management_for_the_intelligent_organization__the_art_of_scanning_the_environment_-_Chun_Wei_Choo.pdf (page 237)",
+      "Mod 1 and  2 Class Slides_Week_Mendoza_2025 Fall.pptx (slide 22)",
+      "APQC_Knowlege Map Templates_2023.pdf (page 11)",
+      "Mod 1 and  2 Class Slides_Week_Mendoza_2025 Fall.pptx (slide 21)"
+    ]
+  },
+  {
+    "framework": "AI-agent readiness scorecard",
+    "domain": "business_ai_agents",
+    "components": [
+      "Business value",
+      "Workflow clarity",
+      "Data quality",
+      "Knowledge availability",
+      "Privacy/security risk",
+      "Integration feasibility",
+      "Human oversight",
+      "Measurement"
+    ],
+    "use_cases": "Choose the safest and highest-value first AI-agent pilot.",
+    "failure_modes": "Automating ambiguous workflows with weak data, unclear owners, or uncontrolled access.",
+    "business_application": "Score property-management, brokerage, and CRE workflows using the same segment-agnostic lens.",
+    "source_references": [
+      "data strategy challenges_2025.docx (paragraph-block 1)",
+      "Public Health as a model for cyber info sharing Sedenberg.pdf (page 28)",
+      "data strategy challenges_2025.docx (paragraph-block 2)",
+      "The Knowing Organization.pdf (page 108)",
+      "Notional DRA.V2_Review.pdf (page 29)",
+      "The Knowing Organization.pdf (page 250)"
+    ]
+  }
+]

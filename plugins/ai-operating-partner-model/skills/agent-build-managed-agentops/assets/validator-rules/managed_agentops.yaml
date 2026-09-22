@@ -1,0 +1,81 @@
+rule_group: managed_agentops
+phase_id: 13
+phase_key: managed_agentops
+status: active
+required_section1_inputs:
+  - managed_lifecycle_object
+  - measurement_intelligence
+  - ai_guidance_pack
+  - organizational_intelligence_baseline
+  - risk_control_model
+required_section2_outputs:
+  - agentops_operating_record
+minimum_completed_sections:
+  - source_inputs
+  - agent_identity
+  - operating_model
+  - live_scope
+  - cadence
+  - operating_metrics
+  - source_freshness
+  - access_review
+  - incident_response_and_revocation
+  - value_tracking
+  - operating_decisions
+failure_modes:
+  - "Live operation lacks owner coverage, metric review, source freshness, cost review, access review, incident handling, or guidance update cadence."
+return_to_method_triggers:
+  - "Operating metrics show value, risk, source, ownership, or adoption assumptions are invalid."
+checks:
+  - check_id: required_section1_inputs_present
+    severity: error
+    description: "Required Section 1 source artifacts are referenced, approved, versioned, and cited."
+  - check_id: required_section2_outputs_present
+    severity: error
+    description: "The agentops operating record exists or is explicitly blocked with owner and due date."
+  - check_id: approved_scope_preserved
+    severity: error
+    description: "Live users, sources, tools, workflow boundaries, data classes, outputs, environments, scale, and behavior level do not exceed approved handoff."
+  - check_id: owner_coverage_present
+    severity: error
+    description: "Business, technical, security, data, risk/compliance, AgentOps, support, and revocation owners plus backups are named."
+  - check_id: operating_metrics_have_thresholds
+    severity: error
+    description: "Quality, safety, reliability, adoption, value, cost, latency, and support metrics include target, warning, blocking threshold, owner, current value, and evidence."
+  - check_id: source_freshness_reviewed
+    severity: error
+    description: "Each authoritative source has owner, freshness SLA, last verification, attestation, stale action, and evidence."
+  - check_id: access_review_current
+    severity: error
+    description: "User entitlements, service accounts, tool credentials, connectors, secrets, and break-glass access are reviewed and exceptions are owned."
+  - check_id: incident_revocation_ready
+    severity: error
+    description: "Pause, revocation, queued work stop, rollback, manual fallback, communication, and restoration approval paths are documented and tested or attested."
+  - check_id: incidents_near_misses_reviewed
+    severity: warning
+    description: "Incidents, near misses, manual overrides, support tickets, and user corrections are classified with decisions and follow-up actions."
+  - check_id: value_tracking_against_baseline
+    severity: error
+    description: "Realized value, adoption, human correction burden, support burden, operating cost, and net value are compared to the measurement baseline."
+  - check_id: guidance_currency_reviewed
+    severity: warning
+    description: "AI guidance, prompts, retrieval corpus, policies, eval datasets, run card, and incident runbook are reviewed for currency."
+  - check_id: stop_conditions_evaluated
+    severity: error
+    description: "All blocking conditions are evaluated and triggered conditions route to pause, revoke, remediation, Phase 14, Phase 15, or return to method."
+  - check_id: return_to_method_triggers_present
+    severity: warning
+    description: "Return-to-method triggers are listed, evaluated, and linked to evidence."
+automatic_blockers:
+  - check_id: unauthorized_action_or_scope
+    condition: "Any unauthorized action, user, source, tool, workflow, data class, output, environment, scale, or behavior level is detected."
+    required_response: "Pause affected scope and open incident or Phase 14 review."
+  - check_id: missing_trace_or_audit
+    condition: "A production run lacks required trace or tool-call audit evidence."
+    required_response: "Pause affected workflow and open incident."
+  - check_id: stale_source_used_in_output
+    condition: "A stale or disputed source is used in output without approved fallback."
+    required_response: "Pause affected output and notify source owner."
+  - check_id: owner_coverage_gap
+    condition: "Required owner or revocation owner is unavailable during active operation."
+    required_response: "Pause or restrict operation until coverage is restored."

@@ -1,0 +1,875 @@
+spec_version: "0.1"
+object_type: "organizational_workflow_intelligence"
+status: "initial_workflow_spec"
+build_ready: false
+
+workflow:
+  workflow_id: "wf_retail_tenant_renewal_review"
+  name: "Retail Tenant Renewal Review"
+  business_purpose: "Support timely, consistent, source-backed renewal strategy decisions."
+  trigger: "Tenant reaches lease expiration review window."
+  outcome: "Renewal strategy approved and next action assigned."
+  validation_status: "partially_validated"
+  confidence: "medium"
+
+organization_context:
+  company_type: "Real estate asset management firm"
+  business_unit: "Retail asset management"
+  org_structure_status: "partially_validated"
+  roles:
+    - role_id: "role_vp_asset_management"
+      name: "VP Asset Management"
+      layer: 1
+    - role_id: "role_director_asset_management"
+      name: "Director Asset Management"
+      layer: 2
+    - role_id: "role_asset_manager"
+      name: "Asset Manager"
+      layer: 3
+    - role_id: "role_assistant_asset_manager"
+      name: "Assistant Asset Manager"
+      layer: 4
+  reporting_structure:
+    - parent_role_id: "role_vp_asset_management"
+      child_role_id: "role_director_asset_management"
+      relationship_type: "reports_to"
+    - parent_role_id: "role_director_asset_management"
+      child_role_id: "role_asset_manager"
+      relationship_type: "reports_to"
+    - parent_role_id: "role_asset_manager"
+      child_role_id: "role_assistant_asset_manager"
+      relationship_type: "reports_to"
+
+interview_coverage:
+  intended_population_by_role:
+    - role_id: "role_vp_asset_management"
+      count: 1
+    - role_id: "role_director_asset_management"
+      count: 3
+    - role_id: "role_asset_manager"
+      count: 6
+    - role_id: "role_assistant_asset_manager"
+      count: 20
+  completed_by_role:
+    - role_id: "role_vp_asset_management"
+      count: 1
+    - role_id: "role_director_asset_management"
+      count: 3
+    - role_id: "role_asset_manager"
+      count: 3
+    - role_id: "role_assistant_asset_manager"
+      count: 6
+  coverage_strategy: "Stratified sample across hierarchy, portfolio variation, and workflow involvement."
+  saturation_status: "partial"
+  expansion_needed: true
+  expansion_reason:
+    - "Confirm whether assistant asset manager workflows vary by director group."
+
+role_involvement:
+  - role_id: "role_assistant_asset_manager"
+    involvement_type: "execution"
+    responsibilities_in_workflow:
+      - "Collect renewal inputs"
+      - "Update trackers"
+      - "Prepare renewal materials"
+    observed_importance: "high"
+  - role_id: "role_asset_manager"
+    involvement_type: "decision"
+    responsibilities_in_workflow:
+      - "Review renewal position"
+      - "Recommend renewal path"
+    observed_importance: "high"
+
+steps:
+  - step_id: "step_001"
+    sequence: 1
+    primary_role_id: "role_assistant_asset_manager"
+    action: "Identifies upcoming tenant renewals from critical date or lease expiration report."
+    inputs:
+      - "Critical date report"
+      - "Lease abstract"
+    information_object_ids:
+      - "info_critical_dates"
+      - "info_lease_abstract"
+    systems_or_sources_mentioned:
+      - "src_critical_date_report"
+      - "src_lease_abstract"
+    outputs:
+      - "Upcoming renewal list"
+    handoff_to_role_id: "role_asset_manager"
+    evidence_refs:
+      - "int_aam_001"
+    validation_status: "interview_claim"
+    confidence: "medium"
+
+decisions:
+  - decision_id: "decision_renewal_path"
+    name: "Determine tenant renewal path"
+    owner_role_id: "role_asset_manager"
+    inputs_required:
+      - "Lease terms"
+      - "Tenant sales"
+      - "AR status"
+      - "Broker feedback"
+      - "Property strategy"
+    information_object_ids:
+      - "info_lease_abstract"
+      - "info_tenant_sales"
+      - "info_ar_aging"
+      - "info_broker_feedback"
+    tacit_judgment:
+      - "Strategic tenant value may outweigh near-term economics."
+    human_required: true
+    ai_support_allowed:
+      - "Prepare source-backed renewal brief"
+      - "Flag missing inputs"
+    ai_support_forbidden:
+      - "Make final renewal decision"
+      - "Send tenant communication"
+    validation_status: "partially_validated"
+    confidence: "medium"
+
+information_objects:
+  - information_object_id: "info_critical_dates"
+    name: "Critical dates"
+    object_type: "report"
+    business_use: "Identify tenants entering the renewal review window."
+    used_in_step_ids:
+      - "step_001"
+    required_for_outcome: true
+    required_fields_or_attributes:
+      - "tenant"
+      - "property"
+      - "lease expiration"
+      - "renewal notice date"
+    lookup_keys:
+      - "property"
+      - "tenant"
+      - "as_of_date"
+    source_access_profile_ids:
+      - "sap_critical_dates_report"
+    truth_production_profile_ids:
+      - "truth_critical_dates"
+    compared_against_information_object_ids:
+      - "info_lease_abstract"
+    known_quality_or_access_issues:
+      - "Ownership and correction process not yet confirmed."
+    sensitivity: "lease and tenant operating information"
+    validation_status: "access_path_captured"
+    evidence_refs:
+      - "int_aam_001"
+    confidence: "medium"
+
+  - information_object_id: "info_ar_aging"
+    name: "Tenant AR aging"
+    object_type: "report"
+    business_use: "Check tenant payment status before renewal recommendation."
+    used_in_decision_ids:
+      - "decision_renewal_path"
+    required_for_outcome: true
+    required_fields_or_attributes:
+      - "tenant balance"
+      - "days past due"
+      - "charge type"
+    lookup_keys:
+      - "property"
+      - "tenant"
+      - "as_of_date"
+    source_access_profile_ids:
+      - "sap_ar_aging_property_management"
+    truth_production_profile_ids:
+      - "truth_ar_aging"
+    compared_against_information_object_ids:
+      - "info_lease_abstract"
+    known_quality_or_access_issues:
+      - "Timing differences may exist after payments or credits."
+    sensitivity: "tenant financial information"
+    validation_status: "mentioned"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+  - information_object_id: "info_lease_abstract"
+    name: "Lease abstract"
+    object_type: "document"
+    business_use: "Review renewal options, notice periods, and key lease terms."
+    used_in_step_ids:
+      - "step_001"
+    used_in_decision_ids:
+      - "decision_renewal_path"
+    required_for_outcome: true
+    required_fields_or_attributes:
+      - "expiration date"
+      - "renewal option"
+      - "notice requirement"
+      - "base rent"
+    lookup_keys:
+      - "property"
+      - "tenant"
+      - "lease id"
+    source_access_profile_ids:
+      - "sap_lease_abstract"
+    truth_production_profile_ids:
+      - "truth_lease_terms"
+    known_quality_or_access_issues:
+      - "Official source, de facto trusted source, and update owner not yet confirmed."
+    sensitivity: "lease economics and tenant terms"
+    validation_status: "mentioned"
+    evidence_refs:
+      - "int_aam_001"
+    confidence: "medium"
+
+  - information_object_id: "info_tenant_sales"
+    name: "Tenant sales"
+    object_type: "report"
+    business_use: "Assess tenant performance and renewal posture."
+    used_in_decision_ids:
+      - "decision_renewal_path"
+    required_for_outcome: false
+    required_fields_or_attributes:
+      - "sales period"
+      - "reported sales"
+      - "tenant"
+    lookup_keys:
+      - "property"
+      - "tenant"
+      - "period"
+    source_access_profile_ids:
+      - "sap_tenant_sales"
+    truth_production_profile_ids:
+      - "truth_tenant_sales"
+    known_quality_or_access_issues:
+      - "Tenant submissions may be late or incomplete."
+    sensitivity: "tenant financial information"
+    validation_status: "mentioned"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+  - information_object_id: "info_broker_feedback"
+    name: "Broker feedback"
+    object_type: "email"
+    business_use: "Add market, tenant, and leasing context to renewal recommendation."
+    used_in_decision_ids:
+      - "decision_renewal_path"
+    required_for_outcome: false
+    required_fields_or_attributes:
+      - "market feedback"
+      - "tenant intent"
+      - "leasing alternatives"
+    lookup_keys:
+      - "tenant"
+      - "property"
+      - "broker"
+    source_access_profile_ids:
+      - "sap_broker_email"
+    truth_production_profile_ids:
+      - "truth_broker_context"
+    known_quality_or_access_issues:
+      - "Unstructured email context may be incomplete or hard to retrieve."
+    sensitivity: "relationship and deal context"
+    validation_status: "mentioned"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+systems_mentioned:
+  - system_id: "sys_property_management"
+    name: "Property management software"
+    purpose: "Tenant, lease, receivables, and property operations data."
+    likely_owner: "Property management / accounting"
+    data_held:
+      - "rent roll"
+      - "tenant ledger"
+      - "AR aging"
+      - "work orders"
+    source_access_profile_ids:
+      - "sap_ar_aging_property_management"
+    access_constraints_known: false
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+sources_mentioned:
+  - source_id: "src_critical_date_report"
+    name: "Critical date report"
+    source_type: "report"
+    information_object_ids:
+      - "info_critical_dates"
+    trusted_for:
+      - "Initial renewal trigger"
+    known_quality_issues:
+      - "Correction owner not confirmed."
+    sensitivity: "tenant and lease dates"
+    likely_owner: "Director Asset Management"
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_aam_001"
+    confidence: "medium"
+
+  - source_id: "src_lease_abstract"
+    name: "Lease abstract"
+    source_type: "document"
+    information_object_ids:
+      - "info_lease_abstract"
+    trusted_for:
+      - "Lease terms and renewal options"
+    known_quality_issues:
+      - "Update owner not confirmed."
+    sensitivity: "lease economics and tenant terms"
+    likely_owner: "Lease administration"
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_aam_001"
+    confidence: "medium"
+
+  - source_id: "src_ar_aging_report"
+    name: "AR aging report"
+    source_type: "report"
+    system_id: "sys_property_management"
+    information_object_ids:
+      - "info_ar_aging"
+    trusted_for:
+      - "Tenant receivable status"
+    known_quality_issues:
+      - "Payment timing and credits may require accounting explanation."
+    sensitivity: "tenant financial information"
+    likely_owner: "Accounting"
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+  - source_id: "src_tenant_sales_report"
+    name: "Tenant sales report"
+    source_type: "report"
+    information_object_ids:
+      - "info_tenant_sales"
+    trusted_for:
+      - "Tenant sales trend"
+    known_quality_issues:
+      - "Submission timing and completeness not confirmed."
+    sensitivity: "tenant financial information"
+    likely_owner: "Asset management or property management"
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+  - source_id: "src_broker_email"
+    name: "Broker email"
+    source_type: "email"
+    information_object_ids:
+      - "info_broker_feedback"
+    trusted_for:
+      - "Market and relationship context"
+    known_quality_issues:
+      - "Unstructured and incomplete if not copied into workflow materials."
+    sensitivity: "relationship and deal context"
+    likely_owner: "Asset Manager"
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+source_access_profiles:
+  - source_access_profile_id: "sap_critical_dates_report"
+    information_object_id: "info_critical_dates"
+    source_id: "src_critical_date_report"
+    system_id:
+    system_or_location: "Critical date report or tracker"
+    module_report_view_or_path: "Renewal / critical date report"
+    access_method: "report_export"
+    practical_access_path: "Exact report path not yet confirmed"
+    lookup_keys:
+      - "property"
+      - "tenant"
+      - "as_of_date"
+    required_fields_or_attributes:
+      - "lease expiration"
+      - "notice date"
+    current_access_roles:
+      - "Assistant Asset Manager"
+      - "Asset Manager"
+    alternate_locations:
+      - "Lease abstract"
+    compared_against_source_ids:
+      - "src_lease_abstract"
+    access_failure_modes:
+      - "missing"
+      - "stale"
+    screenshot_walkthrough_or_export_needed: true
+    truth_production_profile_ids:
+      - "truth_critical_dates"
+    official_source_status: "candidate"
+    de_facto_source_status: "candidate"
+    truth_status: "disputed"
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_aam_001"
+    confidence: "medium"
+
+  - source_access_profile_id: "sap_ar_aging_property_management"
+    information_object_id: "info_ar_aging"
+    source_id: "src_ar_aging_report"
+    system_id: "sys_property_management"
+    system_or_location: "Property management software"
+    module_report_view_or_path: "Receivables / AR aging by tenant"
+    access_method: "system_ui"
+    practical_access_path: "Reports > Receivables > AR aging by tenant"
+    lookup_keys:
+      - "property"
+      - "tenant"
+      - "as_of_date"
+    required_fields_or_attributes:
+      - "tenant balance"
+      - "days past due"
+      - "charge type"
+    current_access_roles:
+      - "Asset Manager"
+      - "Property Manager"
+      - "Accounting"
+    alternate_locations:
+      - "Tenant ledger report"
+    compared_against_source_ids:
+      - "src_lease_abstract"
+    access_failure_modes:
+      - "timing_difference"
+      - "permission_denied"
+    screenshot_walkthrough_or_export_needed: true
+    truth_production_profile_ids:
+      - "truth_ar_aging"
+    official_source_status: "candidate"
+    de_facto_source_status: "confirmed"
+    truth_status: "conditionally_reliable"
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+  - source_access_profile_id: "sap_lease_abstract"
+    information_object_id: "info_lease_abstract"
+    source_id: "src_lease_abstract"
+    system_id:
+    system_or_location: "Lease administration system or shared lease folder"
+    module_report_view_or_path: "Exact path not yet confirmed"
+    access_method: "system_ui"
+    practical_access_path: "Needs validation"
+    lookup_keys:
+      - "property"
+      - "tenant"
+      - "lease id"
+    required_fields_or_attributes:
+      - "renewal option"
+      - "expiration date"
+      - "notice requirement"
+    current_access_roles:
+      - "Assistant Asset Manager"
+      - "Asset Manager"
+    alternate_locations:
+      - "Executed lease"
+    compared_against_source_ids:
+      - "src_critical_date_report"
+    access_failure_modes:
+      - "permission_denied"
+      - "manual_request_required"
+    screenshot_walkthrough_or_export_needed: true
+    truth_production_profile_ids:
+      - "truth_lease_terms"
+    official_source_status: "candidate"
+    de_facto_source_status: "candidate"
+    truth_status: "conditionally_reliable"
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_aam_001"
+    confidence: "medium"
+
+  - source_access_profile_id: "sap_tenant_sales"
+    information_object_id: "info_tenant_sales"
+    source_id: "src_tenant_sales_report"
+    system_id:
+    system_or_location: "Tenant sales portal, property management software, or tracker"
+    module_report_view_or_path: "Exact path not yet confirmed"
+    access_method: "report_export"
+    practical_access_path: "Needs validation"
+    lookup_keys:
+      - "property"
+      - "tenant"
+      - "period"
+    required_fields_or_attributes:
+      - "reported sales"
+      - "period"
+    current_access_roles:
+      - "Asset Manager"
+      - "Assistant Asset Manager"
+    alternate_locations:
+      - "Tenant sales tracker"
+    compared_against_source_ids:
+      - "src_lease_abstract"
+    access_failure_modes:
+      - "missing"
+      - "stale"
+    screenshot_walkthrough_or_export_needed: true
+    truth_production_profile_ids:
+      - "truth_tenant_sales"
+    official_source_status: "unknown"
+    de_facto_source_status: "unknown"
+    truth_status: "unknown"
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+  - source_access_profile_id: "sap_broker_email"
+    information_object_id: "info_broker_feedback"
+    source_id: "src_broker_email"
+    system_id:
+    system_or_location: "Email"
+    module_report_view_or_path: "Broker correspondence thread"
+    access_method: "email_search"
+    practical_access_path: "Search broker, tenant, property, and renewal terms in email"
+    lookup_keys:
+      - "tenant"
+      - "property"
+      - "broker"
+    required_fields_or_attributes:
+      - "market feedback"
+      - "tenant intent"
+    current_access_roles:
+      - "Asset Manager"
+    alternate_locations:
+      - "Renewal notes"
+    compared_against_source_ids:
+      - "src_lease_abstract"
+    access_failure_modes:
+      - "missing"
+      - "manual_request_required"
+    screenshot_walkthrough_or_export_needed: false
+    truth_production_profile_ids:
+      - "truth_broker_context"
+    official_source_status: "not_applicable"
+    de_facto_source_status: "confirmed"
+    truth_status: "person_dependent"
+    validation_status: "needs_governance_resolution"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+truth_production_profiles:
+  - truth_profile_id: "truth_critical_dates"
+    name: "Critical dates used to trigger renewal review"
+    linked_information_object_ids:
+      - "info_critical_dates"
+      - "info_lease_abstract"
+    linked_decision_ids:
+      - "decision_renewal_path"
+    official_source:
+      source_id: "src_lease_abstract"
+      description: "Lease administration data or executed lease may be official, but the formal authority has not been confirmed."
+      status: "candidate"
+    de_facto_source:
+      source_id: "src_critical_date_report"
+      artifact_or_role: "Critical date report or tracker"
+      why_people_trust_it: "Assistant asset managers use it to start renewal preparation."
+      status: "candidate"
+    truth_production_chain:
+      - sequence: 1
+        step_type: "report_generation"
+        description: "Critical dates are pulled from a report or tracker."
+        input_source_ids:
+          - "src_lease_abstract"
+        output_information_object_id: "info_critical_dates"
+        owner_or_knower_role: "role_assistant_asset_manager"
+        evidence_refs:
+          - "int_aam_001"
+      - sequence: 2
+        step_type: "reconciliation"
+        description: "Assistant asset manager compares critical dates against lease abstract when preparing the renewal list."
+        input_source_ids:
+          - "src_critical_date_report"
+          - "src_lease_abstract"
+        output_information_object_id: "info_critical_dates"
+        owner_or_knower_role: "role_assistant_asset_manager"
+        evidence_refs:
+          - "int_aam_001"
+    embedded_business_rules:
+      - rule_id: "rule_notice_window_review"
+        where_encoded: "expert_memory"
+        description: "Notice windows and option terms must be checked before renewal strategy is drafted."
+        owner_or_knower_role: "role_asset_manager"
+        extraction_needed: true
+    truth_status: "disputed"
+    reproducibility: "low"
+    auditability: "low"
+    versioning_or_change_control: "unknown"
+    owner_role: "unknown"
+    steward_or_knower_role: "role_assistant_asset_manager"
+    fragility_signals:
+      - "conflicting_reports"
+      - "no_reconciliation"
+      - "unknown"
+    ai_safe_usage:
+      allowed_uses:
+        - "summarize"
+        - "compare"
+        - "flag_uncertainty"
+        - "draft_question"
+        - "escalate"
+      prohibited_uses:
+        - "final_decision"
+        - "autonomous_action"
+    validation_status: "needs_governance_resolution"
+    later_step_required: "controlled_validation_governance_resolution"
+    evidence_refs:
+      - "int_aam_001"
+    confidence: "medium"
+
+  - truth_profile_id: "truth_lease_terms"
+    name: "Lease terms used for renewal recommendation"
+    linked_information_object_ids:
+      - "info_lease_abstract"
+    linked_decision_ids:
+      - "decision_renewal_path"
+    official_source:
+      source_id: "src_lease_abstract"
+      description: "Lease abstract is a candidate official working source; executed lease authority still needs confirmation."
+      status: "candidate"
+    de_facto_source:
+      source_id: "src_lease_abstract"
+      artifact_or_role: "Lease abstract reviewed by asset management"
+      why_people_trust_it: "Used in current renewal preparation."
+      status: "candidate"
+    truth_production_chain:
+      - sequence: 1
+        step_type: "expert_judgment"
+        description: "Asset management reviews lease terms, notice requirements, and renewal options before recommendation."
+        input_source_ids:
+          - "src_lease_abstract"
+        output_information_object_id: "info_lease_abstract"
+        owner_or_knower_role: "role_asset_manager"
+        evidence_refs:
+          - "int_aam_001"
+    embedded_business_rules:
+      - rule_id: "rule_renewal_option_interpretation"
+        where_encoded: "expert_memory"
+        description: "Material lease-term interpretation rules have not been fully documented."
+        owner_or_knower_role: "role_asset_manager"
+        extraction_needed: true
+    truth_status: "conditionally_reliable"
+    reproducibility: "medium"
+    auditability: "low"
+    versioning_or_change_control: "unknown"
+    owner_role: "unknown"
+    steward_or_knower_role: "role_asset_manager"
+    fragility_signals:
+      - "unowned"
+      - "unknown"
+    ai_safe_usage:
+      allowed_uses:
+        - "summarize"
+        - "compare"
+        - "flag_uncertainty"
+        - "draft_question"
+        - "escalate"
+      prohibited_uses:
+        - "final_decision"
+        - "autonomous_action"
+    validation_status: "needs_governance_resolution"
+    later_step_required: "controlled_validation_governance_resolution"
+    evidence_refs:
+      - "int_aam_001"
+    confidence: "medium"
+
+  - truth_profile_id: "truth_ar_aging"
+    name: "Tenant receivable status used in renewal review"
+    linked_information_object_ids:
+      - "info_ar_aging"
+    linked_decision_ids:
+      - "decision_renewal_path"
+    official_source:
+      source_id: "src_ar_aging_report"
+      description: "Property management software is the candidate official system for receivables."
+      status: "candidate"
+    de_facto_source:
+      source_id: "src_ar_aging_report"
+      artifact_or_role: "AR aging report plus accounting explanation when timing differs"
+      why_people_trust_it: "Used by asset management and accounting to evaluate tenant payment status."
+      status: "confirmed"
+    truth_production_chain:
+      - sequence: 1
+        step_type: "report_generation"
+        description: "AR aging is generated from property management software."
+        input_source_ids:
+          - "src_ar_aging_report"
+        output_information_object_id: "info_ar_aging"
+        owner_or_knower_role: "Accounting"
+        evidence_refs:
+          - "int_am_001"
+      - sequence: 2
+        step_type: "manual_adjustment"
+        description: "Recent payments or credits may require accounting explanation before the number is used."
+        input_source_ids:
+          - "src_ar_aging_report"
+        output_information_object_id: "info_ar_aging"
+        owner_or_knower_role: "Accounting"
+        evidence_refs:
+          - "int_am_001"
+    embedded_business_rules:
+      - rule_id: "rule_ar_timing_adjustments"
+        where_encoded: "expert_memory"
+        description: "Accounting timing adjustments are not yet documented."
+        owner_or_knower_role: "Accounting"
+        extraction_needed: true
+    truth_status: "conditionally_reliable"
+    reproducibility: "medium"
+    auditability: "medium"
+    versioning_or_change_control: "unknown"
+    owner_role: "Accounting"
+    steward_or_knower_role: "Accounting"
+    fragility_signals:
+      - "manual_copy_paste"
+      - "unknown"
+    ai_safe_usage:
+      allowed_uses:
+        - "summarize"
+        - "compare"
+        - "flag_uncertainty"
+        - "draft_question"
+        - "escalate"
+      prohibited_uses:
+        - "final_decision"
+        - "autonomous_action"
+    validation_status: "needs_governance_resolution"
+    later_step_required: "measurement_intelligence"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+  - truth_profile_id: "truth_tenant_sales"
+    name: "Tenant sales trend used in renewal posture"
+    linked_information_object_ids:
+      - "info_tenant_sales"
+    linked_decision_ids:
+      - "decision_renewal_path"
+    official_source:
+      source_id: "src_tenant_sales_report"
+      description: "Official collection path for tenant sales has not been confirmed."
+      status: "unknown"
+    de_facto_source:
+      source_id: "src_tenant_sales_report"
+      artifact_or_role: "Tenant sales portal, report, or tracker"
+      why_people_trust_it: "Used when available, but submission timing and completeness vary."
+      status: "unknown"
+    truth_production_chain:
+      - sequence: 1
+        step_type: "other"
+        description: "Tenant submissions may flow through a portal, report export, or tracker; exact chain needs validation."
+        input_source_ids:
+          - "src_tenant_sales_report"
+        output_information_object_id: "info_tenant_sales"
+        owner_or_knower_role: "role_asset_manager"
+        evidence_refs:
+          - "int_am_001"
+    embedded_business_rules: []
+    truth_status: "unknown"
+    reproducibility: "unknown"
+    auditability: "unknown"
+    versioning_or_change_control: "unknown"
+    owner_role: "unknown"
+    steward_or_knower_role: "unknown"
+    fragility_signals:
+      - "unknown"
+    ai_safe_usage:
+      allowed_uses:
+        - "summarize"
+        - "flag_uncertainty"
+        - "draft_question"
+        - "escalate"
+      prohibited_uses:
+        - "final_decision"
+        - "autonomous_action"
+    validation_status: "needs_governance_resolution"
+    later_step_required: "controlled_validation_governance_resolution"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "low"
+
+  - truth_profile_id: "truth_broker_context"
+    name: "Broker and market context used in renewal recommendation"
+    linked_information_object_ids:
+      - "info_broker_feedback"
+    linked_decision_ids:
+      - "decision_renewal_path"
+    official_source:
+      source_id: "src_broker_email"
+      description: "No formal official source is confirmed for broker context."
+      status: "not_applicable"
+    de_facto_source:
+      source_id: "src_broker_email"
+      artifact_or_role: "Broker email and asset manager memory"
+      why_people_trust_it: "It captures market feedback and relationship context that may not appear in systems."
+      status: "confirmed"
+    truth_production_chain:
+      - sequence: 1
+        step_type: "expert_judgment"
+        description: "Asset manager interprets broker feedback and decides what matters for the renewal brief."
+        input_source_ids:
+          - "src_broker_email"
+        output_information_object_id: "info_broker_feedback"
+        owner_or_knower_role: "role_asset_manager"
+        evidence_refs:
+          - "int_am_001"
+    embedded_business_rules:
+      - rule_id: "rule_market_context_weighting"
+        where_encoded: "expert_memory"
+        description: "Rules for weighting informal broker context are not yet documented."
+        owner_or_knower_role: "role_asset_manager"
+        extraction_needed: true
+    truth_status: "person_dependent"
+    reproducibility: "low"
+    auditability: "low"
+    versioning_or_change_control: "none"
+    owner_role: "role_asset_manager"
+    steward_or_knower_role: "role_asset_manager"
+    fragility_signals:
+      - "unowned"
+      - "no_version_control"
+    ai_safe_usage:
+      allowed_uses:
+        - "summarize"
+        - "flag_uncertainty"
+        - "draft_question"
+        - "escalate"
+      prohibited_uses:
+        - "final_decision"
+        - "autonomous_action"
+    validation_status: "needs_governance_resolution"
+    later_step_required: "knowledge_mapping"
+    evidence_refs:
+      - "int_am_001"
+    confidence: "medium"
+
+unknowns_and_enrichment_routes:
+  - unknown_id: "unknown_source_owner"
+    question: "Who owns the critical date report and lease abstract quality?"
+    blocks_readiness: true
+    later_step_required: "controlled_validation_governance_resolution"
+    priority: "high"
+
+step_5_stop_status:
+  status: "initial_ai_workflow_spec_complete"
+  build_ready: false
+  reason_not_build_ready:
+    - "Official source, de facto trusted source, and truth production chain are not confirmed for several material inputs."
+    - "Some practical source access paths are not confirmed."
+    - "Approval thresholds not confirmed."
+    - "Metrics not defined."
+    - "Permissions and sensitive fields not mapped."
+  next_required_steps:
+    - "controlled_validation_governance_resolution"
+    - "knowledge_mapping"
+    - "kpi_design"
+    - "risk_register"
+    - "zero_trust_controls"
+    - "readiness_assessment"

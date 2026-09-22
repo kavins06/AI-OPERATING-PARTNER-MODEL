@@ -1,0 +1,97 @@
+object_type: "agentops_operating_record"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "agentops_record_demo_revenue_intake_20260601"
+version: "1.0"
+status: "active"
+
+source_inputs:
+  build_contract_id: "build_contract_demo_revenue_intake_20260504"
+  release_version_manifest_id: "release_demo_revenue_intake_1_0_0"
+  production_readiness_gate_id: "production_gate_demo_revenue_intake_20260601"
+  pilot_launch_gate_id: "pilot_gate_demo_revenue_intake_20260518"
+  evidence_refs:
+    - "evidence://demo/production-readiness-approval"
+    - "evidence://demo/release-1.0.0"
+
+agent_identity:
+  agent_id: "agent_demo_revenue_intake"
+  agent_name: "Revenue Intake Follow-up Agent"
+  current_environment: "production"
+  current_status: "active"
+  behavior_level_authorized: "draft_and_flag"
+
+operating_model:
+  executive_sponsor: "VP Revenue Operations"
+  business_owner: "Revenue Operations Manager"
+  product_owner: "Revenue AI Product Owner"
+  technical_owner: "Agent Platform Lead"
+  security_owner: "Security Lead"
+  data_owner: "CRM Data Owner"
+  risk_or_compliance_owner: "Revenue Risk Lead"
+  agentops_owner: "AgentOps Lead"
+  support_owner: "Revenue Operations Support"
+  revocation_owner: "Security Lead"
+
+live_scope:
+  user_groups:
+    - "Revenue intake coordinators"
+  workflow_boundaries:
+    - "Draft missing-information requests for open intake records."
+  environments_allowed:
+    - "production"
+  data_classes_allowed:
+    - "customer_contact"
+    - "opportunity_metadata"
+  tools_allowed:
+    - "crm_read_only_lookup"
+    - "intake_form_read_only_lookup"
+  prohibited_behaviors:
+    - "Send customer-facing messages without approval."
+    - "Change CRM stage or owner."
+
+operating_metrics:
+  quality:
+    - metric_id: "draft_acceptance_rate"
+      name: "Draft acceptance rate"
+      target: ">= 0.90"
+      blocking: true
+      current_value: "0.94"
+      owner: "Revenue Operations Manager"
+    - metric_id: "material_error_rate"
+      name: "Material error rate"
+      target: "<= 0.02"
+      blocking: true
+      current_value: "0.01"
+      owner: "AgentOps Lead"
+  operations:
+    - metric_id: "trace_coverage_rate"
+      name: "Trace coverage rate"
+      target: "1.00"
+      blocking: true
+      current_value: "1.00"
+      owner: "Agent Platform Lead"
+
+review_log:
+  - review_id: "review_20260601_launch_day"
+    review_date: "2026-06-01"
+    review_type: "launch_day"
+    outcome: "passed"
+    evidence_refs:
+      - "evidence://demo/launch-day-review"
+
+incidents: []
+
+drift_and_change_log:
+  pending_change_ids: []
+  last_access_review_date: "2026-06-01"
+  last_eval_refresh_date: "2026-05-31"
+  last_source_freshness_check: "2026-06-01"
+
+operating_decisions:
+  current_decision: "operate"
+  next_review_date: "2026-06-08"
+  expansion_allowed_without_change_review: false
+  retirement_triggers:
+    - "Material error rate exceeds 2 percent for two consecutive reviews."
+    - "Trace coverage falls below 100 percent."

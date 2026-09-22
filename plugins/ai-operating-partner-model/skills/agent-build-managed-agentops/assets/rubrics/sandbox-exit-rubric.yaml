@@ -1,0 +1,93 @@
+rubric_id: sandbox_prototype_rubric
+phase_id: 8
+phase_key: sandbox_prototype
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver; no automatic blocker remains."
+  conditional: "No critical blocker remains, and named follow-up is required before pilot launch."
+  blocked: "Any required criterion fails without authorized waiver."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    evidence_required:
+      - "technical_blueprint"
+      - "ai_guidance_pack"
+      - "risk_control_model"
+      - "method_to_build_handoff_contract"
+    pass_condition: "All required inputs are present, approved, versioned, and cited."
+  - criterion_id: sandbox_isolation_verified
+    required: true
+    evidence_required:
+      - "environment_progression_gate"
+      - "sandbox_environment_config"
+      - "secrets_access_review"
+    pass_condition: "Sandbox uses isolated environment, approved test data, approved secrets, and no unapproved production access."
+  - criterion_id: release_candidate_versioned
+    required: true
+    evidence_required:
+      - "release_version_manifest"
+    pass_condition: "Sandbox build versions code, prompts, model config, retrieval, tools, schemas, eval sets, controls, and rollback package."
+  - criterion_id: evals_and_controls_executed
+    required: true
+    evidence_required:
+      - "eval_results"
+      - "guardrail_test_results"
+      - "adversarial_test_results"
+    pass_condition: "Golden, edge, adversarial, permission-boundary, source-truth, and regression tests execute with blocking thresholds passed."
+  - criterion_id: trace_evidence_captured
+    required: true
+    evidence_required:
+      - "trace_completeness_report"
+      - "sandbox_trace_samples"
+    pass_condition: "Successful, failed, blocked, escalated, and human-reviewed sandbox cases have complete trace evidence."
+  - criterion_id: tool_and_permission_paths_tested
+    required: true
+    evidence_required:
+      - "tool_invocation_logs"
+      - "tool_denial_logs"
+      - "permission_boundary_test_results"
+    pass_condition: "Allowed tool paths work and unauthorized tool/action/user/environment paths are denied before dispatch."
+  - criterion_id: deviations_and_defects_owned
+    required: true
+    evidence_required:
+      - "sandbox_deviation_log"
+      - "sandbox_defect_log"
+    pass_condition: "Every deviation and defect has severity, owner, remediation, retest plan, pilot impact, and return-to-method assessment."
+  - criterion_id: rollback_and_revocation_tested
+    required: true
+    evidence_required:
+      - "pause_test_results"
+      - "revocation_test_results"
+      - "rollback_validation_results"
+    pass_condition: "Feature pause, tool/credential revocation, and rollback to previous sandbox build are tested."
+  - criterion_id: scope_preserved
+    required: true
+    evidence_required:
+      - "method_to_build_handoff_contract"
+      - "managed_lifecycle_object.lifecycle_scope"
+    pass_condition: "Sandbox behavior, users, sources, tools, data, output, and environment remain within approved scope."
+  - criterion_id: pilot_readiness_dependencies_identified
+    required: true
+    evidence_required:
+      - "environment_progression_gate.promotion_decision"
+      - "pilot_dependency_log"
+    pass_condition: "Pilot roster, support, monitoring, feedback, stop conditions, and open risks are explicit."
+  - criterion_id: owners_and_approvers_assigned
+    required: true
+    evidence_required:
+      - "managed_lifecycle_object.owner_model"
+      - "environment_progression_gate.gate_signoff"
+    pass_condition: "Technical, business, security, AgentOps, support, and revocation owners accept sandbox exit decision."
+  - criterion_id: return_to_method_rules_recorded
+    required: true
+    evidence_required:
+      - "phase_return_to_method_assessment"
+    pass_condition: "Scope, risk, truth, value, feasibility, and lifecycle changes are assessed before sandbox exit."
+automatic_blockers:
+  - "Sandbox uses unapproved data, unapproved access, production secrets, or unregistered tools."
+  - "Any blocking eval, adversarial, permission, control, trace, or rollback test fails without remediation and retest."
+  - "Prototype deviations are undocumented or lack owner decision."
+  - "Sandbox success is treated as production readiness."
+return_to_method_triggers:
+  - "Sandbox learning changes approved scope, risk, truth, or value assumptions."
+  - "Sandbox feasibility requires different behavior level, source, tool, access, oversight, or lifecycle model."

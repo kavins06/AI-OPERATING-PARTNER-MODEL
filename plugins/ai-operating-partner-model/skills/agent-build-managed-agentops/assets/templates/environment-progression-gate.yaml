@@ -1,0 +1,214 @@
+object_type: "environment_progression_gate"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "environment_gate_<agent_id>_<from_env>_to_<to_env>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+
+source_inputs:
+  build_contract_id: ""
+  architecture_record_id: ""
+  tool_contract_registry_id: ""
+  release_version_manifest_id: ""
+  eval_harness_spec_id: ""
+  guardrail_control_matrix_id: ""
+  trace_observability_spec_id: ""
+  technical_blueprint_id: ""
+  risk_control_model_id: ""
+  managed_lifecycle_object_id: ""
+  method_to_build_handoff_contract_id: ""
+  evidence_refs: []
+  approval_checks:
+    step_18_handoff_approved: false
+    separate_implementation_approval_present: false
+    prior_phase_contracts_current: false
+
+gate_scope:
+  agent_id: ""
+  agent_name: ""
+  release_version: ""
+  behavior_level: ""
+  from_environment: "offline_validation"
+  to_environment: "sandbox"
+  promotion_reason: ""
+  promotion_window: ""
+  promotion_expires_on: ""
+  user_groups_allowed: []
+  workflow_boundaries_allowed: []
+  tools_allowed: []
+  data_classes_allowed: []
+  prohibited_behaviors: []
+  prohibited_actions: []
+  prohibited_environments: []
+
+environment_baseline:
+  from_environment_state:
+    deployment_ref: ""
+    config_ref: ""
+    secrets_ref: ""
+    data_policy_ref: ""
+    known_open_issues: []
+  to_environment_target:
+    deployment_ref: ""
+    config_ref: ""
+    environment_owner: ""
+    support_owner: ""
+    incident_route: ""
+    tenant_or_workspace: ""
+    isolation_model: ""
+
+data_policy:
+  allowed_data_posture: "synthetic_or_masked_until_approved"
+  production_data_allowed: false
+  data_owner_approval_ref: ""
+  datasets_allowed: []
+  datasets_prohibited: []
+  masking_or_synthesis_method: ""
+  sampled_data_rules: []
+  prohibited_fields: []
+  retention_policy: ""
+  deletion_policy: ""
+  data_cleanup_on_rollback: []
+
+secrets_and_configuration:
+  secret_manager: ""
+  secret_refs: []
+  runtime_injection_pattern: ""
+  local_plaintext_secrets_allowed: false
+  source_control_secrets_allowed: false
+  rotation_cadence: ""
+  emergency_rotation_owner: ""
+  emergency_rotation_sla: ""
+  config_diff_review_required: true
+  config_owner: ""
+  environment_variables_allowed: []
+  environment_variables_prohibited: []
+
+identity_and_access:
+  agent_identity: ""
+  service_accounts:
+    - account_id: ""
+      owner: ""
+      environments_allowed: []
+      permission_scopes: []
+      provisioning_request_ref: ""
+      expiration: ""
+  end_user_roles_allowed: []
+  system_roles_allowed: []
+  least_privilege_evidence_refs: []
+  access_request_refs: []
+  access_review_cadence: ""
+  break_glass:
+    allowed: false
+    owner: ""
+    conditions: []
+    approval_required: []
+    max_duration: ""
+  revocation:
+    owner: ""
+    sla: ""
+    steps: []
+    validation_after_revocation: []
+
+network_and_system_boundaries:
+  allowed_hosts: []
+  prohibited_hosts: []
+  private_endpoints_required: []
+  outbound_restrictions: []
+  inbound_restrictions: []
+  firewall_or_allowlist_refs: []
+  tenant_isolation_checks: []
+  environment_specific_endpoints: []
+
+entry_criteria:
+  - criterion_id: "evals_passed"
+    description: "Required eval suites meet target-environment thresholds."
+    required: true
+    status: "not_started"
+    evidence_refs: []
+    owner: ""
+  - criterion_id: "controls_verified"
+    description: "Guardrails, permission boundaries, human approvals, and revocation controls are tested."
+    required: true
+    status: "not_started"
+    evidence_refs: []
+    owner: ""
+  - criterion_id: "observability_ready"
+    description: "Trace, audit, metrics, dashboard, alert route, retention, and redaction are ready."
+    required: true
+    status: "not_started"
+    evidence_refs: []
+    owner: ""
+  - criterion_id: "access_provisioned_least_privilege"
+    description: "Access is provisioned only for approved users, tools, service accounts, data, and environments."
+    required: true
+    status: "not_started"
+    evidence_refs: []
+    owner: ""
+  - criterion_id: "rollback_rehearsed"
+    description: "Rollback, revocation, communication, and post-rollback validation are rehearsed or explicitly scheduled."
+    required: true
+    status: "not_started"
+    evidence_refs: []
+    owner: ""
+
+eval_and_control_evidence:
+  required_eval_suites: []
+  quality_thresholds: []
+  safety_thresholds: []
+  negative_tests: []
+  permission_tests: []
+  audit_log_tests: []
+  revocation_drills: []
+  open_control_gaps: []
+
+observability_and_support:
+  trace_required_for_all_runs: true
+  audit_log_required_for_tool_calls: true
+  dashboard_refs: []
+  alert_routes: []
+  log_retention: ""
+  redaction_policy: ""
+  incident_route: ""
+  support_hours: ""
+  operator_runbook_refs: []
+  post_promotion_monitoring_window: ""
+
+promotion_decision:
+  decision: "not_submitted"
+  decision_date: ""
+  approved_by: []
+  conditions: []
+  expires_on: ""
+  no_go_conditions: []
+  post_promotion_review_date: ""
+
+rollback_plan:
+  rollback_owner: ""
+  maximum_rollback_time: ""
+  rollback_trigger_conditions: []
+  rollback_steps: []
+  access_revocation_steps: []
+  secret_rotation_steps: []
+  data_cleanup_steps: []
+  communication_plan: []
+  validation_after_rollback: []
+  fallback_operating_mode: ""
+
+blocking_conditions:
+  - "Target environment includes unapproved data, users, tools, actions, or behavior level."
+  - "Secrets, access, audit logging, rollback, or revocation path is undefined."
+  - "Production access is implied before production readiness gate."
+
+return_to_method_triggers:
+  - "Approved environment path is not feasible."
+  - "Required data cannot be safely masked, isolated, logged, or retained under approved constraints."
+  - "Necessary permission, endpoint, or user population was not approved in Step 17/18."
+
+gate_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  notes: []

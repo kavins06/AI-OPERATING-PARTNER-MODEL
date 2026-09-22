@@ -1,0 +1,81 @@
+rule_group: retirement_or_redesign_loop
+phase_id: 15
+phase_key: retirement_or_redesign_loop
+status: active
+required_section1_inputs:
+  - managed_lifecycle_object
+  - measurement_intelligence
+  - risk_control_model
+  - organizational_intelligence_diagnostic
+required_section2_outputs:
+  - change_expansion_retirement_review
+minimum_completed_sections:
+  - source_inputs
+  - review_scope
+  - baseline_scope
+  - materiality_gate
+  - assessment
+  - control_plan
+  - decision_options
+  - decision
+  - post_decision_tracking
+failure_modes:
+  - "Low value, high correction rate, source drift, ownership gap, or unacceptable risk continues without pause, redesign, or retirement."
+return_to_method_triggers:
+  - "Redesign requires new discovery, readiness scoring, or lifecycle decision."
+checks:
+  - check_id: required_section1_inputs_present
+    severity: error
+    description: "Required Section 1 source artifacts are referenced, approved, versioned, current, and cited."
+  - check_id: required_section2_outputs_present
+    severity: error
+    description: "The change expansion retirement review exists or is intentionally blocked with owner and due date."
+  - check_id: trigger_evidence_captured
+    severity: error
+    description: "Retirement or redesign trigger is stated with metric, incident, source, access, support, adoption, value, cost, or owner evidence."
+  - check_id: immediate_pause_need_evaluated
+    severity: error
+    description: "The review decides whether current operation must pause, revoke, restrict, or continue during analysis."
+  - check_id: value_viability_assessed
+    severity: error
+    description: "Realized value, net time saved, correction burden, support burden, operating cost, and minimum viable threshold are assessed."
+  - check_id: risk_control_viability_assessed
+    severity: error
+    description: "Incidents, near misses, control violations, privacy/security findings, audit gaps, waivers, and residual risk are reviewed."
+  - check_id: source_guidance_viability_assessed
+    severity: error
+    description: "Source freshness, source authority, owner support, stale guidance, source model changes, and data quality issues are assessed."
+  - check_id: access_owner_viability_assessed
+    severity: error
+    description: "Access, service accounts, credentials, revocation paths, owner coverage, and support coverage remain viable or are marked blocking."
+  - check_id: adoption_workflow_fit_assessed
+    severity: warning
+    description: "Active use, opt-outs, manual workarounds, training gaps, incentives, and workflow fit are compared to original diagnosis."
+  - check_id: simpler_alternatives_considered
+    severity: warning
+    description: "Retirement without replacement, SOP, dashboard, template, workflow automation, report, or simpler tool are evaluated before redesign."
+  - check_id: retirement_transition_complete
+    severity: error
+    description: "If retiring, user transition, manual fallback, queued work closure, access revocation, tool disablement, data retention, monitoring shutdown, and archive are documented."
+  - check_id: redesign_return_to_method_decided
+    severity: error
+    description: "If redesigning, the review states whether redesign stays inside approved lifecycle or returns to method and lists required Section 1 artifacts."
+  - check_id: decision_signed_and_followed
+    severity: error
+    description: "Decision outcome, rationale, required actions, owners, due dates, stop conditions, approvers, and next review are complete."
+  - check_id: return_to_method_triggers_present
+    severity: warning
+    description: "Return-to-method triggers are listed, evaluated, and linked to decision rationale."
+automatic_blockers:
+  - check_id: unresolved_high_incident_active
+    condition: "High or critical incident remains unresolved while agent is active."
+    required_response: "Pause or revoke affected scope before continuing."
+  - check_id: evidence_not_current
+    condition: "Agent cannot operate with current sources, controls, traces, access, and named owner coverage."
+    required_response: "Pause, remediate, retire, or return to method."
+  - check_id: value_below_threshold
+    condition: "Value remains below minimum viable threshold for two review cycles without owner-approved remediation."
+    required_response: "Open retirement or redesign decision."
+  - check_id: redesign_changes_method_assumptions
+    condition: "Redesign changes user group, workflow, source, data class, tool, behavior level, owner model, or business outcome."
+    required_response: "Return to method for new decision."

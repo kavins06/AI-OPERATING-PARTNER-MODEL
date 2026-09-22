@@ -1,0 +1,81 @@
+rule_group: expansion_change_control_gate
+phase_id: 14
+phase_key: expansion_change_control_gate
+status: active
+required_section1_inputs:
+  - managed_lifecycle_object
+  - readiness_object
+  - implementation_decision_packet
+  - method_to_build_handoff_contract
+required_section2_outputs:
+  - change_expansion_retirement_review
+minimum_completed_sections:
+  - source_inputs
+  - review_scope
+  - baseline_scope
+  - change_description
+  - materiality_gate
+  - assessment
+  - control_plan
+  - decision_options
+  - decision
+failure_modes:
+  - "New user, source, tool, workflow, behavior level, model, or write/send action is added without approval."
+return_to_method_triggers:
+  - "Expansion changes readiness, risk, value, or lifecycle assumptions."
+checks:
+  - check_id: required_section1_inputs_present
+    severity: error
+    description: "Required Section 1 source artifacts are referenced, approved, versioned, current, and cited."
+  - check_id: required_section2_outputs_present
+    severity: error
+    description: "The change expansion retirement review exists or is intentionally blocked with owner and due date."
+  - check_id: baseline_scope_captured
+    severity: error
+    description: "Current approved users, workflows, systems, tools, sources, data classes, outputs, behavior level, scale limits, and exclusions are captured."
+  - check_id: requested_delta_fully_enumerated
+    severity: error
+    description: "Requested deltas across users, workflow, source, tool, data, output, behavior, model, access, owner model, support, and environment are enumerated."
+  - check_id: materiality_gate_completed
+    severity: error
+    description: "Materiality decision states whether Phase 14, Phase 15, or return to method is required and why."
+  - check_id: no_unapproved_write_send_or_autonomy
+    severity: error
+    description: "No write, send, delete, approval, scheduling, routing, payment, account, permission-changing, or autonomous action is approved without explicit updated authorization."
+  - check_id: value_case_reassessed
+    severity: error
+    description: "Incremental value, adoption, operating cost, support burden, and measurement method are linked to the approved value case."
+  - check_id: risk_and_readiness_reassessed
+    severity: error
+    description: "New or changed risks, readiness gaps, human oversight burden, and residual risk owners are documented."
+  - check_id: source_freshness_review_complete
+    severity: error
+    description: "Every new or changed source has authoritative owner, freshness SLA, last verification, attestation, conflict handling, and stale-source action."
+  - check_id: access_review_complete
+    severity: error
+    description: "Every new or changed user group, account, credential, connector, secret, group, or permission has owner, least-privilege scope, audit evidence, and revocation method."
+  - check_id: evals_guardrails_observability_updated
+    severity: error
+    description: "Updated evals, guardrails, trace events, alerts, smoke tests, rollback tests, and human review controls cover changed behavior."
+  - check_id: rollout_rollback_revocation_defined
+    severity: error
+    description: "Rollout, rollback, revocation, queued work stop, manual fallback, monitoring cadence, and user communication are defined."
+  - check_id: owners_and_approvals_present
+    severity: error
+    description: "Business, technical, security, data, risk, support, AgentOps, revocation owners, and required approvers are named."
+  - check_id: return_to_method_triggers_present
+    severity: warning
+    description: "Return-to-method triggers are listed, evaluated, and linked to decision rationale."
+automatic_blockers:
+  - check_id: unapproved_action
+    condition: "Requested change adds write, send, delete, approval, scheduling, routing, payment, account, permission-changing, or autonomous action without updated authorization."
+    required_response: "Hold request and return to method or required approval path."
+  - check_id: unresolved_high_incident
+    condition: "Relevant high or critical incident remains unresolved."
+    required_response: "Block expansion and remediate or roll back."
+  - check_id: missing_owner
+    condition: "Affected source, tool, data class, access path, support path, or revocation path lacks owner."
+    required_response: "Hold until owner coverage is established."
+  - check_id: no_rollback_or_revocation
+    condition: "Changed behavior cannot be rolled back or revoked."
+    required_response: "Block approval."

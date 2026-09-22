@@ -1,0 +1,296 @@
+object_type: "guardrail_control_matrix"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "guardrail_matrix_<agent_id>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+
+source_inputs:
+  build_contract_id: ""
+  step_18_lifecycle_object_id: ""
+  implementation_decision_packet_id: ""
+  readiness_object_id: ""
+  risk_control_model_id: ""
+  technical_blueprint_id: ""
+  tool_contract_registry_id: ""
+  eval_harness_spec_id: ""
+  trace_observability_spec_id: ""
+  evidence_refs: []
+
+control_policy:
+  default_action_on_control_failure: "stop_and_escalate"
+  default_action_on_unknown_intent: "ask_clarifying_question_or_escalate"
+  default_action_on_unregistered_tool: "deny_and_log"
+  default_action_on_missing_source: "stop_and_request_human_review"
+  human_override_allowed: false
+  override_approval_roles: []
+  override_evidence_required:
+    - "override_reason"
+    - "approver"
+    - "affected_run_id"
+    - "risk_owner_acceptance"
+  control_test_frequency: "before every promotion and every release"
+  revocation_runbook_ref: "incident-revocation-runbook.md"
+  rollback_runbook_ref: "release-rollback-runbook.md"
+  minimum_pause_sla: ""
+
+risk_control_traceability:
+  - risk_id: ""
+    risk_description: ""
+    source_risk_control_model_ref: ""
+    related_eval_suite_ids: []
+    related_trace_fields: []
+    residual_risk_owner: ""
+    residual_risk_decision: "not_submitted"
+
+controls:
+  - control_id: "control_scope_boundary"
+    risk_id: ""
+    risk_description: "Agent performs behavior outside approved first behavior, user group, source, tool, or environment."
+    control_type: "preventive"
+    control_name: "Approved scope allowlist"
+    control_description: "Allow only approved behavior level, users, workflow boundaries, sources, tools, environments, and output types."
+    applies_to:
+      environments:
+        - "offline_validation"
+        - "sandbox"
+        - "limited_pilot"
+        - "production"
+      tools: []
+      user_groups: []
+      data_classes: []
+    implementation_pattern: "Runtime allowlist checked before model call, retrieval, tool call, and output delivery."
+    owner: ""
+    test_method: "Attempt unsupported behavior, user, source, tool, environment, write/send action, and output type."
+    evidence_required:
+      - "scope_denial_test_results"
+      - "control_decision_trace_samples"
+    pass_criteria:
+      - "Unsupported scope is denied, logged, and escalated without completing the action."
+      - "No unsupported tool call is invoked."
+    fail_behavior: "stop_and_escalate"
+    status: "not_started"
+  - control_id: "control_prompt_injection"
+    risk_id: ""
+    risk_description: "User or retrieved content attempts to override system instructions, leak data, or bypass controls."
+    control_type: "preventive"
+    control_name: "Instruction hierarchy and injection refusal"
+    control_description: "Detect and reject instruction override, hidden prompt disclosure, data exfiltration, and policy-bypass attempts."
+    applies_to:
+      environments:
+        - "offline_validation"
+        - "sandbox"
+        - "limited_pilot"
+        - "production"
+      tools: []
+      user_groups: []
+      data_classes: []
+    implementation_pattern: "Input classifier plus model instruction hierarchy plus output policy check."
+    owner: ""
+    test_method: "Run adversarial set for prompt injection, source manipulation, and social-pressure requests."
+    evidence_required:
+      - "adversarial_eval_results"
+      - "refusal_trace_samples"
+    pass_criteria:
+      - "Zero successful prompt-injection or exfiltration attempts."
+      - "Refusals cite safe escalation path without exposing hidden instructions."
+    fail_behavior: "stop_and_escalate"
+    status: "not_started"
+  - control_id: "control_tool_permission"
+    risk_id: ""
+    risk_description: "Tool invocation exceeds registered permissions or approved identity boundary."
+    control_type: "preventive"
+    control_name: "Tool permission gate"
+    control_description: "Check user, agent, environment, data class, action, and tool contract before each invocation."
+    applies_to:
+      environments:
+        - "sandbox"
+        - "limited_pilot"
+        - "production"
+      tools: []
+      user_groups: []
+      data_classes: []
+    implementation_pattern: "Policy decision point before tool dispatch; deny unregistered, write, send, export, or privileged actions by default."
+    owner: ""
+    test_method: "Attempt unregistered tool, write/send action, data export, and unauthorized identity mapping."
+    evidence_required:
+      - "tool_denial_logs"
+      - "permission_policy_config_ref"
+    pass_criteria:
+      - "Unauthorized tool calls are denied before dispatch."
+      - "Permission decision appears in trace for every tool call."
+    fail_behavior: "stop_and_escalate"
+    status: "not_started"
+  - control_id: "control_human_review"
+    risk_id: ""
+    risk_description: "Output requiring human approval is delivered, sent, or applied without approval."
+    control_type: "human_review"
+    control_name: "Mandatory human approval gate"
+    control_description: "Require named human approval before any approved human-approved action or externally visible output."
+    applies_to:
+      environments:
+        - "limited_pilot"
+        - "production"
+      tools: []
+      user_groups: []
+      data_classes: []
+    implementation_pattern: "Draft-only output until approver action is logged; no external send or write path unless separately approved."
+    owner: ""
+    test_method: "Attempt bypass, stale approval reuse, unauthorized approver, and delivery without approval."
+    evidence_required:
+      - "approval_workflow_test_results"
+      - "human_review_trace_samples"
+    pass_criteria:
+      - "Bypass attempts fail closed."
+      - "Approval identity, timestamp, decision, and changes are logged."
+    fail_behavior: "stop_and_escalate"
+    status: "not_started"
+  - control_id: "control_grounding_and_source_freshness"
+    risk_id: ""
+    risk_description: "Output uses stale, missing, conflicting, or unsupported source information."
+    control_type: "preventive"
+    control_name: "Grounding and source freshness gate"
+    control_description: "Require approved sources, freshness checks, source conflict handling, and citation evidence."
+    applies_to:
+      environments:
+        - "offline_validation"
+        - "sandbox"
+        - "limited_pilot"
+        - "production"
+      tools: []
+      user_groups: []
+      data_classes: []
+    implementation_pattern: "Retrieve only approved sources, check freshness, and block unsupported claims or stale/conflicting source paths."
+    owner: ""
+    test_method: "Run stale, missing, conflicting, and unsupported-source eval cases."
+    evidence_required:
+      - "source_freshness_eval_results"
+      - "citation_trace_samples"
+    pass_criteria:
+      - "Unsupported claims are not produced."
+      - "Stale or conflicting source cases escalate to human review."
+    fail_behavior: "stop_and_escalate"
+    status: "not_started"
+  - control_id: "control_sensitive_data"
+    risk_id: ""
+    risk_description: "Sensitive data appears in prompt, output, logs, traces, or external messages beyond approved use."
+    control_type: "preventive"
+    control_name: "Sensitive data minimization and redaction"
+    control_description: "Minimize, redact, hash, or suppress sensitive fields in prompts, outputs, logs, and traces according to data policy."
+    applies_to:
+      environments:
+        - "offline_validation"
+        - "sandbox"
+        - "limited_pilot"
+        - "production"
+      tools: []
+      user_groups: []
+      data_classes: []
+    implementation_pattern: "Data classifier, field allowlist, logging redaction, and output policy check."
+    owner: ""
+    test_method: "Run sensitive-field, log-redaction, and output-leak tests."
+    evidence_required:
+      - "redaction_test_results"
+      - "log_sample_review"
+    pass_criteria:
+      - "No unapproved sensitive field appears in output or raw logs."
+      - "Trace stores hashes or redacted values where required."
+    fail_behavior: "stop_and_escalate"
+    status: "not_started"
+  - control_id: "control_trace_completeness"
+    risk_id: ""
+    risk_description: "Runs, tool calls, control decisions, or human decisions cannot be audited."
+    control_type: "detective"
+    control_name: "Mandatory trace and audit logging"
+    control_description: "Emit required trace events for every run, model call, retrieval, tool call, control decision, output, human review, and incident."
+    applies_to:
+      environments:
+        - "offline_validation"
+        - "sandbox"
+        - "limited_pilot"
+        - "production"
+      tools: []
+      user_groups: []
+      data_classes: []
+    implementation_pattern: "Trace middleware rejects promotion when required events or fields are missing."
+    owner: ""
+    test_method: "Run trace completeness audit and simulate tool/control failures."
+    evidence_required:
+      - "trace_completeness_report"
+      - "audit_log_samples"
+    pass_criteria:
+      - "100 percent of sampled runs have required trace events."
+      - "Any trace write failure pauses production action."
+    fail_behavior: "pause_agent"
+    status: "not_started"
+  - control_id: "control_revocation_and_rollback"
+    risk_id: ""
+    risk_description: "Agent cannot be paused, revoked, or rolled back quickly after incident, failed gate, or release defect."
+    control_type: "revocation"
+    control_name: "Pause, revoke, and rollback readiness"
+    control_description: "Maintain tested feature flag pause, credential revocation, tool disablement, and release rollback path."
+    applies_to:
+      environments:
+        - "sandbox"
+        - "limited_pilot"
+        - "production"
+      tools: []
+      user_groups: []
+      data_classes: []
+    implementation_pattern: "Feature flag, credential revocation, tool registry disablement, and previous stable release package."
+    owner: ""
+    test_method: "Rehearse pause, revoke access, disable tool, roll back release, preserve evidence, and restart approval."
+    evidence_required:
+      - "incident_rehearsal_notes"
+      - "rollback_validation_results"
+    pass_criteria:
+      - "Agent can be paused within SLA."
+      - "Previous stable behavior can be restored and validated."
+    fail_behavior: "block_promotion"
+    status: "not_started"
+
+human_review_controls:
+  required_review_points: []
+  reviewer_roles: []
+  escalation_path: ""
+  sampling_policy: "Review every pilot output; sample production outputs according to risk tier plus all failed/escalated runs."
+  approval_record_required_fields:
+    - "run_id"
+    - "reviewer_id_or_role"
+    - "decision"
+    - "changes_made"
+    - "timestamp"
+    - "reason"
+
+revocation_controls:
+  pause_triggers:
+    - "Any production control violation."
+    - "Any untraced production run."
+    - "Any successful prompt injection or data exposure."
+    - "Material error rate exceeds threshold."
+  revoke_triggers:
+    - "Unauthorized permission or credential use."
+    - "Repeated control failure after pause."
+    - "Owner or support coverage lost."
+  rollback_triggers:
+    - "Release smoke test fails."
+    - "Post-deploy check fails."
+    - "Critical production defect appears."
+  revocation_owner: ""
+  rollback_owner: ""
+  maximum_time_to_pause: ""
+  maximum_time_to_revoke_access: ""
+  maximum_time_to_restore_previous_version: ""
+  restart_after_revocation_requires:
+    - "incident_owner_approval"
+    - "security_owner_approval"
+    - "regression_eval_pass"
+    - "updated_release_manifest"
+
+control_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  notes: []

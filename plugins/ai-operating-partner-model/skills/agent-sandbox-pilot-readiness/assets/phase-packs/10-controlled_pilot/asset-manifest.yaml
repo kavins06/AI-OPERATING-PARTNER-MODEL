@@ -1,0 +1,39 @@
+phase_pack_id: 10-controlled_pilot
+support_skill: agent-sandbox-pilot-readiness
+phase_id: 10
+phase_key: controlled_pilot
+phase_name: Controlled Pilot
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- managed_lifecycle_object
+- adoption_design
+- measurement_intelligence
+- risk_control_model
+section2_outputs:
+- pilot_launch_gate
+- agentops_operating_record
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/pilot-launch-gate.yaml
+  - skills/agent-build-managed-agentops/assets/templates/agentops-operating-record.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/pilot-readiness-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/pilot-readiness-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/controlled_pilot.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/10-pilot-launch-gate.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- Pilot audience, support model, feedback channel, monitoring, or stop condition is
+  missing.
+return_to_method_triggers:
+- Pilot reveals adoption, value, control, or truth assumptions were wrong.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

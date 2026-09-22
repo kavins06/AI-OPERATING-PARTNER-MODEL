@@ -1,0 +1,264 @@
+readiness_rubric_id: "readiness_hard_gates"
+spec_version: "0.1"
+object_type: "hard_gate_and_readiness_rubric"
+status: "published_reference"
+applies_to_step: 16
+
+scoring_scale:
+  5: "Strong evidence, validated owner, sufficient controls, and no material unresolved blocker."
+  4: "Mostly complete with minor open questions that do not block the proposed first behavior."
+  3: "Conditionally acceptable for a narrower or safe-limited behavior with named controls or fixes."
+  2: "Material gaps remain; not ready for the intended behavior."
+  1: "Known blocker or unsafe condition."
+  null: "Not assessed or not applicable."
+
+gate_status_rules:
+  pass: "Evidence supports the gate for the proposed behavior level."
+  conditional: "Gate can pass only with explicit scope limit, human review, control, caveat, or remediation committed before build."
+  fail: "Gate does not support the proposed behavior level."
+  blocked: "Gate cannot be assessed or resolved because required owner, evidence, or authority is unavailable."
+  unknown: "Insufficient evidence; cannot be treated as pass."
+
+hard_gates:
+  - gate_id: "use_case_framing_gate"
+    automatic_fail_when:
+      - "Candidate lacks target user, workflow boundary, value hypothesis, dependencies, or disqualification criteria."
+      - "Candidate status is disqualified, deprioritized, or paused without reactivation rationale."
+    conditional_when:
+      - "Scope is narrowable to a safe-limited behavior with clear non-goals."
+
+  - gate_id: "business_value_gate"
+    automatic_fail_when:
+      - "No credible value case exists and the client cannot confirm value priority."
+      - "AI-side cost plausibly exceeds value and no strategic risk or compliance rationale offsets it."
+    conditional_when:
+      - "Value is plausible but baseline metrics are conditional or ranges are wide."
+
+  - gate_id: "sponsor_behavior_gate"
+    automatic_fail_when:
+      - "No sponsor or sponsor pair can remove blockers, assign owners, or keep the work connected to business priorities."
+      - "Prior failed attempts created political risk and no permission-to-fail or learning posture exists."
+    conditional_when:
+      - "Sponsor commitment exists but blocker-removal cadence, co-sponsor, or OKR linkage must be confirmed before build."
+
+  - gate_id: "workflow_clarity_gate"
+    automatic_fail_when:
+      - "Required workflow steps, roles, handoffs, decisions, or edge cases are unknown for the proposed behavior."
+      - "Material variation exists and no variation map or skip rationale exists."
+    conditional_when:
+      - "Workflow is clear enough for summarization or draft-and-flag but not for recommendation or action."
+
+  - gate_id: "process_documentation_gate"
+    automatic_fail_when:
+      - "The process is undocumented, disputed, or broken in ways that would cause AI to accelerate bad work."
+      - "Critical process rules live only in unvalidated expert memory and are required for the proposed behavior."
+    conditional_when:
+      - "The process is discoverable through walkthroughs or examples and can support a narrow behavior with human review."
+
+  - gate_id: "source_access_gate"
+    automatic_fail_when:
+      - "Required information objects lack source access profiles or future access path."
+      - "Access path depends on prohibited credentials, broad live access, or unapproved all-email ingestion."
+    conditional_when:
+      - "Manual staging or approved export can support offline prototype or safe-limited pilot."
+
+  - gate_id: "data_quality_gate"
+    automatic_fail_when:
+      - "Known quality issues would make the proposed AI output misleading and no control exists."
+      - "Required lookup keys or identity-resolution rules are missing for the proposed behavior."
+    conditional_when:
+      - "Quality issues can be surfaced as uncertainty, source comparison, or human-review triggers."
+
+  - gate_id: "truth_production_gate"
+    automatic_fail_when:
+      - "Any decision the agent must make or recommend depends on missing, disputed, person-dependent, shadow-derived, manually adjusted, or not-reproducible truth without approved control."
+      - "No owner or steward exists for material truth production."
+      - "AI would need to present fragile truth as authoritative."
+    conditional_when:
+      - "AI behavior is limited to summarize, compare, flag uncertainty, draft clarification questions, or escalate."
+      - "Truth is conditionally reliable with documented caveats and human review."
+
+  - gate_id: "knowledge_guidance_gate"
+    automatic_fail_when:
+      - "Rules, source hierarchy, forbidden behaviors, escalation triggers, or output contract are missing for material decisions."
+      - "Tacit expert rules are required but not captured or routed."
+    conditional_when:
+      - "Guidance is sufficient for narrow behavior but not broader decision support."
+
+  - gate_id: "measurement_gate"
+    automatic_fail_when:
+      - "No trusted or conditionally trusted metric exists for value or performance and the use case is not explicitly about measurement/truth remediation."
+      - "Baseline depends on fragile metrics but is presented as reliable."
+    conditional_when:
+      - "Metrics can be used only as directional or with caveats."
+
+  - gate_id: "ai_capability_metrics_gate"
+    automatic_fail_when:
+      - "No success, error, override, drift, adoption, cost, or kill criteria are defined for the future capability."
+    conditional_when:
+      - "Metrics exist but need pilot calibration before expansion."
+
+  - gate_id: "regulated_domain_gate"
+    automatic_fail_when:
+      - "A regulated-domain extension applies and named rules, prohibited behaviors, required review, evals, or controls are missing."
+      - "External communication is in scope but compliance owner or review rule is absent."
+    conditional_when:
+      - "Behavior is internal-only or draft-only with mandatory human review and named controls."
+
+  - gate_id: "solution_shape_gate"
+    automatic_fail_when:
+      - "Build/buy/leverage, topology, model class, UX surface, or adoption design is undecided for the proposed path."
+      - "The selected shape conflicts with adoption reality or risk constraints."
+    conditional_when:
+      - "Shape is acceptable for offline proof or limited pilot but not full rollout."
+
+  - gate_id: "technical_feasibility_gate"
+    automatic_fail_when:
+      - "Future access path, component contract, runtime, hosting, normalization, identity resolution, test strategy, or secrets approach is missing for required behavior."
+      - "Vendor or system constraints block the proposed solution shape."
+    conditional_when:
+      - "Feasible with manual export, sandbox, or reduced scope."
+
+  - gate_id: "model_orchestration_gate"
+    automatic_fail_when:
+      - "The proposed model/orchestration pattern cannot support the task complexity, latency, privacy, cost, or tool-use needs."
+      - "A single-provider or single-model assumption creates unacceptable vendor, cost, privacy, or capability risk."
+    conditional_when:
+      - "Model selection can be deferred if the blueprint defines capability needs, routing options, evals, and switching criteria."
+
+  - gate_id: "risk_control_gate"
+    automatic_fail_when:
+      - "Material risks lack testable controls, owners, approval gates, logging, monitoring, incident response, or revocation path."
+      - "No stop condition exists for a high-severity risk."
+    conditional_when:
+      - "Controls are defined but must be verified before pilot."
+
+  - gate_id: "security_enablement_gate"
+    automatic_fail_when:
+      - "Security, privacy, data minimization, PII handling, or approved environment requirements are unknown for sensitive data."
+      - "Shadow AI risk is known or suspected and no approved alternative, monitoring signal, or mitigation path exists."
+    conditional_when:
+      - "Security work is front-loaded but has owners, target architecture, approvals, and a path to enabling the use case."
+
+  - gate_id: "adoption_change_gate"
+    automatic_fail_when:
+      - "Target users are unreachable, unwilling, or not incentivized and no adoption design exists."
+      - "Adoption-failure triggers are undefined for a user-facing capability."
+    conditional_when:
+      - "Pilot is opt-in or narrow with explicit adoption learning goals."
+
+  - gate_id: "resistance_profile_gate"
+    automatic_fail_when:
+      - "Likely blockers across staff functions, managers, users, IT/security, data owners, or executives are unmapped."
+      - "A known blocking group has no intervention, owner, or decision path."
+    conditional_when:
+      - "Resistance is mapped and acceptable for a limited pilot with targeted validation or sponsor intervention."
+
+  - gate_id: "recoverable_error_fit_gate"
+    automatic_fail_when:
+      - "The proposed oversight model allows errors that are unrecoverable, regulated-prohibited, customer-harming, or financially/reputationally unacceptable."
+      - "Autonomous action is proposed where approval or collaboration is required by task risk."
+    conditional_when:
+      - "Behavior can proceed at a lower autonomy level with escalation, approval, or collaboration."
+
+  - gate_id: "human_oversight_gate"
+    automatic_fail_when:
+      - "No named accountable owner, reviewer, escalation path, or approval authority exists for the proposed behavior."
+    conditional_when:
+      - "Owner is identified but formal confirmation is pending before implementation."
+
+  - gate_id: "lifecycle_gate"
+    automatic_fail_when:
+      - "No owner model exists for launch, monitoring, truth governance, guidance updates, access review, incidents, revocation, adoption, and retirement."
+    conditional_when:
+      - "Lifecycle exists for remediation or offline proof but not yet for production rollout."
+
+behavior_level_rules:
+  read_only_summary:
+    can_pass_with_fragile_truth: true
+    requires:
+      - "source citation or evidence reference"
+      - "uncertainty language when source is weak"
+      - "no recommendation, action, send, or write-back"
+  draft_and_flag:
+    can_pass_with_fragile_truth: true
+    requires:
+      - "human review"
+      - "flagged uncertainty and missing inputs"
+      - "forbidden action list"
+  recommendation_support:
+    can_pass_with_fragile_truth: false
+    requires:
+      - "truth production conditionally reliable or authoritative for required decisions"
+      - "source hierarchy"
+      - "guidance pack"
+      - "human review"
+      - "eval coverage"
+  human_approved_action:
+    can_pass_with_fragile_truth: false
+    requires:
+      - "all recommendation requirements"
+      - "approval gate"
+      - "tool permission matrix"
+      - "audit logging"
+      - "revocation path"
+  autonomous_action:
+    can_pass_with_fragile_truth: false
+    requires:
+      - "all human-approved action requirements"
+      - "high-confidence data and truth"
+      - "low regulated-domain risk or approved controls"
+      - "recoverable-error fit or explicit zero-error controls"
+      - "mapped resistance and adoption plan"
+      - "monitoring and kill criteria"
+      - "executive and risk approval"
+
+override_rules:
+  hard_gate_overrides_dimension_scores:
+    rule: "Any gate in {fail, blocked} sets readiness_decision = blocked regardless of dimension scores or total."
+    rationale: "A failed hard gate is structurally disqualifying; averaging it away with other dimensions would hide the blocker."
+    applied_by: "scripts/score_readiness.py and any consumer of this rubric."
+  unknown_gate_treatment:
+    rule: "Any gate with status = unknown sets readiness_decision = discovery_incomplete; the score must not be presented as build-ready until unknowns resolve."
+  severe_gap_floor:
+    rule: "If any dimension score equals 1, readiness_decision = severe_gap regardless of total."
+
+decision_thresholds:
+  scale_basis: "Percentage of max_total, where max_total = number_of_dimensions * 5."
+  ready_for_step17_build_brief_min_pct: 0.85
+  fix_named_gaps_first_min_pct: 0.70
+  governance_or_data_or_knowledge_or_technical_or_risk_first_min_pct: 0.52
+  do_not_automate_yet_below_pct: 0.52
+  application_rule: "Apply override_rules first. If no override applies, choose the highest-tier outcome whose threshold is met by the percentage of max_total."
+
+overall_decision_rules:
+  ready_for_step_17_build_brief:
+    requires:
+      - "all hard gates pass or conditional only for explicitly pre-build/pilot conditions"
+      - "minimum safe first behavior defined"
+      - "no fatal blocker on required workflow object"
+  fix_gaps_first:
+    applies_when:
+      - "one or more gates fail but remediation is specific and owner-assigned"
+  governance_or_data_readiness_first:
+    applies_when:
+      - "source, owner, access, data quality, truth production, or measurement blocks readiness"
+  knowledge_capture_first:
+    applies_when:
+      - "tacit rules, examples, source hierarchy, or guidance are insufficient"
+  technical_feasibility_first:
+    applies_when:
+      - "future access, vendor, integration, normalization, runtime, hosting, or test feasibility is unresolved"
+  risk_control_first:
+    applies_when:
+      - "material risk lacks control, owner, approval, monitoring, incident, or revocation design"
+  sponsor_or_adoption_first:
+    applies_when:
+      - "sponsor behavior, resistance profile, role transition, or user willingness blocks value capture"
+  model_or_security_first:
+    applies_when:
+      - "model/orchestration, security enablement, shadow AI, or approved environment constraints block readiness"
+  do_not_automate_yet:
+    applies_when:
+      - "fatal blocker exists and no valuable safe-limited behavior remains"
+      - "risk/value/adoption tradeoff is unacceptable"

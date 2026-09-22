@@ -1,0 +1,4 @@
+interface:
+  display_name: "Managed AgentOps Operations"
+  short_description: "Operate live agents through metrics, source freshness, incidents, access review, guidance updates, owner coverage, revocation readiness, and value tracking."
+  default_prompt: "Use $managed-agentops-operations for Section 2 Phase 13 after approved Step 18 handoff, production readiness, and release approval. Keep scope fixed, review operating health, verify owner coverage, source freshness, access, incidents, revocation readiness, value, and stop conditions, then update the agentops operating record and run card."

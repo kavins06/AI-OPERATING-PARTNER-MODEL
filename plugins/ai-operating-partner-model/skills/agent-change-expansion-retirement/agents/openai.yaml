@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Change Expansion Retirement"
+  short_description: "Review material changes, expansion, rollback, remediation, retirement, redesign, and return-to-method decisions."
+  default_prompt: "Use $agent-change-expansion-retirement for Section 2 Phases 14-15 after an approved build or operating record exists. Classify the lifecycle request, compare it to approved scope, check stop conditions, reassess value, risk, readiness, source freshness, access, owner coverage, rollback and revocation, then produce a change_expansion_retirement_review decision."

@@ -1,0 +1,1134 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://ai-operating-partner.local/schemas/agentops-objects.schema.json"
+title: "Managed AgentOps Post-18 Object Schemas"
+description: "Machine-readable schema contract for build, release, launch, production, and operating objects created after an approved Step 18 handoff."
+type: "object"
+oneOf:
+  - "$ref": "#/$defs/agent_build_contract"
+  - "$ref": "#/$defs/agent_necessity_kill_test"
+  - "$ref": "#/$defs/agent_build_plan"
+  - "$ref": "#/$defs/agent_architecture_record"
+  - "$ref": "#/$defs/tool_contract_registry"
+  - "$ref": "#/$defs/eval_harness_spec"
+  - "$ref": "#/$defs/guardrail_control_matrix"
+  - "$ref": "#/$defs/trace_observability_spec"
+  - "$ref": "#/$defs/environment_progression_gate"
+  - "$ref": "#/$defs/release_version_manifest"
+  - "$ref": "#/$defs/pilot_launch_gate"
+  - "$ref": "#/$defs/production_readiness_gate"
+  - "$ref": "#/$defs/agentops_operating_record"
+  - "$ref": "#/$defs/change_expansion_retirement_review"
+
+schema_compatibility_policy:
+  current_version: "current"
+  policy:
+    minor_versions: "Additive only. New optional fields, new enum members, and new object definitions may be added without a major bump."
+    major_versions: "Breaking changes require a documented migration path and a new schema major version."
+    extension_protocol: "Client, vertical, or regulated-domain extensions must live under `extensions` and must not redefine core fields."
+
+"$defs":
+  common_status:
+    enum:
+      - "draft"
+      - "not_submitted"
+      - "in_review"
+      - "approved"
+      - "blocked"
+      - "active"
+      - "paused"
+      - "revoked"
+      - "superseded"
+
+  approval_status:
+    enum:
+      - "not_submitted"
+      - "submitted"
+      - "approved"
+      - "approved_with_conditions"
+      - "rejected"
+      - "blocked"
+
+  criterion_status:
+    enum:
+      - "not_started"
+      - "in_progress"
+      - "passed"
+      - "failed"
+      - "waived"
+      - "blocked"
+
+  decision_status:
+    enum:
+      - "not_submitted"
+      - "approved"
+      - "approved_with_conditions"
+      - "rejected"
+      - "hold"
+      - "rollback"
+      - "retire"
+
+  environment:
+    enum:
+      - "offline_validation"
+      - "sandbox"
+      - "limited_pilot"
+      - "production"
+      - "controlled_rollout"
+      - "monitored_operation"
+
+  behavior_level:
+    enum:
+      - ""
+      - "read_only_summary"
+      - "draft_and_flag"
+      - "recommendation_support"
+      - "human_approved_action"
+      - "autonomous_action"
+      - "unknown"
+
+  likelihood:
+    enum:
+      - "low"
+      - "medium"
+      - "high"
+      - "unknown"
+
+  impact:
+    enum:
+      - "low"
+      - "medium"
+      - "high"
+      - "critical"
+      - "unknown"
+
+  string_array:
+    type: "array"
+    items:
+      type: "string"
+
+  evidence_refs:
+    type: "array"
+    items:
+      type: "string"
+
+  extension_reference:
+    type: "object"
+    required:
+      - "extension_id"
+      - "extension_type"
+    properties:
+      extension_id:
+        type: "string"
+      extension_type:
+        enum:
+          - "vertical"
+          - "regulated_domain"
+          - "client_specific"
+          - "other"
+      extension_version:
+        type: "string"
+      extension_schema_ref:
+        type: "string"
+    additionalProperties: true
+
+  source_inputs:
+    type: "object"
+    properties:
+      build_contract_id:
+        type: "string"
+      step_18_lifecycle_object_id:
+        type: "string"
+      implementation_decision_packet_id:
+        type: "string"
+      readiness_object_id:
+        type: "string"
+      risk_control_model_id:
+        type: "string"
+      technical_blueprint_id:
+        type: "string"
+      evidence_refs:
+        "$ref": "#/$defs/evidence_refs"
+    additionalProperties: true
+
+  signoff:
+    type: "object"
+    properties:
+      prepared_by:
+        type: "string"
+      reviewed_by:
+        "$ref": "#/$defs/string_array"
+      approved_by:
+        "$ref": "#/$defs/string_array"
+      approval_status:
+        "$ref": "#/$defs/approval_status"
+      approval_date:
+        type: "string"
+      notes:
+        "$ref": "#/$defs/string_array"
+    additionalProperties: true
+
+  owner_model:
+    type: "object"
+    properties:
+      executive_sponsor:
+        type: "string"
+      business_owner:
+        type: "string"
+      product_owner:
+        type: "string"
+      technical_owner:
+        type: "string"
+      security_owner:
+        type: "string"
+      data_owner:
+        type: "string"
+      risk_or_compliance_owner:
+        type: "string"
+      agentops_owner:
+        type: "string"
+      support_owner:
+        type: "string"
+      revocation_owner:
+        type: "string"
+    additionalProperties: true
+
+  gate_criterion:
+    type: "object"
+    required:
+      - "criterion_id"
+      - "required"
+      - "status"
+    properties:
+      criterion_id:
+        type: "string"
+      description:
+        type: "string"
+      required:
+        type: "boolean"
+      owner:
+        type: "string"
+      status:
+        "$ref": "#/$defs/criterion_status"
+      evidence_refs:
+        "$ref": "#/$defs/evidence_refs"
+      open_issues:
+        "$ref": "#/$defs/string_array"
+    additionalProperties: true
+
+  operating_metric:
+    type: "object"
+    required:
+      - "metric_id"
+      - "name"
+    properties:
+      metric_id:
+        type: "string"
+      name:
+        type: "string"
+      target:
+        type: "string"
+      blocking:
+        type: "boolean"
+      current_value:
+        type:
+          - "string"
+          - "number"
+          - "null"
+      owner:
+        type: "string"
+    additionalProperties: true
+
+  base_agentops_object:
+    type: "object"
+    required:
+      - "object_type"
+      - "spec_version"
+      - "schema_version"
+      - "object_id"
+      - "version"
+      - "status"
+    properties:
+      object_type:
+        type: "string"
+      spec_version:
+        type: "string"
+      schema_version:
+        const: "current"
+      object_id:
+        type: "string"
+        minLength: 1
+      version:
+        type: "string"
+      status:
+        "$ref": "#/$defs/common_status"
+      source_of_truth:
+        type: "boolean"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+    additionalProperties: true
+
+  agent_build_contract:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "authorization"
+          - "owners"
+          - "build_scope"
+          - "acceptance_contract"
+          - "change_control"
+        properties:
+          object_type:
+            const: "agent_build_contract"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          authorization:
+            type: "object"
+            required:
+              - "build_authorized"
+              - "authorized_scope_summary"
+            properties:
+              build_authorized:
+                type: "boolean"
+              authorizing_body:
+                type: "string"
+              authorization_date:
+                type: "string"
+              authorized_scope_summary:
+                type: "string"
+              explicit_out_of_scope:
+                "$ref": "#/$defs/string_array"
+              approval_conditions:
+                "$ref": "#/$defs/string_array"
+              return_to_method_triggers:
+                "$ref": "#/$defs/string_array"
+            additionalProperties: true
+          owners:
+            "$ref": "#/$defs/owner_model"
+          build_scope:
+            type: "object"
+            required:
+              - "agent_name"
+              - "business_outcome"
+              - "workflow_boundary"
+            properties:
+              agent_name:
+                type: "string"
+              business_outcome:
+                type: "string"
+              target_user_groups:
+                "$ref": "#/$defs/string_array"
+              workflow_boundary:
+                type: "string"
+              primary_use_cases:
+                "$ref": "#/$defs/string_array"
+              prohibited_use_cases:
+                "$ref": "#/$defs/string_array"
+              human_review_requirements:
+                "$ref": "#/$defs/string_array"
+              minimum_safe_first_behavior:
+                type: "string"
+            additionalProperties: true
+          acceptance_contract:
+            type: "object"
+            properties:
+              required_artifacts:
+                "$ref": "#/$defs/string_array"
+              success_criteria:
+                "$ref": "#/$defs/string_array"
+              non_functional_requirements:
+                type: "object"
+                additionalProperties: true
+              launch_blockers:
+                "$ref": "#/$defs/string_array"
+            additionalProperties: true
+          change_control:
+            type: "object"
+            properties:
+              material_change_definition:
+                "$ref": "#/$defs/string_array"
+              change_review_required:
+                type: "boolean"
+              change_review_object_type:
+                const: "change_expansion_retirement_review"
+            additionalProperties: true
+          contract_signoff:
+            "$ref": "#/$defs/signoff"
+
+  agent_necessity_kill_test:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "decision_summary"
+          - "simpler_alternatives"
+          - "agent_fit_tests"
+          - "risk_comparison"
+          - "kill_decision"
+        properties:
+          object_type:
+            const: "agent_necessity_kill_test"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          decision_summary:
+            type: "object"
+            required:
+              - "requested_agent_outcome"
+              - "current_status_quo"
+              - "lowest_risk_sufficient_solution"
+            properties:
+              requested_agent_outcome:
+                type: "string"
+              current_status_quo:
+                type: "string"
+              lowest_risk_sufficient_solution:
+                type: "string"
+              reason_an_agent_is_being_considered:
+                type: "string"
+              approved_first_behavior:
+                type: "string"
+            additionalProperties: true
+          simpler_alternatives:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "alternative_id"
+                - "alternative_type"
+                - "description"
+                - "outcome_fit"
+                - "decision"
+              properties:
+                alternative_type:
+                  enum:
+                    - "human_process"
+                    - "sop_or_training"
+                    - "report_or_dashboard"
+                    - "rule_based_automation"
+                    - "workflow_automation"
+                    - "search_or_retrieval"
+                    - "template_or_macro"
+                    - "other"
+                decision:
+                  enum:
+                    - "selected"
+                    - "rejected"
+                    - "needs_more_evidence"
+              additionalProperties: true
+          agent_fit_tests:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "test_id"
+                - "question"
+                - "status"
+                - "evidence_refs"
+              properties:
+                status:
+                  "$ref": "#/$defs/criterion_status"
+                evidence_refs:
+                  "$ref": "#/$defs/evidence_refs"
+              additionalProperties: true
+          risk_comparison:
+            type: "object"
+            properties:
+              agent_specific_risks:
+                "$ref": "#/$defs/string_array"
+              simpler_path_risks:
+                "$ref": "#/$defs/string_array"
+              controls_required_for_agent_path:
+                "$ref": "#/$defs/string_array"
+              controls_required_for_simpler_path:
+                "$ref": "#/$defs/string_array"
+              net_risk_position:
+                enum:
+                  - "agent_path_lower_risk"
+                  - "agent_path_equal_risk"
+                  - "agent_path_higher_risk"
+                  - "unknown"
+            additionalProperties: true
+          kill_decision:
+            type: "object"
+            required:
+              - "decision"
+              - "decision_rationale"
+            properties:
+              decision:
+                enum:
+                  - "proceed_with_agent_build"
+                  - "replace_with_simpler_path"
+                  - "hold_for_more_evidence"
+                  - "return_to_method"
+              decision_rationale:
+                type: "string"
+              required_scope_reductions:
+                "$ref": "#/$defs/string_array"
+              approved_by:
+                "$ref": "#/$defs/string_array"
+              approval_date:
+                type: "string"
+            additionalProperties: true
+          kill_test_signoff:
+            "$ref": "#/$defs/signoff"
+
+  agent_build_plan:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "delivery_model"
+          - "workstreams"
+          - "milestones"
+          - "definition_of_done"
+        properties:
+          object_type:
+            const: "agent_build_plan"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          delivery_model:
+            type: "object"
+            properties:
+              build_owner:
+                type: "string"
+              delivery_lead:
+                type: "string"
+              engineering_team:
+                "$ref": "#/$defs/string_array"
+              implementation_approach:
+                type: "string"
+            additionalProperties: true
+          workstreams:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "workstream_id"
+                - "name"
+                - "owner"
+              additionalProperties: true
+          milestones:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "milestone_id"
+                - "name"
+                - "status"
+              properties:
+                milestone_id:
+                  type: "string"
+                name:
+                  type: "string"
+                status:
+                  "$ref": "#/$defs/criterion_status"
+              additionalProperties: true
+          delivery_risks:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                likelihood:
+                  "$ref": "#/$defs/likelihood"
+                impact:
+                  "$ref": "#/$defs/impact"
+              additionalProperties: true
+          dependencies:
+            type: "object"
+            additionalProperties: true
+          definition_of_done:
+            type: "object"
+            additionalProperties: true
+          plan_signoff:
+            "$ref": "#/$defs/signoff"
+
+  agent_architecture_record:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "architecture_summary"
+          - "components"
+          - "model_posture"
+          - "data_and_system_paths"
+          - "resilience_and_failure_modes"
+        properties:
+          object_type:
+            const: "agent_architecture_record"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          architecture_summary:
+            type: "object"
+            properties:
+              behavior_level:
+                "$ref": "#/$defs/behavior_level"
+              topology:
+                type: "string"
+              operating_environments:
+                type: "array"
+                items:
+                  "$ref": "#/$defs/environment"
+            additionalProperties: true
+          components:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "component_id"
+                - "component_type"
+              additionalProperties: true
+          model_posture:
+            type: "object"
+            additionalProperties: true
+          data_and_system_paths:
+            type: "object"
+            additionalProperties: true
+          architectural_decisions:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "decision_id"
+                - "decision"
+              additionalProperties: true
+          resilience_and_failure_modes:
+            type: "object"
+            additionalProperties: true
+          architecture_signoff:
+            "$ref": "#/$defs/signoff"
+
+  tool_contract_registry:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "registry_policy"
+          - "tools"
+        properties:
+          object_type:
+            const: "tool_contract_registry"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          registry_policy:
+            type: "object"
+            properties:
+              default_tool_state:
+                type: "string"
+              unregistered_tools_allowed:
+                type: "boolean"
+              write_actions_require_explicit_contract:
+                type: "boolean"
+            additionalProperties: true
+          tools:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "tool_id"
+                - "name"
+                - "tool_type"
+                - "permissions"
+                - "invocation_policy"
+                - "failure_behavior"
+              properties:
+                tool_id:
+                  type: "string"
+                name:
+                  type: "string"
+                tool_type:
+                  enum:
+                    - "api"
+                    - "mcp"
+                    - "connector"
+                    - "database"
+                    - "workflow_action"
+                    - "document_store"
+                    - "other"
+                permissions:
+                  type: "object"
+                  additionalProperties:
+                    type: "boolean"
+                environments_allowed:
+                  type: "array"
+                  items:
+                    "$ref": "#/$defs/environment"
+              additionalProperties: true
+          registry_signoff:
+            "$ref": "#/$defs/signoff"
+
+  eval_harness_spec:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "validation_scope"
+          - "datasets"
+          - "eval_suites"
+          - "promotion_criteria"
+        properties:
+          object_type:
+            const: "eval_harness_spec"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          validation_scope:
+            type: "object"
+            properties:
+              environments:
+                type: "array"
+                items:
+                  "$ref": "#/$defs/environment"
+            additionalProperties: true
+          datasets:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "dataset_id"
+                - "dataset_type"
+                - "owner"
+              additionalProperties: true
+          eval_suites:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "suite_id"
+                - "name"
+                - "metrics"
+                - "pass_threshold"
+              properties:
+                metrics:
+                  type: "array"
+                  items:
+                    "$ref": "#/$defs/operating_metric"
+              additionalProperties: true
+          validation_methods:
+            type: "object"
+            additionalProperties: true
+          promotion_criteria:
+            type: "object"
+            additionalProperties: true
+          eval_signoff:
+            "$ref": "#/$defs/signoff"
+
+  guardrail_control_matrix:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "control_policy"
+          - "controls"
+          - "revocation_controls"
+        properties:
+          object_type:
+            const: "guardrail_control_matrix"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          control_policy:
+            type: "object"
+            additionalProperties: true
+          controls:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "control_id"
+                - "control_type"
+                - "control_name"
+                - "owner"
+                - "status"
+              properties:
+                control_type:
+                  enum:
+                    - "preventive"
+                    - "detective"
+                    - "corrective"
+                    - "revocation"
+                    - "human_review"
+                status:
+                  "$ref": "#/$defs/criterion_status"
+              additionalProperties: true
+          human_review_controls:
+            type: "object"
+            additionalProperties: true
+          revocation_controls:
+            type: "object"
+            additionalProperties: true
+          control_signoff:
+            "$ref": "#/$defs/signoff"
+
+  trace_observability_spec:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "trace_policy"
+          - "event_taxonomy"
+          - "observability_requirements"
+          - "metrics"
+          - "alerts"
+        properties:
+          object_type:
+            const: "trace_observability_spec"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          trace_policy:
+            type: "object"
+            properties:
+              trace_required_for_all_runs:
+                type: "boolean"
+              audit_log_required_for_tool_calls:
+                type: "boolean"
+              sensitive_data_redaction_required:
+                type: "boolean"
+            additionalProperties: true
+          event_taxonomy:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "event_type"
+                - "required_fields"
+              additionalProperties: true
+          observability_requirements:
+            type: "object"
+            additionalProperties: true
+          metrics:
+            type: "object"
+            additionalProperties: true
+          alerts:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "alert_id"
+                - "severity"
+                - "owner"
+              additionalProperties: true
+          dashboards:
+            type: "array"
+            items:
+              type: "object"
+              additionalProperties: true
+          observability_signoff:
+            "$ref": "#/$defs/signoff"
+
+  environment_progression_gate:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "gate_scope"
+          - "entry_criteria"
+          - "promotion_decision"
+          - "rollback_plan"
+        properties:
+          object_type:
+            const: "environment_progression_gate"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          gate_scope:
+            type: "object"
+            required:
+              - "from_environment"
+              - "to_environment"
+            properties:
+              from_environment:
+                "$ref": "#/$defs/environment"
+              to_environment:
+                "$ref": "#/$defs/environment"
+            additionalProperties: true
+          entry_criteria:
+            type: "array"
+            items:
+              "$ref": "#/$defs/gate_criterion"
+          promotion_decision:
+            type: "object"
+            properties:
+              decision:
+                "$ref": "#/$defs/decision_status"
+              approved_by:
+                "$ref": "#/$defs/string_array"
+            additionalProperties: true
+          rollback_plan:
+            type: "object"
+            additionalProperties: true
+          gate_signoff:
+            "$ref": "#/$defs/signoff"
+
+  release_version_manifest:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "release"
+          - "source_inputs"
+          - "included_artifacts"
+          - "compatibility"
+          - "deployment"
+          - "rollback"
+        properties:
+          object_type:
+            const: "release_version_manifest"
+          release:
+            type: "object"
+            required:
+              - "agent_id"
+              - "release_version"
+              - "release_type"
+              - "environment_target"
+            properties:
+              release_type:
+                enum:
+                  - "initial"
+                  - "patch"
+                  - "minor"
+                  - "major"
+                  - "rollback"
+                  - "hotfix"
+              environment_target:
+                "$ref": "#/$defs/environment"
+            additionalProperties: true
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          included_artifacts:
+            type: "object"
+            additionalProperties: true
+          compatibility:
+            type: "object"
+            additionalProperties: true
+          deployment:
+            type: "object"
+            additionalProperties: true
+          rollback:
+            type: "object"
+            additionalProperties: true
+          release_signoff:
+            "$ref": "#/$defs/signoff"
+
+  pilot_launch_gate:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "pilot_scope"
+          - "launch_criteria"
+          - "monitoring_during_pilot"
+          - "pilot_decision"
+        properties:
+          object_type:
+            const: "pilot_launch_gate"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          pilot_scope:
+            type: "object"
+            properties:
+              environments_allowed:
+                type: "array"
+                items:
+                  "$ref": "#/$defs/environment"
+            additionalProperties: true
+          launch_criteria:
+            type: "array"
+            items:
+              "$ref": "#/$defs/gate_criterion"
+          monitoring_during_pilot:
+            type: "object"
+            additionalProperties: true
+          pilot_decision:
+            type: "object"
+            properties:
+              decision:
+                "$ref": "#/$defs/decision_status"
+            additionalProperties: true
+          gate_signoff:
+            "$ref": "#/$defs/signoff"
+
+  production_readiness_gate:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "production_scope"
+          - "readiness_domains"
+          - "production_controls"
+          - "production_decision"
+        properties:
+          object_type:
+            const: "production_readiness_gate"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          production_scope:
+            type: "object"
+            properties:
+              environments_allowed:
+                type: "array"
+                items:
+                  "$ref": "#/$defs/environment"
+              behavior_level_authorized:
+                "$ref": "#/$defs/behavior_level"
+            additionalProperties: true
+          readiness_domains:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "domain_id"
+                - "required"
+                - "status"
+              properties:
+                domain_id:
+                  type: "string"
+                required:
+                  type: "boolean"
+                owner:
+                  type: "string"
+                status:
+                  "$ref": "#/$defs/criterion_status"
+                evidence_refs:
+                  "$ref": "#/$defs/evidence_refs"
+                open_issues:
+                  "$ref": "#/$defs/string_array"
+              additionalProperties: true
+          production_controls:
+            type: "object"
+            additionalProperties: true
+          production_decision:
+            type: "object"
+            properties:
+              decision:
+                "$ref": "#/$defs/decision_status"
+            additionalProperties: true
+          gate_signoff:
+            "$ref": "#/$defs/signoff"
+
+  agentops_operating_record:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "agent_identity"
+          - "operating_model"
+          - "live_scope"
+          - "operating_metrics"
+          - "review_log"
+          - "incidents"
+          - "operating_decisions"
+        properties:
+          object_type:
+            const: "agentops_operating_record"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          agent_identity:
+            type: "object"
+            required:
+              - "agent_id"
+              - "agent_name"
+              - "current_environment"
+              - "current_status"
+            properties:
+              current_environment:
+                "$ref": "#/$defs/environment"
+              behavior_level_authorized:
+                "$ref": "#/$defs/behavior_level"
+            additionalProperties: true
+          operating_model:
+            "$ref": "#/$defs/owner_model"
+          live_scope:
+            type: "object"
+            additionalProperties: true
+          operating_metrics:
+            type: "object"
+            additionalProperties: true
+          review_log:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "review_id"
+                - "review_date"
+                - "review_type"
+              additionalProperties: true
+          incidents:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "incident_id"
+                - "severity"
+                - "status"
+                - "summary"
+              additionalProperties: true
+          drift_and_change_log:
+            type: "object"
+            additionalProperties: true
+          operating_decisions:
+            type: "object"
+            additionalProperties: true
+
+  change_expansion_retirement_review:
+    allOf:
+      - "$ref": "#/$defs/base_agentops_object"
+      - type: "object"
+        required:
+          - "source_inputs"
+          - "review_scope"
+          - "change_description"
+          - "assessment"
+          - "decision_options"
+          - "decision"
+        properties:
+          object_type:
+            const: "change_expansion_retirement_review"
+          source_inputs:
+            "$ref": "#/$defs/source_inputs"
+          review_scope:
+            type: "object"
+            required:
+              - "review_type"
+              - "agent_id"
+              - "summary"
+            properties:
+              review_type:
+                enum:
+                  - "change"
+                  - "expansion"
+                  - "remediation"
+                  - "rollback"
+                  - "retirement"
+            additionalProperties: true
+          change_description:
+            type: "object"
+            additionalProperties: true
+          assessment:
+            type: "object"
+            additionalProperties: true
+          decision_options:
+            type: "array"
+            items:
+              type: "object"
+              required:
+                - "option"
+              additionalProperties: true
+          decision:
+            type: "object"
+            properties:
+              outcome:
+                "$ref": "#/$defs/decision_status"
+              approved_by:
+                "$ref": "#/$defs/string_array"
+            additionalProperties: true

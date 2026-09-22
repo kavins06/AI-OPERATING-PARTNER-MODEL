@@ -1,5 +1,15 @@
 # AI Operating Partner System
 
+## Install the AI Operating Partner plugin
+
+In **Add from marketplace**, paste **https://github.com/kavins06/AI-OPERATING-PARTNER-MODEL**. Select **AI Operating Partner** from **Quoin Operating Partner**, install, and start a new conversation.
+
+Try: **Help me find the best AI opportunity in my business.**
+
+This repository includes the complete [plugin package](plugins/ai-operating-partner-model/) with 27 skills and method assets. See the [user guide](plugins/ai-operating-partner-model/docs/plugin-guide.md) and [acceptance scenarios](plugins/ai-operating-partner-model/docs/plugin-test-cases.md). GitHub marketplace installation requires a supporting host and workspace permission.
+
+The packaged method is independent of the older method files below. Rebuild it from the method-development checkout; do not mix these versions.
+
 This repo is the source-of-truth package for the AI operating partner skill system.
 It contains the 16 operating skills, the master engagement orchestrator, reusable templates, scoring scripts, and generated mastery references.
 

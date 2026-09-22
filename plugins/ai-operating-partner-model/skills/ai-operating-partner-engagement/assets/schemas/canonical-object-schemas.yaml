@@ -1,0 +1,1023 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://ai-operating-partner.local/schemas/canonical-objects.schema.json"
+title: "AI Operating Partner Canonical Object Schemas"
+description: "Versioned schema contract for machine-readable artifacts used by the 0-18 pre-build engagement."
+type: "object"
+required:
+  - "object_type"
+  - "spec_version"
+  - "schema_version"
+properties:
+  object_type:
+    type: "string"
+  spec_version:
+    type: "string"
+  schema_version:
+    const: "current"
+
+schema_compatibility_policy:
+  current_version: "current"
+  policy:
+    minor_versions: "Additive only. New optional fields, new $defs, new enum members may be added without a major bump. Required-field additions are minor only when accompanied by a default; otherwise treat as breaking."
+    major_versions: "Breaking changes (renaming or removing fields, narrowing enums, or making previously optional fields required without default) require a major bump and a documented migration path."
+    deprecation: "Fields scheduled for removal must be marked deprecated for at least one minor version with a deprecation note before removal in the next major."
+    extension_protocol: "Vertical or client-specific extensions must use the `extensions` field on each canonical object and reference an extension schema (e.g., vertical-extension) by id. Extensions must not redefine or shadow core fields."
+
+"$defs":
+  common:
+    object_id:
+      type: "string"
+      minLength: 1
+    evidence_refs:
+      type: "array"
+      items:
+        type: "string"
+    confidence:
+      enum: ["high", "medium", "low", "unknown"]
+    validation_status:
+      enum: ["validated", "partially_validated", "interview_supported", "artifact_supported", "disputed", "unknown", "blocked", "not_reviewed"]
+    truth_status:
+      enum:
+        - "authoritative"
+        - "conditionally_reliable"
+        - "shadow_derived"
+        - "manually_adjusted"
+        - "person_dependent"
+        - "disputed"
+        - "missing"
+        - "not_reproducible"
+        - "unknown"
+    behavior_level:
+      enum:
+        - "read_only_summary"
+        - "draft_and_flag"
+        - "recommendation_support"
+        - "human_approved_action"
+        - "autonomous_action"
+        - "unknown"
+    status:
+      enum: ["draft", "generated", "partially_validated", "validated", "blocked", "approved", "superseded"]
+
+  extension_reference:
+    type: "object"
+    required: ["extension_id", "extension_type"]
+    properties:
+      extension_id:
+        type: "string"
+      extension_type:
+        enum: ["vertical", "regulated_domain", "client_specific", "other"]
+      extension_version:
+        type: "string"
+      extension_schema_ref:
+        type: "string"
+
+  evidence_reference:
+    type: "object"
+    required: ["evidence_ref", "evidence_type", "redaction_status"]
+    properties:
+      evidence_ref:
+        type: "string"
+      evidence_type:
+        enum: ["interview", "summary", "redacted_artifact", "screenshot", "walkthrough", "sample_export", "schema", "policy", "system_doc", "other"]
+      redaction_status:
+        enum: ["not_needed", "redacted", "classified_only", "pending", "blocked"]
+      sensitive_content_classes:
+        type: "array"
+        items:
+          type: "string"
+      retention_rule:
+        type: "string"
+
+  source_access_profile:
+    type: "object"
+    required:
+      - "source_access_profile_id"
+      - "information_object_id"
+      - "source_id"
+      - "practical_access_path"
+      - "access_method"
+      - "validation_status"
+      - "confidence"
+      - "evidence_refs"
+    properties:
+      source_access_profile_id:
+        type: "string"
+      information_object_id:
+        type: "string"
+      source_id:
+        type: "string"
+      system_id:
+        type: "string"
+      practical_access_path:
+        type: "string"
+      module_report_view_or_path:
+        type: "string"
+      access_method:
+        enum: ["api", "export", "report_view", "database_view", "document_store", "email_scope", "manual_staging", "vendor_integration", "rpa", "unknown"]
+      lookup_keys:
+        type: "array"
+        items:
+          type: "string"
+      required_fields_or_attributes:
+        type: "array"
+        items:
+          type: "string"
+      current_access_roles:
+        type: "array"
+        items:
+          type: "string"
+      access_failure_modes:
+        type: "array"
+        items:
+          type: "string"
+      validation_status:
+        "$ref": "#/$defs/common/validation_status"
+      evidence_refs:
+        "$ref": "#/$defs/common/evidence_refs"
+      confidence:
+        "$ref": "#/$defs/common/confidence"
+
+  truth_production_profile:
+    type: "object"
+    required:
+      - "truth_profile_id"
+      - "official_source"
+      - "de_facto_trusted_source"
+      - "truth_status"
+      - "production_chain_summary"
+      - "owner_role"
+      - "reproducibility"
+      - "auditability"
+      - "ai_safe_usage"
+      - "validation_status"
+      - "evidence_refs"
+      - "confidence"
+    properties:
+      truth_profile_id:
+        type: "string"
+      name:
+        type: "string"
+      linked_information_object_ids:
+        type: "array"
+        items:
+          type: "string"
+      linked_metric_ids:
+        type: "array"
+        items:
+          type: "string"
+      linked_decision_ids:
+        type: "array"
+        items:
+          type: "string"
+      linked_report_or_output_ids:
+        type: "array"
+        items:
+          type: "string"
+      official_source:
+        type: ["string", "null"]
+      official_source_status:
+        enum: ["confirmed", "candidate", "disputed", "missing", "not_applicable", "unknown"]
+      de_facto_trusted_source:
+        type: ["string", "null"]
+      de_facto_source_status:
+        enum: ["confirmed", "candidate", "disputed", "missing", "not_applicable", "unknown"]
+      truth_status:
+        "$ref": "#/$defs/common/truth_status"
+      production_chain_summary:
+        type: "string"
+      embedded_rules_or_macros:
+        type: "array"
+        items:
+          type: "string"
+      manual_adjustments_or_reconciliations:
+        type: "array"
+        items:
+          type: "string"
+      owner_role:
+        type: ["string", "null"]
+      steward_or_knower_role:
+        type: ["string", "null"]
+      reproducibility:
+        enum: ["high", "medium", "low", "unknown"]
+      auditability:
+        enum: ["high", "medium", "low", "unknown"]
+      ai_safe_usage:
+        type: "object"
+        required: ["allowed_uses", "prohibited_uses", "required_human_review_when"]
+        properties:
+          allowed_uses:
+            type: "array"
+            items:
+              type: "string"
+          prohibited_uses:
+            type: "array"
+            items:
+              type: "string"
+          required_human_review_when:
+            type: "array"
+            items:
+              type: "string"
+      required_fix_before_ai_use:
+        type: ["string", "null"]
+      validation_status:
+        "$ref": "#/$defs/common/validation_status"
+      evidence_refs:
+        "$ref": "#/$defs/common/evidence_refs"
+      confidence:
+        "$ref": "#/$defs/common/confidence"
+
+  candidate_use_case:
+    type: "object"
+    required:
+      - "use_case_id"
+      - "name"
+      - "one_line_hypothesis"
+      - "target_user_groups"
+      - "workflow_boundary"
+      - "value_hypothesis"
+      - "trust_dependencies"
+      - "adoption_dependencies"
+      - "disqualification_criteria"
+      - "current_status"
+      - "evidence_refs"
+    properties:
+      use_case_id:
+        type: "string"
+      name:
+        type: "string"
+      one_line_hypothesis:
+        type: "string"
+      target_user_groups:
+        type: "array"
+        items:
+          type: "string"
+      workflow_boundary:
+        type: "string"
+      discovery_zone:
+        type: "string"
+      business_outcome:
+        type: "string"
+      current_confidence:
+        "$ref": "#/$defs/common/confidence"
+      value_hypothesis:
+        type: "object"
+        required: ["value_type", "evidence_refs"]
+      trust_dependencies:
+        type: "object"
+        required: ["truth_production_dependencies", "source_access_dependencies", "data_quality_dependencies", "regulated_domain_dependencies"]
+      adoption_dependencies:
+        type: "object"
+        required: ["end_user_groups", "adoption_risk"]
+      disqualification_criteria:
+        type: "array"
+        items:
+          type: "object"
+      disqualification_events:
+        type: "array"
+        items:
+          "$ref": "#/$defs/disqualification_event"
+      minimum_safe_behavior_hypothesis:
+        "$ref": "#/$defs/common/behavior_level"
+      current_status:
+        enum: ["candidate", "active_discovery", "alive", "alive_with_conditions", "paused", "blocked", "disqualified", "advanced", "deprioritized", "needs_more_discovery"]
+      evidence_refs:
+        "$ref": "#/$defs/common/evidence_refs"
+
+  disqualification_event:
+    type: "object"
+    required: ["event_id", "event_type", "step", "candidate_use_case_id", "state_after_event", "reason", "evidence_refs"]
+    properties:
+      event_id:
+        type: "string"
+      event_type:
+        enum: ["discovery_disqualification", "economic_disqualification", "readiness_disqualification"]
+      step:
+        enum: ["step7", "step12", "step16"]
+      candidate_use_case_id:
+        type: "string"
+      state_after_event:
+        enum: ["paused", "disqualified", "deprioritized", "remediation_required", "do_not_automate", "revise_scope"]
+      reason:
+        type: "string"
+      linked_blocker_ids:
+        type: "array"
+        items:
+          type: "string"
+      evidence_refs:
+        "$ref": "#/$defs/common/evidence_refs"
+      operating_partner_judgment:
+        type: "string"
+
+  workflow_intelligence_object:
+    type: "object"
+    required:
+      - "workflow_spec_id"
+      - "spec_version"
+      - "object_type"
+      - "source_inputs"
+      - "roles"
+      - "workflows"
+      - "workflow_steps"
+      - "decisions"
+      - "information_objects"
+      - "source_access_profiles"
+      - "truth_production_profiles"
+      - "evidence_refs"
+      - "completeness_checks"
+    properties:
+      workflow_spec_id:
+        type: "string"
+      spec_version:
+        type: "string"
+      object_type:
+        const: "workflow_intelligence_object"
+      source_inputs:
+        type: "object"
+      roles:
+        type: "array"
+        items:
+          type: "object"
+      people:
+        type: "array"
+        items:
+          type: "object"
+      teams:
+        type: "array"
+        items:
+          type: "object"
+      workflows:
+        type: "array"
+        items:
+          type: "object"
+      workflow_variants:
+        type: "array"
+        items:
+          type: "object"
+      workflow_steps:
+        type: "array"
+        items:
+          type: "object"
+          required: ["id", "evidence_refs", "confidence"]
+          properties:
+            id:
+              type: "string"
+            evidence_refs:
+              "$ref": "#/$defs/common/evidence_refs"
+            confidence:
+              "$ref": "#/$defs/common/confidence"
+      decisions:
+        type: "array"
+        items:
+          type: "object"
+          required: ["id", "evidence_refs", "confidence"]
+          properties:
+            id:
+              type: "string"
+            evidence_refs:
+              "$ref": "#/$defs/common/evidence_refs"
+            confidence:
+              "$ref": "#/$defs/common/confidence"
+      information_objects:
+        type: "array"
+        items:
+          type: "object"
+          required: ["id", "evidence_refs", "confidence"]
+          properties:
+            id:
+              type: "string"
+            evidence_refs:
+              "$ref": "#/$defs/common/evidence_refs"
+            confidence:
+              "$ref": "#/$defs/common/confidence"
+      source_access_profiles:
+        type: "array"
+        items:
+          "$ref": "#/$defs/source_access_profile"
+      truth_production_profiles:
+        type: "array"
+        items:
+          "$ref": "#/$defs/truth_production_profile"
+      edge_cases:
+        type: "array"
+        items:
+          type: "object"
+          required: ["id", "evidence_refs", "confidence"]
+          properties:
+            id:
+              type: "string"
+            evidence_refs:
+              "$ref": "#/$defs/common/evidence_refs"
+            confidence:
+              "$ref": "#/$defs/common/confidence"
+      approval_gates:
+        type: "array"
+        items:
+          type: "object"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+      evidence_refs:
+        "$ref": "#/$defs/common/evidence_refs"
+      completeness_checks:
+        type: "object"
+        required:
+          - "all_material_decisions_have_owner_or_route"
+          - "all_material_information_objects_have_source_access_profile_or_route"
+          - "all_material_numbers_statuses_reports_have_truth_profile_or_route"
+          - "all_material_edge_cases_have_handler_or_route"
+
+  organizational_intelligence_baseline:
+    type: "object"
+    required:
+      - "baseline_id"
+      - "object_type"
+      - "contract_version"
+      - "source_inputs"
+      - "scope"
+      - "identity_and_privacy"
+      - "graph_nodes"
+      - "graph_edges"
+      - "candidate_ai_portfolio"
+      - "validated_intelligence_summary"
+      - "validation_state"
+      - "product_view_contract"
+      - "downstream_payloads_for_steps_9_to_18"
+      - "baseline_release_gate"
+    properties:
+      baseline_id:
+        type: "string"
+      object_type:
+        const: "organizational_intelligence_baseline"
+      contract_version:
+        type: "string"
+      source_inputs:
+        type: "object"
+      scope:
+        type: "object"
+      identity_and_privacy:
+        type: "object"
+      graph_nodes:
+        type: "object"
+      graph_edges:
+        type: "object"
+      candidate_ai_portfolio:
+        type: "array"
+        items:
+          "$ref": "#/$defs/candidate_use_case"
+      validated_intelligence_summary:
+        type: "object"
+      validation_state:
+        type: "object"
+      product_view_contract:
+        type: "object"
+      downstream_payloads_for_steps_9_to_18:
+        type: "object"
+      baseline_release_gate:
+        type: "object"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  knowledge_requirements_map:
+    type: "object"
+    required: ["knowledge_map_id", "source_inputs", "requirements", "gaps", "routes"]
+    properties:
+      knowledge_map_id:
+        type: "string"
+      source_inputs:
+        type: "object"
+      requirements:
+        type: "array"
+        items:
+          type: "object"
+          required: ["requirement_id", "linked_object_ids", "knowledge_type", "likely_owner", "evidence_refs", "confidence", "next_route"]
+      gaps:
+        type: "array"
+        items:
+          type: "object"
+      routes:
+        type: "array"
+        items:
+          type: "string"
+
+  ai_guidance_pack:
+    type: "object"
+    required: ["guidance_id", "source_inputs", "rules", "source_hierarchy", "forbidden_behaviors", "escalation_triggers", "output_contract", "eval_suite", "owner_model"]
+    properties:
+      guidance_id:
+        type: "string"
+      source_inputs:
+        type: "object"
+      rules:
+        type: "array"
+        items:
+          type: "object"
+      source_hierarchy:
+        type: "array"
+        items:
+          type: "object"
+      forbidden_behaviors:
+        type: "array"
+        items:
+          type: "string"
+      escalation_triggers:
+        type: "array"
+        items:
+          type: "object"
+      output_contract:
+        type: "object"
+      eval_suite:
+        type: "object"
+        required: ["behavioral_evals", "output_quality_evals", "methodology", "coverage_requirements"]
+      owner_model:
+        type: "object"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  measurement_intelligence:
+    type: "object"
+    required: ["measurement_intelligence_id", "metric_profiles", "ai_capability_metrics", "kill_criteria", "unresolved_metric_questions"]
+    properties:
+      measurement_intelligence_id:
+        type: "string"
+      metric_profiles:
+        type: "array"
+        items:
+          type: "object"
+          required: ["metric_id", "owner", "truth_status", "formula_or_derivation", "ai_safe_usage", "evidence_refs"]
+      ai_capability_metrics:
+        type: "array"
+        items:
+          type: "object"
+      kill_criteria:
+        type: "array"
+        items:
+          type: "object"
+      unresolved_metric_questions:
+        type: "array"
+        items:
+          type: "object"
+
+  solution_shape:
+    type: "object"
+    required: ["solution_shape_id", "decision", "solution_shape", "adoption_design", "risk_loop_status"]
+    properties:
+      solution_shape_id:
+        type: "string"
+      decision:
+        enum: ["build", "buy", "leverage_existing_vendor", "hybrid", "defer", "do_not_advance"]
+      solution_shape:
+        type: "object"
+        required: ["agent_topology", "model_selection_class", "ux_surface", "eval_observability_shape"]
+      adoption_design:
+        type: "object"
+        required: ["target_users", "adoption_path", "training_plan", "feedback_channels", "adoption_failure_triggers"]
+      risk_loop_status:
+        type: "object"
+        required: ["step15_can_force_revision", "revision_required", "revision_reason"]
+
+  technical_blueprint:
+    type: "object"
+    required: ["technical_blueprint_id", "implementation_posture", "systems_and_sources", "access_options", "future_component_contracts", "normalization_requirements", "truth_production_remediation", "build_sequence", "stop_boundary"]
+    properties:
+      technical_blueprint_id:
+        type: "string"
+      implementation_posture:
+        enum: ["technically_feasible", "feasible_with_conditions", "blocked", "not_worth_blueprinting_yet"]
+      systems_and_sources:
+        type: "array"
+        items:
+          type: "object"
+      access_options:
+        type: "array"
+        items:
+          type: "object"
+      future_component_contracts:
+        type: "array"
+        items:
+          type: "object"
+      normalization_requirements:
+        type: "array"
+        items:
+          type: "object"
+      truth_production_remediation:
+        type: "array"
+        items:
+          type: "object"
+      build_sequence:
+        type: "array"
+        items:
+          type: "object"
+      stop_boundary:
+        type: "object"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  risk_control_model:
+    type: "object"
+    required: ["risk_control_model_id", "risk_register", "data_classification", "tool_permission_matrix", "output_controls", "stop_conditions", "step15_to_step13_loop"]
+    properties:
+      risk_control_model_id:
+        type: "string"
+      risk_register:
+        type: "array"
+        items:
+          type: "object"
+      data_classification:
+        type: "array"
+        items:
+          type: "object"
+      tool_permission_matrix:
+        type: "array"
+        items:
+          type: "object"
+      output_controls:
+        type: "array"
+        items:
+          type: "object"
+      stop_conditions:
+        type: "array"
+        items:
+          type: "object"
+      step15_to_step13_loop:
+        type: "object"
+        required: ["revision_required", "reason", "affected_solution_shape_fields"]
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  readiness_object:
+    type: "object"
+    required: ["readiness_object_id", "hard_gates", "dimension_scores", "behavior_level_readiness", "blockers", "minimum_safe_first_behavior", "readiness_decision"]
+    properties:
+      readiness_object_id:
+        type: "string"
+      hard_gates:
+        type: "array"
+        items:
+          type: "object"
+          required: ["gate_id", "status", "gate_question", "evidence_refs", "blocker", "owner", "required_fix"]
+      dimension_scores:
+        type: "array"
+        items:
+          type: "object"
+      behavior_level_readiness:
+        type: "object"
+      blockers:
+        type: "array"
+        items:
+          type: "object"
+      minimum_safe_first_behavior:
+        type: "object"
+      readiness_decision:
+        type: "object"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  implementation_decision_packet:
+    type: "object"
+    required: ["step_17_packet_id", "packet_type", "decision_summary", "audience_views", "owner_matrix", "stop_boundary"]
+    properties:
+      step_17_packet_id:
+        type: "string"
+      packet_type:
+        enum:
+          - "build_ready_implementation_brief"
+          - "gap_remediation_plan"
+          - "governance_data_readiness_plan"
+          - "knowledge_capture_plan"
+          - "technical_feasibility_plan"
+          - "risk_control_plan"
+          - "do_not_automate_recommendation"
+      decision_summary:
+        type: "object"
+      audience_views:
+        type: "array"
+        items:
+          type: "object"
+      owner_matrix:
+        type: "object"
+      stop_boundary:
+        type: "object"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  managed_lifecycle_object:
+    type: "object"
+    required: ["lifecycle_object_id", "lifecycle_path", "operating_status", "owner_model", "variant_contract", "handoff_contract", "final_approval", "stop_boundary"]
+    properties:
+      lifecycle_object_id:
+        type: "string"
+      lifecycle_path:
+        enum: ["managed_agent_lifecycle", "remediation_lifecycle", "no_automation_review_cadence"]
+      operating_status:
+        type: "object"
+      owner_model:
+        type: "object"
+      variant_contract:
+        type: "object"
+      handoff_contract:
+        type: "object"
+      final_approval:
+        type: "object"
+      stop_boundary:
+        type: "object"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  variation_map:
+    type: "object"
+    required:
+      - "variation_map_id"
+      - "object_type"
+      - "trigger_evidence"
+      - "variation_axes"
+      - "variants"
+      - "skip_decision"
+    properties:
+      variation_map_id:
+        type: "string"
+      object_type:
+        const: "variation_map"
+      trigger_evidence:
+        type: "array"
+        items:
+          type: "string"
+      variation_axes:
+        type: "array"
+        items:
+          type: "object"
+          required: ["axis_name", "axis_description"]
+          properties:
+            axis_name:
+              type: "string"
+            axis_description:
+              type: "string"
+            evidence_refs:
+              "$ref": "#/$defs/common/evidence_refs"
+            confidence:
+              "$ref": "#/$defs/common/confidence"
+      variants:
+        type: "array"
+        items:
+          type: "object"
+          required: ["variant_id", "name", "scope", "evidence_refs", "confidence"]
+          properties:
+            variant_id:
+              type: "string"
+            name:
+              type: "string"
+            scope:
+              type: "string"
+            workflow_differences:
+              type: "array"
+              items:
+                type: "string"
+            truth_differences:
+              type: "array"
+              items:
+                type: "string"
+            adoption_differences:
+              type: "array"
+              items:
+                type: "string"
+            evidence_refs:
+              "$ref": "#/$defs/common/evidence_refs"
+            confidence:
+              "$ref": "#/$defs/common/confidence"
+      skip_decision:
+        type: "object"
+        required: ["skipped"]
+        properties:
+          skipped:
+            type: "boolean"
+          single_canonical_workflow_assertion_evidence:
+            type: "array"
+            items:
+              type: "string"
+          revisit_triggers:
+            type: "array"
+            items:
+              type: "string"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  organizational_intelligence_diagnostic:
+    type: "object"
+    required:
+      - "diagnostic_id"
+      - "object_type"
+      - "linked_workflow_spec_id"
+      - "findings"
+      - "blocker_summary"
+    properties:
+      diagnostic_id:
+        type: "string"
+      object_type:
+        const: "organizational_intelligence_diagnostic"
+      linked_workflow_spec_id:
+        type: "string"
+      scale_recommendation:
+        enum: ["downsized", "standard", "upscaled"]
+      findings:
+        type: "array"
+        items:
+          type: "object"
+          required:
+            - "finding_id"
+            - "linked_object_ids"
+            - "evidence_refs"
+            - "confidence"
+            - "blocker_classification"
+            - "behavior_levels_affected"
+            - "route"
+          properties:
+            finding_id:
+              type: "string"
+            linked_object_ids:
+              type: "array"
+              items:
+                type: "string"
+            symptom:
+              type: "string"
+            root_cause_hypothesis:
+              type: "string"
+            evidence_refs:
+              "$ref": "#/$defs/common/evidence_refs"
+            confidence:
+              "$ref": "#/$defs/common/confidence"
+            blocker_classification:
+              enum:
+                - "fatal_for_use_case"
+                - "requires_remediation_before_build"
+                - "acceptable_with_controls"
+                - "informational"
+                - "needs_more_discovery"
+            behavior_levels_affected:
+              type: "array"
+              items:
+                "$ref": "#/$defs/common/behavior_level"
+            owner_candidate:
+              type: "string"
+            route:
+              type: "string"
+            required_fix_or_control:
+              type: "string"
+            candidate_shortlist_update_required:
+              type: "boolean"
+      blocker_summary:
+        type: "object"
+        required:
+          - "fatal_for_use_case_count"
+          - "requires_remediation_count"
+          - "acceptable_with_controls_count"
+          - "informational_count"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  candidate_use_case_shortlist:
+    type: "object"
+    required:
+      - "shortlist_id"
+      - "object_type"
+      - "version"
+      - "candidates"
+      - "sponsor_review_status"
+    properties:
+      shortlist_id:
+        type: "string"
+      object_type:
+        const: "candidate_use_case_shortlist"
+      version:
+        type: "string"
+      created_at_step:
+        type: "string"
+      candidates:
+        type: "array"
+        items:
+          "$ref": "#/$defs/candidate_use_case"
+      portfolio_status_summary:
+        type: "object"
+      sponsor_review_status:
+        enum: ["draft", "under_review", "sponsor_confirmed", "revised", "blocked"]
+      revision_history:
+        type: "array"
+        items:
+          type: "object"
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  packet_set:
+    type: "object"
+    required:
+      - "packet_set_id"
+      - "object_type"
+      - "workflow_id"
+      - "packets"
+    properties:
+      packet_set_id:
+        type: "string"
+      object_type:
+        const: "packet_set"
+      workflow_id:
+        type: "string"
+      packets:
+        type: "array"
+        minItems: 1
+        items:
+          "$ref": "#/$defs/implementation_decision_packet"
+      cross_packet_relationships:
+        type: "array"
+        items:
+          type: "object"
+          required: ["relationship_type", "predecessor_packet_id", "successor_packet_id", "blocking"]
+          properties:
+            relationship_type:
+              enum:
+                - "remediation_unblocks_build"
+                - "risk_plan_constrains_scope"
+                - "governance_unblocks_build"
+                - "knowledge_capture_unblocks_build"
+                - "technical_feasibility_unblocks_build"
+                - "independent"
+            predecessor_packet_id:
+              type: "string"
+            successor_packet_id:
+              type: "string"
+            blocking:
+              type: "boolean"
+            unblock_condition:
+              type: "string"
+      packet_set_validation:
+        type: "object"
+        required: ["packet_count", "all_packets_have_required_sections", "all_relationships_resolve"]
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"
+
+  lifecycle_set:
+    type: "object"
+    required:
+      - "lifecycle_set_id"
+      - "object_type"
+      - "workflow_id"
+      - "lifecycles"
+    properties:
+      lifecycle_set_id:
+        type: "string"
+      object_type:
+        const: "lifecycle_set"
+      workflow_id:
+        type: "string"
+      linked_packet_set_id:
+        type: "string"
+      lifecycles:
+        type: "array"
+        minItems: 1
+        items:
+          "$ref": "#/$defs/managed_lifecycle_object"
+      cross_variant_relationships:
+        type: "array"
+        items:
+          type: "object"
+          required: ["relationship_type", "predecessor_lifecycle_id", "successor_lifecycle_id"]
+          properties:
+            relationship_type:
+              enum:
+                - "remediation_completion_enables_managed_lifecycle"
+                - "risk_revocation_pauses_managed_lifecycle"
+                - "no_automation_constrains_managed_lifecycle_scope"
+                - "independent"
+            predecessor_lifecycle_id:
+              type: "string"
+            successor_lifecycle_id:
+              type: "string"
+            transition_condition:
+              type: "string"
+      lifecycle_set_validation:
+        type: "object"
+        required: ["lifecycle_count", "each_lifecycle_has_handoff", "transitions_resolve"]
+      extensions:
+        type: "array"
+        items:
+          "$ref": "#/$defs/extension_reference"

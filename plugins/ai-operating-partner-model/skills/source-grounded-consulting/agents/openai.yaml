@@ -1,0 +1,4 @@
+interface:
+  display_name: "Source Grounded Consulting"
+  short_description: "Keep  recommendations traceable and evidence-based."
+  default_prompt: "Use this skill as the cross-step evidence discipline: separate facts, assumptions, inferences, recommendations, verification needs, evidence_refs, confidence, owners, and stop conditions."

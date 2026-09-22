@@ -1,0 +1,145 @@
+rule_group: agent_necessity_check
+phase_id: 2
+phase_key: agent_necessity_check
+status: active
+required_section1_inputs:
+  - candidate_use_case_shortlist
+  - business_value_case
+  - solution_shape
+  - readiness_object
+  - implementation_decision_packet
+required_section2_outputs:
+  - agent_necessity_kill_test
+failure_modes:
+  - Simpler non-agent path satisfies the approved outcome.
+  - Agent value does not justify operating burden.
+  - Human oversight is not workable.
+return_to_method_triggers:
+  - Agent path changes recommended Step 17 decision.
+  - Lowest-risk sufficient solution is not an agent.
+  - Approved first behavior, value case, readiness posture, oversight model, or solution shape must change.
+checks:
+  - check_id: required_section1_inputs_present
+    severity: error
+    description: "All required Section 1 source artifacts are referenced in source_inputs."
+    required_paths:
+      - "source_inputs.candidate_use_case_shortlist_id"
+      - "source_inputs.business_value_case_id"
+      - "source_inputs.solution_shape_id"
+      - "source_inputs.readiness_object_id"
+      - "source_inputs.implementation_decision_packet_id"
+    fail_when: "Any required source input ID is blank or absent."
+    remediation: "Hold Phase 2 until required source artifact is available."
+  - check_id: source_usage_complete
+    severity: error
+    description: "Each required source input has expected fields, usage, completeness status, and evidence refs."
+    required_paths:
+      - "source_inputs.source_input_usage"
+      - "source_inputs.evidence_refs"
+    fail_when: "Any required artifact is missing from source_input_usage."
+    remediation: "Map source inputs before scoring the kill test."
+  - check_id: decision_summary_complete
+    severity: error
+    description: "Decision summary must ground outcome, status quo, lowest-risk path, agent rationale, first behavior, and operating burden."
+    required_paths:
+      - "decision_summary.requested_agent_outcome"
+      - "decision_summary.current_status_quo"
+      - "decision_summary.lowest_risk_sufficient_solution"
+      - "decision_summary.reason_an_agent_is_being_considered"
+      - "decision_summary.approved_first_behavior"
+      - "decision_summary.operating_burden_summary"
+    fail_when: "Any summary field is blank or broader than the approved first behavior."
+    remediation: "Complete summary from approved Section 1 evidence."
+  - check_id: simpler_alternatives_minimum_set
+    severity: error
+    description: "The kill test compares the required minimum set of simpler alternatives."
+    required_paths:
+      - "simpler_alternatives"
+    required_alternative_types:
+      - "human_process"
+      - "sop_or_training"
+      - "workflow_automation"
+      - "report_or_dashboard"
+      - "search_or_retrieval"
+      - "template_or_macro"
+    fail_when: "Any required alternative type is missing or lacks decision rationale."
+    remediation: "Add and score the missing alternative."
+  - check_id: alternatives_have_decisions
+    severity: error
+    description: "Every simpler alternative has outcome fit, risk/cost/value deltas, evidence, and selected/rejected decision."
+    required_paths:
+      - "simpler_alternatives[].outcome_fit"
+      - "simpler_alternatives[].risk_delta_vs_agent"
+      - "simpler_alternatives[].operating_cost_delta_vs_agent"
+      - "simpler_alternatives[].value_delta_vs_agent"
+      - "simpler_alternatives[].evidence_refs"
+      - "simpler_alternatives[].reason_selected_or_rejected"
+      - "simpler_alternatives[].decision"
+    fail_when: "Any alternative is unscored or decision is needs_more_evidence without blocker."
+    remediation: "Score alternatives or set kill decision to hold_for_more_evidence."
+  - check_id: agent_fit_tests_scored
+    severity: error
+    description: "All required agent-fit tests are scored with evidence refs."
+    required_paths:
+      - "agent_fit_tests"
+    required_test_ids:
+      - "requires_contextual_judgment"
+      - "requires_language_or_unstructured_reasoning"
+      - "agent_value_exceeds_operating_burden"
+      - "scope_can_be_safely_constrained"
+      - "human_oversight_is_workable"
+    fail_when: "Any required fit test is missing, not_started, or lacks evidence refs."
+    remediation: "Complete fit tests before proceed decision."
+  - check_id: operating_burden_included
+    severity: error
+    description: "Agent path includes eval, monitoring, controls, incident, support, and owner-cadence burden."
+    required_paths:
+      - "decision_summary.operating_burden_summary.evals_required"
+      - "decision_summary.operating_burden_summary.monitoring_required"
+      - "decision_summary.operating_burden_summary.human_review_required"
+      - "decision_summary.operating_burden_summary.incident_response_required"
+      - "decision_summary.operating_burden_summary.support_required"
+      - "decision_summary.operating_burden_summary.ongoing_owner_cadence"
+    fail_when: "Operating burden is blank or excluded from decision rationale."
+    remediation: "Re-score value against operating burden."
+  - check_id: risk_comparison_complete
+    severity: error
+    description: "Agent and simpler-path risks and controls are compared."
+    required_paths:
+      - "risk_comparison.agent_specific_risks"
+      - "risk_comparison.simpler_path_risks"
+      - "risk_comparison.controls_required_for_agent_path"
+      - "risk_comparison.controls_required_for_simpler_path"
+      - "risk_comparison.net_risk_position"
+      - "risk_comparison.operating_burden_delta"
+    fail_when: "Net risk is unknown without blocker, or risks/controls are blank."
+    remediation: "Complete risk comparison or hold for evidence."
+  - check_id: decision_gate_complete
+    severity: error
+    description: "The Phase 2 decision gate includes pass/fail criteria, automatic kill conditions, conditional pass rules, and failure handling."
+    required_paths:
+      - "decision_gate.pass_criteria"
+      - "decision_gate.fail_criteria"
+      - "decision_gate.automatic_kill_conditions"
+      - "decision_gate.failure_handling"
+    fail_when: "Decision gate is missing or not actionable."
+    remediation: "Complete decision gate before kill decision."
+  - check_id: kill_decision_consistent
+    severity: error
+    description: "Kill decision must be consistent with simpler alternatives, fit tests, risk comparison, and evidence gaps."
+    required_paths:
+      - "kill_decision.decision"
+      - "kill_decision.decision_rationale"
+      - "kill_decision.required_scope_reductions"
+      - "kill_decision.approved_by"
+    fail_when: "Decision is proceed_with_agent_build while a simpler selected alternative exists, required tests failed, or evidence gaps are critical."
+    remediation: "Change decision to replace_with_simpler_path, hold_for_more_evidence, or return_to_method."
+  - check_id: return_to_method_triggers_evaluated
+    severity: error
+    description: "Return-to-method triggers are evaluated before proceeding."
+    required_paths:
+      - "return_to_method_review.evaluated"
+      - "return_to_method_review.triggered"
+      - "return_to_method_review.trigger_reason"
+    fail_when: "An active trigger lacks returned_to and method_question_to_reopen, or triggers are not evaluated."
+    remediation: "Pause Section 2 and route to method owner when triggered."

@@ -1,0 +1,64 @@
+regulated_domain_extension_id: "regulated_domain_<vertical>_current"
+spec_version: "0.1"
+object_type: "regulated_domain_extension"
+status: "draft" # draft | vertical_validated | client_confirmed
+vertical: "" # real_estate | healthcare | financial_services | legal | other
+schema_ref: "vertical-extension"
+
+purpose: "Thread named domain-specific compliance, licensing, policy, and reputational constraints through knowledge, guidance, risk, readiness, decision, and lifecycle artifacts."
+
+applies_to:
+  opportunity_ids: []
+  workflow_ids: []
+  output_types: []
+  communication_channels: []
+
+regulated_knowledge_requirements:
+  - requirement_id: ""
+    regulation_or_rule_name: ""
+    domain_area: "" # advertising | communications | data_use | referrals | licensing | protected_classes | consumer_consent | recordkeeping | other
+    knowledge_required:
+    prohibited_ai_behavior: []
+    required_human_review: []
+    owner_or_reviewer_role:
+    evidence_or_policy_refs: []
+    route_to_guidance_pack: true
+
+real_estate_default_checks:
+  fair_housing:
+    applies: "unknown"
+    prohibited_language_or_logic_to_capture: []
+    steering_or_disparate_treatment_risk: []
+    required_controls: []
+  tcpa_sms_calling:
+    applies: "unknown"
+    consent_source_needed: ""
+    opt_out_handling_needed: true
+    prohibited_automation: []
+  respa_referrals:
+    applies: "unknown"
+    referral_or_settlement_service_touchpoints: []
+    required_review: []
+  mls_idx_vow_data:
+    applies: "unknown"
+    data_license_or_display_constraints: []
+    prohibited_ai_uses: []
+  state_real_estate_advertising_or_license_rules:
+    applies: "unknown"
+    state_scope: []
+    required_disclosures_or_review: []
+
+eval_requirements:
+  behavioral_eval_categories: []
+  output_quality_eval_categories: []
+  minimum_cases_by_category:
+    good: 0
+    bad_or_forbidden: 0
+    edge: 0
+    regulated_domain_failure: 0
+
+risk_and_lifecycle_requirements:
+  named_risk_categories: []
+  required_controls: []
+  lifecycle_review_cadence: ""
+  rule_change_revalidation_required: true

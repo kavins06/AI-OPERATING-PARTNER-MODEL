@@ -1,0 +1,99 @@
+rule_group: environment_and_access_setup
+phase_id: 6
+phase_key: environment_and_access_setup
+status: active
+required_section1_inputs:
+  - technical_blueprint
+  - risk_control_model
+  - managed_lifecycle_object
+  - method_to_build_handoff_contract
+required_section2_outputs:
+  - environment_progression_gate
+failure_modes:
+  - "Secrets, test data, sandbox, or access review process is undefined."
+  - "Production access is implied before readiness gate."
+  - "Target environment has broader data, users, tools, network, or behavior than approved."
+  - "Promotion lacks rollback, revocation, audit, support, or incident evidence."
+  - "Access can persist after gate expiration, owner change, failed pilot, or rollback."
+return_to_method_triggers:
+  - "Approved environment path is not feasible."
+  - "Required data cannot be safely masked, isolated, logged, or retained under the approved constraints."
+  - "A necessary permission, system endpoint, or user population was not approved in Step 17/18."
+  - "Risk owner requires a different control model, oversight model, or lifecycle posture."
+checks:
+  - check_id: required_section1_inputs_present
+    severity: error
+    description: "Required Section 1 inputs and prior phase contracts are referenced, approved, versioned, and cited with evidence."
+    target_paths:
+      - "source_inputs"
+      - "source_inputs.evidence_refs"
+  - check_id: required_section2_outputs_present
+    severity: error
+    description: "The environment_progression_gate exists, has object metadata, and is not treated as approved while required sections are empty."
+    target_paths:
+      - "object_type"
+      - "object_id"
+      - "status"
+  - check_id: environment_scope_not_widened
+    severity: error
+    description: "Target environment does not widen approved behavior level, users, workflow boundary, tools, data, network, or sources."
+    target_paths:
+      - "gate_scope"
+  - check_id: production_access_not_implied
+    severity: error
+    description: "Production access is not granted or implied by offline validation, sandbox, limited pilot, or controlled rollout gates."
+    target_paths:
+      - "gate_scope.to_environment"
+      - "gate_scope.prohibited_environments"
+  - check_id: environment_baseline_defined
+    severity: error
+    description: "Current state, target state, environment owner, support owner, incident route, tenant/workspace, and isolation model are defined."
+    target_paths:
+      - "environment_baseline"
+  - check_id: data_policy_ready
+    severity: error
+    description: "Allowed data posture, production data approval, datasets, masking/synthesis, prohibited fields, retention, deletion, and rollback cleanup are defined."
+    target_paths:
+      - "data_policy"
+  - check_id: secrets_and_configuration_ready
+    severity: error
+    description: "Secret manager, secret refs, runtime injection, rotation cadence, emergency rotation, plaintext/source-control prohibitions, and config diff review are defined."
+    target_paths:
+      - "secrets_and_configuration"
+  - check_id: identity_and_access_least_privilege
+    severity: error
+    description: "Agent identity, service accounts, user/system roles, provisioning requests, least-privilege evidence, access review, break-glass policy, expiration, and revocation SLA are defined."
+    target_paths:
+      - "identity_and_access"
+  - check_id: network_and_system_boundaries_ready
+    severity: error
+    description: "Allowed/prohibited hosts, private endpoints, inbound/outbound restrictions, allowlist refs, tenant isolation, and environment-specific endpoints are defined."
+    target_paths:
+      - "network_and_system_boundaries"
+  - check_id: eval_and_control_evidence_complete
+    severity: error
+    description: "Quality thresholds, safety thresholds, negative tests, permission tests, audit-log tests, guardrail tests, and revocation drills pass or block promotion."
+    target_paths:
+      - "entry_criteria"
+      - "eval_and_control_evidence"
+  - check_id: observability_and_support_ready
+    severity: error
+    description: "Trace, audit, dashboard, alerts, retention, redaction, incident route, support hours, runbook, and monitoring window are ready."
+    target_paths:
+      - "observability_and_support"
+  - check_id: rollback_and_revocation_ready
+    severity: error
+    description: "Rollback owner, trigger conditions, max rollback time, access revocation, secret rotation, data cleanup, communication, validation, and fallback mode are implementation-ready."
+    target_paths:
+      - "rollback_plan"
+  - check_id: promotion_decision_governed
+    severity: error
+    description: "Promotion decision, approvers, conditions, expiration, no-go conditions, post-promotion review, and approval status are explicit."
+    target_paths:
+      - "promotion_decision"
+      - "gate_signoff"
+  - check_id: return_to_method_triggers_present
+    severity: warning
+    description: "Return-to-method triggers are listed and evaluated before phase exit."
+    target_paths:
+      - "return_to_method_triggers"

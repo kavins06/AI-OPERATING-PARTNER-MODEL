@@ -1,0 +1,23 @@
+{
+  "name": "ai-operating-partner-model",
+  "version": "1.0.0",
+  "description": "Turn business workflows into evidence-based AI decisions, implementation handoffs, and managed AgentOps plans.",
+  "author": {"name": "Quoin"},
+  "repository": "https://github.com/kavins06/AI-OPERATING-PARTNER-MODEL",
+  "keywords": ["ai-strategy", "workflow-discovery", "readiness", "governance", "agentops"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AI Operating Partner",
+    "shortDescription": "Find worthwhile AI workflows. Plan, validate, and govern delivery.",
+    "longDescription": "A guided operating method for founders, operators, consultants, and enterprise teams. Start with a business problem, map how work and information really flow, compare opportunities, assess readiness, and create evidence-linked decision packets. Includes discovery interviews, governance, value cases, implementation handoffs, and post-approval AgentOps workflows. Works from conversation and approved examples; no connected account is required to begin.",
+    "developerName": "Quoin",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Help me find the best AI opportunity in my business.",
+      "Map this workflow and assess whether it is ready for AI.",
+      "Review my approved AI handoff and plan implementation."
+    ],
+    "brandColor": "#173D36"
+  }
+}

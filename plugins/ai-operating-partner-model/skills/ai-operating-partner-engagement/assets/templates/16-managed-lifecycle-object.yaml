@@ -1,0 +1,612 @@
+lifecycle_object_id: "lifecycle_<opportunity_id>_current"
+version: "0.1"
+status: "draft"
+source_of_truth: true
+lifecycle_path: "managed_agent_lifecycle" # managed_agent_lifecycle | remediation_lifecycle | no_automation_review_cadence
+uses_lifecycle_variant_contracts_id: "lifecycle_variant_contracts"
+uses_handoff_contract_id: "method_to_build_handoff"
+uses_halt_taxonomy_id: "halt_taxonomy"
+
+source_inputs:
+  step_17_packet_id: ""
+  step_17_packet_type: ""
+  readiness_object_id: ""
+  risk_control_model_id: ""
+  technical_blueprint_id: ""
+  solution_shape_id: ""
+  adoption_design_id: ""
+  guidance_pack_ids: []
+  measurement_intelligence_ids: []
+  truth_production_profile_ids: []
+  value_case_id: ""
+  workflow_ids: []
+  evidence_refs: []
+  missing_or_partial_inputs: []
+
+operating_status:
+  current_engagement_phase: "pre_build_step_18"
+  future_implementation_phase_status: "not_started"
+  implementation_allowed_only_after_step_18_approval: true
+  separate_implementation_approval_required: true
+  no_live_agent_operated_during_engagement: true
+  approval_boundary: "This object defines future operations only; it does not deploy, monitor, connect, or operate an agent during the engagement."
+
+variant_contract:
+  selected_variant: "managed_agent_lifecycle" # managed_agent_lifecycle | remediation_lifecycle | no_automation_review_cadence
+  contract_ref: "lifecycle_variant_contracts"
+  required_sections_present: false
+  missing_sections: []
+
+handoff_contract:
+  handoff_contract_ref: "method_to_build_handoff"
+  operating_partner_role_after_handoff: "not_decided" # advisor_only | build_phase_operator | managed_services_owner | client_handoff_only | third_party_builder_handoff | not_decided
+  future_build_owner_acceptance_required: true
+  handoff_status: "not_ready_pending_client_decision" # ready_for_separate_implementation_approval | ready_for_remediation_execution | not_ready_missing_owner | not_ready_missing_controls | not_ready_missing_access_path | not_ready_pending_client_decision | do_not_automate_revisit_scheduled
+  return_to_method_triggers: []
+
+lifecycle_scope:
+  agent_or_workflow_name: ""
+  opportunity_id: ""
+  business_outcome: ""
+  behavior_level_authorized_for_first_build: ""
+  behavior_levels_not_authorized: []
+  target_user_groups: []
+  environments:
+    - environment: "offline_validation"
+      allowed: true
+      entry_condition: ""
+      exit_condition: ""
+    - environment: "sandbox"
+      allowed: false
+      entry_condition: ""
+      exit_condition: ""
+    - environment: "limited_pilot"
+      allowed: false
+      entry_condition: ""
+      exit_condition: ""
+    - environment: "production"
+      allowed: false
+      entry_condition: ""
+      exit_condition: ""
+  explicit_scope_exclusions: []
+
+owner_model:
+  business_owner: ""
+  day_to_day_owner: ""
+  technical_owner: ""
+  data_owner: ""
+  security_owner: ""
+  risk_or_compliance_owner: ""
+  support_owner: ""
+  guidance_update_owner: ""
+  measurement_owner: ""
+  truth_production_owner: ""
+  source_freshness_owner: ""
+  incident_owner: ""
+  revocation_owner: ""
+  future_build_owner: ""
+  executive_sponsor: ""
+  approval_committee_or_forum: ""
+  responsibility_matrix:
+    - responsibility: "approve_future_implementation_start"
+      accountable_owner: ""
+      consulted_roles: []
+      informed_roles: []
+    - responsibility: "approve_launch"
+      accountable_owner: ""
+      consulted_roles: []
+      informed_roles: []
+    - responsibility: "monitor_quality"
+      accountable_owner: ""
+      consulted_roles: []
+      informed_roles: []
+    - responsibility: "monitor_truth_production"
+      accountable_owner: ""
+      consulted_roles: []
+      informed_roles: []
+    - responsibility: "monitor_risk"
+      accountable_owner: ""
+      consulted_roles: []
+      informed_roles: []
+    - responsibility: "update_guidance"
+      accountable_owner: ""
+      consulted_roles: []
+      informed_roles: []
+    - responsibility: "review_access"
+      accountable_owner: ""
+      consulted_roles: []
+      informed_roles: []
+    - responsibility: "pause_or_revoke"
+      accountable_owner: ""
+      consulted_roles: []
+      informed_roles: []
+
+future_lifecycle_stages:
+  - stage_id: "stage_0"
+    stage_name: "implementation_approval"
+    purpose: "Decide whether the separate implementation phase may begin."
+    entry_criteria:
+      - "Step 18 lifecycle object approved."
+      - "Client approves separate implementation phase."
+    exit_criteria: []
+    required_approvals: []
+    stop_conditions: []
+  - stage_id: "stage_1"
+    stage_name: "offline_validation"
+    purpose: "Validate guidance, outputs, evals, and controls using redacted, synthetic, or approved sample evidence."
+    entry_criteria: []
+    exit_criteria: []
+    required_approvals: []
+    stop_conditions: []
+  - stage_id: "stage_2"
+    stage_name: "sandbox_integration"
+    purpose: "Validate future tools, connectors, MCPs, normalization, logging, and permission boundaries in a sandbox."
+    entry_criteria: []
+    exit_criteria: []
+    required_approvals: []
+    stop_conditions: []
+  - stage_id: "stage_3"
+    stage_name: "limited_pilot"
+    purpose: "Pilot with a narrow user group, scoped data, human review, and active monitoring."
+    entry_criteria: []
+    exit_criteria: []
+    required_approvals: []
+    stop_conditions: []
+  - stage_id: "stage_4"
+    stage_name: "controlled_rollout"
+    purpose: "Expand only after pilot evidence, owner approval, controls, and support model are ready."
+    entry_criteria: []
+    exit_criteria: []
+    required_approvals: []
+    stop_conditions: []
+  - stage_id: "stage_5"
+    stage_name: "monitored_operation"
+    purpose: "Operate with ongoing quality, value, risk, access, source freshness, and cost monitoring."
+    entry_criteria: []
+    exit_criteria: []
+    required_approvals: []
+    stop_conditions: []
+  - stage_id: "stage_6"
+    stage_name: "expansion_or_retirement_review"
+    purpose: "Decide whether to expand, hold, remediate, or retire based on evidence."
+    entry_criteria: []
+    exit_criteria: []
+    required_approvals: []
+    stop_conditions: []
+
+launch_gates:
+  - gate_id: "evals_passed"
+    required: true
+    owner: ""
+    evidence_required: []
+    pass_criteria: []
+    blocks_launch_if_missing: true
+  - gate_id: "controls_verified"
+    required: true
+    owner: ""
+    evidence_required: []
+    pass_criteria: []
+    blocks_launch_if_missing: true
+  - gate_id: "audit_logging_ready"
+    required: true
+    owner: ""
+    evidence_required: []
+    pass_criteria: []
+    blocks_launch_if_missing: true
+  - gate_id: "human_review_workflow_confirmed"
+    required: true
+    owner: ""
+    evidence_required: []
+    pass_criteria: []
+    blocks_launch_if_missing: true
+  - gate_id: "revocation_ready"
+    required: true
+    owner: ""
+    evidence_required: []
+    pass_criteria: []
+    blocks_launch_if_missing: true
+  - gate_id: "support_model_ready"
+    required: true
+    owner: ""
+    evidence_required: []
+    pass_criteria: []
+    blocks_launch_if_missing: true
+  - gate_id: "truth_production_governance_ready"
+    required: true
+    owner: ""
+    evidence_required: []
+    pass_criteria: []
+    blocks_launch_if_missing: true
+
+validation_plan:
+  eval_suite_ids: []
+  redacted_or_synthetic_test_data_needed: []
+  source_grounding_tests: []
+  edge_case_tests: []
+  permission_boundary_tests: []
+  output_quality_tests: []
+  human_review_tests: []
+  failure_behavior_tests: []
+  minimum_pre_pilot_exit_criteria: []
+
+monitoring_plan:
+  pilot_monitoring_cadence: ""
+  rollout_monitoring_cadence: ""
+  quality_metrics:
+    - metric_id: ""
+      definition: ""
+      owner: ""
+      threshold: ""
+      alert_condition: ""
+  business_metrics:
+    - metric_id: ""
+      definition: ""
+      owner: ""
+      baseline: ""
+      target: ""
+  risk_metrics:
+    - metric_id: ""
+      definition: ""
+      owner: ""
+      threshold: ""
+      alert_condition: ""
+  technical_metrics:
+    - metric_id: ""
+      definition: ""
+      owner: ""
+      threshold: ""
+      alert_condition: ""
+  source_freshness_checks:
+    - source_id: ""
+      freshness_requirement: ""
+      owner: ""
+      failure_action: ""
+  truth_production_checks:
+    - truth_profile_id: ""
+      truth_status_allowed: []
+      reconciliation_cadence: ""
+      rule_change_owner: ""
+      owner_review_cadence: ""
+      failure_action: ""
+  cost_or_usage_metrics:
+    - metric_id: ""
+      owner: ""
+      threshold: ""
+      action_if_exceeded: ""
+
+value_realization_and_kpi_refresh:
+  baseline_refresh_cadence: ""
+  value_capture_owner: ""
+  target_review_cadence: ""
+  tracked_outcome_paths:
+    - "headcount_reduction"
+    - "hiring_avoided"
+    - "redeployment"
+    - "acceleration"
+    - "revenue_growth"
+    - "new_capability"
+    - "risk_reduction"
+  capacity_or_role_transition_metrics: []
+  new_capability_evidence_required: []
+  action_if_value_not_measurable: ""
+
+feedback_and_correction_loop:
+  feedback_channels: []
+  correction_categories:
+    - category: "wrong_source"
+      owner: ""
+      required_action: ""
+    - category: "wrong_or_stale_truth_production"
+      owner: ""
+      required_action: ""
+    - category: "bad_output"
+      owner: ""
+      required_action: ""
+    - category: "missing_edge_case"
+      owner: ""
+      required_action: ""
+    - category: "user_experience_issue"
+      owner: ""
+      required_action: ""
+  review_cadence: ""
+  backlog_owner: ""
+  severity_routing: []
+
+failure_learning_loop:
+  prior_failed_attempts_to_remember: []
+  pilot_miss_categories:
+    - "workflow_misfit"
+    - "data_access_gap"
+    - "knowledge_gap"
+    - "guidance_gap"
+    - "control_gap"
+    - "adoption_resistance"
+    - "model_orchestration_gap"
+    - "security_review_gap"
+  root_cause_capture_owner: ""
+  sponsor_review_cadence: ""
+  changes_that_must_be_recorded:
+    - "guidance"
+    - "data_access"
+    - "process"
+    - "controls"
+    - "adoption"
+    - "architecture"
+    - "model_runtime"
+
+adoption_change_management:
+  adoption_design_id: ""
+  target_user_groups: []
+  adoption_path: "opt_in | encouraged | mandated | incentive_led | hybrid | unknown"
+  independent_contractor_or_external_user_constraints:
+    applies: false
+    implication:
+    enforcement_or_incentive_mechanism:
+  training_plan:
+    - audience:
+      format:
+      owner:
+      timing:
+      completion_signal:
+  incentive_alignment:
+    - incentive_or_barrier:
+      affected_user_group:
+      mitigation_or_design_response:
+      owner:
+  communication_plan:
+    launch_message_owner:
+    channels: []
+    proof_points_to_show: []
+    what_not_to_claim: []
+  feedback_channels:
+    - channel:
+      owner:
+      response_sla:
+      routed_to:
+  workflow_sunsetting:
+    replaced_or_reduced_workflows: []
+    retirement_condition:
+    exception_process:
+    owner:
+  adoption_metrics:
+    - metric_id:
+      definition:
+      target:
+      review_cadence:
+      owner:
+  adoption_failure_triggers:
+    - trigger_id:
+      condition:
+      threshold:
+      required_action: "revise_training | adjust_workflow_surface | revise_incentive | restrict_scope | pause_rollout | retire"
+      owner:
+
+change_management:
+  guidance_update_owner: ""
+  source_change_owner: ""
+  truth_rule_change_owner: ""
+  tool_change_owner: ""
+  model_or_runtime_change_owner: ""
+  model_runtime_switching_review:
+    review_cadence: ""
+    triggers:
+      - "cost_threshold_exceeded"
+      - "latency_threshold_exceeded"
+      - "quality_or_eval_regression"
+      - "privacy_or_vendor_requirement_changed"
+      - "better_model_available"
+      - "open_or_private_model_now_viable"
+      - "agentic_workload_token_growth"
+    required_approvals: []
+    revalidation_required: true
+  required_revalidation_triggers:
+    - trigger: "new_system_source"
+      revalidation_required: true
+      owner: ""
+      affected_artifacts: []
+    - trigger: "changed_truth_production_chain"
+      revalidation_required: true
+      owner: ""
+      affected_artifacts: []
+    - trigger: "spreadsheet_macro_or_manual_adjustment_changed"
+      revalidation_required: true
+      owner: ""
+      affected_artifacts: []
+    - trigger: "changed_approval_threshold"
+      revalidation_required: true
+      owner: ""
+      affected_artifacts: []
+    - trigger: "new_document_type"
+      revalidation_required: true
+      owner: ""
+      affected_artifacts: []
+    - trigger: "expanded_user_group"
+      revalidation_required: true
+      owner: ""
+      affected_artifacts: []
+    - trigger: "new_write_or_send_action"
+      revalidation_required: true
+      owner: ""
+      affected_artifacts: []
+  versioning_policy:
+    guidance_versioning: ""
+    eval_versioning: ""
+    tool_contract_versioning: ""
+    truth_profile_versioning: ""
+    lifecycle_object_versioning: ""
+
+truth_production_governance:
+  source_drift_checks:
+    - truth_profile_id: ""
+      check:
+      cadence:
+      owner:
+      action_if_failed:
+  rule_change_approval:
+    approver_role:
+    changes_requiring_approval:
+      - "formula_change"
+      - "macro_change"
+      - "manual_adjustment_rule_change"
+      - "de_facto_source_change"
+      - "reconciliation_rule_change"
+  reconciliation_cadence:
+    cadence:
+    owner:
+    evidence_required:
+  shadow_artifact_retirement:
+    artifacts_to_retire: []
+    retirement_owner:
+    replacement_condition:
+    fallback_until_retired:
+
+access_review_and_revocation:
+  access_review_cadence: ""
+  access_review_owner: ""
+  access_review_scope:
+    - users
+    - roles
+    - service_accounts
+    - tools
+    - sources
+    - documents
+    - fields
+  revocation_owner: ""
+  revocation_triggers:
+    - trigger: ""
+      expected_time_to_revoke: ""
+      access_or_tool_scope_revoked: []
+      restoration_condition: ""
+  emergency_pause_process:
+    pause_owner: ""
+    who_can_request_pause: []
+    required_response_time: ""
+    communication_path: []
+
+incident_response:
+  incident_owner: ""
+  severity_levels:
+    - severity: "low"
+      criteria: []
+      response_time: ""
+      notification_required: []
+    - severity: "medium"
+      criteria: []
+      response_time: ""
+      notification_required: []
+    - severity: "high"
+      criteria: []
+      response_time: ""
+      notification_required: []
+  incident_triggers:
+    - trigger: ""
+      severity: ""
+      immediate_action: ""
+      escalation_path: []
+      evidence_to_preserve: []
+  post_incident_review:
+    required: true
+    owner: ""
+    timeline: ""
+    required_outputs: []
+
+governance_cadence:
+  pilot_governance_meeting:
+    cadence: ""
+    attendees: []
+    agenda_items: []
+    decision_rights: []
+  steady_state_review:
+    cadence: ""
+    attendees: []
+    agenda_items: []
+    decision_rights: []
+  executive_review:
+    cadence: ""
+    attendees: []
+    agenda_items: []
+    decision_rights: []
+
+expansion_criteria:
+  eligible_expansion_types:
+    - new_user_group
+    - new_workflow_step
+    - new_source
+    - new_tool_action
+    - new_output_type
+  required_before_expansion:
+    - "Pilot or current scope success metrics met."
+    - "Risk events below approved threshold."
+    - "Owner approval recorded."
+    - "New scope has readiness reassessment."
+    - "Controls, tests, and lifecycle object updated."
+  expansion_decision_owner: ""
+  expansion_requires_step_16_update: true
+  expansion_requires_step_17_packet_update: true
+
+retirement_criteria:
+  triggers:
+    - trigger: "low_usage"
+      threshold: ""
+      review_owner: ""
+      action: ""
+    - trigger: "high_correction_rate"
+      threshold: ""
+      review_owner: ""
+      action: ""
+    - trigger: "source_system_replaced"
+      threshold: ""
+      review_owner: ""
+      action: ""
+    - trigger: "truth_production_no_longer_reproducible"
+      threshold: ""
+      review_owner: ""
+      action: ""
+    - trigger: "value_no_longer_measurable"
+      threshold: ""
+      review_owner: ""
+      action: ""
+    - trigger: "risk_unacceptable"
+      threshold: ""
+      review_owner: ""
+      action: ""
+  retirement_owner: ""
+  retirement_process:
+    notice_required: ""
+    access_revocation_required: true
+    data_retention_or_deletion_rule: ""
+    documentation_update_required: true
+
+remediation_lifecycle:
+  applies_when_lifecycle_path: "remediation_lifecycle"
+  linked_required_fixes: []
+  remediation_owner: ""
+  remediation_review_cadence: ""
+  evidence_required_to_reopen_readiness: []
+  return_to_step: 16
+  stop_if_not_resolved_by: ""
+
+no_automation_review_cadence:
+  applies_when_lifecycle_path: "no_automation_review_cadence"
+  reason_not_automated: ""
+  alternative_operating_recommendation: ""
+  revisit_conditions: []
+  revisit_owner: ""
+  revisit_cadence: ""
+
+final_approval:
+  step_18_approved: false
+  approved_by: []
+  approval_date: ""
+  approval_notes: ""
+  implementation_phase_authorized: false
+  conditions_before_implementation: []
+
+stop_boundary:
+  no_agent_build_started: true
+  no_mcp_or_connector_build_started: true
+  no_normalization_pipeline_build_started: true
+  no_credentials_or_live_access_requested: true
+  no_email_ingestion_started: true
+  no_agent_deployed_or_operated: true
+  implementation_requires_separate_approval_after_step_18: true

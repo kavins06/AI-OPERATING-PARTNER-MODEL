@@ -1,0 +1,89 @@
+rubric_id: production_release_rubric
+phase_id: 12
+phase_key: production_release
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver; no automatic blocker remains."
+  conditional: "No critical blocker remains, and named follow-up is required during release monitoring."
+  blocked: "Any required criterion fails without authorized waiver."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    evidence_required:
+      - "technical_blueprint"
+      - "managed_lifecycle_object"
+      - "risk_control_model"
+      - "production_readiness_gate"
+    pass_condition: "All required Section 1 and Section 2 release inputs are approved, versioned, and cited."
+  - criterion_id: semantic_version_and_release_type
+    required: true
+    evidence_required:
+      - "release_version_manifest.release"
+      - "release_version_manifest.versioning_policy"
+    pass_condition: "Release version, release type, target environment, material-change status, and release owner are explicit."
+  - criterion_id: immutable_artifact_inventory
+    required: true
+    evidence_required:
+      - "release_version_manifest.included_artifacts"
+    pass_condition: "Code, prompts, model config, retrieval, tools, permissions, schemas, evals, guardrails, trace, dashboards, runbooks, and comms are immutable and versioned."
+  - criterion_id: approved_scope_preserved
+    required: true
+    evidence_required:
+      - "build_contract"
+      - "production_readiness_gate.production_scope"
+      - "release_version_manifest.release_controls"
+    pass_condition: "Release contains no unapproved permission, source, tool, user group, output type, model config, or behavior level."
+  - criterion_id: eval_control_trace_results_attached
+    required: true
+    evidence_required:
+      - "eval_result_refs"
+      - "control_evidence_refs"
+      - "trace_observability_refs"
+    pass_condition: "Blocking eval, regression, adversarial, guardrail, and trace results are attached for this release candidate."
+  - criterion_id: compatibility_and_migration_ready
+    required: true
+    evidence_required:
+      - "release_version_manifest.compatibility"
+    pass_condition: "Schema, tool contract, data contract, model runtime, client environment, and migrations are compatible or explicitly blocked."
+  - criterion_id: deployment_plan_ready
+    required: true
+    evidence_required:
+      - "release_version_manifest.deployment"
+    pass_condition: "Deployment method, target, release window, rollout strategy, feature flags, config/secrets changes, smoke tests, and post-deploy checks are defined."
+  - criterion_id: smoke_tests_blocking_and_owned
+    required: true
+    evidence_required:
+      - "release_version_manifest.deployment.smoke_tests"
+    pass_condition: "Trace, tool permission, human review, and control-failure smoke tests are blocking, owned, and evidence-backed."
+  - criterion_id: rollback_package_ready
+    required: true
+    evidence_required:
+      - "release_version_manifest.rollback"
+    pass_condition: "Previous stable version, rollback package, triggers, owner, authorizers, expected restore time, steps, and validation checks are complete."
+  - criterion_id: monitoring_handoff_ready
+    required: true
+    evidence_required:
+      - "release_version_manifest.monitoring_handoff"
+      - "dashboard_refs"
+      - "alert_refs"
+    pass_condition: "First 24 hours and first week monitoring owners, dashboards, alerts, cadence, and stop conditions are live."
+  - criterion_id: release_notes_and_comms_complete
+    required: true
+    evidence_required:
+      - "release_version_manifest.release_notes"
+      - "user_or_operator_comms_refs"
+    pass_condition: "Release notes include user-visible changes, operator changes, known risks, support contacts, and rollback contact."
+  - criterion_id: return_to_method_rules_recorded
+    required: true
+    evidence_required:
+      - "phase_return_to_method_assessment"
+    pass_condition: "Runtime, tool, source, behavior, risk, lifecycle, monitoring, and support changes are assessed before release."
+automatic_blockers:
+  - "Any behavior-affecting artifact is unversioned or mutable."
+  - "Release includes unapproved permissions, sources, tools, user groups, output types, model configs, or behavior levels."
+  - "Blocking eval, guardrail, trace, smoke, or rollback checks are missing or failed."
+  - "Rollback owner, previous stable version, expected restore time, or validation checks are missing."
+  - "Monitoring owner coverage or alert routing is missing for the release window."
+return_to_method_triggers:
+  - "Release packaging changes approved runtime, tool, source, or behavior scope."
+  - "Release packaging changes risk acceptance, lifecycle obligations, monitoring burden, owner model, or production support assumptions."

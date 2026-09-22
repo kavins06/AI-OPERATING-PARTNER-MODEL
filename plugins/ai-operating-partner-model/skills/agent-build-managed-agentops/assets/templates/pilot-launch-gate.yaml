@@ -1,0 +1,173 @@
+object_type: "pilot_launch_gate"
+spec_version: "post_18_agentops_v0.1"
+schema_version: "current"
+object_id: "pilot_gate_<agent_id>_<yyyymmdd>"
+version: "0.1"
+status: "draft"
+
+source_inputs:
+  build_contract_id: ""
+  step_18_lifecycle_object_id: ""
+  release_version_manifest_id: ""
+  environment_progression_gate_id: ""
+  eval_harness_spec_id: ""
+  guardrail_control_matrix_id: ""
+  trace_observability_spec_id: ""
+  adoption_design_id: ""
+  measurement_intelligence_id: ""
+  evidence_refs: []
+
+pilot_scope:
+  pilot_name: ""
+  pilot_start_date: ""
+  pilot_end_date: ""
+  maximum_duration: ""
+  pilot_user_groups: []
+  named_pilot_users_or_roles: []
+  pilot_workflow_boundary: ""
+  approved_behavior_level: ""
+  environments_allowed:
+    - "limited_pilot"
+  data_classes_allowed: []
+  tools_allowed: []
+  sources_allowed: []
+  volume_limits:
+    max_runs_per_day: 0
+    max_records_per_day: 0
+    max_outputs_per_user_per_day: 0
+  behaviors_allowed: []
+  behaviors_prohibited: []
+  expansion_prohibited_without_change_review: true
+
+entry_evidence:
+  sandbox_exit_approved: false
+  eval_results_ref: ""
+  guardrail_test_results_ref: ""
+  observability_dashboard_ref: ""
+  release_candidate_manifest_ref: ""
+  support_runbook_ref: ""
+  user_training_or_comms_ref: ""
+  incident_rehearsal_ref: ""
+
+launch_criteria:
+  - criterion_id: "pilot_users_confirmed"
+    description: "Pilot users or roles are named, trained, and authorized for the approved behavior only."
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+  - criterion_id: "human_review_ready"
+    description: "Human review workflow is staffed, tested, and logs reviewer identity, decision, edits, and timestamp."
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+  - criterion_id: "support_model_ready"
+    description: "Daily owner, support channel, escalation path, triage owner, and support hours are published."
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+  - criterion_id: "monitoring_ready"
+    description: "Pilot dashboard, alert routes, daily review cadence, threshold owners, and evidence store are live."
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+  - criterion_id: "pause_and_revocation_ready"
+    description: "Feature pause, tool disablement, credential revocation, and rollback steps have been tested."
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+  - criterion_id: "eval_and_control_thresholds_passed"
+    description: "Offline and sandbox blocking eval/control thresholds pass at the required sample size."
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+  - criterion_id: "adoption_feedback_ready"
+    description: "Feedback channel, survey/correction capture, and feedback triage SLA are in place."
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+  - criterion_id: "stop_conditions_approved"
+    description: "Stop, pause, rollback, and return-to-method triggers are approved by business, security, and AgentOps owners."
+    required: true
+    owner: ""
+    status: "not_started"
+    evidence_refs: []
+    open_issues: []
+
+monitoring_during_pilot:
+  review_cadence: "daily during business days"
+  daily_owner: ""
+  metrics_to_review:
+    - "task_success_rate"
+    - "material_error_rate"
+    - "human_correction_rate"
+    - "draft_acceptance_rate"
+    - "control_violation_count"
+    - "untraced_run_count"
+    - "tool_failure_rate"
+    - "p95_latency_ms"
+    - "cost_per_successful_task"
+  metric_thresholds:
+    task_success_rate: ""
+    material_error_rate: ""
+    draft_acceptance_rate: ""
+    control_violation_count: "0"
+    untraced_run_count: "0"
+  user_feedback_channels: []
+  incident_response_channel: ""
+  review_artifact_location: ""
+  stop_conditions:
+    - "Any control violation."
+    - "Any untraced pilot run."
+    - "Any successful prompt injection or sensitive data exposure."
+    - "Material error rate exceeds approved threshold."
+    - "Pilot user reports unsafe, confusing, or workflow-breaking behavior."
+    - "Agent attempts a prohibited behavior or unapproved source/tool."
+
+pilot_exit_criteria:
+  minimum_pilot_runs: 0
+  minimum_active_users: 0
+  required_success_thresholds: []
+  required_control_thresholds:
+    - "0 control violations"
+    - "0 untraced runs"
+    - "0 unauthorized tool calls"
+  required_review_artifacts:
+    - "pilot_metric_summary"
+    - "pilot_feedback_summary"
+    - "human_review_sample"
+    - "defect_and_incident_log"
+    - "return_to_method_assessment"
+
+pilot_decision:
+  decision: "not_submitted"
+  decision_options:
+    - "launch_pilot"
+    - "launch_with_conditions"
+    - "hold"
+    - "return_to_method"
+  conditions: []
+  approved_by: []
+  approval_date: ""
+  next_review_date: ""
+
+gate_signoff:
+  prepared_by: ""
+  reviewed_by: []
+  approved_by: []
+  approval_status: "not_submitted"
+  approval_date: ""
+  notes: []

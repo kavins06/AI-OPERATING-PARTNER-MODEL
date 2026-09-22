@@ -1,0 +1,106 @@
+packet_set_id: "packet_set_<workflow_or_opportunity>_current"
+object_type: "packet_set"
+spec_version: "0.1"
+status: "draft" # draft | ready_for_review | approved | revision_required | blocked
+workflow_id: ""
+opportunity_id: ""
+contract_ref: "decision_packet_contracts"
+schema_ref: "canonical-object-schemas#/$defs/packet_set"
+
+purpose: "Group multiple Step 17 packet outcomes for the same workflow or opportunity when different behavior levels or sub-scopes require different recommendations."
+
+source_inputs:
+  readiness_object_id: ""
+  workflow_id: ""
+  opportunity_id: ""
+  candidate_use_case_id: ""
+  portfolio_comparison_id: ""
+  evidence_refs: []
+  packet_contracts_ref: "15-decision-packet-contracts.yaml"
+
+scope:
+  workflow_id: ""
+  workflow_name: ""
+  opportunity_id: ""
+  included_behavior_levels: []
+  included_packet_types: []
+  explicit_non_goals: []
+
+packets:
+  - step_17_packet_id: ""
+    packet_ref: "" # optional path or object id for the full individual packet
+    packet_type: "build_ready_implementation_brief" # build_ready_implementation_brief | gap_remediation_plan | governance_data_readiness_plan | knowledge_capture_plan | technical_feasibility_plan | risk_control_plan | do_not_automate_recommendation
+    behavior_level_or_scope: ""
+    status: "draft" # draft | approved | revision_required | blocked | rejected
+    decision_summary:
+      recommended_path: ""
+      rationale: ""
+      minimum_safe_behavior_level: ""
+      client_decision_needed: ""
+      implementation_approval_boundary: "Implementation may start only after Step 18 approval and separate implementation authorization."
+    recommendation_confidence:
+      confidence_level: "unknown" # high | medium | low | unknown
+      strongest_evidence: []
+      weakest_evidence: []
+      assumptions_that_could_change_recommendation: []
+    audience_views: []
+    owner_matrix:
+      business_owner: ""
+      technical_owner: ""
+      data_owner: ""
+      risk_or_compliance_owner: ""
+      remediation_owner: ""
+      future_build_owner: ""
+    stop_boundary:
+      no_agent_build_started: true
+      no_mcp_or_connector_build_started: true
+      no_normalization_pipeline_build_started: true
+      no_credentials_or_live_access_requested: true
+      implementation_requires_step_18_approval: true
+
+cross_packet_relationships:
+  - relationship_id: ""
+    relationship_type: "" # remediation_unblocks_build | risk_plan_constrains_scope | governance_unblocks_build | knowledge_capture_unblocks_build | technical_feasibility_unblocks_build | independent
+    predecessor_packet_id: ""
+    successor_packet_id: ""
+    blocking: false
+    unblock_condition: ""
+    owner: ""
+    evidence_refs: []
+
+approval_rules:
+  sponsor_can_approve_individual_packets: true
+  every_packet_requires_final_disposition_before_step18: true
+  blocking_relationship_makes_successor_conditional: true
+  approval_forum: ""
+  approval_notes: []
+
+packet_set_validation:
+  packet_count: null
+  all_packets_have_required_sections: false
+  all_relationships_resolve: false
+  blocking_relationships_have_unblock_conditions: false
+  no_cycles_in_relationship_graph: false
+  single_packet_has_no_cross_packet_relationships: false
+  validation_notes: []
+
+downstream_to_step18:
+  lifecycle_set_required: "unknown" # yes | no | unknown
+  expected_lifecycle_paths: [] # managed_agent_lifecycle | remediation_lifecycle | no_automation_review_cadence
+  lifecycle_relationships_to_create: []
+
+example_pattern:
+  scenario: "One workflow has draft-and-flag build-ready, autonomous action blocked, and knowledge capture required."
+  packet_types:
+    - "build_ready_implementation_brief"
+    - "knowledge_capture_plan"
+    - "risk_control_plan"
+  relationship_summary: "Knowledge capture and risk controls constrain or unblock the build-ready packet."
+
+stop_boundary:
+  no_agent_build_started: true
+  no_mcp_or_connector_build_started: true
+  no_normalization_pipeline_build_started: true
+  no_credentials_or_live_access_requested: true
+  no_email_ingestion_started: true
+  implementation_requires_step_18_approval: true

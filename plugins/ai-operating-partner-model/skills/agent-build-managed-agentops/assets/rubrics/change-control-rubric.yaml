@@ -1,0 +1,117 @@
+rubric_id: expansion_change_control_gate_rubric
+phase_id: 14
+phase_key: expansion_change_control_gate
+status: active
+scoring:
+  pass: "All required criteria pass with evidence or authorized waiver with expiry."
+  conditional: "No automatic blocker remains, but named follow-up is required before rollout or promotion."
+  blocked: "Any required criterion fails without authorized waiver, or any unapproved material change is present."
+criteria:
+  - criterion_id: source_inputs_confirmed
+    required: true
+    owner: "agentops_owner"
+    evidence_required:
+      - managed_lifecycle_object
+      - readiness_object
+      - implementation_decision_packet
+      - method_to_build_handoff_contract
+      - agentops_operating_record
+    pass_condition: "Required method and operating inputs are approved, versioned, current, and cited."
+  - criterion_id: requested_delta_fully_enumerated
+    required: true
+    owner: "requester"
+    evidence_required:
+      - review_scope.summary
+      - baseline_scope
+      - change_description
+    pass_condition: "Every delta is listed across users, workflows, systems, tools, sources, data classes, outputs, environment, scale, model/runtime, access, owner model, and behavior level."
+  - criterion_id: materiality_classified
+    required: true
+    owner: "risk_or_compliance_owner"
+    evidence_required:
+      - materiality_gate.material_change
+      - materiality_gate.material_change_reasons
+      - materiality_gate.requires_return_to_method
+    pass_condition: "The review explicitly classifies whether the request is material, why, and whether Phase 14, Phase 15, or return to method is required."
+  - criterion_id: approved_scope_not_bypassed
+    required: true
+    owner: "business_owner"
+    evidence_required:
+      - baseline_scope.explicit_scope_exclusions
+      - decision.approved_scope
+      - decision.denied_scope
+    pass_condition: "Approved and denied scope are documented; no new user, source, tool, workflow, output, environment, data class, scale, or behavior level bypasses approval."
+  - criterion_id: value_case_reassessed
+    required: true
+    owner: "business_owner"
+    evidence_required:
+      - assessment.value_evidence
+      - assessment.cost_evidence
+      - measurement_intelligence
+    pass_condition: "Expected incremental value, adoption, operating cost, support burden, and measurement method are stated and linked to the original value case."
+  - criterion_id: risk_and_readiness_reassessed
+    required: true
+    owner: "risk_or_compliance_owner"
+    evidence_required:
+      - assessment.risk_evidence
+      - assessment.readiness_delta
+      - risk_control_model
+      - readiness_object
+    pass_condition: "New or changed risks, readiness gaps, residual risk, human oversight burden, and required approvals are documented."
+  - criterion_id: source_freshness_review_complete
+    required: true
+    owner: "data_owner"
+    evidence_required:
+      - assessment.source_freshness_evidence
+      - source_owner_attestations
+    pass_condition: "Every new or changed source has authoritative owner, freshness SLA, last verification, attestation, conflict handling, and stale-source action."
+  - criterion_id: access_review_complete
+    required: true
+    owner: "security_owner"
+    evidence_required:
+      - assessment.access_review_evidence
+      - control_plan.access_changes_required
+    pass_condition: "Every new or changed user group, service account, credential, connector, secret, group, or permission has least-privilege scope, owner, audit evidence, and revocation method."
+  - criterion_id: controls_and_evals_updated
+    required: true
+    owner: "technical_owner"
+    evidence_required:
+      - control_plan.evals_required
+      - control_plan.guardrails_required
+      - control_plan.observability_required
+      - required_contract_updates
+    pass_condition: "Evals, guardrails, trace events, alerts, smoke tests, rollback tests, and human review controls cover the changed behavior before rollout."
+  - criterion_id: owner_coverage_ready
+    required: true
+    owner: "agentops_owner"
+    evidence_required:
+      - assessment.owner_coverage_evidence
+      - control_plan.owner_coverage_requirements
+    pass_condition: "Business, technical, security, data, support, AgentOps, and revocation owners plus backups are assigned for rollout and steady state."
+  - criterion_id: rollout_rollback_revocation_ready
+    required: true
+    owner: "technical_owner"
+    evidence_required:
+      - control_plan.rollout_plan
+      - control_plan.rollback_plan
+      - control_plan.revocation_plan
+      - control_plan.user_communication_plan
+    pass_condition: "Rollout is limited, monitored, reversible, communicable, and revocable with defined stop conditions and validation checks."
+  - criterion_id: decision_signed_and_timeboxed
+    required: true
+    owner: "approver"
+    evidence_required:
+      - decision.outcome
+      - decision.approved_by
+      - decision.required_actions
+      - decision.expiration_or_recheck_date
+    pass_condition: "Decision outcome, rationale, approved scope, denied scope, required actions, stop conditions, approvers, and recheck date are complete."
+automatic_blockers:
+  - "Requested change adds unapproved write, send, delete, approval, scheduling, routing, payment, account, permission-changing, or autonomous action."
+  - "Required Section 1 input is missing, stale, contradicted, or not approved."
+  - "Affected source, tool, data class, access path, support path, or revocation path lacks owner."
+  - "Relevant high or critical incident remains unresolved."
+  - "Rollback, revocation, traceability, updated evals, or guardrails cannot cover the changed behavior."
+return_to_method_triggers:
+  - "Expansion changes readiness, risk, value, lifecycle, workflow, source-of-truth, owner, or adoption assumptions."
+  - "Requested future state is a different use case or behavior class than the approved build."

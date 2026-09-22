@@ -1,0 +1,20 @@
+{
+  "name": "quoin-operating-partner",
+  "interface": {
+    "displayName": "Quoin Operating Partner"
+  },
+  "plugins": [
+    {
+      "name": "ai-operating-partner-model",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ai-operating-partner-model"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

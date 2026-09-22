@@ -1,0 +1,315 @@
+example_id: golden_path_phase_15_retirement_or_redesign_loop
+phase_id: 15
+phase_key: retirement_or_redesign_loop
+phase_name: Retirement Or Redesign Loop
+source_packet: skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml
+status: complete_phase_example
+purpose: "Filled retirement/redesign example showing retirement of the current release and return to method for a different source-of-truth problem."
+minimum_completed_sections:
+  - source_inputs
+  - review_scope
+  - baseline_scope
+  - change_description
+  - materiality_gate
+  - assessment
+  - control_plan
+  - decision_options
+  - decision
+  - post_decision_tracking
+section1_inputs_used:
+  - managed_lifecycle_object
+  - measurement_intelligence
+  - risk_control_model
+  - organizational_intelligence_diagnostic
+section2_outputs_demonstrated:
+  - change_expansion_retirement_review
+evidence_expectations:
+  - "Cite managed lifecycle, measurement, risk, organizational diagnostic, operating record, incident, value, support, source, and access evidence."
+  - "Show retirement or redesign trigger evidence and immediate pause decision."
+  - "Record blockers instead of filling missing facts."
+  - "Evaluate return-to-method triggers before redesign or rebuild."
+
+completed_object:
+  object_type: "change_expansion_retirement_review"
+  spec_version: "post_18_agentops_v0.1"
+  schema_version: "current"
+  object_id: "retirement_review_demo_revenue_intake_20260715"
+  version: "0.1"
+  status: "approved"
+  source_inputs:
+    agentops_operating_record_id: "agentops_record_demo_revenue_intake_20260715"
+    build_contract_id: "build_contract_demo_revenue_intake_20260504"
+    release_version_manifest_id: "release_demo_revenue_intake_1_0_0"
+    production_readiness_gate_id: "production_gate_demo_revenue_intake_20260601"
+    measurement_intelligence_id: "measurement_demo_revenue_intake_20260430"
+    organizational_intelligence_diagnostic_id: "org_diag_demo_revenue_intake_20260426"
+    risk_control_model_id: "risk_controls_demo_revenue_intake_20260430"
+    incident_ids:
+      - "incident_demo_revenue_intake_source_stale_20260701"
+      - "incident_demo_revenue_intake_source_stale_20260708"
+    evidence_refs:
+      - "evidence://demo/value-review-20260715"
+      - "evidence://demo/source-incidents-july"
+      - "evidence://demo/support-burden-20260715"
+  review_scope:
+    review_type: "retirement"
+    requested_by: "AgentOps Lead"
+    request_date: "2026-07-15"
+    agent_id: "agent_demo_revenue_intake"
+    current_release_version: "1.0.0"
+    current_environment: "production"
+    current_behavior_level: "draft_and_flag"
+    requested_environment_or_scope: "Retire current agent release and return to method for CRM source governance redesign."
+    summary: "Operating evidence shows the agent is solving around a stale source-of-truth process rather than the root workflow issue."
+    reason_for_review: "Two source freshness incidents and net negative value for two consecutive reviews."
+    urgency: "high"
+    decision_deadline: "2026-07-17"
+    affected_business_outcome: "Reduce stalled intake records caused by missing information."
+  baseline_scope:
+    approved_user_groups:
+      - "Revenue intake coordinators"
+    approved_workflows:
+      - "Open revenue intake records missing required intake fields."
+    approved_systems:
+      - "CRM read-only view"
+      - "Intake form read-only view"
+    approved_tools:
+      - "crm_read_only_lookup"
+      - "intake_form_read_only_lookup"
+    approved_sources:
+      - "CRM required field dictionary"
+      - "Approved follow-up guidance pack"
+    approved_data_classes:
+      - "customer_contact"
+      - "opportunity_metadata"
+    approved_outputs:
+      - "Internal draft follow-up request for coordinator approval"
+    approved_behavior_level: "draft_and_flag"
+    approved_scale_limits:
+      - "Maximum 50 draft requests per business day during first month."
+    explicit_scope_exclusions:
+      - "No external send."
+      - "No CRM write."
+  change_description:
+    requested_change: "Retire the current draft-and-flag release; route missing-information follow-up to manual workflow while Section 1 reassesses CRM source governance."
+    affected_user_groups:
+      - "Revenue intake coordinators"
+    affected_workflows:
+      - "Missing-information follow-up drafting"
+    affected_systems:
+      - "CRM"
+      - "Intake form repository"
+    affected_tools:
+      - "crm_read_only_lookup"
+      - "intake_form_read_only_lookup"
+    affected_sources:
+      - "CRM required field dictionary"
+    affected_data_classes:
+      - "customer_contact"
+      - "opportunity_metadata"
+    affected_outputs:
+      - "Internal draft follow-up request"
+    behavior_level_change:
+      from: "draft_and_flag"
+      to: "none_retired"
+    model_or_prompt_change: "No prompt change; release is retired."
+    retrieval_or_source_change: "Source-of-truth ownership is no longer reliable enough for automated drafting."
+    access_or_identity_change: "Revoke production user entitlements and service account access."
+    operating_model_change: "Return ownership of interim process to Revenue Operations Support."
+    rollout_or_decommission_scope: "Decommission production release and archive evidence."
+    requested_effective_date: "2026-07-18"
+  materiality_gate:
+    material_change: true
+    material_change_reasons:
+      - "Agent retirement changes operating model and user workflow."
+      - "Redesign would require a different source-of-truth governance model."
+    automatic_blockers:
+      - "Value below threshold for two consecutive reviews."
+      - "Two stale-source incidents in one month."
+    requires_phase_14: false
+    requires_phase_15: true
+    requires_return_to_method: true
+    return_to_method_rationale: "The root issue is CRM source governance and workflow ownership, not drafting quality. New discovery and lifecycle decision are required before redesign."
+  assessment:
+    value_evidence:
+      - metric_id: "net_time_saved_hours"
+        baseline: "Expected >= 8 net hours saved per week."
+        current_value: "-1.0 net hours for week ending 2026-07-15"
+        expected_change: "Retirement stops correction burden; manual process expected to cost 4 hours per week until redesign."
+        evidence_refs:
+          - "evidence://demo/value-review-20260715"
+    quality_evidence:
+      - "Draft acceptance rate fell to 0.78 due to stale field dictionary."
+    risk_evidence:
+      - "No unauthorized send or write occurred."
+      - "Two stale-source incidents affected 14 drafts before human review caught them."
+    adoption_evidence:
+      - "Active usage dropped from five coordinators to two."
+      - "Coordinators switched back to manual template for complex records."
+    cost_evidence:
+      - "Support and correction effort averaged 5 hours per week; expected savings were 8 hours."
+    source_freshness_evidence:
+      - source_id: "src_crm_required_field_dictionary"
+        owner: "CRM Data Owner"
+        freshness_sla: "7 days"
+        last_verified_at: "2026-06-28"
+        status: "stale"
+        evidence_refs:
+          - "evidence://demo/source-stale-incident-20260701"
+          - "evidence://demo/source-stale-incident-20260708"
+    access_review_evidence:
+      - access_target: "revenue-intake-agent-users group"
+        permission_delta: "revoke all production access"
+        owner: "Security Lead"
+        review_status: "approved"
+        revocation_method: "remove group from production feature flag and disable service account"
+        evidence_refs:
+          - "evidence://demo/access-revocation-plan-20260715"
+    owner_coverage_evidence:
+      - owner_role: "data_owner"
+        primary_owner: "CRM Data Owner"
+        backup_owner: ""
+        coverage_status: "gap"
+    incident_history:
+      - "incident_demo_revenue_intake_source_stale_20260701"
+      - "incident_demo_revenue_intake_source_stale_20260708"
+    readiness_delta:
+      readiness_score_before: "ready_for_draft_and_flag"
+      readiness_score_after_or_expected: "not_ready_until_source_governance_redesigned"
+      readiness_gaps:
+        - "No backup source owner."
+        - "CRM field dictionary update process is manual and misses release changes."
+    support_and_training_impact:
+      - "Support can route users to existing manual follow-up template."
+    required_contract_updates:
+      - "agentops_operating_record"
+      - "release_version_manifest"
+      - "internal_operator_run_card"
+      - "tool_contract_registry"
+  control_plan:
+    evals_required:
+      - "No new evals for retirement; archive last failing source freshness evidence."
+    guardrails_required:
+      - "Disable production feature flag."
+    observability_required:
+      - "Retain traces for 180 days and mark release retired."
+    access_changes_required:
+      - "Remove all production users from agent access group."
+      - "Disable service account credentials."
+    source_freshness_requirements:
+      - "Section 1 redesign must define governed CRM source owner and freshness automation before rebuild."
+    owner_coverage_requirements:
+      - "Assign interim manual process owner."
+    rollout_plan:
+      rollout_type: "retirement"
+      allowed_initial_population: []
+      monitoring_cadence: "daily for 5 business days after retirement to confirm no runs"
+      rollback_trigger: "Rollback not allowed without new Phase 14 and source owner attestation."
+    rollback_plan:
+      rollback_release_version: "none"
+      rollback_steps:
+        - "Do not restore release without new approval."
+      rollback_owner: "Agent Platform Lead"
+      rollback_validation_checks:
+        - "Production route returns disabled status."
+        - "No queue consumer runs after retirement timestamp."
+    revocation_plan:
+      revocation_owner: "Security Lead"
+      revocation_targets:
+        - "production feature flag"
+        - "service account credential"
+        - "user access group"
+        - "scheduled jobs"
+      max_time_to_revoke: "1 hour"
+      queued_work_stop_method: "drain queue to manual review and mark generated drafts as not approved"
+    user_communication_plan:
+      audience:
+        - "Revenue intake coordinators"
+        - "Revenue Operations Support"
+      message_owner: "Revenue Operations Support"
+      timing: "24 hours before retirement and at retirement completion"
+  decision_options:
+    - option: "continue_with_conditions"
+      conditions:
+        - "Rejected because value and source freshness blockers persisted for two review cycles."
+    - option: "hold_and_remediate"
+      conditions:
+        - "Rejected because source ownership requires method-level redesign."
+    - option: "retire"
+      conditions:
+        - "Approved for current release."
+    - option: "redesign_or_return_to_method"
+      conditions:
+        - "Required before any rebuild."
+  decision:
+    outcome: "retire"
+    rationale: "Current release no longer delivers positive net value and depends on a stale source process. Retire current release and return to method for CRM source governance redesign."
+    approved_scope:
+      - "Retire production release 1.0.0."
+      - "Route all missing-information follow-up work to manual support template."
+      - "Return to Section 1 for source governance and lifecycle redesign."
+    denied_scope:
+      - "No production restart without new source owner attestation and Phase 14 approval."
+      - "No CRM write or automation expansion."
+    required_actions:
+      - action_id: "disable_release"
+        action: "Disable production feature flag and scheduled jobs."
+        owner: "Agent Platform Lead"
+        due_date: "2026-07-18"
+        blocking: true
+      - action_id: "revoke_access"
+        action: "Revoke user group and service account access."
+        owner: "Security Lead"
+        due_date: "2026-07-18"
+        blocking: true
+      - action_id: "communicate_manual_fallback"
+        action: "Notify users of manual follow-up template and support path."
+        owner: "Revenue Operations Support"
+        due_date: "2026-07-17"
+        blocking: true
+      - action_id: "open_method_redesign"
+        action: "Open Section 1 source governance redesign intake."
+        owner: "VP Revenue Operations"
+        due_date: "2026-07-22"
+        blocking: false
+    stop_conditions:
+      - "Any production run after 2026-07-18 17:00 America/New_York."
+      - "Any attempt to restore feature flag without Phase 14 decision."
+    expiration_or_recheck_date: "2026-07-25"
+    approved_by:
+      - "VP Revenue Operations"
+      - "Security Lead"
+      - "CRM Data Owner"
+    decision_date: "2026-07-16"
+    next_review_date: "2026-07-25"
+  post_decision_tracking:
+    operating_record_updates:
+      - "Set status to retired after revocation evidence is attached."
+    release_manifest_updates:
+      - "Create retirement release note for 1.0.0."
+    access_changes_completed: []
+    source_reviews_completed:
+      - "Source freshness failure evidence attached."
+    communications_completed: []
+    open_actions:
+      - "disable_release"
+      - "revoke_access"
+      - "communicate_manual_fallback"
+      - "open_method_redesign"
+  review_signoff:
+    prepared_by: "AgentOps Lead"
+    reviewed_by:
+      - "Revenue Operations Manager"
+      - "Security Lead"
+      - "CRM Data Owner"
+    approved_by:
+      - "VP Revenue Operations"
+      - "Security Lead"
+      - "CRM Data Owner"
+    approval_status: "approved"
+    approval_date: "2026-07-16"
+
+failure_modes_to_test:
+  - "Low value, high correction rate, source drift, ownership gap, or unacceptable risk continues without pause, redesign, or retirement."
+return_to_method_triggers_to_test:
+  - "Redesign requires new discovery, readiness scoring, or lifecycle decision."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Build Intake And Scope"
+  short_description: "Gate implementation approval and lock the first safe agent behavior."
+  default_prompt: "Use $agent-build-intake-and-scope after approved Step 18 handoff and separate implementation approval to complete its owned Section 2 phases using the handoff map, required contracts, checklists, rubrics, and validation rules."

@@ -1,0 +1,40 @@
+phase_pack_id: 02-agent_necessity_check
+support_skill: agent-build-intake-and-scope
+phase_id: 2
+phase_key: agent_necessity_check
+phase_name: Agent Necessity Check
+status: active
+purpose: Local ownership manifest for this support skill. Canonical implementation
+  assets remain in agent-build-managed-agentops.
+section1_inputs:
+- candidate_use_case_shortlist
+- business_value_case
+- solution_shape
+- readiness_object
+- implementation_decision_packet
+section2_outputs:
+- agent_necessity_kill_test
+canonical_assets:
+  templates:
+  - skills/agent-build-managed-agentops/assets/templates/agent-necessity-kill-test.yaml
+  checklist: skills/agent-build-managed-agentops/assets/checklists/agent-necessity-kill-test-checklist.md
+  rubric: skills/agent-build-managed-agentops/assets/rubrics/agent-necessity-kill-test-rubric.yaml
+  validator_rule: skills/agent-build-managed-agentops/assets/validator-rules/agent_necessity_check.yaml
+  golden_path_example: skills/agent-build-managed-agentops/assets/examples/golden-path/02-agent-necessity-kill-test.yaml
+required_exit_evidence:
+- approved Section 1 source input references
+- completed canonical template or intentionally blocked output
+- completed checklist
+- rubric result
+- validator rule result
+- owner decision
+- return-to-method assessment
+failure_modes:
+- Simpler non-agent path satisfies the approved outcome.
+- Agent value does not justify operating burden.
+- Human oversight is not workable.
+return_to_method_triggers:
+- Agent path changes recommended Step 17 decision.
+- Lowest-risk sufficient solution is not an agent.
+do_not_duplicate: Do not fork canonical templates, rubrics, or validator rules here.
+  Update the central asset and regenerate this pack if ownership metadata changes.

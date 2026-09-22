@@ -1,0 +1,167 @@
+example_id: "golden_path_phase_10_controlled_pilot"
+phase_id: 10
+phase_key: "controlled_pilot"
+phase_name: "Controlled Pilot"
+source_packet: "skills/agent-build-managed-agentops/assets/examples/golden-path-revenue-intake.yaml"
+status: "implementation_grade_example"
+purpose: "Demonstrate a controlled pilot launch gate with measurable success, support, feedback, monitoring, and stop conditions."
+
+minimum_completed_sections:
+  - "source_inputs"
+  - "pilot_scope"
+  - "entry_evidence"
+  - "launch_criteria"
+  - "monitoring_during_pilot"
+  - "pilot_exit_criteria"
+  - "support_and_feedback"
+  - "stop_conditions"
+  - "pilot_decision"
+  - "signoff"
+
+section1_inputs_used:
+  - "managed_lifecycle_object"
+  - "adoption_design"
+  - "measurement_intelligence"
+  - "risk_control_model"
+section2_outputs_demonstrated:
+  - "pilot_launch_gate"
+  - "agentops_operating_record"
+
+evidence_expectations:
+  - "Cite managed lifecycle, adoption design, measurement intelligence, risk model, sandbox exit, release candidate, evals, controls, and observability evidence."
+  - "Show pilot roster, training, support rota, feedback channel, dashboard, alerts, human-review workflow, stop conditions, and rollback/revocation tests."
+  - "Record blockers for missing support, monitoring, measurable success metrics, or untested incident response."
+failure_modes_to_test:
+  - "Pilot audience, support model, feedback channel, monitoring, or stop condition is missing."
+return_to_method_triggers_to_test:
+  - "Pilot reveals adoption, value, control, or truth assumptions were wrong."
+  - "Pilot demand pressures the agent beyond approved behavior level, user group, tool, source, or oversight model."
+
+pilot_launch_gate:
+  object_type: "pilot_launch_gate"
+  object_id: "pilot_gate_demo_revenue_intake_20260515"
+  version: "0.2"
+  status: "approved"
+  source_inputs:
+    build_contract_id: "build_contract_demo_revenue_intake_20260504"
+    release_version_manifest_id: "release_demo_revenue_intake_0_4_0_pilot"
+    environment_progression_gate_id: "env_gate_demo_revenue_intake_sandbox_exit_20260512"
+    eval_harness_spec_id: "eval_harness_demo_revenue_intake_20260506"
+    guardrail_control_matrix_id: "guardrails_demo_revenue_intake_20260513"
+    trace_observability_spec_id: "observability_demo_revenue_intake_20260513"
+    evidence_refs:
+      - "evidence://demo/phase10/sandbox-exit"
+      - "evidence://demo/phase10/pilot-readiness-review"
+  pilot_scope:
+    pilot_name: "Revenue Intake Follow-up Pilot"
+    pilot_start_date: "2026-05-18"
+    pilot_end_date: "2026-05-29"
+    pilot_user_groups:
+      - "Revenue intake coordinators"
+    named_pilot_users_or_roles:
+      - "Intake coordinator A"
+      - "Intake coordinator B"
+      - "Lead intake coordinator"
+    approved_behavior_level: "draft_and_flag"
+    pilot_workflow_boundary: "Draft missing-intake follow-up requests for human approval."
+    environments_allowed:
+      - "limited_pilot"
+    volume_limits:
+      max_runs_per_day: 40
+      max_records_per_day: 25
+      max_outputs_per_user_per_day: 15
+    behaviors_allowed:
+      - "Read approved intake and CRM fields."
+      - "Draft follow-up text for coordinator approval."
+      - "Escalate source conflict or missing source."
+    behaviors_prohibited:
+      - "Send customer-facing messages."
+      - "Write or update CRM records."
+      - "Recommend stage, forecast, pricing, or next-best action."
+  entry_evidence:
+    sandbox_exit_approved: true
+    eval_results_ref: "evidence://demo/phase10/eval-results"
+    guardrail_test_results_ref: "evidence://demo/phase10/control-results"
+    observability_dashboard_ref: "dashboard://demo/revenue-intake-agentops"
+    release_candidate_manifest_ref: "release_demo_revenue_intake_0_4_0_pilot"
+    support_runbook_ref: "runbook://demo/revenue-intake-pilot-support"
+    user_training_or_comms_ref: "evidence://demo/phase10/user-training"
+    incident_rehearsal_ref: "evidence://demo/phase09/incident-rehearsal"
+  launch_criteria:
+    - criterion_id: "pilot_users_confirmed"
+      status: "passed"
+      owner: "Revenue Operations Manager"
+      evidence_refs:
+        - "evidence://demo/phase10/pilot-roster"
+    - criterion_id: "human_review_ready"
+      status: "passed"
+      owner: "Lead intake coordinator"
+      evidence_refs:
+        - "evidence://demo/phase10/human-review-test"
+    - criterion_id: "monitoring_ready"
+      status: "passed"
+      owner: "AgentOps Lead"
+      evidence_refs:
+        - "dashboard://demo/revenue-intake-agentops"
+    - criterion_id: "pause_and_revocation_ready"
+      status: "passed"
+      owner: "Security Lead"
+      evidence_refs:
+        - "evidence://demo/phase10/pause-test"
+  monitoring_during_pilot:
+    review_cadence: "daily at 4 PM ET"
+    daily_owner: "AgentOps Lead"
+    metrics_to_review:
+      - "task_success_rate"
+      - "material_error_rate"
+      - "human_correction_rate"
+      - "draft_acceptance_rate"
+      - "control_violation_count"
+      - "untraced_run_count"
+      - "tool_failure_rate"
+      - "p95_latency_ms"
+    metric_thresholds:
+      task_success_rate: ">= 0.90"
+      material_error_rate: "<= 0.02"
+      draft_acceptance_rate: ">= 0.90"
+      control_violation_count: "0"
+      untraced_run_count: "0"
+    user_feedback_channels:
+      - "pilot Slack channel"
+      - "in-product correction reason"
+    incident_response_channel: "security-on-call"
+    stop_conditions:
+      - "Any control violation."
+      - "Any untraced pilot run."
+      - "Any customer-facing send attempt."
+      - "Material error rate above 2 percent for two consecutive daily reviews."
+  pilot_exit_criteria:
+    minimum_pilot_runs: 100
+    minimum_active_users: 3
+    required_success_thresholds:
+      - "task_success_rate >= 0.90"
+      - "draft_acceptance_rate >= 0.90"
+      - "material_error_rate <= 0.02"
+    required_control_thresholds:
+      - "0 control violations"
+      - "0 untraced runs"
+      - "0 unauthorized tool calls"
+  pilot_decision:
+    decision: "approved"
+    conditions:
+      - "No scope expansion during pilot."
+      - "Daily pilot review required."
+    approved_by:
+      - "Revenue Operations Manager"
+      - "Security Lead"
+      - "AgentOps Lead"
+    approval_date: "2026-05-15"
+
+blocking_conditions_checked:
+  - "Pilot users, support, feedback, monitoring, and stop conditions are present."
+  - "Pilot dashboard and alert routing are live."
+  - "Incident pause, revocation, and rollback paths are tested."
+return_to_method_assessment:
+  status: "not_triggered"
+  notes:
+    - "Pilot scope remains inside approved draft-and-flag behavior."

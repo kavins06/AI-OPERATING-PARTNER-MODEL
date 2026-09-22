@@ -1,0 +1,139 @@
+rule_group: first_behavior_scope
+phase_id: 3
+phase_key: first_behavior_scope
+status: active
+required_section1_inputs:
+  - implementation_decision_packet
+  - readiness_object
+  - managed_lifecycle_object
+  - workflow_intelligence_object
+  - organizational_intelligence_baseline
+required_section2_outputs:
+  - agent_build_contract
+  - agent_build_plan
+failure_modes:
+  - First behavior is broader than approved handoff.
+  - Prohibited behaviors are not explicit.
+  - Human review path is undefined.
+return_to_method_triggers:
+  - Workflow boundary changes from approved Step 17/18 scope.
+  - Minimum safe first behavior cannot be implemented using approved sources, actions, outputs, owners, or oversight.
+  - Organizational source/access baseline contradicts approved build scope.
+checks:
+  - check_id: required_section1_inputs_present
+    severity: error
+    description: "All required Section 1 source artifacts are referenced in build plan source_inputs."
+    required_paths:
+      - "source_inputs.implementation_decision_packet_id"
+      - "source_inputs.readiness_object_id"
+      - "source_inputs.managed_lifecycle_object_id"
+      - "source_inputs.workflow_intelligence_object_id"
+      - "source_inputs.organizational_intelligence_baseline_id"
+    fail_when: "Any required source input ID is blank or absent."
+    remediation: "Hold Phase 3 until required source artifact is available."
+  - check_id: source_usage_complete
+    severity: error
+    description: "Source usage maps each required input to the plan fields it populates."
+    required_paths:
+      - "source_inputs.source_input_usage"
+      - "source_inputs.evidence_refs"
+    fail_when: "A required source artifact is missing from source_input_usage."
+    remediation: "Map source inputs before scope lock."
+  - check_id: first_behavior_single_and_specific
+    severity: error
+    description: "The first behavior is exactly one buildable behavior with a trigger, user, workflow start/end, and expected output."
+    required_paths:
+      - "first_behavior_scope_lock.behavior_name"
+      - "first_behavior_scope_lock.behavior_statement"
+      - "first_behavior_scope_lock.workflow_start"
+      - "first_behavior_scope_lock.workflow_end"
+      - "first_behavior_scope_lock.allowed_outputs"
+    fail_when: "Behavior statement describes a roadmap, multiple behaviors, or vague capability."
+    remediation: "Reduce to the minimum safe first behavior."
+  - check_id: scope_not_widened_without_change_review
+    severity: error
+    description: "First behavior scope is equal to or narrower than approved Step 17/18 scope."
+    required_paths:
+      - "first_behavior_scope_lock.first_user_group"
+      - "first_behavior_scope_lock.approved_behavior_level"
+      - "first_behavior_scope_lock.allowed_sources"
+      - "first_behavior_scope_lock.allowed_actions"
+      - "first_behavior_scope_lock.allowed_outputs"
+    fail_when: "Any first behavior field requires unapproved users, sources, systems, actions, outputs, environment, or behavior level."
+    remediation: "Remove expansion or trigger change review/return-to-method."
+  - check_id: prohibited_behaviors_explicit
+    severity: error
+    description: "Prohibited sources, actions, outputs, and stop conditions are explicit."
+    required_paths:
+      - "first_behavior_scope_lock.prohibited_sources"
+      - "first_behavior_scope_lock.prohibited_actions"
+      - "first_behavior_scope_lock.prohibited_outputs"
+      - "first_behavior_scope_lock.build_must_stop_when"
+    fail_when: "Prohibited scope is missing, generic, or not actionable."
+    remediation: "Carry prohibited behaviors from readiness and implementation decision packet."
+  - check_id: human_review_operational
+    severity: error
+    description: "Human review path has reviewer role, approval points, SLA, fallback, and escalation."
+    required_paths:
+      - "first_behavior_scope_lock.human_review_path.reviewer_role"
+      - "first_behavior_scope_lock.human_review_path.approval_points"
+      - "first_behavior_scope_lock.human_review_path.review_sla"
+      - "first_behavior_scope_lock.human_review_path.escalation_path"
+    fail_when: "Human review is blank, infeasible, or lacks authority/SLA."
+    remediation: "Define review path or block Phase 3."
+  - check_id: phase_cadence_has_decision_owners
+    severity: error
+    description: "Phases 1-3 in phase_cadence have decision owners, exit evidence, and decision options."
+    required_paths:
+      - "phase_cadence"
+    required_phase_ids:
+      - "01_build_conversion_gate"
+      - "02_agent_necessity_check"
+      - "03_first_behavior_scope"
+    fail_when: "Any owned phase lacks decision_owner, exit_evidence, or exit_decision_options."
+    remediation: "Complete cadence entries before Phase 3 exit."
+  - check_id: workstreams_inherit_scope
+    severity: error
+    description: "Workstreams implement only the locked first behavior and include owners, deliverables, dependencies, and exit criteria."
+    required_paths:
+      - "workstreams"
+    fail_when: "Any workstream lacks owner, deliverables, dependencies, exit criteria, or implies broader scope."
+    remediation: "Constrain workstreams to first_behavior_scope_lock."
+  - check_id: milestones_cover_phase_1_to_3
+    severity: error
+    description: "Milestones include contract lock, agent necessity decision, first behavior lock, offline validation readiness, and pilot readiness."
+    required_paths:
+      - "milestones"
+    required_milestone_ids:
+      - "m0_contract_lock"
+      - "m1_agent_necessity_decision"
+      - "m2_first_behavior_locked"
+      - "m3_offline_validation_ready"
+      - "m4_pilot_launch_ready"
+    fail_when: "Any required milestone is missing, ownerless, or lacks required artifacts."
+    remediation: "Add milestone or mark plan blocked."
+  - check_id: dependencies_and_risks_owned
+    severity: error
+    description: "Dependencies and delivery risks have owner, impact, mitigation, and blocked-phase handling."
+    required_paths:
+      - "dependencies"
+      - "delivery_risks"
+      - "dependencies.dependency_rules"
+    fail_when: "Dependencies or risks are blank, ownerless, or do not specify phase impact."
+    remediation: "Assign owners and mitigation before architecture handoff."
+  - check_id: definition_of_done_complete
+    severity: error
+    description: "Definition of done states what must be true for Phase 3 completion."
+    required_paths:
+      - "definition_of_done.phase_3_complete_when"
+      - "definition_of_done.documentation_required"
+    fail_when: "Phase 3 definition of done omits signoff, return-to-method evaluation, or scope lock completeness."
+    remediation: "Complete definition of done before phase exit."
+  - check_id: return_to_method_triggers_evaluated
+    severity: error
+    description: "Return-to-method controls are present and evaluated."
+    required_paths:
+      - "return_to_method_controls.triggers"
+      - "return_to_method_controls.handling"
+    fail_when: "Workflow boundary, source/access, readiness, owner, or lifecycle assumptions changed without return-to-method handling."
+    remediation: "Pause Section 2 and route to method owner when triggered."
