@@ -2,11 +2,11 @@
 
 ## Install the AI Operating Partner plugin
 
-In **Add from marketplace**, paste **kavins06/AI-OPERATING-PARTNER-MODEL@codex/plugin-marketplace**. Select **AI Operating Partner** from **Quoin Operating Partner**, install, and start a new conversation.
+In **Add from marketplace**, paste **https://github.com/kavins06/AI-OPERATING-PARTNER-MODEL**. Select **AI Operating Partner** from **Quoin Operating Partner**, install, and start a new conversation.
 
 Try: **Help me find the best AI opportunity in my business.**
 
-This branch includes the complete [plugin package](plugins/ai-operating-partner-model/) with 27 skills and method assets. See the [user guide](plugins/ai-operating-partner-model/docs/plugin-guide.md) and [acceptance scenarios](plugins/ai-operating-partner-model/docs/plugin-test-cases.md). After this branch is merged, the plain repository URL works as the marketplace source. GitHub marketplace installation requires a supporting host and workspace permission.
+This repository includes the complete [plugin package](plugins/ai-operating-partner-model/) with 27 skills and method assets. See the [user guide](plugins/ai-operating-partner-model/docs/plugin-guide.md) and [acceptance scenarios](plugins/ai-operating-partner-model/docs/plugin-test-cases.md). GitHub marketplace installation requires a supporting host and workspace permission.
 
 The packaged method is independent of the older method files below. Rebuild it from the method-development checkout; do not mix these versions.
 
